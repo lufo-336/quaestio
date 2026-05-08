@@ -162,13 +162,12 @@
         <Button Grid.Row="3"
                 Content="Torna alla Home"
                 Click="OnTornaClick"
+                Classes="accent"
                 Padding="22,10"
                 FontSize="14"
                 FontWeight="SemiBold"
                 HorizontalAlignment="Right"
-                Margin="0,16,0,0"
-                Background="{DynamicResource SystemAccentColorBrush}"
-                Foreground="White"/>
+                Margin="0,16,0,0"/>
 
     </Grid>
 
