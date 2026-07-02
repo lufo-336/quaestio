@@ -28,6 +28,8 @@
   <ItemGroup>
     <AvaloniaResource Include="..\materie.json" Link="Assets\materie.json" />
     <AvaloniaResource Include="..\domande\**\*.json" Link="Assets\domande\%(RecursiveDir)%(Filename)%(Extension)" />
+    <AvaloniaResource Include="..\generazione-domande\GUIDA_GENERAZIONE_DOMANDE.md" Link="Assets\Guida\GUIDA_GENERAZIONE_DOMANDE.md" />
+    <AvaloniaResource Include="..\generazione-domande\quiz-engine.js" Link="Assets\Guida\quiz-engine.js" />
   </ItemGroup>
 
 </Project>
