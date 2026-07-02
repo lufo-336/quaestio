@@ -22,4 +22,13 @@ public class Materia
     /// </summary>
     [JsonPropertyName("formato")]
     public string Formato { get; set; } = "standard";
+
+    /// <summary>
+    /// True se la materia è stata importata dall'utente via "Gestione
+    /// contenuti" (ContenutiUtenteService), false se è built-in (caricata da
+    /// IFonteDati). Calcolato al caricamento in MainView, mai
+    /// serializzato/deserializzato da/verso JSON.
+    /// </summary>
+    [JsonIgnore]
+    public bool Importata { get; set; }
 }
