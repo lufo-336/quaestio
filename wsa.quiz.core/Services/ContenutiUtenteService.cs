@@ -113,11 +113,17 @@ public class ContenutiUtenteService
 
     // ---------------------------------------------------------------- SCRITTURA
 
-    /// <summary>Crea una nuova materia utente con il suo primo file di domande. Non tocca i file built-in.</summary>
-    public Materia CreaMateria(string nome, List<Domanda> domande)
+    /// <summary>
+    /// Crea una nuova materia utente. <paramref name="idEsistenti"/> deve includere
+    /// gli id di TUTTE le materie note al chiamante (built-in + già importate), non
+    /// solo quelle utente: evita che lo slug generato collida con l'id di una
+    /// materia built-in (es. utente crea "SQL" -> stesso id "sql" del built-in).
+    /// </summary>
+    public Materia CreaMateria(string nome, List<Domanda> domande, IEnumerable<string> idEsistenti)
     {
         var materie = CaricaMaterieUtente();
-        string id = GeneraIdMateria(nome, materie.Select(m => m.Id));
+        var tuttiGliId = materie.Select(m => m.Id).Concat(idEsistenti);
+        string id = GeneraIdMateria(nome, tuttiGliId);
         var materia = new Materia
         {
             Id = id,
