@@ -159,7 +159,7 @@ public class StorageService
     /// L'hash si calcola su testo + risposte (in ordine) + indice corretta.
     /// 12 hex = 48 bit -> probabilita' di collisione su 1000 domande ~3.5e-12.
     /// </summary>
-    private static string GeneraId(Domanda d)
+    internal static string GeneraId(Domanda d)
     {
         string raw = $"{d.DomandaTesto}|{string.Join("\u0001", d.Risposte)}|{d.RispostaCorretta}";
         byte[] bytes = Encoding.UTF8.GetBytes(raw);
@@ -223,7 +223,7 @@ public class StorageService
     /// Scrive il contenuto su file in modo atomico (temp + rename) per evitare
     /// file corrotti in caso di crash o scritture concorrenti.
     /// </summary>
-    private static void ScriviAtomico(string percorso, string contenuto)
+    internal static void ScriviAtomico(string percorso, string contenuto)
     {
         string temp = percorso + ".tmp";
         File.WriteAllText(temp, contenuto);
@@ -234,7 +234,7 @@ public class StorageService
     /// Legge tutto il testo da un file con lock condiviso (permette letture
     /// concorrenti, blocca scritture).
     /// </summary>
-    private static string LeggiFileCondiviso(string percorso)
+    internal static string LeggiFileCondiviso(string percorso)
     {
         using var stream = new FileStream(percorso, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var reader = new StreamReader(stream, Encoding.UTF8);
