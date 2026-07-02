@@ -25,6 +25,7 @@ public partial class MainView : UserControl
     private List<Materia> _materie = new();
     private List<Domanda> _tutteDomande = new();
     private Dictionary<string, Domanda> _mappaDomande = new();
+    private ContenutiUtenteService? _contenutiUtente;
 
     private HomeView? _homeView;
     private CronologiaView? _cronologiaView;
@@ -288,8 +289,17 @@ public partial class MainView : UserControl
         try
         {
             _storage = new StorageService(fonte, cartellaUtente);
+            _contenutiUtente = new ContenutiUtenteService(cartellaUtente);
+
             _materie = _storage.CaricaMaterie();
+            var materieUtente = _contenutiUtente.CaricaMaterieUtente();
+            foreach (var m in materieUtente) m.Importata = true;
+            _materie.AddRange(materieUtente);
+
             _tutteDomande = _storage.CaricaTutteLeDomande(_materie);
+            foreach (var m in _materie)
+                _tutteDomande.AddRange(_contenutiUtente.CaricaDomandeUtente(m));
+
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
 
             StatoHeaderText.Text = $"{_materie.Count} materie · {_tutteDomande.Count} domande";
