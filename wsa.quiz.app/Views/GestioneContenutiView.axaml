@@ -74,6 +74,37 @@
                 </ScrollViewer>
             </Border>
 
+            <Border Background="{DynamicResource SystemRegionBrush}"
+                    BorderBrush="{DynamicResource SystemBaseLowColor}"
+                    BorderThickness="1" CornerRadius="6" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Nuova materia" FontWeight="SemiBold" FontSize="15"/>
+                    <TextBox x:Name="NomeNuovaMateria" Watermark="Nome della materia"/>
+                    <Button Content="Scegli file JSON e importa" Click="OnScegliFileNuovaMateriaClick"
+                            Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
+                    <TextBlock x:Name="EsitoNuovaMateria" FontSize="12" TextWrapping="Wrap"
+                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="PannelloAnteprima" IsVisible="False"
+                    Background="{DynamicResource SystemRegionBrush}"
+                    BorderBrush="{DynamicResource SystemBaseLowColor}"
+                    BorderThickness="1" CornerRadius="6" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock x:Name="AnteprimaTitoloText" FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap"/>
+                    <ScrollViewer MaxHeight="240" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="AnteprimaLista"/>
+                    </ScrollViewer>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button x:Name="BottoneConferma" Content="Conferma" Click="OnConfermaImportClick"
+                                Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
+                        <Button Content="Annulla" Click="OnAnnullaImportClick"
+                                Padding="{DynamicResource SzBtnPadding}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
