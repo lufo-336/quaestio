@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:state="using:Wsa.Quiz.App.State"
+             xmlns:views="using:Wsa.Quiz.App.Views"
+             mc:Ignorable="d"
+             x:Class="Wsa.Quiz.App.Views.GestioneContenutiView"
+             x:DataType="views:GestioneContenutiView">
+
+    <ScrollViewer Margin="20,16,20,16" VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+
+            <StackPanel Spacing="2">
+                <TextBlock Text="Gestione contenuti" FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Sottotitolo}"
+                           FontSize="12"
+                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
+            </StackPanel>
+
+            <ItemsControl ItemsSource="{Binding Sessioni}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="state:MateriaListItem">
+                        <Border Background="{DynamicResource SystemRegionBrush}"
+                                BorderBrush="{DynamicResource SystemBaseLowColor}"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="14,10"
+                                Margin="0,0,0,8">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0" Spacing="2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="{Binding Nome}" FontWeight="SemiBold" FontSize="14"/>
+                                        <Border Background="{DynamicResource SystemBaseLowColor}"
+                                                CornerRadius="3" Padding="6,2">
+                                            <TextBlock Text="{Binding Badge}" FontSize="10"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding ConteggioDomande, StringFormat='{}{0} domande'}"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                                            VerticalAlignment="Center"
+                                            IsVisible="{Binding Importata}">
+                                    <Button Content="Elimina" Click="OnEliminaClick"
+                                            IsTabStop="False" Classes="danger"
+                                            Padding="{DynamicResource SzBtnPadding}" FontSize="12"
+                                            IsVisible="{Binding NonInAttesaConferma}"/>
+                                    <TextBlock Text="Sicuro?" VerticalAlignment="Center" FontSize="12"
+                                               Foreground="#B85450" FontWeight="SemiBold"
+                                               IsVisible="{Binding InAttesaConfermaEliminazione}"/>
+                                    <Button Content="Si', elimina" Click="OnConfermaEliminaClick"
+                                            IsTabStop="False" Classes="danger"
+                                            Padding="{DynamicResource SzBtnPadding}" FontSize="12"
+                                            IsVisible="{Binding InAttesaConfermaEliminazione}"/>
+                                    <Button Content="Annulla" Click="OnAnnullaEliminaClick"
+                                            IsTabStop="False"
+                                            Padding="{DynamicResource SzBtnPadding}" FontSize="12"
+                                            IsVisible="{Binding InAttesaConfermaEliminazione}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
