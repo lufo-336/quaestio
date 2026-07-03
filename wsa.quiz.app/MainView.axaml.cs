@@ -334,7 +334,12 @@ public partial class MainView : UserControl
             // ---------- Tab Gestione contenuti ----------
             _gestioneView = new GestioneContenutiView();
             _gestioneView.Inizializza(_storage, _contenutiUtente!, _materie, _tutteDomande);
-            _gestioneView.ContenutiCambiati += (_, _) => Caricamento();
+            // Post invece di chiamata diretta: ContenutiCambiati viene sollevato da un
+            // Click handler di _gestioneView stessa, che _gestioneArea.Content sta per
+            // sostituire. Ricostruire subito l'albero visivo (sincrono, rientrante)
+            // mentre Avalonia sta ancora smontando l'evento Click in corso blocca la
+            // UI; Post rimanda il refresh al termine del dispatch dell'evento corrente.
+            _gestioneView.ContenutiCambiati += (_, _) => Dispatcher.UIThread.Post(Caricamento);
             _gestioneArea.Content = _gestioneView;
         }
         catch (Exception ex)
