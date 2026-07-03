@@ -31,6 +31,7 @@ public partial class MainView : UserControl
     private CronologiaView? _cronologiaView;
     private SospesiView? _sospesiView;
     private StatisticheView? _statisticheView;
+    private GestioneContenutiView? _gestioneView;
 
     // Aree contenuto dell'host attivo: su desktop puntano ai ContentControl dentro
     // il TabControl, su touch a quelli dentro il Carousel. Impostate in
@@ -39,6 +40,7 @@ public partial class MainView : UserControl
     private ContentControl _cronologiaArea = null!;
     private ContentControl _sospesiArea = null!;
     private ContentControl _statisticheArea = null!;
+    private ContentControl _gestioneArea = null!;
 
     // Brush icone bottom nav (esplicite: il system accent su questo device rende
     // scuro — come l'header — quindi userei un colore poco visibile sulla barra).
@@ -71,7 +73,7 @@ public partial class MainView : UserControl
             if (!AppEnv.TouchMode) return Tabs.SelectedIndex;
             double w = LarghezzaPagina;
             if (w <= 0) return 0;
-            return Math.Clamp((int)Math.Round(SwipeHost.Offset.X / w), 0, 3);
+            return Math.Clamp((int)Math.Round(SwipeHost.Offset.X / w), 0, 4);
         }
         set
         {
@@ -94,6 +96,7 @@ public partial class MainView : UserControl
             _cronologiaArea = CronologiaAreaTouch;
             _sospesiArea = SospesiAreaTouch;
             _statisticheArea = StatisticheAreaTouch;
+            _gestioneArea = GestioneAreaTouch;
 
             Tabs.IsVisible = false;
             SwipeHost.IsVisible = true;
@@ -115,6 +118,7 @@ public partial class MainView : UserControl
             _cronologiaArea = CronologiaArea;
             _sospesiArea = SospesiArea;
             _statisticheArea = StatisticheArea;
+            _gestioneArea = GestioneArea;
 
             // Evidenzia (no-op su desktop) tenuta per simmetria; AggiornaNav esce subito.
             Tabs.SelectionChanged += (_, _) => AggiornaNav();
@@ -128,7 +132,7 @@ public partial class MainView : UserControl
         double w = SwipeHost.Bounds.Width;
         double h = SwipeHost.Bounds.Height;
         if (w <= 0 || h <= 0) return;
-        foreach (var pagina in new[] { HomeAreaTouch, CronologiaAreaTouch, SospesiAreaTouch, StatisticheAreaTouch })
+        foreach (var pagina in new[] { HomeAreaTouch, CronologiaAreaTouch, SospesiAreaTouch, StatisticheAreaTouch, GestioneAreaTouch })
         {
             pagina.Width = w;
             pagina.Height = h;
@@ -142,7 +146,7 @@ public partial class MainView : UserControl
     {
         double w = LarghezzaPagina;
         if (w <= 0) return;
-        double target = Math.Clamp(indice, 0, 3) * w;
+        double target = Math.Clamp(indice, 0, 4) * w;
         _scrollAnim?.Stop();
 
         if (!animato)
@@ -176,7 +180,7 @@ public partial class MainView : UserControl
     private void AggiornaNav()
     {
         if (!AppEnv.TouchMode) return;
-        var icone = new[] { NavHomeIcon, NavCronologiaIcon, NavSospesiIcon, NavStatisticheIcon };
+        var icone = new[] { NavHomeIcon, NavCronologiaIcon, NavSospesiIcon, NavStatisticheIcon, NavGestioneIcon };
         for (int i = 0; i < icone.Length; i++)
         {
             bool attiva = i == IndiceSezione;
@@ -244,7 +248,7 @@ public partial class MainView : UserControl
     {
         if (e.Key == Key.Tab && e.KeyModifiers.HasFlag(KeyModifiers.Control))
         {
-            const int n = 4;
+            const int n = 5;
             int delta = e.KeyModifiers.HasFlag(KeyModifiers.Shift) ? -1 : +1;
             IndiceSezione = (IndiceSezione + delta + n) % n;
             // Sposto il focus nella view appena attivata cosi' le scorciatoie locali
@@ -255,6 +259,7 @@ public partial class MainView : UserControl
                 case 1: (_cronologiaArea.Content as Control)?.Focus(); break;
                 case 2: (_sospesiArea.Content as Control)?.Focus(); break;
                 case 3: (_statisticheArea.Content as Control)?.Focus(); break;
+                case 4: (_gestioneArea.Content as Control)?.Focus(); break;
             }
             e.Handled = true;
             return;
@@ -325,6 +330,12 @@ public partial class MainView : UserControl
             _statisticheView = new StatisticheView();
             _statisticheView.Inizializza(_storage);
             _statisticheArea.Content = _statisticheView;
+
+            // ---------- Tab Gestione contenuti ----------
+            _gestioneView = new GestioneContenutiView();
+            _gestioneView.Inizializza(_storage, _contenutiUtente!, _materie, _tutteDomande);
+            _gestioneView.ContenutiCambiati += (_, _) => Caricamento();
+            _gestioneArea.Content = _gestioneView;
         }
         catch (Exception ex)
         {

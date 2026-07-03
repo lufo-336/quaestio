@@ -69,7 +69,7 @@
                     BorderThickness="0,1,0,0">
             <!-- Solo icone (Path stroke). Colore/opacità gestiti da AggiornaNav:
                  attiva = blu pieno, inattive = bianco smorzato. -->
-            <Grid ColumnDefinitions="*,*,*,*">
+            <Grid ColumnDefinitions="*,*,*,*,*">
                 <Button x:Name="NavHome" Grid.Column="0" Classes="nav" Tag="0" Click="OnNavClick">
                     <Path x:Name="NavHomeIcon" Width="24" Height="24" Stretch="Uniform"
                           Stroke="White" StrokeThickness="2"
@@ -93,6 +93,12 @@
                           Stroke="White" StrokeThickness="2.6"
                           StrokeLineCap="Round"
                           Data="M5 20 V13 M12 20 V6 M19 20 V11"/>
+                </Button>
+                <Button x:Name="NavGestione" Grid.Column="4" Classes="nav" Tag="4" Click="OnNavClick">
+                    <Path x:Name="NavGestioneIcon" Width="24" Height="24" Stretch="Uniform"
+                          Stroke="White" StrokeThickness="2.4"
+                          StrokeLineCap="Round"
+                          Data="M12 4 V20 M4 12 H20"/>
                 </Button>
             </Grid>
             </Border>
@@ -135,6 +141,9 @@
                 <TabItem Header="Statistiche">
                     <ContentControl x:Name="StatisticheArea"/>
                 </TabItem>
+                <TabItem Header="Gestione contenuti">
+                    <ContentControl x:Name="GestioneArea"/>
+                </TabItem>
             </TabControl>
 
             <!-- Touch: le 4 pagine affiancate in orizzontale, ciascuna larga quanto il
@@ -153,6 +162,7 @@
                     <ContentControl x:Name="CronologiaAreaTouch"/>
                     <ContentControl x:Name="SospesiAreaTouch"/>
                     <ContentControl x:Name="StatisticheAreaTouch"/>
+                    <ContentControl x:Name="GestioneAreaTouch"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
