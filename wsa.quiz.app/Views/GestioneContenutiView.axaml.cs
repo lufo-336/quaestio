@@ -134,6 +134,31 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         MostraAnteprima($"Nuova materia \"{nome}\" — {domande.Count} domande", domande);
     }
 
+    private async void OnScegliFileAggiungiClick(object? sender, RoutedEventArgs e)
+    {
+        if (SelettoreMateria.SelectedItem is not MateriaListItem materia)
+        {
+            EsitoAggiungi.Text = "Scegli prima la materia a cui aggiungere le domande.";
+            return;
+        }
+
+        string? json = await ScegliFileJsonAsync();
+        if (json == null) return;
+
+        var (domande, errori) = ValidatoreImportDomande.Valida(json);
+        if (errori.Count > 0)
+        {
+            MostraErrori(errori);
+            return;
+        }
+
+        _pendingNuovaMateriaNome = null;
+        _pendingMateriaEsistenteId = materia.Id;
+        _pendingMateriaEsistenteNome = materia.Nome;
+        _pendingDomande = domande;
+        MostraAnteprima($"Aggiungi a \"{materia.Nome}\" — {domande.Count} domande nel file", domande);
+    }
+
     private void OnConfermaImportClick(object? sender, RoutedEventArgs e)
     {
         if (_pendingDomande == null || _contenutiUtente == null) return;
@@ -143,6 +168,12 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
             _contenutiUtente.CreaMateria(_pendingNuovaMateriaNome, _pendingDomande, _materie.Select(m => m.Id));
             EsitoNuovaMateria.Text = $"Materia \"{_pendingNuovaMateriaNome}\" creata con {_pendingDomande.Count} domande.";
             NomeNuovaMateria.Text = "";
+        }
+        else if (_pendingMateriaEsistenteId != null)
+        {
+            var esistenti = _tutteDomande.Where(d => d.MateriaId == _pendingMateriaEsistenteId);
+            var (aggiunte, duplicati) = _contenutiUtente.AggiungiDomande(_pendingMateriaEsistenteId, _pendingDomande, esistenti);
+            EsitoAggiungi.Text = $"{aggiunte} domande aggiunte a \"{_pendingMateriaEsistenteNome}\", {duplicati} duplicate saltate.";
         }
 
         PannelloAnteprima.IsVisible = false;

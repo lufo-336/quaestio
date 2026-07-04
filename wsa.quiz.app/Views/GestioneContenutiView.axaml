@@ -87,6 +87,26 @@
                 </StackPanel>
             </Border>
 
+            <Border Background="{DynamicResource SystemRegionBrush}"
+                    BorderBrush="{DynamicResource SystemBaseLowColor}"
+                    BorderThickness="1" CornerRadius="6" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Aggiungi domande a una materia esistente" FontWeight="SemiBold" FontSize="15"/>
+                    <ComboBox x:Name="SelettoreMateria" ItemsSource="{Binding Sessioni}"
+                              PlaceholderText="Scegli materia">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate DataType="state:MateriaListItem">
+                                <TextBlock Text="{Binding Nome}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Scegli file JSON e importa" Click="OnScegliFileAggiungiClick"
+                            Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
+                    <TextBlock x:Name="EsitoAggiungi" FontSize="12" TextWrapping="Wrap"
+                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                </StackPanel>
+            </Border>
+
             <Border x:Name="PannelloAnteprima" IsVisible="False"
                     Background="{DynamicResource SystemRegionBrush}"
                     BorderBrush="{DynamicResource SystemBaseLowColor}"
