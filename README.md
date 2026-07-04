@@ -151,7 +151,7 @@ Maggiori dettagli architetturali, decisioni prese, trappole incontrate e roadmap
 
 ## Stato
 
-Lavoro in corso, sviluppato per step incrementali documentati in `docs/superpowers/`. Funziona end-to-end su desktop Windows e su device Android fisico (vedi `CLAUDE.md` per il dettaglio delle verifiche); macOS/Linux non sono stati provati di recente ma il Core e Avalonia 12 sono cross-platform.
+Lavoro in corso, sviluppato per step incrementali documentati in `docs/superpowers/`. Funziona end-to-end su desktop Windows e su device Android fisico (vedi `CLAUDE.md` per il dettaglio delle verifiche). La tab "Gestione contenuti" (import da JSON) è verificata su desktop; su Android la build è verde e produce un APK firmato, ma il collaudo pratico su device/emulatore è ancora da fare. macOS/Linux non sono stati provati di recente ma il Core e Avalonia 12 sono cross-platform.
 
 ## Licenza
 
