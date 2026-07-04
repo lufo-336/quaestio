@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Platform;
 using Avalonia.Platform.Storage;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
@@ -15,7 +16,8 @@ namespace Wsa.Quiz.App.Views;
 /// <summary>
 /// Tab "Gestione contenuti": elenco materie (built-in + importate) con
 /// rimozione delle importate (riuso di TabellaViewBase, stesso pattern di
-/// SospesiView). I due flussi di import da JSON sono nei task successivi.
+/// SospesiView), i due flussi di import da JSON (nuova materia / aggiungi a
+/// esistente) e il download di guida + motore per generare domande con un'IA.
 /// </summary>
 public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
 {
@@ -181,5 +183,24 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         _pendingNuovaMateriaNome = null;
         _pendingMateriaEsistenteId = null;
         ContenutiCambiati?.Invoke(this, EventArgs.Empty);
+    }
+
+    private async void OnScaricaGuidaClick(object? sender, RoutedEventArgs e) =>
+        await ScaricaFile("avares://Wsa.Quiz.App/Assets/Guida/GUIDA_GENERAZIONE_DOMANDE.md", "GUIDA_GENERAZIONE_DOMANDE.md");
+
+    private async void OnScaricaMotoreClick(object? sender, RoutedEventArgs e) =>
+        await ScaricaFile("avares://Wsa.Quiz.App/Assets/Guida/quiz-engine.js", "quiz-engine.js");
+
+    private async Task ScaricaFile(string uriAsset, string nomeSuggerito)
+    {
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel?.StorageProvider is not { } provider) return;
+
+        var file = await provider.SaveFilePickerAsync(new FilePickerSaveOptions { SuggestedFileName = nomeSuggerito });
+        if (file == null) return;
+
+        using var origine = AssetLoader.Open(new Uri(uriAsset));
+        await using var destinazione = await file.OpenWriteAsync();
+        await origine.CopyToAsync(destinazione);
     }
 }
