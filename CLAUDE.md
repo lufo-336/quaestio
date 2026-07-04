@@ -805,6 +805,30 @@ Una volta capita la causa, applicare il fix minimo possibile.
     dito + inerzia + snap (feeling pager), affidabile perché è il gesto nativo. Assi
     ortogonali (host solo orizzontale, pagine solo verticale) → nessun conflitto.
     Tap-nav animato via `ScrollViewer.Offset`.
+19. **`RadioButton.GroupName` condiviso = esclusività a livello di PROCESSO, non
+    solo dentro il singolo controllo/finestra** *(scoperta Step 12/import JSON,
+    **risolto** 2026-07-04)*: `StatisticheView` aveva due `RadioButton` con
+    `GroupName="FiltroPeriodo"` + `IsChecked` bindato a due proprietà
+    mutuamente inverse (`ModalitaTutto` / `!ModalitaTutto`). Innocuo finché
+    esisteva **una sola istanza** della view. Dopo aver aggiunto in Task 9 un
+    reload completo dei dati (`MainView.Caricamento()` ricostruisce tutte le
+    tab, compresa una **nuova** `StatisticheView`, ogni volta che cambia
+    qualcosa in "Gestione contenuti"), costruire una seconda istanza registra i
+    suoi due `RadioButton` nello **stesso gruppo globale** di quelli della
+    prima istanza (i gruppi non sono scoped alla finestra/UserControl per
+    controlli non ancora attaccati all'albero visivo). Con `DataContext`
+    diversi e binding inverse, le due coppie entrano in un loop infinito di
+    check/uncheck reciproco: CPU al 100%, "non risponde", poi crash dopo
+    circa 50s — sintomo scambiato inizialmente per un bug di rientranza nel
+    `Dispatcher.UIThread.Post` del reload (che invece era corretto). Riprodotto
+    deterministicamente headless con due `new StatisticheView()` di fila
+    (nessun dato/dispatcher coinvolto): la seconda si blocca. **Soluzione**:
+    rimuovere `GroupName`, le due binding inverse bastano da sole a garantire
+    l'esclusività. **Regola generale**: qualunque `GroupName` di `RadioButton`
+    in una view che può essere istanziata più di una volta nel processo
+    (ricreata a ogni reload, aperta in più tab/finestre, ecc.) è a rischio;
+    preferire binding inverse espliciti (`{Binding !Prop}`) senza `GroupName`,
+    oppure un `GroupName` reso univoco per istanza a runtime.
 
 ## Note per i prossimi step
 
