@@ -1,23 +1,28 @@
 # WSA Quiz
 
-App di quiz multi-materia pensata per ripassare il programma del corso **Web & Software Architect (WSA)**. Esiste in due eseguibili che condividono lo stesso Core, gli stessi dati e la stessa cronologia:
+App di quiz multi-materia pensata per ripassare il programma del corso **Web & Software Architect (WSA)**. Tre eseguibili condividono lo stesso Core, gli stessi dati e la stessa cronologia:
 
-- **`wsa.quiz.cli`** — versione console (.NET 8). Pratica per ripassare senza distrazioni o da terminale.
-- **`wsa.quiz.app`** — versione grafica (.NET 8 + Avalonia 12). Tre tab: Home (configurazione + Avvia), Cronologia (sessioni passate con drill-down), Sospesi (sessioni in pausa, riprendibili).
+- **`wsa.quiz.cli`** — versione console. Pratica per ripassare senza distrazioni o da terminale.
+- **`wsa.quiz.desktop`** — versione grafica desktop (Avalonia 12).
+- **`wsa.quiz.android`** — stessa GUI, impacchettata come APK Android (layout touch-friendly, bottom navigation a icone con swipe, safe-area edge-to-edge).
+
+La GUI (desktop e Android) ha 5 sezioni: Home (configurazione + Avvia), Cronologia (sessioni passate con drill-down), Sospesi (sessioni in pausa, riprendibili), Statistiche (heatmap per materia/categoria), Gestione contenuti (import di materie/domande da JSON, guida per generarle con un'IA).
 
 Una sessione di quiz può essere **classica** (ogni domanda chiesta una volta) o in **modalità rotazione** (le sbagliate tornano in coda finché non vengono indovinate). Si possono filtrare le domande per materia e categoria, limitare a N domande, randomizzare l'ordine, attivare/disattivare il cronometro. Si può mettere in pausa e riprendere dopo. La cronologia mostra punteggio, durata, % corrette e — al doppio click — il dettaglio domanda per domanda.
 
 ## Avvio rapido
 
-Requisiti: **.NET 8 SDK**.
+Requisiti: **.NET 10 SDK**.
 
 ```bash
 # Console
 dotnet run --project wsa.quiz.cli
 
-# GUI
-dotnet run --project wsa.quiz.app
+# GUI desktop
+dotnet run --project wsa.quiz.desktop
 ```
+
+`wsa.quiz.app` è la libreria UI condivisa (usata da desktop e Android): non si esegue direttamente. Per Android vedi `dotnet build wsa.quiz.android -c Release` più sotto in Architettura.
 
 La cronologia viene salvata in una cartella utente condivisa fra console e GUI:
 
@@ -27,9 +32,23 @@ La cronologia viene salvata in una cartella utente condivisa fra console e GUI:
 
 ## Aggiungere materie, categorie e domande
 
-I dati si modificano via file JSON nella root del progetto. A ogni build i file vengono copiati negli output `bin/`, quindi basta rilanciare l'eseguibile per vedere le modifiche.
+Due modi, complementari:
 
-### 1. Materie — `materie.json`
+### 1. Dall'app — "Gestione contenuti" (consigliato)
+
+Nella GUI (desktop o Android), la 5ª tab **"Gestione contenuti"** permette di:
+
+- **Creare una nuova materia**: nome + upload di un file `.json` con le sue domande (schema sotto). Validato prima dell'import: se anche una sola domanda non è conforme, l'intero file viene rifiutato e gli errori sono elencati.
+- **Aggiungere domande a una materia esistente** (built-in o già importata): stesso upload, con anteprima prima di confermare. Le domande già presenti (stesso testo) vengono saltate automaticamente.
+- **Rimuovere** una materia importata (le materie built-in non sono rimovibili da qui).
+
+I contenuti importati restano **locali al dispositivo** (cartella utente, vedi sotto): non modificano i file del repo. Per farli entrare nel repo/APK ufficiale vanno copiati a mano nella cartella `domande/` (metodo 2).
+
+### 2. A mano, editando i JSON nella root del repo
+
+I dati si modificano via file JSON nella root del progetto. A ogni build i file vengono copiati negli output `bin/` (desktop/CLI) o incorporati nell'APK (Android); basta rilanciare l'eseguibile per vedere le modifiche.
+
+#### Materie — `materie.json`
 
 Elenco di oggetti, uno per materia. La `cartella` è relativa alla root e contiene tutti i `.json` con le domande di quella materia.
 
@@ -51,7 +70,7 @@ Elenco di oggetti, uno per materia. La `cartella` è relativa alla root e contie
 | `cartella` | string | Path relativo alla root. La cartella deve esistere.                  |
 | `formato`  | string | Per ora sempre `"standard"`. Riservato per formati alternativi.      |
 
-### 2. Domande — `domande/<materia>/<qualsiasi>.json`
+#### Domande — `domande/<materia>/<qualsiasi>.json`
 
 Ogni file è un array di domande. Si possono avere più file per materia (es. `csharp_domande.json`, `csharp_domande_2.json`): il loader li unisce tutti. La **categoria** è un campo libero su ciascuna domanda — non va dichiarata altrove. La Home offre i filtri per materia e categoria automaticamente.
 
@@ -75,10 +94,10 @@ Ogni file è un array di domande. Si possono avere più file per materia (es. `c
 
 | Campo              | Tipo     | Note                                                                                  |
 |--------------------|----------|---------------------------------------------------------------------------------------|
-| `id`               | int      | Univoco per il file. Usato per ordinare/tracciare.                                    |
+| `id`               | int      | Ignorato: l'app calcola un id stabile a partire dal contenuto della domanda.          |
 | `categoria`        | string   | Etichetta libera. Stessa stringa = stessa categoria nei filtri.                       |
 | `domanda`          | string   | Testo della domanda.                                                                  |
-| `risposte`         | string[] | Esattamente **4** opzioni.                                                            |
+| `risposte`         | string[] | Esattamente **4** opzioni (l'import da app accetta anche solo 2, ma lo standard è 4). |
 | `rispostaCorretta` | int      | Indice 0..3 della risposta giusta in `risposte`.                                      |
 | `spiegazione`      | string   | Mostrata dopo aver risposto. Markdown leggero (apici, backtick, a-capo) consentito.   |
 
@@ -91,57 +110,48 @@ Le risposte multiple sono soggette a due bias tipici quando vengono generate da 
 1. **Bias della risposta più lunga**: l'IA tende a produrre la risposta corretta più dettagliata e i distrattori più brevi. Chi conosce il trucco indovina senza sapere la materia.
 2. **Bias di posizione**: la risposta corretta finisce statisticamente più spesso in alcuni indici (tipicamente A o l'ultimo).
 
-Il modello deve essere istruito esplicitamente per evitarli. Il prompt qui sotto è quello che usiamo:
+Il repo include una **guida** (`generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md`) e un **motore** (`generazione-domande/quiz-engine.js`) pensati apposta per evitarli:
 
-> Genera **N** domande a risposta multipla in formato JSON conformi a questo schema:
->
-> ```json
-> {
->   "id": <int univoco>,
->   "categoria": "<stringa libera>",
->   "domanda": "<testo della domanda>",
->   "risposte": ["<A>", "<B>", "<C>", "<D>"],
->   "rispostaCorretta": <0|1|2|3>,
->   "spiegazione": "<perché la corretta è giusta e perché le altre sono sbagliate>"
-> }
-> ```
->
-> Argomento: **<materia / categoria specifica>**. Livello: **<base / intermedio / avanzato>**.
->
-> Regole obbligatorie:
->
-> 1. **Lunghezza delle risposte uniforme**: le 4 opzioni devono avere lunghezza simile (stesso ordine di grandezza in caratteri, max ±30% di differenza tra la più corta e la più lunga). La risposta corretta NON deve essere sistematicamente la più lunga né la più corta: deve essere talvolta più lunga, talvolta più corta, talvolta di lunghezza simile ai distrattori.
-> 2. **Distribuzione della corretta**: tra tutte le domande del batch, l'indice `rispostaCorretta` deve essere distribuito in modo approssimativamente uniforme tra 0, 1, 2 e 3. Punta a circa il 25% per ogni posizione, con un'oscillazione tollerata fino a circa il 33%, ma evita che una stessa posizione raccolga più del 35% delle corrette o meno del 15%.
-> 3. **Distrattori plausibili**: i 3 distrattori devono essere errori realistici (concetti vicini, sintassi simile, sinonimi che però non si applicano), non opzioni assurde o palesemente fuori tema.
-> 4. **Spiegazione completa**: la `spiegazione` deve dire perché la corretta è giusta E perché ognuna delle altre 3 è sbagliata, in 2-4 frasi.
-> 5. **`id` univoci**: parti dall'`id` <numero di partenza> e incrementa di 1 per ogni domanda generata.
->
-> Restituisci esclusivamente un array JSON valido, senza testo prima o dopo, senza commenti, senza markdown wrapper.
+- La guida è un prompt riutilizzabile da dare a un'IA (o da seguire a mano): spiega come scrivere le domande, come bilanciare le lunghezze delle risposte in 4 categorie (più lunga / più corta / intermedia / simile, ~25% ciascuna) e gli errori tipici in cui un'IA cade sistematicamente.
+- Il motore (`node`) prende il file dati scritto seguendo la guida, **valida** (campi mancanti, indici fuori range, duplicati), **misura** la distribuzione delle lunghezze e, solo se ok, **scrive** il JSON finale nello schema sopra, mescolando posizione delle risposte e ordine delle domande.
 
-Dopo la generazione: salvare l'output come `.json` nella cartella della materia corrispondente (es. `domande/cs/csharp_domande_4.json`). Al successivo avvio dell'app le nuove domande sono già disponibili. Suggerimento: prima di confermare il batch, verificare manualmente la distribuzione delle corrette e correggere le tre/quattro inevitabili sviste — è normale che il modello sbandi sulla regola 1 o 2.
+Uso da riga di comando:
+
+```bash
+# DRY RUN — controlla le quote senza scrivere
+node "generazione-domande/quiz-engine.js" miamateria.data.js out.json
+
+# Genera il JSON definitivo
+node "generazione-domande/quiz-engine.js" miamateria.data.js miamateria_domande.json --write
+```
+
+Entrambi i file sono anche **scaricabili direttamente dall'app**, dalla tab "Gestione contenuti" (vedi sopra) — utile su Android, dove il repo non è raggiungibile. Il JSON generato si importa poi dalla stessa schermata (nuova materia, o aggiunta a una esistente).
 
 ## Architettura
 
-Tre progetti .NET 8 nella stessa solution:
+Cinque progetti .NET 10 nella stessa solution:
 
 ```
 Wsa.Quiz.sln
 ├── wsa.quiz.core/      Libreria. Modelli (Domanda, Materia, RisultatoQuiz, ...) e servizi
-│                        (QuizService per shuffle/punteggio, StorageService per cronologia/sospesi).
+│                        (QuizService per shuffle/punteggio, StorageService per cronologia/sospesi,
+│                        ContenutiUtenteService per l'import da "Gestione contenuti").
 ├── wsa.quiz.cli/       Console. Tutta l'interazione utente in Program.cs e Services/ConsoleUI.cs.
-└── wsa.quiz.app/       GUI Avalonia. State machine event-driven in State/SessioneQuiz.cs,
-                         viste in Views/.
+├── wsa.quiz.app/       Libreria UI condivisa Avalonia. State machine event-driven in
+│                        State/SessioneQuiz.cs, viste in Views/. Usata sia da Desktop che Android.
+├── wsa.quiz.desktop/   Head desktop (Window, ApplicationLifetime classico).
+└── wsa.quiz.android/   Head Android (single-view, APK).
 ```
 
-Storage condiviso: `StorageService(cartellaDati, cartellaUtente)`. La cartella utente contiene `cronologia.json` e `pause.json`. La cartella dati è l'output del bin (dove i `materie.json` e i `domande/` vengono copiati a ogni build).
+Storage condiviso: `StorageService(IFonteDati, cartellaUtente)`. La cartella utente contiene `cronologia.json`, `quiz_in_pausa.json` e — da "Gestione contenuti" — `ContenutiUtente/` (materie e domande importate dall'utente, mai scritte nei file built-in del repo). `IFonteDati` astrae i dati read-only built-in: file system (desktop/CLI) o risorse Avalonia incorporate (Android).
 
 L'app GUI usa **code-behind + INotifyPropertyChanged**, no MVVM. Stile Fluent + font Inter.
 
-Maggiori dettagli architetturali, decisioni prese, trappole incontrate e roadmap futura sono in [`WSA_QUIZ_HANDOFF.md`](./WSA_QUIZ_HANDOFF.md).
+Maggiori dettagli architetturali, decisioni prese, trappole incontrate e roadmap futura sono in [`CLAUDE.md`](./CLAUDE.md).
 
 ## Stato
 
-Lavoro in corso, sviluppato per step incrementali documentati in `docs/superpowers/`. Per ora funziona end-to-end su Windows; macOS/Linux non sono stati provati di recente ma il Core e Avalonia 12 sono cross-platform.
+Lavoro in corso, sviluppato per step incrementali documentati in `docs/superpowers/`. Funziona end-to-end su desktop Windows e su device Android fisico (vedi `CLAUDE.md` per il dettaglio delle verifiche); macOS/Linux non sono stati provati di recente ma il Core e Avalonia 12 sono cross-platform.
 
 ## Licenza
 
