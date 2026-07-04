@@ -18,12 +18,18 @@
                 <TextBlock Text="Statistiche"
                            FontSize="22" FontWeight="SemiBold"/>
                 <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <!-- Niente GroupName: l'esclusivita' e' gia' garantita dalle due
+                         binding two-way mutuamente inverse (ModalitaTutto / !ModalitaTutto).
+                         Un GroupName condiviso registrava invece i RadioButton in un gruppo
+                         a livello di processo per i controlli non ancora agganciati a una
+                         finestra: costruendo una SECONDA StatisticheView (es. reload dati
+                         dopo un import in "Gestione contenuti") i due gruppi di RadioButton
+                         con DataContext diversi e binding inverse entravano in un loop
+                         infinito di check/uncheck reciproco -> hang + crash. Vedi Trappola 19. -->
                     <RadioButton Content="Tutto"
-                                 GroupName="FiltroPeriodo"
                                  IsChecked="{Binding ModalitaTutto}"
                                  Margin="0,0,10,0"/>
                     <RadioButton Content="Ultime"
-                                 GroupName="FiltroPeriodo"
                                  IsChecked="{Binding !ModalitaTutto}"
                                  Margin="0,0,10,0"/>
                     <NumericUpDown Value="{Binding LimiteUltimeN}"
