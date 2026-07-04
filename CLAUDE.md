@@ -628,14 +628,29 @@ tema chiaro). In dark mode va reso theme-aware (stessa famiglia di Trappola 9).
 Export CSV/JSON (utile come backup pre-svuotamento). Filtri per materia,
 range di date, percentuale. Da definire se export è "tutto" o rispetta i filtri.
 
-### ⏳ Step 12 — Import domande/materie da GUI
-Schermata "Gestione contenuti" per aggiungere domande caricando un file `.json`
-conforme allo schema del README. Due flussi: aggiungi a materia esistente /
-crea nuova materia. Decisioni UX da prendere: dove vive, gestione conflitti
-di `id` domanda, anteprima. **Implicazione storage**: oggi `materie.json` e
-`domande/` vengono copiati al build da `..\<file>` con `<None Include="...">`;
-vanno scritti nella cartella **sorgente** (non in `bin/`) altrimenti le
-modifiche si perdono al `dotnet clean`.
+### ✅ Step 12 — Import domande/materie da GUI (2026-07-04)
+5ª tab **"Gestione contenuti"** (desktop e Android): due flussi — crea nuova
+materia da `.json`, oppure aggiungi domande a una materia esistente (built-in
+o già importata) — entrambi con validazione strutturale (`ValidatoreImportDomande`,
+un solo errore rifiuta l'intero file), anteprima prima di confermare, e dedup
+per testo esatto sui duplicati (saltati e conteggiati, non è un errore). I
+contenuti importati vivono **solo** in `CartellaUtenteDefault()/ContenutiUtente/`
+(mai nei file built-in del repo/APK): risolve l'implicazione storage originale
+di questo step senza toccare `<None Include="...">`. Nuovo
+`ContenutiUtenteService` (Core) + `IStorageProvider` di Avalonia per i file
+picker (prima introduzione nel repo). La stessa tab include anche un riquadro
+che rende scaricabili (`SaveFilePickerAsync`) la guida e il motore per
+generare domande bilanciate con un'IA (`generazione-domande/`, incorporati
+come `AvaloniaResource`). Verificato: harness headless che invoca i veri
+handler della view (bypassando solo il file picker nativo, identico su
+Task 9/10), più verifica live sull'app desktop reale (creazione/rimozione/
+persistenza dopo riavvio via UI Automation, log reali catturati). Bug reale
+scoperto e risolto durante la verifica: vedi Trappola 19 (RadioButton
+GroupName cross-instance in `StatisticheView`, esposto dal primo reload
+completo dei dati mai eseguito dopo il boot). Spec/plan in `docs/superpowers/`
+(`2026-07-02-import-domande-json-*`). **Non verificato su device Android
+fisico** in questa sessione (nessun device/adb disponibile): APK Release
+comunque prodotto e firmato senza errori.
 
 ### ⏳ Step 13 — Preferenze utente persistite
 File `settings.json` nella cartella utente. Ricorda: ultime opzioni quiz,
