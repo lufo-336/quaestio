@@ -6,6 +6,7 @@ using Avalonia.Controls.Platform;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.App.Views;
@@ -32,6 +33,8 @@ public partial class MainView : UserControl
     private SospesiView? _sospesiView;
     private StatisticheView? _statisticheView;
     private GestioneContenutiView? _gestioneView;
+    private ImpostazioniView? _impostazioniView;
+    private PreferenzeUtente _preferenze = new();
 
     // Aree contenuto dell'host attivo: su desktop puntano ai ContentControl dentro
     // il TabControl, su touch a quelli dentro il Carousel. Impostate in
@@ -41,6 +44,7 @@ public partial class MainView : UserControl
     private ContentControl _sospesiArea = null!;
     private ContentControl _statisticheArea = null!;
     private ContentControl _gestioneArea = null!;
+    private ContentControl _impostazioniArea = null!;
 
     // Brush icone bottom nav (esplicite: il system accent su questo device rende
     // scuro — come l'header — quindi userei un colore poco visibile sulla barra).
@@ -73,7 +77,7 @@ public partial class MainView : UserControl
             if (!AppEnv.TouchMode) return Tabs.SelectedIndex;
             double w = LarghezzaPagina;
             if (w <= 0) return 0;
-            return Math.Clamp((int)Math.Round(SwipeHost.Offset.X / w), 0, 4);
+            return Math.Clamp((int)Math.Round(SwipeHost.Offset.X / w), 0, 5);
         }
         set
         {
@@ -97,6 +101,7 @@ public partial class MainView : UserControl
             _sospesiArea = SospesiAreaTouch;
             _statisticheArea = StatisticheAreaTouch;
             _gestioneArea = GestioneAreaTouch;
+            _impostazioniArea = ImpostazioniAreaTouch;
 
             Tabs.IsVisible = false;
             SwipeHost.IsVisible = true;
@@ -119,6 +124,7 @@ public partial class MainView : UserControl
             _sospesiArea = SospesiArea;
             _statisticheArea = StatisticheArea;
             _gestioneArea = GestioneArea;
+            _impostazioniArea = ImpostazioniArea;
 
             // Evidenzia (no-op su desktop) tenuta per simmetria; AggiornaNav esce subito.
             Tabs.SelectionChanged += (_, _) => AggiornaNav();
@@ -132,7 +138,7 @@ public partial class MainView : UserControl
         double w = SwipeHost.Bounds.Width;
         double h = SwipeHost.Bounds.Height;
         if (w <= 0 || h <= 0) return;
-        foreach (var pagina in new[] { HomeAreaTouch, CronologiaAreaTouch, SospesiAreaTouch, StatisticheAreaTouch, GestioneAreaTouch })
+        foreach (var pagina in new[] { HomeAreaTouch, CronologiaAreaTouch, SospesiAreaTouch, StatisticheAreaTouch, GestioneAreaTouch, ImpostazioniAreaTouch })
         {
             pagina.Width = w;
             pagina.Height = h;
@@ -146,7 +152,7 @@ public partial class MainView : UserControl
     {
         double w = LarghezzaPagina;
         if (w <= 0) return;
-        double target = Math.Clamp(indice, 0, 4) * w;
+        double target = Math.Clamp(indice, 0, 5) * w;
         _scrollAnim?.Stop();
 
         if (!animato)
@@ -180,7 +186,7 @@ public partial class MainView : UserControl
     private void AggiornaNav()
     {
         if (!AppEnv.TouchMode) return;
-        var icone = new[] { NavHomeIcon, NavCronologiaIcon, NavSospesiIcon, NavStatisticheIcon, NavGestioneIcon };
+        var icone = new[] { NavHomeIcon, NavCronologiaIcon, NavSospesiIcon, NavStatisticheIcon, NavGestioneIcon, NavImpostazioniIcon };
         for (int i = 0; i < icone.Length; i++)
         {
             bool attiva = i == IndiceSezione;
@@ -248,7 +254,7 @@ public partial class MainView : UserControl
     {
         if (e.Key == Key.Tab && e.KeyModifiers.HasFlag(KeyModifiers.Control))
         {
-            const int n = 5;
+            const int n = 6;
             int delta = e.KeyModifiers.HasFlag(KeyModifiers.Shift) ? -1 : +1;
             IndiceSezione = (IndiceSezione + delta + n) % n;
             // Sposto il focus nella view appena attivata cosi' le scorciatoie locali
@@ -260,6 +266,7 @@ public partial class MainView : UserControl
                 case 2: (_sospesiArea.Content as Control)?.Focus(); break;
                 case 3: (_statisticheArea.Content as Control)?.Focus(); break;
                 case 4: (_gestioneArea.Content as Control)?.Focus(); break;
+                case 5: (_impostazioniArea.Content as Control)?.Focus(); break;
             }
             e.Handled = true;
             return;
@@ -295,6 +302,9 @@ public partial class MainView : UserControl
         {
             _storage = new StorageService(fonte, cartellaUtente);
             _contenutiUtente = new ContenutiUtenteService(cartellaUtente);
+
+            _preferenze = _storage.CaricaPreferenze();
+            Application.Current!.RequestedThemeVariant = _preferenze.TemaScuro ? ThemeVariant.Dark : ThemeVariant.Light;
 
             _materie = _storage.CaricaMaterie();
             var materieUtente = _contenutiUtente.CaricaMaterieUtente();
@@ -341,6 +351,11 @@ public partial class MainView : UserControl
             // UI; Post rimanda il refresh al termine del dispatch dell'evento corrente.
             _gestioneView.ContenutiCambiati += (_, _) => Dispatcher.UIThread.Post(Caricamento);
             _gestioneArea.Content = _gestioneView;
+
+            // ---------- Tab Impostazioni ----------
+            _impostazioniView = new ImpostazioniView();
+            _impostazioniView.Inizializza(_storage, _preferenze);
+            _impostazioniArea.Content = _impostazioniView;
         }
         catch (Exception ex)
         {
