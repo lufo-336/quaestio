@@ -35,6 +35,7 @@ public partial class MainView : UserControl
     private GestioneContenutiView? _gestioneView;
     private ImpostazioniView? _impostazioniView;
     private PreferenzeUtente _preferenze = new();
+    private int _ultimoIndiceSalvato = -1;
 
     // Aree contenuto dell'host attivo: su desktop puntano ai ContentControl dentro
     // il TabControl, su touch a quelli dentro il Carousel. Impostate in
@@ -113,7 +114,7 @@ public partial class MainView : UserControl
             SwipeHost.SizeChanged += (_, _) => DimensionaPagine();
             // Lo scroll (swipe o animazione) aggiorna l'icona attiva nella bottom nav.
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
-                new EventHandler<ScrollChangedEventArgs>((_, _) => AggiornaNav()));
+                new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiata(); }));
 
             AggiornaNav();
         }
@@ -127,7 +128,7 @@ public partial class MainView : UserControl
             _impostazioniArea = ImpostazioniArea;
 
             // Evidenzia (no-op su desktop) tenuta per simmetria; AggiornaNav esce subito.
-            Tabs.SelectionChanged += (_, _) => AggiornaNav();
+            Tabs.SelectionChanged += (_, _) => { AggiornaNav(); SalvaTabSeCambiata(); };
         }
     }
 
@@ -180,6 +181,23 @@ public partial class MainView : UserControl
     {
         if (sender is Control { Tag: string tag } && int.TryParse(tag, out int indice))
             IndiceSezione = indice;
+    }
+
+    /// <summary>Salva la sezione attiva in preferenze.json solo se e' cambiata
+    /// rispetto all'ultimo salvataggio (Step 13): evita di riscrivere il file
+    /// ad ogni evento di scroll touch e di contare il ripristino iniziale
+    /// (IndiceSezione = _preferenze.TabIniziale in Caricamento) come un
+    /// "cambio" da risalvare.</summary>
+    private void SalvaTabSeCambiata()
+    {
+        if (_storage == null) return;
+        int idx = IndiceSezione;
+        if (idx == _ultimoIndiceSalvato) return;
+        _ultimoIndiceSalvato = idx;
+
+        var prefs = _storage.CaricaPreferenze();
+        prefs.TabIniziale = idx;
+        _storage.SalvaPreferenze(prefs);
     }
 
     /// <summary>Evidenzia l'icona della bottom nav corrispondente alla sezione attiva.</summary>
@@ -357,6 +375,14 @@ public partial class MainView : UserControl
             _impostazioniView = new ImpostazioniView();
             _impostazioniView.Inizializza(_storage, _preferenze);
             _impostazioniArea.Content = _impostazioniView;
+
+            // Ripristino l'ultima sezione aperta (Step 13). Imposto
+            // _ultimoIndiceSalvato PRIMA di assegnare IndiceSezione: l'assegnazione
+            // scatena comunque SelectionChanged/ScrollChanged -> SalvaTabSeCambiata,
+            // che cosi' vede idx == _ultimoIndiceSalvato e non ri-salva un
+            // "cambio" che in realta' e' solo il ripristino iniziale.
+            _ultimoIndiceSalvato = _preferenze.TabIniziale;
+            IndiceSezione = _preferenze.TabIniziale;
         }
         catch (Exception ex)
         {
