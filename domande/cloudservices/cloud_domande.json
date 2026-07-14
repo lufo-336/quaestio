@@ -1,0 +1,1302 @@
+[
+  {
+    "id": 1,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Quale caratteristica del cloud, secondo il NIST, permette all'utente di ottenere risorse senza dover contattare il provider?",
+    "risposte": [
+      "Rapid elasticity",
+      "On-demand self-service",
+      "Resource pooling",
+      "Measured service"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "L'on-demand self-service consente agli utenti di creare e configurare risorse autonomamente senza intervento umano del provider."
+  },
+  {
+    "id": 2,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Nel modello IaaS, quale componente è normalmente gestita dal cliente?",
+    "risposte": [
+      "Il sistema operativo installato sulla macchina virtuale",
+      "L'hardware del datacenter",
+      "I sistemi di raffreddamento",
+      "L'hypervisor del provider"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "In IaaS il provider gestisce l'infrastruttura fisica, mentre il cliente gestisce sistema operativo, runtime e applicazioni."
+  },
+  {
+    "id": 3,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Quale modello di deployment combina infrastrutture private e cloud pubblico?",
+    "risposte": [
+      "Public Cloud",
+      "Multi-Cloud",
+      "Hybrid Cloud",
+      "Dedicated Cloud"
+    ],
+    "rispostaCorretta": 2,
+    "spiegazione": "L'Hybrid Cloud integra risorse on-premises/private con servizi di cloud pubblico."
+  },
+  {
+    "id": 4,
+    "categoria": "Microsoft Azure",
+    "domanda": "Qual è la funzione principale di un Resource Group in Azure?",
+    "risposte": [
+      "Raggruppare logicamente risorse correlate",
+      "Fornire capacità di calcolo",
+      "Archiviare file di backup",
+      "Gestire gli utenti Azure AD"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Resource Group è un contenitore logico che facilita la gestione e l'eliminazione coordinata delle risorse."
+  },
+  {
+    "id": 5,
+    "categoria": "Microsoft Azure",
+    "domanda": "Quale servizio Azure appartiene al modello serverless?",
+    "risposte": [
+      "Azure Virtual Machines",
+      "Azure Blob Storage",
+      "Azure Functions",
+      "Azure Virtual Network"
+    ],
+    "rispostaCorretta": 2,
+    "spiegazione": "Azure Functions permette di eseguire codice in risposta a eventi senza gestire server."
+  },
+  {
+    "id": 6,
+    "categoria": "Amazon Web Services",
+    "domanda": "Quale servizio AWS corrisponde ad Azure Blob Storage?",
+    "risposte": [
+      "EFS",
+      "RDS",
+      "S3",
+      "Lambda"
+    ],
+    "rispostaCorretta": 2,
+    "spiegazione": "Amazon S3 è il principale servizio di object storage di AWS ed è equivalente a Blob Storage."
+  },
+  {
+    "id": 7,
+    "categoria": "Amazon Web Services",
+    "domanda": "Qual è l'equivalente AWS di Azure Functions?",
+    "risposte": [
+      "Elastic Beanstalk",
+      "EC2",
+      "Lambda",
+      "EKS"
+    ],
+    "rispostaCorretta": 2,
+    "spiegazione": "AWS Lambda è il servizio FaaS (Function as a Service) di Amazon."
+  },
+  {
+    "id": 8,
+    "categoria": "Container",
+    "domanda": "Qual è la principale differenza tra un container e una macchina virtuale?",
+    "risposte": [
+      "Il container condivide il kernel dell'host",
+      "Il container possiede un hypervisor dedicato",
+      "La macchina virtuale non ha sistema operativo",
+      "Non esiste alcuna differenza"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I container condividono il kernel del sistema operativo host, mentre ogni VM esegue un proprio sistema operativo completo."
+  },
+  {
+    "id": 9,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è l'unità minima gestita da Kubernetes?",
+    "risposte": [
+      "Cluster",
+      "Nodo",
+      "Container",
+      "Pod"
+    ],
+    "rispostaCorretta": 3,
+    "spiegazione": "Kubernetes gestisce direttamente i Pod, che possono contenere uno o più container."
+  },
+  {
+    "id": 10,
+    "categoria": "Serverless",
+    "domanda": "Che cosa indica il termine 'cold start' nel contesto del serverless?",
+    "risposte": [
+      "Il riavvio di una macchina virtuale",
+      "Il tempo necessario per inizializzare una funzione dopo un periodo di inattività",
+      "La perdita della connessione di rete",
+      "L'eliminazione automatica di un container"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "Il cold start è il ritardo dovuto all'avvio dell'ambiente di esecuzione quando una funzione viene invocata dopo essere rimasta inattiva."
+  },
+  {
+    "id": 11,
+    "categoria": "Docker",
+    "domanda": "Quale componente viene utilizzato da Docker per eseguire effettivamente i container?",
+    "risposte": [
+      "containerd",
+      "Apache",
+      "Hyper-V",
+      "Azure Container Registry"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Docker utilizza containerd come runtime per la gestione dei container, che a sua volta sfrutta runc per la loro esecuzione."
+  },
+  {
+    "id": 12,
+    "categoria": "Container",
+    "domanda": "Quale tecnologia Linux limita l'utilizzo di CPU e memoria di un container?",
+    "risposte": [
+      "Namespaces",
+      "cgroup",
+      "systemd",
+      "iptables"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "I cgroup (Control Groups) permettono di limitare e monitorare le risorse utilizzate dai container."
+  },
+  {
+    "id": 13,
+    "categoria": "Container",
+    "domanda": "Quale tecnologia Linux isola processi, rete e filesystem di un container?",
+    "risposte": [
+      "Namespaces",
+      "BIOS",
+      "Hypervisor",
+      "Swap"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I namespace forniscono l'isolamento delle risorse di sistema tra i vari container."
+  },
+  {
+    "id": 14,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è il compito principale del reconciliation loop di Kubernetes?",
+    "risposte": [
+      "Controllare il consumo energetico del cluster",
+      "Confrontare lo stato desiderato con quello reale e correggere le differenze",
+      "Creare automaticamente nuovi nodi fisici",
+      "Aggiornare il sistema operativo dei nodi"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "Il reconciliation loop mantiene il cluster nello stato dichiarato dall'utente intervenendo automaticamente quando necessario."
+  },
+  {
+    "id": 15,
+    "categoria": "Kubernetes",
+    "domanda": "Se un nodo di un cluster Kubernetes smette di funzionare, cosa accade normalmente ai Pod?",
+    "risposte": [
+      "Vengono eliminati definitivamente",
+      "Vengono spostati o ricreati su altri nodi disponibili",
+      "Restano fermi finché l'amministratore non interviene",
+      "Diventano macchine virtuali"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "Kubernetes rileva il guasto e tenta di ricreare i Pod su altri nodi disponibili per mantenere lo stato desiderato."
+  },
+  {
+    "id": 16,
+    "categoria": "Azure",
+    "domanda": "Quale servizio Azure permette di eseguire container senza gestire un cluster Kubernetes?",
+    "risposte": [
+      "Azure Container Instances",
+      "Azure SQL Database",
+      "Azure DNS",
+      "Azure DevOps"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Azure Container Instances consente di avviare singoli container senza amministrare un cluster."
+  },
+  {
+    "id": 17,
+    "categoria": "AWS",
+    "domanda": "Quale servizio AWS offre un cluster Kubernetes gestito?",
+    "risposte": [
+      "Lambda",
+      "EKS",
+      "S3",
+      "CloudFront"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "Amazon Elastic Kubernetes Service (EKS) è il servizio Kubernetes gestito di AWS."
+  },
+  {
+    "id": 18,
+    "categoria": "Networking",
+    "domanda": "Qual è l'equivalente AWS di Azure Virtual Network (VNet)?",
+    "risposte": [
+      "Route 53",
+      "Elastic IP",
+      "Virtual Private Cloud (VPC)",
+      "SQS"
+    ],
+    "rispostaCorretta": 2,
+    "spiegazione": "AWS VPC è il servizio che permette di creare reti virtuali isolate, equivalente alle VNet di Azure."
+  },
+  {
+    "id": 19,
+    "categoria": "Serverless",
+    "domanda": "Quale trigger avvia una funzione quando viene caricato un file nello storage?",
+    "risposte": [
+      "HTTP Trigger",
+      "Blob/Storage Trigger",
+      "Timer Trigger",
+      "Manual Trigger"
+    ],
+    "rispostaCorretta": 1,
+    "spiegazione": "I trigger di tipo Blob (Azure) o Storage/S3 (AWS) eseguono automaticamente la funzione al caricamento di un file."
+  },
+  {
+    "id": 20,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Quale caratteristica del cloud permette di aumentare o diminuire rapidamente le risorse in base al carico?",
+    "risposte": [
+      "Rapid Elasticity",
+      "Measured Service",
+      "Resource Pooling",
+      "Broad Network Access"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "La Rapid Elasticity consente al cloud di scalare rapidamente le risorse secondo le necessità dell'applicazione."
+  },
+  {
+    "id": 21,
+    "categoria": "Docker",
+    "domanda": "Qual è lo scopo principale di un Dockerfile?",
+    "risposte": [
+      "Definire le istruzioni per costruire un'immagine Docker",
+      "Monitorare lo stato dei container in esecuzione",
+      "Creare automaticamente un cluster Kubernetes",
+      "Configurare una Virtual Machine"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Dockerfile contiene le istruzioni necessarie per creare un'immagine Docker in modo riproducibile."
+  },
+  {
+    "id": 22,
+    "categoria": "Docker",
+    "domanda": "Qual è la differenza principale tra un'immagine Docker e un container?",
+    "risposte": [
+      "L'immagine è un modello immutabile, il container è la sua istanza in esecuzione",
+      "Il container viene creato prima dell'immagine",
+      "L'immagine può essere modificata durante l'esecuzione",
+      "Non esiste alcuna differenza"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "L'immagine rappresenta il template dell'applicazione, mentre il container è un'istanza avviata da quell'immagine."
+  },
+  {
+    "id": 23,
+    "categoria": "Kubernetes",
+    "domanda": "Quale comando di kubectl viene utilizzato per visualizzare i Pod presenti nel cluster?",
+    "risposte": [
+      "kubectl get pods",
+      "kubectl create pod",
+      "kubectl list containers",
+      "kubectl show cluster"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il comando 'kubectl get pods' mostra tutti i Pod presenti nel namespace selezionato."
+  },
+  {
+    "id": 24,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è la funzione principale di un nodo all'interno di un cluster Kubernetes?",
+    "risposte": [
+      "Eseguire i Pod assegnati dal control plane",
+      "Archiviare esclusivamente immagini Docker",
+      "Gestire il billing del provider cloud",
+      "Sostituire il container runtime"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I nodi sono le macchine fisiche o virtuali che ospitano ed eseguono i Pod."
+  },
+  {
+    "id": 25,
+    "categoria": "Azure",
+    "domanda": "Quale servizio Azure viene utilizzato per archiviare immagini Docker da utilizzare con AKS?",
+    "risposte": [
+      "Azure Container Registry (ACR)",
+      "Azure Blob Storage",
+      "Azure SQL Database",
+      "Azure Functions"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Azure Container Registry è il registro privato di immagini container integrato con AKS."
+  },
+  {
+    "id": 26,
+    "categoria": "AWS",
+    "domanda": "Qual è il servizio AWS equivalente ad Azure Container Registry?",
+    "risposte": [
+      "Elastic Container Registry (ECR)",
+      "Elastic File System (EFS)",
+      "Elastic Beanstalk",
+      "CloudWatch"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Amazon ECR è il registro di immagini container utilizzato con ECS ed EKS."
+  },
+  {
+    "id": 27,
+    "categoria": "Terraform",
+    "domanda": "Qual è il vantaggio principale di Terraform nella gestione dell'infrastruttura cloud?",
+    "risposte": [
+      "Permette di descrivere l'infrastruttura come codice e renderla riproducibile",
+      "Sostituisce completamente Kubernetes",
+      "È un database distribuito",
+      "Serve esclusivamente per creare container Docker"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Terraform implementa il paradigma Infrastructure as Code (IaC), consentendo di creare e gestire infrastrutture tramite file di configurazione."
+  },
+  {
+    "id": 28,
+    "categoria": "Cloud",
+    "domanda": "Secondo la dispensa, quale affermazione descrive meglio l'evoluzione da VM a Container fino al Serverless?",
+    "risposte": [
+      "Più si sale nello stack, meno infrastruttura deve essere gestita direttamente dallo sviluppatore",
+      "Serverless richiede più gestione rispetto alle VM",
+      "I container sostituiscono completamente il cloud",
+      "Le VM sono sempre più economiche del serverless"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il concetto chiave del corso è che, passando da VM a Container e Serverless, diminuisce la gestione dell'infrastruttura."
+  },
+  {
+    "id": 29,
+    "categoria": "Networking",
+    "domanda": "Qual è il ruolo principale di un Network Security Group (NSG) in Azure?",
+    "risposte": [
+      "Controllare il traffico di rete in ingresso e in uscita tramite regole firewall",
+      "Archiviare immagini Docker",
+      "Gestire i backup automatici",
+      "Distribuire i container nei Pod"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Gli NSG definiscono le regole di sicurezza che consentono o bloccano il traffico di rete verso le risorse Azure."
+  },
+  {
+    "id": 30,
+    "categoria": "AWS vs Azure",
+    "domanda": "Quale coppia di servizi rappresenta correttamente l'equivalenza tra Azure e AWS per l'orchestrazione Kubernetes?",
+    "risposte": [
+      "AKS - EKS",
+      "Azure Functions - EC2",
+      "Blob Storage - Lambda",
+      "Azure SQL - CloudFront"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "AKS (Azure Kubernetes Service) ed EKS (Elastic Kubernetes Service) sono i servizi Kubernetes gestiti dei rispettivi provider."
+  },
+  {
+    "id": 31,
+    "categoria": "Networking",
+    "domanda": "Qual è lo scopo principale di una Route Table in Azure o AWS?",
+    "risposte": [
+      "Definire il percorso seguito dal traffico di rete tra subnet e gateway",
+      "Salvare i log dei container",
+      "Distribuire automaticamente i Pod di Kubernetes",
+      "Archiviare immagini Docker"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le Route Table stabiliscono come il traffico viene instradato all'interno della rete virtuale."
+  },
+  {
+    "id": 32,
+    "categoria": "Networking",
+    "domanda": "Quale servizio AWS svolge un ruolo analogo al Network Security Group (NSG) di Azure?",
+    "risposte": [
+      "Security Group",
+      "CloudTrail",
+      "IAM",
+      "CloudFormation"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Security Group di AWS controllano il traffico in ingresso e in uscita delle risorse, come gli NSG di Azure."
+  },
+  {
+    "id": 33,
+    "categoria": "Networking",
+    "domanda": "Qual è il vantaggio principale di un Private Endpoint?",
+    "risposte": [
+      "Permette di raggiungere un servizio cloud tramite rete privata senza passare da Internet",
+      "Aumenta automaticamente la memoria dei container",
+      "Riduce il numero di Pod nel cluster",
+      "Crea una macchina virtuale dedicata"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Private Endpoint consentono comunicazioni private tra la VNet e i servizi Azure (o AWS tramite PrivateLink)."
+  },
+  {
+    "id": 34,
+    "categoria": "Networking",
+    "domanda": "Qual è la funzione principale di una VPN Site-to-Site?",
+    "risposte": [
+      "Collegare due reti private attraverso una connessione cifrata",
+      "Creare immagini Docker",
+      "Installare Kubernetes",
+      "Eseguire funzioni serverless"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Una VPN Site-to-Site collega reti aziendali e cloud mantenendo il traffico protetto."
+  },
+  {
+    "id": 35,
+    "categoria": "Docker",
+    "domanda": "Quale comando viene utilizzato per creare un'immagine a partire da un Dockerfile?",
+    "risposte": [
+      "docker build",
+      "docker start",
+      "docker pull",
+      "docker exec"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il comando 'docker build' legge il Dockerfile e genera una nuova immagine."
+  },
+  {
+    "id": 36,
+    "categoria": "Docker",
+    "domanda": "Quale comando scarica un'immagine da un registry remoto?",
+    "risposte": [
+      "docker pull",
+      "docker push",
+      "docker commit",
+      "docker logs"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il comando 'docker pull' scarica un'immagine da Docker Hub o da un registry privato."
+  },
+  {
+    "id": 37,
+    "categoria": "AWS",
+    "domanda": "Quale servizio AWS consente di eseguire container senza gestire server o cluster EC2?",
+    "risposte": [
+      "AWS Fargate",
+      "CloudWatch",
+      "S3",
+      "Route 53"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "AWS Fargate permette di eseguire container in modalità serverless senza amministrare l'infrastruttura."
+  },
+  {
+    "id": 38,
+    "categoria": "AWS",
+    "domanda": "Quale servizio AWS è progettato specificamente per l'esecuzione di container?",
+    "risposte": [
+      "Elastic Container Service (ECS)",
+      "CloudTrail",
+      "IAM",
+      "Elastic Beanstalk"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Amazon ECS è il servizio di orchestrazione proprietario di AWS dedicato ai container."
+  },
+  {
+    "id": 39,
+    "categoria": "Kubernetes",
+    "domanda": "Quale componente del Control Plane decide su quale nodo verrà eseguito un nuovo Pod?",
+    "risposte": [
+      "Scheduler",
+      "kubelet",
+      "etcd",
+      "Container Runtime"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Kubernetes Scheduler assegna i Pod ai nodi più adatti in base alle risorse disponibili e ai vincoli."
+  },
+  {
+    "id": 40,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è il compito principale del kubelet presente su ogni nodo?",
+    "risposte": [
+      "Assicurare che i Pod assegnati al nodo vengano eseguiti correttamente",
+      "Gestire il DNS del cluster",
+      "Creare automaticamente nuove immagini Docker",
+      "Sostituire il Control Plane"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il kubelet comunica con il Control Plane e controlla l'esecuzione dei Pod sul nodo locale."
+  },
+  {
+    "id": 41,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Quale caratteristica del cloud consente a più clienti di condividere la stessa infrastruttura fisica in modo sicuro?",
+    "risposte": [
+      "Resource Pooling",
+      "Rapid Elasticity",
+      "On-demand Self-Service",
+      "Measured Service"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Resource Pooling permette al provider di condividere le risorse fisiche tra più clienti garantendone l'isolamento."
+  },
+  {
+    "id": 42,
+    "categoria": "Cloud Fundamentals",
+    "domanda": "Quale modello di servizio offre il maggior controllo sull'infrastruttura al cliente?",
+    "risposte": [
+      "Infrastructure as a Service (IaaS)",
+      "Platform as a Service (PaaS)",
+      "Software as a Service (SaaS)",
+      "Function as a Service (FaaS)"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Nel modello IaaS il cliente gestisce sistemi operativi, middleware e applicazioni."
+  },
+  {
+    "id": 43,
+    "categoria": "Azure",
+    "domanda": "Quale servizio Azure permette di eseguire macchine virtuali?",
+    "risposte": [
+      "Azure Virtual Machines",
+      "Azure Functions",
+      "Azure Container Registry",
+      "Azure Logic Apps"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Azure Virtual Machines è il servizio IaaS dedicato all'esecuzione di macchine virtuali."
+  },
+  {
+    "id": 44,
+    "categoria": "AWS",
+    "domanda": "Quale servizio AWS è l'equivalente di Azure Virtual Machines?",
+    "risposte": [
+      "Amazon EC2",
+      "Amazon S3",
+      "Amazon Lambda",
+      "Amazon DynamoDB"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Amazon EC2 (Elastic Compute Cloud) fornisce istanze virtuali nel cloud AWS."
+  },
+  {
+    "id": 45,
+    "categoria": "Docker",
+    "domanda": "Qual è il vantaggio principale dell'utilizzo dei container rispetto alle macchine virtuali?",
+    "risposte": [
+      "Consumano meno risorse e si avviano molto più velocemente",
+      "Richiedono sempre un hypervisor dedicato",
+      "Possono funzionare senza sistema operativo",
+      "Sono utilizzabili solo nel cloud pubblico"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I container condividono il kernel dell'host e risultano molto più leggeri rispetto alle VM."
+  },
+  {
+    "id": 46,
+    "categoria": "Docker",
+    "domanda": "Quale comando visualizza i container attualmente in esecuzione?",
+    "risposte": [
+      "docker ps",
+      "docker images",
+      "docker build",
+      "docker network ls"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il comando 'docker ps' elenca i container attivi."
+  },
+  {
+    "id": 47,
+    "categoria": "Docker",
+    "domanda": "Quale comando mostra le immagini Docker disponibili localmente?",
+    "risposte": [
+      "docker images",
+      "docker ps",
+      "docker inspect",
+      "docker volume ls"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il comando 'docker images' restituisce tutte le immagini presenti sul computer."
+  },
+  {
+    "id": 48,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è lo scopo principale di un Deployment in Kubernetes?",
+    "risposte": [
+      "Gestire automaticamente il numero desiderato di repliche dei Pod",
+      "Configurare il firewall del cluster",
+      "Creare nuove immagini Docker",
+      "Sostituire il kubelet"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Un Deployment mantiene il numero desiderato di Pod e gestisce aggiornamenti e rollback."
+  },
+  {
+    "id": 49,
+    "categoria": "Serverless",
+    "domanda": "Qual è uno dei principali vantaggi dell'architettura serverless?",
+    "risposte": [
+      "Si paga principalmente per il tempo effettivo di esecuzione del codice",
+      "È necessario gestire manualmente i server",
+      "Richiede la creazione di macchine virtuali dedicate",
+      "Non può essere integrata con servizi cloud"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Nel serverless il costo è generalmente legato alle invocazioni e al tempo di esecuzione della funzione."
+  },
+  {
+    "id": 50,
+    "categoria": "Azure vs AWS",
+    "domanda": "Quale delle seguenti coppie rappresenta correttamente due servizi equivalenti?",
+    "risposte": [
+      "Azure Virtual Network (VNet) - Amazon VPC",
+      "Azure Functions - Amazon EC2",
+      "Azure Blob Storage - Amazon Lambda",
+      "Azure AKS - Amazon S3"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Azure Virtual Network e Amazon VPC sono entrambi servizi che permettono di creare reti virtuali isolate nel cloud."
+  },
+  {
+    "id": 51,
+    "categoria": "Container",
+    "domanda": "Perché due container possono essere eseguiti sullo stesso host consumando molte meno risorse rispetto a due macchine virtuali?",
+    "risposte": [
+      "Perché condividono il kernel del sistema operativo host",
+      "Perché ogni container contiene un hypervisor dedicato",
+      "Perché utilizzano una CPU virtuale condivisa",
+      "Perché non eseguono alcun processo"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I container condividono il kernel dell'host e isolano solo le risorse necessarie tramite namespace e cgroups."
+  },
+  {
+    "id": 52,
+    "categoria": "Kubernetes",
+    "domanda": "Quale componente del Control Plane rappresenta il punto di ingresso di tutte le richieste verso il cluster?",
+    "risposte": [
+      "kube-apiserver",
+      "kubelet",
+      "Scheduler",
+      "etcd"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il kube-apiserver espone le API di Kubernetes ed è il componente con cui comunicano utenti, kubectl e controller."
+  },
+  {
+    "id": 53,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è il ruolo principale di etcd all'interno di Kubernetes?",
+    "risposte": [
+      "Memorizzare lo stato del cluster in un database distribuito",
+      "Eseguire i container",
+      "Bilanciare il traffico tra i Pod",
+      "Scaricare le immagini Docker"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "etcd è il database key-value altamente disponibile che contiene la configurazione e lo stato del cluster."
+  },
+  {
+    "id": 54,
+    "categoria": "Kubernetes",
+    "domanda": "Se un Pod viene eliminato manualmente ma appartiene a un Deployment, cosa succede?",
+    "risposte": [
+      "Il Deployment ne crea automaticamente uno nuovo",
+      "Il cluster entra in errore",
+      "Il Pod viene ripristinato solo dopo il riavvio del nodo",
+      "Il Deployment viene eliminato"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Deployment confronta continuamente lo stato reale con quello desiderato e ricrea automaticamente i Pod mancanti."
+  },
+  {
+    "id": 55,
+    "categoria": "Terraform",
+    "domanda": "Quale comando di Terraform mostra le modifiche che verranno applicate all'infrastruttura senza eseguirle?",
+    "risposte": [
+      "terraform plan",
+      "terraform apply",
+      "terraform init",
+      "terraform destroy"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "terraform plan confronta lo stato corrente con quello desiderato e mostra le modifiche previste."
+  },
+  {
+    "id": 56,
+    "categoria": "Terraform",
+    "domanda": "Quale comando deve essere eseguito normalmente per primo in un nuovo progetto Terraform?",
+    "risposte": [
+      "terraform init",
+      "terraform plan",
+      "terraform apply",
+      "terraform validate"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "terraform init inizializza il progetto, scarica i provider e prepara l'ambiente di lavoro."
+  },
+  {
+    "id": 57,
+    "categoria": "Azure vs AWS",
+    "domanda": "Quale servizio AWS svolge lo stesso ruolo di Azure Private Endpoint?",
+    "risposte": [
+      "AWS PrivateLink (VPC Endpoint)",
+      "Amazon Route 53",
+      "Elastic Load Balancer",
+      "CloudFront"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "PrivateLink consente di raggiungere servizi AWS tramite la rete privata senza transitare su Internet, analogamente ai Private Endpoint di Azure."
+  },
+  {
+    "id": 58,
+    "categoria": "Docker",
+    "domanda": "Quale istruzione di un Dockerfile definisce il comando eseguito automaticamente all'avvio del container?",
+    "risposte": [
+      "CMD",
+      "FROM",
+      "COPY",
+      "EXPOSE"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "CMD specifica il comando predefinito eseguito quando viene avviato un container."
+  },
+  {
+    "id": 59,
+    "categoria": "Cloud Architecture",
+    "domanda": "Un'applicazione deve gestire improvvisi picchi di traffico senza mantenere server inutilizzati durante i periodi di inattività. Quale caratteristica del cloud rende possibile questo comportamento?",
+    "risposte": [
+      "Rapid Elasticity",
+      "Measured Service",
+      "Virtualizzazione",
+      "Resource Tagging"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "La Rapid Elasticity permette di aumentare o ridurre automaticamente le risorse in base al carico."
+  },
+  {
+    "id": 60,
+    "categoria": "Kubernetes",
+    "domanda": "Per quale motivo Kubernetes gestisce direttamente i Pod invece dei singoli container?",
+    "risposte": [
+      "Perché un Pod rappresenta l'unità di deploy che può contenere uno o più container con rete e storage condivisi",
+      "Perché ogni Pod contiene necessariamente una macchina virtuale",
+      "Perché un container non può essere eseguito senza Docker Desktop",
+      "Perché Kubernetes non è compatibile con i container OCI"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Pod è l'unità minima di deployment di Kubernetes e permette a più container correlati di condividere rete e volumi."
+  },
+  {
+    "id": 61,
+    "categoria": "Kubernetes",
+    "domanda": "Quale risorsa Kubernetes espone un'applicazione solo all'interno del cluster, senza renderla accessibile da Internet?",
+    "risposte": [
+      "ClusterIP Service",
+      "NodePort Service",
+      "LoadBalancer Service",
+      "Ingress"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Un Service di tipo ClusterIP è accessibile esclusivamente dai Pod interni al cluster ed è il tipo predefinito."
+  },
+  {
+    "id": 62,
+    "categoria": "Kubernetes",
+    "domanda": "Quando è preferibile utilizzare un Service di tipo LoadBalancer?",
+    "risposte": [
+      "Quando si vuole esporre un'applicazione verso Internet utilizzando il bilanciatore di carico del cloud provider",
+      "Quando il servizio deve essere raggiungibile solo dai Pod",
+      "Quando si vuole creare un nuovo nodo del cluster",
+      "Quando si desidera salvare lo stato di etcd"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Service di tipo LoadBalancer crea automaticamente un bilanciatore di carico nel provider cloud."
+  },
+  {
+    "id": 63,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è la funzione principale di un Ingress?",
+    "risposte": [
+      "Gestire il routing HTTP/HTTPS verso uno o più Service del cluster",
+      "Creare nuovi Pod",
+      "Monitorare il consumo della CPU",
+      "Archiviare le immagini Docker"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Ingress permette di pubblicare servizi HTTP/HTTPS con regole di routing basate su host e percorsi."
+  },
+  {
+    "id": 64,
+    "categoria": "Docker",
+    "domanda": "Qual è il vantaggio principale di un Docker Volume rispetto al filesystem interno del container?",
+    "risposte": [
+      "I dati rimangono disponibili anche dopo la rimozione del container",
+      "Il container utilizza meno memoria RAM",
+      "Il container viene eseguito più velocemente",
+      "Permette di utilizzare più CPU"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Docker Volume consentono la persistenza dei dati indipendentemente dal ciclo di vita del container."
+  },
+  {
+    "id": 65,
+    "categoria": "Docker",
+    "domanda": "Qual è la differenza principale tra un Docker Volume e un Bind Mount?",
+    "risposte": [
+      "Il Volume è gestito da Docker, mentre il Bind Mount utilizza una directory specifica dell'host",
+      "Il Bind Mount funziona solo su Windows",
+      "I Volume possono essere utilizzati solo con Kubernetes",
+      "Non esiste alcuna differenza"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Volume sono gestiti direttamente da Docker, mentre i Bind Mount collegano una cartella esistente del sistema host."
+  },
+  {
+    "id": 66,
+    "categoria": "AWS",
+    "domanda": "Qual è la differenza principale tra ECS ed EKS?",
+    "risposte": [
+      "ECS è l'orchestratore proprietario di AWS, mentre EKS è basato su Kubernetes",
+      "EKS gestisce solo macchine virtuali Windows",
+      "ECS può eseguire solo funzioni Lambda",
+      "Non esiste alcuna differenza"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "ECS è il servizio container proprietario di AWS, mentre EKS offre un cluster Kubernetes completamente gestito."
+  },
+  {
+    "id": 67,
+    "categoria": "AWS",
+    "domanda": "Qual è il vantaggio di utilizzare AWS Fargate insieme a ECS o EKS?",
+    "risposte": [
+      "Permette di eseguire container senza gestire direttamente i server",
+      "Sostituisce Amazon S3",
+      "Elimina la necessità dei container",
+      "Crea automaticamente una VPN"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Fargate gestisce automaticamente l'infrastruttura necessaria all'esecuzione dei container."
+  },
+  {
+    "id": 68,
+    "categoria": "Container",
+    "domanda": "Quale tecnologia garantisce l'isolamento dell'ambiente di esecuzione di un container?",
+    "risposte": [
+      "Linux Namespaces",
+      "VirtualBox",
+      "BIOS",
+      "Hyper-V"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I namespace isolano processi, rete, utenti e filesystem tra container diversi."
+  },
+  {
+    "id": 69,
+    "categoria": "Container",
+    "domanda": "Qual è il compito dei Linux cgroups?",
+    "risposte": [
+      "Limitare e monitorare il consumo delle risorse dei processi",
+      "Creare nuovi namespace",
+      "Installare Docker",
+      "Configurare il networking Kubernetes"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I cgroups controllano l'utilizzo di CPU, memoria, I/O e altre risorse da parte dei container."
+  },
+  {
+    "id": 70,
+    "categoria": "Scenario",
+    "domanda": "Una startup vuole pubblicare una semplice API che riceve poche richieste al giorno e desidera pagare solo quando il codice viene eseguito. Quale soluzione è la più adatta?",
+    "risposte": [
+      "Una piattaforma Serverless come Azure Functions o AWS Lambda",
+      "Un cluster Kubernetes dedicato",
+      "Una macchina virtuale sempre accesa",
+      "Un cluster Docker Swarm con tre nodi"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Per carichi di lavoro sporadici il serverless riduce i costi perché il pagamento è legato alle invocazioni della funzione."
+  },
+  {
+    "id": 71,
+    "categoria": "Kubernetes",
+    "domanda": "Per quale motivo Kubernetes utilizza lo 'stato desiderato' (Desired State)?",
+    "risposte": [
+      "Per garantire che il cluster mantenga automaticamente la configurazione richiesta, correggendo eventuali differenze",
+      "Per ridurre il numero di container in esecuzione",
+      "Per creare automaticamente nuove immagini Docker",
+      "Per sostituire il sistema operativo dei nodi"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Kubernetes confronta continuamente lo stato reale con quello desiderato e interviene automaticamente quando rileva differenze."
+  },
+  {
+    "id": 72,
+    "categoria": "Docker",
+    "domanda": "Perché nei Dockerfile è consigliato utilizzare immagini base leggere, come Alpine Linux?",
+    "risposte": [
+      "Per ridurre dimensione dell'immagine, tempi di download e superficie di attacco",
+      "Perché Alpine contiene già Kubernetes",
+      "Perché può essere eseguita senza kernel Linux",
+      "Perché rende inutili i Docker Volume"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Immagini più piccole velocizzano build e deploy e riducono il numero di dipendenze installate."
+  },
+  {
+    "id": 73,
+    "categoria": "Terraform",
+    "domanda": "Qual è il principale vantaggio dell'approccio Infrastructure as Code (IaC)?",
+    "risposte": [
+      "L'infrastruttura può essere versionata, riprodotta e automatizzata come il codice sorgente",
+      "Elimina completamente i costi del cloud",
+      "Permette di evitare l'utilizzo di container",
+      "Sostituisce Kubernetes"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "L'Infrastructure as Code rende l'infrastruttura ripetibile, documentata e facilmente automatizzabile."
+  },
+  {
+    "id": 74,
+    "categoria": "Terraform",
+    "domanda": "Qual è lo scopo del file di stato (terraform.tfstate)?",
+    "risposte": [
+      "Memorizzare lo stato reale delle risorse gestite da Terraform",
+      "Salvare le immagini Docker create",
+      "Conservare i log di Kubernetes",
+      "Memorizzare i file YAML del cluster"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Terraform utilizza il file di stato per sapere quali risorse esistono e quali modifiche devono essere applicate."
+  },
+  {
+    "id": 75,
+    "categoria": "Azure",
+    "domanda": "Per quale motivo Azure Container Registry viene spesso utilizzato insieme ad AKS?",
+    "risposte": [
+      "Per archiviare in modo sicuro le immagini dei container distribuiti nel cluster",
+      "Per sostituire il Control Plane",
+      "Per creare automaticamente le Virtual Machine",
+      "Per gestire le reti virtuali"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "AKS recupera normalmente le immagini dei container da ACR durante il deployment."
+  },
+  {
+    "id": 76,
+    "categoria": "AWS",
+    "domanda": "Quale combinazione rappresenta una tipica architettura container su AWS?",
+    "risposte": [
+      "ECR per le immagini, ECS o EKS per l'orchestrazione e Fargate per l'esecuzione serverless",
+      "S3 per eseguire i container e Lambda come registry",
+      "CloudFront come orchestratore e Route53 come runtime",
+      "IAM per eseguire i Pod"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Questa è l'architettura standard proposta da AWS per i workload containerizzati."
+  },
+  {
+    "id": 77,
+    "categoria": "Networking",
+    "domanda": "Perché un'applicazione aziendale potrebbe utilizzare un Private Endpoint anziché un endpoint pubblico?",
+    "risposte": [
+      "Per mantenere il traffico all'interno della rete privata migliorando sicurezza e conformità",
+      "Per aumentare automaticamente la CPU delle macchine virtuali",
+      "Per eliminare la necessità del DNS",
+      "Per sostituire i firewall di rete"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Private Endpoint evitano l'esposizione dei servizi su Internet, riducendo la superficie di attacco."
+  },
+  {
+    "id": 78,
+    "categoria": "Cloud Architecture",
+    "domanda": "Quale principio permette a un'applicazione cloud-native di continuare a funzionare anche se un'istanza viene persa?",
+    "risposte": [
+      "L'applicazione deve essere progettata per essere distribuita su più istanze replicabili",
+      "Ogni server deve contenere una copia completa del database",
+      "Le macchine virtuali non devono mai essere riavviate",
+      "Ogni container deve essere persistente"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le applicazioni cloud-native vengono progettate assumendo che le istanze possano essere sostituite in qualsiasi momento."
+  },
+  {
+    "id": 79,
+    "categoria": "Scenario",
+    "domanda": "Un team deve distribuire la stessa applicazione su Azure, AWS e nel datacenter aziendale mantenendo la stessa configurazione. Quale tecnologia facilita maggiormente questo obiettivo?",
+    "risposte": [
+      "Docker",
+      "Amazon EC2",
+      "Azure Virtual Machine Scale Set",
+      "Azure Blob Storage"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I container Docker garantiscono portabilità dell'applicazione tra ambienti differenti."
+  },
+  {
+    "id": 80,
+    "categoria": "Scenario",
+    "domanda": "Un'azienda vuole che il deploy di una nuova versione dell'applicazione avvenga senza interrompere il servizio. Quale funzionalità di Kubernetes soddisfa meglio questa esigenza?",
+    "risposte": [
+      "Rolling Update gestito dai Deployment",
+      "Riavvio manuale dei nodi",
+      "Eliminazione completa dei Pod prima del deploy",
+      "Ricostruzione del cluster"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I Deployment supportano i Rolling Update, sostituendo progressivamente i Pod senza interrompere il servizio."
+  },
+  {
+    "id": 81,
+    "categoria": "Scenario",
+    "domanda": "Una startup deve pubblicare un'applicazione web utilizzando container, ma non ha personale che possa amministrare un cluster Kubernetes. Quale soluzione è la più adatta?",
+    "risposte": [
+      "Azure Container Apps o AWS Fargate",
+      "Creare manualmente un cluster Kubernetes on-premises",
+      "Installare Docker Desktop su ogni client",
+      "Utilizzare esclusivamente macchine virtuali"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Servizi come Azure Container Apps e AWS Fargate permettono di eseguire container senza gestire direttamente i nodi del cluster."
+  },
+  {
+    "id": 82,
+    "categoria": "Kubernetes",
+    "domanda": "Qual è il principale vantaggio di un ReplicaSet all'interno di Kubernetes?",
+    "risposte": [
+      "Garantire che sia sempre in esecuzione il numero desiderato di Pod",
+      "Creare automaticamente immagini Docker",
+      "Gestire le Virtual Network",
+      "Sostituire il kube-apiserver"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il ReplicaSet mantiene costante il numero di repliche richiesto dal Deployment."
+  },
+  {
+    "id": 83,
+    "categoria": "Docker",
+    "domanda": "Perché è considerata una buona pratica costruire immagini Docker immutabili?",
+    "risposte": [
+      "Per garantire che ogni deployment utilizzi esattamente lo stesso ambiente",
+      "Per aumentare automaticamente la memoria disponibile",
+      "Per evitare l'utilizzo dei registry",
+      "Per eliminare la necessità di Kubernetes"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le immagini immutabili garantiscono deploy ripetibili e riducono problemi dovuti a modifiche manuali."
+  },
+  {
+    "id": 84,
+    "categoria": "Azure vs AWS",
+    "domanda": "Quale coppia rappresenta correttamente due servizi equivalenti per l'archiviazione di immagini container?",
+    "risposte": [
+      "Azure Container Registry (ACR) - Amazon Elastic Container Registry (ECR)",
+      "Azure Functions - Amazon EC2",
+      "Azure Blob Storage - Amazon ECS",
+      "Azure Virtual Network - Amazon Lambda"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "ACR ed ECR sono registry privati utilizzati per archiviare immagini OCI/Docker."
+  },
+  {
+    "id": 85,
+    "categoria": "Cloud",
+    "domanda": "Quale tra le seguenti soluzioni offre il livello di astrazione più elevato rispetto all'infrastruttura?",
+    "risposte": [
+      "Function as a Service (FaaS)",
+      "Infrastructure as a Service (IaaS)",
+      "Macchine virtuali",
+      "Server fisici"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Nel modello FaaS lo sviluppatore distribuisce solamente il codice, mentre tutta l'infrastruttura è gestita dal provider."
+  },
+  {
+    "id": 86,
+    "categoria": "Scenario",
+    "domanda": "Un'applicazione deve elaborare automaticamente ogni immagine caricata in uno storage cloud. Quale architettura è generalmente la più efficiente?",
+    "risposte": [
+      "Storage Trigger che attiva una funzione Serverless",
+      "Una macchina virtuale che controlla continuamente la cartella",
+      "Un cluster Kubernetes dedicato con un solo Pod",
+      "Un server FTP sempre acceso"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I trigger di Azure Functions o AWS Lambda permettono di elaborare automaticamente i file senza mantenere server attivi."
+  },
+  {
+    "id": 87,
+    "categoria": "Terraform",
+    "domanda": "Perché è sconsigliato modificare manualmente le risorse create da Terraform dal portale Azure o dalla console AWS?",
+    "risposte": [
+      "Perché si può creare una differenza tra lo stato reale e quello registrato nel file tfstate",
+      "Perché Terraform smette di funzionare definitivamente",
+      "Perché il provider elimina automaticamente le risorse",
+      "Perché Kubernetes non riesce più a distribuire i Pod"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le modifiche manuali possono causare 'configuration drift', rendendo incoerente il file di stato."
+  },
+  {
+    "id": 88,
+    "categoria": "Container",
+    "domanda": "Qual è uno dei principali motivi per cui i microservizi vengono spesso distribuiti tramite container?",
+    "risposte": [
+      "Ogni servizio può essere sviluppato, distribuito e scalato indipendentemente",
+      "Permettono di utilizzare più sistemi operativi nello stesso processo",
+      "Eliminano completamente la necessità della rete",
+      "Riducono automaticamente il numero di richieste HTTP"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "I container favoriscono l'indipendenza dei microservizi, facilitando deploy e scalabilità."
+  },
+  {
+    "id": 89,
+    "categoria": "Kubernetes",
+    "domanda": "Perché in Kubernetes è preferibile utilizzare un Deployment anziché creare direttamente un Pod?",
+    "risposte": [
+      "Perché il Deployment gestisce aggiornamenti, rollback e ricreazione automatica dei Pod",
+      "Perché un Pod non può contenere container",
+      "Perché il Deployment utilizza meno memoria RAM",
+      "Perché il Pod non può essere eseguito nel cloud"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Il Deployment aggiunge funzionalità di gestione del ciclo di vita che un Pod creato manualmente non possiede."
+  },
+  {
+    "id": 90,
+    "categoria": "Scenario",
+    "domanda": "Un'azienda vuole distribuire rapidamente centinaia di istanze identiche della stessa applicazione in più regioni cloud. Quale approccio è il più coerente con le moderne pratiche DevOps?",
+    "risposte": [
+      "Automatizzare il provisioning con Terraform e distribuire l'applicazione tramite container",
+      "Configurare manualmente ogni macchina virtuale",
+      "Installare l'applicazione tramite Desktop Remoto su ogni server",
+      "Creare ogni risorsa esclusivamente dal portale web"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Infrastructure as Code e containerizzazione permettono deploy rapidi, riproducibili e facilmente automatizzabili."
+  },
+  {
+    "id": 91,
+    "categoria": "Scenario",
+    "domanda": "Un'applicazione deve rispondere a migliaia di richieste contemporanee durante eventi eccezionali, mentre per il resto della giornata riceve pochissimo traffico. Quale soluzione minimizza i costi mantenendo la scalabilità?",
+    "risposte": [
+      "Una piattaforma Serverless come Azure Functions o AWS Lambda",
+      "Una macchina virtuale sempre accesa con molte CPU",
+      "Un cluster Kubernetes con decine di nodi sempre attivi",
+      "Un server fisico dedicato"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le piattaforme serverless scalano automaticamente e fanno pagare principalmente il tempo di esecuzione del codice."
+  },
+  {
+    "id": 92,
+    "categoria": "Scenario",
+    "domanda": "Un'azienda utilizza Kubernetes ma vuole mantenere private le immagini dei propri container. Quale architettura è la più appropriata?",
+    "risposte": [
+      "AKS collegato ad Azure Container Registry (oppure EKS collegato ad Amazon ECR)",
+      "Salvare le immagini su GitHub",
+      "Conservare le immagini solo sul PC dello sviluppatore",
+      "Inviare le immagini tramite FTP ai nodi del cluster"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Un registry privato è la soluzione standard per distribuire immagini ai cluster Kubernetes."
+  },
+  {
+    "id": 93,
+    "categoria": "Docker",
+    "domanda": "Qual è uno dei principali vantaggi della containerizzazione durante il processo di Continuous Integration e Continuous Deployment (CI/CD)?",
+    "risposte": [
+      "Lo stesso artefatto viene testato e distribuito in tutti gli ambienti riducendo le differenze tra sviluppo e produzione",
+      "I container eliminano la necessità di eseguire test",
+      "Docker sostituisce completamente Git",
+      "Ogni deploy richiede la ricompilazione del kernel Linux"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le immagini Docker garantiscono che il software venga eseguito nello stesso ambiente in ogni fase della pipeline."
+  },
+  {
+    "id": 94,
+    "categoria": "Kubernetes",
+    "domanda": "Perché i Pod sono considerati 'effimeri' (ephemeral)?",
+    "risposte": [
+      "Possono essere eliminati e ricreati automaticamente senza che l'applicazione debba dipendere dalla loro identità",
+      "Scadono automaticamente dopo 24 ore",
+      "Possono contenere un solo processo",
+      "Sono utilizzabili solo durante lo sviluppo"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "In Kubernetes un Pod può essere sostituito in qualsiasi momento; lo stato persistente deve essere conservato altrove."
+  },
+  {
+    "id": 95,
+    "categoria": "Cloud Architecture",
+    "domanda": "Qual è la differenza principale tra scalabilità verticale (Vertical Scaling) e orizzontale (Horizontal Scaling)?",
+    "risposte": [
+      "La scalabilità verticale aumenta le risorse della stessa macchina, quella orizzontale aggiunge nuove istanze",
+      "La scalabilità verticale aggiunge nuovi server, quella orizzontale aumenta la RAM",
+      "Sono due termini equivalenti",
+      "La scalabilità orizzontale è disponibile solo in AWS"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Scale Up significa potenziare una singola macchina, Scale Out significa distribuire il carico su più istanze."
+  },
+  {
+    "id": 96,
+    "categoria": "Terraform",
+    "domanda": "Qual è il principale vantaggio di utilizzare Terraform rispetto alla creazione manuale delle risorse dal portale cloud?",
+    "risposte": [
+      "L'infrastruttura può essere ricreata in modo identico, versionata e automatizzata",
+      "Terraform elimina completamente i costi del cloud",
+      "Terraform sostituisce Docker e Kubernetes",
+      "Terraform può essere utilizzato solo con Azure"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Terraform permette di definire l'infrastruttura come codice, migliorando automazione, controllo delle versioni e riproducibilità."
+  },
+  {
+    "id": 97,
+    "categoria": "Azure vs AWS",
+    "domanda": "Quale affermazione descrive correttamente il rapporto tra AKS ed EKS?",
+    "risposte": [
+      "Entrambi offrono Kubernetes gestito, ma uno è fornito da Azure e l'altro da AWS",
+      "AKS utilizza Docker mentre EKS utilizza solo macchine virtuali",
+      "EKS non supporta i Pod",
+      "AKS può essere utilizzato solo on-premises"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "AKS ed EKS sono servizi Kubernetes gestiti che differiscono principalmente per il cloud provider."
+  },
+  {
+    "id": 98,
+    "categoria": "Scenario",
+    "domanda": "Un database deve conservare i dati anche se tutti i Pod che lo utilizzano vengono ricreati. Quale principio deve essere applicato?",
+    "risposte": [
+      "Separare lo storage persistente dal ciclo di vita dei Pod",
+      "Salvare i dati esclusivamente nel filesystem del container",
+      "Ricreare manualmente il database ad ogni deploy",
+      "Disabilitare il Deployment"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le applicazioni stateful devono utilizzare volumi persistenti o servizi di storage esterni."
+  },
+  {
+    "id": 99,
+    "categoria": "Architetture Cloud",
+    "domanda": "Qual è una caratteristica fondamentale di un'applicazione Cloud Native?",
+    "risposte": [
+      "Essere progettata per resilienza, automazione e scalabilità distribuita",
+      "Essere eseguita esclusivamente su server fisici",
+      "Utilizzare una sola macchina virtuale molto potente",
+      "Funzionare senza connessione di rete"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "Le applicazioni cloud native sono progettate per sfruttare le caratteristiche del cloud come resilienza e scalabilità."
+  },
+  {
+    "id": 100,
+    "categoria": "Scenario Finale",
+    "domanda": "Una nuova applicazione deve essere altamente disponibile, facilmente scalabile, distribuita automaticamente tramite pipeline DevOps e portabile tra Azure e AWS. Quale combinazione rappresenta la soluzione più moderna?",
+    "risposte": [
+      "Docker + Kubernetes + Registry privato (ACR/ECR) + Terraform",
+      "Una macchina virtuale configurata manualmente",
+      "Un server fisico con installazione diretta dell'applicazione",
+      "Un desktop remoto sempre acceso con Docker Desktop"
+    ],
+    "rispostaCorretta": 0,
+    "spiegazione": "La combinazione Docker, Kubernetes, Registry e Terraform rappresenta oggi uno degli approcci più diffusi per applicazioni cloud-native e multi-cloud."
+  }
+]

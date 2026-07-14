@@ -52,5 +52,11 @@
     "nome": "Version Control",
     "cartella": "domande/versioncontrol",
     "formato": "standard"
+  },
+  {
+    "id": "cloudservices",
+    "nome": "Cloud Services",
+    "cartella": "domande/cloudservices",
+    "formato": "standard"
   }
 ]
