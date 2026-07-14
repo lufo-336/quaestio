@@ -321,8 +321,9 @@ public partial class MainView : UserControl
 
             // ---------- Tab Home ----------
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _tutteDomande);
+            _homeView.Inizializza(_materie, _tutteDomande, _preferenze);
             _homeView.QuizAvviato += OnQuizAvviato;
+            _homeView.PropertyChanged += OnHomeOpzioniCambiate;
             _homeArea.Content = _homeView;
 
             // ---------- Tab Cronologia ----------
@@ -372,6 +373,31 @@ public partial class MainView : UserControl
     private void OnQuizAvviato(object? sender, SessioneQuiz sessione)
     {
         AvviaQuizView(sessione);
+    }
+
+    private static readonly HashSet<string> _proprietaOpzioniQuiz = new(StringComparer.Ordinal)
+    {
+        nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.Cronometro),
+        nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo)
+    };
+
+    /// <summary>Salva su preferenze.json ad ogni cambio di una delle opzioni
+    /// quiz in Home (Step 13). Filtra sul nome proprieta' per non salvare
+    /// per cambi di stato non rilevanti (es. RiepilogoSelezione).</summary>
+    private void OnHomeOpzioniCambiate(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (_storage == null || _homeView == null) return;
+        if (e.PropertyName == null || !_proprietaOpzioniQuiz.Contains(e.PropertyName)) return;
+
+        var prefs = _storage.CaricaPreferenze();
+        prefs.RandomizzaOrdine = _homeView.RandomizzaOrdine;
+        prefs.Rotazione        = _homeView.Rotazione;
+        prefs.Cronometro       = _homeView.Cronometro;
+        prefs.LimitaDomande    = _homeView.LimitaDomande;
+        prefs.LimiteN          = (int)_homeView.LimiteN;
+        prefs.ModalitaTempo    = _homeView.ModalitaTempo;
+        prefs.MinutiTempo      = (int)_homeView.MinutiTempo;
+        _storage.SalvaPreferenze(prefs);
     }
 
     private void AvviaQuizView(SessioneQuiz sessione)
@@ -456,8 +482,9 @@ public partial class MainView : UserControl
         if (_homeView == null)
         {
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _tutteDomande);
+            _homeView.Inizializza(_materie, _tutteDomande, _preferenze);
             _homeView.QuizAvviato += OnQuizAvviato;
+            _homeView.PropertyChanged += OnHomeOpzioniCambiate;
         }
         _homeArea.Content = _homeView;
     }

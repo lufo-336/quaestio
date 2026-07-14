@@ -208,9 +208,28 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// Inizializza la lista materie e l'indice di categorie a partire dai dati caricati.
     /// Chiamato dalla <see cref="MainWindow"/> al boot.
     /// </summary>
-    public void Inizializza(List<Materia> materie, List<Domanda> tutteDomande)
+    public void Inizializza(List<Materia> materie, List<Domanda> tutteDomande, PreferenzeUtente preferenze)
     {
         _tutteDomande = tutteDomande;
+
+        // Opzioni quiz: valori salvati invece dei default hardcoded (Step 13).
+        // Uso le PROPRIETA' (non i campi diretti): i CheckBox/NumericUpDown in
+        // XAML sono gia' bindati a queste proprieta' dal costruttore
+        // (DataContext = this in InitializeComponent, eseguito PRIMA che
+        // MainView chiami Inizializza) quindi serve sollevare PropertyChanged
+        // perche' i controlli si aggiornino visivamente con il valore
+        // ripristinato - assegnare solo ai campi lascia i controlli fermi al
+        // valore hardcoded del costruttore. Non causa un salvataggio spurio:
+        // MainView si iscrive a HomeView.PropertyChanged (OnHomeOpzioniCambiate)
+        // SOLO dopo che questa chiamata e' tornata (vedi i due call site in
+        // MainView.axaml.cs), quindi questi eventi non hanno ancora ascoltatori.
+        RandomizzaOrdine = preferenze.RandomizzaOrdine;
+        Rotazione        = preferenze.Rotazione;
+        Cronometro       = preferenze.Cronometro;
+        LimitaDomande    = preferenze.LimitaDomande;
+        LimiteN          = preferenze.LimiteN;
+        ModalitaTempo    = preferenze.ModalitaTempo;
+        MinutiTempo      = preferenze.MinutiTempo;
 
         // 1. Popolo materie con conteggio domande
         Materie.Clear();
