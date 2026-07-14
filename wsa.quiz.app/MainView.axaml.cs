@@ -400,13 +400,18 @@ public partial class MainView : UserControl
             _impostazioniView.Inizializza(_storage, _preferenze);
             _impostazioniArea.Content = _impostazioniView;
 
-            // Ripristino l'ultima sezione aperta (Step 13). Imposto
-            // _ultimoIndiceSalvato PRIMA di assegnare IndiceSezione: l'assegnazione
-            // scatena comunque SelectionChanged/ScrollChanged -> SalvaTabSeCambiata,
-            // che cosi' vede idx == _ultimoIndiceSalvato e non ri-salva un
-            // "cambio" che in realta' e' solo il ripristino iniziale.
-            _ultimoIndiceSalvato = _preferenze.TabIniziale;
-            IndiceSezione = _preferenze.TabIniziale;
+            // Ripristino l'ultima sezione aperta (Step 13). Clamp: un
+            // preferenze.json modificato a mano con un TabIniziale fuori
+            // range (JSON valido, valore assurdo) manderebbe Tabs.SelectedIndex
+            // fuori range su desktop -> nessuna tab selezionata, e il successivo
+            // SelectionChanged persisterebbe quel -1 rendendo il danno permanente.
+            // Imposto _ultimoIndiceSalvato PRIMA di assegnare IndiceSezione:
+            // l'assegnazione scatena comunque SelectionChanged/ScrollChanged ->
+            // SalvaTabSeCambiata, che cosi' vede idx == _ultimoIndiceSalvato e non
+            // ri-salva un "cambio" che in realta' e' solo il ripristino iniziale.
+            int tabIniziale = Math.Clamp(_preferenze.TabIniziale, 0, 5);
+            _ultimoIndiceSalvato = tabIniziale;
+            IndiceSezione = tabIniziale;
         }
         catch (Exception ex)
         {
