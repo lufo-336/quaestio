@@ -17,6 +17,7 @@ public class StorageService
     private readonly string _cartellaUtente;
     private readonly string _fileCronologia;
     private readonly string _filePausa;
+    private readonly string _filePreferenze;
 
     private static readonly JsonSerializerOptions OpzioniScrittura = new()
     {
@@ -57,6 +58,7 @@ public class StorageService
         _cartellaUtente = Path.GetFullPath(cartellaUtente);
         _fileCronologia = Path.GetFullPath(Path.Combine(_cartellaUtente, "cronologia.json"));
         _filePausa      = Path.GetFullPath(Path.Combine(_cartellaUtente, "quiz_in_pausa.json"));
+        _filePreferenze = Path.GetFullPath(Path.Combine(_cartellaUtente, "preferenze.json"));
 
         // Validazione anti-directory-traversal sui file utente.
         static string ConSep(string dir) => dir.EndsWith(Path.DirectorySeparatorChar) ? dir : dir + Path.DirectorySeparatorChar;
@@ -64,6 +66,8 @@ public class StorageService
             throw new ArgumentException("Percorso cronologia.json fuori dalla cartella utente.", nameof(cartellaUtente));
         if (!_filePausa.StartsWith(ConSep(_cartellaUtente), StringComparison.Ordinal))
             throw new ArgumentException("Percorso quiz_in_pausa.json fuori dalla cartella utente.", nameof(cartellaUtente));
+        if (!_filePreferenze.StartsWith(ConSep(_cartellaUtente), StringComparison.Ordinal))
+            throw new ArgumentException("Percorso preferenze.json fuori dalla cartella utente.", nameof(cartellaUtente));
 
         if (!Directory.Exists(_cartellaUtente))
             Directory.CreateDirectory(_cartellaUtente);
@@ -377,5 +381,28 @@ public class StorageService
         }
         string json = JsonSerializer.Serialize(pause, OpzioniScrittura);
         ScriviAtomico(_filePausa, json);
+    }
+
+    // ---------------------------------------------------------------- PREFERENZE UTENTE
+
+    public PreferenzeUtente CaricaPreferenze()
+    {
+        if (!File.Exists(_filePreferenze)) return new PreferenzeUtente();
+        try
+        {
+            string json = LeggiFileCondiviso(_filePreferenze);
+            return JsonSerializer.Deserialize<PreferenzeUtente>(json, OpzioniLettura) ?? new PreferenzeUtente();
+        }
+        catch
+        {
+            // File assente/corrotto: non blocco l'app, ricomincio dai default.
+            return new PreferenzeUtente();
+        }
+    }
+
+    public void SalvaPreferenze(PreferenzeUtente preferenze)
+    {
+        string json = JsonSerializer.Serialize(preferenze, OpzioniScrittura);
+        ScriviAtomico(_filePreferenze, json);
     }
 }
