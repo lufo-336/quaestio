@@ -56,6 +56,13 @@ public partial class MainView : UserControl
     // dito usa l'inerzia nativa, qui serve solo per il cambio tab da bottone).
     private DispatcherTimer? _scrollAnim;
 
+    // Debounce del salvataggio tab su touch: ScrollChangedEvent spara molte
+    // volte durante un'animazione o uno swipe con inerzia (indici intermedi
+    // diversi da quello finale). Si salva solo ~300ms dopo l'ultimo evento,
+    // quando lo scroll si e' fermato — coerente con lo scopo dichiarato di
+    // SalvaTabSeCambiata (non riscrivere il file ad ogni frame di scroll).
+    private DispatcherTimer? _salvaTabDebounce;
+
     public MainView()
     {
         InitializeComponent();
@@ -114,7 +121,7 @@ public partial class MainView : UserControl
             SwipeHost.SizeChanged += (_, _) => DimensionaPagine();
             // Lo scroll (swipe o animazione) aggiorna l'icona attiva nella bottom nav.
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
-                new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiata(); }));
+                new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiataDebounced(); }));
 
             AggiornaNav();
         }
@@ -198,6 +205,23 @@ public partial class MainView : UserControl
         var prefs = _storage.CaricaPreferenze();
         prefs.TabIniziale = idx;
         _storage.SalvaPreferenze(prefs);
+    }
+
+    /// <summary>Wrapper debounced di SalvaTabSeCambiata per il path touch
+    /// (vedi commento sul campo _salvaTabDebounce): rimanda il salvataggio
+    /// di 300ms ad ogni evento di scroll, cosi' in una transizione multi-tab
+    /// (animazione o swipe) si salva una volta sola, a fermata avvenuta, con
+    /// l'indice finale corretto.</summary>
+    private void SalvaTabSeCambiataDebounced()
+    {
+        _salvaTabDebounce?.Stop();
+        _salvaTabDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
+        _salvaTabDebounce.Tick += (_, _) =>
+        {
+            _salvaTabDebounce!.Stop();
+            SalvaTabSeCambiata();
+        };
+        _salvaTabDebounce.Start();
     }
 
     /// <summary>Evidenzia l'icona della bottom nav corrispondente alla sezione attiva.</summary>
