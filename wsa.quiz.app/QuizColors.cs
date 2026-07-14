@@ -24,7 +24,9 @@ public static class QuizColors
     private static readonly IBrush _rossoBrush  = new SolidColorBrush(Color.Parse(Rosso));
 
     // Colore neutro del testo (usato dal cronometro fuori soglia di allerta).
-    public const string TestoNeutro = "#1F1F1F";
+    // Grigio medio invece di quasi-nero: leggibile sia su sfondo chiaro che
+    // scuro senza dover rendere il brush theme-aware (Step 10, fix mirato).
+    public const string TestoNeutro = "#767676";
     private static readonly IBrush _neutroBrush = new SolidColorBrush(Color.Parse(TestoNeutro));
 
     // Sfondi tenui per le celle della heatmap statistiche (step 9).
