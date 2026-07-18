@@ -22,7 +22,7 @@ public partial class App : Application
             AppEnv.TouchMode = false;
             desktop.MainWindow = new Window
             {
-                Title = "WSA Quiz",
+                Title = "Quaestio",
                 Width = 1080,
                 Height = 760,
                 MinWidth = 780,

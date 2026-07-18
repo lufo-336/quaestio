@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Verde brand WSA Quiz (#1F7A4D, vedi QuizColors.cs) usato come sfondo
-     dell'icona adattiva. -->
+<!-- Sfondo nero dell'icona adattiva (monogramma "Q" bianco Quaestio). -->
 <resources>
-  <color name="ic_launcher_background">#1F7A4D</color>
+  <color name="ic_launcher_background">#000000</color>
 </resources>

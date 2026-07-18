@@ -1,4 +1,6 @@
-# WSA Quiz
+# Quaestio
+
+> Rebrand di *WSA Quiz* (2026-07-18). Il nome mostrato dall'app è ora **Quaestio** (dal latino "questione, indagine"); gli identificatori tecnici — progetti `Wsa.Quiz.*`, `ApplicationId` `it.eduits.wsaquiz`, cartella dati `WsaQuiz` — restano invariati per non rompere dati e build.
 
 App di quiz multi-materia pensata per ripassare il programma del corso **Web & Software Architect (WSA)**. Tre eseguibili condividono lo stesso Core, gli stessi dati e la stessa cronologia:
 

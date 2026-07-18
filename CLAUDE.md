@@ -1,4 +1,13 @@
-# WSA Quiz — Riferimento di progetto
+# Quaestio — Riferimento di progetto
+
+> **Rebrand (2026-07-18):** l'app si chiama ora **Quaestio** (dal latino
+> "questione/indagine"). Cambiate SOLO le stringhe user-facing (titolo finestra
+> desktop, header, label Android) e l'icona (monogramma "Q" bianco su sfondo
+> nero, era una spunta verde). **Tutto ciò che è interno resta invariato**:
+> namespace/progetti `Wsa.Quiz.*`, `ApplicationId it.eduits.wsaquiz`, path/nomi
+> file, e la cartella dati utente `WsaQuiz` (rinominarla farebbe perdere
+> cronologia/preferenze). "WSA" nel resto del documento resta come nome del
+> corso (Web & Software Architect), non del brand.
 
 > Documento unico di contesto. Sostituisce e unifica `README_STEP1/2/3.md`,
 > `WSA_QUIZ_HANDOFF.md` e le spec/plan in `docs/superpowers/`.
@@ -616,6 +625,22 @@ RenderScaling`, `RenderScaling` letto a runtime. **Perché non `IInsetsManager` 
 `Carousel`**: vedi Trappole 17–18. Workflow di test su device (adb, screencap+pull,
 `EmbedAssembliesIntoApk` per un Debug installabile a mano): memory
 `android-device-testing`.
+
+### ✅ Rebrand "Quaestio" (2026-07-18)
+Brand da "WSA Quiz" a **Quaestio** senza toccare gli identificatori interni
+(vedi nota in testa al documento). Modificate le 5 stringhe user-facing:
+`MainView.axaml` (header), `App.axaml.cs` (Title finestra desktop),
+`MainApplication.cs` + `MainActivity.cs` (Label Android), `AndroidManifest.xml`
+(`android:label`). Icona: monogramma **"Q" bianco su sfondo nero** (era una spunta
+verde). File reali dell'icona Android: `Resources/drawable/ic_launcher_foreground.xml`
+(vector "Q", adaptive API 26+), `Resources/values/ic_launcher_background.xml`
+(`#000000`), `mipmap-anydpi-v26/ic_launcher.xml` (composizione); i 10 PNG legacy
+`mipmap-*/ic_launcher(.round).png` (Android 7.x / API 24-25) rigenerati con un
+tool SkiaSharp usa-e-getta (nessun rasterizzatore installato). Le `branding/*.svg`
+sono solo sorgenti di design, NON wired nel build. Verificato: build desktop verde,
+APK Release verde e ispezionato con `aapt2` (`application-label='Quaestio'`,
+`ic_launcher_background=#ff000000`). Verde brand `#1F7A4D` invariato nel resto
+dell'app (risposte corrette ecc.).
 
 ### ⏳ Step 10 — Dark mode
 Toggle Fluent chiaro/scuro. Posizione del toggle da decidere. Persistenza

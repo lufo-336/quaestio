@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Foreground dell'icona adattiva: spunta bianca su viewport 108x108.
-     Tracciato e stroke ripresi 1:1 da branding/icon-foreground.svg
-     (M34 56 -> 48 70 -> 76 38, stroke 9, cap/join arrotondati), interamente
-     dentro la safe-zone centrale 72x72 (margine 18 per lato). -->
+<!-- Foreground dell'icona adattiva: monogramma "Q" bianco (Quaestio) su
+     viewport 108x108. Anello + coda ripresi da branding/icon-foreground.svg,
+     interamente dentro la safe-zone centrale 72x72 (margine 18 per lato).
+     Il cerchio è espresso come due archi (VectorDrawable non ha primitiva
+     ellisse). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="108dp"
         android:height="108dp"
         android:viewportWidth="108"
         android:viewportHeight="108">
   <path
-      android:pathData="M34,56 L48,70 L76,38"
+      android:pathData="M34,54 A20,20 0 1 1 74,54 A20,20 0 1 1 34,54 Z"
       android:strokeColor="#FFFFFF"
       android:strokeWidth="9"
       android:strokeLineCap="round"
       android:strokeLineJoin="round" />
+  <path
+      android:pathData="M64,64 L76,76"
+      android:strokeColor="#FFFFFF"
+      android:strokeWidth="9"
+      android:strokeLineCap="round" />
 </vector>

@@ -30,7 +30,7 @@
                 Background="{DynamicResource SystemAccentColorBrush}"
                 Padding="20,12">
             <Grid ColumnDefinitions="*,Auto">
-                <TextBlock Text="WSA Quiz"
+                <TextBlock Text="Quaestio"
                            FontSize="20" FontWeight="SemiBold"
                            Foreground="White"
                            VerticalAlignment="Center"/>

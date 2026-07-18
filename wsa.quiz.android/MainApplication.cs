@@ -11,7 +11,7 @@ namespace Wsa.Quiz.Droid;
 // (qui Wsa.Quiz.App.App, riferita completamente qualificata per evitare il
 // CS0118 namespace-vs-tipo — stessa famiglia della Trappola 1) e usa il
 // lifetime single-view; App.OnFrameworkInitializationCompleted assegna MainView.
-[Application(Label = "WSA Quiz", AllowBackup = true)]
+[Application(Label = "Quaestio", AllowBackup = true)]
 public class MainApplication : AvaloniaAndroidApplication<Wsa.Quiz.App.App>
 {
     public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
