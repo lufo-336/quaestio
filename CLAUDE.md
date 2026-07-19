@@ -198,11 +198,31 @@ niente `.exe`). Per Mac Intel usare `-r osx-x64`.
 > Da provare e **verificare a runtime** prima di distribuire, non darlo per
 > scontato. Vedi anche Step 14 (icona, About, installer).
 
+### Android (APK in `dist/`)
+
+L'APK consegnabile vive in `dist/wsa.quiz-android.apk` ed è **committato**.
+Dopo ogni modifica a codice o domande che deve arrivare sul device:
+`dotnet build wsa.quiz.android -c Release` → copia
+`wsa.quiz.android/bin/Release/net10.0-android/it.eduits.wsaquiz-Signed.apk`
+su `dist/wsa.quiz-android.apk` → commit `chore(dist): rigenera APK ...`.
+
 ## Aggiungere materie/domande
 
 Editi `materie.json` e/o aggiungi file in `domande/<materia>/`. I csproj fanno
 `<None Include="..\materie.json">` con `Link` per copiarli nei bin a ogni build,
 preservando la struttura di sottocartelle. Funziona per console e GUI insieme.
+
+Stato 2026-07-19: **10 materie / 2080 domande** (Cloud Services estesa
+100→190 il 19/07, ~70% scenari architetturali, categorie normalizzate a 10).
+
+**Attenzione**: i csproj includono `..\domande\**\*.json` (AvaloniaResource +
+None). **Qualsiasi** `.json` lasciato in `domande/` — anche temporaneo o
+intermedio — finisce nei bin e nell'APK e viene enumerato da `ElencaJson` come
+file di domande (schema sbagliato → caricamento rotto). Script e file di
+lavoro vanno nello scratchpad, mai in `domande/`.
+
+Nota: `docs/` è in `.gitignore` — spec e plan in `docs/superpowers/` esistono
+**solo in locale**, non arrivano su GitHub (`lufo-336/quaestio`).
 
 ## Storage condiviso console ↔ GUI
 
