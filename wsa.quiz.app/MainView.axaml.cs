@@ -357,13 +357,23 @@ public partial class MainView : UserControl
             foreach (var m in _materie)
                 _tutteDomande.AddRange(_contenutiUtente.CaricaDomandeUtente(m));
 
+            // Sezioni nascoste dall'utente: (materiaId, categoria). _tutteDomande
+            // resta completo (serve a Gestione per mostrarle/ripristinarle e alla
+            // mappa per riprendere i sospesi); le domande ATTIVE che vanno nel
+            // pool dei quiz (Home) escludono le sezioni nascoste.
+            var esclSet = new HashSet<(string, string)>(
+                _contenutiUtente.CaricaSezioniEscluse().Select(s => (s.MateriaId, s.Categoria)));
+            var domandeAttive = esclSet.Count == 0
+                ? _tutteDomande
+                : _tutteDomande.Where(d => !esclSet.Contains((d.MateriaId, d.Categoria))).ToList();
+
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
 
-            StatoHeaderText.Text = $"{_materie.Count} materie · {_tutteDomande.Count} domande";
+            StatoHeaderText.Text = $"{_materie.Count} materie · {domandeAttive.Count} domande";
 
             // ---------- Tab Home ----------
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _tutteDomande, _preferenze);
+            _homeView.Inizializza(_materie, domandeAttive, _preferenze);
             _homeView.QuizAvviato += OnQuizAvviato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
             _homeArea.Content = _homeView;
@@ -386,7 +396,7 @@ public partial class MainView : UserControl
 
             // ---------- Tab Gestione contenuti ----------
             _gestioneView = new GestioneContenutiView();
-            _gestioneView.Inizializza(_storage, _contenutiUtente!, _materie, _tutteDomande);
+            _gestioneView.Inizializza(_storage, _contenutiUtente!, _materie, _tutteDomande, esclSet);
             // Post invece di chiamata diretta: ContenutiCambiati viene sollevato da un
             // Click handler di _gestioneView stessa, che _gestioneArea.Content sta per
             // sostituire. Ricostruire subito l'albero visivo (sincrono, rientrante)

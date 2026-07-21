@@ -22,20 +22,24 @@
           Qui definiamo i quattro stati (default, hover, pressed, disabled) sul
           ContentPresenter del template. I bottoni applicabili usano Classes="accent".
         -->
+        <!-- Sfondi in hex esplicito (azzurro Fluent), NON DynamicResource
+             SystemAccentColorBrush: su Android quel resource puo' risolversi in
+             un colore invisibile (bianco/trasparente), rendendo il bottone
+             abilitato invisibile (testo bianco su bianco). Vedi Trappola 6/20. -->
         <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource SystemAccentColorBrush}"/>
+            <Setter Property="Background" Value="#0078D4"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColorBrush}"/>
+            <Setter Property="BorderBrush" Value="#0078D4"/>
         </Style>
         <Style Selector="Button.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight1Brush}"/>
+            <Setter Property="Background" Value="#2B90DE"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColorLight1Brush}"/>
+            <Setter Property="BorderBrush" Value="#2B90DE"/>
         </Style>
         <Style Selector="Button.accent:pressed /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource SystemAccentColorDark1Brush}"/>
+            <Setter Property="Background" Value="#005FB0"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColorDark1Brush}"/>
+            <Setter Property="BorderBrush" Value="#005FB0"/>
         </Style>
         <Style Selector="Button.accent:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <!-- Grigio neutro: contrasto su sfondo chiaro senza essere "vivo".

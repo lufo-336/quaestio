@@ -27,6 +27,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     private ContenutiUtenteService? _contenutiUtente;
     private List<Materia> _materie = new();
     private List<Domanda> _tutteDomande = new();
+    private ISet<(string, string)> _sezioniEscluse = new HashSet<(string, string)>();
 
     private string? _pendingNuovaMateriaNome;
     private string? _pendingMateriaEsistenteId;
@@ -39,21 +40,68 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     }
 
     public void Inizializza(StorageService storage, ContenutiUtenteService contenutiUtente,
-        List<Materia> materie, List<Domanda> tutteDomande)
+        List<Materia> materie, List<Domanda> tutteDomande, ISet<(string, string)> sezioniEscluse)
     {
         _contenutiUtente = contenutiUtente;
         _materie = materie;
         _tutteDomande = tutteDomande;
+        _sezioniEscluse = sezioniEscluse;
         base.Inizializza(storage); // TabellaViewBase.Inizializza: setta _storage e chiama Ricarica()
     }
 
     protected override void RicaricaCore()
     {
-        var conteggi = _tutteDomande
+        var perMateria = _tutteDomande
             .GroupBy(d => d.MateriaId)
-            .ToDictionary(g => g.Key, g => g.Count());
+            .ToDictionary(g => g.Key, g => (IReadOnlyCollection<Domanda>)g.ToList());
         foreach (var m in _materie.OrderBy(m => m.Nome))
-            Sessioni.Add(new MateriaListItem(m, conteggi.TryGetValue(m.Id, out var c) ? c : 0));
+        {
+            var dom = perMateria.TryGetValue(m.Id, out var l) ? l : System.Array.Empty<Domanda>();
+            Sessioni.Add(new MateriaListItem(m, dom, _sezioniEscluse));
+        }
+    }
+
+    // ---------------------------------------------------------------- SEZIONI (nascondi/ripristina)
+
+    /// <summary>Azzera la conferma "Nascondi" su tutte le sezioni di tutte le materie.</summary>
+    private void AzzeraConfermeSezioni()
+    {
+        foreach (var m in Sessioni)
+            foreach (var s in m.Sezioni)
+                s.InAttesaConfermaNascondi = false;
+    }
+
+    private void OnNascondiSezioneClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: SezioneListItem sez })
+        {
+            AzzeraConfermeSezioni();
+            sez.InAttesaConfermaNascondi = true;
+        }
+    }
+
+    private void OnAnnullaNascondiSezioneClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: SezioneListItem sez })
+            sez.InAttesaConfermaNascondi = false;
+    }
+
+    private void OnConfermaNascondiSezioneClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: SezioneListItem sez } && _contenutiUtente != null)
+        {
+            _contenutiUtente.NascondiSezione(sez.MateriaId, sez.Categoria);
+            ContenutiCambiati?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void OnRipristinaSezioneClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: SezioneListItem sez } && _contenutiUtente != null)
+        {
+            _contenutiUtente.RipristinaSezione(sez.MateriaId, sez.Categoria);
+            ContenutiCambiati?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     protected override string FormatSottotitolo(int count) =>
@@ -110,6 +158,15 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         _pendingNuovaMateriaNome = null;
         _pendingMateriaEsistenteId = null;
     }
+
+    // Il bottone import della nuova materia resta disabilitato finche' non c'e' un nome:
+    // rende ovvio che il nome va messo prima e toglie il click "morto".
+    private void OnNomeNuovaMateriaChanged(object? sender, TextChangedEventArgs e) =>
+        BottoneImportNuova.IsEnabled = !string.IsNullOrWhiteSpace(NomeNuovaMateria.Text);
+
+    // Idem per "aggiungi a materia esistente": abilitato solo con una materia scelta.
+    private void OnSelettoreMateriaChanged(object? sender, SelectionChangedEventArgs e) =>
+        BottoneImportAggiungi.IsEnabled = SelettoreMateria.SelectedItem is MateriaListItem;
 
     private async void OnScegliFileNuovaMateriaClick(object? sender, RoutedEventArgs e)
     {

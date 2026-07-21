@@ -16,6 +16,7 @@ public class ContenutiUtenteService
 {
     private readonly string _cartellaContenuti;
     private readonly string _fileMaterie;
+    private readonly string _fileSezioniEscluse;
 
     private static readonly JsonSerializerOptions OpzioniScrittura = new() { WriteIndented = true };
     private static readonly JsonSerializerOptions OpzioniLettura = new()
@@ -30,6 +31,7 @@ public class ContenutiUtenteService
     {
         _cartellaContenuti = Path.Combine(Path.GetFullPath(cartellaUtente), "ContenutiUtente");
         _fileMaterie = Path.Combine(_cartellaContenuti, "materie.json");
+        _fileSezioniEscluse = Path.Combine(_cartellaContenuti, "sezioni-escluse.json");
         Directory.CreateDirectory(_cartellaContenuti);
     }
 
@@ -166,6 +168,43 @@ public class ContenutiUtenteService
         string cartellaMateria = Path.Combine(_cartellaContenuti, "domande", materiaId);
         if (Directory.Exists(cartellaMateria))
             Directory.Delete(cartellaMateria, recursive: true);
+    }
+
+    // ---------------------------------------------------------------- SEZIONI ESCLUSE
+
+    /// <summary>
+    /// Sezioni (categorie) nascoste dall'utente. Vale sia per built-in (che
+    /// restano nell'APK ma vengono filtrate al caricamento) sia per importate.
+    /// </summary>
+    public List<SezioneEsclusa> CaricaSezioniEscluse()
+    {
+        if (!File.Exists(_fileSezioniEscluse)) return new List<SezioneEsclusa>();
+        string json = StorageService.LeggiFileCondiviso(_fileSezioniEscluse);
+        return JsonSerializer.Deserialize<List<SezioneEsclusa>>(json, OpzioniLettura) ?? new List<SezioneEsclusa>();
+    }
+
+    /// <summary>Nasconde una sezione. No-op se già nascosta (idempotente).</summary>
+    public void NascondiSezione(string materiaId, string categoria)
+    {
+        var lista = CaricaSezioniEscluse();
+        if (lista.Any(s => s.MateriaId == materiaId && s.Categoria == categoria)) return;
+        lista.Add(new SezioneEsclusa { MateriaId = materiaId, Categoria = categoria });
+        ScriviSezioniEscluse(lista);
+    }
+
+    /// <summary>Ripristina una sezione nascosta. No-op se non era nascosta.</summary>
+    public void RipristinaSezione(string materiaId, string categoria)
+    {
+        var lista = CaricaSezioniEscluse();
+        int rimosse = lista.RemoveAll(s => s.MateriaId == materiaId && s.Categoria == categoria);
+        if (rimosse == 0) return;
+        ScriviSezioniEscluse(lista);
+    }
+
+    private void ScriviSezioniEscluse(List<SezioneEsclusa> lista)
+    {
+        string json = JsonSerializer.Serialize(lista, OpzioniScrittura);
+        StorageService.ScriviAtomico(_fileSezioniEscluse, json);
     }
 
     private void ScriviMaterie(List<Materia> materie)

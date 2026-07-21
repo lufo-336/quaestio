@@ -700,6 +700,37 @@ completo dei dati mai eseguito dopo il boot). Spec/plan in `docs/superpowers/`
 fisico** in questa sessione (nessun device/adb disponibile): APK Release
 comunque prodotto e firmato senza errori.
 
+### ✅ Gestione contenuti — eliminazione per sezione + fix visibilità (2026-07-20)
+Tre interventi, tutti **verificati su device fisico** (Samsung Galaxy S21 5G,
+Android, dark mode):
+- **Fix bug visibilità bottoni accent** (Trappola 20): su questo device
+  `SystemAccentColorBrush` si risolveva invisibile → *tutti* i bottoni accent
+  abilitati (Avvia quiz, Prossima domanda, Conferma, import) erano bianco-su-bianco.
+  Era la vera causa del "non vedo il pulsante per importare". Sfondi accent ora
+  in hex esplicito (`#0078D4`/`#2B90DE`/`#005FB0`) in `App.axaml`.
+- **Import più chiaro** in `GestioneContenutiView`: testo guida sui due passaggi,
+  label+icona "📁 Importa domande da file JSON", bottone import disabilitato
+  finché manca nome (nuova materia) / materia scelta (aggiungi). Verificato anche
+  che il **file picker Android (SAF) si apre** end-to-end (mai testato prima).
+- **Eliminazione per sezione (nascondi/ripristina)**: ogni materia è un `Expander`
+  con le sue sezioni (categorie); "Nascondi" (conferma inline) esclude la sezione
+  dal pool quiz, "Ripristina" la riattiva. Meccanismo **unico "nascondi"** per
+  built-in e importate (le built-in restano nell'APK, si filtrano al caricamento
+  → reversibile). Persistenza: `SezioneEsclusa {MateriaId, Categoria}` in
+  `ContenutiUtente/sezioni-escluse.json` via `ContenutiUtenteService`
+  (`CaricaSezioniEscluse`/`NascondiSezione`/`RipristinaSezione`, idempotenti).
+  `MainView.Caricamento` filtra `domandeAttive` (Home + header) tenendo
+  `_tutteDomande` completo per Gestione e per riprendere i sospesi. Verifica:
+  harness headless Core 8/8 OK + device (nascondi → conteggio 2080→2078 e sezione
+  sbiadita con pill "nascosta"+Ripristina; ripristina → 2078→2080). Spec:
+  `docs/superpowers/specs/2026-07-19-eliminazione-sezione-design.md`.
+
+**Bug aperto osservato (non risolto, fuori scope)**: dopo un **cold start** su
+device, i **tap sulla bottom-nav non commutano tab** (lo swipe orizzontale sì).
+Sospetta radice: `RenderScaling` = 1 al boot / 3 a regime (cfr. Trappola 17) →
+la bottom-nav viene posizionata/hit-testata male finché lo scaling non si
+stabilizza. Da indagare a parte.
+
 ### ⏳ Step 13 — Preferenze utente persistite
 File `settings.json` nella cartella utente. Ricorda: ultime opzioni quiz,
 ultima tab aperta, scelta dark mode.
@@ -892,6 +923,26 @@ Una volta capita la causa, applicare il fix minimo possibile.
     (ricreata a ogni reload, aperta in più tab/finestre, ecc.) è a rischio;
     preferire binding inverse espliciti (`{Binding !Prop}`) senza `GroupName`,
     oppure un `GroupName` reso univoco per istanza a runtime.
+
+20. **`DynamicResource SystemAccentColorBrush` INVISIBILE su device Android**
+    *(scoperto 2026-07-19, verificato su Samsung Galaxy S21 5G)*: lo stile
+    `Button.accent` in `App.axaml` usava `{DynamicResource SystemAccentColorBrush}`
+    (+ `...Light1Brush`/`...Dark1Brush`) per lo sfondo dello stato **abilitato**.
+    Su questo device il resource si risolve in un colore **non visibile**
+    (bianco/trasparente): risultato → **ogni bottone accent abilitato era
+    invisibile** (testo bianco su sfondo bianco), incluso "Avvia quiz",
+    "Prossima domanda", "Conferma" e gli import di "Gestione contenuti". Era la
+    vera causa del "non vedo il pulsante per importare" (il bottone c'era ed era
+    cliccabile, solo invisibile). Lo stato `:disabled` si vedeva perché già in
+    hex esplicito (`#D6D6D6`/`#7A7A7A`) — stesso motivo per cui i `danger`
+    (hex) non hanno mai avuto il problema. **Soluzione**: sfondi accent in hex
+    esplicito (`#0078D4` default, `#2B90DE` hover, `#005FB0` pressed), come già
+    fanno `danger` e lo stato disabled. Vale sia desktop sia Android. **Regola**:
+    per i colori che DEVONO essere visibili in una UI cross-platform, non
+    affidarsi a `SystemAccentColor*` (dipende da piattaforma/tema di sistema);
+    usare hex espliciti. **Verificato su device**: fix + rebuild Release +
+    `adb install -r`, "Avvia quiz" e import ora blu pieni; file picker Android
+    (SAF) confermato apribile end-to-end (mai testato prima su device fisico).
 
 ## Note per i prossimi step
 
