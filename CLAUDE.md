@@ -212,8 +212,11 @@ Editi `materie.json` e/o aggiungi file in `domande/<materia>/`. I csproj fanno
 `<None Include="..\materie.json">` con `Link` per copiarli nei bin a ogni build,
 preservando la struttura di sottocartelle. Funziona per console e GUI insieme.
 
-Stato 2026-07-19: **10 materie / 2080 domande** (Cloud Services estesa
-100→190 il 19/07, ~70% scenari architetturali, categorie normalizzate a 10).
+Stato 2026-07-21: **10 materie / 2140 domande** (Cloud Services estesa
+100→190 il 19/07, ~70% scenari architetturali, categorie normalizzate a 10;
+RESTful API estesa 84→144 il 21/07, taglio misto pratico/teorico, con tre
+categorie nuove per l'esercitazione finale TaskFlow: "Autenticazione e JWT",
+"Query, paginazione e caching", "Frontend, fetch e CORS").
 
 **Attenzione**: i csproj includono `..\domande\**\*.json` (AvaloniaResource +
 None). **Qualsiasi** `.json` lasciato in `domande/` — anche temporaneo o
