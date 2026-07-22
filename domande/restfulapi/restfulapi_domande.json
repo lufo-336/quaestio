@@ -1870,5 +1870,304 @@
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Express 4 non intercetta le Promise rifiutate: serve try/catch con `next(err)`, oppure `express-async-errors`. Express 5 invece le cattura automaticamente."
+    },
+    {
+        "id": 145,
+        "categoria": "Metodi HTTP",
+        "domanda": "Perché POST non è idempotente?",
+        "risposte": [
+            "Perché non restituisce mai uno status di successo",
+            "Perché non può contenere un corpo (body)",
+            "Perché richiede sempre l'autenticazione dell'utente",
+            "Inviare più volte la stessa POST crea più risorse distinte"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "POST tipicamente crea una nuova risorsa: ogni chiamata genera un'istanza con un nuovo id, quindi lo stato cambia ad ogni ripetizione (2 POST = 2 risorse). L'autenticazione è ortogonale; POST ha un body e restituisce comunemente 201 Created."
+    },
+    {
+        "id": 146,
+        "categoria": "Codici di stato",
+        "domanda": "Quale status code accompagna una DELETE andata a buon fine, senza corpo da restituire?",
+        "risposte": [
+            "202",
+            "204",
+            "200",
+            "304"
+        ],
+        "rispostaCorretta": 1,
+        "spiegazione": "204 No Content: operazione riuscita ma risposta senza body — appropriato per una DELETE quando non c'è nulla da restituire. 304 riguarda il caching condizionale; 202 è elaborazione asincrona; 200 OK andrebbe usato solo se il server restituisse un body."
+    },
+    {
+        "id": 147,
+        "categoria": "Design delle URL",
+        "domanda": "Qual è la regola pratica sul nesting delle route?",
+        "risposte": [
+            "Il nesting va usato solo per le richieste DELETE",
+            "Non esiste alcun limite alla profondità del nesting",
+            "Non superare un livello; oltre, esporre la sotto-risorsa con un filtro",
+            "Il nesting va sempre evitato del tutto"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "Un solo livello per esprimere l'appartenenza (es. /utenti/42/ordini); oltre, gli URL diventano fragili — meglio esporre la sotto-risorsa come risorsa di primo livello con filtro (/prodotti?ordine=7). Il nesting è indipendente dal metodo e un livello è utile, non da evitare del tutto."
+    },
+    {
+        "id": 148,
+        "categoria": "JSON e validazione",
+        "domanda": "Quali sono i sei tipi di valore ammessi in JSON?",
+        "risposte": [
+            "string, number, boolean, null, object, array",
+            "string, number, date, boolean, null, array",
+            "string, number, boolean, undefined, object, array",
+            "string, integer, float, boolean, null, function"
+        ],
+        "rispostaCorretta": 0,
+        "spiegazione": "I sei tipi (ECMA-404 / RFC 8259): string, number (unico, non integer/float), boolean, null, object, array. undefined e function non esistono in JSON; date non è un tipo nativo (le date sono stringhe ISO 8601)."
+    },
+    {
+        "id": 149,
+        "categoria": "Metodi HTTP",
+        "domanda": "Un client esegue DELETE /users/42 due volte; la seconda risponde 404. L'operazione è comunque idempotente?",
+        "risposte": [
+            "Sì, ma solo se il client invia gli stessi header",
+            "No, DELETE non è mai un metodo idempotente",
+            "Sì, lo stato finale del server è identico dopo entrambe",
+            "No, perché lo status code restituito cambia tra la prima e la seconda richiesta"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "L'idempotenza riguarda l'effetto sullo stato del server, non lo status code. Dopo la prima DELETE l'utente 42 non esiste; la seconda lascia lo stato invariato. Il cambio 200/204 → 404 è irrilevante: DELETE è idempotente per specifica (RFC 9110)."
+    },
+    {
+        "id": 150,
+        "categoria": "Design delle URL",
+        "domanda": "Quale route DELETE segue correttamente le convenzioni REST per eliminare un singolo utente?",
+        "risposte": [
+            "app.delete('/users/:id', remove)",
+            "app.delete('/deleteUser/:id', remove)",
+            "app.delete('/users/delete/:id', remove)",
+            "app.delete('/users/:id/delete', remove)"
+        ],
+        "rispostaCorretta": 0,
+        "spiegazione": "Il metodo DELETE esprime già l'azione: l'URL contiene solo il sostantivo della risorsa e l'id (/users/:id). Le altre ripetono il verbo \"delete\" nel path o usano uno stile RPC (/deleteUser)."
+    },
+    {
+        "id": 151,
+        "categoria": "Metodi HTTP",
+        "domanda": "Quali metodi HTTP sono considerati \"safe\"?",
+        "risposte": [
+            "PUT, DELETE, PATCH",
+            "GET, HEAD, OPTIONS",
+            "POST, PATCH, DELETE",
+            "GET, POST, PUT"
+        ],
+        "rispostaCorretta": 1,
+        "spiegazione": "I metodi safe non modificano lo stato del server (sola lettura): GET, HEAD, OPTIONS. Tutti i safe sono idempotenti, ma non viceversa: PUT e DELETE sono idempotenti ma non safe; POST e PATCH non sono né safe né (in generale) idempotenti."
+    },
+    {
+        "id": 152,
+        "categoria": "REST e vincoli",
+        "domanda": "Quale dei seguenti NON è uno dei sei vincoli architetturali di REST?",
+        "risposte": [
+            "Interfaccia uniforme (uniform interface)",
+            "Auth obbligatoria",
+            "Assenza di stato tra le richieste (stateless)",
+            "Possibilità di cache delle risposte (cacheable)"
+        ],
+        "rispostaCorretta": 1,
+        "spiegazione": "L'autenticazione è un aspetto trasversale che un'API può implementare, ma REST non la impone: un'API può essere RESTful anche senza. I sei vincoli sono client-server, stateless, cacheable, uniform interface, layered system e code on demand (opzionale)."
+    },
+    {
+        "id": 153,
+        "categoria": "HTTP e client-server",
+        "domanda": "A cosa serve l'header HTTP Content-Type?",
+        "risposte": [
+            "Specifica l'indirizzo del server di destinazione",
+            "Trasporta le credenziali di autenticazione",
+            "Definisce per quanti secondi la risposta resta in cache",
+            "Indica il formato del corpo del messaggio, es. application/json"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "Content-Type dichiara il media type (MIME) del body così che il ricevente sappia come interpretarlo (application/json, text/html, ...). La cache è compito di Cache-Control; le credenziali di Authorization; l'indirizzo è dato dall'URL/DNS (semmai Host indica l'host)."
+    },
+    {
+        "id": 154,
+        "categoria": "JSON e validazione",
+        "domanda": "A cosa serve la libreria ajv in un progetto Node.js/Express?",
+        "risposte": [
+            "Validare i dati in ingresso con un JSON Schema",
+            "Generare la documentazione interattiva dell'API",
+            "Sostituire del tutto Express come framework web",
+            "Gestire la connessione al database applicativo"
+        ],
+        "rispostaCorretta": 0,
+        "spiegazione": "ajv (Another JSON Validator) valida i dati contro un JSON Schema dichiarativo, tipicamente come middleware su req.body, restituendo 400 con i dettagli in caso di errore. Il DB spetta a mongoose/pg; la documentazione a Swagger/OpenAPI; ajv non sostituisce Express."
+    },
+    {
+        "id": 155,
+        "categoria": "JSON e validazione",
+        "domanda": "Quale delle seguenti sintassi è JSON valido?",
+        "risposte": [
+            "{\"nome\":\"Mario\",\"età\":30}",
+            "{ 'nome': 'Mario', 'eta': 30 }",
+            "{ \"nome\": \"Mario\" // commento qui }",
+            "{ nome: \"Mario\", età: 30, }"
+        ],
+        "rispostaCorretta": 0,
+        "spiegazione": "JSON richiede virgolette doppie per chiavi e valori stringa, niente commenti e niente virgola finale. Le altre usano un commento //, virgolette singole, oppure chiave senza virgolette con trailing comma."
+    },
+    {
+        "id": 156,
+        "categoria": "Autenticazione e JWT",
+        "domanda": "Qual è la differenza semantica tra 401 Unauthorized e 403 Forbidden?",
+        "risposte": [
+            "403 significa che la risorsa richiesta non esiste ed è stata rimossa dal server",
+            "Sono sinonimi: entrambi sono errori del server",
+            "401 non autenticato; 403 autenticato ma senza permessi",
+            "401 vale solo per GET, 403 solo per POST"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "401 (nonostante il nome) = non autenticato: mancano credenziali valide (header WWW-Authenticate; risolvibile autenticandosi). 403 = autenticato ma senza permessi (ri-autenticarsi non basta). Sono errori client-side (4xx) e valgono per qualunque metodo; 403 ≠ 404."
+    },
+    {
+        "id": 157,
+        "categoria": "Metodi HTTP",
+        "domanda": "Qual è la differenza semantica principale tra PUT e PATCH?",
+        "risposte": [
+            "PUT sostituisce l'intera risorsa; PATCH solo i campi inviati",
+            "PUT viene usato esclusivamente per creare, PATCH esclusivamente per eliminare risorse",
+            "Non c'è differenza: sono intercambiabili",
+            "PUT richiede autenticazione, PATCH no"
+        ],
+        "rispostaCorretta": 0,
+        "spiegazione": "PUT è una sostituzione completa (il body è lo stato finale intero) ed è idempotente; PATCH è un aggiornamento parziale (solo i campi inviati) e non è idempotente per definizione. Nessuno dei due serve a creare o eliminare (compiti di POST/DELETE); l'autenticazione è ortogonale."
+    },
+    {
+        "id": 158,
+        "categoria": "REST e vincoli",
+        "domanda": "Cosa permette il \"layered system\" in un'architettura REST?",
+        "risposte": [
+            "Il client comunica direttamente col database, saltando il server",
+            "Il server è autorizzato a ignorare gli header HTTP",
+            "Il client deve conoscere ogni hop di rete che attraversa",
+            "Tra client e server possono esistere intermediari trasparenti come proxy, CDN e gateway"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "Il layered system organizza l'architettura in livelli (load balancer, proxy, CDN, gateway): il client parla come col server finale ma può attraversare intermediari senza saperlo. Questo abilita scalabilità, sicurezza e caching senza cambiare il contratto client-server."
+    },
+    {
+        "id": 159,
+        "categoria": "Express",
+        "domanda": "Qual è la differenza tra req.params, req.query e req.body in Express?",
+        "risposte": [
+            "Sono di fatto identici: cambia solo il nome",
+            "req.body è già popolato anche senza alcun middleware",
+            "req.query contiene solo i dati inviati con POST",
+            "params dai parametri di route, query dalla query string, body dal corpo (richiede express.json())"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "req.params estrae i segmenti dinamici della route (/users/:id); req.query legge la query string (sempre, anche su GET); req.body contiene il corpo ma non è popolato di default: serve express.json() o express.urlencoded(). Sono tre fonti diverse (path, query, body)."
+    },
+    {
+        "id": 160,
+        "categoria": "HTTP e client-server",
+        "domanda": "Nell'URL https://api.negozio.it/v2/prodotti/123?colore=rosso#dettagli, quale componente NON viene mai inviato al server?",
+        "risposte": [
+            "La query string colore=rosso",
+            "Il fragment #dettagli",
+            "Il path completo /v2/prodotti/123",
+            "Lo schema del protocollo https"
+        ],
+        "rispostaCorretta": 1,
+        "spiegazione": "Il fragment (tutto dopo #) è puramente lato client: usato dal browser per ancoraggi/routing SPA, non viene mai trasmesso al server, nemmeno nei log. Path e query string sono nella request line; lo schema determina protocollo e porta."
+    },
+    {
+        "id": 161,
+        "categoria": "JSON e validazione",
+        "domanda": "In JavaScript, quale metodo converte un oggetto in una stringa JSON?",
+        "risposte": [
+            "JSON.parse()",
+            "JSON.encode()",
+            "JSON.stringify()",
+            "JSON.toString()"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "JSON.stringify() serializza un valore JS in stringa JSON. JSON.parse() fa l'opposto (stringa → oggetto); JSON.encode() e JSON.toString() non esistono sull'oggetto globale JSON."
+    },
+    {
+        "id": 162,
+        "categoria": "Design delle URL",
+        "domanda": "Quale URL segue correttamente le convenzioni di naming REST?",
+        "risposte": [
+            "GET /getUserById?id=42",
+            "POST /users/42/update",
+            "GET /users/42",
+            "DELETE /users/admin"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "GET /users/42: sostantivo plurale, id nel path, azione espressa dal metodo HTTP (nessun verbo nell'URL). /users/42/update ripete l'azione; /getUserById è stile RPC con id in query; /users/admin usa un ruolo al posto di un identificatore coerente."
+    },
+    {
+        "id": 163,
+        "categoria": "Error handling",
+        "domanda": "Un client riceve 503 Service Unavailable. Può ritentare? E se riceve 400 Bad Request?",
+        "risposte": [
+            "Può ritentare tranquillamente in entrambi i casi",
+            "Sì su 503 (temporaneo lato server); no su 400 (richiesta errata)",
+            "Può ritentare solo su 400, mai su 503",
+            "Non può ritentare in nessuno dei due casi"
+        ],
+        "rispostaCorretta": 1,
+        "spiegazione": "503 è una condizione transitoria lato server (spesso con header Retry-After): ritentare con backoff ha senso. 400 indica una richiesta malformata: va corretta, non ritentata. In generale i 5xx sono spesso ritentabili, i 4xx quasi mai (eccezione tipica: 429)."
+    },
+    {
+        "id": 164,
+        "categoria": "Codici di stato",
+        "domanda": "Un client invia Accept: application/json ma il server supporta solo XML. Cosa risponde?",
+        "risposte": [
+            "500 Internal Server Error",
+            "301 Moved Permanently",
+            "200 OK con corpo vuoto",
+            "406 Not Acceptable"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "406 Not Acceptable: il server non può produrre una rappresentazione compatibile con l'header Accept (content negotiation fallita). 500 è un errore interno (ma il server funziona); 200 con corpo vuoto sarebbe fuorviante; 301 è un redirect, estraneo alla negoziazione."
+    },
+    {
+        "id": 165,
+        "categoria": "HTTP e client-server",
+        "domanda": "Nell'architettura client-server, quale affermazione è corretta?",
+        "risposte": [
+            "Il server deve sempre conoscere il tipo e la versione del client che chiama",
+            "Il client deve conoscere l'implementazione interna del server",
+            "Devono essere scritti nello stesso linguaggio",
+            "Nessuno dei due deve conoscere i dettagli interni dell'altro"
+        ],
+        "rispostaCorretta": 3,
+        "spiegazione": "Il vincolo client-server disaccoppia le responsabilità tramite un'interfaccia uniforme: client e server evolvono in modo indipendente, conta solo il protocollo condiviso (HTTP). Non serve lo stesso linguaggio né conoscere i dettagli interni dell'altro."
+    },
+    {
+        "id": 166,
+        "categoria": "Query, paginazione e caching",
+        "domanda": "Nella paginazione offset-based, cosa rappresenta il parametro limit?",
+        "risposte": [
+            "Il progressivo della pagina attualmente corrente",
+            "L'identificativo dell'ultimo elemento ricevuto",
+            "Quanti elementi al massimo restituire per pagina",
+            "Il tempo massimo di risposta atteso dal server"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "offset dice quanti elementi saltare, limit quanti restituirne al massimo da lì (es. ?offset=20&limit=10 → dal 21° al 30°). L'id dell'ultimo elemento è tipico del cursor-based; il numero di pagina è del modello page+page_size."
+    },
+    {
+        "id": 167,
+        "categoria": "REST e vincoli",
+        "domanda": "Cosa significa che un'API è \"stateless\"?",
+        "risposte": [
+            "Il server non possiede alcuno stato, nemmeno un database",
+            "Le risposte prodotte non possono mai essere memorizzate nella cache",
+            "Il server non conserva contesto tra una richiesta e la successiva",
+            "Il client non può inviare header di autenticazione"
+        ],
+        "rispostaCorretta": 2,
+        "spiegazione": "Ogni richiesta è autocontenuta: include tutto ciò che serve al server (es. token JWT), senza sessione salvata lato server. È indipendente dalla cacheabilità e non impedisce gli header di autenticazione; il server può avere un database, ciò che non ha è memoria della sessione."
     }
 ]
