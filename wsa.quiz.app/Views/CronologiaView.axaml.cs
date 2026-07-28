@@ -60,15 +60,12 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         // gia' marcati Handled da ListBoxItem o ScrollViewer.
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
         // Se il focus arriva sullo UserControl stesso (es. Ctrl+Tab dal
-        // MainWindow), lo trasferiamo alla lista e selezioniamo il primo item.
+        // MainWindow), lo trasferiamo alla RIGA selezionata (non alla ListBox,
+        // che non e' focusable: vedi FocusRigaSelezionata e Trappola 21).
         GotFocus += (_, e) =>
         {
             if (e.Source == this && !ModoDettaglio)
-            {
-                ListaSessioni.Focus();
-                if (ListaSessioni.SelectedItem == null && ListaSessioni.ItemCount > 0)
-                    ListaSessioni.SelectedIndex = 0;
-            }
+                FocusRigaSelezionata(ListaSessioni);
         };
         // Mantieni le proprieta' touch sincronizzate quando NessunaSessione cambia
         // (Ricarica() e EseguiEliminazione() nel base lo notificano).
@@ -171,7 +168,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         // Senza questo, il focus resta sul bottone "Indietro" del dettaglio che
         // pero' e' appena stato rimosso dal visual tree: di conseguenza Tab e
         // frecce smettono di funzionare finche' non si clicca con il mouse.
-        ListaSessioni.Focus();
+        FocusRigaSelezionata(ListaSessioni);
     }
 
     private void OnEliminaDalDettaglio(object? sender, string id)

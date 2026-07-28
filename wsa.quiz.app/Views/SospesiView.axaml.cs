@@ -31,15 +31,12 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
         // gia' marcati Handled da ListBoxItem o ScrollViewer.
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
         // Se il focus arriva sullo UserControl stesso (es. Ctrl+Tab dal
-        // MainWindow), lo trasferiamo alla lista e selezioniamo il primo item.
+        // MainWindow), lo trasferiamo alla RIGA selezionata (non alla ListBox,
+        // che non e' focusable: vedi FocusRigaSelezionata e Trappola 21).
         GotFocus += (_, e) =>
         {
             if (e.Source == this)
-            {
-                ListaPause.Focus();
-                if (ListaPause.SelectedItem == null && ListaPause.ItemCount > 0)
-                    ListaPause.SelectedIndex = 0;
-            }
+                FocusRigaSelezionata(ListaPause);
         };
     }
 

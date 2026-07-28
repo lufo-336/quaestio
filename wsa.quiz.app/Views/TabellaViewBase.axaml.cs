@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.Views;
@@ -95,6 +96,36 @@ public abstract class TabellaViewBase<TItem> : UserControl, INotifyPropertyChang
 
     /// <summary>Testo del sottotitolo in base al numero di elementi caricati.</summary>
     protected abstract string FormatSottotitolo(int count);
+
+    // ------------------------------------------------------------------ FOCUS DA TASTIERA
+
+    /// <summary>
+    /// Porta il focus sulla RIGA selezionata della lista (selezionando la prima se non
+    /// c'e' selezione). Da usare al posto di <c>lista.Focus()</c>.
+    ///
+    /// Perche' non <c>lista.Focus()</c>: in Avalonia la <see cref="ListBox"/> ha
+    /// <c>Focusable = false</c> (il focus va ai suoi <see cref="ListBoxItem"/>, esattamente
+    /// come quando si clicca una riga col mouse). Chiamare <c>Focus()</c> sulla ListBox
+    /// restituisce <c>false</c> e non fa nulla: il focus resta sullo UserControl, che e'
+    /// un ANTENATO della lista — quindi il routing di KeyDown (radice -> elemento con
+    /// focus) non attraversa mai la ListBox e le frecce non possono muovere la selezione.
+    /// Vedi Trappola 21 in CLAUDE.md.
+    /// </summary>
+    protected static void FocusRigaSelezionata(ListBox lista)
+    {
+        if (lista.ItemCount == 0) return;
+        if (lista.SelectedIndex < 0) lista.SelectedIndex = 0;
+
+        if (lista.ContainerFromIndex(lista.SelectedIndex) is Control riga && riga.Focus()) return;
+
+        // Container non ancora realizzato (lista appena popolata o appena tornata
+        // visibile): riprovo dopo il prossimo giro di layout.
+        Dispatcher.UIThread.Post(() =>
+        {
+            if (lista.ContainerFromIndex(lista.SelectedIndex) is Control riga2)
+                riga2.Focus();
+        }, DispatcherPriority.Loaded);
+    }
 
     // ------------------------------------------------------------------ HANDLER COMUNI
 

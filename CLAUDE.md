@@ -24,9 +24,21 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
 ## Stato attuale
 
-**Port Android M1 + M2 completi (2026-06-18); M3 in corso.** M1 (struttura) +
-M2 (dati via risorse embedded: 7 materie / 1540 domande, incl. UX e Frontend
-ampliato) committati, build verde, APK firmato ~30 MB. **M3 parte 1 (dialoghi →
+> **Aggiornato al 2026-07-28.** In sintesi: **Step 1–13 chiusi** (Step 8
+> compreso, chiuso oggi — vedi Trappola 21); app desktop + Android su `main`
+> (nessun branch feature aperto), **10 materie /
+> 2163 domande**. Restano aperti: **Step 11** (export/filtri cronologia),
+> **Step 14** (About/installer), lo **splash Android** di M3, e un **bug su
+> device**: dopo cold start i tap sulla bottom-nav non commutano tab (lo swipe
+> sì) — dettagli in fondo alla sezione "Gestione contenuti — eliminazione per
+> sezione". Nota: `dist/wsa.quiz-android.apk` è del 21/07 e **non contiene** le
+> +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla prossima
+> occasione con un device a disposizione.
+
+**Port Android M1 + M2 completi (2026-06-18); di M3 resta solo lo splash**
+(l'icona è stata fatta col rebrand Quaestio del 18/07). M1 (struttura) +
+M2 (dati via risorse embedded — allora 7 materie / 1540 domande, oggi 10 / 2163)
+committati, build verde, APK firmato ~30 MB. **M3 parte 1 (dialoghi →
 overlay in-page) committata (`8b666eb`) e verificata headless (18/18 OK).
 M3 parte 2 (layout touch-friendly) committata e verificata (build + smoke,
 2026-06-19): flag `AppEnv.TouchMode` + dizionari Sizes Desktop/Touch + stili
@@ -36,16 +48,16 @@ implementata e VERIFICATA SU DEVICE FISICO (Samsung Galaxy S21 5G, 2026-06-26).*
 La bottom navigation a icone sta sopra i tasti Android grazie alle insets **native**
 (non più `IInsetsManager.SafeAreaPadding`, che su device reale riporta `bottom=0` —
 vedi Trappola 17); lo swipe fra tab usa lo **scroll orizzontale nativo con snap**
-(non più gesture manuale né `Carousel` — vedi Trappola 18). Restano in M3
-icona/splash. Vedi roadmap "Port Android", Trappole 14–18 e la memory
+(non più gesture manuale né `Carousel` — vedi Trappola 18). Resta in M3 lo
+**splash** (l'icona è stata fatta col rebrand). Vedi roadmap "Port Android", Trappole 14–18 e la memory
 `android-device-testing` per il workflow adb. La struttura ora è una **libreria UI condivisa
 (`Wsa.Quiz.App`) + 2 head** (`Wsa.Quiz.Desktop`, `Wsa.Quiz.Android`): le sezioni
 "Layout repo"/"Stack" più sotto parlano ancora di "tre progetti/csproj" — è
 stale rispetto a M1 (ora 5 progetti), non ancora riscritte.
 
-**Step 7 + Step 9 completi + Extra "tempo" (2026-06-03). Step 8 ancora
-parziale.** Due tentativi falliti sulla navigazione tastiera nelle liste/Home
-(vedi sezione Step 8 e Trappola 13). Step 9: tab Statistiche con heatmap punti
+**Step 7, 8, 9, 10, 12, 13 completi + Extra "tempo" (2026-06-03).** Lo Step 8
+(navigazione tastiera) è stato chiuso il 2026-07-28 dopo due tentativi falliti:
+la causa non era il routing ma il focus (Trappola 21). Step 9: tab Statistiche con heatmap punti
 deboli per categoria + drill-down domande sbagliate (no LiveCharts2, no grafici
 veri). Extra 2026-06-03: la modale pausa **congela il cronometro** (riparte su
 Annulla) e c'è una **modalità a tempo** (countdown in alto, ambra <60s / rosso
@@ -212,11 +224,14 @@ Editi `materie.json` e/o aggiungi file in `domande/<materia>/`. I csproj fanno
 `<None Include="..\materie.json">` con `Link` per copiarli nei bin a ogni build,
 preservando la struttura di sottocartelle. Funziona per console e GUI insieme.
 
-Stato 2026-07-21: **10 materie / 2140 domande** (Cloud Services estesa
+Stato 2026-07-22: **10 materie / 2163 domande** (Cloud Services estesa
 100→190 il 19/07, ~70% scenari architetturali, categorie normalizzate a 10;
 RESTful API estesa 84→144 il 21/07, taglio misto pratico/teorico, con tre
 categorie nuove per l'esercitazione finale TaskFlow: "Autenticazione e JWT",
-"Query, paginazione e caching", "Frontend, fetch e CORS").
+"Query, paginazione e caching", "Frontend, fetch e CORS"; poi 144→167 il 22/07
+con domande di ripasso). Ripartizione per file: cs 652, sql 248, versioncontrol
+236, frontend 210, cpp 200, cloud 190, restfulapi 167, ux 100, infra 50+50,
+cybersecurity 60.
 
 **Attenzione**: i csproj includono `..\domande\**\*.json` (AvaloniaResource +
 None). **Qualsiasi** `.json` lasciato in `domande/` — anche temporaneo o
@@ -469,7 +484,44 @@ highlight giallo `#FFD500` 3px invece di accent 2px. Fix laterale: bottone
 `Button.prossima /template/ ContentPresenter` con `TextBlock.Foreground="#1F1F1F"`
 (Trappola 12).
 
-### ⚠️ Step 8 — Navigazione tastiera globale (parziale, ancora aperto)
+### ✅ Step 8 — Navigazione tastiera globale (chiuso 2026-07-28)
+
+**Causa radice trovata** (dopo due tentativi falliti che avevano cercato il
+problema nel *routing*): in Avalonia la **`ListBox` ha `Focusable = false`** —
+il focus appartiene ai suoi `ListBoxItem`, esattamente come quando si clicca una
+riga col mouse. `CronologiaView`/`SospesiView` chiamavano `ListaX.Focus()`, che
+restituisce `false` e **non fa nulla**: il focus restava sullo `UserControl`, che
+e' un *antenato* della lista. Il routing di `KeyDown` va dalla radice
+all'elemento con focus, quindi **non attraversava mai la ListBox** e le frecce
+non potevano muovere la selezione. Enter/Canc "funzionavano" solo perche' il
+handler di view legge `SelectedItem`, che il fallback del `GotFocus` forzava a 0:
+agivano quindi **sempre sulla prima riga**, qualunque cosa sembrasse selezionato
+— ecco il "non funziona perfettamente" del 18 maggio. Il `Tunnel +
+handledEventsToo` della PR #2 non c'entrava nulla (e infatti funziona: la
+diagnostica mostra il handler di view che intercetta Invio prima della ListBox).
+
+**Fix** (3 call site, un solo helper): `TabellaViewBase.FocusRigaSelezionata(ListBox)`
+seleziona la prima riga se non c'e' selezione e mette il focus sul **container**
+(`ContainerFromIndex(...)`), con un retry su `Dispatcher` a priorita' `Loaded`
+per il caso "container non ancora realizzato". Usato nei `GotFocus` di
+`CronologiaView`/`SospesiView` e al rientro dal dettaglio
+(`OnIndietroDalDettaglio`). Vedi **Trappola 21**.
+
+**Verifica**: harness headless (`Avalonia.Headless` + `window.KeyPress`) che
+guida i veri controlli e asserisce i comportamenti della roadmap — **prima del
+fix 11 PASS / 4 FAIL, dopo 15 PASS / 0 FAIL**, incluso "Invio riprende la riga
+SELEZIONATA" (prima riprendeva sempre la riga 0). Le frecce della Home
+risultano gia' funzionanti nella stessa verifica. Build 5/5 verde.
+**Non riverificato a mano su tastiera reale** da Luca.
+
+**Ricetta harness** (riusabile, throwaway fuori dal repo): progetto console
+`net10.0` con `PackageReference Avalonia.Headless` + `ProjectReference` a
+`Wsa.Quiz.App`; `AppBuilder.Configure<App>().UseHeadless(...).SetupWithoutStarting()`,
+`Window` con dentro la view, `Dispatcher.UIThread.RunJobs()` come pompa,
+`window.KeyPress(key, mods, physicalKey, null)` per i tasti, `StorageService`
+puntato a una cartella temporanea (**mai** `%APPDATA%\WsaQuiz`). Per vedere il
+routing: `AddHandler(KeyDownEvent, h, Tunnel|Bubble, handledEventsToo: true)` su
+ogni nodo, loggando `e.Route`, `e.Source`, `e.Handled` e l'elemento con focus.
 
 **Funziona**:
 - `FocusAdorner` globale (bordo giallo `#FFD500` 3px sul focus da tastiera).
@@ -480,6 +532,10 @@ highlight giallo `#FFD500` 3px invece di accent 2px. Fix laterale: bottone
 - `IsTabStop="False"` sui bottoni interni dei `ListBoxItem` (Elimina/Riprendi/...)
   e sugli header `TabItem`.
 - `SospesiView` convertita da `ItemsControl` a `ListBox` (`SelectionMode="Single"`).
+
+**Storico dei due tentativi falliti** (utile per non ripetere l'errore di
+metodo: entrambi hanno cercato la causa nel routing senza mai stampare la
+diagnostica, mentre il problema era il focus).
 
 **Tentativo PR #2 (Facundo Fanti, 14 maggio 2026)**: introdotto pattern
 `AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true)`
@@ -492,15 +548,15 @@ Non è stato fatto l'apporofondimento diagnostico raccomandato in Trappola 13
 (stampare `e.Source`/`e.RoutedEvent`/`e.Handled` per vedere davvero il flusso
 del routing) — quindi prima di tentare un terzo fix, **fare quello**.
 
-**NON funziona ancora** (da indagare seriamente):
-- Frecce `↑/↓` dentro la zona corrente della Home.
-- `Invio` per aprire dettaglio su una riga di Cronologia.
-- `Invio` per Riprendere su una riga di Sospesi.
-- `Canc` per avviare la conferma elimina inline da tastiera.
-- `Esc` sul `CronologiaDettaglioView` per tornare alla lista.
-
-Status: **lo step 8 resta aperto**; non incolonnato come "Step 15" separato
-perché è la stessa cosa.
+**Ex elenco "NON funziona ancora", ora tutto verificato verde** (headless):
+- Frecce `↑/↓` dentro la zona corrente della Home → funzionavano gia'.
+- Frecce `↑/↓` per cambiare riga in Cronologia/Sospesi → **erano rotte**, fix.
+- `Invio` per aprire dettaglio su una riga di Cronologia → ora sulla riga giusta.
+- `Invio` per Riprendere su una riga di Sospesi → ora sulla riga giusta.
+- `Canc` per avviare la conferma elimina inline da tastiera → ok.
+- `Esc` sul `CronologiaDettaglioView` per tornare alla lista → ok, e ora il
+  focus rientra sulla riga invece di sparire (prima la tastiera restava morta
+  finche' non si cliccava col mouse).
 
 ### ✅ Step 9 — Statistiche (mappa punti deboli)
 Tab "Statistiche" (quarta) con heatmap per categoria: una riga per materia,
@@ -665,12 +721,14 @@ APK Release verde e ispezionato con `aapt2` (`application-label='Quaestio'`,
 `ic_launcher_background=#ff000000`). Verde brand `#1F7A4D` invariato nel resto
 dell'app (risposte corrette ecc.).
 
-### ⏳ Step 10 — Dark mode
-Toggle Fluent chiaro/scuro. Posizione del toggle da decidere. Persistenza
-nelle preferenze utente (step 13). **Nota da fare in questo step**: il
-cronometro non a tempo ora ha `Foreground` bindato a `TempoBrush`, il cui
-default `QuizColors.TempoNeutro` è hex hard-coded `#1F1F1F` (leggibile solo in
-tema chiaro). In dark mode va reso theme-aware (stessa famiglia di Trappola 9).
+### ✅ Step 10 — Dark mode (2026-07-15, insieme a Step 13)
+Toggle Chiaro/Scuro nella **6ª sezione "Impostazioni"** (non esisteva prima
+alcun controllo tema in UI), scelta persistita in `preferenze.json` — vedi
+Step 13. Risolta anche la nota che questo step si portava dietro: il cronometro
+non a tempo ha `Foreground` bindato a `TempoBrush`, il cui default
+`QuizColors.TempoNeutro` deriva dalla const `QuizColors.TestoNeutro`: era
+hard-coded `#1F1F1F`, quasi invisibile su fondo scuro → portata a `#767676`
+(`wsa.quiz.app/QuizColors.cs:29`), leggibile in entrambi i temi.
 
 ### ⏳ Step 11 — Esportazione e filtri cronologia
 Export CSV/JSON (utile come backup pre-svuotamento). Filtri per materia,
@@ -731,28 +789,42 @@ Sospetta radice: `RenderScaling` = 1 al boot / 3 a regime (cfr. Trappola 17) →
 la bottom-nav viene posizionata/hit-testata male finché lo scaling non si
 stabilizza. Da indagare a parte.
 
-### ⏳ Step 13 — Preferenze utente persistite
-File `settings.json` nella cartella utente. Ricorda: ultime opzioni quiz,
-ultima tab aperta, scelta dark mode.
+### ✅ Step 13 — Preferenze utente persistite (2026-07-15)
+File **`preferenze.json`** (non `settings.json` come previsto in origine) nella
+cartella utente, modello `Wsa.Quiz.Core.Models.PreferenzeUtente`, letto/scritto
+da `StorageService`. Ricorda: **ultima sezione aperta** (`TabIniziale`), **tema**
+(`TemaScuro`, vedi Step 10) e le **ultime opzioni quiz** (randomizza, rotazione,
+cronometro, limite domande + N, modalità a tempo + minuti). I default del modello
+coincidono con quelli hardcoded in `HomeView`, così senza il file il
+comportamento resta identico a prima. Aggiunta la **6ª sezione "Impostazioni"**
+(bottom-nav/tab) che ospita il toggle tema.
+
+**Due bug reali emersi in implementazione, entrambi da tenere a mente:**
+1. Il piano prescriveva di assegnare le opzioni quiz ai **campi privati** di
+   `HomeView` (per evitare salvataggi spuri), ma i binding TwoWay sono già live
+   al momento di `Inizializza()` → la UI restava sui default hardcoded. Fix:
+   usare i **setter pubblici**; il salvataggio spurio resta comunque evitato
+   perché `MainView` si iscrive a `PropertyChanged` solo *dopo* che
+   `Inizializza()` è ritornato.
+2. Su Android/touch il guard anti-doppio-salvataggio della tab attiva non
+   teneva: `IndiceSezione` anima sempre lo scroll, generando più `ScrollChanged`
+   con **indici intermedi** durante la transizione (rischio di persistere la tab
+   sbagliata se il processo muore a metà animazione). Fix: salvataggio
+   **debounced 300ms** sul path touch (`MainView.axaml.cs`).
+
+Piano: `docs/superpowers/plans/2026-07-14-preferenze-utente.md`. Verificato su
+desktop via UI Automation + lettura diretta di `preferenze.json`; **non
+verificato su device Android fisico**.
 
 ### ⏳ Step 14 — Rifiniture distribuzione
 Icona app, schermata "About", build portable e/o installer (`dotnet publish`
 self-contained, o pacchetti per piattaforma).
 
-### 🔁 Da riprendere — chiudere Step 8
-Far funzionare `↑/↓` dentro la Home e `Invio`/`Canc`/`Esc` sulle righe di
-Cronologia/Sospesi. Da indagare seriamente, **non a tentativi**:
-
-1. Verificare in che fase del routing arriva effettivamente l'evento
-   (aggiungere `Debug.WriteLine` o un overlay diagnostico che mostri
-   `e.Source`/`e.Route`/`e.Handled` e l'elemento focused — questo passaggio
-   non è stato fatto né nel tentativo originale né nella PR #2, ed è
-   probabilmente la radice del nostro avanzare a tentoni).
-2. Capire come `ListBoxItem` di Avalonia 12 tratta `Enter`.
-3. Verificare se le `ScrollViewer` annidate nella Home consumano davvero
-   `↑/↓` (mini-progetto Avalonia di prova fuori dal repo se serve).
-
-Una volta capita la causa, applicare il fix minimo possibile.
+### ✔️ Ex "Da riprendere — chiudere Step 8"
+Chiuso il 2026-07-28: vedi la sezione Step 8 sopra e la **Trappola 21**. La
+raccomandazione che era rimasta inevasa per due tentativi ("prima la
+diagnostica, poi il codice") si è rivelata giusta — ma l'evidenza da stampare
+non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
 
 ## Trappole già scoperte (non rifare)
 
@@ -817,7 +889,8 @@ Una volta capita la causa, applicare il fix minimo possibile.
     `Button.risposta.corretta/sbagliata` in `QuizView.axaml`.
 13. **`OnKeyDown` override su `UserControl` non basta per intercettare
     frecce/Invio quando ci sono `ScrollViewer` o `ListBox` sopra**
-    *(scoperta step 8, **ancora non risolta** al 18 maggio 2026)*: l'override
+    *(scoperta step 8; **la vera causa dello Step 8 era però un'altra: vedi
+    Trappola 21**)*: l'override
     viene chiamato in fase di **bubbling** ed è registrato dalle class-handler
     interne con `handledEventsToo=false`. Se un controllo intermedio (es.
     `ScrollViewer` per `↑/↓`, o `ListBoxItem` per `Enter`) marca l'evento come
@@ -826,11 +899,12 @@ Una volta capita la causa, applicare il fix minimo possibile.
     RoutingStrategies.Tunnel)` per intercettare in fase di capture (top-down)
     — non ha sbloccato niente. Secondo tentativo (PR #2, Facundo Fanti): stesso
     `AddHandler` ma con `handledEventsToo: true` per ricevere anche gli eventi
-    già marcati `Handled`. Verifica pratica: **ancora non funziona perfettamente**.
-    La radice è probabilmente altrove. Prima di toccare ancora codice:
-    `Debug.WriteLine` o overlay diagnostico per vedere `e.Source`/
-    `e.RoutedEvent`/`e.Handled` e l'elemento focused (suggerimento ripetuto
-    da due tentativi, mai eseguito).
+    già marcati `Handled`. Verifica pratica: **ancora non funzionava
+    perfettamente**. **Epilogo (2026-07-28)**: il pattern `Tunnel +
+    handledEventsToo` è corretto e funziona (la diagnostica headless lo mostra
+    intercettare Invio prima della ListBox); ciò che mancava era il **focus**
+    sulla riga — Trappola 21. Quindi questa trappola resta valida come nozione
+    sul routing, ma non era la causa dello Step 8.
 14. **Avalonia 12 — bootstrap Android NON è `AvaloniaMainActivity<App>`**
     *(scoperta porting M1, 2026-06-18)*: il plan/spec del porting erano scritti
     per l'API Avalonia 11.x dove `MainActivity : AvaloniaMainActivity<App>` con
@@ -944,6 +1018,25 @@ Una volta capita la causa, applicare il fix minimo possibile.
     `adb install -r`, "Avvia quiz" e import ora blu pieni; file picker Android
     (SAF) confermato apribile end-to-end (mai testato prima su device fisico).
 
+21. **`ListBox.Focus()` non fa nulla: la ListBox NON è focusable** *(causa radice
+    dello Step 8, scoperta 2026-07-28 con harness headless)*: in Avalonia il
+    focus di una lista appartiene ai suoi **`ListBoxItem`** (come al click del
+    mouse), non al contenitore. `ListaSessioni.Focus()` / `ListaPause.Focus()`
+    restituivano `false` e lasciavano il focus sullo `UserControl`, che è un
+    **antenato** della lista: dato che il routing di `KeyDown` va dalla radice
+    all'elemento con focus, gli eventi **non passavano mai dalla ListBox** e le
+    frecce non potevano muovere la selezione. Sintomo ingannevole: Invio/Canc
+    sembravano funzionare (il handler di view usa `SelectedItem`, forzato a 0 dal
+    fallback nel `GotFocus`) ma agivano **sempre sulla riga 0**. **Soluzione**:
+    `TabellaViewBase.FocusRigaSelezionata(ListBox)` — seleziona la prima riga se
+    serve e chiama `Focus()` sul container `ContainerFromIndex(SelectedIndex)`,
+    con retry `Dispatcher.Post(..., DispatcherPriority.Loaded)` se il container
+    non è ancora realizzato. **Regola generale**: prima di dare la colpa al
+    routing di un evento tastiera, **stampare l'elemento con focus** — due
+    tentativi (Tunnel, poi `handledEventsToo: true`) sono falliti proprio perché
+    cercavano nel routing un problema che era di focus. Corollario: `Focus()`
+    restituisce `bool`, **controllarlo**.
+
 ## Note per i prossimi step
 
 ### Cronologia + Sospesi
@@ -973,13 +1066,20 @@ Una volta capita la causa, applicare il fix minimo possibile.
 
 ## Per ripartire
 
-1. Leggi questa pagina.
-2. Conferma stato attuale (sandbox Windows, step 7 + step 9 completi, step 8
-   ancora parziale dopo due tentativi).
-3. Candidati per il prossimo step: **Step 10** (Dark mode), **proseguimento
-   di Step 8** con un'indagine vera del routing eventi tastiera in
-   Avalonia 12 (vedi Trappola 13: prima di toccare codice, stampare
-   diagnostica), o **Step 11** (Export CSV/JSON cronologia).
+1. Leggi questa pagina (in particolare il riquadro in cima a "Stato attuale",
+   che è il riassunto aggiornato).
+2. Conferma lo stato: si lavora su **`main`** (nessun branch feature aperto —
+   `feature/android` e `feature/preferenze-utente` sono già mersati e
+   cancellati), repo GitHub `lufo-336/quaestio`.
+3. Candidati per il prossimo step, in ordine di utilità:
+   - **Bug bottom-nav dopo cold start** (serve device Android) — l'unico
+     difetto che l'utente finale vede; sospetta radice `RenderScaling` 1→3 al
+     boot, cfr. Trappola 17.
+   - **Riverifica a mano dello Step 8** con tastiera vera (il fix del 28/07 è
+     verificato solo headless).
+   - **Step 11** (export CSV/JSON + filtri cronologia) o **Step 14**
+     (About, installer), entrambi mai iniziati.
+   - **Splash Android** (ultimo pezzo di M3).
 4. Nota PR #2 (Facundo Fanti, 14 mag 2026): refactor che ha estratto
    `TabellaViewBase<TItem>`, `PausaDialog`, `ConfermaDialog`, fixato il bug
    timestamp UTC tornando a `DateTime.Now` ovunque, e tentato (senza
