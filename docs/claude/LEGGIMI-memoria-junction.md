@@ -1,8 +1,19 @@
 # Quaestio — memoria di Claude Code condivisa fra macchine
 
+> **Documento canonico multi-macchina: `G:\Il mio Drive\_claude\LEGGIMI.md`.** Copre tutte
+> e 4 le macchine (VM, PC Windows, macOS, Linux), spiega perché `CLAUDE_CONFIG_DIR` non è
+> la risposta, e contiene la procedura per ogni sistema operativo. Questo file resta come
+> nota specifica di Quaestio.
+
 > Creato l'**8 settembre 2026**. Stesso meccanismo già in uso per *ITS Corso* dal
-> 7 agosto 2026 (`G:\Il mio Drive\ITS Corso\_claude\LEGGIMI.md`), ma applicato a un
-> progetto che **non** vive sul Drive — e questo cambia due cose. Leggi il §2.
+> 7 agosto 2026 (`G:\Il mio Drive\ITS Corso\_claude\LEGGIMI.md`), applicato a un progetto
+> che vive sotto `Documents` — e questo cambia due cose. Leggi il §2.
+
+> ⚠️ **Precisazione (8/09/2026).** `C:\Users\<utente>\Documents` **è** sincronizzata da
+> Google Drive, ma in modalità **mirror per dispositivo** (`sync_type=MIRROR`,
+> `is_my_drive=false`): finisce nel nodo *Computer*, intestato a quella macchina. Non è
+> una cartella condivisa fra le macchine — ogni PC ottiene un albero separato. Per Quaestio
+> il codice si condivide con **git**, non col mirror.
 
 ---
 
