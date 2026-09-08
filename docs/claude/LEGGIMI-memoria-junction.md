@@ -56,11 +56,11 @@ Sul Drive va **solo** la cartella `memory`, che è di decine di KB.
 cartella di lavoro, che qui contiene il nome utente Windows:
 
 ```
-VM         C:\Users\<utente>\Documents\LUCUS\quaestio
-           →  C--Users-luca-foglia-Documents-LUCUS-quaestio
+VM         C:\Users\<utente>\dev\quaestio
+           →  C--Users-luca-foglia-dev-quaestio
 
-PC locale  C:\Users\<utente>\...\quaestio
-           →  C--Users-<utente>-...-quaestio          ← diverso, e va benissimo
+PC locale  C:\Users\<utente>\dev\quaestio
+           →  C--Users-<utente>-dev-quaestio          ← diverso, e va benissimo
 ```
 
 Per ITS Corso lo slug combaciava perché il percorso era `G:\Il mio Drive\ITS Corso` su
