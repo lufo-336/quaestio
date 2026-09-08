@@ -31,9 +31,9 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 > **Step 14** (About/installer), lo **splash Android** di M3, e un **bug su
 > device**: dopo cold start i tap sulla bottom-nav non commutano tab (lo swipe
 > sì) — dettagli in fondo alla sezione "Gestione contenuti — eliminazione per
-> sezione". Nota: `dist/wsa.quiz-android.apk` è del 21/07 e **non contiene** le
-> +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla prossima
-> occasione con un device a disposizione.
+> sezione". Nota: l'APK pubblicato (release `apk-2026-07-21`) è del 21/07 e **non
+> contiene** le +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla
+> prossima occasione con un device a disposizione.
 
 **Port Android M1 + M2 completi (2026-06-18); di M3 resta solo lo splash**
 (l'icona è stata fatta col rebrand Quaestio del 18/07). M1 (struttura) +
@@ -210,13 +210,23 @@ niente `.exe`). Per Mac Intel usare `-r osx-x64`.
 > Da provare e **verificare a runtime** prima di distribuire, non darlo per
 > scontato. Vedi anche Step 14 (icona, About, installer).
 
-### Android (APK in `dist/`)
+### Android (APK su GitHub Releases)
 
-L'APK consegnabile vive in `dist/wsa.quiz-android.apk` ed è **committato**.
-Dopo ogni modifica a codice o domande che deve arrivare sul device:
-`dotnet build wsa.quiz.android -c Release` → copia
-`wsa.quiz.android/bin/Release/net10.0-android/it.eduits.wsaquiz-Signed.apk`
-su `dist/wsa.quiz-android.apk` → commit `chore(dist): rigenera APK ...`.
+L'APK consegnabile **non sta nel repo**: dall'8/09/2026 vive come allegato di una
+release su GitHub. Prima era committato in `dist/`, e sei versioni da ~30 MB nella
+storia pesavano 75 dei 76 MB che ogni clone si portava dietro; la storia è stata
+riscritta per toglierle e `dist/` è ora nel `.gitignore`.
+
+Per pubblicare una versione nuova: `dotnet build wsa.quiz.android -c Release`, poi
+
+```powershell
+gh release create apk-AAAA-MM-GG `
+  wsa.quiz.android/bin/Release/net10.0-android/it.eduits.wsaquiz-Signed.apk `
+  --title "APK Android AAAA-MM-GG" --notes "cosa cambia"
+```
+
+Nessun commit: l'APK è un artefatto, non sorgente. Le release stanno su
+<https://github.com/lufo-336/quaestio/releases>.
 
 ### Test su device fisico (adb)
 
