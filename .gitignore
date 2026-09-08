@@ -73,7 +73,7 @@ Desktop.ini
 
 # ---------- Aggiunti manualmente ----------
 .claude/
-docs/
+# docs/ NON e' piu' ignorato: spec e piani devono seguire il repo fra le macchine
 MANUALE.md
 MANUALE_wsaquiz.*
 old/

@@ -49,8 +49,8 @@ La bottom navigation a icone sta sopra i tasti Android grazie alle insets **nati
 (non più `IInsetsManager.SafeAreaPadding`, che su device reale riporta `bottom=0` —
 vedi Trappola 17); lo swipe fra tab usa lo **scroll orizzontale nativo con snap**
 (non più gesture manuale né `Carousel` — vedi Trappola 18). Resta in M3 lo
-**splash** (l'icona è stata fatta col rebrand). Vedi roadmap "Port Android", Trappole 14–18 e la memory
-`android-device-testing` per il workflow adb. La struttura ora è una **libreria UI condivisa
+**splash** (l'icona è stata fatta col rebrand). Vedi roadmap "Port Android", Trappole 14–18 e la
+sezione "Test su device fisico (adb)" per il workflow adb. La struttura ora è una **libreria UI condivisa
 (`Wsa.Quiz.App`) + 2 head** (`Wsa.Quiz.Desktop`, `Wsa.Quiz.Android`): le sezioni
 "Layout repo"/"Stack" più sotto parlano ancora di "tre progetti/csproj" — è
 stale rispetto a M1 (ora 5 progetti), non ancora riscritte.
@@ -218,6 +218,74 @@ Dopo ogni modifica a codice o domande che deve arrivare sul device:
 `wsa.quiz.android/bin/Release/net10.0-android/it.eduits.wsaquiz-Signed.apk`
 su `dist/wsa.quiz-android.apk` → commit `chore(dist): rigenera APK ...`.
 
+### Test su device fisico (adb)
+
+> Ricostruito dai comandi realmente usati nelle sessioni su device (Samsung
+> Galaxy S21 5G, SM-G991B, density 480, nav a 3 tasti). Sostituisce la vecchia
+> memory `android-device-testing`, che non esiste più: queste note vivono qui
+> perché il repo le porta su ogni macchina, la memory no.
+
+`adb` non è nel PATH: sta in
+`C:\Users\<utente>\AppData\Local\Android\Sdk\platform-tools\adb.exe`. Negli
+script PowerShell si mette in `$adb` e si invoca con l'operatore di chiamata
+(`& $adb ...`), altrimenti il path con spazi non viene interpretato.
+
+**Ciclo tipico** (build → installa → avvia → guarda):
+
+```powershell
+$adb = "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe"
+$apk = "wsa.quiz.android\bin\Release\net10.0-android\it.eduits.wsaquiz-Signed.apk"
+
+& $adb devices -l                       # se vuoto: kill-server + start-server
+& $adb shell am force-stop it.eduits.wsaquiz
+& $adb install -r $apk                  # -r = reinstalla conservando i dati
+& $adb logcat -c                        # pulisci PRIMA di avviare
+& $adb shell monkey -p it.eduits.wsaquiz -c android.intent.category.LAUNCHER 1
+```
+
+`monkey` è il modo affidabile di lanciare l'app senza conoscere il nome esatto
+dell'activity. Per un **cold start vero** (necessario per il bug della
+bottom-nav) serve `force-stop` prima, altrimenti si riattacca al processo vivo.
+
+**Screenshot** — due varianti, la prima evita di scrivere sul device:
+
+```powershell
+& $adb exec-out screencap -p > shot.png                      # preferita
+& $adb shell screencap -p /sdcard/q.png; & $adb pull /sdcard/q.png shot.png
+& $adb shell rm /sdcard/q.png                                # pulizia
+```
+
+**Input sintetico** (utile per riprodurre il bug bottom-nav senza toccare il
+telefono): `& $adb shell input tap <x> <y>` e
+`& $adb shell input swipe <x1> <y1> <x2> <y2> <ms>`. Le coordinate sono in **px
+fisici**: leggerle con `& $adb shell wm size` e `& $adb shell wm density`.
+Lasciare ~1s di `Start-Sleep` prima dello screenshot, o si cattura il frame
+di transizione. Se lo schermo è spento: `& $adb shell input keyevent KEYCODE_WAKEUP`.
+
+**Log**: `& $adb logcat -d | Select-String -Pattern "wsaquiz|AndroidRuntime|mono"`.
+`-d` scarica e termina (senza, resta in streaming e blocca la sessione).
+
+**Ispezione utile in debug**:
+
+```powershell
+& $adb shell dumpsys window                            # insets, RenderScaling
+& $adb shell settings get secure navigation_mode       # 0=3 tasti, 2=gesture
+& $adb shell run-as it.eduits.wsaquiz ls -R /data/data/it.eduits.wsaquiz/files
+```
+
+L'ultimo mostra la cartella utente dell'app (cronologia, sospesi,
+`preferenze.json`, `ContenutiUtente/`) — funziona solo su build **Debug**.
+
+**APK Debug installabile a mano** (per iterare senza Release, vedi Trappola 16):
+
+```powershell
+dotnet build wsa.quiz.android -c Debug -t:Build `
+  -p:EmbedAssembliesIntoApk=true -p:AndroidUseFastDeployment=false
+```
+
+Senza queste due proprietà il Debug usa il fast-deployment e l'APK installato
+via `adb install` crasha con `monodroid: No assemblies found ... Exiting`.
+
 ## Aggiungere materie/domande
 
 Editi `materie.json` e/o aggiungi file in `domande/<materia>/`. I csproj fanno
@@ -239,8 +307,9 @@ intermedio — finisce nei bin e nell'APK e viene enumerato da `ElencaJson` come
 file di domande (schema sbagliato → caricamento rotto). Script e file di
 lavoro vanno nello scratchpad, mai in `domande/`.
 
-Nota: `docs/` è in `.gitignore` — spec e plan in `docs/superpowers/` esistono
-**solo in locale**, non arrivano su GitHub (`lufo-336/quaestio`).
+Nota: dal **2026-09-08** `docs/` **è tracciato** — spec e plan in
+`docs/superpowers/` arrivano su GitHub (`lufo-336/quaestio`) e quindi seguono il
+repo su ogni macchina. Prima era in `.gitignore` ed esisteva solo sulla VM.
 
 ## Storage condiviso console ↔ GUI
 
@@ -702,8 +771,8 @@ insets native `WindowInsets.systemBars()` e le passa a `MainView` via
 e padding-bottom della bottom nav convertendo px→unità con `f = ScalaTouch ×
 RenderScaling`, `RenderScaling` letto a runtime. **Perché non `IInsetsManager` né
 `Carousel`**: vedi Trappole 17–18. Workflow di test su device (adb, screencap+pull,
-`EmbedAssembliesIntoApk` per un Debug installabile a mano): memory
-`android-device-testing`.
+`EmbedAssembliesIntoApk` per un Debug installabile a mano): vedi la sezione
+"Test su device fisico (adb)".
 
 ### ✅ Rebrand "Quaestio" (2026-07-18)
 Brand da "WSA Quiz" a **Quaestio** senza toccare gli identificatori interni
