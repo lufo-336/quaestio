@@ -73,8 +73,16 @@ Desktop.ini
 
 # ---------- Aggiunti manualmente ----------
 .claude/
-# docs/ NON e' piu' ignorato: spec e piani devono seguire il repo fra le macchine
+.superpowers/
 MANUALE.md
 MANUALE_wsaquiz.*
 old/
 .juggler/
+
+# Spec, piani e note di lavoro: NON nel repo.
+# Copia condivisa fra le macchine in G:\Il mio Drive\_claude\quaestio\docs
+docs/
+
+# Script di migrazione usa-e-getta (rimossi 8/09/2026, erano dello Step 1)
+cleanup.ps1
+step1_cleanup.sh

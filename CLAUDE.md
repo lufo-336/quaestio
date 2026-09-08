@@ -307,9 +307,10 @@ intermedio — finisce nei bin e nell'APK e viene enumerato da `ElencaJson` come
 file di domande (schema sbagliato → caricamento rotto). Script e file di
 lavoro vanno nello scratchpad, mai in `domande/`.
 
-Nota: dal **2026-09-08** `docs/` **è tracciato** — spec e plan in
-`docs/superpowers/` arrivano su GitHub (`lufo-336/quaestio`) e quindi seguono il
-repo su ogni macchina. Prima era in `.gitignore` ed esisteva solo sulla VM.
+Nota: `docs/` **non è nel repo** (`.gitignore`). Spec, piani e note di lavoro
+vivono in **`G:\Il mio Drive\_claude\quaestio\docs`**, che è area condivisa fra
+tutte le macchine — vedi `_claude\LEGGIMI.md` sul Drive per l'assetto completo.
+Il repo GitHub (`lufo-336/quaestio`) tiene solo codice, dati e `CLAUDE.md`.
 
 ## Storage condiviso console ↔ GUI
 
