@@ -1072,13 +1072,14 @@ Prima sessione con mani e tastiera vere, su Fedora. Esiti:
   riferimento, l'icona si vede. Per vederla anche su Linux servirebbe
   installare un `.desktop` con `StartupWMClass=Wsa.Quiz.Desktop` — packaging
   Linux, oggi fuori scope.
-- **`Tab` nella Home — comportamento progettato, ma contestato dall'utente**:
-  `Tab` salta *fra* le 4 zone (`KeyboardNavigation.TabNavigation="Once"`) e le
-  frecce si muovono *dentro* la zona. Luca si aspettava che `Tab` scorresse le
-  singole materie e categorie e lo ha segnalato come difetto. **Decisione
-  aperta**: lasciare `Once` (Tab veloce, frecce per i dettagli) o passare a
-  `Continue` (Tab attraversa ogni checkbox: più atteso, ma con 10 materie e
-  decine di categorie diventa lungo). Da chiudere provando le frecce.
+- **`Tab` nella Home + bordo di focus invisibile — BUG TROVATO E CORRETTO**.
+  Segnalato come "il Tab non entra nei riquadri e seleziona sempre la prima
+  opzione". Il `Tab` che salta *fra* le zone (`TabNavigation="Once"`, frecce
+  *dentro* la zona) è il comportamento progettato; il difetto vero era che **il
+  bordo giallo non seguiva le frecce**, quindi la navigazione funzionava ma alla
+  cieca — sembrava che il focus non si muovesse affatto. Causa e fix:
+  **Trappola 25**. Con il bordo visibile la navigazione a frecce è usabile e la
+  questione `Once` vs `Continue` decade.
 - **Step 13 — verificato, con un'anomalia singola mai riprodotta**. La
   persistenza di tema e sezione **funziona**: osservata dal vivo su una dozzina
   di cambi sezione (un watcher su `preferenze.json` mentre Luca ciclava con
@@ -1363,6 +1364,24 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
     persi per scelta consapevole. **Se un giorno l'APK va distribuito sul serio**,
     generare una keystore stabile tenuta fuori dal repo e firmarci tutte le build,
     da qualunque macchina.
+
+25. **`Focus()` senza `NavigationMethod` = focus invisibile** *(scoperta
+    2026-09-09 dalla verifica a mano di Luca)*: in Avalonia il `FocusAdorner` (il
+    bordo giallo `#FFD500` di `App.axaml`) viene disegnato solo quando l'elemento
+    ha lo pseudo-stato **`:focus-visible`**, che Avalonia accende in base al
+    **metodo di navigazione** con cui il focus e' stato impostato. `Focus()`
+    senza argomenti non lo accende: il focus si sposta davvero, ma non si vede.
+    Sintomo ingannevole: "le frecce non funzionano, il riquadro giallo resta
+    sulla prima opzione" — il bordo compariva solo sulla voce raggiunta con
+    `Tab` (che il metodo lo imposta) e spariva alla prima freccia. **Fix**:
+    `Focus(NavigationMethod.Directional)` ovunque si sposti il focus da tastiera
+    — `HomeView.OnKeyDownTunnel`, `TabellaViewBase.FocusRigaSelezionata` (righe
+    di Cronologia/Sospesi, stesso difetto) e le frecce di `PausaDialog`.
+    **Attenzione**: ri-chiamare `Focus(metodo)` su un elemento *gia'* a fuoco NON
+    aggiorna lo stato (Avalonia esce subito), quindi il bordo non si puo'
+    riaccendere a posteriori: il metodo va passato nel momento in cui si sposta
+    il focus. **Regola**: verificarlo asserendo `Classes.Contains(":focus-visible")`,
+    **non** `IsFocused` — quello e' vero in entrambi i casi e nasconde il difetto.
 
 ## Note per i prossimi step
 
