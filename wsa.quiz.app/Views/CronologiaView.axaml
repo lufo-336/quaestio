@@ -12,7 +12,7 @@
 
         <!-- ======================================== HEADER (titolo + aggiorna) -->
         <Grid DockPanel.Dock="Top"
-              ColumnDefinitions="*,Auto,Auto"
+              ColumnDefinitions="*,Auto,Auto,Auto"
               Margin="20,16,20,8">
             <StackPanel Spacing="2">
                 <TextBlock Text="Cronologia"
@@ -31,6 +31,15 @@
                     ToolTip.Tip="Ricarica la cronologia dal disco. Utile se hai fatto un quiz dal console mentre l'app era aperta."/>
 
             <Button Grid.Column="2"
+                    Content="{Binding EtichettaEsporta}"
+                    Click="OnEsportaClick"
+                    Padding="14,6"
+                    FontSize="12"
+                    Margin="0,0,8,0"
+                    IsEnabled="{Binding !NessunaSessione}"
+                    ToolTip.Tip="Salva le partite attualmente mostrate in un file CSV (per Excel o Fogli Google) o JSON. Il formato dipende dall'estensione che scegli nel salvataggio."/>
+
+            <Button Grid.Column="3"
                     Content="Svuota cronologia"
                     Click="OnSvuotaCronologiaClick"
                     Classes="danger"
@@ -45,6 +54,73 @@
             <!-- LISTA -->
             <DockPanel IsVisible="{Binding !ModoDettaglio}">
 
+                <!-- ======================================== BARRA FILTRI (step 11) -->
+                <Border DockPanel.Dock="Top"
+                        Margin="20,0,20,0"
+                        Padding="12,8"
+                        Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                    <WrapPanel ItemSpacing="12" LineSpacing="8">
+
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <TextBlock Text="Materia" VerticalAlignment="Center" FontSize="12"/>
+                            <ComboBox ItemsSource="{Binding MaterieFiltro}"
+                                      SelectedItem="{Binding FiltroMateria}"
+                                      MinWidth="150"
+                                      FontSize="12"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <TextBlock Text="Periodo" VerticalAlignment="Center" FontSize="12"/>
+                            <ComboBox SelectedIndex="{Binding IndicePeriodo}"
+                                      MinWidth="140"
+                                      FontSize="12">
+                                <ComboBoxItem Content="Tutto"/>
+                                <ComboBoxItem Content="Ultimi 7 giorni"/>
+                                <ComboBoxItem Content="Ultimi 30 giorni"/>
+                                <ComboBoxItem Content="Personalizzato"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
+                                    IsVisible="{Binding MostraDatePersonalizzate}">
+                            <TextBlock Text="dal" VerticalAlignment="Center" FontSize="12"/>
+                            <DatePicker SelectedDate="{Binding DataDa}"/>
+                            <TextBlock Text="al" VerticalAlignment="Center" FontSize="12"/>
+                            <DatePicker SelectedDate="{Binding DataA}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <TextBlock Text="% da" VerticalAlignment="Center" FontSize="12"/>
+                            <NumericUpDown Value="{Binding PctMin}"
+                                           Minimum="0" Maximum="100" Increment="5"
+                                           FormatString="0"
+                                           MinWidth="105" FontSize="12"/>
+                            <TextBlock Text="a" VerticalAlignment="Center" FontSize="12"/>
+                            <NumericUpDown Value="{Binding PctMax}"
+                                           Minimum="0" Maximum="100" Increment="5"
+                                           FormatString="0"
+                                           MinWidth="105" FontSize="12"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                            <CheckBox Content="Concluse" IsChecked="{Binding StatoConclusi}" FontSize="12"/>
+                            <CheckBox Content="Abbandonate" IsChecked="{Binding StatoAbbandonati}" FontSize="12"/>
+                            <CheckBox Content="Tempo scaduto" IsChecked="{Binding StatoTempoScaduto}" FontSize="12"/>
+                        </StackPanel>
+
+                        <Button Content="Azzera filtri"
+                                Click="OnAzzeraFiltriClick"
+                                Padding="12,6"
+                                FontSize="12"
+                                IsEnabled="{Binding FiltriAttivi}"
+                                ToolTip.Tip="Rimuove tutti i filtri e rimostra l'intera cronologia."/>
+
+                    </WrapPanel>
+                </Border>
+
                 <!-- Stato vuoto -->
                 <Border DockPanel.Dock="Top"
                         IsVisible="{Binding NessunaSessione}"
@@ -58,7 +134,7 @@
                         <TextBlock Text="Nessuna sessione registrata"
                                    FontWeight="SemiBold"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="Avvia un quiz dalla Home per iniziare a costruire la tua cronologia."
+                        <TextBlock Text="{Binding TestoVuoto}"
                                    FontSize="12"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                    TextWrapping="Wrap"
