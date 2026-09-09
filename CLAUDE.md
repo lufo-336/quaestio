@@ -1079,14 +1079,24 @@ Prima sessione con mani e tastiera vere, su Fedora. Esiti:
   aperta**: lasciare `Once` (Tab veloce, frecce per i dettagli) o passare a
   `Continue` (Tab attraversa ogni checkbox: più atteso, ma con 10 materie e
   decine di categorie diventa lungo). Da chiudere provando le frecce.
-- **Step 13 — anomalia non spiegata**: a fine sessione `preferenze.json` aveva
-  `TemaScuro: true` (giusto) ma `TabIniziale: 0` mentre la sezione aperta era
-  Impostazioni (indice 5). **Non riproducibile**: un harness headless che
-  imposta `Tabs.SelectedIndex = 5` salva correttamente `TabIniziale: 5`, e tutti
-  e tre i punti di salvataggio (`SalvaTabSeCambiata`, opzioni Home,
-  `ImpostazioniView.Salva`) fanno leggi-modifica-riscrivi da disco, quindi
-  nessuno può azzerare i campi degli altri. Causa **ignota**: da osservare dal
-  vivo alla prossima occasione, prima di toccare il codice.
+- **Step 13 — verificato, con un'anomalia singola mai riprodotta**. La
+  persistenza di tema e sezione **funziona**: osservata dal vivo su una dozzina
+  di cambi sezione (un watcher su `preferenze.json` mentre Luca ciclava con
+  `Ctrl+Tab`), ogni indice scritto correttamente e nessuno zero spurio.
+
+  Resta un'unica osservazione iniziale mai spiegata: `TabIniziale: 0` mentre la
+  sezione aperta era Impostazioni. **Due ipotesi indagate e SCARTATE con
+  evidenza** — non ripercorrerle:
+  1. *Un altro punto di salvataggio sovrascrive il campo*: no. Tutti e tre
+     (`SalvaTabSeCambiata`, opzioni Home, `ImpostazioniView.Salva`) fanno
+     leggi-modifica-riscrivi da disco, quindi nessuno tocca i campi altrui.
+  2. *La chiusura della finestra azzera `SelectedIndex` e il handler lo
+     persiste*: no. Harness headless che imposta la sezione 5 e poi chiama
+     `window.Close()`: il file resta a 5.
+
+  Se ricapita, la strada buona è il watcher sul file mentre si usa l'app:
+  mostra l'istante esatto della scrittura sbagliata. **Nessun fix inventato**
+  per un difetto che non si riproduce.
 
 ### 💡 Idea aperta — app in inglese e traduzione delle domande
 
