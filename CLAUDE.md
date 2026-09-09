@@ -1057,6 +1057,37 @@ Verifica: harness headless sulla vera `ImpostazioniView`, 12/12 (versione,
 percorso dati, conteggi, icona caricabile, e 10 materie / 2163 domande lette
 dalle risorse incorporate). **Non provato a mano** né su Android.
 
+### 🔍 Verifiche a mano sulla GUI desktop (2026-09-09, parziali)
+
+Prima sessione con mani e tastiera vere, su Fedora. Esiti:
+
+- **Step 14 — About**: corretto in tutte le voci (versione 1.0.0, 10 materie ·
+  2163 domande, percorso, crediti).
+- **Step 8 — tastiera**: navigazione fra sezioni e `Invio` **funzionano**.
+- **Icona finestra**: su GNOME/Wayland **non si vede**, ma *non è un bug del
+  codice*: `xprop` conferma che `_NET_WM_ICON` è impostata (128×128) sulla
+  finestra. GNOME non mostra icone nella barra del titolo e per dash/alt-tab
+  associa la finestra a un file `.desktop` tramite `WM_CLASS`
+  (`Wsa.Quiz.Desktop`), che qui non esiste. Su Windows, la piattaforma di
+  riferimento, l'icona si vede. Per vederla anche su Linux servirebbe
+  installare un `.desktop` con `StartupWMClass=Wsa.Quiz.Desktop` — packaging
+  Linux, oggi fuori scope.
+- **`Tab` nella Home — comportamento progettato, ma contestato dall'utente**:
+  `Tab` salta *fra* le 4 zone (`KeyboardNavigation.TabNavigation="Once"`) e le
+  frecce si muovono *dentro* la zona. Luca si aspettava che `Tab` scorresse le
+  singole materie e categorie e lo ha segnalato come difetto. **Decisione
+  aperta**: lasciare `Once` (Tab veloce, frecce per i dettagli) o passare a
+  `Continue` (Tab attraversa ogni checkbox: più atteso, ma con 10 materie e
+  decine di categorie diventa lungo). Da chiudere provando le frecce.
+- **Step 13 — anomalia non spiegata**: a fine sessione `preferenze.json` aveva
+  `TemaScuro: true` (giusto) ma `TabIniziale: 0` mentre la sezione aperta era
+  Impostazioni (indice 5). **Non riproducibile**: un harness headless che
+  imposta `Tabs.SelectedIndex = 5` salva correttamente `TabIniziale: 5`, e tutti
+  e tre i punti di salvataggio (`SalvaTabSeCambiata`, opzioni Home,
+  `ImpostazioniView.Salva`) fanno leggi-modifica-riscrivi da disco, quindi
+  nessuno può azzerare i campi degli altri. Causa **ignota**: da osservare dal
+  vivo alla prossima occasione, prima di toccare il codice.
+
 ### 💡 Idea aperta — app in inglese e traduzione delle domande
 
 **Non è mai stata pianificata**: al 2026-09-09 non esiste in nessuno step, spec o
