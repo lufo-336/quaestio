@@ -60,6 +60,17 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     {
         InitializeComponent();
         Focusable = true;
+
+        // Su touch i tre bottoni dell'header (Aggiorna / Esporta / Svuota) non
+        // stanno accanto al titolo: su un 1080px lo coprivano (visto su device il
+        // 2026-09-09). Li mando sotto, dove il WrapPanel li manda a capo da solo.
+        if (AppEnv.TouchMode)
+        {
+            DockPanel.SetDock(HeaderAzioni, Dock.Bottom);
+            HeaderAzioni.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left;
+            HeaderAzioni.Margin = new Avalonia.Thickness(0, 8, 0, 0);
+        }
+
         // Step 15: Tunnel + handledEventsToo per intercettare anche eventi
         // gia' marcati Handled da ListBoxItem o ScrollViewer.
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);

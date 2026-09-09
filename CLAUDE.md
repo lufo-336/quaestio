@@ -29,11 +29,10 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 > l'installer di Step 14 è escluso per scelta). App desktop + Android su `main`,
 > nessun branch feature aperto, **10 materie / 2163 domande**.
 >
-> Restano aperti solo: un **bug su device** (dopo
-> cold start i tap sulla bottom-nav non commutano tab, lo swipe sì — dettagli in
-> fondo alla sezione "Gestione contenuti — eliminazione per sezione"); e una coda
-> di **verifiche a mano mai fatte**: Step 8 con tastiera vera, Step 11, Step 13 e
-> Step 14 sulla GUI reale, e Step 12/13/14 su device Android.
+> Resta una coda di **verifiche a mano mai fatte sulla GUI desktop**: Step 8 con
+> tastiera vera, Step 11, Step 13 e Step 14. Il **bug della bottom-nav dopo cold
+> start non si riproduce più** su Android 15 (sessione device del 2026-09-09):
+> vedi la nota in fondo a "Gestione contenuti — eliminazione per sezione".
 >
 > Dal 2026-09-09 si sviluppa anche su **Fedora**, dove la solution compila per
 > intero (Android incluso) e c'è `adb` — vedi "Sul PC Linux (Fedora)".
@@ -869,8 +868,9 @@ Verificato **senza device** ispezionando l'APK con `aapt2 dump resources`: lo
 stile esiste in due configurazioni, `()` vuota e `(v31)` con gli attributi
 `0x0101062c` / `0x0101062d`, che risolvono (via `android.R$attr` di
 `android-36/android.jar`) esattamente a `windowSplashScreenBackground` e
-`windowSplashScreenAnimatedIcon`, legati alle risorse giuste. **Mai visto in
-esecuzione**: serve il telefono.
+`windowSplashScreenAnimatedIcon`, legati alle risorse giuste. Poi **verificato su
+device fisico** lo stesso giorno (S21, Android 15): "Q" bianca su nero pieno a
+tutto schermo, catturata con `adb exec-out screencap` ~0,4 s dopo il lancio.
 
 ### ✅ Rebrand "Quaestio" (2026-07-18)
 Brand da "WSA Quiz" a **Quaestio** senza toccare gli identificatori interni
@@ -926,7 +926,16 @@ Due dettagli non ovvi emersi in implementazione:
 Formato del file scelto dall'**estensione nel file picker** (`FileTypeChoices`
 CSV/JSON), così non serve un controllo dedicato. Verificato con due harness
 headless (27/27 sui servizi Core, 20/20 sulla vera `CronologiaView`).
-**Non ancora provato a mano sulla GUI reale.**
+**Non ancora provato a mano sulla GUI desktop.**
+
+**Regressione trovata su device il 2026-09-09 e corretta**: il terzo bottone
+nell'header (Esporta) faceva traboccare la riga, e su un 1080px i tre bottoni
+finivano **sopra il titolo**, coprendolo. Non si vedeva né a desktop né headless:
+solo il telefono l'ha mostrata. Ora i bottoni stanno in un `WrapPanel` ancorato a
+destra su desktop che il code-behind sposta **sotto il titolo** quando
+`AppEnv.TouchMode` è attivo. Regola generale: **una riga di header con più di due
+bottoni va verificata sul layout touch**, dove la larghezza disponibile è un
+terzo di quella desktop.
 
 ### ✅ Step 12 — Import domande/materie da GUI (2026-07-04)
 5ª tab **"Gestione contenuti"** (desktop e Android): due flussi — crea nuova
@@ -977,11 +986,20 @@ Android, dark mode):
   sbiadita con pill "nascosta"+Ripristina; ripristina → 2078→2080). Spec:
   `docs/superpowers/specs/2026-07-19-eliminazione-sezione-design.md`.
 
-**Bug aperto osservato (non risolto, fuori scope)**: dopo un **cold start** su
-device, i **tap sulla bottom-nav non commutano tab** (lo swipe orizzontale sì).
-Sospetta radice: `RenderScaling` = 1 al boot / 3 a regime (cfr. Trappola 17) →
-la bottom-nav viene posizionata/hit-testata male finché lo scaling non si
-stabilizza. Da indagare a parte.
+**Bug bottom-nav dopo cold start — NON riproducibile al 2026-09-09.** Osservato
+il 20/07 (tap sulla bottom-nav che non commutano tab dopo un cold start, mentre
+lo swipe funzionava), con sospetta radice `RenderScaling` = 1 al boot / 3 a
+regime (cfr. Trappola 17).
+
+Ritentato il **2026-09-09** sullo stesso telefono (S21, ora **Android 15 / API
+35**) con la build del giorno: **due cold start** (`force-stop` + `monkey`) e
+**quattro tap sintetici** su icone diverse della bottom-nav, tutti andati a
+segno, sia alla primissima apertura senza `preferenze.json` sia con una tab
+salvata diversa da zero (il caso in cui Step 13 anima lo scroll di ripristino,
+che era l'ipotesi più promettente). Non si sa se sia stato risolto per effetto
+collaterale di qualche modifica o se dipendesse dalla versione di Android che il
+telefono aveva a luglio. **Prima di rimetterci mano, riprodurlo a mano**: se non
+si riproduce, non c'è niente da correggere.
 
 ### ✅ Step 13 — Preferenze utente persistite (2026-07-15)
 File **`preferenze.json`** (non `settings.json` come previsto in origine) nella
@@ -1292,6 +1310,18 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
     deve salvarsi la selezione *prima* della `Clear()` e ripristinarla dopo,
     altrimenti la tendina resta in bianco a ogni ricarica. Trovato da un harness
     headless, non a occhio: da UI sembrava solo "a volte la tendina è vuota".
+
+24. **La debug key Android e' diversa su ogni macchina** *(scoperta 2026-09-09
+    passando a Linux)*: l'APK Release e' firmato con la Android Debug key
+    **locale**, quindi un APK costruito su una macchina **non si installa sopra**
+    a uno costruito su un'altra — `adb install -r` fallisce con
+    `INSTALL_FAILED_UPDATE_INCOMPATIBLE: signatures do not match`. Il rifiuto e'
+    innocuo (non tocca i dati), ma l'unico modo di procedere e' **disinstallare**,
+    e con l'app se ne vanno cronologia, sospesi, preferenze e contenuti importati
+    del telefono. Successo il 09/09 passando da Windows a Fedora: dati sul device
+    persi per scelta consapevole. **Se un giorno l'APK va distribuito sul serio**,
+    generare una keystore stabile tenuta fuori dal repo e firmarci tutte le build,
+    da qualunque macchina.
 
 ## Note per i prossimi step
 

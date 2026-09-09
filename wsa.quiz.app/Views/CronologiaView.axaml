@@ -11,27 +11,24 @@
     <DockPanel>
 
         <!-- ======================================== HEADER (titolo + aggiorna) -->
-        <Grid DockPanel.Dock="Top"
-              ColumnDefinitions="*,Auto,Auto,Auto"
-              Margin="20,16,20,8">
-            <StackPanel Spacing="2">
-                <TextBlock Text="Cronologia"
-                           FontSize="22" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding Sottotitolo}"
-                           FontSize="12"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
-            </StackPanel>
+        <!-- I tre bottoni stanno in un WrapPanel ancorato a destra su desktop; su
+             touch il code-behind lo sposta sotto il titolo, perche' su 1080px
+             affiancati al titolo lo coprono (visto su device il 2026-09-09). -->
+        <DockPanel DockPanel.Dock="Top"
+                   Margin="20,16,20,8">
+            <WrapPanel x:Name="HeaderAzioni"
+                       DockPanel.Dock="Right"
+                       ItemSpacing="8" LineSpacing="8"
+                       VerticalAlignment="Center">
 
-            <Button Grid.Column="1"
-                    Content="Aggiorna"
+            <Button Content="Aggiorna"
                     Click="OnAggiornaClick"
                     Padding="14,6"
                     FontSize="12"
                     Margin="0,0,8,0"
                     ToolTip.Tip="Ricarica la cronologia dal disco. Utile se hai fatto un quiz dal console mentre l'app era aperta."/>
 
-            <Button Grid.Column="2"
-                    Content="{Binding EtichettaEsporta}"
+            <Button Content="{Binding EtichettaEsporta}"
                     Click="OnEsportaClick"
                     Padding="14,6"
                     FontSize="12"
@@ -39,15 +36,26 @@
                     IsEnabled="{Binding !NessunaSessione}"
                     ToolTip.Tip="Salva le partite attualmente mostrate in un file CSV (per Excel o Fogli Google) o JSON. Il formato dipende dall'estensione che scegli nel salvataggio."/>
 
-            <Button Grid.Column="3"
-                    Content="Svuota cronologia"
+            <Button Content="Svuota cronologia"
                     Click="OnSvuotaCronologiaClick"
                     Classes="danger"
                     Padding="14,6"
                     FontSize="12"
                     IsEnabled="{Binding !NessunaSessione}"
                     ToolTip.Tip="Elimina TUTTE le sessioni dalla cronologia. Verra' chiesta conferma."/>
-        </Grid>
+
+            </WrapPanel>
+
+            <StackPanel Spacing="2" VerticalAlignment="Center">
+                <TextBlock Text="Cronologia"
+                           FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Sottotitolo}"
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
+            </StackPanel>
+
+        </DockPanel>
 
         <!-- ======================================== LISTA + DETTAGLIO (swap) -->
         <Grid>
