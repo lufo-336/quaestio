@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash Android (M3, ultimo pezzo).
+
+     Da Android 12 (API 31) il sistema mostra COMUNQUE uno splash all'avvio e non
+     e' disattivabile: senza questi attributi usa lo sfondo di default del tema.
+     Qui non stiamo aggiungendo uno splash, stiamo prendendo il controllo di
+     quello che c'e' gia', per allinearlo al brand (monogramma "Q" bianco su nero,
+     lo stesso dell'icona).
+
+     Sono soli attributi di risorsa: nessuna dipendenza nuova e nessun codice nel
+     percorso di avvio, che e' delicato (un parent sbagliato in values/styles.xml
+     causo' un IllegalStateException all'avvio sul device - vedi quel file).
+
+     Su API 24-30 questa cartella non viene letta e il comportamento resta quello
+     di prima: nessuno splash, avvio diretto. -->
+<resources>
+
+  <style name="WsaQuizTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Stesso nero dell'icona adattiva, cosi' lo splash e l'icona del launcher
+         sono la stessa immagine e la transizione non stacca. -->
+    <item name="android:windowSplashScreenBackground">@color/ic_launcher_background</item>
+
+    <!-- La "Q" dell'icona adattiva: gia' disegnata dentro la safe-zone, quindi
+         regge la maschera circolare che il sistema applica all'icona di splash. -->
+    <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+  </style>
+
+</resources>

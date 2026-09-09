@@ -29,7 +29,7 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 > l'installer di Step 14 è escluso per scelta). App desktop + Android su `main`,
 > nessun branch feature aperto, **10 materie / 2163 domande**.
 >
-> Restano aperti solo: lo **splash Android** di M3; un **bug su device** (dopo
+> Restano aperti solo: un **bug su device** (dopo
 > cold start i tap sulla bottom-nav non commutano tab, lo swipe sì — dettagli in
 > fondo alla sezione "Gestione contenuti — eliminazione per sezione"); e una coda
 > di **verifiche a mano mai fatte**: Step 8 con tastiera vera, Step 11, Step 13 e
@@ -42,8 +42,8 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 > contiene** le +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla
 > prossima occasione con un device a disposizione.
 
-**Port Android M1 + M2 completi (2026-06-18); di M3 resta solo lo splash**
-(l'icona è stata fatta col rebrand Quaestio del 18/07). M1 (struttura) +
+**Port Android M1, M2 e M3 completi** (M1+M2 il 2026-06-18, M3 chiuso il
+2026-09-09 con lo splash; l'icona era stata fatta col rebrand Quaestio del 18/07). M1 (struttura) +
 M2 (dati via risorse embedded — allora 7 materie / 1540 domande, oggi 10 / 2163)
 committati, build verde, APK firmato ~30 MB. **M3 parte 1 (dialoghi →
 overlay in-page) committata (`8b666eb`) e verificata headless (18/18 OK).
@@ -56,7 +56,7 @@ La bottom navigation a icone sta sopra i tasti Android grazie alle insets **nati
 (non più `IInsetsManager.SafeAreaPadding`, che su device reale riporta `bottom=0` —
 vedi Trappola 17); lo swipe fra tab usa lo **scroll orizzontale nativo con snap**
 (non più gesture manuale né `Carousel` — vedi Trappola 18). Resta in M3 lo
-**splash** (l'icona è stata fatta col rebrand). Vedi roadmap "Port Android", Trappole 14–18 e la
+**splash**, chiuso il 2026-09-09 (l'icona era stata fatta col rebrand). Vedi roadmap "Port Android", Trappole 14–18 e la
 sezione "Test su device fisico (adb)" per il workflow adb. La struttura ora è una **libreria UI condivisa
 (`Wsa.Quiz.App`) + 2 head** (`Wsa.Quiz.Desktop`, `Wsa.Quiz.Android`): le sezioni
 "Layout repo"/"Stack" più sotto parlano ancora di "tre progetti/csproj" — è
@@ -823,7 +823,7 @@ tabella desktop invariata; toggle reattivo via proprietà calcolate
 **MainView**: no-op (i `TabItem` ereditano `MinHeight` dallo stile globale; padding
 espliciti regredirebbero il desktop). Tutto a valori desktop = identici a prima →
 desktop invariato per costruzione. Spec/plan in `docs/superpowers/`
-(`2026-06-19-m3-touch-friendly-layout-*`). **Restano in M3**: icona/splash
+(`2026-06-19-m3-touch-friendly-layout-*`). **Restava in M3**: icona/splash
 definitivi.
 
 **Parte 3 — bottom-nav + swipe + safe-area: implementata e VERIFICATA SU DEVICE
@@ -846,6 +846,31 @@ RenderScaling`, `RenderScaling` letto a runtime. **Perché non `IInsetsManager` 
 `Carousel`**: vedi Trappole 17–18. Workflow di test su device (adb, screencap+pull,
 `EmbedAssembliesIntoApk` per un Debug installabile a mano): vedi la sezione
 "Test su device fisico (adb)".
+
+**Parte 4 — splash: chiusa il 2026-09-09, M3 completo.** Il punto di partenza è
+che **da Android 12 (API 31) il sistema mostra comunque uno splash e non è
+disattivabile**: senza intervenire usava lo sfondo di default del tema. Non
+abbiamo quindi *aggiunto* uno splash, abbiamo preso il controllo di quello che
+c'era già. Un solo file, `Resources/values-v31/styles.xml`, che ridefinisce
+`WsaQuizTheme` con `windowSplashScreenBackground` = `@color/ic_launcher_background`
+(lo stesso nero dell'icona) e `windowSplashScreenAnimatedIcon` =
+`@drawable/ic_launcher_foreground` (la "Q" del rebrand, già disegnata dentro la
+safe-zone e quindi compatibile con la maschera circolare del sistema).
+
+Scelte deliberate: **niente dipendenza** `androidx.core:core-splashscreen` e
+**niente codice** nel percorso di avvio, che è delicato (un `parent` sbagliato in
+`values/styles.xml` causò un `IllegalStateException` all'avvio sul device). Su
+**API 24–30 la cartella non viene letta** e il comportamento resta quello di
+prima, nessuno splash: coprire anche quelle versioni richiederebbe un tema di
+lancio con `windowBackground` più un `SetTheme()` in `OnCreate`, cioè codice non
+provabile senza un telefono vecchio.
+
+Verificato **senza device** ispezionando l'APK con `aapt2 dump resources`: lo
+stile esiste in due configurazioni, `()` vuota e `(v31)` con gli attributi
+`0x0101062c` / `0x0101062d`, che risolvono (via `android.R$attr` di
+`android-36/android.jar`) esattamente a `windowSplashScreenBackground` e
+`windowSplashScreenAnimatedIcon`, legati alle risorse giuste. **Mai visto in
+esecuzione**: serve il telefono.
 
 ### ✅ Rebrand "Quaestio" (2026-07-18)
 Brand da "WSA Quiz" a **Quaestio** senza toccare gli identificatori interni
@@ -1013,6 +1038,27 @@ portable basta, e la toolchain (Inno Setup/MSIX) è Windows-only. Fatto il resto
 Verifica: harness headless sulla vera `ImpostazioniView`, 12/12 (versione,
 percorso dati, conteggi, icona caricabile, e 10 materie / 2163 domande lette
 dalle risorse incorporate). **Non provato a mano** né su Android.
+
+### 💡 Idea aperta — app in inglese e traduzione delle domande
+
+**Non è mai stata pianificata**: al 2026-09-09 non esiste in nessuno step, spec o
+piano; l'italiano è monolingua per default implicito, non per decisione presa.
+Annotata qui il 2026-09-09 perché Luca l'ha chiesta a voce e non c'era traccia
+da nessuna parte.
+
+Due problemi distinti, da non confondere:
+- **UI**: ~poche centinaia di stringhe hard-coded negli `.axaml` e nei
+  code-behind. Richiederebbe risorse localizzate (`.resx` o dizionari Avalonia) e
+  un giro su ogni view — meccanico ma esteso.
+- **Contenuti**: 2163 domande con testo, 4 risposte e spiegazione ciascuna. Qui
+  la vera domanda non è tecnica ma di prodotto: tradurre significa **raddoppiare
+  il materiale da mantenere** (una correzione va fatta due volte), e servirebbe
+  decidere se la lingua è una proprietà della materia, della singola domanda, o
+  un file parallelo. Da valutare anche l'impatto su `Domanda.Id`, che è uno
+  SHA256 del testo: tradurre cambia l'id e quindi rompe il matching con
+  cronologia e sospesi esistenti.
+
+Se si affronta, è **architetturale**: merita spec propria, non un ritocco.
 
 ### ✔️ Ex "Da riprendere — chiudere Step 8"
 Chiuso il 2026-07-28: vedi la sezione Step 8 sopra e la **Trappola 21**. La
@@ -1289,8 +1335,8 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
      quindi si può fare senza Windows.
    - **Bug bottom-nav dopo cold start** (serve device Android collegato) —
      l'unico difetto che l'utente finale vede; sospetta radice `RenderScaling`
-     1→3 al boot, cfr. Trappola 17.
-   - **Splash Android** (ultimo pezzo di M3).
+     1→3 al boot, cfr. Trappola 17. Nella stessa sessione col telefono si guarda
+     anche lo **splash** (fatto il 09/09, mai visto in esecuzione).
    - **Rigenerare e pubblicare l'APK**: quello su GitHub è di luglio e gli
      mancano 23 domande RESTful, Step 11/13/14 e i fix successivi.
 4. Nota PR #2 (Facundo Fanti, 14 mag 2026): refactor che ha estratto
