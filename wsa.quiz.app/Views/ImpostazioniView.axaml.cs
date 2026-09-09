@@ -72,6 +72,21 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     private static string Plurale(int n, string singolare, string plurale)
         => $"{n} {(n == 1 ? singolare : plurale)}";
 
+    // ------------------------------------------------------------------ LINGUA (segnaposto)
+
+    /// <summary>
+    /// Unica lingua disponibile. L'app e' monolingua italiano: le stringhe sono
+    /// hard-coded nelle view e le 2163 domande sono scritte in italiano.
+    /// </summary>
+    public string LinguaAttuale => "Italiano";
+
+    /// <summary>
+    /// Sempre false: il selettore esiste solo come promemoria visibile che la
+    /// multilingua e' un'idea aperta, NON una funzionalita' a meta'. Diventera'
+    /// true solo quando ci sara' davvero qualcosa da selezionare.
+    /// </summary>
+    public bool LinguaModificabile => false;
+
     // ------------------------------------------------------------------ ABOUT (step 14)
 
     /// <summary>Indirizzo del repository, mostrato e apribile dai crediti.</summary>

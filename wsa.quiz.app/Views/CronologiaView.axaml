@@ -28,13 +28,23 @@
                     Margin="0,0,8,0"
                     ToolTip.Tip="Ricarica la cronologia dal disco. Utile se hai fatto un quiz dal console mentre l'app era aperta."/>
 
+            <!-- Il formato si sceglie QUI, non nel file picker: su Linux il
+                 selettore del tipo di file non compare affatto. -->
             <Button Content="{Binding EtichettaEsporta}"
-                    Click="OnEsportaClick"
                     Padding="14,6"
                     FontSize="12"
                     Margin="0,0,8,0"
                     IsEnabled="{Binding !NessunaSessione}"
-                    ToolTip.Tip="Salva le partite attualmente mostrate in un file CSV (per Excel o Fogli Google) o JSON. Il formato dipende dall'estensione che scegli nel salvataggio."/>
+                    ToolTip.Tip="Salva le partite attualmente mostrate. Scegli il formato dal menu.">
+                <Button.Flyout>
+                    <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                        <MenuItem Header="CSV — per Excel e Fogli Google"
+                                  Click="OnEsportaCsvClick"/>
+                        <MenuItem Header="JSON — backup completo"
+                                  Click="OnEsportaJsonClick"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
 
             <Button Content="Svuota cronologia"
                     Click="OnSvuotaCronologiaClick"

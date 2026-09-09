@@ -923,8 +923,12 @@ Due dettagli non ovvi emersi in implementazione:
 2. Se sparisce l'ultima partita di una materia filtrata, il filtro **si azzera
    da solo** invece di lasciare una lista vuota da sbloccare a mano.
 
-Formato del file scelto dall'**estensione nel file picker** (`FileTypeChoices`
-CSV/JSON), così non serve un controllo dedicato. Verificato con due harness
+Il formato si sceglie da un **menu sul bottone Esporta** (CSV o JSON). In
+origine lo deduceva dall'estensione scelta nel file picker, ma **su Linux quel
+selettore non compare affatto** (verificato a mano il 2026-09-09: l'utente non
+aveva modo di scegliere, né di sapere che poteva scrivere `.json` a mano). La
+scelta di formato deve stare **nell'app**, dove si vede su tutte le piattaforme;
+il picker riceve un solo tipo, coerente con la voce scelta. Verificato con due harness
 headless (27/27 sui servizi Core, 20/20 sulla vera `CronologiaView`).
 **Non ancora provato a mano sulla GUI desktop.**
 
@@ -1100,6 +1104,12 @@ Prima sessione con mani e tastiera vere, su Fedora. Esiti:
   per un difetto che non si riproduce.
 
 ### 💡 Idea aperta — app in inglese e traduzione delle domande
+
+> In Impostazioni c'è un **selettore lingua disabilitato** con la sola voce
+> "Italiano", aggiunto il 2026-09-09 su richiesta di Luca come **promemoria
+> visibile**. È dichiaratamente non funzionante (`LinguaModificabile` è una
+> costante `false`, e il testo accanto lo dice): non è una funzionalità a metà,
+> è un segnaposto. Va reso vero solo quando ci sarà qualcosa da selezionare.
 
 **Non è mai stata pianificata**: al 2026-09-09 non esiste in nessuno step, spec o
 piano; l'italiano è monolingua per default implicito, non per decisione presa.

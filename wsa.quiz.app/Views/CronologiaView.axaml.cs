@@ -418,11 +418,21 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
 
     // ------------------------------------------------------------------ EXPORT (step 11)
 
-    private async void OnEsportaClick(object? sender, RoutedEventArgs e)
+    /// <summary>Contenuto dell'export nel formato richiesto, per le partite filtrate.</summary>
+    public string ContenutoExport(bool json)
+        => json
+            ? EsportazioneService.VersoJson(RisultatiFiltrati)
+            : EsportazioneService.VersoCsv(RisultatiFiltrati);
+
+    private async void OnEsportaCsvClick(object? sender, RoutedEventArgs e) => await EsportaSicuro(json: false);
+
+    private async void OnEsportaJsonClick(object? sender, RoutedEventArgs e) => await EsportaSicuro(json: true);
+
+    private async Task EsportaSicuro(bool json)
     {
         try
         {
-            await EsportaAsync();
+            await EsportaAsync(json);
         }
         catch (Exception ex)
         {
@@ -431,34 +441,33 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     }
 
     /// <summary>
-    /// Salva le partite filtrate. Il formato non ha un controllo dedicato: lo
-    /// decide l'estensione scelta nel file picker (stesso pattern di
-    /// <see cref="GestioneContenutiView"/> per la guida e il motore).
+    /// Salva le partite filtrate nel formato scelto dal menu del bottone Esporta.
+    /// Il formato NON viene dedotto dall'estensione scelta nel file picker: su
+    /// Linux quel selettore non compare (verificato il 2026-09-09), quindi la
+    /// scelta deve stare nell'app, dove si vede su tutte le piattaforme.
     /// </summary>
-    private async Task EsportaAsync()
+    private async Task EsportaAsync(bool json)
     {
         var topLevel = TopLevel.GetTopLevel(this);
         if (topLevel?.StorageProvider is not { } provider) return;
 
+        string estensione = json ? "json" : "csv";
+
+        var tipo = json
+            ? new FilePickerFileType("JSON (backup completo)") { Patterns = ["*.json"] }
+            : new FilePickerFileType("CSV (Excel, Fogli Google)") { Patterns = ["*.csv"] };
+
         var file = await provider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
-            Title = "Esporta cronologia",
-            SuggestedFileName = $"quaestio-cronologia-{DateTime.Now:yyyy-MM-dd}.csv",
-            DefaultExtension = "csv",
-            FileTypeChoices =
-            [
-                new FilePickerFileType("CSV (Excel, Fogli Google)") { Patterns = ["*.csv"] },
-                new FilePickerFileType("JSON") { Patterns = ["*.json"] },
-            ],
+            Title = json ? "Esporta cronologia in JSON" : "Esporta cronologia in CSV",
+            SuggestedFileName = $"quaestio-cronologia-{DateTime.Now:yyyy-MM-dd}.{estensione}",
+            DefaultExtension = estensione,
+            FileTypeChoices = [tipo],
         });
 
         if (file == null) return;
 
-        bool json = file.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase);
-
-        string contenuto = json
-            ? EsportazioneService.VersoJson(RisultatiFiltrati)
-            : EsportazioneService.VersoCsv(RisultatiFiltrati);
+        string contenuto = ContenutoExport(json);
 
         // BOM solo sul CSV: senza, Excel su Windows sbaglia gli accenti.
         var codifica = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: !json);
