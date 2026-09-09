@@ -29,17 +29,24 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 > l'installer di Step 14 è escluso per scelta). App desktop + Android su `main`,
 > nessun branch feature aperto, **10 materie / 2163 domande**.
 >
-> Resta una coda di **verifiche a mano mai fatte sulla GUI desktop**: Step 8 con
-> tastiera vera, Step 11, Step 13 e Step 14. Il **bug della bottom-nav dopo cold
-> start non si riproduce più** su Android 15 (sessione device del 2026-09-09):
-> vedi la nota in fondo a "Gestione contenuti — eliminazione per sezione".
+> **Verificati a mano** il 2026-09-09 su GUI desktop reale: Step 8 (tastiera),
+> 11 (filtri + export, export aperto in un foglio di calcolo), 13 (preferenze) e
+> 14 (About, icona). Quel giro ha prodotto tre correzioni — vedi "Verifiche a
+> mano sulla GUI desktop". **Restano scoperte**: una **partita intera**
+> (risposte, feedback, pausa/ripresa, view-mode, modalità a tempo, riepilogo —
+> è il cuore dell'app), **Gestione contenuti** e **Statistiche**.
+>
+> Il **bug della bottom-nav dopo cold start non si riproduce più** su Android 15
+> (sessione device del 2026-09-09): vedi la nota in fondo a "Gestione contenuti
+> — eliminazione per sezione".
 >
 > Dal 2026-09-09 si sviluppa anche su **Fedora**, dove la solution compila per
 > intero (Android incluso) e c'è `adb` — vedi "Sul PC Linux (Fedora)".
 >
-> Nota: l'APK pubblicato (release `apk-2026-07-21`) è del 21/07 e **non
-> contiene** le +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla
-> prossima occasione con un device a disposizione.
+> **APK aggiornato**: la release corrente è `apk-2026-09-09` e contiene tutto
+> quanto sopra. Attenzione: è firmata con una debug key diversa da quella di
+> luglio (macchina diversa), quindi non si installa sopra la precedente — vedi
+> Trappola 24.
 
 **Port Android M1, M2 e M3 completi** (M1+M2 il 2026-06-18, M3 chiuso il
 2026-09-09 con lo splash; l'icona era stata fatta col rebrand Quaestio del 18/07). M1 (struttura) +
@@ -286,6 +293,10 @@ gh release create apk-AAAA-MM-GG `
 
 Nessun commit: l'APK è un artefatto, non sorgente. Le release stanno su
 <https://github.com/lufo-336/quaestio/releases>.
+
+Release pubblicate finora: `apk-2026-07-21` e **`apk-2026-09-09`** (corrente).
+Nelle note di release conviene sempre segnalare **se la firma è cambiata**: chi
+aggiorna deve sapere che dovrà disinstallare e perdere i dati locali.
 
 ### Test su device fisico (adb)
 
@@ -1067,6 +1078,13 @@ Prima sessione con mani e tastiera vere, su Fedora. Esiti:
 
 - **Step 14 — About**: corretto in tutte le voci (versione 1.0.0, 10 materie ·
   2163 domande, percorso, crediti).
+- **Step 11 — filtri ed export**: provati su 17 partite di prova. Il CSV
+  esportato è stato aperto e ispezionato: BOM, separatore `;`, decimali con
+  virgola, e conteneva esattamente le righe filtrate. **Difetto trovato**: il
+  file picker di sistema su Linux **non mostra il selettore del tipo di file**,
+  quindi dedurre il formato dall'estensione lasciava l'utente senza scelta. La
+  scelta è stata spostata in un **menu sul bottone Esporta**, dentro l'app.
+- **Step 13 — preferenze**: vedi sotto.
 - **Step 8 — tastiera**: navigazione fra sezioni e `Invio` **funzionano**.
 - **Icona finestra**: su GNOME/Wayland **non si vede**, ma *non è un bug del
   codice*: `xprop` conferma che `_NET_WM_ICON` è impostata (128×128) sulla
@@ -1437,8 +1455,15 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
      l'unico difetto che l'utente finale vede; sospetta radice `RenderScaling`
      1→3 al boot, cfr. Trappola 17. Nella stessa sessione col telefono si guarda
      anche lo **splash** (fatto il 09/09, mai visto in esecuzione).
-   - **Rigenerare e pubblicare l'APK**: quello su GitHub è di luglio e gli
-     mancano 23 domande RESTful, Step 11/13/14 e i fix successivi.
+   - **Verifiche a mano ancora scoperte**, in ordine di importanza: una
+     **partita intera** (risposte, feedback, pausa/ripresa, navigazione fra le
+     passate, modalità a tempo, riepilogo) — è il cuore dell'app e non è mai
+     stata provata a mano in questa fase; poi **Gestione contenuti** (import,
+     nascondi/ripristina sezione) e **Statistiche** (heatmap, drill-down).
+   - **Debito minore**: le sezioni "Layout repo" e "Stack" parlano ancora di
+     *tre* progetti (da M1 sono cinque); 5 warning di build innocui
+     (`TextBox.Watermark` obsoleto, un evento mai usato in `RiepilogoView`,
+     tre `AVLN3001`); il binario Mac va firmato **su** un Mac.
 4. Nota PR #2 (Facundo Fanti, 14 mag 2026): refactor che ha estratto
    `TabellaViewBase<TItem>`, `PausaDialog`, `ConfermaDialog`, fixato il bug
    timestamp UTC tornando a `DateTime.Now` ovunque, e tentato (senza
