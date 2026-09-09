@@ -775,7 +775,7 @@ verificato su device** (vedi M1: emulatore non eseguibile su questa VM): testare
 materie/domande su un dispositivo reale. Fuori scope (→ M3): dialoghi modali
 overlay, layout touch.
 
-### 🚧 Port Android — M3 — UX mobile (in corso, 2026-06-18)
+### ✅ Port Android — M3 — UX mobile (completo: parti 1-3 nel 2026-06, splash il 2026-09-09)
 **Parte 1 — dialoghi modali → overlay in-page: codice committato (`8b666eb`),
 verifica runtime headless SUPERATA (18/18 check OK, 2026-06-18).** `PausaDialog`
 e `ConfermaDialog`
