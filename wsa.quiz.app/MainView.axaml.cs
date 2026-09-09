@@ -407,7 +407,9 @@ public partial class MainView : UserControl
 
             // ---------- Tab Impostazioni ----------
             _impostazioniView = new ImpostazioniView();
-            _impostazioniView.Inizializza(_storage, _preferenze);
+            // Stessi conteggi dell'header: materie e domande ATTIVE (al netto
+            // delle sezioni nascoste), cosi' l'About non contraddice la barra in alto.
+            _impostazioniView.Inizializza(_storage, _preferenze, _materie, domandeAttive);
             _impostazioniArea.Content = _impostazioniView;
 
             // Ripristino l'ultima sezione aperta (Step 13). Clamp: un

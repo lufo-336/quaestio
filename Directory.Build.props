@@ -1,0 +1,12 @@
+<Project>
+
+  <!-- Versione unica per tutti i progetti della solution (step 14).
+       La schermata About la legge a runtime dall'assembly, cosi' non c'e'
+       un numero da tenere allineato a mano in due posti.
+       Nota: l'head Android NON eredita il versionName da qui - continua a
+       usare ApplicationVersion / ApplicationDisplayVersion nel suo csproj. -->
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+</Project>

@@ -5,6 +5,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
+using Avalonia.Platform;
 
 namespace Wsa.Quiz.App;
 
@@ -13,6 +14,25 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+    }
+
+    /// <summary>
+    /// Icona della finestra desktop (step 14): barra delle applicazioni e alt-tab.
+    /// Se la risorsa mancasse si torna a nessuna icona invece di far cadere
+    /// l'avvio dell'app.
+    /// </summary>
+    private static WindowIcon? IconaFinestra()
+    {
+        try
+        {
+            var uri = new Uri("avares://Wsa.Quiz.App/Assets/Branding/quaestio-icon.png");
+            using var stream = AssetLoader.Open(uri);
+            return new WindowIcon(stream);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -28,6 +48,7 @@ public partial class App : Application
                 MinWidth = 780,
                 MinHeight = 540,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Icon = IconaFinestra(),
                 Content = new MainView()
             };
         }

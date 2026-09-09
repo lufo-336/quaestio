@@ -32,4 +32,11 @@
     <AvaloniaResource Include="..\generazione-domande\quiz-engine.js" Link="Assets\Guida\quiz-engine.js" />
   </ItemGroup>
 
+  <!-- Icona dell'app (step 14): sta qui, nella libreria UI condivisa, perche' e'
+       lei a impostare l'icona della finestra desktop. Sorgente: branding/icon.svg,
+       rasterizzata con ImageMagick. -->
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\Branding\quaestio-icon.png" />
+  </ItemGroup>
+
 </Project>

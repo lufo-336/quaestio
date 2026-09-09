@@ -43,6 +43,100 @@
                                       IsChecked="{Binding TemaScuro}"/>
                     </Grid>
                 </Border>
+
+                <!-- ======================================== ABOUT (step 14) -->
+
+                <TextBlock Text="Informazioni"
+                           FontSize="16" FontWeight="SemiBold"
+                           Margin="2,8,0,0"/>
+
+                <!-- App e versione -->
+                <Border Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="16,14">
+                    <StackPanel Spacing="4">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Quaestio" FontSize="18" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Versione}"
+                                       FontSize="13"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                        </StackPanel>
+                        <TextBlock Text="App di quiz per lo studio del corso WsA (Web &amp; Software Architect)."
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Contenuti caricati -->
+                <Border Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="16,14">
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Contenuti" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding ContenutiEtichetta}" FontSize="12"/>
+                        <TextBlock Text="Le sezioni nascoste da Gestione contenuti non sono conteggiate."
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Cartella dati -->
+                <Border Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="16,14">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Dati" FontWeight="SemiBold"/>
+                            <TextBlock Text="Cronologia, sessioni sospese, preferenze e contenuti importati."
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                            <SelectableTextBlock Text="{Binding PercorsoDati}"
+                                                 FontSize="11"
+                                                 FontFamily="monospace"
+                                                 TextWrapping="Wrap"
+                                                 Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Button Grid.Column="1"
+                                Content="Apri cartella"
+                                Click="OnApriCartellaClick"
+                                IsVisible="{Binding MostraApriCartella}"
+                                Padding="14,6"
+                                FontSize="12"
+                                VerticalAlignment="Center"
+                                Margin="12,0,0,0"/>
+                    </Grid>
+                </Border>
+
+                <!-- Crediti -->
+                <Border Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="16,14">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Crediti" FontWeight="SemiBold"/>
+                        <TextBlock Text="Progetto didattico di Luca Foglia, scritto imparando C# durante il corso WsA."
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                        <Button Content="Vai al repository su GitHub"
+                                Click="OnApriRepoClick"
+                                Padding="14,6"
+                                FontSize="12"
+                                HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
         </ScrollViewer>
 

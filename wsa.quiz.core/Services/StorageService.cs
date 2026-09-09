@@ -52,6 +52,13 @@ public class StorageService
     /// </summary>
     /// <param name="fonte">Sorgente dei dati read-only (materie + domande).</param>
     /// <param name="cartellaUtente">Cartella dove leggere/scrivere cronologia.json e quiz_in_pausa.json.</param>
+    /// <summary>
+    /// Cartella dove vivono cronologia, sospesi, preferenze e contenuti importati.
+    /// Esposta per la schermata About (step 14): l'utente altrimenti deve
+    /// conoscere a memoria la convenzione per piattaforma.
+    /// </summary>
+    public string CartellaUtente => _cartellaUtente;
+
     public StorageService(IFonteDati fonte, string cartellaUtente)
     {
         _fonte = fonte;

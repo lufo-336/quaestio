@@ -24,14 +24,21 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
 ## Stato attuale
 
-> **Aggiornato al 2026-07-28.** In sintesi: **Step 1–13 chiusi** (Step 8
-> compreso, chiuso oggi — vedi Trappola 21); app desktop + Android su `main`
-> (nessun branch feature aperto), **10 materie /
-> 2163 domande**. Restano aperti: **Step 11** (export/filtri cronologia),
-> **Step 14** (About/installer), lo **splash Android** di M3, e un **bug su
-> device**: dopo cold start i tap sulla bottom-nav non commutano tab (lo swipe
-> sì) — dettagli in fondo alla sezione "Gestione contenuti — eliminazione per
-> sezione". Nota: l'APK pubblicato (release `apk-2026-07-21`) è del 21/07 e **non
+> **Aggiornato al 2026-09-09.** In sintesi: **tutta la roadmap Step 1–14 è
+> chiusa** (Step 11 ed export/filtri e Step 14 About+icona+publish chiusi oggi;
+> l'installer di Step 14 è escluso per scelta). App desktop + Android su `main`,
+> nessun branch feature aperto, **10 materie / 2163 domande**.
+>
+> Restano aperti solo: lo **splash Android** di M3; un **bug su device** (dopo
+> cold start i tap sulla bottom-nav non commutano tab, lo swipe sì — dettagli in
+> fondo alla sezione "Gestione contenuti — eliminazione per sezione"); e una coda
+> di **verifiche a mano mai fatte**: Step 8 con tastiera vera, Step 11, Step 13 e
+> Step 14 sulla GUI reale, e Step 12/13/14 su device Android.
+>
+> Dal 2026-09-09 si sviluppa anche su **Fedora**, dove la solution compila per
+> intero (Android incluso) e c'è `adb` — vedi "Sul PC Linux (Fedora)".
+>
+> Nota: l'APK pubblicato (release `apk-2026-07-21`) è del 21/07 e **non
 > contiene** le +23 domande RESTful del commit `c9c1b8e`; va rigenerato alla
 > prossima occasione con un device a disposizione.
 
@@ -156,6 +163,39 @@ dotnet run --project wsa.quiz.app
 
 `dotnet run` è il comando del **ciclo di sviluppo**: ricompila e riavvia ogni
 volta, non è ciò che si consegna. Per produrre eseguibili autonomi vedi sotto.
+(`dotnet run --project wsa.quiz.app` è stale: dopo M1 l'head desktop è
+`wsa.quiz.desktop` — `Wsa.Quiz.App` è una libreria e non si avvia.)
+
+### Sul PC Linux (Fedora)
+
+Dal 2026-09-09 il progetto si compila **interamente** anche su Fedora, head
+Android compreso. Niente è nel PATH di sistema: le variabili stanno in
+`~/.bashrc`, ma **le shell non interattive non lo leggono**, quindi negli script
+vanno esportate a mano.
+
+```bash
+export PATH="$HOME/.dotnet:$PATH"            # SDK 10.0.401, installazione utente
+export DOTNET_ROOT="$HOME/.dotnet"
+export JAVA_HOME="$HOME/.local/jdk/jdk-17.0.20.1+1"   # serve solo all'head Android
+export ANDROID_HOME="$HOME/Android/Sdk"
+```
+
+Come è stato messo in piedi (da rifare solo su una macchina nuova):
+`dotnet workload install android` — se fallisce con "Downloading
+microsoft.android.sdk.linux ... failed" è **transitorio**, basta riprovare; poi
+il JDK 17 (di sistema c'è solo la JRE, senza `javac`) e infine l'SDK Android con
+`dotnet build wsa.quiz.android -t:InstallAndroidDependencies
+-p:AndroidSdkDirectory=$HOME/Android/Sdk -p:AcceptAndroidSDKLicenses=True`.
+Quest'ultimo porta con sé **`adb`** (`~/Android/Sdk/platform-tools/adb`), quindi
+il workflow su device della sezione apposita funziona anche da qui, senza `sudo`.
+
+> **Insidia da orologio**: se l'ora di sistema salta all'indietro (NTP, RTC in
+> local time), i binari in `bin/` risultano *più recenti* dei sorgenti appena
+> scritti e **MSBuild salta la ricompilazione** — il codice nuovo sembra non
+> esistere e si perde tempo a cercare l'errore nel posto sbagliato. Sintomo:
+> `CS0246` su un tipo che il file contiene di sicuro. Rimedio: `--no-incremental`
+> su `dotnet build` (`dotnet publish` lo rifiuta con `MSB1001: Unknown switch`),
+> oppure `touch` sui sorgenti.
 
 ## Distribuzione (publish desktop)
 
@@ -176,20 +216,40 @@ che giri sia su Windows sia su Mac: si pubblica una volta per ogni target. Stess
 sorgente, pacchetti finali diversi. RID utili: `win-x64`, `win-arm64`,
 `osx-arm64` (Mac Apple Silicon), `osx-x64` (Mac Intel), `linux-x64`.
 
+> **`PublishSingleFile=true` da solo NON basta** (scoperto 2026-09-09, Step 14).
+> Lascia accanto all'eseguibile le librerie native (`libSkiaSharp`,
+> `libHarfBuzzSharp`, `av_libglesv2`) e i `.pdb` — su win-x64 sono 101 MB di soli
+> simboli. Copiando il solo `.exe` l'app **non parte**. Servono altre due
+> proprietà, usate in tutti i comandi qui sotto:
+> `-p:IncludeNativeLibrariesForSelfExtract=true` (impacchetta le native) e
+> `-p:DebugType=none` (niente `.pdb`).
+
 ### Windows (`.exe` singolo autonomo)
 
 ```powershell
-dotnet publish wsa.quiz.desktop -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
+dotnet publish wsa.quiz.desktop -c Release -r win-x64 --self-contained `
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
 ```
 
 Output: `wsa.quiz.desktop\bin\Release\net10.0\win-x64\publish\Wsa.Quiz.Desktop.exe`
 — copiabile e avviabile su qualsiasi Windows x64, senza installare .NET.
 (Per i PC ARM, es. Surface recenti, ripetere con `-r win-arm64`.)
 
+Accanto all'eseguibile il publish copia anche `materie.json` e `domande/`, ma
+**non servono**: se non li trova nel bin, `MainView.Caricamento` ripiega sulle
+risorse incorporate (la stessa strada di Android, vedi M2). Verificato il
+2026-09-09 su linux-x64 copiando il **solo** eseguibile in una cartella vuota:
+l'app parte, e un harness headless conferma che dalle risorse incorporate
+escono 10 materie / 2163 domande.
+
+Dimensioni reali misurate il 2026-09-09 (Release, self-contained, single file
+con native incluse): **~101 MB** l'eseguibile linux-x64.
+
 ### Mac (eseguibile autonomo)
 
 ```powershell
-dotnet publish wsa.quiz.desktop -c Release -r osx-arm64 --self-contained -p:PublishSingleFile=true
+dotnet publish wsa.quiz.desktop -c Release -r osx-arm64 --self-contained `
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
 ```
 
 Output: `...\bin\Release\net10.0\osx-arm64\publish\Wsa.Quiz.Desktop` (Mach-O,
@@ -812,9 +872,36 @@ non a tempo ha `Foreground` bindato a `TempoBrush`, il cui default
 hard-coded `#1F1F1F`, quasi invisibile su fondo scuro → portata a `#767676`
 (`wsa.quiz.app/QuizColors.cs:29`), leggibile in entrambi i temi.
 
-### ⏳ Step 11 — Esportazione e filtri cronologia
-Export CSV/JSON (utile come backup pre-svuotamento). Filtri per materia,
-range di date, percentuale. Da definire se export è "tutto" o rispetta i filtri.
+### ✅ Step 11 — Esportazione e filtri cronologia (2026-09-09)
+Barra filtri nella tab Cronologia (materia, periodo, percentuale, stato) e
+bottone "Esporta (N)". **L'export rispetta i filtri** — era la domanda lasciata
+aperta: senza filtri attivi esporta tutto, quindi il caso "backup" resta coperto
+senza un secondo comando.
+
+Logica pura in Core, testabile headless: `Models/FiltroCronologia` (criteri in
+AND + `MaterieDisponibili`) e `Services/EsportazioneService` (`VersoCsv` /
+`VersoJson`, stringa in uscita, nessun I/O). Il CSV è tarato su Excel italiano:
+separatore `;`, virgola decimale, quoting RFC4180, CRLF, BOM aggiunto in
+scrittura. Una riga per partita; il dettaglio domanda-per-domanda resta fuori
+(consultabile nell'app).
+
+**Il filtro per materia legge i `Dettagli`, non `MateriaNome`**: per il
+multi-materia quel campo vale la label `"Quizzone"` (`HomeView.axaml.cs`), quindi
+da solo non basta — una partita Quizzone che contiene SQL deve passare il filtro
+"SQL". Fallback sulla label per i record senza dettagli (abbandoni immediati,
+record vecchi). Stessa regola in `EsportazioneService.MaterieCoinvolte`.
+
+Due dettagli non ovvi emersi in implementazione:
+1. Il binding TwoWay del `ComboBox` rimanda `SelectedItem = null` appena la
+   collezione viene svuotata: la scelta va salvata **prima** della `Clear()`, o
+   dopo ogni ricarica la tendina resta in bianco.
+2. Se sparisce l'ultima partita di una materia filtrata, il filtro **si azzera
+   da solo** invece di lasciare una lista vuota da sbloccare a mano.
+
+Formato del file scelto dall'**estensione nel file picker** (`FileTypeChoices`
+CSV/JSON), così non serve un controllo dedicato. Verificato con due harness
+headless (27/27 sui servizi Core, 20/20 sulla vera `CronologiaView`).
+**Non ancora provato a mano sulla GUI reale.**
 
 ### ✅ Step 12 — Import domande/materie da GUI (2026-07-04)
 5ª tab **"Gestione contenuti"** (desktop e Android): due flussi — crea nuova
@@ -898,9 +985,34 @@ Piano: `docs/superpowers/plans/2026-07-14-preferenze-utente.md`. Verificato su
 desktop via UI Automation + lettura diretta di `preferenze.json`; **non
 verificato su device Android fisico**.
 
-### ⏳ Step 14 — Rifiniture distribuzione
-Icona app, schermata "About", build portable e/o installer (`dotnet publish`
-self-contained, o pacchetti per piattaforma).
+### ✅ Step 14 — Rifiniture distribuzione (2026-09-09, senza installer)
+**Installer escluso per scelta**: per un progetto didattico l'eseguibile
+portable basta, e la toolchain (Inno Setup/MSIX) è Windows-only. Fatto il resto:
+
+- **Versione unica** in `Directory.Build.props` (`<Version>1.0.0</Version>`),
+  ereditata da tutti e 5 i progetti e letta a runtime dall'assembly, così non c'è
+  un numero da allineare a mano. Non tocca l'APK: l'head Android continua a usare
+  i suoi `ApplicationVersion` / `ApplicationDisplayVersion` (verificato:
+  `versionName="1.0"`, `versionCode="1"` invariati).
+- **About dentro Impostazioni**, non come 7ª sezione: la bottom-nav Android ha
+  già 6 icone. Quattro riquadri — app+versione, contenuti caricati (stessi
+  conteggi dell'header, quindi al netto delle sezioni nascoste), cartella dati
+  con bottone "Apri cartella" (`ILauncher`, nascosto in TouchMode perché su
+  Android non c'è un file manager a cui passarla), crediti + link al repo.
+  Serviva esporre `StorageService.CartellaUtente`, prima privato.
+- **Icona della finestra desktop**: `branding/icon.svg` rasterizzato con
+  ImageMagick in `wsa.quiz.app/Assets/Branding/quaestio-icon.png` (risorsa
+  Avalonia, usata da `App.OnFrameworkInitializationCompleted` per `Window.Icon`)
+  e in `wsa.quiz.desktop/quaestio.ico` multi-risoluzione per `<ApplicationIcon>`
+  (icona del file `.exe`). Prima la finestra non aveva alcuna icona.
+- **Publish verificati** per win-x64, osx-arm64 e linux-x64 — e la sezione
+  "Distribuzione" corretta: `PublishSingleFile` da solo non produce un file
+  singolo (vedi il riquadro là). Il singolo eseguibile linux-x64, da solo in una
+  cartella vuota, è stato **avviato davvero** su questo PC.
+
+Verifica: harness headless sulla vera `ImpostazioniView`, 12/12 (versione,
+percorso dati, conteggi, icona caricabile, e 10 materie / 2163 domande lette
+dalle risorse incorporate). **Non provato a mano** né su Android.
 
 ### ✔️ Ex "Da riprendere — chiudere Step 8"
 Chiuso il 2026-07-28: vedi la sezione Step 8 sopra e la **Trappola 21**. La
@@ -1119,6 +1231,22 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
     cercavano nel routing un problema che era di focus. Corollario: `Focus()`
     restituisce `bool`, **controllarlo**.
 
+22. **`PublishSingleFile=true` non produce un file singolo** *(scoperta Step 14,
+    2026-09-09)*: le librerie native (`libSkiaSharp`, `libHarfBuzzSharp`,
+    `av_libglesv2`) restano accanto all'eseguibile, più i `.pdb` — su win-x64
+    erano 101 MB di soli simboli su 204 MB di cartella. Copiando il solo `.exe`
+    l'app **non parte**, e CLAUDE.md diceva il contrario da mesi. Servono
+    `-p:IncludeNativeLibrariesForSelfExtract=true` e `-p:DebugType=none`. Vedi il
+    riquadro in "Distribuzione (publish desktop)".
+
+23. **Binding TwoWay su `ComboBox.SelectedItem` + `ItemsSource.Clear()` = scelta
+    persa** *(scoperta Step 11, 2026-09-09)*: svuotare la collezione fa scattare
+    il binding all'indietro con `null`, quindi il campo dietro la property viene
+    azzerato **prima** che si possa rimetterci il valore. Chi ripopola la lista
+    deve salvarsi la selezione *prima* della `Clear()` e ripristinarla dopo,
+    altrimenti la tendina resta in bianco a ogni ricarica. Trovato da un harness
+    headless, non a occhio: da UI sembrava solo "a volte la tendina è vuota".
+
 ## Note per i prossimi step
 
 ### Cronologia + Sospesi
@@ -1153,15 +1281,18 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
 2. Conferma lo stato: si lavora su **`main`** (nessun branch feature aperto —
    `feature/android` e `feature/preferenze-utente` sono già mersati e
    cancellati), repo GitHub `lufo-336/quaestio`.
-3. Candidati per il prossimo step, in ordine di utilità:
-   - **Bug bottom-nav dopo cold start** (serve device Android) — l'unico
-     difetto che l'utente finale vede; sospetta radice `RenderScaling` 1→3 al
-     boot, cfr. Trappola 17.
-   - **Riverifica a mano dello Step 8** con tastiera vera (il fix del 28/07 è
-     verificato solo headless).
-   - **Step 11** (export CSV/JSON + filtri cronologia) o **Step 14**
-     (About, installer), entrambi mai iniziati.
+3. Candidati per il prossimo step, in ordine di utilità. **La roadmap numerata è
+   finita**: quel che resta sono verifiche e rifiniture.
+   - **Giro di verifiche a mano sulla GUI desktop**: Step 8 (tastiera vera),
+     Step 11 (filtri + export), Step 13 (preferenze), Step 14 (About, icona).
+     Sono quattro step chiusi ma mai toccati con le mani. Su Fedora l'app parte,
+     quindi si può fare senza Windows.
+   - **Bug bottom-nav dopo cold start** (serve device Android collegato) —
+     l'unico difetto che l'utente finale vede; sospetta radice `RenderScaling`
+     1→3 al boot, cfr. Trappola 17.
    - **Splash Android** (ultimo pezzo di M3).
+   - **Rigenerare e pubblicare l'APK**: quello su GitHub è di luglio e gli
+     mancano 23 domande RESTful, Step 11/13/14 e i fix successivi.
 4. Nota PR #2 (Facundo Fanti, 14 mag 2026): refactor che ha estratto
    `TabellaViewBase<TItem>`, `PausaDialog`, `ConfermaDialog`, fixato il bug
    timestamp UTC tornando a `DateTime.Now` ovunque, e tentato (senza

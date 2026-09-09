@@ -8,6 +8,8 @@
     <RootNamespace>Wsa.Quiz.Desktop</RootNamespace>
     <AssemblyName>Wsa.Quiz.Desktop</AssemblyName>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Icona del file .exe su Windows (step 14). Generata da branding/icon.svg. -->
+    <ApplicationIcon>quaestio.ico</ApplicationIcon>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
   </PropertyGroup>
 
