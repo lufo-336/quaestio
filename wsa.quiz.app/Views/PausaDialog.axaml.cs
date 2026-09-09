@@ -48,7 +48,8 @@ public partial class PausaDialog : OverlayDialogBase
                 if (idx < 0) idx = 1; // default su Annulla
                 int delta = ke.Key == Key.Right ? +1 : -1;
                 int nuovo = (idx + delta + bottoniInOrdine.Length) % bottoniInOrdine.Length;
-                bottoniInOrdine[nuovo].Focus();
+                // Con il metodo direzionale il bordo giallo segue le frecce (Trappola 25).
+                bottoniInOrdine[nuovo].Focus(NavigationMethod.Directional);
                 ke.Handled = true;
             }
         };

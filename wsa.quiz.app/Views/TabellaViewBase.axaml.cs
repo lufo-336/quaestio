@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Wsa.Quiz.Core.Services;
@@ -116,14 +117,19 @@ public abstract class TabellaViewBase<TItem> : UserControl, INotifyPropertyChang
         if (lista.ItemCount == 0) return;
         if (lista.SelectedIndex < 0) lista.SelectedIndex = 0;
 
-        if (lista.ContainerFromIndex(lista.SelectedIndex) is Control riga && riga.Focus()) return;
+        // NavigationMethod.Directional non e' un dettaglio: un Focus() senza metodo
+        // NON accende :focus-visible, e senza quello il FocusAdorner (bordo giallo)
+        // non viene disegnato — la riga risulterebbe a fuoco ma invisibile a chi
+        // guarda. Vedi Trappola 25.
+        if (lista.ContainerFromIndex(lista.SelectedIndex) is Control riga
+            && riga.Focus(NavigationMethod.Directional)) return;
 
         // Container non ancora realizzato (lista appena popolata o appena tornata
         // visibile): riprovo dopo il prossimo giro di layout.
         Dispatcher.UIThread.Post(() =>
         {
             if (lista.ContainerFromIndex(lista.SelectedIndex) is Control riga2)
-                riga2.Focus();
+                riga2.Focus(NavigationMethod.Directional);
         }, DispatcherPriority.Loaded);
     }
 

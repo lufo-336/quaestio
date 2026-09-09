@@ -191,7 +191,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         int idx = focusables.IndexOf(focused);
         if (idx < 0)
         {
-            focusables[0].Focus();
+            focusables[0].Focus(NavigationMethod.Directional);
             e.Handled = true;
             return;
         }
@@ -200,7 +200,12 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         int nuovo = idx + delta;
         // No wrap: se sforiamo, restiamo dove siamo (Tab serve a cambiare zona).
         if (nuovo < 0 || nuovo >= focusables.Count) { e.Handled = true; return; }
-        focusables[nuovo].Focus();
+        // NavigationMethod.Directional e' obbligatorio, non decorativo: un Focus()
+        // senza metodo NON accende lo pseudo-stato :focus-visible, e senza quello
+        // il FocusAdorner (il bordo giallo di App.axaml) non viene disegnato. Il
+        // focus si spostava correttamente ma in modo invisibile: si vedeva il bordo
+        // solo sulla prima voce, quella raggiunta con Tab. Vedi Trappola 25.
+        focusables[nuovo].Focus(NavigationMethod.Directional);
         e.Handled = true;
     }
 
