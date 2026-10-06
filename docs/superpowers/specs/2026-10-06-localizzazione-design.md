@@ -78,13 +78,15 @@ italiane anche su un sistema inglese.
 
 1. Salva `Lingua` in `preferenze.json`.
 2. Imposta le due `CultureInfo`.
-3. `App` sostituisce la `MainView` con una nuova istanza: su desktop
-   `window.Content = new MainView()`, su Android il `Child` del
-   `LayoutTransformControl` che la avvolge. La nuova istanza ricarica dati e
-   traduzioni e si riapre su Impostazioni grazie a `TabIniziale` (Step 13).
+3. `App.SostituisciVistaPrincipale(MainView vecchia)` mette una nuova istanza
+   al posto della vecchia **nel suo genitore**: `ContentControl` → `Content`
+   (finestra desktop), `Decorator` → `Child` (il `LayoutTransformControl` su
+   Android). Così funziona uguale su desktop, Android e harness headless. La
+   nuova istanza ricarica dati e traduzioni e si riapre su Impostazioni grazie a
+   `TabIniziale` (Step 13).
 
-Va esposto un punto unico in `App` (es. `App.RicreaVistaPrincipale()`) chiamato
-da `ImpostazioniView`; nessuna view tocca direttamente la finestra.
+`ImpostazioniView` trova la propria `MainView` risalendo l'albero visivo; nessuna
+view tocca direttamente la finestra.
 
 ### Formati
 
@@ -133,20 +135,32 @@ lingua corrente non è `it` ed esiste `traduzioni/<lingua>/<materia.Id>.json`
 l'overlay:
 
 - `DomandaTesto`, `Risposte`, `Spiegazione` sostituiti per le domande presenti;
-- `MateriaNome` (sulle domande e sulla `Materia`) sostituito da `nome`;
-- nuovo campo `Domanda.CategoriaVisualizzata` (`[JsonIgnore]`, default =
-  `Categoria`) impostato da `categorie`.
+- `nome` e `categorie` registrati in **`EtichetteContenuti`** (vedi sotto).
 
-**Invarianti**: `Id`, `RispostaCorretta`, `Categoria`, `MateriaId` non vengono
-mai modificati dall'overlay.
+**Invarianti**: `Id`, `RispostaCorretta`, `Categoria`, `MateriaId` e
+**`MateriaNome`** non vengono mai modificati dall'overlay.
 
-### Categorie
+### Nomi di materie e categorie: chiavi canoniche + etichette
 
-`Domanda.Categoria` resta la **chiave canonica italiana**, usata da
-`OpzioniQuiz.Categorie` (`"Materia/Categoria"`), `SezioneEsclusa`,
-`StatisticheService`, `DettaglioRisposta.Categoria`. Le view che mostrano una
-categoria passano a `CategoriaVisualizzata` (o a una mappa chiave → nome
-visualizzato dove lavorano su stringhe, es. heatmap e Gestione contenuti).
+*(Rifinitura emersa scrivendo il piano, 2026-10-06.)* Non solo la categoria ma
+anche il **nome della materia** è una chiave: `StatisticheService` raggruppa per
+`(DettaglioRisposta.MateriaNome, Categoria)` e `FiltroCronologia` filtra per
+`MateriaNome`, perché `DettaglioRisposta` non ha `MateriaId`. Tradurre il nome
+spezzerebbe statistiche e filtri per lingua (es. "Sicurezza Informatica" vs
+"Cybersecurity").
+
+Quindi `Domanda.MateriaNome`, `Materia.Nome`, `Domanda.Categoria` e tutto ciò che
+finisce in cronologia restano **canonici (italiani)**. La traduzione è solo di
+visualizzazione, tramite `EtichetteContenuti` (Core):
+
+- `Materia(string nomeCanonico)` → nome tradotto o il canonico;
+- `Categoria(string nomeMateriaCanonico, string categoria)` → idem;
+- istanza corrente in `EtichetteContenuti.Correnti`, riempita da
+  `StorageService` durante il caricamento e pubblicata da `MainView`.
+
+Le view che *mostrano* un nome di materia o di categoria (Home, quiz, riepilogo,
+cronologia e filtro, statistiche, Gestione contenuti) passano da qui. Al posto
+del campo `CategoriaVisualizzata` previsto in prima stesura.
 
 ### Errori (mai bloccanti)
 
