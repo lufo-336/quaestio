@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
@@ -92,7 +93,7 @@
                            Foreground="#5C4A12"
                            VerticalAlignment="Center"/>
                 <Button Grid.Column="1"
-                        Content="Torna alla corrente"
+                        Content="{x:Static r:Strings.Quiz_TornaACorrente}"
                         Click="OnTornaACorrenteClick"
                         Classes="accent"
                         Padding="14,5"
@@ -137,7 +138,7 @@
                            IsVisible="{Binding MostraTempo}"/>
 
                 <Button Grid.Column="2"
-                        Content="Pausa"
+                        Content="{x:Static r:Strings.Quiz_Pausa}"
                         Click="OnPausaClick"
                         Padding="12,5"
                         FontSize="12"/>
@@ -206,7 +207,7 @@
                            Foreground="#1F1F1F"
                            IsVisible="{Binding SpiegazioneTesto, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                 <Button Grid.RowSpan="2" Grid.Column="1"
-                        Content="Prossima domanda"
+                        Content="{x:Static r:Strings.Quiz_ProssimaDomanda}"
                         Click="OnAvanzaClick"
                         Classes="accent prossima"
                         Padding="16,8"

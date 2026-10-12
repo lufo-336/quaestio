@@ -8,6 +8,9 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.App.State;
+using Wsa.Quiz.Core.Risorse;
+
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -27,8 +30,8 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
     public string Titolo { get; }
     public string Sottotitolo { get; }
     public string TitoloLista => Sbagliate.Count == 0
-        ? "Risposte sbagliate"
-        : $"Risposte sbagliate ({Sbagliate.Count})";
+        ? Strings.Riepilogo_RisposteSbagliate
+        : string.Format(Strings.Riepilogo_RisposteSbagliateN, Sbagliate.Count);
 
     public string PercentualeFormattata { get; }
     public IBrush ColorePercentuale { get; }
@@ -39,7 +42,7 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
     public string DurataFormattata { get; }
     public string Modalita => _risultato.Modalita;
 
-    public IList<DettaglioRisposta> Sbagliate { get; }
+    public IList<DettaglioRispostaItem> Sbagliate { get; }
     public bool NessunaSbagliata => Sbagliate.Count == 0;
 
     // ------------------------------------------------------------------ COSTRUZIONE
@@ -75,21 +78,21 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
 
         _risultato = risultato;
 
-        Titolo = risultato.Abbandonato ? "Quiz abbandonato"
-               : risultato.TempoScaduto ? "Tempo scaduto"
-               : "Quiz concluso";
+        Titolo = risultato.Abbandonato ? Strings.Riepilogo_QuizAbbandonato
+               : risultato.TempoScaduto ? Strings.Stato_TempoScaduto
+               : Strings.Riepilogo_QuizConcluso;
         Sottotitolo = risultato.Abbandonato
-            ? "Hai abbandonato la sessione. Le risposte gia' date sono state comunque salvate."
+            ? Strings.Riepilogo_SottotitoloAbbandonato
             : risultato.TempoScaduto
-                ? "Il tempo e' scaduto. Ecco com'e' andata fino a qui."
-                : "Ecco com'e' andata.";
+                ? Strings.Riepilogo_SottotitoloTempoScaduto
+                : Strings.Riepilogo_SottotitoloConcluso;
 
         PercentualeFormattata = $"{Math.Round(risultato.PercentualeCorrette)}%";
         ColorePercentuale = QuizColors.Percentuale(risultato.PercentualeCorrette);
 
         DurataFormattata = Core.Services.QuizService.FormattaDurata(risultato.DurataQuiz);
 
-        Sbagliate = risultato.Dettagli.Where(x => !x.Corretta).ToList();
+        Sbagliate = risultato.Dettagli.Where(x => !x.Corretta).Select(x => new DettaglioRispostaItem(x)).ToList();
 
         DataContext = this;
     }

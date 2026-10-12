@@ -99,4 +99,37 @@
   <data name="Shell_ErroreSalvaCronologia" xml:space="preserve"><value>Unable to save history: {0}</value></data>
   <data name="Shell_ErroreEliminaPausa" xml:space="preserve"><value>Unable to delete the original paused session: {0}</value></data>
   <data name="Shell_PausaRimossa" xml:space="preserve"><value>{0} The paused session has been removed.</value></data>
+  <data name="Quiz_TornaACorrente" xml:space="preserve"><value>Back to current</value></data>
+  <data name="Quiz_Pausa" xml:space="preserve"><value>Pause</value></data>
+  <data name="Quiz_ProssimaDomanda" xml:space="preserve"><value>Next question</value></data>
+  <data name="Riepilogo_CorretteMinuscolo" xml:space="preserve"><value>correct</value></data>
+  <data name="Riepilogo_Totale" xml:space="preserve"><value>Total</value></data>
+  <data name="Riepilogo_Corrette" xml:space="preserve"><value>Correct</value></data>
+  <data name="Riepilogo_Errate" xml:space="preserve"><value>Wrong</value></data>
+  <data name="Riepilogo_Punteggio" xml:space="preserve"><value>Score</value></data>
+  <data name="Riepilogo_Durata" xml:space="preserve"><value>Duration:</value></data>
+  <data name="Riepilogo_Modalita" xml:space="preserve"><value>Mode:</value></data>
+  <data name="Riepilogo_TutteCorrette" xml:space="preserve"><value>All answers are correct. Well done!</value></data>
+  <data name="Comune_TuHaiRisposto" xml:space="preserve"><value>You answered:</value></data>
+  <data name="Comune_CorrettaDuePunti" xml:space="preserve"><value>Correct answer:</value></data>
+  <data name="Riepilogo_TornaHome" xml:space="preserve"><value>Back to Home</value></data>
+  <data name="Pausa_Titolo" xml:space="preserve"><value>Quiz paused. What do you want to do?</value></data>
+  <data name="Pausa_Spiegazione" xml:space="preserve"><value>Cancel resumes the quiz. Abandon ends it and records it in History as abandoned. Save and exit puts it in Paused: you can resume it from that tab.</value></data>
+  <data name="Pausa_Abbandona" xml:space="preserve"><value>Abandon</value></data>
+  <data name="Comune_Annulla" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Pausa_SalvaEsci" xml:space="preserve"><value>Save and exit</value></data>
+  <data name="Quiz_DomandaNDiMVista" xml:space="preserve"><value>Question {0} of {1} (viewing)</value></data>
+  <data name="Quiz_DomandaNDiM" xml:space="preserve"><value>Question {0} of {1}</value></data>
+  <data name="Quiz_Corretto" xml:space="preserve"><value>Correct!</value></data>
+  <data name="Quiz_Sbagliato" xml:space="preserve"><value>Wrong</value></data>
+  <data name="Quiz_PausaOrfana" xml:space="preserve"><value>The questions in this paused session are no longer available.</value></data>
+  <data name="Dettaglio_CorrettaDopoTentativi" xml:space="preserve"><value>Answered correctly after {0} attempts</value></data>
+  <data name="Dettaglio_Corretto" xml:space="preserve"><value>Correct</value></data>
+  <data name="Riepilogo_RisposteSbagliate" xml:space="preserve"><value>Wrong answers</value></data>
+  <data name="Riepilogo_RisposteSbagliateN" xml:space="preserve"><value>Wrong answers ({0})</value></data>
+  <data name="Riepilogo_QuizAbbandonato" xml:space="preserve"><value>Quiz abandoned</value></data>
+  <data name="Riepilogo_QuizConcluso" xml:space="preserve"><value>Quiz completed</value></data>
+  <data name="Riepilogo_SottotitoloAbbandonato" xml:space="preserve"><value>You abandoned the session. The answers you gave have still been saved.</value></data>
+  <data name="Riepilogo_SottotitoloTempoScaduto" xml:space="preserve"><value>Time's up. Here's how it went so far.</value></data>
+  <data name="Riepilogo_SottotitoloConcluso" xml:space="preserve"><value>Here's how it went.</value></data>
 </root>

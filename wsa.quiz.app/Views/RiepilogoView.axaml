@@ -1,9 +1,11 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="using:Wsa.Quiz.Core.Models"
              xmlns:views="using:Wsa.Quiz.App.Views"
+             xmlns:state="using:Wsa.Quiz.App.State"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.RiepilogoView"
              x:DataType="views:RiepilogoView">
@@ -36,20 +38,20 @@
                     <TextBlock Text="{Binding PercentualeFormattata}"
                                FontSize="38" FontWeight="Bold"
                                Foreground="{Binding ColorePercentuale}"/>
-                    <TextBlock Text="corrette"
+                    <TextBlock Text="{x:Static r:Strings.Riepilogo_CorretteMinuscolo}"
                                FontSize="11"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                 </StackPanel>
 
                 <StackPanel x:Name="BloccoTotale" Grid.Column="1" Grid.Row="0" Spacing="2">
-                    <TextBlock Text="Totale"
+                    <TextBlock Text="{x:Static r:Strings.Riepilogo_Totale}"
                                FontSize="11"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding TotaleDomande}"
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
                 <StackPanel x:Name="BloccoCorrette" Grid.Column="2" Grid.Row="0" Spacing="2">
-                    <TextBlock Text="Corrette"
+                    <TextBlock Text="{x:Static r:Strings.Riepilogo_Corrette}"
                                FontSize="11"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding RisposteCorrette}"
@@ -57,7 +59,7 @@
                                Foreground="#1F7A4D"/>
                 </StackPanel>
                 <StackPanel x:Name="BloccoErrate" Grid.Column="3" Grid.Row="0" Spacing="2">
-                    <TextBlock Text="Errate"
+                    <TextBlock Text="{x:Static r:Strings.Riepilogo_Errate}"
                                FontSize="11"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding RisposteErrate}"
@@ -65,7 +67,7 @@
                                Foreground="#B85450"/>
                 </StackPanel>
                 <StackPanel x:Name="BloccoPunteggio" Grid.Column="4" Grid.Row="0" Spacing="2">
-                    <TextBlock Text="Punteggio"
+                    <TextBlock Text="{x:Static r:Strings.Riepilogo_Punteggio}"
                                FontSize="11"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding Punteggio}"
@@ -76,14 +78,14 @@
                             Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
                             Orientation="Horizontal" Spacing="20" Margin="0,12,0,0">
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <TextBlock Text="Durata:"
+                        <TextBlock Text="{x:Static r:Strings.Riepilogo_Durata}"
                                    FontSize="12"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
                         <TextBlock Text="{Binding DurataFormattata}"
                                    FontSize="12" FontWeight="SemiBold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <TextBlock Text="Modalita':"
+                        <TextBlock Text="{x:Static r:Strings.Riepilogo_Modalita}"
                                    FontSize="12"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
                         <TextBlock Text="{Binding Modalita}"
@@ -100,14 +102,14 @@
                            FontWeight="SemiBold"
                            FontSize="14"/>
 
-                <TextBlock Text="Tutte le risposte sono corrette. Bravo!"
+                <TextBlock Text="{x:Static r:Strings.Riepilogo_TutteCorrette}"
                            IsVisible="{Binding NessunaSbagliata}"
                            Foreground="{DynamicResource SystemBaseMediumColor}"
                            FontStyle="Italic"/>
 
                 <ItemsControl ItemsSource="{Binding Sbagliate}">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="models:DettaglioRisposta">
+                        <DataTemplate DataType="state:DettaglioRispostaItem">
                             <Border Background="{DynamicResource SystemRegionBrush}"
                                     BorderBrush="{DynamicResource SystemBaseLowColor}"
                                     BorderThickness="1"
@@ -125,7 +127,7 @@
                                                TextWrapping="Wrap"
                                                FontWeight="SemiBold"/>
                                     <Grid ColumnDefinitions="Auto,*" Margin="0,4,0,0">
-                                        <TextBlock Text="Tu hai risposto:"
+                                        <TextBlock Text="{x:Static r:Strings.Comune_TuHaiRisposto}"
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
@@ -136,7 +138,7 @@
                                                    TextWrapping="Wrap"/>
                                     </Grid>
                                     <Grid ColumnDefinitions="Auto,*">
-                                        <TextBlock Text="Corretta:"
+                                        <TextBlock Text="{x:Static r:Strings.Comune_CorrettaDuePunti}"
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
@@ -162,7 +164,7 @@
 
         <!-- TORNA ALLA HOME -->
         <Button Grid.Row="3"
-                Content="Torna alla Home"
+                Content="{x:Static r:Strings.Riepilogo_TornaHome}"
                 Click="OnTornaClick"
                 Classes="accent"
                 Padding="22,10"

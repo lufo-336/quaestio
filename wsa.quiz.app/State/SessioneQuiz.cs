@@ -8,6 +8,7 @@ using Avalonia.Threading;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
 
+using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -216,8 +217,8 @@ public class SessioneQuiz : ObservableObject
 
     /// <summary>Etichetta header: "Domanda X di Y" o "Domanda X di Y (vista)" in view-mode.</summary>
     public string EtichettaDomanda => InViewMode
-        ? $"Domanda {_viewIndex!.Value + 1} di {TotalePrevisto} (vista)"
-        : $"Domanda {NumeroDomandaCorrente} di {TotalePrevisto}";
+        ? string.Format(Strings.Quiz_DomandaNDiMVista, _viewIndex!.Value + 1, TotalePrevisto)
+        : string.Format(Strings.Quiz_DomandaNDiM, NumeroDomandaCorrente, TotalePrevisto);
 
     /// <summary>True se ← è significativo: ci sono passate e non sono già sulla prima.</summary>
     public bool PuoIndietro =>
@@ -331,8 +332,10 @@ public class SessioneQuiz : ObservableObject
         _domandaCorrente = QuizService.PreparaDomanda(prossima);
 
         DomandaTesto = _domandaCorrente.Originale.DomandaTesto;
-        CategoriaCorrente = _domandaCorrente.Originale.Categoria;
-        MateriaCorrente = _domandaCorrente.Originale.MateriaNome;
+        // Solo visualizzazione: nella lingua corrente. Le chiavi canoniche finiscono
+        // nel DettaglioRisposta (statistiche, filtri).
+        CategoriaCorrente = EtichetteContenuti.Correnti.Categoria(_domandaCorrente.Originale.MateriaNome, _domandaCorrente.Originale.Categoria);
+        MateriaCorrente = EtichetteContenuti.Correnti.Materia(_domandaCorrente.Originale.MateriaNome);
 
         // Ricostruisco la collezione (4 elementi: cheap; e i RispostaItem sono nuovi
         // -> stato Neutra di default, niente residui dalla domanda precedente)
@@ -432,7 +435,7 @@ public class SessioneQuiz : ObservableObject
         }
 
         UltimaRispostaCorretta = ok;
-        FeedbackTitolo = ok ? "Corretto!" : "Sbagliato";
+        FeedbackTitolo = ok ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
         SpiegazioneTesto = _domandaCorrente.Originale.Spiegazione ?? string.Empty;
         LetteraCorretta = _domandaCorrente.LetteraCorretta.ToString();
         TestoRispostaCorretta = _domandaCorrente.TestoRispostaCorretta;
@@ -608,7 +611,7 @@ public class SessioneQuiz : ObservableObject
 
         if (ricostruite.Count == 0)
             throw new InvalidOperationException(
-                "Le domande di questa pausa non sono piu' disponibili.");
+                Strings.Quiz_PausaOrfana);
 
         var sessione = new SessioneQuiz(ricostruite, pausa.Opzioni)
         {
@@ -711,8 +714,8 @@ public class SessioneQuiz : ObservableObject
         var d = Risultato.Dettagli[indice];
 
         DomandaTesto = d.TestoDomanda;
-        CategoriaCorrente = d.Categoria;
-        MateriaCorrente = d.MateriaNome;
+        CategoriaCorrente = EtichetteContenuti.Correnti.Categoria(d.MateriaNome, d.Categoria);
+        MateriaCorrente = EtichetteContenuti.Correnti.Materia(d.MateriaNome);
 
         Risposte.Clear();
         for (int i = 0; i < d.RisposteShufflate.Count; i++)
@@ -730,7 +733,7 @@ public class SessioneQuiz : ObservableObject
         }
 
         UltimaRispostaCorretta = d.Corretta;
-        FeedbackTitolo = d.Corretta ? "Corretto!" : "Sbagliato";
+        FeedbackTitolo = d.Corretta ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
         SpiegazioneTesto = d.Spiegazione ?? string.Empty;
         LetteraCorretta = d.IndiceCorrettoShufflato >= 0
             ? ((char)('A' + d.IndiceCorrettoShufflato)).ToString()

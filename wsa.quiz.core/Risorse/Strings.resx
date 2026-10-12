@@ -99,4 +99,37 @@
   <data name="Shell_ErroreSalvaCronologia" xml:space="preserve"><value>Impossibile salvare la cronologia: {0}</value></data>
   <data name="Shell_ErroreEliminaPausa" xml:space="preserve"><value>Impossibile eliminare la pausa originale: {0}</value></data>
   <data name="Shell_PausaRimossa" xml:space="preserve"><value>{0} La pausa e' stata rimossa.</value></data>
+  <data name="Quiz_TornaACorrente" xml:space="preserve"><value>Torna alla corrente</value></data>
+  <data name="Quiz_Pausa" xml:space="preserve"><value>Pausa</value></data>
+  <data name="Quiz_ProssimaDomanda" xml:space="preserve"><value>Prossima domanda</value></data>
+  <data name="Riepilogo_CorretteMinuscolo" xml:space="preserve"><value>corrette</value></data>
+  <data name="Riepilogo_Totale" xml:space="preserve"><value>Totale</value></data>
+  <data name="Riepilogo_Corrette" xml:space="preserve"><value>Corrette</value></data>
+  <data name="Riepilogo_Errate" xml:space="preserve"><value>Errate</value></data>
+  <data name="Riepilogo_Punteggio" xml:space="preserve"><value>Punteggio</value></data>
+  <data name="Riepilogo_Durata" xml:space="preserve"><value>Durata:</value></data>
+  <data name="Riepilogo_Modalita" xml:space="preserve"><value>Modalita':</value></data>
+  <data name="Riepilogo_TutteCorrette" xml:space="preserve"><value>Tutte le risposte sono corrette. Bravo!</value></data>
+  <data name="Comune_TuHaiRisposto" xml:space="preserve"><value>Tu hai risposto:</value></data>
+  <data name="Comune_CorrettaDuePunti" xml:space="preserve"><value>Corretta:</value></data>
+  <data name="Riepilogo_TornaHome" xml:space="preserve"><value>Torna alla Home</value></data>
+  <data name="Pausa_Titolo" xml:space="preserve"><value>Quiz in pausa. Cosa vuoi fare?</value></data>
+  <data name="Pausa_Spiegazione" xml:space="preserve"><value>Annulla riprende il quiz. Abbandona lo chiude e lo registra in cronologia come abbandonato. Salva e esci lo mette nei Sospesi: lo riprenderai dalla relativa tab.</value></data>
+  <data name="Pausa_Abbandona" xml:space="preserve"><value>Abbandona</value></data>
+  <data name="Comune_Annulla" xml:space="preserve"><value>Annulla</value></data>
+  <data name="Pausa_SalvaEsci" xml:space="preserve"><value>Salva e esci</value></data>
+  <data name="Quiz_DomandaNDiMVista" xml:space="preserve"><value>Domanda {0} di {1} (vista)</value></data>
+  <data name="Quiz_DomandaNDiM" xml:space="preserve"><value>Domanda {0} di {1}</value></data>
+  <data name="Quiz_Corretto" xml:space="preserve"><value>Corretto!</value></data>
+  <data name="Quiz_Sbagliato" xml:space="preserve"><value>Sbagliato</value></data>
+  <data name="Quiz_PausaOrfana" xml:space="preserve"><value>Le domande di questa pausa non sono piu' disponibili.</value></data>
+  <data name="Dettaglio_CorrettaDopoTentativi" xml:space="preserve"><value>Risposta corretta dopo {0} tentativi</value></data>
+  <data name="Dettaglio_Corretto" xml:space="preserve"><value>Corretto</value></data>
+  <data name="Riepilogo_RisposteSbagliate" xml:space="preserve"><value>Risposte sbagliate</value></data>
+  <data name="Riepilogo_RisposteSbagliateN" xml:space="preserve"><value>Risposte sbagliate ({0})</value></data>
+  <data name="Riepilogo_QuizAbbandonato" xml:space="preserve"><value>Quiz abbandonato</value></data>
+  <data name="Riepilogo_QuizConcluso" xml:space="preserve"><value>Quiz concluso</value></data>
+  <data name="Riepilogo_SottotitoloAbbandonato" xml:space="preserve"><value>Hai abbandonato la sessione. Le risposte gia' date sono state comunque salvate.</value></data>
+  <data name="Riepilogo_SottotitoloTempoScaduto" xml:space="preserve"><value>Il tempo e' scaduto. Ecco com'e' andata fino a qui.</value></data>
+  <data name="Riepilogo_SottotitoloConcluso" xml:space="preserve"><value>Ecco com'e' andata.</value></data>
 </root>

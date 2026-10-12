@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              x:Class="Wsa.Quiz.App.Views.ConfermaDialog">
 
   <UserControl.Styles>
@@ -40,7 +41,7 @@
                   Spacing="8"
                   HorizontalAlignment="Right">
         <Button x:Name="AnnullaBtn"
-                Content="Annulla"
+                Content="{x:Static r:Strings.Comune_Annulla}"
                 Padding="14,8"
                 Click="OnAnnullaClick"/>
         <Button x:Name="ConfermaBtn"

@@ -1,6 +1,9 @@
 using Avalonia.Media;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
+
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -13,8 +16,9 @@ public class DettaglioRispostaItem
 {
     public DettaglioRisposta Dettaglio { get; }
 
-    public string MateriaNome => Dettaglio.MateriaNome;
-    public string Categoria => Dettaglio.Categoria;
+    // Nomi nella lingua corrente: in cronologia restano le chiavi canoniche.
+    public string MateriaNome => EtichetteContenuti.Correnti.Materia(Dettaglio.MateriaNome);
+    public string Categoria => EtichetteContenuti.Correnti.Categoria(Dettaglio.MateriaNome, Dettaglio.Categoria);
     public string TestoDomanda => Dettaglio.TestoDomanda;
     public string RispostaData => Dettaglio.RispostaData;
     public string RispostaCorretta => Dettaglio.RispostaCorretta;
@@ -28,7 +32,7 @@ public class DettaglioRispostaItem
     /// <summary>Mostra la riga del numero di tentativi, solo se >1 (rotazione).</summary>
     public bool MostraTentativi => Dettaglio.Tentativi > 1;
 
-    public string TentativiEtichetta => $"Risposta corretta dopo {Dettaglio.Tentativi} tentativi";
+    public string TentativiEtichetta => string.Format(Strings.Dettaglio_CorrettaDopoTentativi, Dettaglio.Tentativi);
 
     public IBrush ColoreBordo { get; }
     public IBrush ColoreRisposta { get; }
@@ -40,7 +44,7 @@ public class DettaglioRispostaItem
         Dettaglio = d;
         ColoreBordo = QuizColors.Esito(d.Corretta);
         ColoreRisposta = QuizColors.Esito(d.Corretta);
-        EsitoEtichetta = d.Corretta ? "Corretto" : "Sbagliato";
+        EsitoEtichetta = d.Corretta ? Strings.Dettaglio_Corretto : Strings.Quiz_Sbagliato;
         ColoreEsito = QuizColors.Esito(d.Corretta);
     }
 }
