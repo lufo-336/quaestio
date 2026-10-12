@@ -64,8 +64,8 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
         _temaScuro = preferenze.TemaScuro;
 
         _percorsoDati = storage.CartellaUtente;
-        _contenutiEtichetta = $"{Plurale(materie.Count, "materia", "materie")} · " +
-                              $"{Plurale(domandeAttive.Count, "domanda attiva", "domande attive")}";
+        _contenutiEtichetta = $"{Plurale(materie.Count, Strings.Impostazioni_Materia_Uno, Strings.Impostazioni_Materia_Molti)} · " +
+                              $"{Plurale(domandeAttive.Count, Strings.Impostazioni_DomandaAttiva_Uno, Strings.Impostazioni_DomandaAttiva_Molti)}";
 
         Raise(nameof(TemaScuro));
         Raise(nameof(PercorsoDati));

@@ -35,4 +35,68 @@
   <data name="Import_SpiegazioneMancante" xml:space="preserve"><value>#{0}: missing explanation</value></data>
   <data name="Import_DomandaDuplicata" xml:space="preserve"><value>#{0}: duplicate question in the file ("{1}")</value></data>
   <data name="Errore_MaterieNonTrovato" xml:space="preserve"><value>materie.json file not found.</value></data>
+  <data name="Shell_ErroreCaricamento" xml:space="preserve"><value>Error loading data</value></data>
+  <data name="Shell_TabHome" xml:space="preserve"><value>Home</value></data>
+  <data name="Shell_TabCronologia" xml:space="preserve"><value>History</value></data>
+  <data name="Shell_TabSospesi" xml:space="preserve"><value>Paused</value></data>
+  <data name="Shell_TabStatistiche" xml:space="preserve"><value>Statistics</value></data>
+  <data name="Shell_TabGestione" xml:space="preserve"><value>Manage content</value></data>
+  <data name="Shell_TabImpostazioni" xml:space="preserve"><value>Settings</value></data>
+  <data name="Home_AvviaQuiz" xml:space="preserve"><value>Start quiz</value></data>
+  <data name="Home_Materie" xml:space="preserve"><value>Subjects</value></data>
+  <data name="Home_CategorieTitolo" xml:space="preserve"><value>Categories  (leave empty to include all)</value></data>
+  <data name="Home_Pulisci" xml:space="preserve"><value>Clear</value></data>
+  <data name="Home_SelezionaMateriaPerCategorie" xml:space="preserve"><value>Select a subject to see its categories.</value></data>
+  <data name="Home_Opzioni" xml:space="preserve"><value>Options</value></data>
+  <data name="Home_Randomizza" xml:space="preserve"><value>Shuffle question order</value></data>
+  <data name="Home_RandomizzaTip" xml:space="preserve"><value>When off, questions follow the order of the JSON files.</value></data>
+  <data name="Home_Rotazione" xml:space="preserve"><value>Rotation mode (wrong answers go back in the queue)</value></data>
+  <data name="Home_RotazioneTip" xml:space="preserve"><value>The quiz ends only when every question has been answered correctly at least once.</value></data>
+  <data name="Home_MostraCronometro" xml:space="preserve"><value>Show timer during the quiz</value></data>
+  <data name="Home_LimitaA" xml:space="preserve"><value>Limit to</value></data>
+  <data name="Home_DomandeEstratte" xml:space="preserve"><value>questions (randomly picked)</value></data>
+  <data name="Home_ModalitaTempo" xml:space="preserve"><value>Timed mode</value></data>
+  <data name="Home_ModalitaTempoTip" xml:space="preserve"><value>When the time runs out the game ends automatically. Can be combined with the other options.</value></data>
+  <data name="Comune_Minuti" xml:space="preserve"><value>minutes</value></data>
+  <data name="Impostazioni_Sottotitolo" xml:space="preserve"><value>App preferences, saved locally.</value></data>
+  <data name="Impostazioni_Tema" xml:space="preserve"><value>Theme</value></data>
+  <data name="Impostazioni_TemaDescrizione" xml:space="preserve"><value>Light or dark. Your choice is remembered.</value></data>
+  <data name="Impostazioni_TemaScuro" xml:space="preserve"><value>Dark</value></data>
+  <data name="Impostazioni_TemaChiaro" xml:space="preserve"><value>Light</value></data>
+  <data name="Impostazioni_Informazioni" xml:space="preserve"><value>About</value></data>
+  <data name="Impostazioni_DescrizioneApp" xml:space="preserve"><value>Quiz app for studying the WsA course (Web &amp; Software Architect).</value></data>
+  <data name="Impostazioni_Contenuti" xml:space="preserve"><value>Content</value></data>
+  <data name="Impostazioni_ContenutiNota" xml:space="preserve"><value>Sections hidden in Manage content are not counted.</value></data>
+  <data name="Impostazioni_Dati" xml:space="preserve"><value>Data</value></data>
+  <data name="Impostazioni_DatiDescrizione" xml:space="preserve"><value>History, paused sessions, preferences and imported content.</value></data>
+  <data name="Impostazioni_ApriCartella" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Impostazioni_Crediti" xml:space="preserve"><value>Credits</value></data>
+  <data name="Impostazioni_CreditiTesto" xml:space="preserve"><value>A learning project by Luca Foglia, written while learning C# during the WsA course.</value></data>
+  <data name="Impostazioni_VaiRepo" xml:space="preserve"><value>Go to the GitHub repository</value></data>
+  <data name="Home_NessunaMateria" xml:space="preserve"><value>No subject selected</value></data>
+  <data name="Home_UnaMateria" xml:space="preserve"><value>1 subject: {0}</value></data>
+  <data name="Home_NMaterie" xml:space="preserve"><value>{0} subjects selected</value></data>
+  <data name="Home_TutteLeCategorie" xml:space="preserve"><value>all categories</value></data>
+  <data name="Home_NCategorie" xml:space="preserve"><value>{0} categories</value></data>
+  <data name="Home_NDomande" xml:space="preserve"><value>{0} questions</value></data>
+  <data name="Home_NDomandeLimitate" xml:space="preserve"><value>{0} questions (limited from {1})</value></data>
+  <data name="Home_MaxMinuti" xml:space="preserve"><value>max {0} min</value></data>
+  <data name="Home_AvvisoNessunaMateria" xml:space="preserve"><value>Select at least one subject to start a quiz.</value></data>
+  <data name="Home_AvvisoNessunaDomanda" xml:space="preserve"><value>No questions match the chosen filters.</value></data>
+  <data name="Home_ModPerCategoria" xml:space="preserve"><value>By category</value></data>
+  <data name="Home_ModCompleto" xml:space="preserve"><value>Full</value></data>
+  <data name="Home_ModCompletoRandomizzato" xml:space="preserve"><value>Full, shuffled</value></data>
+  <data name="Impostazioni_Materia_Uno" xml:space="preserve"><value>subject</value></data>
+  <data name="Impostazioni_Materia_Molti" xml:space="preserve"><value>subjects</value></data>
+  <data name="Impostazioni_DomandaAttiva_Uno" xml:space="preserve"><value>active question</value></data>
+  <data name="Impostazioni_DomandaAttiva_Molti" xml:space="preserve"><value>active questions</value></data>
+  <data name="Shell_OrigineFileSystem" xml:space="preserve"><value>file system: {0}</value></data>
+  <data name="Shell_OrigineRisorse" xml:space="preserve"><value>embedded resources (avares://)</value></data>
+  <data name="Shell_Footer" xml:space="preserve"><value>Read-only data: {0}    ·    User folder: {1}</value></data>
+  <data name="Shell_Conteggi" xml:space="preserve"><value>{0} subjects · {1} questions</value></data>
+  <data name="Shell_ImpossibileAvviare" xml:space="preserve"><value>Unable to start</value></data>
+  <data name="Shell_ImpossibileAvviareDettaglio" xml:space="preserve"><value>Check that materie.json and the domande/ folder are next to the executable.</value></data>
+  <data name="Shell_ErroreSalvaCronologia" xml:space="preserve"><value>Unable to save history: {0}</value></data>
+  <data name="Shell_ErroreEliminaPausa" xml:space="preserve"><value>Unable to delete the original paused session: {0}</value></data>
+  <data name="Shell_PausaRimossa" xml:space="preserve"><value>{0} The paused session has been removed.</value></data>
 </root>

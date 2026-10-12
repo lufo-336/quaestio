@@ -15,9 +15,9 @@
               ColumnDefinitions="*,Auto"
               Margin="20,16,20,8">
             <StackPanel Spacing="2">
-                <TextBlock Text="Impostazioni"
+                <TextBlock Text="{x:Static r:Strings.Shell_TabImpostazioni}"
                            FontSize="22" FontWeight="SemiBold"/>
-                <TextBlock Text="Preferenze dell'app, salvate in locale."
+                <TextBlock Text="{x:Static r:Strings.Impostazioni_Sottotitolo}"
                            FontSize="12"
                            Foreground="{DynamicResource SystemBaseMediumColor}"/>
             </StackPanel>
@@ -32,15 +32,15 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
-                            <TextBlock Text="Tema" FontWeight="SemiBold"/>
-                            <TextBlock Text="Chiaro o scuro. La scelta viene ricordata."
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Tema}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_TemaDescrizione}"
                                        FontSize="12"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
                         </StackPanel>
                         <ToggleSwitch Grid.Column="1"
                                       x:Name="TemaToggle"
-                                      OnContent="Scuro"
-                                      OffContent="Chiaro"
+                                      OnContent="{x:Static r:Strings.Impostazioni_TemaScuro}"
+                                      OffContent="{x:Static r:Strings.Impostazioni_TemaChiaro}"
                                       IsChecked="{Binding TemaScuro}"/>
                     </Grid>
                 </Border>
@@ -75,7 +75,7 @@
 
                 <!-- ======================================== ABOUT (step 14) -->
 
-                <TextBlock Text="Informazioni"
+                <TextBlock Text="{x:Static r:Strings.Impostazioni_Informazioni}"
                            FontSize="16" FontWeight="SemiBold"
                            Margin="2,8,0,0"/>
 
@@ -93,7 +93,7 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
                         </StackPanel>
-                        <TextBlock Text="App di quiz per lo studio del corso WsA (Web &amp; Software Architect)."
+                        <TextBlock Text="{x:Static r:Strings.Impostazioni_DescrizioneApp}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
@@ -107,9 +107,9 @@
                         CornerRadius="6"
                         Padding="16,14">
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Contenuti" FontWeight="SemiBold"/>
+                        <TextBlock Text="{x:Static r:Strings.Impostazioni_Contenuti}" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding ContenutiEtichetta}" FontSize="12"/>
-                        <TextBlock Text="Le sezioni nascoste da Gestione contenuti non sono conteggiate."
+                        <TextBlock Text="{x:Static r:Strings.Impostazioni_ContenutiNota}"
                                    FontSize="11"
                                    TextWrapping="Wrap"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
@@ -124,8 +124,8 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2">
-                            <TextBlock Text="Dati" FontWeight="SemiBold"/>
-                            <TextBlock Text="Cronologia, sessioni sospese, preferenze e contenuti importati."
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Dati}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_DatiDescrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
@@ -136,7 +136,7 @@
                                                  Margin="0,4,0,0"/>
                         </StackPanel>
                         <Button Grid.Column="1"
-                                Content="Apri cartella"
+                                Content="{x:Static r:Strings.Impostazioni_ApriCartella}"
                                 Click="OnApriCartellaClick"
                                 IsVisible="{Binding MostraApriCartella}"
                                 Padding="14,6"
@@ -153,12 +153,12 @@
                         CornerRadius="6"
                         Padding="16,14">
                     <StackPanel Spacing="6">
-                        <TextBlock Text="Crediti" FontWeight="SemiBold"/>
-                        <TextBlock Text="Progetto didattico di Luca Foglia, scritto imparando C# durante il corso WsA."
+                        <TextBlock Text="{x:Static r:Strings.Impostazioni_Crediti}" FontWeight="SemiBold"/>
+                        <TextBlock Text="{x:Static r:Strings.Impostazioni_CreditiTesto}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
-                        <Button Content="Vai al repository su GitHub"
+                        <Button Content="{x:Static r:Strings.Impostazioni_VaiRepo}"
                                 Click="OnApriRepoClick"
                                 Padding="14,6"
                                 FontSize="12"

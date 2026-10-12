@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
@@ -119,7 +120,7 @@
                 Padding="16,12"
                 IsVisible="False">
             <StackPanel Spacing="4">
-                <TextBlock Text="Errore nel caricamento dei dati"
+                <TextBlock Text="{x:Static r:Strings.Shell_ErroreCaricamento}"
                            FontWeight="SemiBold"
                            Foreground="#8C3B38"/>
                 <TextBlock x:Name="ErroreText"
@@ -135,22 +136,22 @@
              sono mai visibili insieme. -->
         <Grid>
             <TabControl x:Name="Tabs" Padding="0">
-                <TabItem Header="Home">
+                <TabItem Header="{x:Static r:Strings.Shell_TabHome}">
                     <ContentControl x:Name="HomeArea"/>
                 </TabItem>
-                <TabItem Header="Cronologia">
+                <TabItem Header="{x:Static r:Strings.Shell_TabCronologia}">
                     <ContentControl x:Name="CronologiaArea"/>
                 </TabItem>
-                <TabItem Header="Sospesi">
+                <TabItem Header="{x:Static r:Strings.Shell_TabSospesi}">
                     <ContentControl x:Name="SospesiArea"/>
                 </TabItem>
-                <TabItem Header="Statistiche">
+                <TabItem Header="{x:Static r:Strings.Shell_TabStatistiche}">
                     <ContentControl x:Name="StatisticheArea"/>
                 </TabItem>
-                <TabItem Header="Gestione contenuti">
+                <TabItem Header="{x:Static r:Strings.Shell_TabGestione}">
                     <ContentControl x:Name="GestioneArea"/>
                 </TabItem>
-                <TabItem Header="Impostazioni">
+                <TabItem Header="{x:Static r:Strings.Shell_TabImpostazioni}">
                     <ContentControl x:Name="ImpostazioniArea"/>
                 </TabItem>
             </TabControl>

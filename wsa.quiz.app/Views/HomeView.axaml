@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
@@ -34,7 +35,7 @@
 
                 <Button x:Name="AvviaBtn"
                         Grid.Column="1"
-                        Content="Avvia quiz"
+                        Content="{x:Static r:Strings.Home_AvviaQuiz}"
                         Click="OnAvviaClick"
                         IsEnabled="{Binding PuoAvviare}"
                         Classes="accent"
@@ -64,7 +65,7 @@
                             Padding="14">
                         <DockPanel>
                             <TextBlock DockPanel.Dock="Top"
-                                       Text="Materie"
+                                       Text="{x:Static r:Strings.Home_Materie}"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8"/>
                             <ScrollViewer MaxHeight="240"
@@ -94,11 +95,11 @@
                             MinHeight="180">
                         <DockPanel>
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="0,0,0,8">
-                                <TextBlock Text="Categorie  (lascia vuoto per includerle tutte)"
+                                <TextBlock Text="{x:Static r:Strings.Home_CategorieTitolo}"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center"/>
                                 <Button Grid.Column="1"
-                                        Content="Pulisci"
+                                        Content="{x:Static r:Strings.Home_Pulisci}"
                                         Click="OnPulisciCategorieClick"
                                         Padding="10,3"
                                         FontSize="11"
@@ -106,7 +107,7 @@
                             </Grid>
 
                             <TextBlock x:Name="EmptyCategorieText"
-                                       Text="Seleziona una materia per vedere le categorie disponibili."
+                                       Text="{x:Static r:Strings.Home_SelezionaMateriaPerCategorie}"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"
                                        FontStyle="Italic"
                                        TextWrapping="Wrap"
@@ -122,7 +123,7 @@
                                                 <CheckBox Content="{Binding Etichetta}"
                                                           IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                                                 <TextBlock Grid.Column="1"
-                                                           Text="{Binding MateriaNome}"
+                                                           Text="{Binding MateriaEtichetta}"
                                                            FontSize="11"
                                                            Foreground="{DynamicResource SystemBaseMediumColor}"
                                                            VerticalAlignment="Center"
@@ -145,22 +146,22 @@
                         CornerRadius="6"
                         Padding="14">
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Opzioni"
+                        <TextBlock Text="{x:Static r:Strings.Home_Opzioni}"
                                    FontWeight="SemiBold"/>
 
-                        <CheckBox Content="Randomizza l'ordine delle domande"
+                        <CheckBox Content="{x:Static r:Strings.Home_Randomizza}"
                                   IsChecked="{Binding RandomizzaOrdine, Mode=TwoWay}"
-                                  ToolTip.Tip="Se disattivato, le domande seguono l'ordine dei file JSON."/>
+                                  ToolTip.Tip="{x:Static r:Strings.Home_RandomizzaTip}"/>
 
-                        <CheckBox Content="Modalita' rotazione (le sbagliate rientrano in coda)"
+                        <CheckBox Content="{x:Static r:Strings.Home_Rotazione}"
                                   IsChecked="{Binding Rotazione, Mode=TwoWay}"
-                                  ToolTip.Tip="Il quiz termina solo quando tutte le domande sono state risposte correttamente almeno una volta."/>
+                                  ToolTip.Tip="{x:Static r:Strings.Home_RotazioneTip}"/>
 
-                        <CheckBox Content="Mostra cronometro durante il quiz"
+                        <CheckBox Content="{x:Static r:Strings.Home_MostraCronometro}"
                                   IsChecked="{Binding Cronometro, Mode=TwoWay}"/>
 
                         <Grid ColumnDefinitions="Auto,Auto,Auto" Margin="0,4,0,0">
-                            <CheckBox Content="Limita a"
+                            <CheckBox Content="{x:Static r:Strings.Home_LimitaA}"
                                       IsChecked="{Binding LimitaDomande, Mode=TwoWay}"
                                       VerticalAlignment="Center"/>
                             <NumericUpDown Grid.Column="1"
@@ -171,15 +172,15 @@
                                            Margin="10,0,8,0"
                                            IsEnabled="{Binding LimitaDomande}"/>
                             <TextBlock Grid.Column="2"
-                                       Text="domande (estratte casualmente)"
+                                       Text="{x:Static r:Strings.Home_DomandeEstratte}"
                                        VerticalAlignment="Center"/>
                         </Grid>
 
                         <Grid ColumnDefinitions="Auto,Auto,Auto" Margin="0,4,0,0">
-                            <CheckBox Content="Modalità a tempo"
+                            <CheckBox Content="{x:Static r:Strings.Home_ModalitaTempo}"
                                       IsChecked="{Binding ModalitaTempo, Mode=TwoWay}"
                                       VerticalAlignment="Center"
-                                      ToolTip.Tip="Allo scadere dei minuti la partita termina automaticamente. Combinabile con le altre opzioni."/>
+                                      ToolTip.Tip="{x:Static r:Strings.Home_ModalitaTempoTip}"/>
                             <NumericUpDown Grid.Column="1"
                                            Minimum="1" Maximum="180"
                                            Value="{Binding MinutiTempo, Mode=TwoWay}"
@@ -188,7 +189,7 @@
                                            Margin="10,0,8,0"
                                            IsEnabled="{Binding ModalitaTempo}"/>
                             <TextBlock Grid.Column="2"
-                                       Text="minuti"
+                                       Text="{x:Static r:Strings.Comune_Minuti}"
                                        VerticalAlignment="Center"/>
                         </Grid>
                     </StackPanel>

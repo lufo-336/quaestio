@@ -340,14 +340,14 @@ public partial class MainView : UserControl
         if (File.Exists(Path.Combine(cartellaDati, "materie.json")))
         {
             fonte = new FileSystemFonteDati(cartellaDati);
-            origine = $"file system: {cartellaDati}";
+            origine = string.Format(Strings.Shell_OrigineFileSystem, cartellaDati);
         }
         else
         {
             fonte = new AvaloniaResourceFonteDati();
-            origine = "risorse embedded (avares://)";
+            origine = Strings.Shell_OrigineRisorse;
         }
-        FooterText.Text = $"Dati read-only: {origine}    ·    Cartella utente: {cartellaUtente}";
+        FooterText.Text = string.Format(Strings.Shell_Footer, origine, cartellaUtente);
 
         try
         {
@@ -380,7 +380,7 @@ public partial class MainView : UserControl
 
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
 
-            StatoHeaderText.Text = $"{_materie.Count} materie · {domandeAttive.Count} domande";
+            StatoHeaderText.Text = string.Format(Strings.Shell_Conteggi, _materie.Count, domandeAttive.Count);
 
             // ---------- Tab Home ----------
             _homeView = new HomeView();
@@ -441,8 +441,8 @@ public partial class MainView : UserControl
             ErrorePanel.IsVisible = true;
             ErroreText.Text = ex.Message;
             _homeArea.Content = new PlaceholderView(
-                "Impossibile avviare",
-                "Verifica la presenza di materie.json e della cartella domande/ accanto all'eseguibile.");
+                Strings.Shell_ImpossibileAvviare,
+                Strings.Shell_ImpossibileAvviareDettaglio);
         }
     }
 
@@ -503,7 +503,7 @@ public partial class MainView : UserControl
             catch (Exception ex)
             {
                 ErrorePanel.IsVisible = true;
-                ErroreText.Text = $"Impossibile salvare la cronologia: {ex.Message}";
+                ErroreText.Text = string.Format(Strings.Shell_ErroreSalvaCronologia, ex.Message);
             }
         }
 
@@ -519,7 +519,7 @@ public partial class MainView : UserControl
             catch (Exception ex)
             {
                 ErrorePanel.IsVisible = true;
-                ErroreText.Text = $"Impossibile eliminare la pausa originale: {ex.Message}";
+                ErroreText.Text = string.Format(Strings.Shell_ErroreEliminaPausa, ex.Message);
             }
         }
 
@@ -547,7 +547,7 @@ public partial class MainView : UserControl
         catch (InvalidOperationException ex)
         {
             ErrorePanel.IsVisible = true;
-            ErroreText.Text = $"{ex.Message} La pausa e' stata rimossa.";
+            ErroreText.Text = string.Format(Strings.Shell_PausaRimossa, ex.Message);
             try { _storage.EliminaPausa(pausa.SessioneId); }
             catch { /* best effort: la card rimane finche' non si preme Aggiorna */ }
             _sospesiView?.Ricarica();

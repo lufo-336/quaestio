@@ -12,6 +12,9 @@ using Avalonia.VisualTree;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
+
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -333,25 +336,25 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
         string testoMaterie = nMaterie switch
         {
-            0 => "Nessuna materia selezionata",
-            1 => $"1 materia: {Materie.First(m => m.IsSelected).Nome}",
-            _ => $"{nMaterie} materie selezionate"
+            0 => Strings.Home_NessunaMateria,
+            1 => string.Format(Strings.Home_UnaMateria, EtichetteContenuti.Correnti.Materia(Materie.First(m => m.IsSelected).Nome)),
+            _ => string.Format(Strings.Home_NMaterie, nMaterie)
         };
-        string testoCat = nCat == 0 ? "tutte le categorie" : $"{nCat} categorie";
+        string testoCat = nCat == 0 ? Strings.Home_TutteLeCategorie : string.Format(Strings.Home_NCategorie, nCat);
         string testoDom = giocate == disponibili
-            ? $"{disponibili} domande"
-            : $"{giocate} domande (limitate da {disponibili})";
+            ? string.Format(Strings.Home_NDomande, disponibili)
+            : string.Format(Strings.Home_NDomandeLimitate, giocate, disponibili);
 
         string testoTempo = (ModalitaTempo && (int)MinutiTempo > 0)
-            ? $"  ·  max {(int)MinutiTempo} min"
+            ? "  ·  " + string.Format(Strings.Home_MaxMinuti, (int)MinutiTempo)
             : string.Empty;
 
         RiepilogoSelezione = nMaterie == 0
             ? testoMaterie
             : $"{testoMaterie}  ·  {testoCat}  ·  {testoDom}{testoTempo}";
 
-        if (nMaterie == 0)            AvvisoSelezione = "Seleziona almeno una materia per avviare un quiz.";
-        else if (disponibili == 0)    AvvisoSelezione = "Nessuna domanda corrisponde ai filtri scelti.";
+        if (nMaterie == 0)            AvvisoSelezione = Strings.Home_AvvisoNessunaMateria;
+        else if (disponibili == 0)    AvvisoSelezione = Strings.Home_AvvisoNessunaDomanda;
         else                          AvvisoSelezione = string.Empty;
 
         Raise(nameof(HaAvviso));
@@ -368,14 +371,17 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         var catSel     = CategorieVisibili.Where(c => c.IsSelected).ToList();
 
         bool quizzone = materieSel.Count > 1;
+        // materiaLabel e' una chiave (finisce in cronologia e nei filtri): canonica.
+        // nomeMod e' testo descrittivo, salvato nella lingua in cui si gioca.
         string materiaLabel = quizzone ? "Quizzone" : materieSel[0].Nome;
+        string materiaMostrata = EtichetteContenuti.Correnti.Materia(materiaLabel);
         string nomeMod;
         if (catSel.Count > 0)
-            nomeMod = $"{materiaLabel} — Per categoria";
+            nomeMod = $"{materiaMostrata} — {Strings.Home_ModPerCategoria}";
         else if (LimitaDomande && (int)LimiteN > 0)
-            nomeMod = $"{materiaLabel} — {(int)LimiteN} domande";
+            nomeMod = $"{materiaMostrata} — {string.Format(Strings.Home_NDomande, (int)LimiteN)}";
         else
-            nomeMod = quizzone ? "Quizzone — Completo randomizzato" : $"{materiaLabel} — Completo";
+            nomeMod = $"{materiaMostrata} — {(quizzone ? Strings.Home_ModCompletoRandomizzato : Strings.Home_ModCompleto)}";
 
         var opz = new OpzioniQuiz
         {

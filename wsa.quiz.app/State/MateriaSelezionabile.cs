@@ -1,4 +1,5 @@
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.State;
 
@@ -13,7 +14,8 @@ public class MateriaSelezionabile : ObservableObject
 
     public string Nome => Materia.Nome;
     public string Id => Materia.Id;
-    public string Etichetta => $"{Nome}  ({NumDomande})";
+    /// <summary>Nome nella lingua corrente; <see cref="Nome"/> resta la chiave canonica.</summary>
+    public string Etichetta => $"{EtichetteContenuti.Correnti.Materia(Nome)}  ({NumDomande})";
 
     private bool _isSelected;
     public bool IsSelected

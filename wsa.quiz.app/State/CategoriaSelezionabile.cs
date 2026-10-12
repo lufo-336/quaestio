@@ -1,3 +1,4 @@
+using Wsa.Quiz.Core.Services;
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -15,8 +16,11 @@ public class CategoriaSelezionabile : ObservableObject
     /// <summary>Chiave usata per salvare in <c>OpzioniQuiz.Categorie</c> (compatibile multi-materia).</summary>
     public string ChiaveCombinata => $"{MateriaNome}/{Categoria}";
 
+    /// <summary>Nome della materia nella lingua corrente; <see cref="MateriaNome"/> resta la chiave.</summary>
+    public string MateriaEtichetta => EtichetteContenuti.Correnti.Materia(MateriaNome);
+
     /// <summary>Etichetta mostrata a video, con conteggio domande.</summary>
-    public string Etichetta => $"{Categoria}  ({NumDomande})";
+    public string Etichetta => $"{EtichetteContenuti.Correnti.Categoria(MateriaNome, Categoria)}  ({NumDomande})";
 
     private bool _isSelected;
     public bool IsSelected
