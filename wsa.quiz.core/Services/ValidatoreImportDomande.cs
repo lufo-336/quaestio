@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Linq;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.Core.Services;
 
@@ -34,13 +35,13 @@ public static class ValidatoreImportDomande
         }
         catch (JsonException ex)
         {
-            errori.Add($"JSON non valido: {ex.Message}");
+            errori.Add(string.Format(Strings.Import_JsonNonValido, ex.Message));
             return (new List<Domanda>(), errori);
         }
 
         if (domande == null || domande.Count == 0)
         {
-            errori.Add("Il file non contiene domande (array JSON vuoto o assente).");
+            errori.Add(Strings.Import_NessunaDomanda);
             return (new List<Domanda>(), errori);
         }
 
@@ -49,22 +50,22 @@ public static class ValidatoreImportDomande
             var d = domande[i];
             int n = i + 1;
             if (string.IsNullOrWhiteSpace(d.DomandaTesto))
-                errori.Add($"#{n}: domanda mancante");
+                errori.Add(string.Format(Strings.Import_DomandaMancante, n));
             if (d.Risposte == null || d.Risposte.Count < 2)
-                errori.Add($"#{n}: servono almeno 2 risposte");
+                errori.Add(string.Format(Strings.Import_AlmenoDueRisposte, n));
             else if (d.RispostaCorretta < 0 || d.RispostaCorretta >= d.Risposte.Count)
-                errori.Add($"#{n}: rispostaCorretta fuori range");
+                errori.Add(string.Format(Strings.Import_CorrettaFuoriRange, n));
             if (d.Risposte != null && d.Risposte.Distinct().Count() != d.Risposte.Count)
-                errori.Add($"#{n}: risposte duplicate nella stessa domanda");
+                errori.Add(string.Format(Strings.Import_RisposteDuplicate, n));
             if (string.IsNullOrWhiteSpace(d.Spiegazione))
-                errori.Add($"#{n}: spiegazione mancante");
+                errori.Add(string.Format(Strings.Import_SpiegazioneMancante, n));
         }
 
         var testi = domande.Select(d => d.DomandaTesto).ToList();
         for (int i = 0; i < testi.Count; i++)
         {
             if (testi.IndexOf(testi[i]) != i)
-                errori.Add($"#{i + 1}: domanda duplicata nel file (\"{Tronca(testi[i])}\")");
+                errori.Add(string.Format(Strings.Import_DomandaDuplicata, i + 1, Tronca(testi[i])));
         }
 
         return errori.Count > 0 ? (new List<Domanda>(), errori) : (domande, errori);

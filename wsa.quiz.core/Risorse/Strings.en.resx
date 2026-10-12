@@ -7,4 +7,32 @@
   <data name="Lingua_Nome" xml:space="preserve"><value>Language</value></data>
   <data name="Lingua_Descrizione" xml:space="preserve"><value>Interface language. Questions without a translation stay in Italian.</value></data>
   <data name="Lingua_BloccataDuranteQuiz" xml:space="preserve"><value>Finish or pause the quiz to change language.</value></data>
+  <data name="Csv_Data" xml:space="preserve"><value>Date</value></data>
+  <data name="Csv_Modalita" xml:space="preserve"><value>Mode</value></data>
+  <data name="Csv_Materia" xml:space="preserve"><value>Subject</value></data>
+  <data name="Csv_Materie" xml:space="preserve"><value>Subjects</value></data>
+  <data name="Csv_Totale" xml:space="preserve"><value>Total</value></data>
+  <data name="Csv_Corrette" xml:space="preserve"><value>Correct</value></data>
+  <data name="Csv_Errate" xml:space="preserve"><value>Wrong</value></data>
+  <data name="Csv_Percentuale" xml:space="preserve"><value>Percentage</value></data>
+  <data name="Csv_Durata" xml:space="preserve"><value>Duration</value></data>
+  <data name="Csv_DurataSecondi" xml:space="preserve"><value>DurationSeconds</value></data>
+  <data name="Csv_Stato" xml:space="preserve"><value>Status</value></data>
+  <data name="Csv_Punteggio" xml:space="preserve"><value>Score</value></data>
+  <data name="Csv_Rotazione" xml:space="preserve"><value>Rotation</value></data>
+  <data name="Csv_Cronometro" xml:space="preserve"><value>Timer</value></data>
+  <data name="Stato_Abbandonato" xml:space="preserve"><value>Abandoned</value></data>
+  <data name="Stato_TempoScaduto" xml:space="preserve"><value>Time expired</value></data>
+  <data name="Stato_Concluso" xml:space="preserve"><value>Completed</value></data>
+  <data name="Comune_Si" xml:space="preserve"><value>Yes</value></data>
+  <data name="Comune_No" xml:space="preserve"><value>No</value></data>
+  <data name="Import_JsonNonValido" xml:space="preserve"><value>Invalid JSON: {0}</value></data>
+  <data name="Import_NessunaDomanda" xml:space="preserve"><value>The file contains no questions (empty or missing JSON array).</value></data>
+  <data name="Import_DomandaMancante" xml:space="preserve"><value>#{0}: missing question</value></data>
+  <data name="Import_AlmenoDueRisposte" xml:space="preserve"><value>#{0}: at least 2 answers are required</value></data>
+  <data name="Import_CorrettaFuoriRange" xml:space="preserve"><value>#{0}: rispostaCorretta out of range</value></data>
+  <data name="Import_RisposteDuplicate" xml:space="preserve"><value>#{0}: duplicate answers in the same question</value></data>
+  <data name="Import_SpiegazioneMancante" xml:space="preserve"><value>#{0}: missing explanation</value></data>
+  <data name="Import_DomandaDuplicata" xml:space="preserve"><value>#{0}: duplicate question in the file ("{1}")</value></data>
+  <data name="Errore_MaterieNonTrovato" xml:space="preserve"><value>materie.json file not found.</value></data>
 </root>

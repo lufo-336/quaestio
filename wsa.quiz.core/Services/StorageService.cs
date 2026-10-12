@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.Core.Services;
 
@@ -106,7 +107,7 @@ public class StorageService
     public List<Materia> CaricaMaterie()
     {
         if (!_fonte.Esiste("materie.json"))
-            throw new FileNotFoundException("File materie.json non trovato.", "materie.json");
+            throw new FileNotFoundException(Strings.Errore_MaterieNonTrovato, "materie.json");
 
         string json = _fonte.LeggiTesto("materie.json");
         var materie = JsonSerializer.Deserialize<List<Materia>>(json, OpzioniLettura)

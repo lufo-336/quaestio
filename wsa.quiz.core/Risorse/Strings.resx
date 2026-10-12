@@ -7,4 +7,32 @@
   <data name="Lingua_Nome" xml:space="preserve"><value>Lingua</value></data>
   <data name="Lingua_Descrizione" xml:space="preserve"><value>Lingua dell'interfaccia. Le domande senza traduzione restano in italiano.</value></data>
   <data name="Lingua_BloccataDuranteQuiz" xml:space="preserve"><value>Termina o metti in pausa il quiz per cambiare lingua.</value></data>
+  <data name="Csv_Data" xml:space="preserve"><value>Data</value></data>
+  <data name="Csv_Modalita" xml:space="preserve"><value>Modalita</value></data>
+  <data name="Csv_Materia" xml:space="preserve"><value>Materia</value></data>
+  <data name="Csv_Materie" xml:space="preserve"><value>Materie</value></data>
+  <data name="Csv_Totale" xml:space="preserve"><value>Totale</value></data>
+  <data name="Csv_Corrette" xml:space="preserve"><value>Corrette</value></data>
+  <data name="Csv_Errate" xml:space="preserve"><value>Errate</value></data>
+  <data name="Csv_Percentuale" xml:space="preserve"><value>Percentuale</value></data>
+  <data name="Csv_Durata" xml:space="preserve"><value>Durata</value></data>
+  <data name="Csv_DurataSecondi" xml:space="preserve"><value>DurataSecondi</value></data>
+  <data name="Csv_Stato" xml:space="preserve"><value>Stato</value></data>
+  <data name="Csv_Punteggio" xml:space="preserve"><value>Punteggio</value></data>
+  <data name="Csv_Rotazione" xml:space="preserve"><value>Rotazione</value></data>
+  <data name="Csv_Cronometro" xml:space="preserve"><value>Cronometro</value></data>
+  <data name="Stato_Abbandonato" xml:space="preserve"><value>Abbandonato</value></data>
+  <data name="Stato_TempoScaduto" xml:space="preserve"><value>Tempo scaduto</value></data>
+  <data name="Stato_Concluso" xml:space="preserve"><value>Concluso</value></data>
+  <data name="Comune_Si" xml:space="preserve"><value>Si</value></data>
+  <data name="Comune_No" xml:space="preserve"><value>No</value></data>
+  <data name="Import_JsonNonValido" xml:space="preserve"><value>JSON non valido: {0}</value></data>
+  <data name="Import_NessunaDomanda" xml:space="preserve"><value>Il file non contiene domande (array JSON vuoto o assente).</value></data>
+  <data name="Import_DomandaMancante" xml:space="preserve"><value>#{0}: domanda mancante</value></data>
+  <data name="Import_AlmenoDueRisposte" xml:space="preserve"><value>#{0}: servono almeno 2 risposte</value></data>
+  <data name="Import_CorrettaFuoriRange" xml:space="preserve"><value>#{0}: rispostaCorretta fuori range</value></data>
+  <data name="Import_RisposteDuplicate" xml:space="preserve"><value>#{0}: risposte duplicate nella stessa domanda</value></data>
+  <data name="Import_SpiegazioneMancante" xml:space="preserve"><value>#{0}: spiegazione mancante</value></data>
+  <data name="Import_DomandaDuplicata" xml:space="preserve"><value>#{0}: domanda duplicata nel file ("{1}")</value></data>
+  <data name="Errore_MaterieNonTrovato" xml:space="preserve"><value>File materie.json non trovato.</value></data>
 </root>

@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.Core.Services;
 
@@ -12,17 +13,18 @@ namespace Wsa.Quiz.Core.Services;
 public static class EsportazioneService
 {
     /// <summary>
-    /// Separatore di colonna. Punto e virgola e non virgola: e' quello che si
-    /// aspetta Excel con impostazioni italiane, dove la virgola e' il separatore
-    /// decimale.
+    /// Separatore di colonna secondo la cultura: dove la virgola e' il separatore
+    /// decimale (italiano) Excel si aspetta il punto e virgola, altrove la virgola.
     /// </summary>
-    private const char Separatore = ';';
+    private static char Separatore
+        => CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator == "," ? ';' : ',';
 
-    private static readonly string[] Intestazione =
+    private static string[] Intestazione =>
     [
-        "Data", "Modalita", "Materia", "Materie", "Totale", "Corrette", "Errate",
-        "Percentuale", "Durata", "DurataSecondi", "Stato", "Punteggio",
-        "Rotazione", "Cronometro",
+        Strings.Csv_Data, Strings.Csv_Modalita, Strings.Csv_Materia, Strings.Csv_Materie,
+        Strings.Csv_Totale, Strings.Csv_Corrette, Strings.Csv_Errate, Strings.Csv_Percentuale,
+        Strings.Csv_Durata, Strings.Csv_DurataSecondi, Strings.Csv_Stato, Strings.Csv_Punteggio,
+        Strings.Csv_Rotazione, Strings.Csv_Cronometro,
     ];
 
     private static readonly JsonSerializerOptions OpzioniJson = new() { WriteIndented = true };
@@ -32,7 +34,8 @@ public static class EsportazioneService
     public static string VersoCsv(IEnumerable<RisultatoQuiz> cronologia)
     {
         var sb = new StringBuilder();
-        sb.Append(string.Join(Separatore, Intestazione)).Append("\r\n");
+        char sep = Separatore;
+        sb.Append(string.Join(sep, Intestazione)).Append("\r\n");
 
         foreach (var r in cronologia)
         {
@@ -54,7 +57,7 @@ public static class EsportazioneService
                 SiNo(r.CronometroAttivo),
             ];
 
-            sb.Append(string.Join(Separatore, campi.Select(Quota))).Append("\r\n");
+            sb.Append(string.Join(sep, campi.Select(c => Quota(c, sep)))).Append("\r\n");
         }
 
         return sb.ToString();
@@ -64,9 +67,9 @@ public static class EsportazioneService
     /// Quoting RFC4180: si quota solo se serve (separatore, virgolette, a capo);
     /// le virgolette interne si raddoppiano.
     /// </summary>
-    private static string Quota(string campo)
+    private static string Quota(string campo, char sep)
     {
-        if (campo.IndexOf(Separatore) < 0
+        if (campo.IndexOf(sep) < 0
             && !campo.Contains('"')
             && !campo.Contains('\n')
             && !campo.Contains('\r'))
@@ -75,9 +78,8 @@ public static class EsportazioneService
         return $"\"{campo.Replace("\"", "\"\"")}\"";
     }
 
-    /// <summary>Virgola decimale, senza zeri inutili: 90 -> "90", 55,5 -> "55,5".</summary>
-    private static string Decimale(double v)
-        => v.ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',');
+    /// <summary>Decimale nella cultura corrente, senza zeri inutili: 90 -> "90", 55.5 -> "55,5" / "55.5".</summary>
+    private static string Decimale(double v) => v.ToString("0.##", CultureInfo.CurrentCulture);
 
     // ------------------------------------------------------------------ JSON
 
@@ -127,9 +129,9 @@ public static class EsportazioneService
 
     /// <summary>Stesso ordine di precedenza dell'etichetta mostrata in cronologia.</summary>
     private static string Stato(RisultatoQuiz r)
-        => r.Abbandonato ? "Abbandonato"
-         : r.TempoScaduto ? "Tempo scaduto"
-         : "Concluso";
+        => r.Abbandonato ? Strings.Stato_Abbandonato
+         : r.TempoScaduto ? Strings.Stato_TempoScaduto
+         : Strings.Stato_Concluso;
 
-    private static string SiNo(bool v) => v ? "Si" : "No";
+    private static string SiNo(bool v) => v ? Strings.Comune_Si : Strings.Comune_No;
 }
