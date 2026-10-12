@@ -59,6 +59,15 @@ public class StorageService
     /// </summary>
     public string CartellaUtente => _cartellaUtente;
 
+    /// <summary>
+    /// Lingua dei contenuti. Diversa da quella base -> al caricamento si applicano
+    /// le traduzioni in traduzioni/&lt;lingua&gt;/. Default "it": la CLI non la tocca.
+    /// </summary>
+    public string LinguaContenuti { get; set; } = Risorse.Lingue.Base;
+
+    /// <summary>Nomi tradotti di materie e categorie raccolti durante il caricamento.</summary>
+    public EtichetteContenuti Etichette { get; } = new();
+
     public StorageService(IFonteDati fonte, string cartellaUtente)
     {
         _fonte = fonte;
@@ -162,6 +171,9 @@ public class StorageService
             d.Id = finale;
         }
 
+        if (LinguaContenuti != Risorse.Lingue.Base)
+            ApplicaTraduzione(materia, risultato);
+
         return risultato;
     }
 
@@ -176,6 +188,49 @@ public class StorageService
         byte[] bytes = Encoding.UTF8.GetBytes(raw);
         byte[] hash = SHA256.HashData(bytes);
         return Convert.ToHexString(hash, 0, 6).ToLowerInvariant(); // 6 byte = 12 char hex
+    }
+
+    /// <summary>
+    /// Sovrappone testo, risposte e spiegazione tradotti. Mai bloccante: file
+    /// assente o rotto -> materia in italiano; voci incoerenti -> quella domanda
+    /// in italiano. Id, RispostaCorretta, Categoria e MateriaNome non si toccano.
+    /// </summary>
+    private void ApplicaTraduzione(Materia materia, List<Domanda> domande)
+    {
+        string percorso = $"traduzioni/{LinguaContenuti}/{materia.Id}.json";
+        if (!_fonte.Esiste(percorso)) return;
+
+        TraduzioneMateria? t;
+        try
+        {
+            t = JsonSerializer.Deserialize<TraduzioneMateria>(_fonte.LeggiTesto(percorso), OpzioniLettura);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[ATTENZIONE] Traduzione '{percorso}' illeggibile: {ex.Message}");
+            return;
+        }
+        if (t == null) return;
+
+        Etichette.Registra(materia.Nome, t.Nome, t.Categorie);
+
+        var perId = domande.ToDictionary(d => d.Id);
+        foreach (var (id, td) in t.Domande)
+        {
+            if (!perId.TryGetValue(id, out var d))
+            {
+                Console.Error.WriteLine($"[ATTENZIONE] {percorso}: id '{id}' senza domanda corrispondente.");
+                continue;
+            }
+            if (td.Risposte != null && td.Risposte.Count != d.Risposte.Count)
+            {
+                Console.Error.WriteLine($"[ATTENZIONE] {percorso}: id '{id}' ha {td.Risposte.Count} risposte invece di {d.Risposte.Count}.");
+                continue;
+            }
+            if (!string.IsNullOrWhiteSpace(td.Domanda)) d.DomandaTesto = td.Domanda;
+            if (td.Risposte != null) d.Risposte = td.Risposte;
+            if (!string.IsNullOrWhiteSpace(td.Spiegazione)) d.Spiegazione = td.Spiegazione;
+        }
     }
 
     private List<Domanda> LeggiFileDomande(string percorso, string formato)
