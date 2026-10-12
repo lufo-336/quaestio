@@ -8,4 +8,17 @@
     <AssemblyName>Wsa.Quiz.Core</AssemblyName>
   </PropertyGroup>
 
+  <!-- Stringhe user-facing (localizzazione, 2026-10-06). La classe tipizzata
+       Strings e' generata da MSBuild in obj/ a ogni build: niente Designer.cs
+       nel repo, funziona con la dotnet CLI senza Visual Studio. -->
+  <ItemGroup>
+    <EmbeddedResource Update="Risorse\Strings.resx">
+      <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+      <StronglyTypedClassName>Strings</StronglyTypedClassName>
+      <StronglyTypedNamespace>Wsa.Quiz.Core.Risorse</StronglyTypedNamespace>
+      <StronglyTypedFileName>$(IntermediateOutputPath)Strings.Designer.cs</StronglyTypedFileName>
+      <PublicClass>true</PublicClass>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

@@ -16,6 +16,10 @@ public static class Program
     {
         try { Console.OutputEncoding = System.Text.Encoding.UTF8; } catch { }
 
+        // La CLI resta in italiano anche su un sistema in un'altra lingua:
+        // le stringhe di Core seguono la cultura corrente.
+        Wsa.Quiz.Core.Risorse.Lingue.Applica("it");
+
         string cartellaBase = AppContext.BaseDirectory;
         // Dati read-only (materie + domande) accanto all'eseguibile;
         // dati utente (cronologia + sospesi) in cartella condivisa con l'app GUI.
