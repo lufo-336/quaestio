@@ -17,7 +17,7 @@ public static class EsportazioneService
     /// decimale (italiano) Excel si aspetta il punto e virgola, altrove la virgola.
     /// </summary>
     private static char Separatore
-        => CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator == "," ? ';' : ',';
+        => Lingue.Cultura.NumberFormat.NumberDecimalSeparator == "," ? ';' : ',';
 
     private static string[] Intestazione =>
     [
@@ -79,7 +79,7 @@ public static class EsportazioneService
     }
 
     /// <summary>Decimale nella cultura corrente, senza zeri inutili: 90 -> "90", 55.5 -> "55,5" / "55.5".</summary>
-    private static string Decimale(double v) => v.ToString("0.##", CultureInfo.CurrentCulture);
+    private static string Decimale(double v) => v.ToString("0.##", Lingue.Cultura);
 
     // ------------------------------------------------------------------ JSON
 

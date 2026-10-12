@@ -11,6 +11,9 @@ public class PreferenzeUtente
     public int TabIniziale { get; set; } = 0;
     public bool TemaScuro { get; set; } = false;
 
+    /// <summary>Codice lingua ("it", "en"); vuoto = segui la lingua di sistema.</summary>
+    public string Lingua { get; set; } = "";
+
     public bool RandomizzaOrdine { get; set; } = true;
     public bool Rotazione { get; set; } = false;
     public bool Cronometro { get; set; } = false;

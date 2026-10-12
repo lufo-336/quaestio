@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="using:Wsa.Quiz.App.Views"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.ImpostazioniView"
              x:DataType="views:ImpostazioniView">
@@ -44,8 +45,6 @@
                     </Grid>
                 </Border>
 
-                <!-- Segnaposto: dichiaratamente non funzionante, sta qui come
-                     promemoria che la multilingua e' da fare. -->
                 <Border Background="{DynamicResource SystemRegionBrush}"
                         BorderBrush="{DynamicResource SystemBaseLowColor}"
                         BorderThickness="1"
@@ -53,21 +52,24 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
-                            <TextBlock Text="Lingua" FontWeight="SemiBold"/>
-                            <TextBlock Text="Non ancora implementata: l'app e le 2163 domande sono in italiano."
+                            <TextBlock Text="{x:Static r:Strings.Lingua_Nome}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Static r:Strings.Lingua_Descrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                            <TextBlock Text="{x:Static r:Strings.Lingua_BloccataDuranteQuiz}"
+                                       IsVisible="{Binding QuizInCorso}"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="#B8860B"/>
                         </StackPanel>
                         <ComboBox Grid.Column="1"
-                                  SelectedIndex="0"
                                   MinWidth="130"
                                   VerticalAlignment="Center"
                                   Margin="12,0,0,0"
-                                  IsEnabled="{Binding LinguaModificabile}"
-                                  ToolTip.Tip="Disabilitato: la selezione della lingua non e' ancora stata realizzata.">
-                            <ComboBoxItem Content="{Binding LinguaAttuale}"/>
-                        </ComboBox>
+                                  ItemsSource="{Binding LingueDisponibili}"
+                                  SelectedItem="{Binding LinguaSelezionata}"
+                                  IsEnabled="{Binding LinguaModificabile}"/>
                     </Grid>
                 </Border>
 

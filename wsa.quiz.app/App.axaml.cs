@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -6,6 +7,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
 using Avalonia.Platform;
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App;
 
@@ -35,8 +38,45 @@ public partial class App : Application
         }
     }
 
+    /// <summary>
+    /// Applica la lingua da preferenze.json prima di creare qualunque vista.
+    /// La lingua di sistema e' InstalledUICulture: resta quella del sistema anche
+    /// dopo che Applica ha cambiato la cultura corrente.
+    /// </summary>
+    public static void LinguaIniziale()
+    {
+        string preferenza = "";
+        try
+        {
+            // Solo la cartella utente conta qui; la fonte dati non viene letta.
+            var storage = new StorageService(new FileSystemFonteDati(AppContext.BaseDirectory),
+                                             StorageService.CartellaUtenteDefault());
+            preferenza = storage.CaricaPreferenze().Lingua;
+        }
+        catch (Exception) { /* preferenze illeggibili: si segue il sistema */ }
+
+        Lingue.Applica(Lingue.Risolvi(preferenza, CultureInfo.InstalledUICulture));
+    }
+
+    /// <summary>
+    /// Mette una MainView nuova al posto di quella vecchia nel suo genitore: la
+    /// finestra desktop (ContentControl), il LayoutTransformControl su Android
+    /// (Decorator) o la finestra di un harness. La nuova istanza rilegge dati,
+    /// traduzioni e preferenze, quindi si riapre sull'ultima sezione salvata.
+    /// </summary>
+    public static void SostituisciVistaPrincipale(MainView vecchia)
+    {
+        switch (vecchia.Parent)
+        {
+            case ContentControl cc: cc.Content = new MainView(); break;
+            case Decorator dec: dec.Child = new MainView(); break;
+        }
+    }
+
     public override void OnFrameworkInitializationCompleted()
     {
+        LinguaIniziale();
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             AppEnv.TouchMode = false;

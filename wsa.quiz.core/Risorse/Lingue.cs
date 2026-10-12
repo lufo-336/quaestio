@@ -31,10 +31,22 @@ public static class Lingue
         return EsisteLingua(sys) ? sys : "en";
     }
 
-    /// <summary>Imposta la lingua per tutto il processo (thread corrente e futuri).</summary>
+    private static CultureInfo? _cultura;
+
+    /// <summary>
+    /// Cultura dell'app: da usare per formattare date e numeri. E' un campo
+    /// statico e non CultureInfo.CurrentCulture perche' quella e' AsyncLocal: i
+    /// callback accodati prima di un cambio lingua (timer, job del dispatcher)
+    /// la vedrebbero ancora vecchia.
+    /// </summary>
+    public static CultureInfo Cultura => _cultura ?? CultureInfo.CurrentUICulture;
+
+    /// <summary>Imposta la lingua per tutto il processo, anche per i callback gia' accodati.</summary>
     public static void Applica(string codice)
     {
         var c = new CultureInfo(codice);
+        _cultura = c;
+        Strings.Culture = c;
         CultureInfo.CurrentUICulture = c;
         CultureInfo.CurrentCulture = c;
         CultureInfo.DefaultThreadCurrentUICulture = c;
@@ -46,7 +58,7 @@ public static class Lingue
     {
         get
         {
-            string c = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            string c = Cultura.TwoLetterISOLanguageName;
             return EsisteLingua(c) ? c : Base;
         }
     }

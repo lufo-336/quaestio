@@ -1041,7 +1041,8 @@ Ogni task copre un gruppo di file. Per **ogni** file del gruppo:
 3. **Code-behind / State**: ogni letterale user-facing → `Strings.<Chiave>`; interpolazioni → `string.Format(Strings.<Chiave>, a, b)` con `{0}`, `{1}` nella risorsa. Plurali → coppia `_Uno`/`_Molti`.
 4. **Non si traducono**: lettere `A/B/C/D`, simboli (`↻`, `⏱`, `—`, `·`, frecce), hex, nomi di file, URI `avares://`, log `Console.Error`, la label `"Quizzone"` (chiave in cronologia), il brand `Quaestio`, il percorso dati.
 5. **Nomi di materie e categorie mostrati** → `EtichetteContenuti.Correnti.Materia(nomeCanonico)` / `.Categoria(nomeMateriaCanonico, categoria)`. Mai sovrascrivere il valore canonico dove viene usato come chiave (filtri, `OpzioniQuiz.Categorie`, `SezioneEsclusa`, `RisultatoQuiz.MateriaNome`, `DettaglioRisposta`).
-6. Aggiungi ogni chiave a **entrambi** i resx (traduzione inglese naturale, non letterale; tono dell'app: diretto, seconda persona).
+6. **Formattazione di numeri e date** (`P0`, `N1`, date): passa sempre `Lingue.Cultura` — `x.ToString("P0", Lingue.Cultura)`, `string.Format(Lingue.Cultura, Strings.X, ...)`, `ToString("g", Lingue.Cultura)`. **Mai** affidarsi a `CultureInfo.CurrentCulture`: è AsyncLocal, e i callback accodati prima di un cambio lingua (timer, job del dispatcher) la vedrebbero vecchia (ruling Task 4).
+7. Aggiungi ogni chiave a **entrambi** i resx (traduzione inglese naturale, non letterale; tono dell'app: diretto, seconda persona).
 
 **Controllo di copertura** a fine task, sui soli file del gruppo (sostituire `FILES`):
 

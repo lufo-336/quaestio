@@ -11,6 +11,7 @@ using Avalonia.Threading;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App;
@@ -67,6 +68,14 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         ConfiguraNavigazione();
+        // Il cambio lingua e' bloccato durante un quiz (lo farebbe perdere): una sola
+        // sottoscrizione copre tutti i punti che cambiano la Home (avvio, ripresa,
+        // riepilogo, ritorno).
+        _homeArea.PropertyChanged += (_, e) =>
+        {
+            if (e.Property == ContentControl.ContentProperty && _impostazioniView != null)
+                _impostazioniView.QuizInCorso = _homeArea.Content is QuizView;
+        };
         Caricamento();
     }
 
@@ -343,6 +352,7 @@ public partial class MainView : UserControl
         try
         {
             _storage = new StorageService(fonte, cartellaUtente);
+            _storage.LinguaContenuti = Lingue.Corrente;
             _contenutiUtente = new ContenutiUtenteService(cartellaUtente);
 
             _preferenze = _storage.CaricaPreferenze();
@@ -354,6 +364,7 @@ public partial class MainView : UserControl
             _materie.AddRange(materieUtente);
 
             _tutteDomande = _storage.CaricaTutteLeDomande(_materie);
+            EtichetteContenuti.Correnti = _storage.Etichette;
             foreach (var m in _materie)
                 _tutteDomande.AddRange(_contenutiUtente.CaricaDomandeUtente(m));
 

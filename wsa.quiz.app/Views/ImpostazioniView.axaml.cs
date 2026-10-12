@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Avalonia;
@@ -9,7 +10,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.Views;
@@ -34,7 +37,7 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
             _temaScuro = value;
             Raise();
             ApplicaTema();
-            Salva();
+            Salva(p => p.TemaScuro = _temaScuro);
         }
     }
 
@@ -72,20 +75,49 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     private static string Plurale(int n, string singolare, string plurale)
         => $"{n} {(n == 1 ? singolare : plurale)}";
 
-    // ------------------------------------------------------------------ LINGUA (segnaposto)
+    // ------------------------------------------------------------------ LINGUA
+
+    public IReadOnlyList<VoceLingua> LingueDisponibili => Lingue.Supportate;
+
+    private VoceLingua? _linguaSelezionata =
+        Lingue.Supportate.FirstOrDefault(l => l.Codice == Lingue.Corrente);
 
     /// <summary>
-    /// Unica lingua disponibile. L'app e' monolingua italiano: le stringhe sono
-    /// hard-coded nelle view e le 2163 domande sono scritte in italiano.
+    /// Il setter scatta solo per una scelta dell'utente (il campo e' gia'
+    /// inizializzato alla lingua attiva). Salva, applica e ricrea la MainView:
+    /// Post perche' non si sostituisce la vista dentro un suo stesso binding.
     /// </summary>
-    public string LinguaAttuale => "Italiano";
+    public VoceLingua? LinguaSelezionata
+    {
+        get => _linguaSelezionata;
+        set
+        {
+            if (value == null || value.Codice == _linguaSelezionata?.Codice) return;
+            _linguaSelezionata = value;
+            Raise();
+            Salva(p => p.Lingua = value.Codice);
+            Lingue.Applica(value.Codice);
+            var main = this.FindAncestorOfType<MainView>();
+            if (main != null)
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => App.SostituisciVistaPrincipale(main));
+        }
+    }
 
-    /// <summary>
-    /// Sempre false: il selettore esiste solo come promemoria visibile che la
-    /// multilingua e' un'idea aperta, NON una funzionalita' a meta'. Diventera'
-    /// true solo quando ci sara' davvero qualcosa da selezionare.
-    /// </summary>
-    public bool LinguaModificabile => false;
+    private bool _quizInCorso;
+    /// <summary>Impostato dalla MainView: durante un quiz cambiare lingua lo farebbe perdere.</summary>
+    public bool QuizInCorso
+    {
+        get => _quizInCorso;
+        set
+        {
+            if (_quizInCorso == value) return;
+            _quizInCorso = value;
+            Raise();
+            Raise(nameof(LinguaModificabile));
+        }
+    }
+
+    public bool LinguaModificabile => !_quizInCorso;
 
     // ------------------------------------------------------------------ ABOUT (step 14)
 
@@ -151,11 +183,15 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
         Application.Current!.RequestedThemeVariant = _temaScuro ? ThemeVariant.Dark : ThemeVariant.Light;
     }
 
-    private void Salva()
+    /// <summary>
+    /// Leggi-modifica-riscrivi di un solo campo: il toggle del tema non deve
+    /// scrivere la lingua (vuota = segui il sistema) e viceversa.
+    /// </summary>
+    private void Salva(Action<PreferenzeUtente> modifica)
     {
         if (_storage == null) return;
         var prefs = _storage.CaricaPreferenze();
-        prefs.TemaScuro = _temaScuro;
+        modifica(prefs);
         _storage.SalvaPreferenze(prefs);
     }
 
