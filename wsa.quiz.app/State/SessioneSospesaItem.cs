@@ -1,6 +1,7 @@
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -45,10 +46,10 @@ public class SessioneSospesaItem : ObservableObject, IConfermaEliminazione
     {
         Pausa = p;
 
-        DataFormattata = p.DataOraPausa.ToString("dd MMM yyyy · HH:mm");
+        DataFormattata = p.DataOraPausa.ToString("dd MMM yyyy · HH:mm", Lingue.Cultura);
 
         Modalita = string.IsNullOrWhiteSpace(p.Opzioni.NomeModalita)
-            ? (p.ModalitaRotazione ? "Rotazione" : "Classica")
+            ? (p.ModalitaRotazione ? Strings.Sospesi_Rotazione : Strings.Sospesi_Classica)
             : p.Opzioni.NomeModalita;
 
         MateriaEtichetta = string.IsNullOrWhiteSpace(p.Opzioni.MateriaNomeLabel)
@@ -60,9 +61,9 @@ public class SessioneSospesaItem : ObservableObject, IConfermaEliminazione
             int corrette = p.CorretteIds?.Count ?? 0;
             int totale = p.TotaleUnicheRotazione;
             Avanzamento = totale > 0
-                ? $"{corrette}/{totale} padroneggiate · {p.SbagliateContatore} sbagliate"
-                : $"{corrette} padroneggiate";
-            TipoEtichetta = "Rotazione";
+                ? string.Format(Strings.Sospesi_PadroneggiateSbagliate, corrette, totale, p.SbagliateContatore)
+                : string.Format(Strings.Sospesi_Padroneggiate, corrette);
+            TipoEtichetta = Strings.Sospesi_Rotazione;
         }
         else
         {
@@ -70,9 +71,9 @@ public class SessioneSospesaItem : ObservableObject, IConfermaEliminazione
             int rimaste = p.CodaDomandeIds?.Count ?? 0;
             int totale = fatte + rimaste;
             Avanzamento = totale > 0
-                ? $"{fatte}/{totale} risposte"
-                : $"{fatte} risposte";
-            TipoEtichetta = "Classica";
+                ? string.Format(Strings.Sospesi_RisposteNDiM, fatte, totale)
+                : string.Format(Strings.Sospesi_RisposteN, fatte);
+            TipoEtichetta = Strings.Sospesi_Classica;
         }
 
         TempoTrascorsoFormattato = Core.Services.QuizService.FormattaDurata(p.TempoTrascorso);

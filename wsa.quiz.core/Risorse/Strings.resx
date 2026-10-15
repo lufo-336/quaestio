@@ -132,4 +132,80 @@
   <data name="Riepilogo_SottotitoloAbbandonato" xml:space="preserve"><value>Hai abbandonato la sessione. Le risposte gia' date sono state comunque salvate.</value></data>
   <data name="Riepilogo_SottotitoloTempoScaduto" xml:space="preserve"><value>Il tempo e' scaduto. Ecco com'e' andata fino a qui.</value></data>
   <data name="Riepilogo_SottotitoloConcluso" xml:space="preserve"><value>Ecco com'e' andata.</value></data>
+  <data name="Comune_Aggiorna" xml:space="preserve"><value>Aggiorna</value></data>
+  <data name="Cronologia_AggiornaTip" xml:space="preserve"><value>Ricarica la cronologia dal disco. Utile se hai fatto un quiz dal console mentre l'app era aperta.</value></data>
+  <data name="Cronologia_EsportaTip" xml:space="preserve"><value>Salva le partite attualmente mostrate. Scegli il formato dal menu.</value></data>
+  <data name="Cronologia_EsportaCsv" xml:space="preserve"><value>CSV — per Excel e Fogli Google</value></data>
+  <data name="Cronologia_EsportaJson" xml:space="preserve"><value>JSON — backup completo</value></data>
+  <data name="Cronologia_Svuota" xml:space="preserve"><value>Svuota cronologia</value></data>
+  <data name="Cronologia_SvuotaTip" xml:space="preserve"><value>Elimina TUTTE le sessioni dalla cronologia. Verra' chiesta conferma.</value></data>
+  <data name="Comune_Materia" xml:space="preserve"><value>Materia</value></data>
+  <data name="Cronologia_Periodo" xml:space="preserve"><value>Periodo</value></data>
+  <data name="Cronologia_PeriodoTutto" xml:space="preserve"><value>Tutto</value></data>
+  <data name="Cronologia_Ultimi7" xml:space="preserve"><value>Ultimi 7 giorni</value></data>
+  <data name="Cronologia_Ultimi30" xml:space="preserve"><value>Ultimi 30 giorni</value></data>
+  <data name="Cronologia_Personalizzato" xml:space="preserve"><value>Personalizzato</value></data>
+  <data name="Cronologia_Dal" xml:space="preserve"><value>dal</value></data>
+  <data name="Cronologia_Al" xml:space="preserve"><value>al</value></data>
+  <data name="Cronologia_PercDa" xml:space="preserve"><value>% da</value></data>
+  <data name="Cronologia_Concluse" xml:space="preserve"><value>Concluse</value></data>
+  <data name="Cronologia_Abbandonate" xml:space="preserve"><value>Abbandonate</value></data>
+  <data name="Cronologia_AzzeraFiltri" xml:space="preserve"><value>Azzera filtri</value></data>
+  <data name="Cronologia_AzzeraFiltriTip" xml:space="preserve"><value>Rimuove tutti i filtri e rimostra l'intera cronologia.</value></data>
+  <data name="Cronologia_NessunaSessione" xml:space="preserve"><value>Nessuna sessione registrata</value></data>
+  <data name="Cronologia_ColData" xml:space="preserve"><value>Data</value></data>
+  <data name="Cronologia_ColModalita" xml:space="preserve"><value>Modalita'</value></data>
+  <data name="Cronologia_ColRisposte" xml:space="preserve"><value>Risposte</value></data>
+  <data name="Cronologia_ColDurata" xml:space="preserve"><value>Durata</value></data>
+  <data name="Cronologia_DoppioClick" xml:space="preserve"><value>Doppio click su una riga per vedere il dettaglio domanda per domanda.</value></data>
+  <data name="Cronologia_BadgeTempoScaduto" xml:space="preserve"><value>⏱ Tempo scaduto</value></data>
+  <data name="Comune_Elimina" xml:space="preserve"><value>Elimina</value></data>
+  <data name="Comune_SiElimina" xml:space="preserve"><value>Si', elimina</value></data>
+  <data name="Dettaglio_IndietroCronologia" xml:space="preserve"><value>←  Cronologia</value></data>
+  <data name="Dettaglio_IndietroTip" xml:space="preserve"><value>Torna alla lista delle sessioni.</value></data>
+  <data name="Dettaglio_Materia" xml:space="preserve"><value>Materia:</value></data>
+  <data name="Dettaglio_NessunaRisposta" xml:space="preserve"><value>Nessuna risposta registrata in questa sessione.</value></data>
+  <data name="Dettaglio_EliminaPartita" xml:space="preserve"><value>Elimina questa partita</value></data>
+  <data name="Comune_Sicuro" xml:space="preserve"><value>Sicuro?</value></data>
+  <data name="Dettaglio_TornaCronologia" xml:space="preserve"><value>Torna alla cronologia</value></data>
+  <data name="Sospesi_Titolo" xml:space="preserve"><value>Sessioni in pausa</value></data>
+  <data name="Sospesi_AggiornaTip" xml:space="preserve"><value>Ricarica le sessioni in pausa dal disco. Utile se ne hai messe in pausa dal console mentre l'app era aperta.</value></data>
+  <data name="Sospesi_Nessuna" xml:space="preserve"><value>Nessuna sessione in pausa</value></data>
+  <data name="Sospesi_NessunaDettaglio" xml:space="preserve"><value>Le sessioni messe in pausa compaiono qui. Premi ESC durante un quiz per metterlo in pausa.</value></data>
+  <data name="Sospesi_Progresso" xml:space="preserve"><value>Progresso:</value></data>
+  <data name="Sospesi_Tempo" xml:space="preserve"><value>Tempo:</value></data>
+  <data name="Sospesi_Riprendi" xml:space="preserve"><value>Riprendi</value></data>
+  <data name="Cronologia_TutteLeMaterie" xml:space="preserve"><value>Tutte le materie</value></data>
+  <data name="Cronologia_VuotoFiltri" xml:space="preserve"><value>Nessuna partita corrisponde ai filtri impostati.</value></data>
+  <data name="Cronologia_VuotoIniziale" xml:space="preserve"><value>Avvia un quiz dalla Home per iniziare a costruire la tua cronologia.</value></data>
+  <data name="Cronologia_EsportaN" xml:space="preserve"><value>Esporta ({0})</value></data>
+  <data name="Cronologia_NDiMSessioni" xml:space="preserve"><value>{0} di {1} sessioni.</value></data>
+  <data name="Cronologia_NessunaSessioneRegistrata" xml:space="preserve"><value>Nessuna sessione registrata.</value></data>
+  <data name="Cronologia_NSessioniRegistrate" xml:space="preserve"><value>{0} sessioni registrate.</value></data>
+  <data name="Comune_ErroreEliminazione" xml:space="preserve"><value>Errore nell'eliminazione: {0}</value></data>
+  <data name="Cronologia_ErroreEsportazione" xml:space="preserve"><value>Errore nell'esportazione: {0}</value></data>
+  <data name="Cronologia_TipoJson" xml:space="preserve"><value>JSON (backup completo)</value></data>
+  <data name="Cronologia_TipoCsv" xml:space="preserve"><value>CSV (Excel, Fogli Google)</value></data>
+  <data name="Cronologia_TitoloEsportaJson" xml:space="preserve"><value>Esporta cronologia in JSON</value></data>
+  <data name="Cronologia_TitoloEsportaCsv" xml:space="preserve"><value>Esporta cronologia in CSV</value></data>
+  <data name="Cronologia_Esportate" xml:space="preserve"><value>Esportate {0} partite in {1}.</value></data>
+  <data name="Cronologia_SvuotaDomanda" xml:space="preserve"><value>Svuota tutta la cronologia?</value></data>
+  <data name="Cronologia_SvuotaDettaglio" xml:space="preserve"><value>Verranno eliminate {0} partite dalla cronologia. L'azione non e' reversibile.</value></data>
+  <data name="Cronologia_SvuotaConferma" xml:space="preserve"><value>Si', cancella tutto</value></data>
+  <data name="Cronologia_ErroreSvuotamento" xml:space="preserve"><value>Errore nello svuotamento: {0}</value></data>
+  <data name="Dettaglio_DomandeSessione" xml:space="preserve"><value>Domande della sessione</value></data>
+  <data name="Dettaglio_DomandeSessioneN" xml:space="preserve"><value>Domande della sessione ({0})</value></data>
+  <data name="Dettaglio_SessioneAbbandonata" xml:space="preserve"><value>Sessione abbandonata</value></data>
+  <data name="Dettaglio_Titolo" xml:space="preserve"><value>Dettaglio sessione</value></data>
+  <data name="Dettaglio_Avviata" xml:space="preserve"><value>Avviata il {0:dd MMM yyyy} alle {0:HH:mm}.</value></data>
+  <data name="Sospesi_NessunaPunto" xml:space="preserve"><value>Nessuna sessione in pausa.</value></data>
+  <data name="Sospesi_NInPausa" xml:space="preserve"><value>{0} sessioni in pausa.</value></data>
+  <data name="Comune_Caricamento" xml:space="preserve"><value>Caricamento...</value></data>
+  <data name="Comune_ErroreCaricamento" xml:space="preserve"><value>Errore nel caricamento: {0}</value></data>
+  <data name="Sospesi_Rotazione" xml:space="preserve"><value>Rotazione</value></data>
+  <data name="Sospesi_Classica" xml:space="preserve"><value>Classica</value></data>
+  <data name="Sospesi_PadroneggiateSbagliate" xml:space="preserve"><value>{0}/{1} padroneggiate · {2} sbagliate</value></data>
+  <data name="Sospesi_Padroneggiate" xml:space="preserve"><value>{0} padroneggiate</value></data>
+  <data name="Sospesi_RisposteNDiM" xml:space="preserve"><value>{0}/{1} risposte</value></data>
+  <data name="Sospesi_RisposteN" xml:space="preserve"><value>{0} risposte</value></data>
 </root>

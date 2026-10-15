@@ -2,6 +2,8 @@ using Avalonia.Media;
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -52,11 +54,11 @@ public class RisultatoCronologiaItem : ObservableObject, IConfermaEliminazione
     {
         Risultato = r;
 
-        DataFormattata = r.DataOra.ToString("dd MMM yyyy · HH:mm");
+        DataFormattata = r.DataOra.ToString("dd MMM yyyy · HH:mm", Lingue.Cultura);
 
         Modalita = string.IsNullOrWhiteSpace(r.Modalita) ? "—" : r.Modalita;
 
-        MateriaEtichetta = string.IsNullOrWhiteSpace(r.MateriaNome) ? "—" : r.MateriaNome;
+        MateriaEtichetta = string.IsNullOrWhiteSpace(r.MateriaNome) ? "—" : EtichetteContenuti.Correnti.Materia(r.MateriaNome);
 
         PercentualeFormattata = $"{System.Math.Round(r.PercentualeCorrette)}%";
         ColorePercentuale = QuizColors.Percentuale(r.PercentualeCorrette);
@@ -67,9 +69,9 @@ public class RisultatoCronologiaItem : ObservableObject, IConfermaEliminazione
 
         Abbandonato = r.Abbandonato;
         TempoScaduto = r.TempoScaduto;
-        StatoEtichetta = r.Abbandonato ? "Abbandonato"
-                       : r.TempoScaduto ? "Tempo scaduto"
-                       : "Concluso";
+        StatoEtichetta = r.Abbandonato ? Strings.Stato_Abbandonato
+                       : r.TempoScaduto ? Strings.Stato_TempoScaduto
+                       : Strings.Stato_Concluso;
     }
 
 }

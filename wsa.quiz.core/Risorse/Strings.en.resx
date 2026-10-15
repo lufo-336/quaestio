@@ -132,4 +132,80 @@
   <data name="Riepilogo_SottotitoloAbbandonato" xml:space="preserve"><value>You abandoned the session. The answers you gave have still been saved.</value></data>
   <data name="Riepilogo_SottotitoloTempoScaduto" xml:space="preserve"><value>Time's up. Here's how it went so far.</value></data>
   <data name="Riepilogo_SottotitoloConcluso" xml:space="preserve"><value>Here's how it went.</value></data>
+  <data name="Comune_Aggiorna" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Cronologia_AggiornaTip" xml:space="preserve"><value>Reload history from disk. Useful if you played a quiz from the console while the app was open.</value></data>
+  <data name="Cronologia_EsportaTip" xml:space="preserve"><value>Save the games currently shown. Choose the format from the menu.</value></data>
+  <data name="Cronologia_EsportaCsv" xml:space="preserve"><value>CSV — for Excel and Google Sheets</value></data>
+  <data name="Cronologia_EsportaJson" xml:space="preserve"><value>JSON — full backup</value></data>
+  <data name="Cronologia_Svuota" xml:space="preserve"><value>Clear history</value></data>
+  <data name="Cronologia_SvuotaTip" xml:space="preserve"><value>Deletes ALL sessions from history. You will be asked to confirm.</value></data>
+  <data name="Comune_Materia" xml:space="preserve"><value>Subject</value></data>
+  <data name="Cronologia_Periodo" xml:space="preserve"><value>Period</value></data>
+  <data name="Cronologia_PeriodoTutto" xml:space="preserve"><value>All</value></data>
+  <data name="Cronologia_Ultimi7" xml:space="preserve"><value>Last 7 days</value></data>
+  <data name="Cronologia_Ultimi30" xml:space="preserve"><value>Last 30 days</value></data>
+  <data name="Cronologia_Personalizzato" xml:space="preserve"><value>Custom</value></data>
+  <data name="Cronologia_Dal" xml:space="preserve"><value>from</value></data>
+  <data name="Cronologia_Al" xml:space="preserve"><value>to</value></data>
+  <data name="Cronologia_PercDa" xml:space="preserve"><value>% from</value></data>
+  <data name="Cronologia_Concluse" xml:space="preserve"><value>Completed</value></data>
+  <data name="Cronologia_Abbandonate" xml:space="preserve"><value>Abandoned</value></data>
+  <data name="Cronologia_AzzeraFiltri" xml:space="preserve"><value>Reset filters</value></data>
+  <data name="Cronologia_AzzeraFiltriTip" xml:space="preserve"><value>Removes all filters and shows the whole history again.</value></data>
+  <data name="Cronologia_NessunaSessione" xml:space="preserve"><value>No sessions recorded</value></data>
+  <data name="Cronologia_ColData" xml:space="preserve"><value>Date</value></data>
+  <data name="Cronologia_ColModalita" xml:space="preserve"><value>Mode</value></data>
+  <data name="Cronologia_ColRisposte" xml:space="preserve"><value>Answers</value></data>
+  <data name="Cronologia_ColDurata" xml:space="preserve"><value>Duration</value></data>
+  <data name="Cronologia_DoppioClick" xml:space="preserve"><value>Double-click a row to see the question-by-question detail.</value></data>
+  <data name="Cronologia_BadgeTempoScaduto" xml:space="preserve"><value>⏱ Time expired</value></data>
+  <data name="Comune_Elimina" xml:space="preserve"><value>Delete</value></data>
+  <data name="Comune_SiElimina" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Dettaglio_IndietroCronologia" xml:space="preserve"><value>←  History</value></data>
+  <data name="Dettaglio_IndietroTip" xml:space="preserve"><value>Back to the session list.</value></data>
+  <data name="Dettaglio_Materia" xml:space="preserve"><value>Subject:</value></data>
+  <data name="Dettaglio_NessunaRisposta" xml:space="preserve"><value>No answers recorded in this session.</value></data>
+  <data name="Dettaglio_EliminaPartita" xml:space="preserve"><value>Delete this game</value></data>
+  <data name="Comune_Sicuro" xml:space="preserve"><value>Are you sure?</value></data>
+  <data name="Dettaglio_TornaCronologia" xml:space="preserve"><value>Back to history</value></data>
+  <data name="Sospesi_Titolo" xml:space="preserve"><value>Paused sessions</value></data>
+  <data name="Sospesi_AggiornaTip" xml:space="preserve"><value>Reload paused sessions from disk. Useful if you paused some from the console while the app was open.</value></data>
+  <data name="Sospesi_Nessuna" xml:space="preserve"><value>No paused sessions</value></data>
+  <data name="Sospesi_NessunaDettaglio" xml:space="preserve"><value>Paused sessions appear here. Press ESC during a quiz to pause it.</value></data>
+  <data name="Sospesi_Progresso" xml:space="preserve"><value>Progress:</value></data>
+  <data name="Sospesi_Tempo" xml:space="preserve"><value>Time:</value></data>
+  <data name="Sospesi_Riprendi" xml:space="preserve"><value>Resume</value></data>
+  <data name="Cronologia_TutteLeMaterie" xml:space="preserve"><value>All subjects</value></data>
+  <data name="Cronologia_VuotoFiltri" xml:space="preserve"><value>No games match the filters you set.</value></data>
+  <data name="Cronologia_VuotoIniziale" xml:space="preserve"><value>Start a quiz from Home to begin building your history.</value></data>
+  <data name="Cronologia_EsportaN" xml:space="preserve"><value>Export ({0})</value></data>
+  <data name="Cronologia_NDiMSessioni" xml:space="preserve"><value>{0} of {1} sessions.</value></data>
+  <data name="Cronologia_NessunaSessioneRegistrata" xml:space="preserve"><value>No sessions recorded.</value></data>
+  <data name="Cronologia_NSessioniRegistrate" xml:space="preserve"><value>{0} sessions recorded.</value></data>
+  <data name="Comune_ErroreEliminazione" xml:space="preserve"><value>Error while deleting: {0}</value></data>
+  <data name="Cronologia_ErroreEsportazione" xml:space="preserve"><value>Error while exporting: {0}</value></data>
+  <data name="Cronologia_TipoJson" xml:space="preserve"><value>JSON (full backup)</value></data>
+  <data name="Cronologia_TipoCsv" xml:space="preserve"><value>CSV (Excel, Google Sheets)</value></data>
+  <data name="Cronologia_TitoloEsportaJson" xml:space="preserve"><value>Export history as JSON</value></data>
+  <data name="Cronologia_TitoloEsportaCsv" xml:space="preserve"><value>Export history as CSV</value></data>
+  <data name="Cronologia_Esportate" xml:space="preserve"><value>Exported {0} games to {1}.</value></data>
+  <data name="Cronologia_SvuotaDomanda" xml:space="preserve"><value>Clear the whole history?</value></data>
+  <data name="Cronologia_SvuotaDettaglio" xml:space="preserve"><value>{0} games will be deleted from history. This cannot be undone.</value></data>
+  <data name="Cronologia_SvuotaConferma" xml:space="preserve"><value>Yes, delete everything</value></data>
+  <data name="Cronologia_ErroreSvuotamento" xml:space="preserve"><value>Error while clearing: {0}</value></data>
+  <data name="Dettaglio_DomandeSessione" xml:space="preserve"><value>Session questions</value></data>
+  <data name="Dettaglio_DomandeSessioneN" xml:space="preserve"><value>Session questions ({0})</value></data>
+  <data name="Dettaglio_SessioneAbbandonata" xml:space="preserve"><value>Abandoned session</value></data>
+  <data name="Dettaglio_Titolo" xml:space="preserve"><value>Session details</value></data>
+  <data name="Dettaglio_Avviata" xml:space="preserve"><value>Started on {0:dd MMM yyyy} at {0:HH:mm}.</value></data>
+  <data name="Sospesi_NessunaPunto" xml:space="preserve"><value>No paused sessions.</value></data>
+  <data name="Sospesi_NInPausa" xml:space="preserve"><value>{0} paused sessions.</value></data>
+  <data name="Comune_Caricamento" xml:space="preserve"><value>Loading...</value></data>
+  <data name="Comune_ErroreCaricamento" xml:space="preserve"><value>Error while loading: {0}</value></data>
+  <data name="Sospesi_Rotazione" xml:space="preserve"><value>Rotation</value></data>
+  <data name="Sospesi_Classica" xml:space="preserve"><value>Classic</value></data>
+  <data name="Sospesi_PadroneggiateSbagliate" xml:space="preserve"><value>{0}/{1} mastered · {2} wrong</value></data>
+  <data name="Sospesi_Padroneggiate" xml:space="preserve"><value>{0} mastered</value></data>
+  <data name="Sospesi_RisposteNDiM" xml:space="preserve"><value>{0}/{1} answers</value></data>
+  <data name="Sospesi_RisposteN" xml:space="preserve"><value>{0} answers</value></data>
 </root>

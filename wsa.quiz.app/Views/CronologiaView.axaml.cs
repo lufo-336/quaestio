@@ -10,6 +10,7 @@ using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
 
+using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -98,7 +99,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     // ------------------------------------------------------------------ FILTRI (step 11)
 
     /// <summary>Prima voce della tendina: nessun filtro per materia.</summary>
-    public const string TutteLeMaterie = "Tutte le materie";
+    private static VoceMateria VoceTutte => new("", Strings.Cronologia_TutteLeMaterie);
 
     /// <summary>
     /// Cronologia completa caricata da disco, gia' ordinata dalla piu' recente.
@@ -110,13 +111,13 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     private readonly FiltroCronologia _filtro = new();
 
     /// <summary>Materie da mostrare nella tendina, con la voce "tutte" in testa.</summary>
-    public ObservableCollection<string> MaterieFiltro { get; } = new() { TutteLeMaterie };
+    public ObservableCollection<VoceMateria> MaterieFiltro { get; } = new() { VoceTutte };
 
-    private string? _filtroMateria = TutteLeMaterie;
-    public string? FiltroMateria
+    private VoceMateria? _filtroMateria = VoceTutte;
+    public VoceMateria? FiltroMateria
     {
         get => _filtroMateria;
-        set { if (_filtroMateria != value) { _filtroMateria = value; Raise(); ApplicaFiltri(); } }
+        set { if (!Equals(_filtroMateria, value)) { _filtroMateria = value; Raise(); ApplicaFiltri(); } }
     }
 
     private int _indicePeriodo;
@@ -193,20 +194,20 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     public IReadOnlyList<RisultatoQuiz> RisultatiFiltrati { get; private set; } = Array.Empty<RisultatoQuiz>();
 
     /// <summary>Testo del bottone di export, col numero di partite che verranno scritte.</summary>
-    public string EtichettaEsporta => $"Esporta ({RisultatiFiltrati.Count})";
+    public string EtichettaEsporta => string.Format(Strings.Cronologia_EsportaN, RisultatiFiltrati.Count);
 
     /// <summary>
     /// Messaggio dello stato vuoto: distingue "non hai mai giocato" da "i filtri
     /// non lasciano passare niente", altrimenti sembra che la cronologia sia sparita.
     /// </summary>
     public string TestoVuoto => FiltriAttivi
-        ? "Nessuna partita corrisponde ai filtri impostati."
-        : "Avvia un quiz dalla Home per iniziare a costruire la tua cronologia.";
+        ? Strings.Cronologia_VuotoFiltri
+        : Strings.Cronologia_VuotoIniziale;
 
     /// <summary>Riporta ogni criterio al valore neutro e rimostra tutto.</summary>
     public void AzzeraFiltri()
     {
-        _filtroMateria = TutteLeMaterie;
+        _filtroMateria = MaterieFiltro[0];
         _indicePeriodo = 0;
         _dataDa = null;
         _dataA = null;
@@ -240,7 +241,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     /// </summary>
     private void ApplicaFiltri()
     {
-        _filtro.Materia = _filtroMateria == TutteLeMaterie ? null : _filtroMateria;
+        _filtro.Materia = string.IsNullOrEmpty(_filtroMateria?.Chiave) ? null : _filtroMateria.Chiave;
 
         (_filtro.Da, _filtro.A) = _indicePeriodo switch
         {
@@ -282,20 +283,19 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         // Il binding TwoWay del ComboBox rimanda indietro SelectedItem = null appena
         // la collezione viene svuotata: la scelta va salvata PRIMA della Clear,
         // altrimenti dopo ogni ricarica la tendina resta in bianco.
-        string? scelta = _filtroMateria;
+        // Si ripristina per chiave: le voci sono istanze nuove a ogni ricarica.
+        string? scelta = _filtroMateria?.Chiave;
 
         MaterieFiltro.Clear();
-        MaterieFiltro.Add(TutteLeMaterie);
+        MaterieFiltro.Add(VoceTutte);
         foreach (var m in disponibili)
-            MaterieFiltro.Add(m);
+            MaterieFiltro.Add(new VoceMateria(m, EtichetteContenuti.Correnti.Materia(m)));
 
         // Se la materia scelta non esiste piu' (eliminata l'ultima partita che la
         // conteneva) si torna a "tutte": meglio che lasciare una lista vuota.
-        string ripristino = scelta != null && MaterieFiltro.Contains(scelta)
-            ? scelta
-            : TutteLeMaterie;
+        var ripristino = MaterieFiltro.FirstOrDefault(v => v.Chiave == scelta) ?? MaterieFiltro[0];
 
-        if (_filtroMateria != ripristino)
+        if (!Equals(_filtroMateria, ripristino))
         {
             _filtroMateria = ripristino;
             Raise(nameof(FiltroMateria));
@@ -315,9 +315,9 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     }
 
     protected override string FormatSottotitolo(int count) =>
-        FiltriAttivi ? $"{count} di {_tutte.Count} sessioni."
-        : count == 0 ? "Nessuna sessione registrata."
-        : $"{count} sessioni registrate.";
+        FiltriAttivi ? string.Format(Strings.Cronologia_NDiMSessioni, count, _tutte.Count)
+        : count == 0 ? Strings.Cronologia_NessunaSessioneRegistrata
+        : string.Format(Strings.Cronologia_NSessioniRegistrate, count);
 
     protected override void EliminaDaStorage(RisultatoCronologiaItem item)
         => _storage!.EliminaRisultato(item.Id);
@@ -406,7 +406,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         }
         catch (Exception ex)
         {
-            Sottotitolo = $"Errore nell'eliminazione: {ex.Message}";
+            Sottotitolo = string.Format(Strings.Comune_ErroreEliminazione, ex.Message);
             return;
         }
 
@@ -436,7 +436,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         }
         catch (Exception ex)
         {
-            Sottotitolo = $"Errore nell'esportazione: {ex.Message}";
+            Sottotitolo = string.Format(Strings.Cronologia_ErroreEsportazione, ex.Message);
         }
     }
 
@@ -454,12 +454,12 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         string estensione = json ? "json" : "csv";
 
         var tipo = json
-            ? new FilePickerFileType("JSON (backup completo)") { Patterns = ["*.json"] }
-            : new FilePickerFileType("CSV (Excel, Fogli Google)") { Patterns = ["*.csv"] };
+            ? new FilePickerFileType(Strings.Cronologia_TipoJson) { Patterns = ["*.json"] }
+            : new FilePickerFileType(Strings.Cronologia_TipoCsv) { Patterns = ["*.csv"] };
 
         var file = await provider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
-            Title = json ? "Esporta cronologia in JSON" : "Esporta cronologia in CSV",
+            Title = json ? Strings.Cronologia_TitoloEsportaJson : Strings.Cronologia_TitoloEsportaCsv,
             SuggestedFileName = $"quaestio-cronologia-{DateTime.Now:yyyy-MM-dd}.{estensione}",
             DefaultExtension = estensione,
             FileTypeChoices = [tipo],
@@ -478,7 +478,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
             await writer.WriteAsync(contenuto);
         }
 
-        Sottotitolo = $"Esportate {RisultatiFiltrati.Count} partite in {file.Name}.";
+        Sottotitolo = string.Format(Strings.Cronologia_Esportate, RisultatiFiltrati.Count, file.Name);
     }
 
     // ------------------------------------------------------------------ SVUOTA
@@ -498,10 +498,10 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
 
         int n = Sessioni.Count;
         var dialog = new ConfermaDialog(
-            "Svuota cronologia",
-            "Svuota tutta la cronologia?",
-            $"Verranno eliminate {n} partite dalla cronologia. L'azione non e' reversibile.",
-            "Si', cancella tutto",
+            Strings.Cronologia_Svuota,
+            Strings.Cronologia_SvuotaDomanda,
+            string.Format(Strings.Cronologia_SvuotaDettaglio, n),
+            Strings.Cronologia_SvuotaConferma,
             "danger");
 
         await dialog.ShowOverlayAsync(this);
@@ -514,7 +514,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         }
         catch (Exception ex)
         {
-            Sottotitolo = $"Errore nello svuotamento: {ex.Message}";
+            Sottotitolo = string.Format(Strings.Cronologia_ErroreSvuotamento, ex.Message);
             return;
         }
 

@@ -7,6 +7,7 @@ using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
 
+using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -48,7 +49,7 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
     }
 
     protected override string FormatSottotitolo(int count) =>
-        count == 0 ? "Nessuna sessione in pausa." : $"{count} sessioni in pausa.";
+        count == 0 ? Strings.Sospesi_NessunaPunto : string.Format(Strings.Sospesi_NInPausa, count);
 
     protected override void EliminaDaStorage(SessioneSospesaItem item)
         => _storage!.EliminaPausa(item.SessioneId);

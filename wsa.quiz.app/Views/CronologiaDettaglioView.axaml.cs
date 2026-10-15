@@ -9,6 +9,8 @@ using Avalonia.Media;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -37,8 +39,8 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
     public string Titolo { get; }
     public string Sottotitolo { get; }
     public string TitoloLista => Dettagli.Count == 0
-        ? "Domande della sessione"
-        : $"Domande della sessione ({Dettagli.Count})";
+        ? Strings.Dettaglio_DomandeSessione
+        : string.Format(Strings.Dettaglio_DomandeSessioneN, Dettagli.Count);
 
     public string PercentualeFormattata { get; }
     public IBrush ColorePercentuale { get; }
@@ -48,7 +50,7 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
     public int Punteggio => _risultato.Punteggio;
     public string DurataFormattata { get; }
     public string Modalita => string.IsNullOrWhiteSpace(_risultato.Modalita) ? "—" : _risultato.Modalita;
-    public string MateriaEtichetta => string.IsNullOrWhiteSpace(_risultato.MateriaNome) ? "—" : _risultato.MateriaNome;
+    public string MateriaEtichetta => string.IsNullOrWhiteSpace(_risultato.MateriaNome) ? "—" : EtichetteContenuti.Correnti.Materia(_risultato.MateriaNome);
 
     public IList<DettaglioRispostaItem> Dettagli { get; }
     public bool NessunDettaglio => Dettagli.Count == 0;
@@ -78,9 +80,9 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
         _risultato = risultato;
 
         Titolo = risultato.Abbandonato
-            ? "Sessione abbandonata"
-            : "Dettaglio sessione";
-        Sottotitolo = $"Avviata il {risultato.DataOra:dd MMM yyyy} alle {risultato.DataOra:HH:mm}.";
+            ? Strings.Dettaglio_SessioneAbbandonata
+            : Strings.Dettaglio_Titolo;
+        Sottotitolo = string.Format(Lingue.Cultura, Strings.Dettaglio_Avviata, risultato.DataOra);
 
         PercentualeFormattata = $"{Math.Round(risultato.PercentualeCorrette)}%";
         ColorePercentuale = QuizColors.Percentuale(risultato.PercentualeCorrette);

@@ -9,6 +9,7 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Wsa.Quiz.Core.Services;
 
+using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
@@ -44,7 +45,7 @@ public abstract class TabellaViewBase<TItem> : UserControl, INotifyPropertyChang
         }
     }
 
-    private string _sottotitolo = "Caricamento...";
+    private string _sottotitolo = Strings.Comune_Caricamento;
     public string Sottotitolo
     {
         get => _sottotitolo;
@@ -86,7 +87,7 @@ public abstract class TabellaViewBase<TItem> : UserControl, INotifyPropertyChang
         }
         catch (Exception ex)
         {
-            Sottotitolo = $"Errore nel caricamento: {ex.Message}";
+            Sottotitolo = string.Format(Strings.Comune_ErroreCaricamento, ex.Message);
             NessunaSessione = true;
             return;
         }
@@ -188,7 +189,7 @@ public abstract class TabellaViewBase<TItem> : UserControl, INotifyPropertyChang
         }
         catch (Exception ex)
         {
-            Sottotitolo = $"Errore nell'eliminazione: {ex.Message}";
+            Sottotitolo = string.Format(Strings.Comune_ErroreEliminazione, ex.Message);
             return;
         }
 
