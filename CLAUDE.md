@@ -298,7 +298,7 @@ gh release create apk-AAAA-MM-GG `
 Nessun commit: l'APK è un artefatto, non sorgente. Le release stanno su
 <https://github.com/lufo-336/quaestio/releases>.
 
-Release pubblicate finora: `apk-2026-07-21` e **`apk-2026-09-09`** (corrente).
+Release pubblicate finora: `apk-2026-07-21`, `apk-2026-09-09` e **`apk-2026-10-23`** (corrente, firmata su Windows: chiave diversa dalla 09-09).
 Nelle note di release conviene sempre segnalare **se la firma è cambiata**: chi
 aggiorna deve sapere che dovrà disinstallare e perdere i dati locali.
 
