@@ -1197,6 +1197,8 @@ chiaro sparivano; anche l'header era invisibile, per la Trappola 20
 - Osservato una volta: l'app avviata col telefono **bloccato** ha mostrato il
   layout più alto dello schermo (header fuori in alto, barra sotto i tasti);
   dopo un riavvio a telefono sbloccato non si è più visto. Non indagato.
+- In release: allegato di `apk-2026-10-23` **sostituito** la sera stessa con
+  questa versione (stessa firma, si installa sopra la prima di oggi).
 
 ### 💡 Idea aperta — traduzione delle domande
 
