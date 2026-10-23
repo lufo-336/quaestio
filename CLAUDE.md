@@ -377,8 +377,10 @@ Stato 2026-07-22: **10 materie / 2163 domande** (Cloud Services estesa
 RESTful API estesa 84→144 il 21/07, taglio misto pratico/teorico, con tre
 categorie nuove per l'esercitazione finale TaskFlow: "Autenticazione e JWT",
 "Query, paginazione e caching", "Frontend, fetch e CORS"; poi 144→167 il 22/07
-con domande di ripasso). Ripartizione per file: cs 652, sql 248, versioncontrol
-236, frontend 210, cpp 200, cloud 190, restfulapi 167, ux 100, infra 50+50,
+con domande di ripasso). **Dal 2026-10-23: 11 materie / 2383 domande**, con
+l'aggiunta di **Python** (220 domande, 11 categorie, da Tipi di dati a ORM e
+SQLAlchemy). Ripartizione per file: cs 652, sql 248, versioncontrol 236, python
+220, frontend 210, cpp 200, cloud 190, restfulapi 167, ux 100, infra 50+50,
 cybersecurity 60.
 
 **Attenzione**: i csproj includono `..\domande\**\*.json` (AvaloniaResource +

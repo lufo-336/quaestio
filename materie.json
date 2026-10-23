@@ -58,5 +58,11 @@
     "nome": "Cloud Services",
     "cartella": "domande/cloudservices",
     "formato": "standard"
+  },
+  {
+    "id": "python",
+    "nome": "Python",
+    "cartella": "domande/python",
+    "formato": "standard"
   }
 ]
