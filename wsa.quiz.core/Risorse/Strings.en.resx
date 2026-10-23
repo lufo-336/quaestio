@@ -251,4 +251,5 @@
   <data name="Gestione_AnteprimaAggiungi" xml:space="preserve"><value>Add to "{0}" — {1} questions in the file</value></data>
   <data name="Gestione_MateriaCreata" xml:space="preserve"><value>Subject "{0}" created with {1} questions.</value></data>
   <data name="Gestione_DomandeAggiunte" xml:space="preserve"><value>{0} questions added to "{1}", {2} duplicates skipped.</value></data>
+  <data name="Cronologia_PercA" xml:space="preserve"><value>to</value></data>
 </root>
