@@ -24,6 +24,10 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
 ## Stato attuale
 
+> **2026-10-23**: interfaccia disponibile in **italiano e inglese** (selettore
+> in Impostazioni; le domande restano in italiano) e nuova materia **Python** →
+> **11 materie / 2383 domande**. Vedi "Localizzazione dell'interfaccia it/en".
+>
 > **Aggiornato al 2026-09-09.** In sintesi: **tutta la roadmap Step 1–14 è
 > chiusa** (Step 11 ed export/filtri e Step 14 About+icona+publish chiusi oggi;
 > l'installer di Step 14 è escluso per scelta). App desktop + Android su `main`,
@@ -1123,32 +1127,55 @@ Prima sessione con mani e tastiera vere, su Fedora. Esiti:
   mostra l'istante esatto della scrittura sbagliata. **Nessun fix inventato**
   per un difetto che non si riproduce.
 
-### 💡 Idea aperta — app in inglese e traduzione delle domande
+### ✅ Localizzazione dell'interfaccia it/en (2026-10-23)
 
-> In Impostazioni c'è un **selettore lingua disabilitato** con la sola voce
-> "Italiano", aggiunto il 2026-09-09 su richiesta di Luca come **promemoria
-> visibile**. È dichiaratamente non funzionante (`LinguaModificabile` è una
-> costante `false`, e il testo accanto lo dice): non è una funzionalità a metà,
-> è un segnaposto. Va reso vero solo quando ci sarà qualcosa da selezionare.
+Spec `docs/superpowers/specs/2026-10-06-localizzazione-design.md`, piano
+`docs/superpowers/plans/2026-10-06-localizzazione.md`. Task 1–7 fatti su Fedora
+il 12–15/10, Task 8 e 10 il 23/10 su Windows. **Task 9 saltato per scelta di
+Luca**: nessuna domanda è tradotta, la materia pilota Cybersecurity non esiste.
 
-**Non è mai stata pianificata**: al 2026-09-09 non esiste in nessuno step, spec o
-piano; l'italiano è monolingua per default implicito, non per decisione presa.
-Annotata qui il 2026-09-09 perché Luca l'ha chiesta a voce e non c'era traccia
-da nessuna parte.
+- **Stringhe**: `wsa.quiz.core/Risorse/Strings.resx` (italiano, base) e
+  `Strings.en.resx`, ~250 chiavi. La classe `Strings` è generata da MSBuild in
+  `obj/` (niente `Designer.cs` nel repo). Uso: `{x:Static r:Strings.Chiave}` negli
+  `.axaml` (con `xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"`),
+  `Strings.Chiave` / `string.Format(Strings.Chiave, …)` nel codice.
+  Convenzione `<Area>_<Descrizione>`, testi condivisi con prefisso `Comune_`.
+- **Lingua**: è la `CultureInfo` del processo (`Lingue.Applica`). All'avvio
+  `App.LinguaIniziale()` legge `PreferenzeUtente.Lingua`; vuota = lingua di sistema
+  se supportata, altrimenti inglese. Il cambio da Impostazioni **ricrea la
+  `MainView`**, che si riapre su Impostazioni grazie a `TabIniziale`. Il selettore
+  è disabilitato durante un quiz. La CLI forza l'italiano.
+- **Aggiungere una lingua**: un `Strings.<codice>.resx` con tutte le chiavi + una
+  riga in `Lingue.Supportate`. Il test di parità delle chiavi segnala quelle
+  mancanti.
+- **Domande**: restano in italiano. Il meccanismo per tradurle **c'è già** (Task
+  2): file `traduzioni/<lingua>/<materiaId>.json` sovrapposti al caricamento,
+  indicizzati per `Domanda.Id`. Manca solo il contenuto, e la cartella
+  `traduzioni/` non è ancora inclusa nei csproj (era il Task 9).
+- **Regola**: `Materia.Nome`, `Domanda.MateriaNome` e `Domanda.Categoria` sono
+  **chiavi canoniche italiane** (statistiche e filtri raggruppano su quelle): si
+  traducono solo in visualizzazione, via `EtichetteContenuti.Correnti`. La label
+  `"Quizzone"` è anch'essa una chiave.
+- **Formati**: date e numeri seguono la cultura; il CSV dell'export usa `;` e
+  `,` in italiano, `,` e `.` in inglese.
 
-Due problemi distinti, da non confondere:
-- **UI**: ~poche centinaia di stringhe hard-coded negli `.axaml` e nei
-  code-behind. Richiederebbe risorse localizzate (`.resx` o dizionari Avalonia) e
-  un giro su ogni view — meccanico ma esteso.
-- **Contenuti**: 2163 domande con testo, 4 risposte e spiegazione ciascuna. Qui
-  la vera domanda non è tecnica ma di prodotto: tradurre significa **raddoppiare
-  il materiale da mantenere** (una correzione va fatta due volte), e servirebbe
-  decidere se la lingua è una proprietà della materia, della singola domanda, o
-  un file parallelo. Da valutare anche l'impatto su `Domanda.Id`, che è uno
-  SHA256 del testo: tradurre cambia l'id e quindi rompe il matching con
-  cronologia e sospesi esistenti.
+**Harness su Windows**: `StorageService.CartellaUtenteDefault()` usa
+`Environment.GetFolderPath`, che su Windows **ignora le variabili d'ambiente**: il
+trucco `XDG_CONFIG_HOME` del piano funziona solo su Linux. Un harness che istanzia
+`MainView` su Windows scrive nella `%APPDATA%\WsaQuiz` vera: va lanciato da uno
+script che la salva prima e la ripristina dopo.
 
-Se si affronta, è **architetturale**: merita spec propria, non un ritocco.
+**Non verificato a mano** su desktop né su Android: harness headless verdi (Core
+con 247 chiavi allineate, App 19/19) e satellite `en` presente nell'APK.
+
+### 💡 Idea aperta — traduzione delle domande
+
+Resta da fare la traduzione dei **contenuti**: 11 materie e 2383 domande. Il
+formato e il caricamento sono pronti (vedi sopra). La domanda vera è di prodotto:
+tradurre **raddoppia il materiale da mantenere**, perché ogni correzione va fatta
+due volte. In più, modificare il testo italiano di una domanda già tradotta ne
+cambia l'`Id` (SHA256 del testo), e la traduzione va riallineata: l'avviso
+`[ATTENZIONE] ... senza domanda corrispondente` su `Console.Error` lo segnala.
 
 ### ✔️ Ex "Da riprendere — chiudere Step 8"
 Chiuso il 2026-07-28: vedi la sezione Step 8 sopra e la **Trappola 21**. La
