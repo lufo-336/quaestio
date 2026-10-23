@@ -48,8 +48,11 @@
 
         <!-- ============================== CONTENUTO SCROLLABILE ============================== -->
         <!-- Padding da risorsa: desktop 20 (identico a prima), touch 12 (più denso). -->
-        <ScrollViewer Padding="{DynamicResource SzPaginaMargin}">
-            <StackPanel x:Name="ContenutoScroll" Spacing="16" MaxWidth="980" HorizontalAlignment="Stretch">
+        <!-- Il margine pagina sta su un Border DENTRO lo scroll: il Padding del
+             ScrollViewer non entra nell'altezza scorrevole e il fondo restava tagliato. -->
+        <ScrollViewer>
+            <Border Padding="{DynamicResource SzPaginaMargin}">
+            <StackPanel x:Name="ContenutoScroll" Spacing="16" Margin="{DynamicResource SzRiservaNav}" MaxWidth="980" HorizontalAlignment="Stretch">
 
                 <!-- Materie + Categorie -->
                 <Grid x:Name="GrigliaMaterieCategorie" ColumnDefinitions="*,16,2*" RowDefinitions="Auto,Auto" Margin="0,4,0,0">
@@ -196,6 +199,7 @@
                 </Border>
 
             </StackPanel>
+            </Border>
         </ScrollViewer>
 
     </DockPanel>

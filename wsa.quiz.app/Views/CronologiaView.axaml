@@ -117,7 +117,7 @@
                                            Minimum="0" Maximum="100" Increment="5"
                                            FormatString="0"
                                            MinWidth="105" FontSize="12"/>
-                            <TextBlock Text="a" VerticalAlignment="Center" FontSize="12"/>
+                            <TextBlock Text="{x:Static r:Strings.Cronologia_PercA}" VerticalAlignment="Center" FontSize="12"/>
                             <NumericUpDown Value="{Binding PctMax}"
                                            Minimum="0" Maximum="100" Increment="5"
                                            FormatString="0"
@@ -195,7 +195,8 @@
                 </Border>
 
                 <!-- Hint sul doppio-click -->
-                <TextBlock DockPanel.Dock="Bottom"
+                <TextBlock x:Name="HintDoppioClick"
+                           DockPanel.Dock="Bottom"
                            IsVisible="{Binding !NessunaSessione}"
                            Text="{x:Static r:Strings.Cronologia_DoppioClick}"
                            FontSize="11"
@@ -317,6 +318,7 @@
                               VerticalScrollBarVisibility="Auto"
                               IsVisible="{Binding MostraCard}">
                     <ListBox x:Name="ListaSessioniCard"
+                             Margin="{DynamicResource SzRiservaNav}"
                              ItemsSource="{Binding Sessioni}"
                              SelectionMode="Single"
                              DoubleTapped="OnSessioneDoubleTapped"

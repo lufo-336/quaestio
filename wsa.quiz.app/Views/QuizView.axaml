@@ -6,6 +6,7 @@
              xmlns:state="using:Wsa.Quiz.App.State"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.QuizView"
+             Padding="{DynamicResource SzRiservaNav}"
              x:Name="Root"
              x:DataType="state:SessioneQuiz"
              Focusable="True">

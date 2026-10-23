@@ -48,11 +48,6 @@ public partial class MainView : UserControl
     private ContentControl _gestioneArea = null!;
     private ContentControl _impostazioniArea = null!;
 
-    // Brush icone bottom nav (esplicite: il system accent su questo device rende
-    // scuro — come l'header — quindi userei un colore poco visibile sulla barra).
-    private static readonly IBrush NavAttiva = new SolidColorBrush(Color.Parse("#5AA0F0"));
-    private static readonly IBrush NavInattiva = Brushes.White;
-
     // Animazione dello scroll orizzontale per il tap sulla bottom nav (lo swipe col
     // dito usa l'inerzia nativa, qui serve solo per il cambio tab da bottone).
     private DispatcherTimer? _scrollAnim;
@@ -128,6 +123,11 @@ public partial class MainView : UserControl
             // Ogni pagina larga/alta quanto il viewport: lo snap aggancia ai bordi pagina
             // e il contenuto verticale resta dentro il proprio ScrollViewer.
             SwipeHost.SizeChanged += (_, _) => DimensionaPagine();
+            // La pillola copre il fondo delle pagine: ognuna riserva in coda la sua
+            // altezza reale (inset Android incluso) + un respiro, cosi' l'ultimo
+            // contenuto si puo' sempre scorrere fin sopra la barra.
+            BottomNav.SizeChanged += (_, e) =>
+                Application.Current!.Resources["SzRiservaNav"] = new Thickness(0, 0, 0, e.NewSize.Height + 12);
             // Lo scroll (swipe o animazione) aggiorna l'icona attiva nella bottom nav.
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
                 new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiataDebounced(); }));
@@ -237,13 +237,9 @@ public partial class MainView : UserControl
     private void AggiornaNav()
     {
         if (!AppEnv.TouchMode) return;
-        var icone = new[] { NavHomeIcon, NavCronologiaIcon, NavSospesiIcon, NavStatisticheIcon, NavGestioneIcon, NavImpostazioniIcon };
-        for (int i = 0; i < icone.Length; i++)
-        {
-            bool attiva = i == IndiceSezione;
-            icone[i].Stroke = attiva ? NavAttiva : NavInattiva;
-            icone[i].Opacity = attiva ? 1.0 : 0.45;
-        }
+        var bottoni = new[] { NavHome, NavCronologia, NavSospesi, NavStatistiche, NavGestione, NavImpostazioni };
+        for (int i = 0; i < bottoni.Length; i++)
+            bottoni[i].Classes.Set("attiva", i == IndiceSezione);
     }
 
     // ------------------------------------------------------------------ SAFE AREA (edge-to-edge Android)

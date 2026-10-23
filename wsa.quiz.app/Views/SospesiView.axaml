@@ -58,6 +58,7 @@
                       VerticalScrollBarVisibility="Auto"
                       IsVisible="{Binding !NessunaSessione}">
             <ListBox x:Name="ListaPause"
+                     Margin="{DynamicResource SzRiservaNav}"
                      ItemsSource="{Binding Sessioni}"
                      SelectionMode="Single"
                      Background="Transparent"

@@ -13,4 +13,7 @@
     <Thickness x:Key="SzPaginaMargin">12</Thickness>
     <Thickness x:Key="SzCellaPad">9,6</Thickness>
     <x:Double x:Key="SzCellaMinH">40</x:Double>
+    <!-- Spazio sotto l'ultimo contenuto per la bottom-nav flottante: valore di
+         partenza, MainView lo sostituisce con l'altezza reale della barra. -->
+    <Thickness x:Key="SzRiservaNav">0,0,0,80</Thickness>
 </ResourceDictionary>

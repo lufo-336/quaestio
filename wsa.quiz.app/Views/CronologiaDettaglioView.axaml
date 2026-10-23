@@ -7,6 +7,7 @@
              xmlns:views="using:Wsa.Quiz.App.Views"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.CronologiaDettaglioView"
+             Padding="{DynamicResource SzRiservaNav}"
              x:DataType="views:CronologiaDettaglioView">
 
     <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="20">

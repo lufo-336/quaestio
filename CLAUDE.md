@@ -1168,6 +1168,36 @@ script che la salva prima e la ripristina dopo.
 **Non verificato a mano** su desktop né su Android: harness headless verdi (Core
 con 247 chiavi allineate, App 19/19) e satellite `en` presente nell'APK.
 
+### ✅ Bottom-nav Android ridisegnata: pillola flottante (2026-10-23)
+
+Le icone inattive erano bianche al 45% (pensate per il tema scuro) e sul tema
+chiaro sparivano; anche l'header era invisibile, per la Trappola 20
+(`SystemAccentColorBrush`). Scelta di Luca fra tre mockup: **barra flottante**.
+
+- **Pillola** arrotondata con ombra, staccata dai bordi, colori per tema in
+  `ThemeDictionaries` di `MainView.axaml` (hex, mai colori di sistema). Icone
+  stile Lucide come tracciati `Path` (nessuna libreria), `Stretch="None"` sul
+  viewBox 24. L'attiva sta in una pillola blu `#0078D4`, guidata dalla classe
+  `attiva` che `AggiornaNav` accende. Header ora `#0078D4` fisso (anche desktop).
+- **Il contenuto scorre sotto la pillola**: `BottomNav` non è più agganciata al
+  `DockPanel` ma sta sopra `SwipeHost` nella stessa cella. La sua altezza reale
+  (inset Android compreso) diventa la risorsa **`SzRiservaNav`** (+12), impostata
+  in `BottomNav.SizeChanged`. Le pagine la usano così:
+  - fondo a scroll (Home, Gestione, Statistiche, Sospesi, Cronologia card,
+    Impostazioni, drill-down): `Margin`/`Padding` sul **contenuto** dello scroll;
+  - riga fissa in fondo (Quiz, Riepilogo, Dettaglio cronologia): `Padding` sulla
+    `UserControl` intera, così la riga resta sopra la pillola;
+  - l'hint "doppio click" della Cronologia su touch va in alto.
+  **Una view nuova va aggiunta a una delle due categorie**, o il suo fondo resta
+  coperto.
+- Verifica: harness headless a dimensioni S21 (360×800 logici, insets 27/48 px)
+  che scorre ogni pagina fino in fondo e confronta il fondo del contenuto con la
+  cima della pillola, tutte OK; poi su device (S21, chiaro e scuro, Home in fondo,
+  partita con feedback). Trovata e corretta la Trappola 26.
+- Osservato una volta: l'app avviata col telefono **bloccato** ha mostrato il
+  layout più alto dello schermo (header fuori in alto, barra sotto i tasti);
+  dopo un riavvio a telefono sbloccato non si è più visto. Non indagato.
+
 ### 💡 Idea aperta — traduzione delle domande
 
 Resta da fare la traduzione dei **contenuti**: 11 materie e 2383 domande. Il
@@ -1439,6 +1469,15 @@ non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
     riaccendere a posteriori: il metodo va passato nel momento in cui si sposta
     il focus. **Regola**: verificarlo asserendo `Classes.Contains(":focus-visible")`,
     **non** `IsFocused` — quello e' vero in entrambi i casi e nasconde il difetto.
+
+26. **Il `Padding` di uno `ScrollViewer` NON entra nell'altezza scorrevole**
+    *(scoperta 2026-10-23 con la bottom-nav flottante)*: in Avalonia 12 l'extent
+    è la sola dimensione del contenuto, quindi il padding in fondo (e in alto) si
+    perde e l'ultimo pezzo di pagina non si raggiunge mai. Nella Home mancavano 40
+    punti, che finivano sotto la pillola; un vecchio `Margin` di 28 in code-behind
+    tamponava proprio questo. **Soluzione**: il margine pagina va su un `Border`
+    (o sul `Margin` del figlio) **dentro** lo scroll. Si vede solo se la pagina
+    scorre davvero: un harness a dimensioni desktop non lo mostra.
 
 ## Note per i prossimi step
 

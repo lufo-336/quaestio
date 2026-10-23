@@ -24,6 +24,7 @@
         </Grid>
 
         <ScrollViewer>
+            <Border Padding="{DynamicResource SzRiservaNav}">
             <StackPanel Margin="20,8,20,20" Spacing="16">
                 <Border Background="{DynamicResource SystemRegionBrush}"
                         BorderBrush="{DynamicResource SystemBaseLowColor}"
@@ -167,6 +168,7 @@
                 </Border>
 
             </StackPanel>
+            </Border>
         </ScrollViewer>
 
     </DockPanel>

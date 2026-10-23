@@ -10,4 +10,5 @@
     <Thickness x:Key="SzPaginaMargin">20</Thickness>
     <Thickness x:Key="SzCellaPad">8,4</Thickness>
     <x:Double x:Key="SzCellaMinH">0</x:Double>
+    <Thickness x:Key="SzRiservaNav">0</Thickness>
 </ResourceDictionary>

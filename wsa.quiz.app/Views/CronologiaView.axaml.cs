@@ -70,6 +70,8 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
             DockPanel.SetDock(HeaderAzioni, Dock.Bottom);
             HeaderAzioni.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left;
             HeaderAzioni.Margin = new Avalonia.Thickness(0, 8, 0, 0);
+            // In fondo finirebbe sotto la bottom-nav flottante: va sopra la lista.
+            DockPanel.SetDock(HintDoppioClick, Dock.Top);
         }
 
         // Step 15: Tunnel + handledEventsToo per intercettare anche eventi

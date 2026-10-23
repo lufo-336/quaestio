@@ -6,20 +6,68 @@
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.MainView">
 
+    <!-- Colori della bottom-nav per tema, in hex: SystemAccent/SystemChrome su
+         Android si risolvono invisibili (Trappola 20). -->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="NavSfondo" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="NavBordo" Color="#E6E6E6"/>
+                    <SolidColorBrush x:Key="NavIcona" Color="#5F6368"/>
+                    <BoxShadows x:Key="NavOmbra">0 4 14 0 #33000000</BoxShadows>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="NavSfondo" Color="#2A2A2A"/>
+                    <SolidColorBrush x:Key="NavBordo" Color="#3A3A3A"/>
+                    <SolidColorBrush x:Key="NavIcona" Color="#B0B0B0"/>
+                    <BoxShadows x:Key="NavOmbra">0 4 14 0 #99000000</BoxShadows>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <UserControl.Styles>
-        <!-- Pulsanti della bottom navigation (touch). -->
+        <!-- Pulsanti della bottom navigation (touch). Niente sfondo/hover del
+             Fluent: l'unico indicatore è la pillola blu dell'icona attiva. -->
         <Style Selector="Button.nav">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="CornerRadius" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="2,1"/>
-            <!-- Altezza guidata dal testo (font 12): MinHeight 0, padding minimo.
-                 Barra compatta ma etichette leggibili. L'altezza non scende oltre
-                 perché è legata alla dimensione del testo (54->44->22->qui). -->
+            <Setter Property="Padding" Value="0"/>
             <Setter Property="MinHeight" Value="0"/>
+        </Style>
+        <Style Selector="Button.nav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="Button.nav:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="Button.nav Border.indicatore">
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="Button.nav.attiva Border.indicatore">
+            <Setter Property="Background" Value="#0078D4"/>
+        </Style>
+        <!-- Icone stile Lucide (viewBox 24, stroke 2). -->
+        <Style Selector="Button.nav Path">
+            <!-- Stretch None: la geometria usa le coordinate del viewBox 24x24 cosi'
+                 com'e', quindi tutte le icone hanno lo stesso peso visivo. -->
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stroke" Value="{DynamicResource NavIcona}"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+            <Setter Property="StrokeJoin" Value="Round"/>
+            <Setter Property="StrokeLineCap" Value="Round"/>
+        </Style>
+        <Style Selector="Button.nav.attiva Path">
+            <Setter Property="Stroke" Value="White"/>
         </Style>
     </UserControl.Styles>
 
@@ -28,7 +76,7 @@
         <!-- Header -->
         <Border x:Name="HeaderBorder"
                 DockPanel.Dock="Top"
-                Background="{DynamicResource SystemAccentColorBrush}"
+                Background="#0078D4"
                 Padding="20,12">
             <Grid ColumnDefinitions="*,Auto">
                 <TextBlock Text="Quaestio"
@@ -53,62 +101,6 @@
             <TextBlock x:Name="FooterText"
                        FontSize="11"
                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
-        </Border>
-
-        <!-- Bottom navigation (touch). Nascosta su desktop; resa visibile e
-             cablata a Tabs.SelectedIndex in code-behind quando TouchMode. -->
-        <!-- Border esterno trasparente: il padding-bottom (= inset di sistema, da
-             ApplicaSafeArea) spinge in alto la riga icone, ma la fascia dietro i tasti
-             Android resta TRASPARENTE → non sembra parte della barra (stile Instagram). -->
-        <Border x:Name="BottomNav"
-                DockPanel.Dock="Bottom"
-                IsVisible="False"
-                Background="Transparent">
-            <!-- Riga icone compatta: sfondo chrome + separatore in alto solo QUI. -->
-            <Border Background="{DynamicResource SystemChromeMediumColor}"
-                    BorderBrush="{DynamicResource SystemBaseLowColor}"
-                    BorderThickness="0,1,0,0">
-            <!-- Solo icone (Path stroke). Colore/opacità gestiti da AggiornaNav:
-                 attiva = blu pieno, inattive = bianco smorzato. -->
-            <Grid ColumnDefinitions="*,*,*,*,*,*">
-                <Button x:Name="NavHome" Grid.Column="0" Classes="nav" Tag="0" Click="OnNavClick">
-                    <Path x:Name="NavHomeIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2"
-                          StrokeJoin="Round" StrokeLineCap="Round"
-                          Data="M4 11 L12 4 L20 11 M6 9.5 V20 H18 V9.5"/>
-                </Button>
-                <Button x:Name="NavCronologia" Grid.Column="1" Classes="nav" Tag="1" Click="OnNavClick">
-                    <Path x:Name="NavCronologiaIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2"
-                          StrokeJoin="Round" StrokeLineCap="Round"
-                          Data="M12 3 A9 9 0 1 1 11.99 3 Z M12 7.5 V12 L15.5 14"/>
-                </Button>
-                <Button x:Name="NavSospesi" Grid.Column="2" Classes="nav" Tag="2" Click="OnNavClick">
-                    <Path x:Name="NavSospesiIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2.6"
-                          StrokeLineCap="Round"
-                          Data="M9 5 V19 M15 5 V19"/>
-                </Button>
-                <Button x:Name="NavStatistiche" Grid.Column="3" Classes="nav" Tag="3" Click="OnNavClick">
-                    <Path x:Name="NavStatisticheIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2.6"
-                          StrokeLineCap="Round"
-                          Data="M5 20 V13 M12 20 V6 M19 20 V11"/>
-                </Button>
-                <Button x:Name="NavGestione" Grid.Column="4" Classes="nav" Tag="4" Click="OnNavClick">
-                    <Path x:Name="NavGestioneIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2.4"
-                          StrokeLineCap="Round"
-                          Data="M12 4 V20 M4 12 H20"/>
-                </Button>
-                <Button x:Name="NavImpostazioni" Grid.Column="5" Classes="nav" Tag="5" Click="OnNavClick">
-                    <Path x:Name="NavImpostazioniIcon" Width="24" Height="24" Stretch="Uniform"
-                          Stroke="White" StrokeThickness="2"
-                          StrokeLineCap="Round"
-                          Data="M4 6 H20 M10.6 6 A1.6 1.6 0 1 1 10.59 6 M4 12 H20 M16.6 12 A1.6 1.6 0 1 1 16.59 12 M4 18 H20 M12.6 18 A1.6 1.6 0 1 1 12.59 18"/>
-                </Button>
-            </Grid>
-            </Border>
         </Border>
 
         <!-- Errore globale (visibile solo se il caricamento dati fallisce) -->
@@ -176,6 +168,46 @@
                     <ContentControl x:Name="ImpostazioniAreaTouch"/>
                 </StackPanel>
             </ScrollViewer>
+
+            <!-- Bottom navigation (touch): pillola flottante SOPRA le pagine, che le
+                 scorrono sotto. Nascosta su desktop; resa visibile e cablata a
+                 IndiceSezione in code-behind quando TouchMode. Il Border esterno non ha
+                 Background (= trasparente ai tocchi) e ha come padding-bottom l'inset
+                 dei tasti Android (ApplicaSafeArea). La sua altezza reale diventa
+                 SzRiservaNav, lo spazio extra in fondo a ogni pagina: cosi' l'ultimo
+                 contenuto scorre fin sopra la pillola invece di restarne coperto. -->
+            <Border x:Name="BottomNav"
+                    IsVisible="False"
+                    VerticalAlignment="Bottom">
+                <Border Margin="12,0,12,10"
+                        Height="56"
+                        CornerRadius="28"
+                        Background="{DynamicResource NavSfondo}"
+                        BorderBrush="{DynamicResource NavBordo}"
+                        BorderThickness="1"
+                        BoxShadow="{DynamicResource NavOmbra}">
+                <Grid ColumnDefinitions="*,*,*,*,*,*" Margin="4,0">
+                    <Button x:Name="NavHome" Grid.Column="0" Classes="nav" Tag="0" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8 M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></Border>
+                    </Button>
+                    <Button x:Name="NavCronologia" Grid.Column="1" Classes="nav" Tag="1" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8 M3 3v5h5 M12 7v5l4 2"/></Border>
+                    </Button>
+                    <Button x:Name="NavSospesi" Grid.Column="2" Classes="nav" Tag="2" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M2 12 A10 10 0 1 0 22 12 A10 10 0 1 0 2 12 Z M10 15V9 M14 15V9"/></Border>
+                    </Button>
+                    <Button x:Name="NavStatistiche" Grid.Column="3" Classes="nav" Tag="3" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M3 3v16a2 2 0 0 0 2 2h16 M18 17V9 M13 17V5 M8 17v-3"/></Border>
+                    </Button>
+                    <Button x:Name="NavGestione" Grid.Column="4" Classes="nav" Tag="4" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z M12 10v6 M9 13h6"/></Border>
+                    </Button>
+                    <Button x:Name="NavImpostazioni" Grid.Column="5" Classes="nav" Tag="5" Click="OnNavClick">
+                        <Border Classes="indicatore"><Path Data="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z M9 12 A3 3 0 1 0 15 12 A3 3 0 1 0 9 12 Z"/></Border>
+                    </Button>
+                </Grid>
+                </Border>
+            </Border>
         </Grid>
 
     </DockPanel>

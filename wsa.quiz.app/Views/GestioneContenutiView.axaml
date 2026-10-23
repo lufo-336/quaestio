@@ -10,7 +10,7 @@
              x:DataType="views:GestioneContenutiView">
 
     <ScrollViewer Margin="20,16,20,16" VerticalScrollBarVisibility="Auto">
-        <StackPanel Spacing="16">
+        <StackPanel Spacing="16" Margin="{DynamicResource SzRiservaNav}">
 
             <StackPanel Spacing="2">
                 <TextBlock Text="{x:Static r:Strings.Shell_TabGestione}" FontSize="22" FontWeight="SemiBold"/>

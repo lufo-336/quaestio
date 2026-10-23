@@ -63,7 +63,7 @@
             <ScrollViewer Margin="20,0,20,16"
                           VerticalScrollBarVisibility="Auto"
                           IsVisible="{Binding HeatmapVisibile}">
-                <ItemsControl ItemsSource="{Binding Righe}">
+                <ItemsControl ItemsSource="{Binding Righe}" Margin="{DynamicResource SzRiservaNav}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="state:MateriaRigaItem">
                             <Grid ColumnDefinitions="120,*" Margin="0,4">

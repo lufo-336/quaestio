@@ -30,7 +30,7 @@
         <!-- Lista domande sbagliate -->
         <ScrollViewer Margin="20,0,20,16"
                       VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Sbagliate}">
+            <ItemsControl ItemsSource="{Binding Sbagliate}" Margin="{DynamicResource SzRiservaNav}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="stats:DomandaSbagliata">
                         <Border BorderBrush="#B85450"
