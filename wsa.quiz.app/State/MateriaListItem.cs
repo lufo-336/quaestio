@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.State;
 
@@ -19,7 +21,10 @@ public class MateriaListItem : ObservableObject, IConfermaEliminazione
     public string Nome { get; }
     public int ConteggioDomande { get; }
     public bool Importata { get; }
-    public string Badge => Importata ? "Importata" : "Built-in";
+    public string Badge => Importata ? Strings.Gestione_BadgeImportata : Strings.Gestione_BadgeBuiltIn;
+    /// <summary>Nome mostrato; <see cref="Nome"/> resta la chiave canonica.</summary>
+    public string Etichetta => EtichetteContenuti.Correnti.Materia(Nome);
+    public string ConteggioEtichetta => string.Format(Strings.Gestione_NDomande, ConteggioDomande);
 
     /// <summary>Le sezioni (categorie) della materia, ordinate per nome.</summary>
     public IReadOnlyList<SezioneListItem> Sezioni { get; }
@@ -52,7 +57,7 @@ public class MateriaListItem : ObservableObject, IConfermaEliminazione
             .GroupBy(d => d.Categoria)
             .OrderBy(g => g.Key, StringComparer.CurrentCultureIgnoreCase)
             .Select(g => new SezioneListItem(
-                materia.Id, g.Key, g.Count(), sezioniEscluse.Contains((materia.Id, g.Key))))
+                materia.Id, materia.Nome, g.Key, g.Count(), sezioniEscluse.Contains((materia.Id, g.Key))))
             .ToList();
     }
 }

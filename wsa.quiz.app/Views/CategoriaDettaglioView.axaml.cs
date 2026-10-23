@@ -6,6 +6,8 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Wsa.Quiz.Core.Models.Statistiche;
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.Views;
 
@@ -40,7 +42,10 @@ public partial class CategoriaDettaglioView : UserControl, INotifyPropertyChange
 
     public void Mostra(CategoriaStat stat)
     {
-        Titolo = $"{stat.Materia} / {stat.Categoria} — {stat.Errori} errori su {stat.Visti} viste ({stat.PctErrore:P0})";
+        Titolo = string.Format(Strings.Statistiche_TitoloDettaglio,
+            EtichetteContenuti.Correnti.Materia(stat.Materia),
+            EtichetteContenuti.Correnti.Categoria(stat.Materia, stat.Categoria),
+            stat.Errori, stat.Visti, stat.PctErrore);
         Sbagliate.Clear();
         foreach (var d in stat.Sbagliate)
             Sbagliate.Add(d);

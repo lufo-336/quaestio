@@ -10,6 +10,7 @@ using Avalonia.Platform.Storage;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
+using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.App.Views;
 
@@ -105,7 +106,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     }
 
     protected override string FormatSottotitolo(int count) =>
-        count == 0 ? "Nessuna materia disponibile." : $"{count} materie disponibili.";
+        count == 0 ? Strings.Gestione_NessunaMateria : string.Format(Strings.Gestione_MaterieDisponibili, count);
 
     protected override void EliminaDaStorage(MateriaListItem item)
     {
@@ -121,7 +122,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
 
         var risultati = await provider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
-            Title = "Scegli il file JSON delle domande",
+            Title = Strings.Gestione_ScegliFileTitolo,
             AllowMultiple = false,
             FileTypeFilter = new[] { new FilePickerFileType("JSON") { Patterns = new[] { "*.json" } } }
         });
@@ -135,7 +136,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     private void MostraErrori(List<string> errori)
     {
         PannelloAnteprima.IsVisible = true;
-        AnteprimaTitoloText.Text = $"File non valido — {errori.Count} errori";
+        AnteprimaTitoloText.Text = string.Format(Strings.Gestione_FileNonValido, errori.Count);
         AnteprimaLista.ItemsSource = errori;
         BottoneConferma.IsVisible = false;
         _pendingDomande = null;
@@ -173,7 +174,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         string nome = NomeNuovaMateria.Text?.Trim() ?? "";
         if (string.IsNullOrWhiteSpace(nome))
         {
-            EsitoNuovaMateria.Text = "Inserisci un nome per la materia prima di scegliere il file.";
+            EsitoNuovaMateria.Text = Strings.Gestione_InserisciNome;
             return;
         }
 
@@ -190,14 +191,14 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         _pendingNuovaMateriaNome = nome;
         _pendingMateriaEsistenteId = null;
         _pendingDomande = domande;
-        MostraAnteprima($"Nuova materia \"{nome}\" — {domande.Count} domande", domande);
+        MostraAnteprima(string.Format(Strings.Gestione_AnteprimaNuova, nome, domande.Count), domande);
     }
 
     private async void OnScegliFileAggiungiClick(object? sender, RoutedEventArgs e)
     {
         if (SelettoreMateria.SelectedItem is not MateriaListItem materia)
         {
-            EsitoAggiungi.Text = "Scegli prima la materia a cui aggiungere le domande.";
+            EsitoAggiungi.Text = Strings.Gestione_ScegliPrima;
             return;
         }
 
@@ -213,9 +214,9 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
 
         _pendingNuovaMateriaNome = null;
         _pendingMateriaEsistenteId = materia.Id;
-        _pendingMateriaEsistenteNome = materia.Nome;
+        _pendingMateriaEsistenteNome = materia.Etichetta;
         _pendingDomande = domande;
-        MostraAnteprima($"Aggiungi a \"{materia.Nome}\" — {domande.Count} domande nel file", domande);
+        MostraAnteprima(string.Format(Strings.Gestione_AnteprimaAggiungi, materia.Etichetta, domande.Count), domande);
     }
 
     private void OnConfermaImportClick(object? sender, RoutedEventArgs e)
@@ -225,14 +226,14 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
         if (_pendingNuovaMateriaNome != null)
         {
             _contenutiUtente.CreaMateria(_pendingNuovaMateriaNome, _pendingDomande, _materie.Select(m => m.Id));
-            EsitoNuovaMateria.Text = $"Materia \"{_pendingNuovaMateriaNome}\" creata con {_pendingDomande.Count} domande.";
+            EsitoNuovaMateria.Text = string.Format(Strings.Gestione_MateriaCreata, _pendingNuovaMateriaNome, _pendingDomande.Count);
             NomeNuovaMateria.Text = "";
         }
         else if (_pendingMateriaEsistenteId != null)
         {
             var esistenti = _tutteDomande.Where(d => d.MateriaId == _pendingMateriaEsistenteId);
             var (aggiunte, duplicati) = _contenutiUtente.AggiungiDomande(_pendingMateriaEsistenteId, _pendingDomande, esistenti);
-            EsitoAggiungi.Text = $"{aggiunte} domande aggiunte a \"{_pendingMateriaEsistenteNome}\", {duplicati} duplicate saltate.";
+            EsitoAggiungi.Text = string.Format(Strings.Gestione_DomandeAggiunte, aggiunte, _pendingMateriaEsistenteNome, duplicati);
         }
 
         PannelloAnteprima.IsVisible = false;

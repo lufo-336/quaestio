@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:stats="using:Wsa.Quiz.Core.Models.Statistiche"
@@ -14,7 +15,7 @@
         <Grid DockPanel.Dock="Top"
               ColumnDefinitions="Auto,*"
               Margin="20,16,20,8">
-            <Button Content="&#x2190; Statistiche"
+            <Button Content="{x:Static r:Strings.Statistiche_Indietro}"
                     Click="OnIndietroClick"
                     Padding="14,6"
                     FontSize="12"/>
@@ -42,11 +43,11 @@
                                 <TextBlock FontWeight="SemiBold"
                                            Foreground="#B85450"
                                            FontSize="12">
-                                    <Run Text="&#x274C; sbagliata "/>
+                                    <Run Text="{x:Static r:Strings.Statistiche_SbagliataPrefisso}"/>
                                     <Run Text="{Binding VolteSbagliata}"/>
                                     <Run Text="/"/>
                                     <Run Text="{Binding VolteVista}"/>
-                                    <Run Text=" volte"/>
+                                    <Run Text="{x:Static r:Strings.Statistiche_VolteSuffisso}"/>
                                 </TextBlock>
                                 <TextBlock Text="{Binding Testo}"
                                            TextWrapping="Wrap"
@@ -54,7 +55,7 @@
                                 <TextBlock TextWrapping="Wrap"
                                            Foreground="#1F7A4D"
                                            FontSize="12">
-                                    <Run Text="&#x2713; corretta: "/>
+                                    <Run Text="{x:Static r:Strings.Statistiche_CorrettaPrefisso}"/>
                                     <Run Text="{Binding RispostaCorretta}"/>
                                 </TextBlock>
                                 <TextBlock Text="{Binding Spiegazione}"

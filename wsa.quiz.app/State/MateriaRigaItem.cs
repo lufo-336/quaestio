@@ -1,5 +1,6 @@
 using System.Linq;
 using Wsa.Quiz.Core.Models.Statistiche;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.State;
 
@@ -14,7 +15,7 @@ public class MateriaRigaItem
 
     public MateriaRigaItem(StatistichePerMateria stat)
     {
-        Materia = stat.Materia;
+        Materia = EtichetteContenuti.Correnti.Materia(stat.Materia);
         Celle = stat.Categorie.Select(c => new CategoriaCellaItem(c)).ToList();
     }
 }

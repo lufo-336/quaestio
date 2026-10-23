@@ -1,5 +1,7 @@
 using Avalonia.Media;
 using Wsa.Quiz.Core.Models.Statistiche;
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.State;
 
@@ -16,8 +18,8 @@ public class CategoriaCellaItem
         Stat = stat;
     }
 
-    public string Etichetta => $"{Stat.Categoria} {Stat.PctErrore:P0}";
-    public string Tooltip => $"{Stat.Errori} errori su {Stat.Visti} viste";
+    public string Etichetta => $"{EtichetteContenuti.Correnti.Categoria(Stat.Materia, Stat.Categoria)} {Stat.PctErrore:P0}";
+    public string Tooltip => string.Format(Strings.Statistiche_CellaTooltip, Stat.Errori, Stat.Visti);
     public IBrush ColoreBordo => QuizColors.HeatmapBordo(Stat.PctErrore);
     public IBrush ColoreSfondo => QuizColors.HeatmapSfondo(Stat.PctErrore);
 }

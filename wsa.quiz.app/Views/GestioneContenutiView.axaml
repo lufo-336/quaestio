@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
@@ -12,7 +13,7 @@
         <StackPanel Spacing="16">
 
             <StackPanel Spacing="2">
-                <TextBlock Text="Gestione contenuti" FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="{x:Static r:Strings.Shell_TabGestione}" FontSize="22" FontWeight="SemiBold"/>
                 <TextBlock Text="{Binding Sottotitolo}"
                            FontSize="12"
                            Foreground="{DynamicResource SystemBaseMediumColor}"/>
@@ -32,13 +33,13 @@
                                         <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch">
                                             <StackPanel Grid.Column="0" Spacing="2">
                                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                                    <TextBlock Text="{Binding Nome}" FontWeight="SemiBold" FontSize="14"/>
+                                                    <TextBlock Text="{Binding Etichetta}" FontWeight="SemiBold" FontSize="14"/>
                                                     <Border Background="{DynamicResource SystemBaseLowColor}"
                                                             CornerRadius="3" Padding="6,2">
                                                         <TextBlock Text="{Binding Badge}" FontSize="10"/>
                                                     </Border>
                                                 </StackPanel>
-                                                <TextBlock Text="{Binding ConteggioDomande, StringFormat='{}{0} domande'}"
+                                                <TextBlock Text="{Binding ConteggioEtichetta}"
                                                            FontSize="12"
                                                            Foreground="{DynamicResource SystemBaseMediumColor}"/>
                                             </StackPanel>
@@ -46,18 +47,18 @@
                                             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
                                                         VerticalAlignment="Center" Margin="0,0,8,0"
                                                         IsVisible="{Binding Importata}">
-                                                <Button Content="Elimina" Click="OnEliminaClick"
+                                                <Button Content="{x:Static r:Strings.Comune_Elimina}" Click="OnEliminaClick"
                                                         IsTabStop="False" Classes="danger"
                                                         Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                         IsVisible="{Binding NonInAttesaConferma}"/>
-                                                <TextBlock Text="Sicuro?" VerticalAlignment="Center" FontSize="12"
+                                                <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}" VerticalAlignment="Center" FontSize="12"
                                                            Foreground="#B85450" FontWeight="SemiBold"
                                                            IsVisible="{Binding InAttesaConfermaEliminazione}"/>
-                                                <Button Content="Si', elimina" Click="OnConfermaEliminaClick"
+                                                <Button Content="{x:Static r:Strings.Comune_SiElimina}" Click="OnConfermaEliminaClick"
                                                         IsTabStop="False" Classes="danger"
                                                         Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                         IsVisible="{Binding InAttesaConfermaEliminazione}"/>
-                                                <Button Content="Annulla" Click="OnAnnullaEliminaClick"
+                                                <Button Content="{x:Static r:Strings.Comune_Annulla}" Click="OnAnnullaEliminaClick"
                                                         IsTabStop="False"
                                                         Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                         IsVisible="{Binding InAttesaConfermaEliminazione}"/>
@@ -73,32 +74,32 @@
                                                       Opacity="{Binding OpacitaRiga}">
                                                     <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8"
                                                                 VerticalAlignment="Center">
-                                                        <TextBlock Text="{Binding Categoria}" FontSize="13"
+                                                        <TextBlock Text="{Binding Etichetta}" FontSize="13"
                                                                    VerticalAlignment="Center"/>
-                                                        <TextBlock Text="{Binding ConteggioDomande, StringFormat='{}{0} dom.'}"
+                                                        <TextBlock Text="{Binding ConteggioEtichetta}"
                                                                    FontSize="11" VerticalAlignment="Center"
                                                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>
                                                         <Border Background="{DynamicResource SystemBaseLowColor}"
                                                                 CornerRadius="3" Padding="6,2"
                                                                 IsVisible="{Binding Esclusa}">
-                                                            <TextBlock Text="nascosta" FontSize="10"/>
+                                                            <TextBlock Text="{x:Static r:Strings.Gestione_Nascosta}" FontSize="10"/>
                                                         </Border>
                                                     </StackPanel>
                                                     <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
                                                                 VerticalAlignment="Center">
-                                                        <Button Content="Nascondi" Click="OnNascondiSezioneClick"
+                                                        <Button Content="{x:Static r:Strings.Gestione_Nascondi}" Click="OnNascondiSezioneClick"
                                                                 IsTabStop="False" Classes="danger"
                                                                 Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                                 IsVisible="{Binding MostraBottoneNascondi}"/>
-                                                        <Button Content="Si', nascondi" Click="OnConfermaNascondiSezioneClick"
+                                                        <Button Content="{x:Static r:Strings.Gestione_SiNascondi}" Click="OnConfermaNascondiSezioneClick"
                                                                 IsTabStop="False" Classes="danger"
                                                                 Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                                 IsVisible="{Binding MostraConfermaNascondi}"/>
-                                                        <Button Content="Annulla" Click="OnAnnullaNascondiSezioneClick"
+                                                        <Button Content="{x:Static r:Strings.Comune_Annulla}" Click="OnAnnullaNascondiSezioneClick"
                                                                 IsTabStop="False"
                                                                 Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                                 IsVisible="{Binding MostraConfermaNascondi}"/>
-                                                        <Button Content="Ripristina" Click="OnRipristinaSezioneClick"
+                                                        <Button Content="{x:Static r:Strings.Gestione_Ripristina}" Click="OnRipristinaSezioneClick"
                                                                 IsTabStop="False" Classes="accent"
                                                                 Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                                 IsVisible="{Binding Esclusa}"/>
@@ -118,13 +119,13 @@
                     BorderBrush="{DynamicResource SystemBaseLowColor}"
                     BorderThickness="1" CornerRadius="6" Padding="16">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="Nuova materia" FontWeight="SemiBold" FontSize="15"/>
-                    <TextBlock Text="1. Dai un nome alla materia   ·   2. Importa il file .json con le domande"
+                    <TextBlock Text="{x:Static r:Strings.Gestione_NuovaMateria}" FontWeight="SemiBold" FontSize="15"/>
+                    <TextBlock Text="{x:Static r:Strings.Gestione_NuovaMateriaPassi}"
                                FontSize="12" TextWrapping="Wrap"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
-                    <TextBox x:Name="NomeNuovaMateria" Watermark="Nome della materia"
+                    <TextBox x:Name="NomeNuovaMateria" PlaceholderText="{x:Static r:Strings.Gestione_NomeMateria}"
                              TextChanged="OnNomeNuovaMateriaChanged"/>
-                    <Button x:Name="BottoneImportNuova" Content="&#128193;  Importa domande da file JSON"
+                    <Button x:Name="BottoneImportNuova" Content="{x:Static r:Strings.Gestione_ImportaJson}"
                             Click="OnScegliFileNuovaMateriaClick" IsEnabled="False"
                             Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
                     <TextBlock x:Name="EsitoNuovaMateria" FontSize="12" TextWrapping="Wrap"
@@ -136,17 +137,17 @@
                     BorderBrush="{DynamicResource SystemBaseLowColor}"
                     BorderThickness="1" CornerRadius="6" Padding="16">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="Aggiungi domande a una materia esistente" FontWeight="SemiBold" FontSize="15"/>
+                    <TextBlock Text="{x:Static r:Strings.Gestione_AggiungiTitolo}" FontWeight="SemiBold" FontSize="15"/>
                     <ComboBox x:Name="SelettoreMateria" ItemsSource="{Binding Sessioni}"
-                              PlaceholderText="Scegli materia"
+                              PlaceholderText="{x:Static r:Strings.Gestione_ScegliMateria}"
                               SelectionChanged="OnSelettoreMateriaChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate DataType="state:MateriaListItem">
-                                <TextBlock Text="{Binding Nome}"/>
+                                <TextBlock Text="{Binding Etichetta}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button x:Name="BottoneImportAggiungi" Content="&#128193;  Importa domande da file JSON"
+                    <Button x:Name="BottoneImportAggiungi" Content="{x:Static r:Strings.Gestione_ImportaJson}"
                             Click="OnScegliFileAggiungiClick" IsEnabled="False"
                             Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
                     <TextBlock x:Name="EsitoAggiungi" FontSize="12" TextWrapping="Wrap"
@@ -158,13 +159,13 @@
                     BorderBrush="{DynamicResource SystemBaseLowColor}"
                     BorderThickness="1" CornerRadius="6" Padding="16">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="Generare domande bilanciate con un'IA" FontWeight="SemiBold" FontSize="15"/>
+                    <TextBlock Text="{x:Static r:Strings.Gestione_IaTitolo}" FontWeight="SemiBold" FontSize="15"/>
                     <TextBlock TextWrapping="Wrap" FontSize="12"
                                Foreground="{DynamicResource SystemBaseMediumColor}"
-                               Text="Il motore 'quiz-engine.js' controlla che le domande generate non abbiano il bias 'la risposta piu' lunga e' quella giusta': verifica la distribuzione delle lunghezze e mescola posizioni e ordine. La guida spiega come usarlo insieme a un'IA per scrivere le domande; il JSON prodotto si importa qui sopra."/>
+                               Text="{x:Static r:Strings.Gestione_IaDescrizione}"/>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Button Content="Scarica guida" Click="OnScaricaGuidaClick" Padding="{DynamicResource SzBtnPadding}"/>
-                        <Button Content="Scarica motore" Click="OnScaricaMotoreClick" Padding="{DynamicResource SzBtnPadding}"/>
+                        <Button Content="{x:Static r:Strings.Gestione_ScaricaGuida}" Click="OnScaricaGuidaClick" Padding="{DynamicResource SzBtnPadding}"/>
+                        <Button Content="{x:Static r:Strings.Gestione_ScaricaMotore}" Click="OnScaricaMotoreClick" Padding="{DynamicResource SzBtnPadding}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -179,9 +180,9 @@
                         <ItemsControl x:Name="AnteprimaLista"/>
                     </ScrollViewer>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Button x:Name="BottoneConferma" Content="Conferma" Click="OnConfermaImportClick"
+                        <Button x:Name="BottoneConferma" Content="{x:Static r:Strings.Gestione_Conferma}" Click="OnConfermaImportClick"
                                 Classes="accent" Padding="{DynamicResource SzBtnPadding}"/>
-                        <Button Content="Annulla" Click="OnAnnullaImportClick"
+                        <Button Content="{x:Static r:Strings.Comune_Annulla}" Click="OnAnnullaImportClick"
                                 Padding="{DynamicResource SzBtnPadding}"/>
                     </StackPanel>
                 </StackPanel>

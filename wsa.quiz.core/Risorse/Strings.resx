@@ -208,4 +208,47 @@
   <data name="Sospesi_Padroneggiate" xml:space="preserve"><value>{0} padroneggiate</value></data>
   <data name="Sospesi_RisposteNDiM" xml:space="preserve"><value>{0}/{1} risposte</value></data>
   <data name="Sospesi_RisposteN" xml:space="preserve"><value>{0} risposte</value></data>
+  <data name="Statistiche_Tutto" xml:space="preserve"><value>Tutto</value></data>
+  <data name="Statistiche_Ultime" xml:space="preserve"><value>Ultime</value></data>
+  <data name="Statistiche_Partite" xml:space="preserve"><value>partite</value></data>
+  <data name="Statistiche_Ordinamento" xml:space="preserve"><value>Categorie ordinate dalle piu' deboli alle piu' forti.</value></data>
+  <data name="Statistiche_NessunQuiz" xml:space="preserve"><value>Nessun quiz completato</value></data>
+  <data name="Statistiche_NessunQuizDesc" xml:space="preserve"><value>Fai un quiz dalla Home per vedere le statistiche dei tuoi punti deboli.</value></data>
+  <data name="Statistiche_FiltroStretto" xml:space="preserve"><value>Nessuna sessione nelle ultime N partite</value></data>
+  <data name="Statistiche_FiltroStrettoDesc" xml:space="preserve"><value>Aumenta il limite N oppure passa a 'Tutto'.</value></data>
+  <data name="Statistiche_Indietro" xml:space="preserve"><value>← Statistiche</value></data>
+  <data name="Statistiche_TitoloDettaglio" xml:space="preserve"><value>{0} / {1} — {2} errori su {3} viste ({4:P0})</value></data>
+  <data name="Statistiche_CellaTooltip" xml:space="preserve"><value>{0} errori su {1} viste</value></data>
+  <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ sbagliata </value></data>
+  <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> volte</value></data>
+  <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ corretta: </value></data>
+  <data name="Gestione_NDomande" xml:space="preserve"><value>{0} domande</value></data>
+  <data name="Gestione_NDomandeBreve" xml:space="preserve"><value>{0} dom.</value></data>
+  <data name="Gestione_BadgeImportata" xml:space="preserve"><value>Importata</value></data>
+  <data name="Gestione_BadgeBuiltIn" xml:space="preserve"><value>Built-in</value></data>
+  <data name="Gestione_Nascosta" xml:space="preserve"><value>nascosta</value></data>
+  <data name="Gestione_Nascondi" xml:space="preserve"><value>Nascondi</value></data>
+  <data name="Gestione_SiNascondi" xml:space="preserve"><value>Si', nascondi</value></data>
+  <data name="Gestione_Ripristina" xml:space="preserve"><value>Ripristina</value></data>
+  <data name="Gestione_NuovaMateria" xml:space="preserve"><value>Nuova materia</value></data>
+  <data name="Gestione_NuovaMateriaPassi" xml:space="preserve"><value>1. Dai un nome alla materia   ·   2. Importa il file .json con le domande</value></data>
+  <data name="Gestione_NomeMateria" xml:space="preserve"><value>Nome della materia</value></data>
+  <data name="Gestione_ImportaJson" xml:space="preserve"><value>📁  Importa domande da file JSON</value></data>
+  <data name="Gestione_AggiungiTitolo" xml:space="preserve"><value>Aggiungi domande a una materia esistente</value></data>
+  <data name="Gestione_ScegliMateria" xml:space="preserve"><value>Scegli materia</value></data>
+  <data name="Gestione_IaTitolo" xml:space="preserve"><value>Generare domande bilanciate con un'IA</value></data>
+  <data name="Gestione_IaDescrizione" xml:space="preserve"><value>Il motore 'quiz-engine.js' controlla che le domande generate non abbiano il bias 'la risposta piu' lunga e' quella giusta': verifica la distribuzione delle lunghezze e mescola posizioni e ordine. La guida spiega come usarlo insieme a un'IA per scrivere le domande; il JSON prodotto si importa qui sopra.</value></data>
+  <data name="Gestione_ScaricaGuida" xml:space="preserve"><value>Scarica guida</value></data>
+  <data name="Gestione_ScaricaMotore" xml:space="preserve"><value>Scarica motore</value></data>
+  <data name="Gestione_Conferma" xml:space="preserve"><value>Conferma</value></data>
+  <data name="Gestione_NessunaMateria" xml:space="preserve"><value>Nessuna materia disponibile.</value></data>
+  <data name="Gestione_MaterieDisponibili" xml:space="preserve"><value>{0} materie disponibili.</value></data>
+  <data name="Gestione_ScegliFileTitolo" xml:space="preserve"><value>Scegli il file JSON delle domande</value></data>
+  <data name="Gestione_FileNonValido" xml:space="preserve"><value>File non valido — {0} errori</value></data>
+  <data name="Gestione_InserisciNome" xml:space="preserve"><value>Inserisci un nome per la materia prima di scegliere il file.</value></data>
+  <data name="Gestione_ScegliPrima" xml:space="preserve"><value>Scegli prima la materia a cui aggiungere le domande.</value></data>
+  <data name="Gestione_AnteprimaNuova" xml:space="preserve"><value>Nuova materia "{0}" — {1} domande</value></data>
+  <data name="Gestione_AnteprimaAggiungi" xml:space="preserve"><value>Aggiungi a "{0}" — {1} domande nel file</value></data>
+  <data name="Gestione_MateriaCreata" xml:space="preserve"><value>Materia "{0}" creata con {1} domande.</value></data>
+  <data name="Gestione_DomandeAggiunte" xml:space="preserve"><value>{0} domande aggiunte a "{1}", {2} duplicate saltate.</value></data>
 </root>

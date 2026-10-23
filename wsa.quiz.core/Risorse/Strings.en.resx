@@ -208,4 +208,47 @@
   <data name="Sospesi_Padroneggiate" xml:space="preserve"><value>{0} mastered</value></data>
   <data name="Sospesi_RisposteNDiM" xml:space="preserve"><value>{0}/{1} answers</value></data>
   <data name="Sospesi_RisposteN" xml:space="preserve"><value>{0} answers</value></data>
+  <data name="Statistiche_Tutto" xml:space="preserve"><value>All</value></data>
+  <data name="Statistiche_Ultime" xml:space="preserve"><value>Last</value></data>
+  <data name="Statistiche_Partite" xml:space="preserve"><value>games</value></data>
+  <data name="Statistiche_Ordinamento" xml:space="preserve"><value>Categories sorted from weakest to strongest.</value></data>
+  <data name="Statistiche_NessunQuiz" xml:space="preserve"><value>No quizzes completed yet</value></data>
+  <data name="Statistiche_NessunQuizDesc" xml:space="preserve"><value>Take a quiz from Home to see where your weak spots are.</value></data>
+  <data name="Statistiche_FiltroStretto" xml:space="preserve"><value>No sessions in the last N games</value></data>
+  <data name="Statistiche_FiltroStrettoDesc" xml:space="preserve"><value>Raise the limit N or switch to 'All'.</value></data>
+  <data name="Statistiche_Indietro" xml:space="preserve"><value>← Statistics</value></data>
+  <data name="Statistiche_TitoloDettaglio" xml:space="preserve"><value>{0} / {1} — {2} wrong out of {3} seen ({4:P0})</value></data>
+  <data name="Statistiche_CellaTooltip" xml:space="preserve"><value>{0} wrong out of {1} seen</value></data>
+  <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ wrong </value></data>
+  <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> times</value></data>
+  <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ correct: </value></data>
+  <data name="Gestione_NDomande" xml:space="preserve"><value>{0} questions</value></data>
+  <data name="Gestione_NDomandeBreve" xml:space="preserve"><value>{0} q.</value></data>
+  <data name="Gestione_BadgeImportata" xml:space="preserve"><value>Imported</value></data>
+  <data name="Gestione_BadgeBuiltIn" xml:space="preserve"><value>Built-in</value></data>
+  <data name="Gestione_Nascosta" xml:space="preserve"><value>hidden</value></data>
+  <data name="Gestione_Nascondi" xml:space="preserve"><value>Hide</value></data>
+  <data name="Gestione_SiNascondi" xml:space="preserve"><value>Yes, hide</value></data>
+  <data name="Gestione_Ripristina" xml:space="preserve"><value>Restore</value></data>
+  <data name="Gestione_NuovaMateria" xml:space="preserve"><value>New subject</value></data>
+  <data name="Gestione_NuovaMateriaPassi" xml:space="preserve"><value>1. Name the subject   ·   2. Import the .json file with the questions</value></data>
+  <data name="Gestione_NomeMateria" xml:space="preserve"><value>Subject name</value></data>
+  <data name="Gestione_ImportaJson" xml:space="preserve"><value>📁  Import questions from a JSON file</value></data>
+  <data name="Gestione_AggiungiTitolo" xml:space="preserve"><value>Add questions to an existing subject</value></data>
+  <data name="Gestione_ScegliMateria" xml:space="preserve"><value>Choose a subject</value></data>
+  <data name="Gestione_IaTitolo" xml:space="preserve"><value>Generate balanced questions with an AI</value></data>
+  <data name="Gestione_IaDescrizione" xml:space="preserve"><value>The 'quiz-engine.js' engine checks that generated questions don't have the 'the longest answer is the right one' bias: it checks how answer lengths are distributed and shuffles positions and order. The guide explains how to use it with an AI to write the questions; you import the resulting JSON above.</value></data>
+  <data name="Gestione_ScaricaGuida" xml:space="preserve"><value>Download guide</value></data>
+  <data name="Gestione_ScaricaMotore" xml:space="preserve"><value>Download engine</value></data>
+  <data name="Gestione_Conferma" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Gestione_NessunaMateria" xml:space="preserve"><value>No subjects available.</value></data>
+  <data name="Gestione_MaterieDisponibili" xml:space="preserve"><value>{0} subjects available.</value></data>
+  <data name="Gestione_ScegliFileTitolo" xml:space="preserve"><value>Choose the questions JSON file</value></data>
+  <data name="Gestione_FileNonValido" xml:space="preserve"><value>Invalid file — {0} errors</value></data>
+  <data name="Gestione_InserisciNome" xml:space="preserve"><value>Enter a subject name before choosing the file.</value></data>
+  <data name="Gestione_ScegliPrima" xml:space="preserve"><value>First choose the subject to add the questions to.</value></data>
+  <data name="Gestione_AnteprimaNuova" xml:space="preserve"><value>New subject "{0}" — {1} questions</value></data>
+  <data name="Gestione_AnteprimaAggiungi" xml:space="preserve"><value>Add to "{0}" — {1} questions in the file</value></data>
+  <data name="Gestione_MateriaCreata" xml:space="preserve"><value>Subject "{0}" created with {1} questions.</value></data>
+  <data name="Gestione_DomandeAggiunte" xml:space="preserve"><value>{0} questions added to "{1}", {2} duplicates skipped.</value></data>
 </root>

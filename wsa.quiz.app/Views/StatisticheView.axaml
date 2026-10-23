@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
@@ -15,7 +16,7 @@
               ColumnDefinitions="*,Auto"
               Margin="20,16,20,8">
             <StackPanel Spacing="6">
-                <TextBlock Text="Statistiche"
+                <TextBlock Text="{x:Static r:Strings.Shell_TabStatistiche}"
                            FontSize="22" FontWeight="SemiBold"/>
                 <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <!-- Niente GroupName: l'esclusivita' e' gia' garantita dalle due
@@ -26,10 +27,10 @@
                          dopo un import in "Gestione contenuti") i due gruppi di RadioButton
                          con DataContext diversi e binding inverse entravano in un loop
                          infinito di check/uncheck reciproco -> hang + crash. Vedi Trappola 19. -->
-                    <RadioButton Content="Tutto"
+                    <RadioButton Content="{x:Static r:Strings.Statistiche_Tutto}"
                                  IsChecked="{Binding ModalitaTutto}"
                                  Margin="0,0,10,0"/>
-                    <RadioButton Content="Ultime"
+                    <RadioButton Content="{x:Static r:Strings.Statistiche_Ultime}"
                                  IsChecked="{Binding !ModalitaTutto}"
                                  Margin="0,0,10,0"/>
                     <NumericUpDown Value="{Binding LimiteUltimeN}"
@@ -41,16 +42,16 @@
                                    IsEnabled="{Binding !ModalitaTutto}"
                                    ValueChanged="OnLimiteChanged"
                                    Margin="0,0,10,0"/>
-                    <TextBlock Text="partite"
+                    <TextBlock Text="{x:Static r:Strings.Statistiche_Partite}"
                                VerticalAlignment="Center"
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                 </WrapPanel>
-                <TextBlock Text="Categorie ordinate dalle piu' deboli alle piu' forti."
+                <TextBlock Text="{x:Static r:Strings.Statistiche_Ordinamento}"
                            FontSize="12"
                            Foreground="{DynamicResource SystemBaseMediumColor}"/>
             </StackPanel>
             <Button Grid.Column="1"
-                    Content="Aggiorna"
+                    Content="{x:Static r:Strings.Comune_Aggiorna}"
                     Click="OnAggiornaClick"
                     Padding="14,6"
                     FontSize="12"/>
@@ -111,10 +112,10 @@
                     CornerRadius="6"
                     Padding="20">
                 <StackPanel HorizontalAlignment="Center" Spacing="6">
-                    <TextBlock Text="Nessun quiz completato"
+                    <TextBlock Text="{x:Static r:Strings.Statistiche_NessunQuiz}"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Center"/>
-                    <TextBlock Text="Fai un quiz dalla Home per vedere le statistiche dei tuoi punti deboli."
+                    <TextBlock Text="{x:Static r:Strings.Statistiche_NessunQuizDesc}"
                                FontSize="12"
                                Foreground="{DynamicResource SystemBaseMediumColor}"
                                TextWrapping="Wrap"
@@ -133,10 +134,10 @@
                     CornerRadius="6"
                     Padding="20">
                 <StackPanel HorizontalAlignment="Center" Spacing="6">
-                    <TextBlock Text="Nessuna sessione nelle ultime N partite"
+                    <TextBlock Text="{x:Static r:Strings.Statistiche_FiltroStretto}"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Center"/>
-                    <TextBlock Text="Aumenta il limite N oppure passa a 'Tutto'."
+                    <TextBlock Text="{x:Static r:Strings.Statistiche_FiltroStrettoDesc}"
                                FontSize="12"
                                Foreground="{DynamicResource SystemBaseMediumColor}"
                                TextWrapping="Wrap"

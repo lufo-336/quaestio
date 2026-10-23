@@ -1,3 +1,6 @@
+using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
+
 namespace Wsa.Quiz.App.State;
 
 /// <summary>
@@ -9,14 +12,18 @@ namespace Wsa.Quiz.App.State;
 public class SezioneListItem : ObservableObject
 {
     public string MateriaId { get; }
+    /// <summary>Chiave canonica: e' quella che si passa a Nascondi/RipristinaSezione.</summary>
     public string Categoria { get; }
     public int ConteggioDomande { get; }
     public bool Esclusa { get; }
+    public string Etichetta { get; }
+    public string ConteggioEtichetta => string.Format(Strings.Gestione_NDomandeBreve, ConteggioDomande);
 
-    public SezioneListItem(string materiaId, string categoria, int conteggioDomande, bool esclusa)
+    public SezioneListItem(string materiaId, string materiaNome, string categoria, int conteggioDomande, bool esclusa)
     {
         MateriaId = materiaId;
         Categoria = categoria;
+        Etichetta = EtichetteContenuti.Correnti.Categoria(materiaNome, categoria);
         ConteggioDomande = conteggioDomande;
         Esclusa = esclusa;
     }
