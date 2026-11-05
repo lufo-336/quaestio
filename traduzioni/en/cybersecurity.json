@@ -1,0 +1,618 @@
+{
+  "nome": "Cybersecurity",
+  "categorie": {
+    "Fondamenti di Cybersecurity": "Cybersecurity Fundamentals",
+    "Phishing e Ingegneria Sociale": "Phishing and Social Engineering",
+    "Password e Autenticazione": "Passwords and Authentication",
+    "Crittografia e HTTPS": "Cryptography and HTTPS",
+    "VPN e Privacy": "VPN and Privacy",
+    "Networking e Difesa Perimetrale": "Networking and Perimeter Defense",
+    "GDPR e Privacy": "GDPR and Privacy",
+    "NIS2 e DORA": "NIS2 and DORA",
+    "AI e Cybersecurity": "AI and Cybersecurity",
+    "Secure Coding": "Secure Coding",
+    "Web Security (XSS)": "Web Security (XSS)"
+  },
+  "domande": {
+    "a7d1df0e42ed": {
+      "domanda": "In the CIA triad, what does the Integrity principle indicate?",
+      "spiegazione": "Integrity ensures that data is not altered without authorization (e.g., SQL injection or ransomware violate it). A describes authentication, not integrity. C corresponds to Availability in the triad. D is a property of HTTPS/TLS, not a principle of the CIA triad.",
+      "risposte": [
+        "Identification of users via certificate-based credentials",
+        "Data is not modified without the owner's authorization",
+        "Systems are always reachable by authorized users",
+        "Encryption of traffic between the client and the remote server"
+      ]
+    },
+    "e88eaf00d27b": {
+      "domanda": "Which type of phishing is specifically targeted at high-level corporate executives?",
+      "spiegazione": "Whaling is phishing targeting 'big fish' such as CEOs, CFOs, and executives, often known as Business Email Compromise. Smishing arrives via SMS to anyone, not specifically executives. Generic phishing is mass-market and not personalized for VIPs. Vishing uses voice but is not specifically targeted at the C-suite.",
+      "risposte": [
+        "Smishing via personalized SMS messages",
+        "Generic phishing sent to random addresses",
+        "Whaling, which targets CEOs, CFOs, and top corporate figures",
+        "Vishing via calls with synthetic voice"
+      ]
+    },
+    "b7ff774c9e2b": {
+      "domanda": "What makes bcrypt more resistant than plain SHA-256 for password hashing?",
+      "spiegazione": "Bcrypt uses a configurable work factor (e.g., cost=12) that recalculates the hash 2^12 times, making GPU-based brute-force attacks economically unfeasible. Option A is incorrect: bcrypt does not use 'keys' but hashes. Option C confuses bcrypt with RSA: bcrypt is based on Blowfish, which is symmetric. Option D is fabricated: bcrypt hashes have a fixed length and do not compress anything.",
+      "risposte": [
+        "Bcrypt uses a significantly longer key",
+        "A configurable work factor that deliberately slows down computation",
+        "Bcrypt is based on asymmetric cryptographic algorithms",
+        "Bcrypt compresses the hash to occupy less disk space"
+      ]
+    },
+    "4bbf825c9489": {
+      "domanda": "What is the fundamental characteristic of asymmetric cryptography?",
+      "spiegazione": "Asymmetric cryptography (e.g., RSA, ECC) uses a public/private key pair: the public key encrypts and only the private key decrypts. B describes symmetric cryptography like AES. C is false: arbitrary binary data can be encrypted. D is fabricated: the message can have variable length, possibly with padding.",
+      "risposte": [
+        "It consists of a distinct public key and a private key",
+        "The same secret key is used for both encryption and decryption",
+        "It encrypts only plaintext, never binary files or images",
+        "It works only with messages of a fixed length"
+      ]
+    },
+    "f320c8af1007": {
+      "domanda": "Which statement about VPNs is actually correct?",
+      "spiegazione": "The VPN provider becomes the new 'intermediary': it sees the traffic in plaintext at the tunnel's exit, so trust shifts to it. A is a myth: anonymity and privacy are not the same. B is incorrect: a VPN encrypts but does not scan content. D is false: free services often monetize user data.",
+      "risposte": [
+        "A VPN guarantees complete online anonymity during every session",
+        "A VPN protects the device from viruses and any type of malware",
+        "A VPN encrypts the tunnel but the VPN provider can still see the traffic",
+        "A free VPN offers the same privacy guarantees as a paid one"
+      ]
+    },
+    "3f1d9a600e7c": {
+      "domanda": "What is the main difference between a stateless and a stateful firewall?",
+      "spiegazione": "A stateful firewall maintains a table of active connections and knows whether a packet is part of a legitimate session, blocking unsolicited responses. A confuses stateful firewalls with NGFWs (deep packet inspection at layer 7). C is false: firewalls operate from layer 3 upwards. D is incorrect: stateful firewalls also exist in software form (iptables, pf).",
+      "risposte": [
+        "Stateful supports a greater number of layer 7 protocols",
+        "Stateful tracks the state of connections and related packets",
+        "Stateful operates solely on the physical layer of the OSI model",
+        "Stateful is implemented exclusively on hardware appliances"
+      ]
+    },
+    "15238676d9b1": {
+      "domanda": "What does the data minimization principle under the GDPR establish?",
+      "spiegazione": "Article 5 of the GDPR requires collecting only data that is adequate, relevant, and limited to what is necessary for the purpose. Option B is the opposite: data retention must be limited. Option C violates the purpose limitation principle: each new purpose requires an independent legal basis. Option D confuses transparency with publication: transparency means informing the data subject, not making everything public.",
+      "risposte": [
+        "Only data strictly necessary for the declared purposes of processing is collected",
+        "Personal data should be retained for as long as technically possible",
+        "Data can be freely reused for any business purpose",
+        "All collected data must be made public to ensure transparency"
+      ]
+    },
+    "c6bc7c5333ea": {
+      "domanda": "Which of these is a requirement introduced by the NIS2 Directive for essential entities?",
+      "spiegazione": "NIS2 mandates the timely notification of significant incidents (early warning within 24 hours, notification within 72 hours, and final report within 30 days). Option A is a GDPR requirement regarding data erasure, not NIS2. Option C describes a good practice but is not a specific NIS2 mandate: the directive requires risk-based measures, not a specific firewall. Option D is obviously absurd and would violate all security standards.",
+      "risposte": [
+        "They must delete all European users' data at the end of processing",
+        "They must report significant incidents within the timeframes prescribed by the regulation",
+        "They must keep a stateful firewall always updated to the latest version",
+        "They must publish their system administration passwords online"
+      ]
+    },
+    "9317ae9da4ad": {
+      "domanda": "What is indirect prompt injection in an LLM-based application?",
+      "spiegazione": "In indirect prompt injection, the attacker hides instructions in a document or web page that the AI processes, executing them as if they came from the legitimate user. A describes direct prompt injection, not indirect. B describes a defensive behavior of the AI, not an attack. D is a common output error, not an instruction injection.",
+      "risposte": [
+        "The user directly asks the AI to reveal its internal system prompt",
+        "The AI automatically refuses to respond when it detects dangerous input",
+        "Malicious instructions hidden in external content that the AI processes as legitimate",
+        "An AI error in translating text from one language to another different one"
+      ]
+    },
+    "495e7a353b29": {
+      "domanda": "What is the definitive defense against SQL injection in application code?",
+      "spiegazione": "Prepared statements separate SQL code from data, making injection structurally impossible. Filtering (A) is a weak blacklist: attackers always find workarounds. Encryption (B) protects data at rest but does not prevent injection. Least privilege (C) is a useful mitigation to limit damage, but does not prevent the attack itself.",
+      "risposte": [
+        "Filter special characters like single and double quotes in queries",
+        "Encrypt the entire database with AES-256 algorithm and a strong key",
+        "Strictly limit the database user's privileges",
+        "Use prepared statements with parameterized queries in every query"
+      ]
+    },
+    "7a76975c71e6": {
+      "domanda": "What characterizes Stored Cross-Site Scripting?",
+      "spiegazione": "Stored XSS persists in the server database (e.g., a comment field) and is the most dangerous because it affects every user who loads the page. A describes Reflected XSS, where the payload comes from the URL. C describes DOM-based XSS, which operates client-side. D is nonsensical: in XSS, the victim executes the code, never the attacker.",
+      "risposte": [
+        "The payload always comes from the URL of the vulnerable web page opened by the user",
+        "The payload is stored on the server and affects every user who visits the page",
+        "The payload manipulates only the client-side DOM of the individual user's browser",
+        "The payload is executed exclusively in the attacker's own browser"
+      ]
+    },
+    "a0e8b6f2d27f": {
+      "domanda": "In the Lockheed Martin kill chain, what does the Delivery phase consist of?",
+      "spiegazione": "Delivery is the 3rd phase: the payload is delivered to the victim (phishing, USB drop, drive-by download). A corresponds to the Installation phase. B describes Exploitation. D is Reconnaissance, the first phase of the kill chain.",
+      "risposte": [
+        "Installing a persistent backdoor on the victim's system",
+        "Exploiting a vulnerability to execute arbitrary code",
+        "Delivering the payload to the victim via email, USB, or compromised website",
+        "Initial reconnaissance of victim information via OSINT"
+      ]
+    },
+    "04ddb4f6792f": {
+      "domanda": "What does a failure of SPF, DKIM, and DMARC checks on a received email indicate?",
+      "spiegazione": "SPF/DKIM/DMARC verify that the sender is authorized to send on behalf of that domain; a fail is concrete evidence of possible spoofing or phishing. A is the opposite: a pass, not a fail. B refers to payload encryption (S/MIME, PGP), not sender verification. D is incorrect: these checks apply to all emails, including internal ones, and a fail does not imply an internal origin.",
+      "risposte": [
+        "The email was sent by a reliable and officially verified sender",
+        "The attachment contained in the email has been correctly encrypted and signed",
+        "The email contains concrete signals making it appear inauthentic and malicious",
+        "The email is an internal communication of the receiving organization"
+      ]
+    },
+    "190c713cdb0e": {
+      "domanda": "Why is FIDO2/Passkey considered immune to traditional phishing?",
+      "spiegazione": "FIDO2 signs a challenge bound to the real domain (origin binding): a phishing site on a different domain never obtains a valid signature. A describes TOTP (phishable if the user enters it on the fake site). C describes SMS OTP, the weakest MFA method. D is incorrect: passkey can completely replace the password.",
+      "risposte": [
+        "Because it uses numeric codes valid for only 30 consecutive seconds",
+        "Because it relies on a cryptographic challenge-response bound to the original domain",
+        "Because it is always sent via SMS to the user's registered number",
+        "Because it always requires an additional password in addition to the device"
+      ]
+    },
+    "38175c94a1ad": {
+      "domanda": "What happens during the ServerHello phase of the TLS handshake?",
+      "spiegazione": "In ServerHello, the server selects the TLS version and cipher suite, and sends its X.509 certificate along with the public key. A is incorrect: the TLS handshake does not involve login credentials. B describes the final phase (Encrypted Data), which occurs after the handshake is completed. D mixes application-level authentication with the TLS layer, which does not exchange user credentials.",
+      "risposte": [
+        "The client sends an explicit request for user credentials to the server",
+        "Session data is encrypted using the AES-256-GCM algorithm in use",
+        "The server responds with the chosen TLS version, X.509 certificate, and public key",
+        "The client sends all its user credentials to the remote server"
+      ]
+    },
+    "1ec1c02bed73": {
+      "domanda": "What is the key difference between IDS and IPS?",
+      "spiegazione": "The IDS operates in passive mode (monitoring + alerting), while the IPS inline blocks malicious traffic in real time, with a risk of false positives. A is false: both exist in both hardware and software versions (e.g., Snort, Suricata). B is fabricated: both work in any environment. C confuses the tools: neither IDS nor IPS are designed for email phishing.",
+      "risposte": [
+        "The IDS is hardware-only, while the IPS is software-only",
+        "The IDS works only in the cloud, while the IPS works only on-premise",
+        "The IDS protects against phishing, while the IPS only protects against viruses",
+        "The IDS detects and alerts, while the IPS actively blocks inline traffic"
+      ]
+    },
+    "ce0a7d2e6044": {
+      "domanda": "Which of the following is a function of the Data Protection Officer (DPO)?",
+      "spiegazione": "The DPO (Articles 37-39 GDPR) oversees compliance, conducts internal training, and acts as the point of contact with the Supervisory Authority and data subjects. A describes an operational marketing activity, not a DPO task. B is exactly what the DPO must prevent. C is a software development role, entirely unrelated to DPO functions.",
+      "risposte": [
+        "Approve all customer marketing requests",
+        "Sell collected data to trusted commercial partners",
+        "Develop the company's email management software",
+        "Monitor compliance with the GDPR and serve as the contact with the Supervisory Authority"
+      ]
+    },
+    "4124197ddac7": {
+      "domanda": "What is TLPT (Threat-Led Penetration Testing) as mandated by DORA?",
+      "spiegazione": "TLPT is a mandatory red team exercise conducted every three years for significant DORA entities, based on real threat intelligence (TIBER-EU). Option B describes an operational anti-malware control, not a TLPT. Option C is an automated vulnerability assessment, which is fundamentally different from a simulated attack. Option D is a backup audit, relevant to disaster recovery but not to TLPT.",
+      "risposte": [
+        "A realistic penetration test based on current threat scenarios",
+        "A monthly antivirus test to be performed on internal production servers",
+        "A periodic automatic network vulnerability scan",
+        "An annual verification of corporate data backup policies"
+      ]
+    },
+    "ab9e525c4c2f": {
+      "domanda": "What is a fundamental practice for developing secure AI applications?",
+      "spiegazione": "Isolating the system prompt and validating the output are key defenses against prompt injection and Insecure Output Handling (OWASP LLM Top 10). A is useful but not specific to AI: TLS already does this. B is exactly the vulnerability to avoid (executing generated code). C is circular: a model cannot protect itself from its own injections.",
+      "risposte": [
+        "Encrypt all user conversations with AES-128 in transit",
+        "Execute AI-generated code directly on the server",
+        "Rely on the model itself to validate user input",
+        "Separate the system prompt from user input and validate the AI output"
+      ]
+    },
+    "0487102b38d6": {
+      "domanda": "What is the purpose of Content Security Policy (CSP) as a defense against XSS?",
+      "spiegazione": "CSP is an HTTP header that instructs the browser to execute scripts only from approved sources (nonce, hash, allowlist), neutralizing injected scripts. Option A describes a DNS filter, not CSP. Option B is a function of the Secure/HttpOnly flags on cookies. Option C confuses CSP with rate limiting or anti-DDoS WAF measures.",
+      "risposte": [
+        "To automatically block DNS requests to suspicious domains",
+        "To encrypt the session cookies of the currently logged-in user",
+        "To slow down requests to the server to prevent DDoS attacks",
+        "To indicate to the browser which origins are authorized for scripts in the page"
+      ]
+    },
+    "cdb3b6204d90": {
+      "domanda": "What is the main characteristic of an APT (Advanced Persistent Threat) attacker?",
+      "spiegazione": "APTs are state-sponsored actors with very high skills, motivated by espionage or sabotage, who maintain access for months or years. B describes hacktivists, not APTs. C identifies script kiddies. D is typical of generic cybercriminals, not APTs, which instead target high-value assets.",
+      "risposte": [
+        "Persistence and very high operational capabilities",
+        "They limit themselves to defacing websites of opposing political parties",
+        "They act exclusively to gain personal notoriety and fame",
+        "They launch automated mass attacks against anyone who has them"
+      ]
+    },
+    "6811e260e2f6": {
+      "domanda": "Which technique characterizes vishing compared to other types of phishing?",
+      "spiegazione": "Vishing (voice phishing) uses calls from spoofed numbers, often with synthetic voice or audio deepfakes, exploiting real-time psychological pressure. A describes smishing, which uses SMS. C is a phishing vector via email with malicious attachments, not vishing. D refers to forms of social engineering on messaging platforms, distinct from telephone-based vishing.",
+      "risposte": [
+        "It relies on sending SMS messages with links to malicious sites",
+        "It takes place through fraudulent phone calls",
+        "It exploits PDFs with embedded hostile JavaScript scripts",
+        "It occurs via chat on the most popular social networks"
+      ]
+    },
+    "9bc9c27af5d5": {
+      "domanda": "Among these factors, which has the greatest impact on a password's entropy?",
+      "spiegazione": "The formula H = log₂(N^l) shows that length (l) has an exponential effect, while increasing the character set size (N) has only a linear effect in bits. A is less effective than length: NIST itself prefers long passphrases. B adds entropy only if the numbers are truly random and not in predictable positions. D adds just 1 bit per letter, a negligible contribution compared to doubling the length.",
+      "risposte": [
+        "The number of symbols and special characters present",
+        "The insertion of random numbers distributed throughout the text",
+        "The overall length of the chosen password",
+        "The presence of alternating uppercase and lowercase letters"
+      ]
+    },
+    "188aa8d38aa3": {
+      "domanda": "Why is MD5 considered an insecure hashing algorithm?",
+      "spiegazione": "Practical collisions on MD5 have been demonstrated since 2004, making it unsuitable for integrity and digital signatures. B is the opposite: MD5 is extremely fast, which is precisely what makes it vulnerable to brute-force attacks. C is fabricated: MD5 accepts inputs of any length. D is incorrect: MD5 always produces a fixed 128-bit digest.",
+      "risposte": [
+        "It is vulnerable to collisions that are now easily generated",
+        "It takes too long to compute the hash of a single string",
+        "It only works for strings shorter than 16 characters",
+        "It returns a variable-length output depending on the input"
+      ]
+    },
+    "b77ee4473c09": {
+      "domanda": "What does SNI (Server Name Indication) reveal during an HTTPS connection, even when using a VPN?",
+      "spiegazione": "SNI in the TLS handshake reveals the requested hostname in plaintext (unless ECH is used), which is why HTTPS does not hide the destination from the entity you are connecting to. B is false: the content is encrypted by TLS. C is encrypted within TLS after the handshake and does not travel in SNI. D is also encrypted within the established TLS channel and is never exposed as metadata.",
+      "risposte": [
+        "The domain of the website you are connecting to",
+        "The full content of the HTTP request to the server",
+        "The password transmitted to the authentication server",
+        "The credit card number entered for payment"
+      ]
+    },
+    "7c0878580605": {
+      "domanda": "Which TCP port is associated with the SSH protocol for secure remote access?",
+      "spiegazione": "SSH uses port 22/TCP by default for encrypted remote access (often recommended to be changed to reduce scan noise). A refers to the unencrypted FTP port, which should be avoided. C is unencrypted web HTTP. D is HTTPS, which encrypts web traffic but is not related to SSH.",
+      "risposte": [
+        "Port 21 for FTP file transfer",
+        "TCP port 22, configured by default",
+        "Port 80 used for HTTP traffic",
+        "Port 443 dedicated to encrypted HTTPS traffic"
+      ]
+    },
+    "e7fb9c92289d": {
+      "domanda": "Which of these is one of the six key rights granted to data subjects under the GDPR?",
+      "spiegazione": "Portability (Art. 20) allows the data subject to receive their data in a structured format and transfer it to another controller. A does not exist: the GDPR treats data as a fundamental right, not as merchandise. B confuses the GDPR with a kind of commercial compensation, which is never provided for by the regulation. D makes no sense: the GDPR applies by law, it is not optional to opt out.",
+      "risposte": [
+        "The right to sell data to the data controller",
+        "The right to receive compensation for each processing",
+        "The right to data portability",
+        "The right to be automatically exempted from the GDPR"
+      ]
+    },
+    "0d6ec617e124": {
+      "domanda": "What is the maximum penalty under NIS2 for essential entities?",
+      "spiegazione": "NIS2 sets a maximum penalty for essential entities of €10 million or 2% of global turnover (€7 million or 1.4% for important entities). Option A is clearly too low. Option C is a sanction of a different nature, not provided for as a standard maximum. Option D is an exceptional criminal measure, outside the scope of the NIS2 administrative regime.",
+      "risposte": [
+        "An administrative fine of only €100 per violation",
+        "€10 million or 2% of annual turnover",
+        "Permanent exclusion from the European market for five years",
+        "Seizure of the assets of the company's shareholders"
+      ]
+    },
+    "b7ca08c5c132": {
+      "domanda": "What can happen to data entered into a free tier of a generative AI service?",
+      "spiegazione": "On free tiers, prompts may be used for model training, as demonstrated by the Samsung 2023 case (source code exposed). A is not guaranteed: retention varies by policy. B is misleading: transport is encrypted, but the provider has access to the content. D reverses the logic: paid data is protected by DPA, not 'returned'.",
+      "risposte": [
+        "They are automatically deleted within a few minutes of use",
+        "They are always end-to-end encrypted without any exception",
+        "They may be used to train the AI model",
+        "They are returned only to those who pay for an Enterprise subscription"
+      ]
+    },
+    "416b55e0fffd": {
+      "domanda": "Which of these practices is the most secure for managing credentials in code?",
+      "spiegazione": "Secret managers (Vault, AWS Secrets Manager) and environment variables with .gitignore are the modern standard to prevent leaks. A leads to public repositories, a recurring vulnerability. B remains in Git history even after a rewrite, making it nearly impossible to truly clean up. C exposes credentials in server logs, proxy logs, and browser history.",
+      "risposte": [
+        "Hardcoding credentials directly in the source code",
+        "Inserting credentials into Git commit messages",
+        "Passing credentials via URL query strings",
+        "Using a secret manager or environment variables"
+      ]
+    },
+    "a2e1dc9d445e": {
+      "domanda": "Which solution prevents XSS when inserting user input into the HTML page?",
+      "spiegazione": "textContent treats everything as plain text: no HTML is parsed and no scripts are executed, eliminating the XSS vector. A is useless: HTML comments do not block scripts inside them (and there are tricks to escape them). B is irrelevant to XSS, relating only to UX limits. C worsens the problem: a global variable is easily accessible by other potentially injected scripts.",
+      "risposte": [
+        "Add an HTML comment around the user input",
+        "Increase the size of the user input field",
+        "Insert the input into a global JavaScript variable",
+        "Use textContent instead of unsafe innerHTML"
+      ]
+    },
+    "cb714bf9b6c3": {
+      "domanda": "Which principle of the CIA triad is primarily violated by a DDoS attack?",
+      "spiegazione": "A DDoS saturates network or application resources, preventing legitimate access and directly impacting Availability (e.g., Dyn DNS 2016). A is violated by data breaches or interception, not by DDoS. C is violated by SQL injection, ransomware, or tampering. D is not part of the classic CIA triad and is not the direct target of a DDoS.",
+      "risposte": [
+        "The Confidentiality of user information",
+        "The Availability of the affected web service",
+        "The Integrity of data stored in the database",
+        "The authentication of users accessing"
+      ]
+    },
+    "6a605adab359": {
+      "domanda": "Which of the following is a typical sign of smishing in a received SMS?",
+      "spiegazione": "Smishing typically uses URL shorteners or fake domains (e.g., poste-it.xyz) combined with urgency and requests for small payments. A is atypical: smishing SMS messages are short and pressing, not technical. C is impractical in standard SMS and does not represent a common indicator. D is the opposite of a phishing indicator: it would suggest authenticity.",
+      "risposte": [
+        "Long paragraphs with in-depth technical references",
+        "Shortened URL to a suspicious and malicious domain",
+        "High-quality video attachments in the message body",
+        "Cryptographic digital signature at the bottom of the message text"
+      ]
+    },
+    "67ce167f8f5e": {
+      "domanda": "What is the main weakness that makes SMS OTP a weak MFA factor?",
+      "spiegazione": "SIM swapping allows the attacker to receive the victim's OTPs after obtaining the number porting, and SS7 attacks and interception are also involved. A is false: SMS uses the cellular network, not the internet. B confuses with other systems: SMS OTP does not require an additional password other than the one entered previously. D is fabricated: typically, SMS OTP does not depend on email registration.",
+      "risposte": [
+        "The need for an always-active internet connection",
+        "The fact that it requires an additional alphanumeric password",
+        "The concrete exposure to SIM swapping attacks",
+        "The need to register a valid email address first"
+      ]
+    },
+    "32ab218407aa": {
+      "domanda": "What is the primary role of a Certificate Authority (CA)?",
+      "spiegazione": "The CA signs X.509 certificates by binding an identity (domain) to a public key, establishing the trust chain Root → Intermediate → Leaf. A describes the role of TLS, not the CA. B is what vulnerability scanners like Nessus or Qualys do, not CAs. D is the role of an authentication database or a password manager, never the CA.",
+      "risposte": [
+        "Generate encrypted traffic between the client and the remote server",
+        "Perform vulnerability scans on exposed web servers",
+        "Sign X.509 certificates to validate identity",
+        "Store user passwords in a secure encrypted format"
+      ]
+    },
+    "7c9ae9c29546": {
+      "domanda": "What is the primary purpose of a DMZ in a corporate network?",
+      "spiegazione": "The DMZ is an intermediate network zone that hosts web and mail servers: a compromise there does not provide direct access to the LAN. A describes the task of IPSec or internal VPNs, not the DMZ. B is incorrect: the DMZ is a topology, and the firewall remains an essential component. C is the function of DHCP, not a DMZ.",
+      "risposte": [
+        "Encrypt traffic between local LAN devices",
+        "Completely replace the role of a stateful firewall",
+        "Automatically distribute IPs to connected clients",
+        "Isolate public servers from the internal LAN"
+      ]
+    },
+    "1090c9c4ff83": {
+      "domanda": "Within what timeframe must a data breach posing a risk to individuals be reported to the Data Protection Authority?",
+      "spiegazione": "Article 33 of the GDPR sets a 72-hour deadline from the moment of discovery for notifying the Data Protection Authority. Option A is too long: the window is only three days. Option B confuses this with other regulations (e.g., DORA early warning 24h) and incorrectly starts the clock from the event rather than the discovery. Option C is fabricated and does not correspond to any GDPR deadline.",
+      "risposte": [
+        "Within 30 days from the moment the breach was discovered",
+        "Within 24 hours at the latest from the start of the breach event",
+        "Within 7 working days from initial identification",
+        "Within 72 hours from the discovery of the data breach"
+      ]
+    },
+    "df5a83667c74": {
+      "domanda": "Which of these entities falls under the scope of DORA?",
+      "spiegazione": "DORA (Reg. EU 2022/2554) applies to the financial sector: banks, asset management companies, investment firms, insurance companies, payment service providers, electronic money institutions, and critical ICT providers. Option A is potentially covered by other regulations (e.g., CRA), not DORA. Option C is not in the financial sector and is not covered by DORA. Option D belongs to digital entertainment, which is subject to the DSA rather than DORA.",
+      "risposte": [
+        "Consumer hardware manufacturers such as smartphones",
+        "European banks and credit institutions",
+        "Construction and civil engineering companies",
+        "Video on demand streaming platforms"
+      ]
+    },
+    "43519545b462": {
+      "domanda": "What does the deepfake threat primarily represent in the context of Business Email Compromise?",
+      "spiegazione": "Deepfakes clone the voice and video of executives to authorize fraudulent wire transfers (e.g., the 2024 Hong Kong CFO case: $25M stolen). A describes traditional macro malware, not deepfakes. B identifies classic phishing with typosquatting, without a generative AI component. D describes pharming/cloned websites, a separate vector from audiovisual deepfakes.",
+      "risposte": [
+        "PDF documents with malicious attachments and VBA scripts",
+        "Phishing emails sent from addresses similar to real ones",
+        "Cloned voices and videos to impersonate executives",
+        "Copied websites with domains nearly identical to the originals"
+      ]
+    },
+    "e135a250ba12": {
+      "domanda": "What is the purpose of the HttpOnly flag on a session cookie?",
+      "spiegazione": "HttpOnly makes the cookie inaccessible via document.cookie, mitigating session theft via XSS. A describes the role of the Secure flag (and TLS in general), not HttpOnly. B describes expiration policies or idle timeout, not HttpOnly. C corresponds to the SameSite flag, which controls cross-site cookie sending.",
+      "risposte": [
+        "Automatically encrypt the cookie value with TLS",
+        "Force the user to re-authenticate every ten minutes",
+        "Send the cookie only to the origin domain",
+        "Prevent access to the cookie via JavaScript"
+      ]
+    },
+    "7759f196f7e5": {
+      "domanda": "What type of security breach was the Yahoo data breach in 2013?",
+      "spiegazione": "The 2013 Yahoo breach exposed 3 billion accounts, compromising data confidentiality. Option B describes an Integrity violation, which occurs with tampering or ransomware, not a data leak. Option C corresponds to scenarios like DDoS or ransomware encryption, not credential theft. Option D is not even part of the classic CIA triad and does not represent what happened at Yahoo.",
+      "risposte": [
+        "Confidentiality violation due to user account exposure",
+        "Integrity violation due to modification of stored messages",
+        "Availability violation due to total mail system lockout",
+        "Non-repudiation violation in user digital signature operations"
+      ]
+    },
+    "3089152d333f": {
+      "domanda": "What does the DMARC check verify on a received email?",
+      "spiegazione": "DMARC verifies the alignment between the From: domain and the results of SPF/DKIM, applying a policy (none/quarantine/reject) in case of failure. B confuses this with spam limits on attachments, handled by the MTA. C concerns message sizes, not sender authentication. D describes keyword-based spam filters, not a domain authentication protocol.",
+      "risposte": [
+        "Indicates the alignment between the sender domain, SPF, and DKIM",
+        "Indicates the maximum size of attachments allowed in the message",
+        "Indicates that the message does not exceed a maximum total length",
+        "Indicates that the subject contains no suspicious keywords"
+      ]
+    },
+    "ad63431367b0": {
+      "domanda": "Which of these is a correct MFA factor combination?",
+      "spiegazione": "The password ('something you know') + TOTP ('something you have') combination uses two distinct categories, complying with the MFA definition. Option B combines two elements from the same 'something you know' category, so it is not true MFA. Option C uses the same category twice and does not add a distinct factor. Option D uses two elements from the 'something you are' category, which is the same type.",
+      "risposte": [
+        "A password combined with a TOTP code generated by an authenticator app",
+        "A password followed by a personal security question of the user",
+        "Two complex passwords stored by the user for different services",
+        "Two fingerprints registered on different secure devices"
+      ]
+    },
+    "a9df40ecf32d": {
+      "domanda": "Which algorithm is considered secure for password hashing in 2025?",
+      "spiegazione": "Argon2id won the PHC 2015 and is memory-hard, resistant to GPU and ASIC attacks, and recommended by OWASP. A is insecure: MD5 has known collisions and is too fast for password hashing. C is deprecated for cryptographic use and is equally fast to brute-force. D is not even a cryptographic hash but a checksum for integrity, completely unsuitable.",
+      "risposte": [
+        "MD5, fast and widely used in many languages",
+        "Argon2id, winner of the Password Hashing Competition",
+        "SHA-1, still supported by several legacy libraries",
+        "CRC32, simple to implement in lightweight embedded systems"
+      ]
+    },
+    "8d4a1dd8b08d": {
+      "domanda": "What does a VPN NOT protect against, even when properly configured?",
+      "spiegazione": "A VPN encrypts the network tunnel but does not analyze email content or block social engineering attacks. A is indeed one of the main benefits of a VPN. C is what the VPN resolves by replacing the ISP as the traffic visibility point. D is exactly what the encrypted tunnel prevents: an attacker on the local network sees only encrypted traffic.",
+      "risposte": [
+        "From intercepting traffic on public WiFi",
+        "From phishing via seemingly legitimate emails received",
+        "From ISP tracking of browsing activities",
+        "From traffic observation by a local attacker"
+      ]
+    },
+    "fab3dfac7d5d": {
+      "domanda": "What is the primary purpose of the Nmap tool in pentesting?",
+      "spiegazione": "Nmap is the standard tool for port scanning, host discovery, service and OS fingerprinting, used by both administrators and pentesters. Option A describes NAT functions, not Nmap. Option C corresponds to TLS or VPN, which are completely out of scope. Option D is what a firewall or IPS does, the opposite of Nmap's offensive reconnaissance function.",
+      "risposte": [
+        "To modify the IPs of outgoing packets towards the Internet",
+        "To scan hosts and open ports for network reconnaissance",
+        "To encrypt traffic between the client and the target server",
+        "To block malicious traffic towards servers published in the DMZ"
+      ]
+    },
+    "7424b37ae014": {
+      "domanda": "Which of the following is NOT a valid legal basis for processing under the GDPR?",
+      "spiegazione": "Article 6 of the GDPR lists six exhaustive legal bases; 'personal pleasure' is not included and is in fact the opposite of the lawfulness principle. A is an explicitly provided basis, which must be balanced against the data subject's rights. B is the contractual basis, one of the most common in practice. D is the legal obligation, an autonomous legal basis for processing mandated by laws.",
+      "risposte": [
+        "The legitimate interest of the data controller",
+        "The performance of a contract with the data subject",
+        "The personal pleasure of the data processor",
+        "Compliance with a legal obligation to which the controller is subject"
+      ]
+    },
+    "746ffcd76cdb": {
+      "domanda": "Which of these is one of the 10 minimum security measures required by NIS2?",
+      "spiegazione": "NIS2 requires documented ICT risk management policies among the 10 minimum measures, along with incident management, business continuity, and security testing. A is a civil and fiscal obligation for companies, unrelated to cyber resilience. B is marketing activity, completely out of scope. D has no connection to the cybersecurity requirements of the directive.",
+      "risposte": [
+        "The financial statements signed by the company's CEO",
+        "The periodic organization of promotional events with customers",
+        "Documented and updated ICT risk management policies",
+        "The opening of a physical store in all European capitals"
+      ]
+    },
+    "7701ed8c67e1": {
+      "domanda": "What is a direct prompt injection in an LLM-based application?",
+      "spiegazione": "In direct prompt injection, the user inserts commands into the prompt that attempt to bypass system instructions (e.g., 'Ignore previous instructions'). A confuses this with model security or model theft issues, which are distinct from prompt injection. B describes INDIRECT prompt injection, which originates from external content. D is Training Data Poisoning, another risk in the OWASP LLM Top 10.",
+      "risposte": [
+        "Encryption of the AI model using a symmetric algorithm",
+        "A document contains hidden instructions executed without filters",
+        "The user directly asks to ignore the initial instructions",
+        "The AI is trained on public data acquired without authorization"
+      ]
+    },
+    "496762187bee": {
+      "domanda": "Where should user input validation occur in the code?",
+      "spiegazione": "Server-side validation is non-negotiable because the client is untrusted and can be modified or bypassed by an attacker (e.g., using Burp Suite). A is a classic anti-pattern: an attacker sends the request without going through the UI. B makes no sense: validation is runtime, not a deployment-time check. C is incorrect: WAF is defense in depth, not a substitute for application-level validation.",
+      "risposte": [
+        "Only on the client side because it is faster and more immediate for the user",
+        "Only at deployment to the live production environment",
+        "No validation, relying solely on the perimeter WAF",
+        "On the server side, even if already preliminarily validated on the client"
+      ]
+    },
+    "4ee58de021fd": {
+      "domanda": "Which measure mitigates session cookie theft even if an XSS attack succeeds?",
+      "spiegazione": "HttpOnly prevents document.cookie from returning the value, mitigating session theft even in the event of a successful XSS attack. Option A is exactly what undermines the CSP: unsafe-inline allows injected scripts. Option B is insufficient: modern browsers have removed the XSS auditor precisely because it was bypassable. Option C protects against clear-text MitM attacks but does not prevent a malicious script from reading the cookie.",
+      "risposte": [
+        "A permissive CSP with the unsafe-inline directive always enabled",
+        "A modern updated browser without additional configurations",
+        "Only the Secure flag applied to cookies without HttpOnly enabled",
+        "The HttpOnly flag applied to the web site's session cookies"
+      ]
+    },
+    "289121472b2e": {
+      "domanda": "What does the principle that '100% security does not exist' mean?",
+      "spiegazione": "Security is a continuous process of risk assessment and mitigation, not a reachable state. B is unrealistic and would render any production system unusable. C is the opposite of the principle: security requires investment proportional to the risk. D is the classic security by obscurity fallacy: proprietary software is not inherently more secure than open source.",
+      "risposte": [
+        "Security is managed as a risk management process",
+        "All systems should be disconnected from the network as soon as possible",
+        "No budget should be spent on cybersecurity",
+        "One should rely only on proprietary systems for total security"
+      ]
+    },
+    "208dccd89dc6": {
+      "domanda": "What does display name spoofing indicate in a phishing email?",
+      "spiegazione": "Display name spoofing only falsifies the 'friendly' visible name, while the raw domain remains different from the legitimate one. B describes an homoglyph attack or Unicode spoofing in the text, a different technique. C is the 'double extension trick', typical of malware in attachments. D describes the use of a URL shortener to hide the real domain of the link.",
+      "risposte": [
+        "The sender's display name is falsified by the attacker",
+        "The message subject contains hidden invisible Unicode characters",
+        "The attachment has a double extension to simulate a legitimate PDF",
+        "The link in the message redirects via a generic URL shortener"
+      ]
+    },
+    "58388680fc13": {
+      "domanda": "What does NIST recommend regarding modern corporate password policies?",
+      "spiegazione": "NIST SP 800-63B discourages mandatory periodic rotation because it leads to weaker and more predictable passwords. Option A describes the exact practice that NIST has abandoned. Option C is a now-deprecated complexity rule: length and entropy are preferred over forced symbols. Option D goes against the recommendations: password managers are the recommended tool.",
+      "risposte": [
+        "Change the password every 30 days as a minimum best practice",
+        "Do not impose mandatory rotation without a specific reason",
+        "Always require at least five special characters in the password",
+        "Prohibit the use of password managers to avoid points of compromise"
+      ]
+    },
+    "847965dcb50c": {
+      "domanda": "What is forward secrecy provided by TLS 1.3?",
+      "spiegazione": "Forward secrecy uses ephemeral exchanges (ECDHE) per session: even if the server's private key is later compromised, past sessions remain protected. A is made up: certificates in the TLS handshake are transmitted unencrypted before the channel is established. C is the opposite: PFS does not facilitate decryption at all. D reverses the logic: the public key is in the server's certificate, there is no special 'advance' delivery.",
+      "risposte": [
+        "A mechanism that encrypts X.509 certificates before the handshake",
+        "The use of ephemeral keys that protect compromised past sessions",
+        "A function that allows fast decryption of HTTP traffic",
+        "A protocol that sends the public key in advance to the client for verification"
+      ]
+    },
+    "9ce9e97ce9e6": {
+      "domanda": "What does a VLAN do in the context of network segmentation?",
+      "spiegazione": "A VLAN logically segments one or more physical switches into separate networks (e.g., HR, IT, Guest VLANs), limiting lateral movement. A is incorrect: a VLAN segments but does not encrypt (encryption is handled by IPSec/MACsec). B is false: a VLAN is a Layer 2 segmentation and does not replace a firewall. D corresponds to the function of DHCP, not a VLAN.",
+      "risposte": [
+        "Encrypts traffic between devices on a single physical corporate switch",
+        "Replaces the perimeter firewall by providing similar functionality",
+        "Logically divides the same switch into multiple distinct separate networks",
+        "Automatically assigns IP addresses to clients"
+      ]
+    },
+    "a294912fba2f": {
+      "domanda": "What must the Record of Processing Activities required by Article 30 GDPR contain?",
+      "spiegazione": "Article 30 GDPR requires the controller to maintain a record with purposes, categories of data subjects and data, recipients, transfers, retention periods, and security measures. A is a very partial list, insufficient. B mixes corporate data not required by Article 30. D is incomplete: the DPO's name and the company's registered address alone are not enough.",
+      "risposte": [
+        "Only the list of users who have given explicit consent",
+        "The company's annual revenue and the complete staff list",
+        "Processing purposes, categories of data subjects, and retention",
+        "Only the DPO's name and the company's registered address"
+      ]
+    },
+    "b7ffe00b82ee": {
+      "domanda": "Which of these is one of the 5 pillars of DORA?",
+      "spiegazione": "DORA has 5 pillars: ICT risk management, incident management, TLPT, ICT third-party risk, information sharing. A is financial disclosure, unrelated to DORA. B is a corporate benefit, irrelevant to operational resilience. C is a commercial banking network choice, not a DORA requirement.",
+      "risposte": [
+        "The obligation to publish financial data on official social networks",
+        "Economic support for employees to purchase modern hardware",
+        "Opening new bank branches in every Italian municipality with over 1,000 inhabitants",
+        "Managing the risk arising from critical corporate ICT third parties"
+      ]
+    },
+    "0e6c41338c0d": {
+      "domanda": "Which risk is listed by the OWASP LLM Top 10 as LLM01?",
+      "spiegazione": "LLM01 in the OWASP Top 10 for LLMs is Prompt Injection, classified as the most critical risk for applications based on generative models. A is more related to Supply Chain (LLM05) or Model Theft (LLM10) issues. B is a physical attack, not a specific LLM risk. C confuses it with other attacks: credential theft via AI is not LLM01 but falls under other vectors.",
+      "risposte": [
+        "Fraudulent purchase of new AI models in the digital gray market",
+        "Physical theft of the hardware running the deployed AI model",
+        "Theft of bank credentials generated by the user's model",
+        "Injection of malicious instructions into prompts provided to the model"
+      ]
+    },
+    "fa531e7c7cc5": {
+      "domanda": "What does a Content Security Policy with the 'nonce' directive allow?",
+      "spiegazione": "The nonce directive allows only scripts that have a random value matching the one declared in the CSP header. Option B describes an extremely restrictive CSP without nonce (script-src 'none'), not the use of nonce. Option C is an anti-pattern: it would remove protection. Option D confuses authorization (CSP) with encryption (TLS): CSP does not encrypt anything.",
+      "risposte": [
+        "Allow only scripts with the random value generated by the server",
+        "Block all scripts and execute only static HTML content",
+        "Completely disable CSP for the paths specified in the policy",
+        "Encrypt script payloads with a random key at runtime"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1689 @@
+{
+  "nome": "RESTful API",
+  "categorie": {
+    "Codici di stato": "Status codes",
+    "REST e vincoli": "REST and constraints",
+    "Query, paginazione e caching": "Query, pagination, and caching",
+    "Autenticazione e JWT": "Authentication and JWT",
+    "Express": "Express",
+    "Error handling": "Error handling",
+    "JSON e validazione": "JSON and validation",
+    "HTTP e client-server": "HTTP and client-server",
+    "Metodi HTTP": "HTTP methods",
+    "Design delle URL": "URL design",
+    "Strumenti": "Tools",
+    "Frontend, fetch e CORS": "Frontend, fetch, and CORS"
+  },
+  "domande": {
+    "7b427232c438": {
+      "domanda": "What is the purpose of the 304 Not Modified status?",
+      "spiegazione": "304 is the core of caching: in response to If-None-Match (ETag) or If-Modified-Since, it says 'not changed, use the cache', without retransmitting the body.",
+      "risposte": [
+        "To signal an internal server error",
+        "To indicate that the client must authenticate before accessing the requested resource",
+        "To create a new resource in the collection",
+        "To tell the client that the resource has not changed and can use the cached copy"
+      ]
+    },
+    "2a454ac31f14": {
+      "domanda": "If a server does not support any of the formats requested in the Accept header, which status code is formally correct?",
+      "spiegazione": "406 Not Acceptable: the server cannot produce any of the representations acceptable by the client.",
+      "risposte": [
+        "404",
+        "415",
+        "400",
+        "406"
+      ]
+    },
+    "e22fa6bdcdbe": {
+      "domanda": "The value of `If-None-Match` matches the ETag calculated by the server. What does the server respond?",
+      "spiegazione": "`304 Not Modified`, without body: the client can reuse the copy it already has. In the TaskFlow verification, 153 bytes are saved on a small resource.",
+      "risposte": [
+        "200",
+        "304",
+        "301",
+        "204"
+      ]
+    },
+    "888ebb0264bd": {
+      "domanda": "Why should sensitive data not be included in a JWT payload?",
+      "spiegazione": "Non-falsifiable does not mean unreadable: the signature protects against tampering, not against reading. In TaskFlow, the payload only contains `userId` and `ruolo`.",
+      "risposte": [
+        "Because it slows down the signature",
+        "Because the payload is only Base64Url-encoded, not encrypted: anyone with the token can read it, for example by pasting it into jwt.io",
+        "Because they expire sooner",
+        "Because they take up too much space"
+      ]
+    },
+    "2fab0cec39ce": {
+      "domanda": "Which status code indicates a conflict, typically a duplicate (e.g., email already registered)?",
+      "spiegazione": "409 Conflict: conflict with the current state of the resource, typically a duplicate.",
+      "risposte": [
+        "409",
+        "404",
+        "410",
+        "400"
+      ]
+    },
+    "c0d197c79f28": {
+      "domanda": "Which method registers a valid global middleware for every method on a prefix?",
+      "spiegazione": "app.use() registers middleware or mounts routers for every method on that prefix; app.get() defines a route only for GET methods on that path.",
+      "risposte": [
+        "app.get()",
+        "app.use()",
+        "app.put()",
+        "app.all()"
+      ]
+    },
+    "138852f43364": {
+      "domanda": "What status does the `AppError` class use if none is passed to the constructor?",
+      "spiegazione": "The signature is `constructor(message, status = 500)`: the default is 500, i.e., the generic unexpected error.",
+      "risposte": [
+        "500",
+        "404",
+        "200",
+        "400"
+      ]
+    },
+    "b1980b74d097": {
+      "domanda": "What does JSON.stringify(object, null, 2) do?",
+      "spiegazione": "The third parameter is the indentation (2 spaces): it produces readable JSON. The second parameter (here null) is the replacer. Converting from string to object is JSON.parse, not stringify.",
+      "risposte": [
+        "Removes fields with null value from the object",
+        "Converts the received JSON string into a ready-to-use JavaScript object in the code",
+        "Serializes the object into indented JSON with 2 spaces (readable version on multiple lines)",
+        "Validates the object against a schema"
+      ]
+    },
+    "478a49669fad": {
+      "domanda": "How is an API that adheres to the architectural constraints of REST defined?",
+      "spiegazione": "REST is the architectural style, while RESTful is the adjective used to describe an API that conforms to its constraints.",
+      "risposte": [
+        "An API that maintains session state on the server side",
+        "An API based on the SOAP protocol with a WSDL contract",
+        "RESTful",
+        "An API that exposes its data exclusively in XML format"
+      ]
+    },
+    "b806875e7332": {
+      "domanda": "How many parts is each HTTP message (request or response) composed of?",
+      "spiegazione": "Three parts: start line, headers, and body (the latter separated from the headers by an empty line).",
+      "risposte": [
+        "Five",
+        "Four",
+        "Three",
+        "Two"
+      ]
+    },
+    "a23f8d48c912": {
+      "domanda": "Which code indicates that a resource has been created and should be accompanied by the Location header?",
+      "spiegazione": "201 Created + Location header with the URL of the new resource. 200 is generic, 301 is a redirect, 204 is without body.",
+      "risposte": [
+        "301, which indicates a permanent resource move",
+        "200, which does not communicate the creation of anything",
+        "204, which does not include a body in the response",
+        "201"
+      ]
+    },
+    "c3db1ab3dd75": {
+      "domanda": "Why in `GET /tasks` do we filter and sort BEFORE paginating?",
+      "spiegazione": "The correct order is filter, sort, paginate. Reversing sorting and pagination produces a subtle incorrect result: it seems to work until you look at page 2.",
+      "risposte": [
+        "For performance reasons",
+        "Because Express requires it",
+        "Because `Array.prototype.sort` is not stable on object arrays, so sorting after `slice` would return a different sequence each time for the same data",
+        "Otherwise, only the few elements already extracted for that page would be sorted, and the \"first page sorted by title\" would contain arbitrary elements"
+      ]
+    },
+    "a0efa4a5fdf4": {
+      "domanda": "Which res method sets the status code in a chainable manner?",
+      "spiegazione": "res.status(code) sets the status and is chainable: res.status(201).json(...). send/json send the body, end closes the response.",
+      "risposte": [
+        "res.json()",
+        "res.send()",
+        "res.status()",
+        "res.end()"
+      ]
+    },
+    "0a80e289b2c5": {
+      "domanda": "In which situation does the browser automatically send an OPTIONS (preflight) request?",
+      "spiegazione": "The OPTIONS preflight precedes 'non-simple' cross-origin requests (non-safe methods or custom headers) to verify CORS permissions. It does not precede every GET request, nor does it depend on 500 errors.",
+      "risposte": [
+        "Every time the user manually reloads the browser page by pressing the refresh button",
+        "Before every GET request",
+        "Only when the server responds with a 500 error",
+        "Before a cross-origin request with non-safe methods or custom headers"
+      ]
+    },
+    "fb08fd6dc07d": {
+      "domanda": "Which status code does the validateBody middleware use when required fields are missing?",
+      "spiegazione": "Missing required fields = client error → 400 Bad Request, with the list of missing fields. It is not 403 (permissions) nor 500 (server).",
+      "risposte": [
+        "500, as it is an unexpected server-side error",
+        "201, because the request is still logged by the server",
+        "400",
+        "403, as the user lacks the necessary permissions"
+      ]
+    },
+    "7931a874a97a": {
+      "domanda": "What type are the values of req.params and req.query ALWAYS?",
+      "spiegazione": "Always strings: to obtain a number, an explicit conversion is required, e.g., parseInt(req.params.id).",
+      "risposte": [
+        "Booleans",
+        "Objects",
+        "Numbers",
+        "Strings"
+      ]
+    },
+    "a92acef3bc82": {
+      "domanda": "A server stores the user session in memory after login: which REST constraint does it violate?",
+      "spiegazione": "Statelessness requires that each request be self-contained: state travels with the client (token or cookie), not stored on the server.",
+      "risposte": [
+        "Layered system",
+        "Stateless",
+        "Cacheable",
+        "Code on demand"
+      ]
+    },
+    "e6290dc48af4": {
+      "domanda": "Which status code indicates a non-existent resource or endpoint?",
+      "spiegazione": "404 Not Found = non-existent resource or endpoint. 401 = unauthenticated, 500 = server error, 409 = conflict.",
+      "risposte": [
+        "409, used in case of conflict with the current state",
+        "404",
+        "500, generated by an unhandled internal server error",
+        "401, returned when authentication is missing"
+      ]
+    },
+    "07141df7ed51": {
+      "domanda": "When is route nesting used (e.g., /users/42/posts)?",
+      "spiegazione": "Nesting expresses ownership (posts OF a user). Practical rule: do not exceed one level, beyond that the URL becomes unreadable and fragile.",
+      "risposte": [
+        "Never, it is forbidden by the HTTP specification",
+        "Only when the child resource identifier is an integer and not a string",
+        "Always, for every resource",
+        "When a resource exists only in the context of another (ownership relationship)"
+      ]
+    },
+    "151cc6887ddf": {
+      "domanda": "What does 'undefined' convert to when found INSIDE an array serialized with JSON.stringify?",
+      "spiegazione": "undefined (and functions) inside an array become null; in an object, however, the field is entirely omitted.",
+      "risposte": [
+        "To null",
+        "To an empty string",
+        "To zero",
+        "To false"
+      ]
+    },
+    "db15e35c8f01": {
+      "domanda": "What does TTFB (Time To First Byte) represent in DevTools?",
+      "spiegazione": "TTFB = time between request sending and first byte of response: the key API latency metric, visible in Network → Timing.",
+      "risposte": [
+        "The total time taken by the browser to download, parse, and render the entire page",
+        "The number of failed page requests",
+        "The time between sending the request and receiving the first byte of the response",
+        "The size of the response body"
+      ]
+    },
+    "721b439ceaa7": {
+      "domanda": "Why does the 'stateless' property of HTTP favor horizontal scalability?",
+      "spiegazione": "Stateless = each request carries all the necessary information; no server needs to remember state, so requests can be distributed freely. The others confuse stateless with server sessions, headers, or encryption.",
+      "risposte": [
+        "Because the server keeps all active sessions in RAM",
+        "Because each request is self-contained, so any server in the farm can handle it without knowing about previous ones",
+        "Because it always uses HTTPS",
+        "Because it reduces the number of headers"
+      ]
+    },
+    "2bd4607cdfc0": {
+      "domanda": "What does the payload of the token issued by TaskFlow upon login contain?",
+      "spiegazione": "Only the minimum necessary and non-secret information. `jwt.sign({ userId, ruolo }, JWT_SECRET, { expiresIn: '1h' })`.",
+      "risposte": [
+        "The complete list of tasks owned by the user",
+        "The user's email along with the password in plain text",
+        "The bcrypt hash of the password and the date of the last login",
+        "`userId` and `ruolo`"
+      ]
+    },
+    "069ff0676eba": {
+      "domanda": "Which character is mandatory around keys and strings in JSON?",
+      "spiegazione": "JSON only allows double quotes, both for keys and strings. Single quotes and backticks are valid in JS but not in JSON.",
+      "risposte": [
+        "Curly braces placed at the beginning and end of each value",
+        "Single quotes, exactly as in JavaScript objects",
+        "Backticks used for template literals in JavaScript",
+        "Double quotes"
+      ]
+    },
+    "85d49f52761c": {
+      "domanda": "Which DevTools tab displays all HTTP requests of a page in real time?",
+      "spiegazione": "The Network tab (F12) lists all HTTP requests; the Fetch/XHR filter isolates AJAX calls.",
+      "risposte": [
+        "Elements",
+        "Console",
+        "Network",
+        "Sources"
+      ]
+    },
+    "7e28821c28ea": {
+      "domanda": "Why do controllers write `return next(notFound(...))` instead of simply `next(notFound(...))`?",
+      "spiegazione": "`next()` does not stop the function: without `return`, the code below continues to run and may call `res.json()` after the error handler has already responded.",
+      "risposte": [
+        "Because `next` does not work",
+        "Without `return`, the controller's execution continues, risking the sending of two responses for the same request",
+        "To avoid blocking the thread",
+        "Because Express executes middleware in reverse order of registration, and without `return` the chain would be traversed twice"
+      ]
+    },
+    "25bbdc11652c": {
+      "domanda": "What are the three parts of a JSON Web Token?",
+      "spiegazione": "The header and payload are Base64Url-encoded, and the signature is calculated using the server's secret, which makes the token tamper-proof.",
+      "risposte": [
+        "Header, payload, and signature",
+        "User, role, and permissions",
+        "Key, value, and expiration",
+        "Method, URL, and body"
+      ]
+    },
+    "93dc89d77684": {
+      "domanda": "Is hiding the \"Delete\" button from non-admins with `${ruolo === 'admin' ? ... : ''}` a security measure?",
+      "spiegazione": "Client-side control serves to avoid proposing an action that would be rejected; real security always lies solely on the server.",
+      "risposte": [
+        "No, but in this case it is sufficient because the JWT token already contains the role and the browser prevents modifying it before sending it to the server along with the request",
+        "No, it is only interface: anyone can open DevTools and manually launch the DELETE, and it is the `autorizza('admin')` middleware on the server that responds with 403",
+        "Yes, if combined with HTTPS",
+        "Yes, it prevents the DELETE"
+      ]
+    },
+    "bb9c86f0cf25": {
+      "domanda": "In Express 4, why is an explicit try/catch needed in async routes?",
+      "spiegazione": "In Express 4, an error thrown in an async function does not automatically reach the error handler: you need try/catch + next(err) (or use express-async-errors). Express 5 catches it automatically.",
+      "risposte": [
+        "Because in Express 4, errors from async functions are not caught automatically and must be passed to next()",
+        "Because without try/catch, Express 4 immediately closes the TCP connection to the client before even reading the request",
+        "To make the response faster",
+        "To be able to register the route"
+      ]
+    },
+    "a3083725aad6": {
+      "domanda": "Which header does the client send to ask the server whether the resource has changed compared to the cached copy?",
+      "spiegazione": "The client sends back the previously received ETag in `If-None-Match`; the date-based alternative is `If-Modified-Since`.",
+      "risposte": [
+        "Cache-Control, which declares the caching policy of the response",
+        "Authorization, which carries the credentials of the user making the request",
+        "If-None-Match",
+        "Content-Length, which indicates the size in bytes of the response body"
+      ]
+    },
+    "8337b0e3ea6d": {
+      "domanda": "Which built-in middleware in Express serves static files from a folder?",
+      "spiegazione": "`express.static('public')` exposes the files in the specified folder. `express.json()` parses JSON bodies, `express.urlencoded()` parses HTML form bodies.",
+      "risposte": [
+        "`express.urlencoded()`",
+        "`express.static()`",
+        "`express.raw()`",
+        "`express.json()`"
+      ]
+    },
+    "686079858115": {
+      "domanda": "An object with a `Date` field is serialized with `JSON.stringify` and then read back with `JSON.parse`: what is obtained?",
+      "spiegazione": "To retrieve a `Date`, a reviver is needed, i.e., the second parameter of `JSON.parse`. It is a classic source of silent bugs.",
+      "risposte": [
+        "A string in ISO 8601 format, because JSON has no date type and parsing cannot guess it",
+        "The numeric timestamp",
+        "The `null` value",
+        "A Date object again"
+      ]
+    },
+    "c523d8b1c89e": {
+      "domanda": "Why is it said that 'REST is not HTTP'?",
+      "spiegazione": "REST is a style (a set of constraints), while HTTP is the protocol on which it is actually implemented. Technically, REST could rely on other protocols, but HTTP is the only widely adopted implementation.",
+      "risposte": [
+        "Because REST uses only HTTPS and never plain HTTP",
+        "Because REST completely replaces HTTP",
+        "Because REST is an architectural style that relies on HTTP, but in theory could be based on other protocols",
+        "Because HTTP is more recent than REST"
+      ]
+    },
+    "075e97e53c52": {
+      "domanda": "In a PUT request, what happens to a field of the resource that is not included in the body?",
+      "spiegazione": "PUT replaces the entire resource: omitted fields are removed or reset to their default values. This is the most common error, i.e., using PUT as if it were PATCH.",
+      "risposte": [
+        "It always causes a 400 validation schema error",
+        "It is copied from the previous version of the resource",
+        "It remains unchanged, because PUT only affects the fields it receives",
+        "It returns to the default"
+      ]
+    },
+    "0c362f356197": {
+      "domanda": "A user with the `user` role and a valid token calls `DELETE /api/v1/tasks/3`, which is protected by `autorizza('admin')`. What do they receive?",
+      "spiegazione": "Authentication succeeds (the token is valid), but authorization fails: 403 Insufficient permissions. Logging in again would not change anything.",
+      "risposte": [
+        "403",
+        "404",
+        "200",
+        "401"
+      ]
+    },
+    "44607ac3598c": {
+      "domanda": "What does the start line of an HTTP response contain?",
+      "spiegazione": "In a request, the start line is method + URL + version; in a response, it is version + status code (e.g., `HTTP/1.1 200 OK`).",
+      "risposte": [
+        "Version and status code",
+        "The content type of the body and its length in bytes",
+        "The HTTP method, the requested URL, and the protocol version used",
+        "The complete list of headers sent by the server in the response"
+      ]
+    },
+    "833ca1defe50": {
+      "domanda": "Which curl flag sends a HEAD request (headers only)?",
+      "spiegazione": "curl -I sends a HEAD request and displays only the headers. -X sets the method, -d adds a body, -v enables verbose mode.",
+      "risposte": [
+        "-I",
+        "-X POST followed by the full resource URL",
+        "-d with the request body in JSON format",
+        "-v to enable full verbose mode"
+      ]
+    },
+    "20a20e47be08": {
+      "domanda": "In Postman, where do you set the JSON body of a POST request?",
+      "spiegazione": "By selecting raw -> JSON, Postman automatically sets the `Content-Type: application/json` header. The Params tab is used for the query string.",
+      "risposte": [
+        "In Body -> raw -> JSON",
+        "In Authorization, selecting the Bearer Token type",
+        "In the Headers tab, within the Content-Type header",
+        "In the Params tab, as key-value pairs"
+      ]
+    },
+    "4c66f399105b": {
+      "domanda": "How is the ETag of a single task in TaskFlow constructed?",
+      "spiegazione": "`crypto.createHash('md5').update(JSON.stringify(task)).digest('hex')`: it is a content fingerprint, so it changes if and only if the content changes.",
+      "risposte": [
+        "As the last modification date converted to ISO 8601 format",
+        "As an MD5 hash of the content",
+        "As a sequential number incremented on every task modification",
+        "As a random identifier regenerated on every received request"
+      ]
+    },
+    "8ee3f765fba8": {
+      "domanda": "In `router.delete('/:id', autentica, autorizza('admin'), ctrl.remove)`, why is the order of the two middleware not interchangeable?",
+      "spiegazione": "Reversing them would cause a runtime error on `req.user` being undefined. You must first establish who you are, then what you are allowed to do.",
+      "risposte": [
+        "For stylistic convention",
+        "Because Express enforces it",
+        "Because `autorizza` needs to read `req.user.ruolo`, which only exists after `autentica` has verified the token and populated it",
+        "Because Express evaluates route middleware from right to left, so the last declared is actually the first to be executed"
+      ]
+    },
+    "0b4e45b7c5ad": {
+      "domanda": "What is the difference between 'resource' and 'representation'?",
+      "spiegazione": "The resource is the abstraction (lives on the server, identified by the URL); the representation is its 'snapshot' transmitted in a negotiated format. The same resource can have multiple representations.",
+      "risposte": [
+        "The resource is the file on disk, the representation is its URL",
+        "They are synonyms",
+        "The resource is the abstract concept identified by the URL; the representation is the concrete form (JSON, XML...) with which it is transmitted to the client",
+        "The resource is always in XML"
+      ]
+    },
+    "e0ffbba4ad6c": {
+      "domanda": "In `https://api.esempio.com/v1/users/42?lang=it`, which component identifies the resource?",
+      "spiegazione": "The path (`/v1/users/42`) identifies the resource; the query string only carries options, filters, and pagination.",
+      "risposte": [
+        "The scheme",
+        "The path",
+        "The host",
+        "The port"
+      ]
+    },
+    "ea26e9d49016": {
+      "domanda": "What is the name of the part of a URL that follows the '?' and contains key=value pairs?",
+      "spiegazione": "The query string is the part after '?' (e.g., ?page=2&limit=20), used for filters, pagination, and options. Fragment, path, and schema are other components of the URL.",
+      "risposte": [
+        "The fragment, which is the portion handled only by the browser",
+        "The path that identifies the resource on the server",
+        "Query string",
+        "The scheme that precedes the colons and slashes"
+      ]
+    },
+    "1a81b17c4881": {
+      "domanda": "What is 'content negotiation'?",
+      "spiegazione": "Content negotiation: the client declares the formats it accepts via the Accept header, and the server responds with the chosen Content-Type (or 406 if it cannot satisfy the request). It does not concern ports, load balancing, or encryption.",
+      "risposte": [
+        "The process by which a load balancer decides which server instance to forward each incoming request to",
+        "The choice of the TCP port to use for the connection",
+        "The encryption of the channel",
+        "The agreement on the representation format via the Accept and Content-Type headers"
+      ]
+    },
+    "dc92e1ca8610": {
+      "domanda": "Which public API used in the course provides real, free weather data without requiring registration?",
+      "spiegazione": "Open-Meteo exposes real forecasts with parameters in the query string. GitHub API has a rate limit of 60 requests/hour, JSONPlaceholder is fake.",
+      "risposte": [
+        "JSON Server, which turns a JSON file into a REST API",
+        "JSONPlaceholder, the fake API with /users, /posts and /comments",
+        "Open-Meteo",
+        "GitHub API"
+      ]
+    },
+    "85599ab6b702": {
+      "domanda": "You send with curl `-d '{\"nome\":\"Mario\"}'` forgetting `-H \"Content-Type: application/json\"`. What does the Express server see?",
+      "spiegazione": "`express.json()` only acts if the Content-Type declares JSON. It's the most common cause of the \"body arrives empty\" bug.",
+      "risposte": [
+        "Responds with 415",
+        "Receives the body correctly, because with `-d` curl sets the `Content-Type: application/json` header automatically when the content is valid JSON",
+        "`express.json()` does not parse the body and `req.body` remains empty, so validation fails on fields that the client believes it sent",
+        "The server goes into 500 error"
+      ]
+    },
+    "ae57bcbc346b": {
+      "domanda": "Why doesn't `fetch` reject the Promise when the server responds with 404?",
+      "spiegazione": "Therefore, an explicit check on `response.ok` is needed; otherwise, the error goes unnoticed, and you attempt to use a body that doesn't contain the expected data.",
+      "risposte": [
+        "Because from `fetch`'s perspective, the request was successful: a 404 is a regular HTTP response, delivered correctly",
+        "Because the body is missing",
+        "Because it's a known bug",
+        "Because Promise rejection is reserved for errors thrown by the application code, while 404 comes from the remote server"
+      ]
+    },
+    "b51819fe1b69": {
+      "domanda": "Which status code typically accompanies a successful DELETE request without a body?",
+      "spiegazione": "204 No Content: success without a response body. A 204 response never includes a body.",
+      "risposte": [
+        "202",
+        "204",
+        "200",
+        "201"
+      ]
+    },
+    "44b41b7ce4f8": {
+      "domanda": "Which of these HTTP methods is NOT idempotent?",
+      "spiegazione": "POST is not idempotent: two identical POST requests create two distinct resources. GET, PUT, and DELETE are idempotent.",
+      "risposte": [
+        "PUT",
+        "GET",
+        "DELETE",
+        "POST"
+      ]
+    },
+    "7370d5dbec7d": {
+      "domanda": "In which situations does `fetch` actually reject the Promise?",
+      "spiegazione": "The rejection indicates that the response did not arrive at all. If it arrived, regardless of its status, the Promise resolves.",
+      "risposte": [
+        "On 4xx codes",
+        "Only for network errors: unreachable server, DNS not resolving, request blocked by the browser due to CORS",
+        "Never",
+        "On 5xx codes"
+      ]
+    },
+    "8a796cbc9aaa": {
+      "domanda": "What is the purpose of the Authorization header in a request to a stateless API?",
+      "spiegazione": "Since HTTP is stateless, credentials are sent with every request in the Authorization header. Content-Type specifies the format, Accept-Language indicates the language, and Content-Encoding handles compression.",
+      "risposte": [
+        "To declare the preferred language and formats the client can accept in the response",
+        "To transport credentials (e.g., a Bearer token) with every request",
+        "To indicate the format of the request body",
+        "To compress the body"
+      ]
+    },
+    "810da6697ecd": {
+      "domanda": "Which trio of HTTP methods is 'safe' (does not modify the server state)?",
+      "spiegazione": "Safe = no observable side effects on the server: GET, HEAD, OPTIONS. POST/PUT/PATCH/DELETE modify state.",
+      "risposte": [
+        "GET, HEAD, OPTIONS",
+        "Only GET, because it is the only one used for data reading",
+        "GET, POST and PUT, because all can read data from the server",
+        "POST, PUT, PATCH and DELETE, as they operate on resources"
+      ]
+    },
+    "2f88e8bd7cce": {
+      "domanda": "How many distinct defenses are contained in `Math.min(100, Math.max(1, parseInt(req.query.limit) || 10))`?",
+      "spiegazione": "`|| 10` covers the absence, `Math.max(1, ...)` prevents zero and negative values, `Math.min(100, ...)` prevents a client from downloading the entire dataset in a single request.",
+      "risposte": [
+        "Only one",
+        "Three: the default if `limit` is missing or not numeric, the minimum of 1, and the maximum cap of 100",
+        "Two, namely the default and the maximum allowed cap",
+        "None, it is just a type conversion"
+      ]
+    },
+    "a134078b9695": {
+      "domanda": "How should `GET /users/42/posts/7/comments/3/likes`, which is too deeply nested, be correctly rewritten?",
+      "spiegazione": "When nesting exceeds one level, the resource is promoted to the top level, and the relationship is expressed using a query string filter.",
+      "risposte": [
+        "`GET /users/42/likes`",
+        "`GET /likes?commentId=3`",
+        "`GET /likes/3`",
+        "`GET /users/42/posts/7/likes`"
+      ]
+    },
+    "b1cad1c8a167": {
+      "domanda": "What is the purpose of express.Router()?",
+      "spiegazione": "express.Router() creates independent 'mini-apps' (e.g., routes/users.js) that can be mounted using app.use('/api/v1/users', router), preventing app.js from becoming bloated.",
+      "risposte": [
+        "To connect to the database",
+        "To create modular, mountable route mini-applications on a prefix",
+        "To automatically generate OpenAPI documentation for all defined routes",
+        "To encrypt the application's routes"
+      ]
+    },
+    "e12c18a31766": {
+      "domanda": "Why does the TaskFlow frontend contain the line `if (risposta.status === 204) return null;`?",
+      "spiegazione": "`204 No Content` does not have an empty body: it has no body at all. It is the typical response for a successful DELETE operation.",
+      "risposte": [
+        "To handle errors",
+        "To prevent caching",
+        "Because a 204 response has no body, so calling `.json()` on it would fail: there is nothing to parse",
+        "For security reasons"
+      ]
+    },
+    "1d95bfdbc1c9": {
+      "domanda": "What is the 'layered system' constraint in REST?",
+      "spiegazione": "Layered system: multiple layers (proxies, CDNs, gateways) can exist between the client and the server, which the client is unaware of. It does not refer to common languages, a minimum number of servers, or the MVC pattern.",
+      "risposte": [
+        "The ability to have transparent intermediaries (proxies, CDNs, gateways) between the client and the server, which the client is unaware of",
+        "The requirement to use at least three servers",
+        "A system where the client and server must use the same language",
+        "The division of code into MVC layers"
+      ]
+    },
+    "109176ba7994": {
+      "domanda": "For which family of status codes does it make sense for a client to automatically retry the request after an interval?",
+      "spiegazione": "The 5xx family indicates a server-side issue, which may have been resolved. Retrying an identical 4xx request will always result in the same error.",
+      "risposte": [
+        "The 5xx",
+        "The 2xx, because they confirm that the request was accepted",
+        "The 4xx, because they indicate that the client's request contains an error",
+        "The 3xx, because they indicate that the resource has moved elsewhere"
+      ]
+    },
+    "7e061b141705": {
+      "domanda": "In which environment variable is it controlled whether to show or hide the stack trace?",
+      "spiegazione": "NODE_ENV: with 'development' the stack can be included in 500 errors for debugging; with 'production' it should be hidden.",
+      "risposte": [
+        "NODE_DEBUG",
+        "NODE_HOME",
+        "NODE_PATH",
+        "NODE_ENV"
+      ]
+    },
+    "6fbff1c0d23a": {
+      "domanda": "Which JavaScript value causes JSON.stringify to throw a TypeError?",
+      "spiegazione": "BigInt and circular references cause a TypeError to be thrown. (NaN/Infinity become null; undefined and functions are omitted or converted to null.)",
+      "risposte": [
+        "A boolean",
+        "A number",
+        "A BigInt, or an object with a circular reference to itself",
+        "A string"
+      ]
+    },
+    "70dc18ef2146": {
+      "domanda": "What three things does Express provide (and nothing else)?",
+      "spiegazione": "Express provides routing, middleware, and convenience methods on req/res. It is opinionated: ORMs, auth, validation, and databases are added via external libraries.",
+      "risposte": [
+        "A TypeScript compiler and a frontend bundler",
+        "A full ORM, an authentication system, and a built-in schema validator",
+        "A database, a web server, and a preconfigured HTML templating system",
+        "Routing, middleware, and convenience APIs on req/res"
+      ]
+    },
+    "d7b1c3783140": {
+      "domanda": "Which technology defines its contract with a formal WSDL document?",
+      "spiegazione": "SOAP uses WSDL; REST has an informal contract described at most with OpenAPI; gRPC uses `.proto` files.",
+      "risposte": [
+        "HTTP",
+        "SOAP",
+        "REST",
+        "gRPC"
+      ]
+    },
+    "062403cbd9af": {
+      "domanda": "Which status does the `autentica` middleware return when the Authorization header is completely missing?",
+      "spiegazione": "401 = \"I don't know who you are\". The client can react by redirecting to login, which would be useless in the case of a 403.",
+      "risposte": [
+        "404",
+        "400",
+        "403",
+        "401"
+      ]
+    },
+    "3d150b2c32bd": {
+      "domanda": "In the recommended folder structure, what is the role of 'controllers'?",
+      "spiegazione": "Controllers contain the logic: they read req, process it, and write res. Routes only map URL+method→controller; index.js starts the server.",
+      "risposte": [
+        "Map URL+method pairs to functions",
+        "Start the server on the port",
+        "Contain the business logic of routes: read req, process, and write res",
+        "Serve static files and multimedia content from the project's public folder"
+      ]
+    },
+    "c35be68b48cc": {
+      "domanda": "What is the purpose of the 'catch-all 404' middleware placed before the error handler?",
+      "spiegazione": "The catch-all 404 intercepts undefined routes and responds with {error: 'Endpoint not found'}. It is a regular middleware, placed after the routes but before the error handler.",
+      "risposte": [
+        "To return 404 for requests that do not match any defined route",
+        "To create new resources",
+        "To log all requests",
+        "To validate the JSON body format of all POST and PUT requests arriving at the server"
+      ]
+    },
+    "5ef9766681ec": {
+      "domanda": "What does setting `additionalProperties: false` in a JSON Schema entail?",
+      "spiegazione": "It immediately catches typos (`priorita`/`priorità`) and prevents a client from injecting fields the server does not expect.",
+      "risposte": [
+        "It prevents null values",
+        "It forbids nested objects",
+        "A body containing undeclared fields is rejected with a 400 error, instead of being accepted while silently ignoring the extra ones",
+        "It makes all fields listed in `properties` mandatory, so you don't need to separately declare the schema's `required` array"
+      ]
+    },
+    "a1e9ae40aa0e": {
+      "domanda": "Which REST constraint allows the same server to serve a website, a mobile app, and a script without knowing which one it is?",
+      "spiegazione": "The client-server constraint separates roles: the server does not know the type of client, so it serves all of them in the same way. Not all methods are safe (POST/PUT/DELETE are not).",
+      "risposte": [
+        "Cacheable",
+        "The fact that every HTTP method is safe and therefore never modifies anything on the server",
+        "Client-server separation, which allows the two sides to evolve independently",
+        "Code on demand, which sends the necessary code to the client"
+      ]
+    },
+    "2a6afb010d55": {
+      "domanda": "Which part of the URL is never sent to the server?",
+      "spiegazione": "The fragment (the part after #) is handled only by the browser and does not reach the server. The path, query string, and host, on the other hand, are sent.",
+      "risposte": [
+        "The query string",
+        "The host",
+        "The fragment",
+        "The path"
+      ]
+    },
+    "c14f56f717bd": {
+      "domanda": "Why must the `total` field in pagination be calculated after applying filters?",
+      "spiegazione": "With `?status=completed`, the verified total is 16, not 50: it is the number of elements that satisfy the filter, not those of the entire dataset.",
+      "risposte": [
+        "Otherwise, the client would calculate the wrong number of pages and display empty pages",
+        "Because filters are optional",
+        "For aesthetic consistency",
+        "Because JSON Schema requires it"
+      ]
+    },
+    "ffc6160455eb": {
+      "domanda": "What is the recommended maximum nesting level in a URL?",
+      "spiegazione": "Do not exceed one nesting level; beyond that (e.g., /users/42/posts/7/comments/3), the URL becomes unreadable and fragile: it is better to use a top-level resource with a filter.",
+      "risposte": [
+        "Three",
+        "Five",
+        "One",
+        "Zero"
+      ]
+    },
+    "94482f6daead": {
+      "domanda": "What does a 'resource' represent in REST?",
+      "spiegazione": "A resource is an abstraction with identity, addressable via a URL (e.g., /users/42) — not necessarily a database row or a file. Code sent to the client pertains to the 'code on demand' constraint.",
+      "risposte": [
+        "The JavaScript code sent by the server to the browser for execution",
+        "Any concept with identity and addressable via a URL",
+        "A static file",
+        "Exclusively a row in a database table"
+      ]
+    },
+    "7b865d1ba7ac": {
+      "domanda": "Which header does the client use to declare the format in which it wants to receive the response?",
+      "spiegazione": "`Accept` declares what the client can receive, `Content-Type` what it is sending. `Allow` is a response to 405, `Origin` relates to CORS.",
+      "risposte": [
+        "Origin",
+        "Host",
+        "Allow",
+        "Accept"
+      ]
+    },
+    "faadbc33c12b": {
+      "domanda": "Which naming convention is correct for the users collection?",
+      "spiegazione": "Plural for collections: /users. No verbs in the URL (the verb is already the HTTP method) and no singular for collections.",
+      "risposte": [
+        "/users",
+        "/getUsers, so the name clearly expresses the action performed",
+        "/user, in singular because it is more concise to write",
+        "/listUsers to indicate that it returns a list"
+      ]
+    },
+    "b804cae4cbb4": {
+      "domanda": "Which section of DevTools displays the body sent in a POST request?",
+      "spiegazione": "Payload contains the request body; Response and Preview, on the other hand, relate to the response body.",
+      "risposte": [
+        "Payload",
+        "Headers, which lists the request and response headers",
+        "Timing, which reports DNS lookup, TCP connection, and TTFB times",
+        "Preview, which displays the formatted tree-like JSON response"
+      ]
+    },
+    "52edbb41f56e": {
+      "domanda": "What is the difference between `app.use('/api', x)` and `app.get('/api', x)`?",
+      "spiegazione": "This is why routers are mounted with `app.use('/api/v1', routes)` and global middleware with `app.use(express.json())`.",
+      "risposte": [
+        "None, they are synonyms",
+        "`app.use` registers something that applies to every HTTP method and every path starting with that prefix; `app.get` responds only to GET on that exact path",
+        "`app.use` applies only to POST",
+        "`app.get` is faster"
+      ]
+    },
+    "e7ed065e71cf": {
+      "domanda": "What is the purpose of JSON Schema used with the ajv library?",
+      "spiegazione": "JSON Schema describes types, required fields, ranges, and formats; ajv compiles the schema and validates each body (e.g., as middleware), replacing dozens of if statements. It does not indent, convert XML, or compress.",
+      "risposte": [
+        "To compress the response body",
+        "To declaratively describe the expected JSON structure and validate incoming data",
+        "To automatically transform every incoming XML request into the corresponding equivalent JSON document",
+        "To indent the outgoing JSON"
+      ]
+    },
+    "5518ba0fb613": {
+      "domanda": "What is actually saved by a `304 Not Modified`?",
+      "spiegazione": "This is an important distinction: round-trip latency still exists; only the transfer of data already owned by the client is avoided.",
+      "risposte": [
+        "The transmission of the body",
+        "The TCP connection",
+        "The entire network round-trip",
+        "The processing time"
+      ]
+    },
+    "44afb6fd19ec": {
+      "domanda": "Why should stack traces not be exposed in a 500 response in production?",
+      "spiegazione": "Stack traces expose internal details that can be exploited by an attacker. They should be logged server-side, and a generic message should be returned to the user; stack traces are only displayed during development (based on NODE_ENV).",
+      "risposte": [
+        "Because they slow down the response",
+        "Because they are not in JSON format",
+        "Because they consume too much network bandwidth",
+        "Because they reveal code structure, file paths, and library versions: information valuable to an attacker"
+      ]
+    },
+    "285dcc1eb112": {
+      "domanda": "Why does the login response return `Invalid credentials` for both non-existent emails and incorrect passwords?",
+      "spiegazione": "This is a deliberate choice against account enumeration: the generic message does not provide useful information to someone probing the API.",
+      "risposte": [
+        "Because bcrypt does not distinguish between the two cases",
+        "To simplify the code",
+        "Because the GDPR mandates it",
+        "Because a more precise message (\"email not found\") would reveal to an attacker which email addresses are registered in the system"
+      ]
+    },
+    "0b0b1e3859ae": {
+      "domanda": "Which component of the client-server model always initiates the communication?",
+      "spiegazione": "In the client-server model, the client always initiates the request; the server responds. Proxies and load balancers are intermediaries, not initiators.",
+      "risposte": [
+        "The client",
+        "The proxy intermediary placed between the two endpoints",
+        "The load balancer that distributes incoming requests",
+        "The server, which sends data to the client first"
+      ]
+    },
+    "5e546401bab6": {
+      "domanda": "Which status code is correctly returned by res.status(204).send()?",
+      "spiegazione": "204 No Content: success without a body, typical for DELETE. Any body on a 204 is ignored.",
+      "risposte": [
+        "204",
+        "500, in case of an unhandled internal error",
+        "404, if the resource indicated was not found on the server",
+        "200, because send always implies a body in the response"
+      ]
+    },
+    "9fb6a6fb7d80": {
+      "domanda": "A client sends a malformed JSON body to a POST route: who generates the error and how should it be translated?",
+      "spiegazione": "`express.json()` internally uses `JSON.parse()`, which throws on invalid JSON; the error ends up in the error handler, where it should be mapped to 400 because the fault lies with the client.",
+      "risposte": [
+        "No error is generated: `req.body` remains empty",
+        "The controller generates it when trying to read `req.body`, and it should be translated into a 500 because the error manifests within the server",
+        "`express.json()` generates it by calling `JSON.parse()`, and the best practice is to translate it into a 400 Bad Request",
+        "The router generates it and it should be translated into 404"
+      ]
+    },
+    "04277d2fd4f6": {
+      "domanda": "What does the HEAD method do?",
+      "spiegazione": "HEAD is identical to GET but returns only the headers, no body (in curl: -I). Useful for checking existence, size, or cache. The CORS preflight is OPTIONS.",
+      "risposte": [
+        "Deletes the resource indicated by the URL",
+        "Returns only the response headers, without the body (like GET but without the body)",
+        "Creates a new resource in the indicated collection",
+        "Sends the server the list of CORS capabilities supported by the browser during the cross-origin preflight phase"
+      ]
+    },
+    "402145d57eaf": {
+      "domanda": "With `app.use(cors())` active, the page's JavaScript reads `Content-Type` but gets `null` from `Location` and `ETag`. Why?",
+      "spiegazione": "With curl, both headers are clearly visible: this is a browser policy, and it would be the first obstacle when trying to implement client-side conditional caching.",
+      "risposte": [
+        "The server does not send them",
+        "Because the browser only exposes a small set of headers to cross-origin code: for others, `exposedHeaders` is required in the CORS configuration",
+        "Because `fetch` does not read headers",
+        "It is an API flaw"
+      ]
+    },
+    "9fde22696763": {
+      "domanda": "What is the difference between 'Response' and 'Preview' in the request details within DevTools?",
+      "spiegazione": "Response = raw text body; Preview = formatted and tree-expandable JSON. Same data, two different views.",
+      "risposte": [
+        "Preview shows only the images contained in the web page, never the JSON data possibly returned",
+        "There is no difference",
+        "Response is simply faster to load",
+        "Response shows the body as raw text; Preview shows it formatted and navigable as a tree"
+      ]
+    },
+    "5c8ab3651968": {
+      "domanda": "How many architectural constraints does REST have?",
+      "spiegazione": "Six: client-server, stateless, cacheable, uniform interface, layered system, and code on demand (the only optional one).",
+      "risposte": [
+        "Six",
+        "Four",
+        "Seven",
+        "Five"
+      ]
+    },
+    "36ba8863c07c": {
+      "domanda": "Why does adding an optional field to a response NOT require a new API version?",
+      "spiegazione": "A breaking change is what breaks existing clients in production: removing or renaming a field is one, adding one is not.",
+      "risposte": [
+        "Because it is an optional field",
+        "Because existing clients continue to find all the fields they were already reading and can ignore the new one",
+        "Because versioning in the path only concerns routes, while response fields can change freely at any time",
+        "Because fields don't count"
+      ]
+    },
+    "aff4b35f8889": {
+      "domanda": "Why is `GET /users/admin` a poorly designed URL?",
+      "spiegazione": "Identifiers should be in the path, filters in the query string: the correct form is `GET /users?role=admin`, which removes any ambiguity.",
+      "risposte": [
+        "Because it is unclear whether `admin` is a user ID or a role filter",
+        "Because it is too short",
+        "Because it lacks a version number",
+        "Because it uses the plural"
+      ]
+    },
+    "a0a8e93793ef": {
+      "domanda": "Which curl flag displays the entire request/response cycle, including headers?",
+      "spiegazione": "`-v` (verbose) prints request and response headers as well as the body. `-o` saves to a file, `-d` sends a body, `-X` sets the method.",
+      "risposte": [
+        "`-d`",
+        "`-v`",
+        "`-o`",
+        "`-X`"
+      ]
+    },
+    "76777c3eaa8d": {
+      "domanda": "`POST /login` with an incorrect password responds with `200 OK` and body `{\"success\": false}`. What is the error?",
+      "spiegazione": "A client (or a proxy, or a monitor) decides based on the code: a 200 on a failure makes the API impossible to consume correctly.",
+      "risposte": [
+        "The HTTP status must reflect the outcome of the request: here it should be 401, otherwise every client must read the body to determine if it was successful",
+        "The body should not contain the `success` field, because the uniform error format of the course only includes `error`, `dettaglio`, and `campi`",
+        "The body should be empty",
+        "The Location header is missing"
+      ]
+    },
+    "f38c897df12d": {
+      "domanda": "What distinguishes JSONPlaceholder from JSON Server regarding write persistence?",
+      "spiegazione": "JSONPlaceholder responds correctly (e.g., 201 with id:101) but does not save anything; JSON Server rewrites db.json and thus truly persists the changes.",
+      "risposte": [
+        "Both always persist changes",
+        "Neither accepts POST requests",
+        "They are identical",
+        "JSONPlaceholder simulates writes but does NOT persist them; JSON Server, on the other hand, rewrites the db.json file, so changes are truly persisted"
+      ]
+    },
+    "ff035892a7b9": {
+      "domanda": "What is the purpose of the 'replacer' (second parameter of JSON.stringify)?",
+      "spiegazione": "The replacer (array of keys or function) filters or transforms fields during serialization, e.g., to exclude sensitive fields. Indentation is the 3rd parameter; converting dates back is the job of the reviver in JSON.parse.",
+      "risposte": [
+        "To indent the output across multiple lines",
+        "To reconvert ISO-formatted strings into Date objects during parsing of the received JSON string",
+        "To filter or transform fields during serialization, for example to exclude a password",
+        "To compress the response body"
+      ]
+    },
+    "5b4033073f93": {
+      "domanda": "Why are a JavaScript object and a JSON document not the same thing?",
+      "spiegazione": "JSON is a text-based format with strict rules; the JS object is an in-memory structure that can contain functions, undefined, and cycles—all of which are forbidden in JSON.",
+      "risposte": [
+        "Because a JavaScript object can contain functions, undefined values, and circular references, which JSON does not support",
+        "Because JSON uses single quotes",
+        "Because JSON is faster",
+        "Because they are actually identical"
+      ]
+    },
+    "16cb3bda1f39": {
+      "domanda": "What does the `fetch(url)` call immediately return?",
+      "spiegazione": "The Promise resolves to a `Response` object that contains the status and headers but not yet the data: the body must be read separately using `.json()`, which is itself asynchronous.",
+      "risposte": [
+        "A complete Response object with the body already read and deserialized",
+        "A string containing the response body as it arrived",
+        "The ready-to-use JavaScript object obtained by parsing the response JSON",
+        "A Promise"
+      ]
+    },
+    "54ab6faefe3b": {
+      "domanda": "Which is the only optional REST constraint?",
+      "spiegazione": "Code on demand (the server can send executable code to the client) is the only optional constraint. The other five are mandatory to be considered RESTful.",
+      "risposte": [
+        "Cacheable, because not all responses can be cached",
+        "Code on demand",
+        "Stateless, because many servers actually maintain state",
+        "Uniform interface, rarely respected in real-world APIs"
+      ]
+    },
+    "37ed368a9016": {
+      "domanda": "Which of these changes is a breaking change that requires a new API version?",
+      "spiegazione": "Renaming/removing a field or route, or changing its type, breaks existing clients → new version. Adding an optional field or a new route is NOT breaking.",
+      "risposte": [
+        "Adding a new route to the API",
+        "Adding an optional field in the response",
+        "Renaming or removing an existing field from the response",
+        "Better documenting an already existing endpoint without changing its observable behavior"
+      ]
+    },
+    "5e0e2ceca013": {
+      "domanda": "Why is a published URL considered a 'long-term decision'?",
+      "spiegazione": "Changing a published URL breaks existing clients (it is part of the contract): therefore, plural naming, kebab-case, and versioning are long-lasting choices.",
+      "risposte": [
+        "Because once published, changing it breaks all clients that use it, so conventions must be chosen carefully from the start",
+        "Because it is stored forever in the browser cache",
+        "Because it is difficult to write",
+        "Because it is encrypted"
+      ]
+    },
+    "d7fd73c36ac8": {
+      "domanda": "Which signature distinguishes an error handler from other middleware in Express?",
+      "spiegazione": "The error handler has the special 4-parameter signature (err, req, res, next) and should be registered at the end, after all routes. It is reached by calling next(err).",
+      "risposte": [
+        "One that explicitly returns a resolved Promise",
+        "One with four parameters (err, req, res, next)",
+        "One that accepts no input parameters",
+        "One with two parameters, namely only the request and response"
+      ]
+    },
+    "f19af08d95f2": {
+      "domanda": "Why can a proxy automatically retry a GET request but not a POST request?",
+      "spiegazione": "Only idempotent requests can be safely retried: repeating a POST (which is not idempotent) would create duplicates. Speed and headers are irrelevant; HTTP does not inherently forbid repeated bodies.",
+      "risposte": [
+        "Because the HTTP specification explicitly forbids sending any request containing a body more than once",
+        "Because GET is faster to execute",
+        "Because GET is idempotent and repeating a POST risks creating the resource twice",
+        "Because POST has no headers"
+      ]
+    },
+    "815b38b52d60": {
+      "domanda": "Why is the `sort` parameter compared against a whitelist of allowed fields?",
+      "spiegazione": "The general rule is that anything coming from the query string must be validated against a whitelist of allowed values, not filtered by exclusion.",
+      "risposte": [
+        "For style uniformity",
+        "Because an invalid field would not trigger an error: comparisons would all be false, the array would be returned in an arbitrary order, and with a real database it would also be an attack vector",
+        "Because without the check, the `sort` value would be interpreted as a function name, and a client could cause the server to execute arbitrary code by passing a carefully crafted string in the query string",
+        "To save CPU"
+      ]
+    },
+    "4d483d52129d": {
+      "domanda": "What is the most common mistake when using PUT?",
+      "spiegazione": "PUT replaces the ENTIRE resource: omitted fields are cleared or reset to default. For partial updates, PATCH should be used.",
+      "risposte": [
+        "Using it without HTTPS",
+        "Using it instead of GET",
+        "Using it to read a resource's data",
+        "Using it like PATCH, sending only the fields to update, which results in clearing the omitted fields"
+      ]
+    },
+    "3a38947f2271": {
+      "domanda": "Which factory in `utils/errors.js` constructs an AppError with status 409?",
+      "spiegazione": "`conflict(msg)` creates an AppError with status 409, typically used for duplicates. `badReq`=400, `forbidden`=403, `notFound`=404.",
+      "risposte": [
+        "`forbidden`",
+        "`badReq`",
+        "`notFound`",
+        "`conflict`"
+      ]
+    },
+    "b162cf91360a": {
+      "domanda": "Which format standard is used for dates in JSON APIs?",
+      "spiegazione": "The de facto standard is ISO 8601 (e.g., 2026-06-03T10:00:00Z). JSON.stringify converts Date objects to ISO strings; parsing requires a reviver function to convert them back to Date objects.",
+      "risposte": [
+        "The local dd/mm/yyyy format of the server's country",
+        "ISO 8601",
+        "Unix timestamp expressed in milliseconds since 1970",
+        "A free-form string decided case by case by the developer"
+      ]
+    },
+    "7ade3aa5b3d2": {
+      "domanda": "What does Express do when it receives a HEAD request on a URL for which only a GET route is defined?",
+      "spiegazione": "Express automatically handles HEAD for every defined GET route: there is no need to declare it, and it is the method curl uses with `-I`.",
+      "risposte": [
+        "Responds 404",
+        "Automatically responds by reusing the GET handler, but without sending the body",
+        "Responds 405",
+        "Throws an error"
+      ]
+    },
+    "c09ddc353a69": {
+      "domanda": "What does the 'cacheable' constraint actually require?",
+      "spiegazione": "It does not mandate caching; it requires declaring it: headers (`Cache-Control`, `ETag`) make caching secure and predictable.",
+      "risposte": [
+        "That GET requests are always cached",
+        "That the client does not use cache",
+        "That the server uses Redis",
+        "That every response explicitly declares whether and for how long it can be cached, so intermediaries know how to behave"
+      ]
+    },
+    "e78c246ebdc5": {
+      "domanda": "How many requests per hour does the GitHub API allow without an authentication token?",
+      "spiegazione": "60 requests per hour without a token; the remaining quota is in the X-RateLimit-Remaining header. Once exhausted, the API responds with 403/429 until the reset.",
+      "risposte": [
+        "30",
+        "10",
+        "100",
+        "60"
+      ]
+    },
+    "24dcd94c266f": {
+      "domanda": "Which function converts a JSON string into a JavaScript object?",
+      "spiegazione": "JSON.parse() deserializes (string → object). JSON.stringify() performs the reverse operation (object → string).",
+      "risposte": [
+        "JSON.stringify(), which performs exactly the same operation",
+        "The fetch() function applied directly to the string",
+        "The new Object() constructor passing the string as an argument",
+        "JSON.parse()"
+      ]
+    },
+    "08724206588e": {
+      "domanda": "Among REST, SOAP, and gRPC, which one uses Protocol Buffers (binary format)?",
+      "spiegazione": "gRPC uses Protocol Buffers over HTTP/2. REST uses JSON/XML, SOAP uses only XML.",
+      "risposte": [
+        "gRPC",
+        "GraphQL",
+        "REST",
+        "SOAP"
+      ]
+    },
+    "06a9c042cbfd": {
+      "domanda": "What is the subtle difference between status codes 400 and 422?",
+      "spiegazione": "400: I can't even read the request (malformed JSON, wrong type). 422: I read the data but it fails semantic validation (e.g., malformed email). Both are 4xx, not 5xx.",
+      "risposte": [
+        "422 is used only for images",
+        "400 = unreadable or malformed request; 422 = valid syntax but data invalid according to business rules",
+        "400 is a server error, 422 is a client error",
+        "There is no difference: both indicate that the resource requested by the client was not found on the server"
+      ]
+    },
+    "3818ba8a23b3": {
+      "domanda": "Why should a URL with a query string be enclosed in quotes in a curl command?",
+      "spiegazione": "The shell interprets '&' (and other characters) as operators: without quotes, the URL is split. Example: curl \"https://host/path?a=1&b=2\". It is not needed for URLs without special characters.",
+      "risposte": [
+        "To make it simply more readable",
+        "Because curl always requires it, for every URL",
+        "To encrypt the request",
+        "Because otherwise the shell interprets characters like '&' as operators (e.g., background execution) instead of passing them to curl"
+      ]
+    },
+    "e698b6ef51fd": {
+      "domanda": "Which of these is NOT allowed in JSON?",
+      "spiegazione": "JSON does not allow comments (neither // nor /* */). null, arrays, and booleans are allowed.",
+      "risposte": [
+        "Arrays",
+        "Booleans",
+        "Comments",
+        "The null value"
+      ]
+    },
+    "27381797a147": {
+      "domanda": "What is the most common API versioning strategy?",
+      "spiegazione": "Version in the path (/v1/users): visible, testable from the browser, immediate in curl and Postman (e.g., api.stripe.com/v1/...).",
+      "risposte": [
+        "Never version, modifying existing routes directly",
+        "Insert a random sequential number within each individual resource",
+        "Change the domain name with every release of a new version",
+        "Version in the path (e.g., /v1/users)"
+      ]
+    },
+    "bdbb2f0b83dd": {
+      "domanda": "Why should a `405 Method Not Allowed` response include the `Allow` header?",
+      "spiegazione": "The 405 status indicates that the resource exists but the method is not supported; without `Allow`, the client would have to guess which methods to try.",
+      "risposte": [
+        "For security reasons",
+        "Because simply stating \"method not allowed\" leaves the client in the dark: `Allow` lists the methods actually supported on that URL",
+        "To enable CORS",
+        "Because the browser mandates it"
+      ]
+    },
+    "eff2b92e6736": {
+      "domanda": "Which response header tells the client how many seconds to wait before retrying?",
+      "spiegazione": "`Retry-After` typically accompanies a 429 (rate limit exceeded) or 503 (service unavailable) status code.",
+      "risposte": [
+        "Cache-Control, which carries the caching instructions for the response",
+        "Retry-After",
+        "X-Request-ID, the identifier used to trace the request",
+        "Last-Modified, the cache validator based on the modification date"
+      ]
+    },
+    "2fe6930ff589": {
+      "domanda": "Who defined the REST architectural style and in which year?",
+      "spiegazione": "REST was defined by Roy Fielding in his 2000 PhD dissertation. Berners-Lee invented the web (not REST); SOAP and HTTP/2 are different things.",
+      "risposte": [
+        "Tim Berners-Lee, in the early 1990s with the first web browser",
+        "The W3C, with the publication of the official specification for the SOAP protocol",
+        "Roy Fielding, in 2000",
+        "The IETF, in the RFC that describes the HTTP/2 protocol"
+      ]
+    },
+    "b150d28b81a1": {
+      "domanda": "What happens if a middleware does not call next() and does not send a response?",
+      "spiegazione": "Each middleware must either send a response or call next(); otherwise, the request hangs and the client times out. This is a classic verification question.",
+      "risposte": [
+        "Express automatically skips it",
+        "The next middleware still runs",
+        "The request hangs: the client waits indefinitely until timeout",
+        "An error 500 is automatically generated"
+      ]
+    },
+    "9763cbbb667c": {
+      "domanda": "Which status code should a POST request return upon successfully creating a new resource?",
+      "spiegazione": "201 Created (accompanied by the Location header). 200 is generic, 204 is for responses without a body (e.g., DELETE), and 202 is for asynchronous operations that are not yet complete.",
+      "risposte": [
+        "204 No Content, since the creation does not return data",
+        "202 Accepted, because the resource has been accepted by the server",
+        "201 Created",
+        "200 OK, because the request was successful"
+      ]
+    },
+    "356d2f66fbc1": {
+      "domanda": "How many value types does JSON support?",
+      "spiegazione": "Six types: string, number, boolean, null, object, and array.",
+      "risposte": [
+        "Five",
+        "Four",
+        "Eight",
+        "Six"
+      ]
+    },
+    "e865e3cc08d1": {
+      "domanda": "Where do identifiers and filtering/pagination options go in a URL?",
+      "spiegazione": "Identifier → path (/users/42); filters and options → query string (?role=admin&page=2). Mixing them (e.g., /users/admin) creates ambiguity.",
+      "risposte": [
+        "Everything in the path",
+        "Specific identifiers in the path (e.g., /users/42), filters and pagination in the query string (e.g., ?role=admin&page=2)",
+        "Everything in the query string",
+        "Indifferently in either one"
+      ]
+    },
+    "8d4aa1a89253": {
+      "domanda": "Which method should be used to transition an order's status from `pending` to `shipped`?",
+      "spiegazione": "It is a partial update of a single field: with PUT, the entire representation would need to be resent, and omitted fields would be reset.",
+      "risposte": [
+        "PATCH",
+        "PUT",
+        "DELETE",
+        "POST"
+      ]
+    },
+    "f3a2775bd908": {
+      "domanda": "Which writing style is recommended for API URLs?",
+      "spiegazione": "lowercase kebab-case (e.g., /blog-posts): readable and universally supported. camelCase/PascalCase are ambiguous, snake_case is less common.",
+      "risposte": [
+        "kebab-case",
+        "snake_case",
+        "camelCase",
+        "PascalCase"
+      ]
+    },
+    "533c3b27cd20": {
+      "domanda": "Which status code is used when a client exceeds the rate limit?",
+      "spiegazione": "429 Too Many Requests, accompanied by the Retry-After header. (GitHub: 60 requests/hour without a token.)",
+      "risposte": [
+        "409",
+        "403",
+        "422",
+        "429"
+      ]
+    },
+    "4aa0bdf78e19": {
+      "domanda": "What separates the headers from the body in an HTTP message?",
+      "spiegazione": "Headers and body are separated by an empty line. Content-Length declares the size of the body but does not act as a separator.",
+      "risposte": [
+        "A tab character placed at the beginning of the body",
+        "A comma followed by a space",
+        "An empty line",
+        "The Content-Length header that declares the size of the body"
+      ]
+    },
+    "7f4fb301c9ff": {
+      "domanda": "Which of these calls follows REST naming conventions?",
+      "spiegazione": "The verb is already implied by the HTTP method: the URL should contain only the plural name of the resource. The other three repeat the action in the path.",
+      "risposte": [
+        "`POST /users`",
+        "`POST /users/42/update`",
+        "`POST /createUser`",
+        "`GET /deleteUser?id=42`"
+      ]
+    },
+    "0f7315d90520": {
+      "domanda": "Out of 50 tasks, of which 16 are completed, what value does `GET /tasks?stato=completata&limit=10` return in `paginazione.totale`?",
+      "spiegazione": "`totale` counts the results after filtering and before pagination: 16. `limit=10` only determines how many items are included in the current page.",
+      "risposte": [
+        "60",
+        "16",
+        "50",
+        "10"
+      ]
+    },
+    "26fc945c8031": {
+      "domanda": "What does JSON.parse() do if it receives a string that is not valid JSON?",
+      "spiegazione": "JSON.parse throws an exception on invalid input: it must be handled with try/catch. (In Express, a malformed body ends up in the error handler → 400.)",
+      "risposte": [
+        "Silently ignores the error",
+        "Throws an exception, so it should be wrapped in a try/catch block to handle the error",
+        "Returns an empty string",
+        "Returns null"
+      ]
+    },
+    "85ac21f274e3": {
+      "domanda": "What is the practical difference between a 4xx and a 5xx error for the client?",
+      "spiegazione": "4xx = client error: retrying the same request is useless. 5xx = server error: the server may have recovered, so retrying (ideally with backoff) makes sense.",
+      "risposte": [
+        "None, they are equivalent",
+        "5xx means the resource does not exist",
+        "With a 4xx the problem is in the request and retrying it will yield the same error; with a 5xx the problem is on the server and a retry (after an interval) makes sense",
+        "4xx always requires login"
+      ]
+    },
+    "bda7c51d5e5f": {
+      "domanda": "Which family do client error status codes belong to?",
+      "spiegazione": "4xx = client error (bad request). 5xx = server error. 1xx informational, 3xx redirection.",
+      "risposte": [
+        "1xx",
+        "5xx",
+        "4xx",
+        "3xx"
+      ]
+    },
+    "f008ee024070": {
+      "domanda": "What is the purpose of the cost factor `10` in `bcrypt.hashSync('admin123', 10)`?",
+      "spiegazione": "It indicates how many times the algorithm is iterated: the slowness is intentional, as it makes brute-force attacks impractical.",
+      "risposte": [
+        "To indicate for how many hours the password remains valid before expiring",
+        "To deliberately slow down the hash computation",
+        "To define how many login attempts are allowed before locking out",
+        "To set the minimum allowed length for the user's password"
+      ]
+    },
+    "a28efd66d20a": {
+      "domanda": "What does telling Express to call next(err) with an argument do?",
+      "spiegazione": "next(err), with an argument, skips normal middleware and goes to the centralized error handler. next() without arguments passes to the next middleware.",
+      "risposte": [
+        "To immediately send a response to the client with status 200 and an empty body",
+        "To restart the server",
+        "To ignore the error",
+        "To skip normal middleware and go straight to the error handler"
+      ]
+    },
+    "31cb81582ecd": {
+      "domanda": "Where should the error handler be registered in app.js?",
+      "spiegazione": "The error handler should be placed at the end, after all routes and the catch-all 404, because Express only reaches it if no route has already responded.",
+      "risposte": [
+        "At the very beginning",
+        "Between the routes",
+        "At the very end",
+        "Outside of app.js"
+      ]
+    },
+    "83e2d99eecaa": {
+      "domanda": "What does the express.json() middleware do?",
+      "spiegazione": "express.json() parses the incoming JSON body and populates req.body; without it, req.body is undefined. It does not serve static files (that is express.static) nor does it compress responses.",
+      "risposte": [
+        "Parses the request's JSON body and populates req.body",
+        "Enables gzip compression for all outgoing server responses",
+        "Serves static files from a directory",
+        "Converts every response to JSON format"
+      ]
+    },
+    "e7d94a0f402b": {
+      "domanda": "Which status code indicates an asynchronous operation has been accepted but not yet completed (e.g., a batch job)?",
+      "spiegazione": "`202 Accepted` means \"I have taken charge of the request, the outcome will arrive later\". `201` is creation completed, `204` success without body.",
+      "risposte": [
+        "201",
+        "200",
+        "202",
+        "204"
+      ]
+    },
+    "46395786431b": {
+      "domanda": "What is the advantage of centralized error handling compared to using try/catch in every controller?",
+      "spiegazione": "Centralizing avoids duplication (try/catch + res.status(500) everywhere): controllers pass the error with next(err) and a single handler formats it. It does not eliminate errors or logging.",
+      "risposte": [
+        "It completely eliminates the possibility of errors",
+        "It is simply faster",
+        "It avoids repeating the same logic in every controller: a single error handler is defined that transforms every error into an HTTP response",
+        "It makes logging unnecessary"
+      ]
+    },
+    "aaccc017ccdb": {
+      "domanda": "What does it mean for an HTTP method to be 'idempotent'?",
+      "spiegazione": "Idempotency refers to the final STATE of the server, not the response code: N executions = one. (A second DELETE returns 404, but the state is identical.)",
+      "risposte": [
+        "That it never has a body",
+        "That it is safe to use in production",
+        "That executing it N times produces the same final server state as executing it only once",
+        "That it always returns the same HTTP status code"
+      ]
+    },
+    "749240e980d9": {
+      "domanda": "Which GitHub response header indicates how many requests remain in the rate limit window?",
+      "spiegazione": "X-RateLimit-Remaining indicates the remaining requests (60 per hour without a token). It is a custom header (X- prefix).",
+      "risposte": [
+        "X-RateLimit-Remaining",
+        "The Retry-After header, which specifies how many seconds to wait before retrying",
+        "The Cache-Control header, which governs response caching",
+        "The Content-Type header, which declares the body format"
+      ]
+    },
+    "0e0b7bdf31a7": {
+      "domanda": "In Postman, where is it best to save requests to reuse them and document the API?",
+      "spiegazione": "Collections group reusable and shareable requests, serving as the practical documentation for the API.",
+      "risposte": [
+        "In the operating system's clipboard, by copying and pasting each URL",
+        "Nowhere: they must be rewritten every time",
+        "In a Collection",
+        "In an external text file to be manually reimported each time"
+      ]
+    },
+    "8ac093eeec79": {
+      "domanda": "Why are headers with the `X-` prefix formally deprecated despite being widely used?",
+      "spiegazione": "RFC 6648 discourages the prefix: a header originally created as custom, if later standardized, would carry a misleading `X-` prefix. `X-RateLimit-Remaining` from GitHub is the most well-known example of continued usage.",
+      "risposte": [
+        "Because RFC 6648 from 2012 established that a custom header should not mark itself as such, since it often becomes standard",
+        "Because HTTP/2 compresses headers using HPACK, and non-standard names, not being in the static dictionary, consume more bandwidth than others",
+        "Because proxies reject them",
+        "Because they are not secure"
+      ]
+    },
+    "d8323a72b34e": {
+      "domanda": "What is the downside of a stateless authentication based on JWT?",
+      "spiegazione": "This is the reason for `expiresIn: '1h'`: since it cannot be revoked, the damage window is limited. The advantage remains that any instance can serve any request.",
+      "risposte": [
+        "Does not scale well",
+        "Does not work with HTTPS",
+        "A stolen token cannot be revoked before expiration, because there is no list of valid sessions to consult",
+        "Requires server-side sessions"
+      ]
+    },
+    "4e5c6df72a5e": {
+      "domanda": "In the AppError class from the course, what is the purpose of the status property?",
+      "spiegazione": "AppError carries the status (404, 400, 409...) via factory methods like notFound()/conflict(); the error handler uses err.status||500 to set the response.",
+      "risposte": [
+        "A to record the date of the error",
+        "B to count the errors that occurred",
+        "C to save the error stack trace",
+        "D to store the HTTP status to use in the response, so the error handler reads it instead of always responding with 500"
+      ]
+    },
+    "77f32149c37e": {
+      "domanda": "In the standard error response format, what type must the `error` field always be?",
+      "spiegazione": "`error` is a human-readable string: for the numeric code, the HTTP status code is already present; repeating it in the body would be redundant.",
+      "risposte": [
+        "An integer corresponding to the HTTP status code of the response",
+        "An object containing the numeric code and the extended error description",
+        "An array of all messages generated by validation",
+        "A string"
+      ]
+    },
+    "a07506f42405": {
+      "domanda": "What is the difference between status codes 401 and 403?",
+      "spiegazione": "401 Unauthorized actually means 'unauthenticated'; 403 Forbidden = authenticated but lacking permissions. Both are 4xx errors (client-side).",
+      "risposte": [
+        "401 is a server error, 403 is a client error",
+        "401 = unauthenticated (I don't know who you are, log in); 403 = authenticated but without the necessary permissions (I know who you are, but you can't)",
+        "401 applies only to HTTPS connections",
+        "They are synonyms"
+      ]
+    },
+    "580544b09d38": {
+      "domanda": "Why is PATCH not formally idempotent according to RFC 5789?",
+      "spiegazione": "For JSON APIs that replace values (`{\"stato\":\"completata\"}`), it is practically idempotent, but this is not a protocol guarantee to rely on.",
+      "risposte": [
+        "Because it is a recent method",
+        "Because it modifies data",
+        "Because the result may depend on the current state of the resource: a patch of the type \"increment by 1\" repeated N times yields N different results",
+        "Because the specification considers only methods that completely replace the resource as idempotent, and PATCH by definition modifies only a part of it"
+      ]
+    },
+    "431e991e0386": {
+      "domanda": "In Express 4, what happens if an `async` route throws an error and there is no try/catch?",
+      "spiegazione": "Express 4 does not catch rejected Promises: you need try/catch with `next(err)`, or `express-async-errors`. Express 5, on the other hand, catches them automatically.",
+      "risposte": [
+        "The server crashes",
+        "It still responds with 500",
+        "Express catches it automatically",
+        "The error does not reach the error handler and the request hangs until the client times out"
+      ]
+    },
+    "7d766bbbf612": {
+      "domanda": "Why is POST not idempotent?",
+      "spiegazione": "POST typically creates a new resource: each call generates an instance with a new ID, so the state changes with every repetition (2 POSTs = 2 resources). Authentication is orthogonal; POST has a body and commonly returns 201 Created.",
+      "risposte": [
+        "Because it never returns a success status",
+        "Because it cannot contain a body",
+        "Because it always requires user authentication",
+        "Sending the same POST multiple times creates multiple distinct resources"
+      ]
+    },
+    "538d22d99b75": {
+      "domanda": "Which status code accompanies a successful DELETE request with no body to return?",
+      "spiegazione": "204 No Content: operation successful but response has no body — appropriate for a DELETE when there is nothing to return. 304 relates to conditional caching; 202 is asynchronous processing; 200 OK should only be used if the server returns a body.",
+      "risposte": [
+        "202",
+        "204",
+        "200",
+        "304"
+      ]
+    },
+    "539783955012": {
+      "domanda": "What is the practical rule for route nesting?",
+      "spiegazione": "Use a single level to express ownership (e.g., /users/42/orders); beyond that, URLs become fragile—prefer exposing the sub-resource as a top-level resource with a filter (/products?order=7). Nesting is independent of the HTTP method, and one level is useful, not something to be avoided entirely.",
+      "risposte": [
+        "Nesting should only be used for DELETE requests",
+        "There is no limit to the depth of nesting",
+        "Do not exceed one level; beyond that, expose the sub-resource with a filter",
+        "Nesting should always be avoided entirely"
+      ]
+    },
+    "cbb7d9f63869": {
+      "domanda": "What are the six value types allowed in JSON?",
+      "spiegazione": "The six types (ECMA-404 / RFC 8259): string, number (a single type, not integer/float), boolean, null, object, array. undefined and function do not exist in JSON; date is not a native type (dates are represented as ISO 8601 strings).",
+      "risposte": [
+        "string, number, boolean, null, object, array",
+        "string, number, date, boolean, null, array",
+        "string, number, boolean, undefined, object, array",
+        "string, integer, float, boolean, null, function"
+      ]
+    },
+    "aae8f74c1209": {
+      "domanda": "A client executes DELETE /users/42 twice; the second request returns 404. Is the operation still idempotent?",
+      "spiegazione": "Idempotency concerns the effect on the server state, not the status code. After the first DELETE, user 42 no longer exists; the second request leaves the state unchanged. The change from 200/204 to 404 is irrelevant: DELETE is idempotent by specification (RFC 9110).",
+      "risposte": [
+        "Yes, but only if the client sends the same headers",
+        "No, DELETE is never an idempotent method",
+        "Yes, the final server state is identical after both",
+        "No, because the returned status code changes between the first and second request"
+      ]
+    },
+    "7fda421c81f6": {
+      "domanda": "Which DELETE route correctly follows REST conventions to delete a single user?",
+      "spiegazione": "The DELETE method already expresses the action: the URL contains only the resource noun and the id (/users/:id). The others repeat the \"delete\" verb in the path or use an RPC style (/deleteUser).",
+      "risposte": [
+        "app.delete('/users/:id', remove)",
+        "app.delete('/deleteUser/:id', remove)",
+        "app.delete('/users/delete/:id', remove)",
+        "app.delete('/users/:id/delete', remove)"
+      ]
+    },
+    "767562fbeae3": {
+      "domanda": "Which HTTP methods are considered \"safe\"?",
+      "spiegazione": "Safe methods do not modify the server state (read-only): GET, HEAD, OPTIONS. All safe methods are idempotent, but not vice versa: PUT and DELETE are idempotent but not safe; POST and PATCH are neither safe nor (in general) idempotent.",
+      "risposte": [
+        "PUT, DELETE, PATCH",
+        "GET, HEAD, OPTIONS",
+        "POST, PATCH, DELETE",
+        "GET, POST, PUT"
+      ]
+    },
+    "0fa1fdb5a400": {
+      "domanda": "Which of the following is NOT one of the six architectural constraints of REST?",
+      "spiegazione": "Authentication is a cross-cutting concern that an API may implement, but REST does not mandate it: an API can be RESTful even without it. The six constraints are client-server, stateless, cacheable, uniform interface, layered system, and code on demand (optional).",
+      "risposte": [
+        "Uniform interface",
+        "Mandatory authentication",
+        "Stateless communication",
+        "Cacheable responses"
+      ]
+    },
+    "695347746b1c": {
+      "domanda": "What is the purpose of the HTTP Content-Type header?",
+      "spiegazione": "Content-Type declares the media type (MIME) of the body so that the recipient knows how to interpret it (application/json, text/html, ...). Caching is handled by Cache-Control; credentials by Authorization; the address is provided by the URL/DNS (if anything, Host indicates the host).",
+      "risposte": [
+        "Specifies the address of the target server",
+        "Transports authentication credentials",
+        "Defines for how many seconds the response remains cached",
+        "Indicates the format of the message body, e.g., application/json"
+      ]
+    },
+    "354f2e6c3a21": {
+      "domanda": "What is the purpose of the ajv library in a Node.js/Express project?",
+      "spiegazione": "ajv (Another JSON Validator) validates data against a declarative JSON Schema, typically as middleware on req.body, returning 400 with details in case of error. The DB is handled by mongoose/pg; documentation by Swagger/OpenAPI; ajv does not replace Express.",
+      "risposte": [
+        "Validate incoming data with a JSON Schema",
+        "Generate interactive API documentation",
+        "Completely replace Express as the web framework",
+        "Manage the connection to the application database"
+      ]
+    },
+    "d5db858b8372": {
+      "domanda": "Which of the following syntaxes is valid JSON?",
+      "spiegazione": "JSON requires double quotes for string keys and values, does not support comments, and does not allow trailing commas. The other options use a // comment, single quotes, or unquoted keys with a trailing comma.",
+      "risposte": [
+        "{\"nome\":\"Mario\",\"età\":30}",
+        "{ 'nome': 'Mario', 'eta': 30 }",
+        "{ \"nome\": \"Mario\" // commento qui }",
+        "{ nome: \"Mario\", età: 30, }"
+      ]
+    },
+    "c276c1013671": {
+      "domanda": "What is the semantic difference between 401 Unauthorized and 403 Forbidden?",
+      "spiegazione": "401 (despite the name) = unauthenticated: valid credentials are missing (WWW-Authenticate header; resolvable by authenticating). 403 = authenticated but without permissions (re-authenticating is not enough). They are client-side errors (4xx) and apply to any method; 403 ≠ 404.",
+      "risposte": [
+        "403 means that the requested resource does not exist and has been removed from the server",
+        "They are synonyms: both are server errors",
+        "401 unauthenticated; 403 authenticated but without permissions",
+        "401 applies only to GET, 403 only to POST"
+      ]
+    },
+    "2a211bb1f03f": {
+      "domanda": "What is the main semantic difference between PUT and PATCH?",
+      "spiegazione": "PUT is a complete replacement (the body is the entire final state) and is idempotent; PATCH is a partial update (only the sent fields) and is not idempotent by definition. Neither is used to create or delete resources (tasks for POST/DELETE); authentication is orthogonal.",
+      "risposte": [
+        "PUT replaces the entire resource; PATCH only the sent fields",
+        "PUT is used exclusively to create, PATCH exclusively to delete resources",
+        "There is no difference: they are interchangeable",
+        "PUT requires authentication, PATCH does not"
+      ]
+    },
+    "27223856705e": {
+      "domanda": "What does the \"layered system\" constraint allow in a REST architecture?",
+      "spiegazione": "The layered system organizes the architecture into levels (load balancers, proxies, CDNs, gateways): the client communicates as if it were talking directly to the final server, but can traverse intermediaries without being aware of them. This enables scalability, security, and caching without altering the client-server contract.",
+      "risposte": [
+        "The client communicates directly with the database, bypassing the server",
+        "The server is authorized to ignore HTTP headers",
+        "The client must know every network hop it traverses",
+        "Transparent intermediaries such as proxies, CDNs, and gateways can exist between the client and the server"
+      ]
+    },
+    "abe3b22cc5f4": {
+      "domanda": "What is the difference between req.params, req.query, and req.body in Express?",
+      "spiegazione": "req.params extracts dynamic route segments (/users/:id); req.query reads the query string (always, even on GET); req.body contains the body but is not populated by default: express.json() or express.urlencoded() is required. They are three different sources (path, query, body).",
+      "risposte": [
+        "They are effectively identical: only the name changes",
+        "req.body is already populated without any middleware",
+        "req.query contains only data sent with POST",
+        "params from route parameters, query from the query string, body from the body (requires express.json())"
+      ]
+    },
+    "5e06edcdf5d5": {
+      "domanda": "In the URL https://api.negozio.it/v2/prodotti/123?colore=rosso#dettagli, which component is NEVER sent to the server?",
+      "spiegazione": "The fragment (everything after #) is purely client-side: used by the browser for anchors/SPA routing, it is never transmitted to the server, not even in logs. The path and query string are in the request line; the schema determines the protocol and port.",
+      "risposte": [
+        "The query string colore=rosso",
+        "The fragment #dettagli",
+        "The full path /v2/prodotti/123",
+        "The https protocol schema"
+      ]
+    },
+    "d865d56b3cb6": {
+      "domanda": "In JavaScript, which method converts an object into a JSON string?",
+      "spiegazione": "JSON.stringify() serializes a JS value into a JSON string. JSON.parse() does the opposite (string → object); JSON.encode() and JSON.toString() do not exist on the global JSON object.",
+      "risposte": [
+        "JSON.parse()",
+        "JSON.encode()",
+        "JSON.stringify()",
+        "JSON.toString()"
+      ]
+    },
+    "a2e15c652520": {
+      "domanda": "Which URL correctly follows REST naming conventions?",
+      "spiegazione": "GET /users/42: plural noun, ID in the path, action expressed by the HTTP method (no verb in the URL). /users/42/update repeats the action; /getUserById is an RPC style with ID in the query; /users/admin uses a role instead of a consistent identifier.",
+      "risposte": [
+        "GET /getUserById?id=42",
+        "POST /users/42/update",
+        "GET /users/42",
+        "DELETE /users/admin"
+      ]
+    },
+    "ab4aec35b022": {
+      "domanda": "A client receives a 503 Service Unavailable. Can it retry? And if it receives a 400 Bad Request?",
+      "spiegazione": "503 is a transient server-side condition (often with a Retry-After header): retrying with backoff makes sense. 400 indicates a malformed request: it should be corrected, not retried. In general, 5xx codes are often retryable, while 4xx codes are rarely so (typical exception: 429).",
+      "risposte": [
+        "It can safely retry in both cases",
+        "Yes for 503 (temporary server-side issue); no for 400 (bad request)",
+        "It can retry only for 400, never for 503",
+        "It cannot retry in either case"
+      ]
+    },
+    "002711bfa923": {
+      "domanda": "A client sends Accept: application/json but the server only supports XML. What does it respond?",
+      "spiegazione": "406 Not Acceptable: the server cannot produce a representation compatible with the Accept header (content negotiation failed). 500 is an internal error (but the server is functioning); 200 with an empty body would be misleading; 301 is a redirect, unrelated to negotiation.",
+      "risposte": [
+        "500 Internal Server Error",
+        "301 Moved Permanently",
+        "200 OK with empty body",
+        "406 Not Acceptable"
+      ]
+    },
+    "4df7775fc87c": {
+      "domanda": "In the client-server architecture, which statement is correct?",
+      "spiegazione": "The client-server constraint decouples responsibilities through a uniform interface: clients and servers evolve independently, and only the shared protocol (HTTP) matters. The same language is not required, nor is it necessary to know the other's internal details.",
+      "risposte": [
+        "The server must always know the type and version of the calling client",
+        "The client must know the server's internal implementation",
+        "They must be written in the same language",
+        "Neither needs to know the other's internal details"
+      ]
+    },
+    "83702a2565f2": {
+      "domanda": "In the offset-based pagination, what does the limit parameter represent?",
+      "spiegazione": "offset indicates how many elements to skip, limit indicates the maximum number of elements to return from that point (e.g., ?offset=20&limit=10 → from the 21st to the 30th). The last element ID is typical of cursor-based pagination; the page number is part of the page+page_size model.",
+      "risposte": [
+        "The sequential number of the currently active page",
+        "The identifier of the last received element",
+        "The maximum number of elements to return per page",
+        "The maximum expected response time from the server"
+      ]
+    },
+    "f7401feed89a": {
+      "domanda": "What does it mean for an API to be \"stateless\"?",
+      "spiegazione": "Each request is self-contained: it includes everything the server needs (e.g., JWT token), without a session stored on the server side. It is independent of cacheability and does not prevent authentication headers; the server can have a database, what it lacks is memory of the session.",
+      "risposte": [
+        "The server has no state at all, not even a database",
+        "The generated responses can never be cached",
+        "The server does not retain context between one request and the next",
+        "The client cannot send authentication headers"
+      ]
+    }
+  }
+}

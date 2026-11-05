@@ -1,0 +1,1019 @@
+{
+  "nome": "Infrastructure Components",
+  "categorie": {
+    "Cloud Computing": "Cloud Computing",
+    "Data Center": "Data Center",
+    "Storage": "Storage",
+    "Storage Networking": "Storage Networking",
+    "Virtualizzazione": "Virtualization",
+    "Container": "Containers",
+    "Docker": "Docker",
+    "Infrastructure as Code": "Infrastructure as Code",
+    "AWS e Cloud Provider": "AWS and Cloud Providers",
+    "Case Study": "Case Study",
+    "Git e GitHub": "Git and GitHub",
+    "Architetture e Reti": "Architectures and Networks"
+  },
+  "domande": {
+    "cd9e8d19e18d": {
+      "domanda": "What are the 5 essential characteristics of Cloud computing according to NIST?",
+      "spiegazione": "NIST SP 800-145 defines 5 essential characteristics: (1) On-demand self-service: autonomous provisioning without human intervention; (2) Broad network access: access from any device via network; (3) Resource pooling: shared multi-tenant resources location-independent; (4) Rapid elasticity: seemingly unlimited rapid scaling; (5) Measured service: measured usage and pay-per-use. The other options list real concepts (service models, deployment models) but are not the essential characteristics.",
+      "risposte": [
+        "Virtualization, multi-tenancy, high availability, vertical scalability, and integrated disaster recovery",
+        "On-demand self-service, broad network access, resource pooling, rapid elasticity, measured service",
+        "IaaS, PaaS, SaaS, public cloud, and private cloud",
+        "Browser, no physical hardware, 99.9% SLA, 24/7 support, monthly billing"
+      ]
+    },
+    "c52bea4e2cfe": {
+      "domanda": "A company uses Gmail for email without installing anything. Which cloud model is it using?",
+      "spiegazione": "Gmail is SaaS (Software as a Service): the user uses an application fully managed by the provider, without installing anything and without managing servers, OS, or databases. With IaaS, they would rent VMs to install their own mail server. With PaaS, they would upload their own code. With SaaS = zero management, just using the finished application.",
+      "risposte": [
+        "IaaS: renting the infrastructure from Google on which the mail server runs",
+        "PaaS: Google manages the platform and the company configures the rules",
+        "SaaS: the user uses the ready-made app, zero management",
+        "FaaS: each email triggers a serverless function on Google's side"
+      ]
+    },
+    "7af8ca86d882": {
+      "domanda": "A developer wants to deploy only their Java code with automatic scaling, without managing VMs or containers. Which model do they choose?",
+      "spiegazione": "PaaS (Platform as a Service) is the correct model: the developer brings their own code, and the platform manages the OS, runtime, middleware, and scaling. Examples: Heroku, Google App Engine, Elastic Beanstalk. SaaS is WRONG: with SaaS, the user consumes a ready-made application from the provider, rather than deploying code. IaaS would require managing the VM, contradicting the requirement. Exam trap: confusing PaaS with SaaS when discussing 'deploying code'.",
+      "risposte": [
+        "IaaS, because they want full control over the underlying infrastructure for the code",
+        "PaaS: you bring the code, the platform manages OS, runtime, and scaling",
+        "SaaS, because they want to consume a ready-made service like Gmail",
+        "Bare-metal hosting, to avoid virtualization overhead"
+      ]
+    },
+    "53026dc1101a": {
+      "domanda": "What does 'resource pooling location-independent' mean in cloud computing according to NIST?",
+      "spiegazione": "Resource pooling: physical resources are in a shared pool among multiple customers simultaneously (multi-tenancy), with dynamic allocation. Location-independent: the customer does not know or control the physical location of their resources. This allows the provider to optimize hardware. The other options describe models OPPOSITE to cloud computing (dedicated hardware, fixed location, rack selection) typical of on-premise environments.",
+      "risposte": [
+        "Physical resources are located in a single, known geographic site contracted with the customer",
+        "Resources are shared among multiple tenants dynamically, and the customer does not control their physical location",
+        "The customer chooses the specific physical rack where their VMs are allocated within the data center",
+        "Each customer receives dedicated and isolated hardware, replicated for redundancy"
+      ]
+    },
+    "9c9871413846": {
+      "domanda": "What is the main difference between IaaS and PaaS in terms of responsibility?",
+      "spiegazione": "With IaaS (e.g., AWS EC2), the provider manages hardware, network, and hypervisor; the user installs and maintains the OS, runtime, middleware, and applications. With PaaS (e.g., Heroku), the provider also manages the OS, runtime, and middleware; the user only handles code and data. PaaS is more convenient but less flexible (no OS choice, no kernel modules). Answer 1 reverses the responsibilities.",
+      "risposte": [
+        "With IaaS the user manages OS, runtime, and applications; with PaaS the user manages only applications and data",
+        "IaaS leaves the guest OS management to the provider, while PaaS leaves it to the user",
+        "IaaS is always more cost-effective than PaaS in any horizontal scaling scenario",
+        "PaaS offers VMs on dedicated hardware; IaaS only offers virtualized shared VMs"
+      ]
+    },
+    "7541195fa274": {
+      "domanda": "What does 'serverless' actually mean in cloud computing?",
+      "spiegazione": "Serverless does not mean 'absence of servers': servers exist, but the user cannot see or configure them. The provider manages the entire infrastructure. The user only writes the code (FaaS), which is executed in response to events (HTTP, S3 upload, queue message). You pay for the milliseconds of execution. AWS Lambda is the most well-known FaaS service.",
+      "risposte": [
+        "The application runs without dedicated CPU or RAM: it only uses managed storage and databases",
+        "Servers exist but are hidden; you only pay for actual execution",
+        "Data is processed in the browser via WebAssembly, without remote servers",
+        "The provider abandons virtualization and uses only bare-metal containers"
+      ]
+    },
+    "a66892edaacb": {
+      "domanda": "What is the difference between Hybrid Cloud and Multi-cloud?",
+      "spiegazione": "Hybrid Cloud combines a private cloud (on-premise) with a public cloud: private for sensitive workloads, bursting to the public cloud when needed. Multi-cloud uses multiple public providers together (e.g., AWS + Azure + GCP) to avoid vendor lock-in or optimize costs. A company can be both hybrid and multi-cloud. The other options invent non-existent numerical or size-based rules.",
+      "risposte": [
+        "They are synonyms: they indicate the simultaneous use of multiple public cloud providers",
+        "Hybrid always uses 3 providers for redundancy; multi-cloud uses 2",
+        "Hybrid combines private and public cloud; multi-cloud uses multiple public providers",
+        "Hybrid is only for regulated enterprises; multi-cloud for startups"
+      ]
+    },
+    "26a2388a3c09": {
+      "domanda": "Is a fully virtualized data center automatically a cloud?",
+      "spiegazione": "Virtualization is a cloud enabler, but not sufficient. A datacenter with only VMs does not automatically provide: on-demand self-service, rapid elasticity, measured service. A company with VMware ESXi but without a self-service portal and pay-per-use billing does NOT have a cloud. OpenStack is the software that transforms a virtualized datacenter into a private cloud by adding these capabilities.",
+      "risposte": [
+        "Yes: virtualization and cloud are technologically equivalent synonyms",
+        "No: virtualization is necessary but not sufficient",
+        "Yes, if the hypervisor is certified according to the NIST SP 500-292 standard",
+        "No: cloud requires dedicated physical hardware for each customer"
+      ]
+    },
+    "8a179f50e1ae": {
+      "domanda": "What are CAPEX and OPEX in the On-Premise vs Cloud comparison?",
+      "spiegazione": "CAPEX (Capital Expenditure) refers to investments in capital assets: servers, storage, switches. On-Premise implies high initial CAPEX before demand is known. OPEX (Operational Expenditure) refers to ongoing operational expenses. Cloud shifts IT costs from CAPEX to OPEX: instead of buying servers, you pay the provider on a consumption basis. Answer 0 inverts the definitions — a classic trap.",
+      "risposte": [
+        "CAPEX = current monthly expense; OPEX = initial investment in assets",
+        "They are synonyms in the IT context: the difference is only fiscal",
+        "CAPEX = investment in hardware (e.g., servers); OPEX = pay-per-use expense",
+        "CAPEX = perpetual software licenses; OPEX = rented hardware and utilities"
+      ]
+    },
+    "b2ae605e0c4c": {
+      "domanda": "What does OpenStack do and what is its role in the context of private cloud?",
+      "spiegazione": "OpenStack is an open-source platform launched in 2010 by Rackspace and NASA (NOT Google). It creates private clouds with capabilities similar to AWS: self-service portal, VM management, networking, storage. It uses libvirt as an abstraction layer towards various hypervisors: KVM, Xen, VMware ESX, Hyper-V. It is NOT a hypervisor: it manages hypervisors.",
+      "risposte": [
+        "Open source project born at Google in 2008 to manage the GCP cloud",
+        "Type 1 bare-metal hypervisor, competitor of VMware ESXi and Hyper-V",
+        "Open source platform for private cloud; uses libvirt with KVM, Xen, ESX",
+        "Network protocol to interconnect data centers via WAN"
+      ]
+    },
+    "faa524eda3ec": {
+      "domanda": "What does the PUE (Power Usage Effectiveness) of a data center measure?",
+      "spiegazione": "PUE = Total Energy / IT Energy. A PUE of 1.0 would be perfection (impossible in practice). Traditional DC ~2.0: half the energy in cooling, lighting, UPS. Hyperscale DC (Google, Microsoft) achieve 1.1-1.2. Cooling is the main cause of overhead.",
+      "risposte": [
+        "Number of active physical servers compared to total installed capacity",
+        "Data transfer speed between servers and storage in Gbps",
+        "Total DC energy / energy used by IT (ideal → 1.0)",
+        "Percentage ratio between annual uptime and maintenance downtime"
+      ]
+    },
+    "dd02aac77c70": {
+      "domanda": "How does Active/Passive clustering work in a data center?",
+      "spiegazione": "Active/Passive: a primary node handles all traffic, while a secondary node waits in standby. The two nodes exchange periodic heartbeats. If the passive node does not receive a heartbeat for a predefined interval, automatic failover is triggered. The opposite is Active/Active: both nodes serve traffic (load balancing) with higher throughput but a more complex architecture.",
+      "risposte": [
+        "Both nodes serve traffic, distributing the load between them",
+        "Nodes alternate every 24 hours to balance hardware wear",
+        "RAID technique applied to servers, with a parity node",
+        "One node is active, the other in standby; automatic failover if heartbeat fails"
+      ]
+    },
+    "05fe250bef17": {
+      "domanda": "What is a Blade Server and what is its main advantage?",
+      "spiegazione": "The Blade Server is compact, designed for standardized chassis (e.g., HP BladeSystem). Each blade lacks its own power supply, fans, or cables: everything is shared with the chassis. Advantages: high density, energy savings, centralized management, less cabling. Disadvantages: chassis cost and vendor lock-in.",
+      "risposte": [
+        "Modular server in a shared chassis (power, network, cooling)",
+        "Server with 1U form factor installable in any standard 19'' rack",
+        "A multi-socket CPU architecture with proprietary UPI interconnect, used in IBM Z/OS mainframes",
+        "Dedicated hardware server for running OLTP database workloads"
+      ]
+    },
+    "f4da6541a4f3": {
+      "domanda": "In a RAID 5 array with 4 disks of 2 TB each, what is the usable capacity?",
+      "spiegazione": "In RAID 5, the usable capacity is calculated as (N-1) × disk_size. With 4 disks of 2 TB each: (4-1) × 2 TB = 6 TB. The space equivalent to one disk is 'spent' on distributed parity, which allows data reconstruction if a disk fails. Parity is distributed round-robin across all disks. RAID 5 tolerates only 1 disk failure.",
+      "risposte": [
+        "8 TB, sum of all disks without parity overhead",
+        "4 TB (50%), as in RAID 1 mirroring",
+        "6 TB: formula (N-1) × size = 3 × 2 TB",
+        "2 TB: three out of four disks are dedicated to parity"
+      ]
+    },
+    "e92b10134b00": {
+      "domanda": "What is the fundamental difference between RAID 0 and RAID 1?",
+      "spiegazione": "RAID 0 uses only striping: data chunks distributed across all disks, parallel I/O, maximum performance. If one disk fails, ALL data is lost: zero redundancy. RAID 1 uses only mirroring: identical data on 2+ disks. If one disk fails, data remains intact on the other. 50% of space is wasted. NEITHER uses parity (that is RAID 3/5/6).",
+      "risposte": [
+        "RAID 0 uses distributed parity; RAID 1 uses parity on a dedicated disk",
+        "RAID 0 = pure striping (zero redundancy); RAID 1 = pure mirroring (high redundancy)",
+        "RAID 0 requires at least 4 disks; RAID 1 exactly 2",
+        "RAID 0 is for long-term backup; RAID 1 for read performance"
+      ]
+    },
+    "8d7cfe77f9da": {
+      "domanda": "How many disks must fail simultaneously to lose data in a RAID 6 configuration?",
+      "spiegazione": "RAID 6 uses double parity (XOR + Reed-Solomon). It tolerates up to 2 simultaneous disk failures. With 1 failed disk, it operates normally; with 2 failures, data is still recoverable but in a critical state; with 3 or more failures, data is lost. It requires at least 4 disks; usable capacity is (N-2) × disk_size. Answer A confuses 'three or more' with the actual limit of 'three'.",
+      "risposte": [
+        "Only 1 disk, exactly as it happens in RAID 5",
+        "At least 3 disks: RAID 6 calculates parity using XOR and Reed-Solomon",
+        "2 disks: RAID 6 uses double parity and tolerates 2 failures",
+        "None: RAID 6 is completely immune to hardware failures"
+      ]
+    },
+    "c0c5bc0e5a4f": {
+      "domanda": "What technically distinguishes an SSD from an HDD?",
+      "spiegazione": "An HDD uses rotating magnetic platters (7200 RPM) and mechanical read/write heads: moving parts, fragile to shocks, latency in milliseconds. An SSD uses NAND flash chips: no moving parts, durable, latency in microseconds (100-1000x faster). NVMe SSDs on PCIe reach 7000+ MB/s. Answers 1 and 2 invert the roles.",
+      "risposte": [
+        "SSD = NAND flash, no moving parts; HDD = rotating platters",
+        "The SSD uses rotating platters at 7200 RPM; the HDD uses NAND flash",
+        "The HDD uses low-power NAND flash; the SSD uses magnetic platters",
+        "Same flash technology: the SSD only has greater capacity"
+      ]
+    },
+    "fb5e6b3bd070": {
+      "domanda": "What is a LUN (Logical Unit Number) in an enterprise storage system?",
+      "spiegazione": "A LUN is an abstraction: the storage array presents a logical volume to the server as if it were a local SCSI disk. On the server side, it appears as a block device on which filesystems can be created. In reality, it can be distributed across dozens of disks in RAID, replicated, or snapshotted in the background. LUN masking defines which servers can access which LUNs.",
+      "risposte": [
+        "Physical serial number engraved on the hard drive label",
+        "Logical volume presented to the server as a disk; actually implemented in RAID",
+        "Network protocol to connect storage to servers via TCP/IP",
+        "Unit of measurement for transfer speed in FC SANs"
+      ]
+    },
+    "b9efe3258f09": {
+      "domanda": "What is Object Storage?",
+      "spiegazione": "Object Storage breaks the hierarchical filesystem paradigm. Each piece of data is an object: raw data + metadata + unique OID. All objects reside in a flat space without a directory hierarchy. Access is via REST: GET, PUT, DELETE. Examples: S3, Azure Blob, MinIO. Scales to petabytes. It is not a variant of RAID or NAS: it is a different paradigm.",
+      "risposte": [
+        "Type of software RAID optimized for large multimedia files",
+        "Identical to a NAS, but with HTTP protocol instead of NFS or SMB",
+        "Distributed filesystem with a folder hierarchy across multiple data centers",
+        "Objects (data + metadata + unique OID) in a flat space, accessible via REST API"
+      ]
+    },
+    "c74938f6bc89": {
+      "domanda": "What distinguishes RAID 3 from RAID 5 regarding parity?",
+      "spiegazione": "Both use striping + single parity and tolerate 1 failure. Difference: in RAID 3 parity is on a dedicated disk (write bottleneck); in RAID 5 it is distributed rotating (balanced load). RAID 5 is more performant and is the de facto enterprise standard. Answer 0 reverses the situation.",
+      "risposte": [
+        "RAID 3 uses distributed double parity; RAID 5 uses dedicated single parity",
+        "RAID 3: parity on a dedicated disk (bottleneck); RAID 5: distributed rotating parity",
+        "RAID 3 only does striping; RAID 5 adds parity on top of RAID 3",
+        "RAID 3 and RAID 5 are identical: the difference is only historical"
+      ]
+    },
+    "95d730efabb0": {
+      "domanda": "Which type of networking storage uses SCSI encapsulated in TCP/IP over standard Ethernet?",
+      "spiegazione": "iSCSI (Internet SCSI) encapsulates SCSI commands in TCP/IP. Advantage: it works over standard Ethernet without dedicated FC hardware. It offers block-level access (like FC SAN) at a much lower cost. FC SAN uses FCP over Fibre Channel with HBAs, FC switches, and dedicated cables. NAS provides file-level access (NFS/SMB), not block. DAS is storage cabled directly to the server.",
+      "risposte": [
+        "iSCSI",
+        "DAS (Direct Attached Storage)",
+        "FC SAN (Fibre Channel SAN)",
+        "NAS (Network Attached Storage)"
+      ]
+    },
+    "f136de054733": {
+      "domanda": "What is the fundamental difference between NAS and SAN in terms of access level?",
+      "spiegazione": "With a SAN, the server receives a LUN as a raw block disk: it must format it with a filesystem (ext4, NTFS) and manage it as a local disk. With a NAS, the server accesses via NFS or SMB: the NAS Head manages the filesystem internally, and the server directly sees folders and files. A shared SAN requires a cluster filesystem; a NAS is shared natively.",
+      "risposte": [
+        "SAN is faster than NAS because it uses Fibre Channel",
+        "No difference: both offer block-level access",
+        "NAS = file-level (NFS/SMB); SAN = block-level (raw disk to be formatted)",
+        "NAS requires software agents on servers; SAN is agentless"
+      ]
+    },
+    "e4bb94328480": {
+      "domanda": "What does the FCIP (Fibre Channel over IP) protocol do?",
+      "spiegazione": "FCIP is a tunneling protocol for Disaster Recovery: it connects two geographically separated FC SANs via an IP network (WAN/Internet). FC traffic is encapsulated in IP, traverses the network, and is decapsulated at the other end. It enables storage replication between distant data centers without requiring FC cables between cities. Do not confuse it with FCoE (FC over Ethernet for local convergence). Answer C reverses the encapsulation direction.",
+      "risposte": [
+        "Replaces Fibre Channel with IP in local SANs to reduce costs",
+        "File-level protocol used in enterprise NAS as an alternative to NFS",
+        "Encapsulates IP packets in Fibre Channel frames to increase performance",
+        "Tunnels FC over IP networks to connect remote SANs (Disaster Recovery)"
+      ]
+    },
+    "8c07ff03622e": {
+      "domanda": "What is FCoE (Fibre Channel over Ethernet) and what is required to implement it?",
+      "spiegazione": "FCoE transports FC traffic over high-speed Ethernet (10 Gbps+). Advantage: convergence, a single cable for data and storage. However, it requires specific hardware: (1) CEE (Converged Enhanced Ethernet) — lossless Ethernet, essential for FC; (2) CNA (Converged Network Adapter) — a card that integrates NIC and HBA. It does NOT work on standard Ethernet switches.",
+      "risposte": [
+        "Software that emulates a FC SAN on standard Ethernet switches",
+        "FC over 10G+ Ethernet; requires CEE (lossless) and CNA (NIC + HBA in one)",
+        "Backup protocol that uses Ethernet to connect tape libraries",
+        "Cost-effective version of FC SAN that reuses Cat6 Ethernet cables"
+      ]
+    },
+    "cfbffc2e1998": {
+      "domanda": "What is an HBA (Host Bus Adapter) and in which context is it used?",
+      "spiegazione": "The HBA (Host Bus Adapter) is a hardware card in the server to connect it to a Fibre Channel SAN. It works like a NIC but for the FC protocol. Like the NIC has a MAC, the HBA has a WWN (World Wide Name) unique in the FC fabric. In FCoE it is replaced by the CNA, which integrates NIC and HBA into a single card.",
+      "risposte": [
+        "Card in the server to connect it to a Fibre Channel SAN",
+        "High-performance Ethernet network card for intensive traffic",
+        "Internal component of the storage array that manages RAM cache",
+        "Management software for enterprise Intelligent Storage System"
+      ]
+    },
+    "0630dfc03c86": {
+      "domanda": "What is the difference between Hypervisor Type 1 and Type 2?",
+      "spiegazione": "Type 1 (bare-metal): the hypervisor runs directly on the hardware, without a host OS. Examples: VMware ESXi, Hyper-V, Xen, KVM. Maximum performance, minimal overhead. For production. Type 2 (hosted): runs on top of a host OS. Examples: VirtualBox, VMware Workstation. Easier to install but with the overhead of the host OS. For development/testing.",
+      "risposte": [
+        "Type 1 is free open source; Type 2 requires a paid license",
+        "Type 1 = bare-metal (on hardware); Type 2 = on top of an already installed host OS",
+        "Type 1 virtualizes only CPU and RAM; Type 2 also storage and network",
+        "Type 1 creates Windows VMs; Type 2 creates open source Linux VMs"
+      ]
+    },
+    "e73a617893d7": {
+      "domanda": "What are Intel VT-x and AMD-V?",
+      "spiegazione": "Intel VT-x and AMD-V are x86 instruction set extensions that address the challenge of virtualization on architectures not originally designed for it. They introduce two CPU modes: root (hypervisor, highest privilege) and non-root (guest). The guest OS runs in Ring 0 of the non-root mode without conflicting with the hypervisor. Result: near-native performance, no binary translation.",
+      "risposte": [
+        "Network protocols for live migration of VMs between physical hosts",
+        "Commercial names of Intel and AMD hypervisors for servers",
+        "CPU hardware extensions that enable root and non-root modes",
+        "PCIe standard for virtualized graphics cards in HPC data centers"
+      ]
+    },
+    "f1f902be8557": {
+      "domanda": "What is Para-Virtualization and what is its main requirement?",
+      "spiegazione": "In Para-Virtualization, the guest OS is modified to be aware of the virtualization. It replaces privileged instructions (which would cause costly traps) with hypercalls: direct calls to the hypervisor. This improves performance by eliminating the overhead of binary translation. Requirement: the guest OS must be modifiable → Linux yes, Windows no. Xen is the product most associated with this technique.",
+      "risposte": [
+        "Technique that eliminates the hypervisor: VMs communicate directly with each other",
+        "Modified guest OS using hypercalls; requires an open-source OS",
+        "Partial virtualization that manages only the CPU but not memory",
+        "Hardware technique that requires CPUs with VT-x or AMD-V extensions"
+      ]
+    },
+    "a37d6e16ba5a": {
+      "domanda": "Does virtualization completely eliminate downtime in a data center?",
+      "spiegazione": "Virtualization protects against software crashes within the VM, but not against hardware failures of the host: if the physical server breaks, all its VMs go down. Solution: clustering/HA with live migration (vMotion) or automatic failover to other hosts. Answer 3 contains a grain of truth but exaggerates to the point of being incorrect.",
+      "risposte": [
+        "No: if the physical host fails, all its VMs fail; clustering is required",
+        "Yes: if a VM crashes, the others continue without any interruption",
+        "Yes: the VMM restores every faulty VM in less than 1 second",
+        "No: virtualization doubles the risk by concentrating workloads"
+      ]
+    },
+    "7f4af0ee3800": {
+      "domanda": "Is KVM a Type 1 or Type 2 hypervisor?",
+      "spiegazione": "KVM (Kernel-based Virtual Machine) is a Linux kernel module. It sparks debate: formally, it requires Linux. The course classifies it as Type 1 because when Linux is loaded with KVM, the kernel ITSELF becomes the hypervisor — it is not an OS host running a hypervisor on top. KVM VMs deliver Type 1 performance. Developed by Red Hat, it serves as the foundation for many cloud providers and OpenStack via libvirt.",
+      "risposte": [
+        "Type 2: it requires Linux as the host OS, so it is not bare-metal",
+        "It is not a hypervisor: it is only a driver for VT-x and AMD-V",
+        "Type 1: it is a Linux kernel module → the kernel itself becomes the hypervisor",
+        "Type 2: it must be installed on Ubuntu or Debian with a patched kernel"
+      ]
+    },
+    "fb30dc787f48": {
+      "domanda": "What is the main advantage of containers over VMs in terms of resources?",
+      "spiegazione": "Containers are OS-level virtualization: instead of virtualizing hardware (VMs), they virtualize the user space. All containers on the same host share the kernel, eliminating the need for a full OS per instance. Consequences: boot in seconds/ms (vs minutes for VMs), RAM in MB (vs GB), higher density. The other answers state the OPPOSITE of the truth.",
+      "risposte": [
+        "They have superior isolation: each container has a separate kernel",
+        "More flexible: a Linux container runs natively on Windows or macOS",
+        "More secure: they share no kernel resources with the host",
+        "They share the host kernel: no full OS per instance"
+      ]
+    },
+    "eec7b1b68bf0": {
+      "domanda": "What do Linux cgroups (Control Groups) do in the context of containers?",
+      "spiegazione": "cgroups are a Linux kernel feature for grouping processes and applying limits: CPU, RAM (exceeding the limit triggers the OOM killer), I/O bandwidth, and network. Without cgroups, a container could consume all the host's RAM. Docker uses cgroups + namespaces for complete isolation. Answer A describes NAMESPACES, not cgroups — a common trap.",
+      "risposte": [
+        "Create isolated namespaces for hostname, PID, network, mount, and IPC",
+        "Change the perceived root directory of a process (chroot jail)",
+        "Limit and isolate resource usage (CPU, RAM, I/O) for a group of processes",
+        "Manage Docker images and their overlaid layers via Union FS"
+      ]
+    },
+    "3fb6fabc4a90": {
+      "domanda": "Are containers more or less secure than VMs in terms of isolation?",
+      "spiegazione": "Containers have LESS isolation than VMs. Reason: they all share the same Linux kernel. A kernel exploit (container escape) allows escaping the sandbox to access the host or other containers. With VMs, each guest has its own kernel: even if a guest OS is compromised, the hypervisor and other guests remain protected (hardware isolation). For high security, VMs are preferred.",
+      "risposte": [
+        "Less secure: shared kernel → a kernel exploit compromises all of them",
+        "More secure: each container has its own separate kernel from the host",
+        "Identical security: they use the same CPU Ring 0 mechanisms",
+        "More secure: Docker images are digitally signed and immutable"
+      ]
+    },
+    "6a14b30b353b": {
+      "domanda": "What does `chroot` do and how does it relate to modern containers?",
+      "spiegazione": "chroot (change root) is one of the primitive isolation mechanisms in Unix/Linux. When a process is launched under chroot, the directory becomes the new '/' for that process and its children — it cannot see or access outside the jail. In modern containers, chroot is integrated into the Mount namespace, which is more comprehensive and secure. Historically, it is the direct precursor to containers.",
+      "risposte": [
+        "Recursively modifies read and write permissions on a directory",
+        "Changes the perceived root for a process (chroot jail): it cannot see outside",
+        "Creates a filesystem snapshot before reboot for rollback",
+        "Mounts an ISO image as a loop device inside an active Docker container"
+      ]
+    },
+    "226be2734b10": {
+      "domanda": "Why does Docker on Windows or macOS require an internal Linux VM?",
+      "spiegazione": "Linux Docker containers rely on Linux kernel features (namespaces, cgroups, Union FS) that do not exist on Windows or macOS. Docker Desktop installs a lightweight Linux VM (Hypervisor.framework on macOS, WSL2/Hyper-V on Windows) where the containers run. The user does not see it, but it is there. This is why Docker Desktop uses more RAM and disk space than native Linux Docker.",
+      "risposte": [
+        "Licensing reasons: Docker cannot run natively on non-Linux systems",
+        "Performance: the Linux VM has more direct access to hardware",
+        "Linux containers use namespaces and cgroups, which are absent on Windows and macOS",
+        "A temporary choice that Docker will remove in upcoming releases"
+      ]
+    },
+    "fa9590516a10": {
+      "domanda": "What is a Dockerfile?",
+      "spiegazione": "A Dockerfile is a text file that describes how to build a Docker image. Each instruction creates a layer: FROM (base OS), RUN (build commands), COPY (files), ENV (environment variables), EXPOSE (port), CMD/ENTRYPOINT (startup). `docker build -t name .` processes it to generate the immutable image. Each container adds a writable layer on top. It is a versionable source file in Git.",
+      "risposte": [
+        "A configuration file for runtime container environment variables",
+        "A precompiled VM that Docker runs directly on bare-metal hardware",
+        "A text file of instructions that `docker build` transforms into a layered image",
+        "The log file generated by Docker during container execution"
+      ]
+    },
+    "d33ca70b18f4": {
+      "domanda": "What happens to data written inside a Docker container when it is deleted?",
+      "spiegazione": "The Docker image is read-only. When starting a container, Docker adds a copy-on-write writable layer. Everything the container writes (logs, DB, files) goes into this temporary layer. With `docker rm` the layer is removed: data is lost. Solution: Docker Volumes, directories in /var/lib/docker/volumes/ that survive the lifecycle and can be mounted in new containers.",
+      "risposte": [
+        "Lost with the writable layer, unless Docker Volumes are used to persist them",
+        "Automatically saved in the original image for subsequent containers",
+        "Persisted in Docker Hub for 30 days before being deleted",
+        "Remain on the host filesystem in /var/lib/docker/containers/"
+      ]
+    },
+    "9718a5186ecb": {
+      "domanda": "What does the command `docker run -d -p 8080:80 nginx` do?",
+      "spiegazione": "Analysis: `docker run` creates and starts; `-d` (detached) runs in the background; `-p 8080:80` is a HOST:CONTAINER port mapping, mapping host port 8080 to container port 80; `nginx` is the image name (pulled from DockerHub if not present locally). Opening http://localhost:8080 displays the container's nginx page.",
+      "risposte": [
+        "Downloads and installs nginx on the host via apt, in debug mode on port 8080",
+        "Starts nginx in the background mapping host 8080 to container 80",
+        "Starts nginx in the foreground showing logs, on the host's port 80",
+        "Creates a custom nginx image and saves it with tag '8080'"
+      ]
+    },
+    "3baad85f37c3": {
+      "domanda": "What is the Docker daemon (dockerd)?",
+      "spiegazione": "Docker has a client-server architecture. The Docker daemon (dockerd) is the server process: it manages builds, containers, volumes, networks, and pull/push operations from registries. It runs as a service. The Docker CLI is the client: it translates commands into REST API calls to the daemon. This separation also allows for remote clients: you can control a dockerd on a remote server from a local CLI.",
+      "risposte": [
+        "The online public registry that hosts Docker images (DockerHub)",
+        "Component that performs binary translation of container instructions",
+        "The main Docker configuration file on the host operating system",
+        "Server process for images, containers, and networks; the CLI communicates via REST"
+      ]
+    },
+    "13bff4d30e73": {
+      "domanda": "What is the difference between Docker Compose and Docker Swarm?",
+      "spiegazione": "Docker Compose: multi-container applications on a single host. Everything is defined in compose.yaml (webapp + DB + cache) and started with `docker compose up`. For dev/test. Docker Swarm: native clustering on multiple nodes (manager + worker), with scaling, load balancing, HA. Manager consensus uses Raft. The compose.yaml is extended with the `deploy` section for Swarm. For complex production, Kubernetes is preferred.",
+      "risposte": [
+        "Compose is for Windows; Swarm is for Linux and other Unix-like systems",
+        "Compose: single-host multi-container; Swarm: multi-host cluster with Raft",
+        "Compose is newer and has replaced Swarm in all scenarios",
+        "Swarm manages a single application; Compose manages multiple ones"
+      ]
+    },
+    "2f6ba8075d08": {
+      "domanda": "What is Configuration Drift and how does IaC solve it?",
+      "spiegazione": "Configuration Drift is the divergence between the documented state and the actual state of the infrastructure, caused by untracked manual changes. Result: inconsistent environments, non-reproducible bugs, inability to recreate environments from scratch. IaC solves this: the infrastructure is defined in text files versioned in Git, every change goes through code, and the desired state is always in the code.",
+      "risposte": [
+        "Drift between documented state and actual state; IaC: code = doc in Git",
+        "Slowness of Docker containers in picking up configuration updates",
+        "Terraform bug causing errors on repeated applies",
+        "Variation in server performance due to hardware wear"
+      ]
+    },
+    "921a828cf83d": {
+      "domanda": "Is Terraform/OpenTofu declarative or procedural?",
+      "spiegazione": "OpenTofu/Terraform are declarative: in HCL you describe WHAT you want (desired state), not HOW to create it. OpenTofu compares the HCL code with the current state (terraform.tfstate) and autonomously determines the necessary operations. A procedural approach (Ansible, shell scripts) requires explicitly writing out the steps. Exam trap: HCL = desired state, NOT a sequence of steps.",
+      "risposte": [
+        "Procedural: you write the exact sequential steps to execute",
+        "Declarative: you describe the final state; OpenTofu calculates the actions",
+        "Both: it supports declarative and procedural approaches via configurable modules",
+        "Neither: it uses an event-driven approach with external webhooks"
+      ]
+    },
+    "7b022873344f": {
+      "domanda": "What does the `tofu plan` command do?",
+      "spiegazione": "OpenTofu workflow: (1) `tofu init` initializes and downloads providers; (2) `tofu plan` reads HCL, consults tfstate, shows the plan (+ create, ~ modify, - delete) without touching anything — dry run; (3) `tofu apply` applies changes after confirmation; (4) `tofu destroy` deletes everything. In production: always plan before apply.",
+      "risposte": [
+        "Applies changes to the infrastructure immediately without asking for confirmation",
+        "Initializes the working directory by downloading the required providers",
+        "Destroys the entire managed infrastructure after textual confirmation",
+        "Shows a preview of changes without applying them: safe dry run"
+      ]
+    },
+    "b644abb423b5": {
+      "domanda": "Does AWS CloudFormation work on Azure and GCP like Terraform?",
+      "spiegazione": "CloudFormation works EXCLUSIVELY on AWS. It defines AWS infrastructure in YAML/JSON templates, deeply integrated with all AWS services, and is free (you only pay for the resources). Advantage: perfect integration. Disadvantage: vendor lock-in. Microsoft has an equivalent Azure-only solution: ARM Templates/Bicep. Only Terraform/OpenTofu are genuinely multi-cloud.",
+      "risposte": [
+        "Yes: it has official Amazon plugins for AWS, Azure, and GCP",
+        "No: it is AWS proprietary and works only on AWS",
+        "No: it supports Azure since 2022 but not yet GCP due to technical limitations",
+        "Yes: it is open source and supports arbitrary providers via HashiCorp modules"
+      ]
+    },
+    "8987d4d7391a": {
+      "domanda": "What should be included in the `.gitignore` of an OpenTofu/Terraform project?",
+      "spiegazione": "The `.terraform/` directory contains providers downloaded by `tofu init` (heavy binaries that can be regenerated). `terraform.tfstate` contains the state and may include sensitive information (passwords, API keys) — in production, a remote state backend like S3 is used. `*.tfstate.backup` are automatic backups. Instead, `.terraform.lock.hcl` should be versioned (it pins provider versions). Neglecting `.gitignore` can expose cloud credentials.",
+      "risposte": [
+        "Only main.tf, because it contains provider access parameters",
+        ".terraform/, *.tfstate, *.tfstate.backup",
+        "All .tf files: HCL code is sensitive and should not be shared",
+        "Only node_modules/, to avoid loading npm modules into Git"
+      ]
+    },
+    "6b90a9b644fa": {
+      "domanda": "An application is deployed across 2 AZs of the same AWS Region. Which failure is NOT tolerated?",
+      "spiegazione": "Exam trap cited in the guide. With 2 AZs in the same Region, the following are tolerated: failure of a single VM (trivial); failure of an entire AZ (the other continues). NOT tolerated: failure of the entire Region (both AZs are impacted simultaneously). To tolerate a Region failure, replication across multiple geographic Regions is required.",
+      "risposte": [
+        "Failure of a single EC2 server in one of the two AZs",
+        "Simultaneous failure of an entire Availability Zone of the Region",
+        "Simultaneous failure of the entire AWS Region chosen by the application",
+        "Temporary network interruption between the two AZs of the same Region"
+      ]
+    },
+    "d3b902db0996": {
+      "domanda": "What is a VPC (Virtual Private Cloud) in AWS?",
+      "spiegazione": "A VPC is AWS's private virtual network. Key concepts: CIDR block (private IP range, e.g., 10.0.0.0/16); Subnets (public/private subdivisions); Route Table; Internet Gateway; Security Group (stateful firewall for instances). It ensures isolation between customers within the same multi-tenant AWS environment.",
+      "risposte": [
+        "Managed container by AWS with isolated network for each customer",
+        "Amazon's CDN service for global distribution of web content",
+        "S3 storage variant with access restricted to a single AWS account",
+        "Isolated virtual network in AWS: CIDR, subnet, route table, security group"
+      ]
+    },
+    "4461d1fddd3b": {
+      "domanda": "What is the distinctive feature of Amazon's Nitro Hypervisor?",
+      "spiegazione": "The Nitro System is Amazon's proprietary hypervisor for modern EC2 instances. It offloads I/O management (networking, storage) to dedicated hardware chips (Nitro chips), freeing up the physical machine's CPU and RAM for VMs. Result: near bare-metal performance. The 5-10s boot time is central to the Black Friday case study: Amazon scales from 200 to 3000 VMs in seconds, handling 50x spikes.",
+      "risposte": [
+        "The only open-source hypervisor used in production by an hyperscale cloud",
+        "VM boot in 5-10s with near bare-metal performance thanks to Nitro chips for I/O",
+        "Type 2 hypervisor running on top of Windows Server 2022 with Hyper-V",
+        "Virtualizes only NVIDIA GPUs for AI workloads on EC2 P5 instances"
+      ]
+    },
+    "d5df85686780": {
+      "domanda": "Why did Netflix decide to migrate to AWS in 2008?",
+      "spiegazione": "In 2008, Netflix (~9.39M subscribers, own servers) suffered a DB corruption → 3 days offline. This highlighted: scaling = buying hardware (weeks of lead time), a failure = long downtime, no elasticity for evening peaks. On AWS: servers = VMs automatically replaced, variable traffic → auto-scaling. In 2016, Netflix shut down its last physical DC. Today it serves over 300M subscribers on AWS.",
+      "risposte": [
+        "DB failure → 3 days offline; AWS = elasticity + auto-recovery",
+        "AWS was objectively cheaper in any possible scenario",
+        "A US law in 2007 banned streaming services from having their own physical DCs",
+        "Netflix's DCs were in a single US city, exposed to natural risks"
+      ]
+    },
+    "97bf7e430bfa": {
+      "domanda": "In an IaC workflow using Git and OpenTofu, how do you revert to a previous version of the infrastructure?",
+      "spiegazione": "The power of versioned IaC is the ability to roll back, just like with code. Workflow: (1) `git checkout HEAD~1` moves HEAD to the previous commit (the prior HCL code); (2) `tofu apply` compares the previous HCL with the current state and applies changes to reach the desired state. To move forward: `git checkout main` + `tofu apply`. In the course lab, this was used to add/remove the Docker volume. There is no `tofu rollback` command.",
+      "risposte": [
+        "Run `tofu rollback`, which automatically undoes the last apply",
+        "`git checkout HEAD~1`, then `tofu apply` for the previous version",
+        "Run `tofu destroy` and then `tofu apply` the previous commit",
+        "Run `git revert` and the infrastructure updates via webhook"
+      ]
+    },
+    "a9a1b63adc6e": {
+      "domanda": "In the 5-variant Client/Server architecture, what characterizes the Application Server?",
+      "spiegazione": "The 5 Client/Server variants: (1) Standalone: everything on one PC; (2) File Server: the server exposes files, the client executes the logic; (3) Database Server: the server executes SQL queries; (4) Application Server: the server executes application logic, the client is thin; (5) Web-based: the client is a browser, communication via HTTP/HTTPS. The Application Server reduces the client's hardware requirements and centralizes the logic.",
+      "risposte": [
+        "The server executes application logic; the client is 'thin' (UI only)",
+        "The server exposes only files; the client downloads everything and executes the logic locally",
+        "Client and server on the same PC without a network: monolithic standalone configuration",
+        "The client is a browser; communication occurs exclusively via HTTP/HTTPS"
+      ]
+    },
+    "a50e126b3ba8": {
+      "domanda": "What is Grid Computing and how does it differ from Cloud?",
+      "spiegazione": "Grid Computing is a paradigm where geographically distributed and heterogeneous computers (from different organizations) share resources to solve scientific problems. Examples: CERN (WLCG for LHC), SETI@Home. Middleware: BOINC, Globus Toolkit. In Cloud, a single provider centralizes resources and offers them as a commercial service. Key difference: Grid = sharing among multiple organizations; Cloud = a single provider.",
+      "risposte": [
+        "Heterogeneous resources from multiple organizations shared for complex problems (e.g., CERN)",
+        "Grid Computing is just an alternative name for multi-provider hybrid cloud",
+        "Grid uses only dedicated supercomputers; Cloud uses only low-cost commodity servers",
+        "Grid Computing is synonymous with private cloud; Cloud refers only to public cloud"
+      ]
+    },
+    "2373a8722880": {
+      "domanda": "What is a DMZ (DeMilitarized Zone) in a secure network architecture?",
+      "spiegazione": "The DMZ (Demilitarized Zone) is positioned between the Internet and the LAN. Architecture: Internet → [External Firewall] → DMZ → [Internal Firewall] → LAN. The DMZ hosts servers accessible from the Internet (web, mail, public DNS), exposing them to potential attacks. The internal firewall isolates the LAN: even if a server in the DMZ is compromised, the attacker cannot reach internal databases and PCs.",
+      "risposte": [
+        "Internal network zone reserved for corporate backup and disaster recovery servers",
+        "Protocol used by firewalls to communicate with each other in enterprise data centers",
+        "Network area between the Internet and the LAN, separated by two firewalls: hosts web/mail/DNS",
+        "VLAN subnet dedicated exclusively to server management traffic"
+      ]
+    },
+    "32f1844ddaea": {
+      "domanda": "Difference between Packet Filtering Firewall and Application-level Gateway (Proxy)?",
+      "spiegazione": "Three types of firewalls based on inspection level. Packet Filtering (L3-4): inspects only IP and TCP/UDP headers (source/destination, port), no payload. Stateless, fast but limited. Circuit-level Gateway (L5): verifies TCP handshake, no content inspection. Application-level / Proxy (L7): terminates the connection, inspects application content (detects SQL injection in HTTP, viruses in attachments). The most secure but also the slowest.",
+      "risposte": [
+        "They are equivalent: both analyze the full payload at all OSI stack levels",
+        "Packet Filtering is slower because it analyzes more data; Application-level is faster",
+        "Packet Filtering works only on HTTP; Application-level manages all protocols",
+        "Packet Filtering = L3-4 (IP/port, stateless, fast); Application-level = L7 (payload, secure, slow)"
+      ]
+    },
+    "be193d518029": {
+      "domanda": "What is an FQDN (Fully Qualified Domain Name) and how is it structured?",
+      "spiegazione": "An FQDN is the complete and unambiguous name of a host within the DNS hierarchy. Format: `hostname.dominio.TLD.` with a trailing dot for the root — often omitted in UIs but technically always present. Example: `www.google.com.` = host 'www', domain 'google', TLD '.com', root '.'. It is read from right (root) to left. A hostname without a domain is not an FQDN: 'webserver' is relative, 'webserver.azienda.it.' is fully qualified.",
+      "risposte": [
+        "Full name of the host in DNS: hostname.domain.TLD. — e.g. www.google.com.",
+        "Compressed method for transmitting DNS queries over high-latency networks between continents",
+        "American standard for the unique naming of servers in data centers",
+        "Format used by firewalls to log connections to resolved domains"
+      ]
+    },
+    "98d76f169eb1": {
+      "domanda": "How many DNS root servers exist worldwide and how are they identified?",
+      "spiegazione": "There are 13 logical IP addresses for DNS root servers (a.root-servers.net... m.root-servers.net, letters A-M). They form the root of the global DNS hierarchy: they know the addresses of all TLDs (.com, .it, .org). Important detail: '13 root servers' refers to logical addresses, NOT physical machines. Thanks to anycast routing, each address corresponds to hundreds of physical instances distributed globally, ensuring resilience and low latency.",
+      "risposte": [
+        "13 logical addresses (letters A-M); physically replicated in hundreds of instances via anycast",
+        "1 centralized root server in the USA with address a.root-servers.net",
+        "500 root servers evenly distributed in all countries worldwide",
+        "26 root servers (one per letter of the English alphabet) centrally managed by ICANN"
+      ]
+    },
+    "f79c29e5fddc": {
+      "domanda": "What is the TTL (Time To Live) in a DNS record?",
+      "spiegazione": "The TTL is in seconds for each DNS record, indicating how long intermediate resolvers (e.g., ISP DNS) can cache it. Low TTL (60s): changes propagate immediately but generate more traffic. High TTL (86400=24h): less traffic, but changes (e.g., IP change) take up to the TTL to propagate. When planning a migration, the TTL is lowered days in advance.",
+      "risposte": [
+        "Maximum duration of a TCP session between a client and an authoritative DNS server",
+        "Maximum number of DNS servers queried in cascade for a single resolution",
+        "Time in seconds for which a record can remain cached; upon expiration, it is re-queried",
+        "Speed limit in bit/s of the connection between the resolver and the root servers of the DNS chain"
+      ]
+    },
+    "f9f32a3634ec": {
+      "domanda": "In a Three-Tier Web Application, which layer handles business logic?",
+      "spiegazione": "Three-Tier separates the application into three layers. Presentation Tier: UI (browser, app), communicates via HTTP. Application Tier (Business Logic): web server + application server, processes requests, applies rules, validates data, communicates with the Data tier via SQL/JDBC. Data Tier: persistent DBMS. Advantage: each layer scales independently; you can change the DB without touching the UI.",
+      "risposte": [
+        "Presentation Tier — the browser or mobile app that displays the user interface to the client",
+        "Data Tier — the database server that stores all persistent data of the application",
+        "Network Tier — the switch that manages traffic between the application layers of the system",
+        "Application Tier: server that applies business rules and mediates between the UI and Data tier"
+      ]
+    },
+    "135ed86b9830": {
+      "domanda": "What are ERP, CRM, and SCM, and how are they classified in terms of cloud model?",
+      "spiegazione": "ERP (Enterprise Resource Planning): management software that integrates accounting, production, HR, and purchasing. Examples: SAP, Oracle ERP, Microsoft Dynamics. CRM (Customer Relationship Management): sales, marketing. E.g., Salesforce. SCM (Supply Chain Management): supply chain. They were expensive on-premise solutions; today they are increasingly SaaS: the company uses them via a browser without managing the infrastructure.",
+      "risposte": [
+        "They are enterprise network protocols: Enterprise Routing, Content Routing, Scalable Cluster Manager",
+        "ERP integrates business processes, CRM manages customers, SCM the supply chain — today often SaaS",
+        "They are security standards: Enterprise Resource Protection, Cyber Risk Management, Security Compliance",
+        "They are database types: Entity Relational Protocol, Cache Routing Model, Structured Cache Manager"
+      ]
+    },
+    "15bfaae2979b": {
+      "domanda": "What is a NIC (Network Interface Card) and how is it identified on a network?",
+      "spiegazione": "The NIC is the network card. Each NIC has a MAC address (48 bits, e.g., 00:1A:2B:3C:4D:5E) burned into the firmware, unique worldwide. The first 24 bits identify the manufacturer (OUI), and the last 24 bits are the serial number. The Ethernet switch operates at Layer 2 and uses MAC addresses for its forwarding table: it forwards frames only to the port where the destination MAC is located.",
+      "risposte": [
+        "Identified by the MAC address: a 48-bit unique physical hardware address, used by switches at Layer 2",
+        "Identified by the IP address, assigned by the DHCP server or configured manually via the administrative console",
+        "Identified by the manufacturer's serial number, visible only in the operating system's BIOS",
+        "Identified by the operating system's hostname configured by the network administrator"
+      ]
+    },
+    "9b93f54ec40d": {
+      "domanda": "What are the 5 main components of a Data Center?",
+      "spiegazione": "A Data Center consists of 5 areas: (1) Application: application software; (2) DBMS: database; (3) Compute: physical servers (CPU, RAM, blade); (4) Storage: HDD, SSD, SAN, NAS; (5) Network: switches, routers, cables. Additionally, there is the physical infrastructure: power (UPS, generators), cooling (CRAC/CRAH), and physical security.",
+      "risposte": [
+        "Application, DBMS, Compute, Storage, Network: the logical and physical blocks of the Data Center",
+        "CPU, RAM, SSD, Switch, UPS: the basic hardware components of every physical server",
+        "IaaS, PaaS, SaaS, Private Cloud, Public Cloud: the service models of the datacenter",
+        "Front-end, Back-end, Cache, RAID, Fabric: internal components of a storage array"
+      ]
+    },
+    "a787e73a7679": {
+      "domanda": "What are CRAC/CRAH systems and why are they critical in a data center?",
+      "spiegazione": "CRAC (Computer Room Air Conditioning) and CRAH (Computer Room Air Handler) are specialized cooling systems. A standard rack dissipates 10-30 kW: without cooling, components are damaged within minutes. They extract heat from the hot aisle and supply cold air to the cold aisle. They operate 24/7 with high reliability. Their power consumption is a major factor in PUE.",
+      "risposte": [
+        "Computer Room Air Conditioning/Handling: cooling systems specifically designed for data centers",
+        "Monitoring software for remote control of server racks in the data center",
+        "Redundant power supply systems (Computer Room Automatic Control) that manage UPS and generators",
+        "Physical security protocols for controlling access to server rooms"
+      ]
+    },
+    "e9a57d1257d4": {
+      "domanda": "What is the logical storage stack, starting from the hardware up to the applications?",
+      "spiegazione": "The stack is read from bottom to top: Physical Hardware (HDD, SSD, NVMe) → Device Drivers (the OS communicates with the hardware) → Volume Manager (manages logical volumes, aggregates disks) → File System (ext4, NTFS, XFS: organizes data into files and folders) → OS (mediates application requests) → Applications. Understanding this stack is fundamental for troubleshooting.",
+      "risposte": [
+        "Applications → OS → File System → Volume Manager → Device Drivers → Hardware (disks)",
+        "Hardware → Device Drivers → Volume Manager → File System → OS → Applications",
+        "File System → Volume Manager → Device Drivers → Hardware → OS → Applications",
+        "OS → File System → Volume Manager → Hardware → Device Drivers → Applications"
+      ]
+    },
+    "c03f71f232cf": {
+      "domanda": "In an Intelligent Storage System (ISS), which component accelerates I/O by reducing disk accesses?",
+      "spiegazione": "ISS Architecture: Front-End (ports towards servers) ↔ Cache ↔ Back-End (disk controllers). The cache is high-speed RAM that acts as a buffer. Read cache: read data remains in cache, and subsequent reads are served by RAM (100x faster). Write cache: writes go to RAM first (immediate response), then to disks in the background. For protection, the cache is non-volatile (batteries) and/or replicated.",
+      "risposte": [
+        "The Cache: high-speed RAM that keeps recent data, avoiding accesses to slow disks",
+        "The Front-End: FC ports that connect servers to the array by managing the SCSI protocol",
+        "The Back-End: controllers that physically manage the disks and implement the configured RAID levels",
+        "The RAID controller: distributes data across multiple disks to achieve simultaneous parallel I/O"
+      ]
+    },
+    "7170b83eb1eb": {
+      "domanda": "What does LUN masking do in an enterprise storage system?",
+      "spiegazione": "Without LUN masking, in a SAN all servers would see all LUNs — dangerous in multi-tenant environments. LUN masking (configured on the array, and/or on the FC switch with zoning) defines a map: which server (identified by the HBA WWN) accesses which LUNs. An unauthorized server does not see the LUNs it does not have access to. FC zoning is a complementary security layer.",
+      "risposte": [
+        "Encrypts data on LUNs with AES-256 algorithm to protect confidentiality at rest",
+        "Physically hides the disks that make up a LUN from the server operating system",
+        "Defines which servers (hosts) can see and access which LUN, preventing cross-access",
+        "Compresses data on a LUN to increase the usable capacity of the storage array without adding disks"
+      ]
+    },
+    "64fb66ceeb7c": {
+      "domanda": "What is DAS (Direct Attached Storage) and what is its main limitation?",
+      "spiegazione": "DAS is the simplest form: a disk/array physically connected to the server (USB, SATA, SAS), block-level access. Advantages: simplicity, low latency, low cost, no dedicated network. Limitation: dedicated to that single server — no other server can access it without going through the first one. Unsuitable for multi-server enterprise environments where sharing and centralization are key requirements.",
+      "risposte": [
+        "Network storage based on iSCSI; the limitation is the complexity of initial configuration",
+        "Storage connected to the server via cable (USB/SATA/SAS), block-level; not shareable between servers",
+        "Object Storage with access via REST API; the limitation is the lack of folder hierarchy",
+        "Storage with access via NFS/SMB; the limitation is the high cost compared to dedicated Fibre Channel SANs"
+      ]
+    },
+    "bfa0dd8f5992": {
+      "domanda": "ECC (Error Correcting Code) RAM in the servers: what does it do and why is it preferred over standard RAM?",
+      "spiegazione": "RAM chips are subject to bit flips: bits that spontaneously change state due to cosmic rays, interference, or aging. In consumer RAM, a bit flip causes crashes or data corruption. ECC RAM adds extra bits per word: using Hamming codes, it detects and corrects single-bit errors without interrupting the system. Double-bit errors are detected and cause a controlled halt. Trade-off: slightly higher cost, slightly lower performance.",
+      "risposte": [
+        "ECC = Enhanced Cache Compression: compresses data in RAM simulating greater capacity",
+        "ECC RAM is faster thanks to a dedicated bus with double bandwidth",
+        "ECC RAM is the same consumer technology but with industrial-grade chips selected and tested",
+        "Detects and corrects single-bit errors (cosmic rays, aging) — critical for 24/7 servers"
+      ]
+    },
+    "f32e3f12a79d": {
+      "domanda": "What are privilege rings in the x86 architecture?",
+      "spiegazione": "The x86 architecture has 4 privilege levels (rings): Ring 0 = highest (OS kernel, direct hardware access), Ring 3 = lowest (user applications). Rings 1 and 2 are rarely used. In Full Virtualization without hardware support, the VMM occupies Ring 0, but the guest OS also wants Ring 0. Solution: ring deprivileging — the guest runs in Ring 1; its privileged instructions cause traps that the VMM in Ring 0 intercepts and handles via Binary Translation.",
+      "risposte": [
+        "CPU frequency levels (Ring 0 low, Ring 3 high) used for power saving",
+        "Physical areas of the CPU cache (Ring 0 = L1, Ring 1 = L2, Ring 2 = L3, Ring 3 = RAM)",
+        "Software privilege levels (Ring 0 = kernel, Ring 3 = user); the VMM uses Ring 0",
+        "Ring network connection standards: Ring 0 = Fibre Channel, Ring 3 = Ethernet"
+      ]
+    },
+    "22b2eac14a14": {
+      "domanda": "What does Binary Translation do in Full Virtualization?",
+      "spiegazione": "In Full Virtualization (before VT-x/AMD-V), the VMM handles privileged instructions that the guest in Ring 1 cannot execute directly. Binary Translation: the VMM intercepts guest code blocks before execution, identifies privileged instructions (requiring Ring 0) and replaces them on the fly with equivalent sequences executable in Ring 1, or that call the VMM. The guest is unaware it is being emulated. Overhead → lower performance than hardware-assisted.",
+      "risposte": [
+        "Converts VM images from proprietary format (e.g. VMware) to open format (e.g. OVF)",
+        "On-the-fly translates privileged guest instructions into safe instructions executable by the VMM",
+        "Compiles guest OS source code into machine code optimized for physical hardware",
+        "Converts data from binary to text format for transmission over the network between different VMs"
+      ]
+    },
+    "7c5d28b40f04": {
+      "domanda": "Is VirtualBox a Type 1 or Type 2 hypervisor? In which scenario is it typically used?",
+      "spiegazione": "Oracle VirtualBox is a Type 2 (hosted) hypervisor: it does not run directly on the hardware but is an application installed on top of a host OS (Windows, macOS, Linux). It has lower performance than Type 1 hypervisors (ESXi, Hyper-V) due to the overhead of the host OS. It is open source and free, making it ideal for: local development, educational labs, and testing software in isolated environments. In production data centers, only Type 1 hypervisors are used.",
+      "risposte": [
+        "Type 1 (bare-metal): VirtualBox runs directly on the hardware for maximum performance",
+        "Type 1.5 (hybrid): uses a dedicated microkernel that partially bypasses the host OS",
+        "Not a hypervisor: it is only a software emulator for testing and educational environments",
+        "Type 2 (hosted): an app above Win/macOS/Linux; for development, testing, and labs on your own PC"
+      ]
+    },
+    "430a21edb50d": {
+      "domanda": "What are Linux Namespaces in the context of containers? How many types exist?",
+      "spiegazione": "Namespaces are a Linux kernel mechanism: each group of processes sees its own isolated copy of resources. 6 types: (1) PID — own PID space starting from 1; (2) Network — separate interfaces, IPs, and routing; (3) Mount — separate mounted filesystems; (4) User — UID/GID mapped separately (container root ≠ host root); (5) UTS — separate hostname and domainname; (6) IPC — separate shared memory and semaphores. cgroups limit consumption, namespaces limit visibility.",
+      "risposte": [
+        "6 types (PID, Network, Mount, User, UTS, IPC): isolate kernel resources for each container",
+        "YAML configuration files that describe the network settings of a running Docker container",
+        "The read-only layers of a Docker image that form the overlay Union File System",
+        "Routing rules that separate traffic between containers on the same Docker host"
+      ]
+    },
+    "431aa24a0283": {
+      "domanda": "What is the historical timeline of the main container systems?",
+      "spiegazione": "Complete timeline: 1976 IBM LPAR (mainframe partitions), 2000 FreeBSD Jail, 2004 Solaris Zones, 2005 OpenVZ, 2008 LXC (Linux standard with namespaces and cgroups). The breakthrough was in 2013 with Docker: not for the technology (similar to LXC) but for usability — Dockerfile, layers (Union FS), DockerHub, simple CLI. Docker made containers accessible to any developer.",
+      "risposte": [
+        "2000: FreeBSD Jail; 2004: Solaris Zones; 2008: LXC; 2013: Docker (usability breakthrough)",
+        "1990: Docker beta; 2000: LXC; 2005: Solaris Zones; 2010: Kubernetes first stable version",
+        "2005: OpenVZ; 2008: Docker alpha; 2010: LXC; 2013: Kubernetes first public release",
+        "1976: IBM LPAR; 2013: Docker; 2015: LXC; 2016: Kubernetes reaches stable version"
+      ]
+    },
+    "64dfcf42820c": {
+      "domanda": "What does Docker use to implement the Overlay network between containers on different hosts in Swarm?",
+      "spiegazione": "The Overlay network allows containers to communicate across different nodes as if they were on the same LAN. The underlying technology is VXLAN (Virtual eXtensible LAN): it takes an Ethernet frame and encapsulates it in UDP/IP, which traverses standard IP networks. At the destination node, it is decapsulated and delivered. Containers see a flat virtual Ethernet network. VXLAN extends VLANs from 4096 IDs to 16 million virtual IDs.",
+      "risposte": [
+        "The BGP protocol to create dynamic routing between Docker host nodes in the cluster",
+        "VXLAN: encapsulates Ethernet frames in UDP/IP packets, traversing standard IP networks",
+        "GRE (Generic Routing Encapsulation) tunnel over IPv6 between Swarm cluster nodes",
+        "IPsec to create end-to-end encrypted VPNs between all Docker Swarm cluster nodes"
+      ]
+    },
+    "25a99468dbe8": {
+      "domanda": "What does `docker exec -it mycontainer bash` do?",
+      "spiegazione": "`docker exec` runs a command in an already running container — it does not create a new one. `-i` (interactive) keeps stdin open; `-t` (tty) allocates a pseudo-terminal: together they enable interaction. `mycontainer` is the target. `bash` is the command. Result: a shell inside the container for navigating the filesystem, inspecting processes, reading logs, modifying configurations. If bash is not available, use `sh`. Essential for troubleshooting.",
+      "risposte": [
+        "Creates a new container based on the 'mycontainer' image and starts bash in interactive mode",
+        "Stops the 'mycontainer' container and opens a bash shell to inspect post-mortem logs",
+        "Runs bash in the already active 'mycontainer', in interactive mode (-it): opens a debug shell",
+        "Copies the log files of 'mycontainer' to a bash directory on the host filesystem"
+      ]
+    },
+    "80faff9963db": {
+      "domanda": "Which consensus algorithm does Docker Swarm use among manager nodes?",
+      "spiegazione": "Docker Swarm uses Raft for consensus among managers. It ensures that all managers agree on the cluster state (services, replicas, nodes). It tolerates (N-1)/2 failed managers: with 3 managers → 1 failure, with 5 → 2 failures. A Leader manages decisions; the others are Followers. If the Leader fails, Raft automatically elects a new Leader. Kubernetes uses etcd (also Raft) for the same purpose.",
+      "risposte": [
+        "Paxos — the most widely used distributed consensus algorithm in classic enterprise systems",
+        "PBFT (Practical Byzantine Fault Tolerance) — used in Swarm to tolerate malicious nodes",
+        "Round-robin — managers take turns making decisions without a true consensus algorithm",
+        "Raft — distributed consensus, tolerates (N-1)/2 failed managers"
+      ]
+    },
+    "cbad1404dd3d": {
+      "domanda": "What does the `compose.yaml` file contain in a Docker Compose project?",
+      "spiegazione": "The `compose.yaml` (formerly `docker-compose.yml`) defines the multi-container application in YAML. Sections: `services` (each service is a container with image, ports, env, volumes, dependencies via `depends_on`), `volumes` (volume definitions), `networks` (virtual networks). With `docker compose up -d` Docker starts all containers. With `docker compose down` it stops them. It should be versioned in Git to reproduce the application anywhere.",
+      "risposte": [
+        "Definition of the multi-container application in YAML: services (images, ports, volumes, env), volumes, and networks",
+        "Instructions for building the Docker image, equivalent to the Dockerfile in YAML format instead of free text",
+        "The list of system environment variables of the host on which the Docker daemon runs",
+        "The configuration of the Docker daemon (dockerd) for the host operating system"
+      ]
+    },
+    "9624bfcd2aad": {
+      "domanda": "What is the default tag for a Docker image if none is specified?",
+      "spiegazione": "Docker images follow the format `[registry/][user/]name[:tag]`. If no tag is specified, Docker uses `:latest`. Examples: `nginx` is equivalent to `nginx:latest`; `ubuntu:22.04` specifies a version. NOTE: `latest` does not necessarily mean 'the most recent'; it is simply the default tag—a maintainer might not update it. In production, always use a specific tag (e.g., `nginx:1.25.3`) for reproducibility and to prevent breaking changes.",
+      "risposte": [
+        "`stable` — identifies the latest stable version certified by the project maintainer",
+        "`latest` — automatically used if no tag is specified",
+        "`v1` — subsequent versions are named v2, v3 in increasing incremental order",
+        "The build date in YYYYMMDD format automatically generated by Docker at pull time"
+      ]
+    },
+    "64db8fc77bd1": {
+      "domanda": "What does `docker compose down` do compared to `docker compose stop`?",
+      "spiegazione": "`stop`: sends SIGTERM and stops the containers — they remain stopped and can be restarted with `start`. The containers still exist with their writable layer. `down`: stops AND removes containers and networks created by Compose. Data in volumes is preserved by default (to remove them: `down -v`). After `down`, you need `up` to restart (recreates from scratch). `stop` = pause; `down` = cleanup (to update the compose.yaml).",
+      "risposte": [
+        "They are identical: both stop and remove containers, networks, and volumes of the project",
+        "`stop` stops the containers without removing them; `down` stops AND removes containers and networks (volumes are preserved)",
+        "`down` only stops the containers; `stop` also removes the Docker images associated with the project in compose.yaml",
+        "`stop` is deprecated and no longer works in recent versions of Docker Compose"
+      ]
+    },
+    "5133d48e3095": {
+      "domanda": "What does `docker logs mycontainer` do and when is it useful?",
+      "spiegazione": "`docker logs mycontainer` displays the output (stdout and stderr) of the container's main process. Docker automatically captures stdout/stderr. Options: `-f` or `--follow` (live, like tail -f), `--tail N` (last N lines), `--since 1h` (filter by time). It is the first debugging tool: if a container crashes, the reason is usually in the logs. No need to enter with `exec`.",
+      "risposte": [
+        "Shows the list of all containers that used the same image as 'mycontainer'",
+        "Exports the logs of 'mycontainer' to a file on the host filesystem in /var/log/docker/",
+        "Displays stdout and stderr of the container's main process, useful for debugging without exec",
+        "Lists all commands executed by the root user inside the active 'mycontainer' container"
+      ]
+    },
+    "b78fe84859ff": {
+      "domanda": "What is a Docker Volume and how does it differ from a bind mount?",
+      "spiegazione": "Docker Volume: managed by Docker in /var/lib/docker/volumes/, lifecycle independent of the container, survives `docker rm`, shareable between containers, manageable with `docker volume`. Bind mount: maps a host directory (e.g., /home/user/data) into the container. More direct and flexible for local development (you modify the code on the host and the container sees it), but depends on the specific host path.",
+      "risposte": [
+        "The Volume is temporary and is deleted with the container; the bind mount is persistent and survives",
+        "The Volume works only on Linux; the bind mount works natively on Windows, macOS, and Linux",
+        "The Volume is used only in production with Swarm; the bind mount only in individual local development",
+        "Volume = managed by Docker in /var/lib/docker/volumes/; bind mount = host directory"
+      ]
+    },
+    "a442088a39f9": {
+      "domanda": "What is the typical structure of an OpenTofu/Terraform project?",
+      "spiegazione": "Standard structure: `main.tf` (resources: containers, VMs, networks, storage); `provider.tf` (providers, e.g., Docker, Azure, with credentials); `variables.tf` (input variables: name, type, default); `outputs.tf` (exported values post-apply: IP, URL); `versions.tf` (OpenTofu and provider versions); `.gitignore` (excludes .terraform/, *.tfstate). Plus a descriptive `README.md`.",
+      "risposte": [
+        "main.tf (resources), provider.tf (providers), variables.tf (inputs), outputs.tf (outputs), versions.tf (versions)",
+        "app.tf (application), infra.tf (infrastructure), config.tf (configurations), deploy.tf (deployment), monitor.tf (apply monitoring)",
+        "index.tf (entry point), modules/ (modules), state/ (state), secrets/ (credentials), README.tf",
+        "main.yaml (resources), provider.json (providers), Dockerfile (image), compose.yaml, .env"
+      ]
+    },
+    "bd0ac4dd1d1e": {
+      "domanda": "Why is Ansible considered a 'procedural' IaC tool compared to Terraform?",
+      "spiegazione": "Ansible uses YAML playbooks with sequential tasks: 'Step 1: install nginx', 'Step 2: copy config', 'Step 3: start service'. Procedural = HOW. Terraform/OpenTofu is declarative: 'I want nginx configured like this', and determines the operations autonomously. Ansible can cause errors on the second run if not idempotent; Terraform is idempotent by design. In practice, they are used together: Terraform for infrastructure, Ansible for OS/apps.",
+      "risposte": [
+        "Because it uses XML instead of YAML for application playbook configuration files",
+        "Because it works only on Windows machines and not on modern Linux/Unix systems",
+        "In playbooks, sequential tasks (install, configure, start) are written instead of the desired final state",
+        "Because it does not maintain a state file like Terraform and therefore does not know what has already been created previously"
+      ]
+    },
+    "8dafafd267a3": {
+      "domanda": "What is OpenTofu and how did it originate in relation to Terraform?",
+      "spiegazione": "Terraform by HashiCorp was MPL (Mozilla Public License), open source. In 2023, HashiCorp switched to BSL (Business Source License), which is more restrictive (prohibits commercial use by competitors). The community forked it: OpenTofu, adopted by the Linux Foundation as an independent and genuinely open-source project (MPL). Compatible with Terraform: same HCL, same providers, same syntax. Commands: `tofu init/plan/apply/destroy`. The course uses OpenTofu.",
+      "risposte": [
+        "Google project created from scratch to directly compete with HashiCorp's Terraform in the cloud market",
+        "Open-source fork of Terraform after HashiCorp's license change; managed by the Linux Foundation",
+        "Paid enterprise version of Terraform with inclusive commercial support from HashiCorp",
+        "Separate tool that uses a different language than HCL, compatible only with native Kubernetes"
+      ]
+    },
+    "2e53aad3214e": {
+      "domanda": "In the OpenTofu Azure provider, why is the `features {}` block mandatory even if empty?",
+      "spiegazione": "In the OpenTofu/Terraform azurerm provider, the `features {}` block is syntactically mandatory even if empty. The minimal configuration is: `provider \"azurerm\" { features {} }`. Without it, `tofu init` or `tofu plan` will result in a validation error. It is used to configure optional behaviors (e.g., what to do when deleting a resource group), but it must be present even with default settings. This is a specific syntactic detail that often causes errors for beginners.",
+      "risposte": [
+        "It is only an optional stylistic convention: the code works fine without it",
+        "The `features {}` block enables experimental features of OpenTofu specific to Azure",
+        "The block specifies the Azure API version to use to ensure backward compatibility",
+        "It is required by the azurerm provider specification: without it, a configuration error occurs"
+      ]
+    },
+    "e9614f598987": {
+      "domanda": "What does `tofu destroy` do and when should it be used with caution?",
+      "spiegazione": "`tofu destroy` is the most dangerous command: it reads the tfstate, identifies all managed resources, and deletes them from the real infrastructure — VMs, containers, networks, storage, everything. It shows the plan and asks for confirmation ('yes'). In production: extreme caution is required, as deletion is irreversible (unbacked-up data is lost). Use cases: cleanup of test/staging environments, teardown of temporary infrastructures, and educational labs (as in the course).",
+      "risposte": [
+        "Deletes only local HCL configuration files without touching the client's real infrastructure",
+        "Shows a destruction plan without executing anything, equivalent to `tofu plan -destroy`",
+        "Resets the terraform.tfstate file back to its initial empty project state",
+        "Deletes all real managed resources (VMs, containers, networks); irreversible, caution in prod"
+      ]
+    },
+    "74902ca817f8": {
+      "domanda": "What does the presence of multiple Availability Zones (AZs) within an AWS Region ensure?",
+      "spiegazione": "Each Region contains 2-6 AZs. Each AZ consists of one or more physically separate data centers within the same geographic area, featuring independent power, cooling, and connectivity. They are interconnected via a high-speed, low-latency network (<1ms). They are isolated from failures in other AZs: an incident like a fire, flood, or power outage in one AZ does not impact the others. Distributing an application across multiple AZs ensures high availability.",
+      "risposte": [
+        "Ensures that resources are distributed across different countries to comply with GDPR",
+        "Redundancy: AZs are separate data centers in the same area, isolated from failures in other AZs",
+        "Ensures lower prices for EC2 instances due to internal competition between AZs",
+        "Ensures that each AZ is managed by a different hosting provider to avoid vendor lock-in"
+      ]
+    },
+    "739e19ea2a4f": {
+      "domanda": "What is a Security Group in AWS and how does it differ from a Network ACL?",
+      "spiegazione": "AWS provides two firewall levels in VPC. Security Group: at the EC2 instance (or ENI) level. STATEFUL: if you allow inbound TCP on port 80, the outbound response is automatic. Network ACL: at the subnet level. STATELESS: explicit rules for both inbound and outbound. Rules are numbered and evaluated in order. SG = first line of defense; NACL = additional layer.",
+      "risposte": [
+        "The Security Group is an IAM user group; the Network ACL is a subnet-level firewall",
+        "They are identical: both filter traffic at the single EC2 instance level in the same way",
+        "Security Group = stateful, applied to the EC2 instance; Network ACL = stateless, applied to the subnet",
+        "The Security Group is applied to VPC subnets; the Network ACL is applied to individual EC2 instances"
+      ]
+    },
+    "ee28bf5c4845": {
+      "domanda": "What are the three main public cloud providers and how do they position themselves in the market?",
+      "spiegazione": "The three main cloud providers according to the course: (1) AWS (Amazon Web Services) #1, since 2006, with the broadest catalog; (2) Microsoft Azure #2, with strong integration into the Microsoft ecosystem (Office 365, AD, Windows Server), preferred by enterprises already using Microsoft; (3) Google Cloud Platform (GCP) #3, particularly strong in AI/ML (TensorFlow, Vertex AI), Big Data (BigQuery), and Kubernetes (Google created K8s). The market is growing; AWS is the leader, while Azure and GCP are gaining market share.",
+      "risposte": [
+        "AWS (#1), Microsoft Azure (#2, Microsoft ecosystem), Google Cloud (#3, AI/ML)",
+        "Oracle Cloud, IBM Cloud, Alibaba Cloud — respectively #1, #2 and #3 globally",
+        "AWS (#1), Google Cloud (#2), Alibaba Cloud (#3): Azure is outside the top 3",
+        "Microsoft Azure (#1), AWS (#2), Google Cloud (#3): Azure surpassed AWS in 2022"
+      ]
+    },
+    "3d6f1c76aeba": {
+      "domanda": "How does AWS handle Black Friday traffic spikes without downtime?",
+      "spiegazione": "The Black Friday case study demonstrates 'rapid elasticity'. Physical servers: supporting 50x traffic would require purchasing thousands of machines used for only a few hours a year—an enormous waste. AWS solves this with elasticity: the Nitro Hypervisor starts a VM in 5-10 seconds. At midnight on Black Friday, auto-scaling detects the spike. Within seconds, the number of VMs scales from 200 to 600 to 3000 automatically. When traffic subsides, the VMs are terminated. You pay per use for the actual seconds consumed. Result: 0 downtime, costs proportional to usage.",
+      "risposte": [
+        "By pre-purchasing additional physical servers every September to be shut down in January of the following year",
+        "By limiting the number of simultaneous accesses with a virtual queue system during spikes",
+        "Nitro Hypervisor starts VMs in 5-10s; auto-scaling scales from hundreds to thousands of VMs and terminates them when traffic drops",
+        "By using dedicated Black Friday data centers that remain off the rest of the year and are only turned on in November for the spikes"
+      ]
+    },
+    "ed16e1f4cc85": {
+      "domanda": "What is the key lesson from the Netflix case study on cloud migration?",
+      "spiegazione": "The Netflix case study encapsulates the cloud's promise. Before (2008): physical servers → DB corruption → 3 days offline → 9.39M subscribers. After AWS: every server is a VM (replaceable), evening peaks handled with auto-scaling, zero hardware. In 2016, Netflix shut down its last physical data center. Today, it serves over 300M subscribers on AWS. Lesson: the cloud is not just about cost, but about agility, reliability, and focus on core business.",
+      "risposte": [
+        "The cloud is always cheaper than on-premise in any possible business scenario",
+        "Physical servers are always preferable to the cloud for high-traffic workloads like streaming",
+        "Netflix uses AWS only for backup; streaming still runs on proprietary physical servers",
+        "Cloud = HA, instant scaling, focus on the product: Netflix serves over 300M subscribers on AWS"
+      ]
+    },
+    "d2b9089b77c6": {
+      "domanda": "What does `git status` do and when should it be used in the daily workflow?",
+      "spiegazione": "`git status` is the orientation command for the Git workflow. It should be used before `git add` and `git commit`. It shows: files in red (modified but not staged — working directory), in green (staged — ready for commit), and untracked (new). IaC course workflow: `git status` (what has changed?) → `git add .` → `git commit -m '...'` → `git push`.",
+      "risposte": [
+        "Shows the complete history of all repository commits with author, date, and message",
+        "Synchronizes the local repository with the remote by downloading all available latest changes",
+        "Shows the status of the working directory and staging area: modified, staged, untracked",
+        "Checks the connection with the remote repository and shows whether a push is possible at this moment"
+      ]
+    },
+    "b4726972c651": {
+      "domanda": "What does `git log --oneline` do and what information does it display?",
+      "spiegazione": "`git log --oneline` displays the history in a compact format: abbreviated hash (7 chars, unique) + commit message, from the most recent. Example: `a3f8c21 Version B: container WITH volume`. Without `--oneline`, it shows the full hash (40 chars), author, date, and extended message. Useful for identifying a commit's hash before `git checkout <hash>` to revert to that version.",
+      "risposte": [
+        "Displays the commit history in a compact format: abbreviated hash (7 chars) + message, from the most recent",
+        "Displays the list of modified files in the latest commit of the repository in a compact one-line format each",
+        "Shows only the current user's commits, excluding those of project collaborators",
+        "Exports the repository history to a formatted text file for external documentation"
+      ]
+    },
+    "46901e09d4bb": {
+      "domanda": "What does `git push -u origin main` do and what does the `-u` flag mean?",
+      "spiegazione": "`git push origin main` pushes the local main branch to the remote repository 'origin'. The `-u` flag (= `--set-upstream`) sets up tracking: the local main branch 'follows' the remote one. After the first push with `-u`, subsequent pushes are simply `git push` without specifying. The tracking is stored in the local config. Without `-u`, you must always write `git push origin main`.",
+      "risposte": [
+        "Downloads ('pull') the main branch from the remote origin to the local repository with a forced update",
+        "Publishes the main branch to origin; `-u` links the local branch to the remote for future pushes",
+        "Deletes the main branch from the remote origin and also removes it from the local repository",
+        "Merges the main branch with the current branch and then publishes it to origin"
+      ]
+    },
+    "f591d3b15492": {
+      "domanda": "What does `git branch` do and what does the asterisk (*) indicate in the output?",
+      "spiegazione": "`git branch` without arguments lists local branches. The asterisk (*) indicates the current branch — where HEAD points. Example: `* main` / `feature-login` / `bugfix-volume`. Related commands: `git branch newbranch` (create), `git branch -d name` (delete), `git branch -M main` (rename). In the course's IaC workflow, after `git checkout HEAD~1` the asterisk shows 'detached HEAD'.",
+      "risposte": [
+        "Lists configured remote repositories; the asterisk indicates the main remote (origin)",
+        "Lists local branches; the asterisk indicates the current branch (where HEAD points)",
+        "Creates a new branch with the specified name; the asterisk is a wildcard for multiple names",
+        "Deletes all branches except the one with the asterisk, kept as the project's main branch"
+      ]
+    },
+    "c9309b856723": {
+      "domanda": "What is 'packaged' software and how does it differ from 'custom' software?",
+      "spiegazione": "Packaged Software: a standard product from a vendor sold/licensed to many customers. Examples: SAP ERP, Microsoft Office, Salesforce. Advantages: ready-to-use, low initial cost, vendor support, updates. Disadvantage: the company adapts its processes to the software. Custom Software: developed for a company's specific processes. Advantages: perfect fit, competitive advantage. Disadvantages: high cost, long development times, internal maintenance.",
+      "risposte": [
+        "Packaged = packaged in a Docker image; Custom = installed directly on the OS without containers",
+        "Packaged = developed specifically for a particular company; Custom = standard product sold with a commercial license",
+        "There is no difference: both refer to commercial software with a paid proprietary license",
+        "Packaged = standard product (SAP, Office) for many customers; Custom = developed for a single company"
+      ]
+    },
+    "37acf0c872d0": {
+      "domanda": "AWS Lambda is an example of which cloud computing paradigm?",
+      "spiegazione": "AWS Lambda is the most well-known FaaS service, the emblem of Serverless. Model: you write a function (Python, Node.js, Java...), upload it to Lambda, and configure the trigger (HTTP via API Gateway, S3 upload, SQS message, CloudWatch event). When the trigger fires, Lambda executes, returns the result, and terminates. Cost per millisecond: if it is not invoked, the cost is zero. Automatic scaling to thousands of parallel executions without configuration.",
+      "risposte": [
+        "IaaS: provides virtual VMs on which to run custom code with manual operator scaling",
+        "PaaS: provides a managed platform for continuous deployment of complete web applications",
+        "SaaS: is a ready-to-use application without the need for the user to write additional code",
+        "FaaS / Serverless: executes functions in response to events, pay per ms, automatic scaling"
+      ]
+    },
+    "0a260442d0c9": {
+      "domanda": "What is the primary immediate benefit of virtualization in a data center?",
+      "spiegazione": "Consolidation is the most immediate benefit. Before: each app on a dedicated server to avoid interference → average utilization 10-15% (85-90% wasted). With virtualization: multiple VMs (each with its own app) on the same physical server with guaranteed resources. A modern server hosts 20-50 VMs. Benefits: fewer servers to buy, less rack space, less energy, less cooling, less hardware to maintain. Typical ratios 10:1 or higher.",
+      "risposte": [
+        "Server consolidation: multiple VMs per physical host, fewer machines, rack space, energy, costs",
+        "Complete elimination of downtime thanks to live migration of VMs between different hosts in the cluster",
+        "Automatic performance increase of a single application thanks to the hypervisor",
+        "Total elimination of the need for backups thanks to automatic VM snapshots"
+      ]
+    },
+    "d2e6d82d7214": {
+      "domanda": "What is the difference between an optical disc (CD/DVD/Blu-ray) and an HDD?",
+      "spiegazione": "Optical discs (CD, DVD, Blu-ray) use a laser to read/write on reflective polycarbonate layers. This technology differs from HDDs (magnetism) and SSDs (NAND flash). Advantages of optical discs: portability, durability, low unit cost. Disadvantages: limited capacity (Blu-ray up to 100 GB), slow access, fragility. Historical use: software/music/video distribution, archiving. Today replaced by downloads and cloud, still used in some archives.",
+      "risposte": [
+        "The optical disc uses rotating magnets like the HDD but with higher density; both for primary storage",
+        "Optical disc = laser on reflective layers (distribution/archiving); HDD = magnetic heads on rotating platters",
+        "There is no real technological difference: modern DVDs use the same magnetic technology as HDDs",
+        "The optical disc uses NAND flash like SSDs but in a removable format; the HDD uses magnetic platters"
+      ]
+    },
+    "a2b1506bb5bf": {
+      "domanda": "What is a Container Service in Docker Swarm and how does it differ from a single container?",
+      "spiegazione": "In Swarm, a Service is the scalable deployment unit. It defines: image, number of replicas (e.g., 5 instances), update policy (rolling update without downtime), load balancing among replicas, and restart on crash. Swarm decides on which nodes to run the replicas, detects crashes and restarts them, and distributes traffic. Definition in `compose.yaml` with the `deploy` section. It is the abstraction for horizontally scaling microservices.",
+      "risposte": [
+        "Single Docker container with a custom name and automatic restart policy in case of crash",
+        "The dockerd process running on each worker node of the Swarm cluster in production",
+        "The private registry service integrated in Docker Swarm for internal Docker images",
+        "Set of replicas of the same container with load balancing, scaling, and automatic restarts"
+      ]
+    },
+    "a679061a8b02": {
+      "domanda": "What is idempotency in IaC and why is it a fundamental property?",
+      "spiegazione": "Idempotency is a mathematical property: applying an operation multiple times produces the same result. In declarative IaC: if you run `tofu apply` 10 times without modifying the code, after the first apply (which creates/modifies), subsequent runs do nothing because desired state = actual state. It is fundamental for reliability: you can re-run without fear of duplicating resources. Non-idempotent shell scripts and Ansible playbooks tend to produce errors on the second execution.",
+      "risposte": [
+        "Applying the same IaC code multiple times always produces the same final result, without accumulated effects",
+        "It means that IaC can be written in any programming language without differences in the final result",
+        "It means that IaC can be executed by any user without special administrative permissions",
+        "It means that IaC code is identical across different cloud providers (AWS, Azure, GCP) automatically"
+      ]
+    }
+  }
+}

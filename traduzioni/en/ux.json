@@ -1,0 +1,1018 @@
+{
+  "nome": "UX Design",
+  "categorie": {
+    "Processo di design": "Design Process",
+    "Personas": "Personas",
+    "Buon design (Norman)": "Good Design (Norman)",
+    "Design Universale": "Universal Design",
+    "Responsive e reflow": "Responsive and Reflow",
+    "WCAG e POUR": "WCAG and POUR",
+    "Fondamenti UX": "UX Fundamentals",
+    "Wireframe e Gestalt": "Wireframes and Gestalt",
+    "Screen reader e tastiera": "Screen Readers and Keyboard",
+    "Architettura dell'informazione": "Information Architecture",
+    "Journey e Flow": "Journey and Flow"
+  },
+  "domande": {
+    "aad96637629e": {
+      "domanda": "What is the 'Discover' phase of the Double Diamond dedicated to?",
+      "spiegazione": "Discover is problem exploration: interviews, observations, surveys, competitor analysis, and data.",
+      "risposte": [
+        "To explore the problem by gathering information on context and user needs",
+        "To publish",
+        "To sell",
+        "To print"
+      ]
+    },
+    "2a744497991b": {
+      "domanda": "In which phase of the Double Diamond are personas created?",
+      "spiegazione": "In the Define phase, data is synthesized and personas, scenarios, and storyboards are created.",
+      "risposte": [
+        "Define",
+        "In the final phase of delivering the product to the customer",
+        "During the initial problem discovery phase",
+        "In the iterative solution development phase"
+      ]
+    },
+    "3cd03f26abcd": {
+      "domanda": "Which is the most concrete level in Garrett's 5 levels?",
+      "spiegazione": "The Surface is the most concrete level: the aesthetics and the final interface perceived by the user.",
+      "risposte": [
+        "The Structure",
+        "The Functionality",
+        "The Surface",
+        "The Strategy"
+      ]
+    },
+    "51262775f59a": {
+      "domanda": "What does Emily, who has cerebral palsy, primarily need?",
+      "spiegazione": "Emily has limited hand use: large and spaced targets, keyboard navigation, no hover or mouse precision required.",
+      "risposte": [
+        "Small text",
+        "High volume audio",
+        "Accurate subtitles and text transcripts for all audio and video content",
+        "Large, well-spaced targets"
+      ]
+    },
+    "ed7cdcc5be6b": {
+      "domanda": "What does the 'Gulf of Evaluation' refer to?",
+      "spiegazione": "In the Gulf of Evaluation, the user seeks to understand the outcome of their action; the designer helps bridge both gulfs.",
+      "risposte": [
+        "Understanding what happened after acting",
+        "The payment",
+        "The physical location of the server hosting the web application used",
+        "The font"
+      ]
+    },
+    "0edf54bf9e59": {
+      "domanda": "Why is affordance 'relative'?",
+      "spiegazione": "Affordance is relative: it depends on the relationship between the object's properties and the user's capabilities (a chair for a human, not for an elephant).",
+      "risposte": [
+        "It changes color",
+        "It is fixed",
+        "It depends on the price",
+        "Because it depends on the relationship between the object and the capabilities of those who interact with it"
+      ]
+    },
+    "bc66ceb28a69": {
+      "domanda": "What is an anti-affordance?",
+      "spiegazione": "Anti-affordance is the concept opposite to affordance: it prevents or blocks an action.",
+      "risposte": [
+        "A loading animation displayed while waiting",
+        "A particularly long and rich navigation menu",
+        "The prevention of an action",
+        "A bright color used to attract the user's attention"
+      ]
+    },
+    "437b0c377090": {
+      "domanda": "According to 'Low Physical Effort', what is the minimum size a touch target should measure?",
+      "spiegazione": "To reduce physical effort, touch targets should be at least 44x44 px, with a logical tab order.",
+      "risposte": [
+        "60x60 px",
+        "10x10 px",
+        "44x44 px",
+        "20x20 px"
+      ]
+    },
+    "2f172b15567e": {
+      "domanda": "At a width of 320px, content must be readable:",
+      "spiegazione": "The reflow requirement (WCAG 1.4.10) mandates that content is readable without horizontal scrolling at 320 CSS px.",
+      "risposte": [
+        "Without horizontal scrolling",
+        "Only by using horizontal page scrolling",
+        "Only when opened on a desktop screen",
+        "Exclusively after zooming in significantly on the page"
+      ]
+    },
+    "c8462074cbc1": {
+      "domanda": "Which P.O.U.R. principle requires that the interface has no barriers to interaction?",
+      "spiegazione": "Operable: no barriers to interaction, for example, Emily should not depend on mouse precision.",
+      "risposte": [
+        "The understandable principle, related to clarity",
+        "Operable",
+        "The perceivable principle, related to sensory channels",
+        "The robust principle, related to reliable code"
+      ]
+    },
+    "7b9d42347ccb": {
+      "domanda": "Which viewport meta setting disables zooming and should be avoided?",
+      "spiegazione": "user-scalable=no (and maximum-scale=1.0) disables zooming and should be avoided; the correct setting is width=device-width, initial-scale=1.0.",
+      "risposte": [
+        "user-scalable=no",
+        "The width attribute set to device-width for the page",
+        "The utf-8 charset declaration in the header",
+        "The initial-scale attribute set to 1.0"
+      ]
+    },
+    "3b2e24ff13ac": {
+      "domanda": "What does 'Why' correspond to in the Why-What-How model?",
+      "spiegazione": "The 'Why' refers to motivations, values, and visions: why the user should invest time or money in the product.",
+      "risposte": [
+        "The motivations",
+        "The final price",
+        "The technical code",
+        "The chosen color"
+      ]
+    },
+    "094c65579a38": {
+      "domanda": "Which person best illustrates the 'Understandable' principle?",
+      "spiegazione": "Understandable: content and actions are clear and predictable. Francesco (autism) navigates using a consistent structure and explicit actions.",
+      "risposte": [
+        "Emily, who has cerebral palsy and limited mobility",
+        "Steven, who is deaf and uses sign language",
+        "Valerio, who has low vision caused by glaucoma",
+        "Francesco"
+      ]
+    },
+    "281188a9dee9": {
+      "domanda": "Which unit of measurement is preferred for typography according to the course?",
+      "spiegazione": "For typography, relative units (rem or %) are preferred to respect user preferences; always test text zoom and resize.",
+      "risposte": [
+        "Absolute points",
+        "Absolute pixels",
+        "Whole inches",
+        "Relative units"
+      ]
+    },
+    "433be3017699": {
+      "domanda": "How many phases does the Double Diamond model have?",
+      "spiegazione": "The Double Diamond has four phases: Discover, Define, Develop, Deliver.",
+      "risposte": [
+        "Seven",
+        "Four",
+        "Two",
+        "Five"
+      ]
+    },
+    "8cef0acd4648": {
+      "domanda": "Why is a wireframe 'not just layout'?",
+      "spiegazione": "The wireframe organizes content, navigation paths, and calls to action before they become the interface and HTML.",
+      "risposte": [
+        "Because it uses a large amount of bright colors",
+        "Because it is made exclusively in black and white",
+        "Because it can be drawn in very little time",
+        "Organizes content and paths"
+      ]
+    },
+    "5f1eedc90ac1": {
+      "domanda": "Why must links have descriptive text?",
+      "spiegazione": "Screen readers list links in isolation from their context: each link must indicate where it leads or what it does, even without surrounding text.",
+      "risposte": [
+        "For aesthetics",
+        "Because they are read out of context and must independently indicate their destination",
+        "For SEO",
+        "For space"
+      ]
+    },
+    "6caaca60148e": {
+      "domanda": "What does the 'Less is more' principle state?",
+      "spiegazione": "Less is more: a good experience is achieved when benefits are maximized and resources (time, effort, steps) are minimized.",
+      "risposte": [
+        "Fewer colors",
+        "Good experience when benefits are maximized and time and effort for the activity are minimized",
+        "Fewer users",
+        "More features"
+      ]
+    },
+    "8fee70dc2043": {
+      "domanda": "What does the WCAG 2.4.7 (Focus Visible) criterion require?",
+      "spiegazione": "The 2.4.7 Focus Visible criterion requires that keyboard users always see which element has focus.",
+      "risposte": [
+        "Red focus",
+        "That keyboard users always see which element has focus at any given moment",
+        "No focus",
+        "Animated focus"
+      ]
+    },
+    "4786728959eb": {
+      "domanda": "Why does the DOM order matter for a screen reader?",
+      "spiegazione": "The screen reader follows the DOM order: if CSS repositions elements, the user might hear the answer before the question.",
+      "risposte": [
+        "For colors",
+        "For the network",
+        "For the price",
+        "Because the screen reader reads in the order of the HTML code, which may differ from the visual layout"
+      ]
+    },
+    "9e4dd7aa9017": {
+      "domanda": "Beyond how many levels of depth does the user lose the thread?",
+      "spiegazione": "Beyond three levels of depth, the risk that the user loses the thread increases significantly.",
+      "risposte": [
+        "Twenty",
+        "Ten",
+        "Three",
+        "One"
+      ]
+    },
+    "1645ffa05cc2": {
+      "domanda": "What is the purpose of a breadcrumb?",
+      "spiegazione": "The breadcrumb indicates 'where you are now' and the relationship of the current page with other sections.",
+      "risposte": [
+        "For payment",
+        "To show where you are in the structure and the relationship with other sections",
+        "For login",
+        "For language"
+      ]
+    },
+    "bdbe58325205": {
+      "domanda": "How does the object consider 'facet' classification?",
+      "spiegazione": "Facet classification describes the object according to multiple independent properties; it contrasts with tree-based classification.",
+      "risposte": [
+        "It places it in a single hierarchical tree container",
+        "It catalogs it solely based on price range",
+        "According to multiple independent properties",
+        "It organizes it by examining only the color"
+      ]
+    },
+    "fcc23f889cb9": {
+      "domanda": "Why is 'overflow: hidden' on text a problem?",
+      "spiegazione": "With overflow: hidden, excess content disappears (WCAG F102 failure): overflow auto or visible is better.",
+      "risposte": [
+        "Changes font",
+        "Exceeding text disappears instead of scrolling, a known failure called WCAG F102",
+        "Fades out",
+        "Slows down"
+      ]
+    },
+    "70e8fecd7aa1": {
+      "domanda": "For Norman, a 'PUSH/PULL' sign on a door indicates:",
+      "spiegazione": "The sign is evidence of a failed design: the door should indicate its use on its own, without signs or attempts.",
+      "risposte": [
+        "A particularly accessible design solution for everyone",
+        "A refined and modern aesthetic highly appreciated",
+        "A significant saving on implementation costs",
+        "A failed design"
+      ]
+    },
+    "b241a66ba9c5": {
+      "domanda": "Which CSS solution is recommended instead of a fixed pixel width?",
+      "spiegazione": "It is better to use max-width (e.g., 75rem) with width: 100% instead of a fixed width: the container shrinks when needed.",
+      "risposte": [
+        "display none",
+        "Use max-width with width 100%",
+        "Set a pixel width expressed in pixels equal for all devices",
+        "color red"
+      ]
+    },
+    "9dccb9544531": {
+      "domanda": "What is the relationship between disability and design according to the course?",
+      "spiegazione": "Poor design is disabling: disability arises from a mismatch between the design and the user; one can be enabled or disabled.",
+      "risposte": [
+        "Disability is determined solely by the hardware used",
+        "Disability depends exclusively on the individual person",
+        "There is no relationship between design and disability",
+        "It arises from a mismatch between design and person"
+      ]
+    },
+    "c3f1951cf84a": {
+      "domanda": "How many principles are there in the Universal Design principles of the CUD?",
+      "spiegazione": "The Center for Universal Design's Universal Design principles number seven.",
+      "risposte": [
+        "Fifteen",
+        "Ten",
+        "Seven",
+        "Three"
+      ]
+    },
+    "39d1aefa020c": {
+      "domanda": "What does the 'How' aspect of the Why-What-How model focus on?",
+      "spiegazione": "The 'How' concerns how to make functions operational with a highly accessible and aesthetic interface.",
+      "risposte": [
+        "On accessibility and the aesthetics of the interface",
+        "On revenues",
+        "On business strategy and the product's sales methods in the market",
+        "On price"
+      ]
+    },
+    "002746a24c6a": {
+      "domanda": "A 320px viewport corresponds to which zoom level on a 1280px monitor?",
+      "spiegazione": "320px is both the mobile breakpoint and the equivalent of a 1280px browser with 400% zoom.",
+      "risposte": [
+        "100%",
+        "50%",
+        "400%",
+        "150%"
+      ]
+    },
+    "1a91cc1ade63": {
+      "domanda": "Which of these is an 'edge case' to map in a user flow?",
+      "spiegazione": "Edge cases to map: user error, abandonment (are data saved?), browser back navigation, empty state.",
+      "risposte": [
+        "Registering the website's domain name",
+        "Abandonment",
+        "Defining the final product price",
+        "Choosing the color of the main corporate logo"
+      ]
+    },
+    "207754c2a1a8": {
+      "domanda": "Why are menu labels considered accessibility features?",
+      "spiegazione": "Labels are the only thing that Luca hears and the first thing Francesco reads; if they are vague or ambiguous, users may exclude the page before even opening it.",
+      "risposte": [
+        "They are what Luca hears and Francesco reads",
+        "They take up space",
+        "They are colored",
+        "Because they determine the overall page loading speed of the website"
+      ]
+    },
+    "9fc76ef4e48f": {
+      "domanda": "What risk does Francesco (autism) face with generic links like 'click here'?",
+      "spiegazione": "For Francesco, generic links create ambiguity that can completely block navigation.",
+      "risposte": [
+        "Easier to find important pages",
+        "Significant time savings during search",
+        "A clear improvement in overall browsing speed",
+        "A block"
+      ]
+    },
+    "f991c4ef592a": {
+      "domanda": "Which principle means 'minimizing the risk of accidental actions'?",
+      "spiegazione": "Tolerance for Error minimizes the risks of accidental actions; in digital interfaces, this is implemented through undo, confirmations, and live validation.",
+      "risposte": [
+        "The principle of user flexibility and control",
+        "The principle of equity in use for everyone",
+        "The principle of low physical effort required",
+        "Tolerance for error"
+      ]
+    },
+    "1d3bc732e2c1": {
+      "domanda": "Which phase of the design process is particularly iterative?",
+      "spiegazione": "The process is iterative: specifically, the wireframe -> prototype -> test cycle is repeated multiple times.",
+      "risposte": [
+        "Copy-paste",
+        "Login-logout",
+        "The complete sequence of requirements gathering, analysis, and budget definition",
+        "Wireframe, prototype, and test"
+      ]
+    },
+    "8d2a9f2824d3": {
+      "domanda": "Why don screen reader experts read the page linearly?",
+      "spiegazione": "Reading everything is too slow: experts use shortcuts (H, K, Tab, F) to jump to headings, links, elements, and forms.",
+      "risposte": [
+        "Because it is slow",
+        "Because they are not able to do it correctly",
+        "Because they still prefer to use the mouse",
+        "Because the page completely lacks audio"
+      ]
+    },
+    "8f25ca69c681": {
+      "domanda": "Which of these is a good menu label?",
+      "spiegazione": "Labels must be clear and predictable: 'Book exams' tells you where it leads. Avoid 'Other', 'Miscellaneous', 'Management'.",
+      "risposte": [
+        "A generic item called simply 'Miscellaneous' or 'Other'",
+        "A vague label like 'General information section'",
+        "A container category named 'Service management'",
+        "Book exams"
+      ]
+    },
+    "67d9d8fa1b58": {
+      "domanda": "What are the phases of the Double Diamond, in order?",
+      "spiegazione": "The four phases are Discover, Define, Develop, and Deliver.",
+      "risposte": [
+        "Data, Define, Develop, Deploy",
+        "Discover, Define, Develop, Deliver",
+        "Discover, Define, Develop, Deliver",
+        "Draft, Define, Develop, Deliver"
+      ]
+    },
+    "0bc88e7ca942": {
+      "domanda": "What does the acronym CTA stand for?",
+      "spiegazione": "CTA = Call To Action: the most important action the user must perform on the screen.",
+      "risposte": [
+        "Click Track App",
+        "Call To Action",
+        "Color Text Area",
+        "Content Tab Auto"
+      ]
+    },
+    "8990f69c672e": {
+      "domanda": "What are the principles of Gestalt based on?",
+      "spiegazione": "Gestalt principles describe how the brain groups and separates: we perceive the whole before the individual parts.",
+      "risposte": [
+        "On the OS",
+        "On the price",
+        "On the speed of the network connection used to load the page",
+        "On the fact that we perceive the whole before the parts"
+      ]
+    },
+    "b1cde76379b7": {
+      "domanda": "Which is the most abstract level in Garrett's 5 levels?",
+      "spiegazione": "The most abstract is Strategy (what the product is, what it does); the most concrete, at the top, is the Surface.",
+      "risposte": [
+        "The Surface",
+        "The Strategy",
+        "The Structure",
+        "The Skeleton"
+      ]
+    },
+    "7d1d91a181b0": {
+      "domanda": "What does the 'Equitable Use' principle mean?",
+      "spiegazione": "Equitable Use: design should not disadvantage or stigmatize any group; in digital contexts, a button usable by both keyboard and mouse.",
+      "risposte": [
+        "It is mobile-only",
+        "It refers to the ability to customize the font and text size",
+        "It does not disadvantage or stigmatize any group",
+        "It is low-cost"
+      ]
+    },
+    "0f3838e84e11": {
+      "domanda": "User Experience Design is considered synonymous with:",
+      "spiegazione": "UX Design = Human-Centered Design: without involving people, there is no true User Experience.",
+      "risposte": [
+        "Software Testing",
+        "Network Topology",
+        "Database Design",
+        "Human-Centered Design"
+      ]
+    },
+    "84ce45f96392": {
+      "domanda": "What does the Gestalt principle of 'proximity' suggest?",
+      "spiegazione": "With proximity, nearby elements appear more related: actually related elements are brought closer together.",
+      "risposte": [
+        "Bring related elements closer together",
+        "Move similar elements apart",
+        "Enlarge small elements",
+        "Color nearby elements"
+      ]
+    },
+    "ee2c353c1cd7": {
+      "domanda": "What does a journey map describe?",
+      "spiegazione": "A journey map represents the user's path over time: actions, thoughts, emotions, and issues at each stage.",
+      "risposte": [
+        "The price",
+        "The code",
+        "The server",
+        "The user experience over time, including actions, thoughts, emotions, and issues"
+      ]
+    },
+    "3e8c777c4519": {
+      "domanda": "What does the WCAG 'Robust' principle concern?",
+      "spiegazione": "Robust: content must be interpreted reliably by browsers and assistive technologies.",
+      "risposte": [
+        "That content is interpreted reliably by browsers and assistive technologies",
+        "File size",
+        "Speed",
+        "Color"
+      ]
+    },
+    "675256bc59a2": {
+      "domanda": "Which activity belongs to UI and not to UX?",
+      "spiegazione": "Visual design (with branding, layout, mockups) belongs to UI; user research, interaction design, and usability are UX.",
+      "risposte": [
+        "Studying real needs through user research and interviews",
+        "Evaluating usability with user testing",
+        "Designing interaction and navigation paths",
+        "Visual design"
+      ]
+    },
+    "52c15d2cfe75": {
+      "domanda": "Which key opens the list of all forms on the page?",
+      "spiegazione": "The F key opens the list of forms; H for headings, K for links, Tab for interactive elements (varies by screen reader and language).",
+      "risposte": [
+        "The Tab key",
+        "The F key",
+        "The Esc key",
+        "The H key"
+      ]
+    },
+    "2745add9f98b": {
+      "domanda": "What is reflow?",
+      "spiegazione": "Reflow is the ability of a layout to reorganize itself without losing content when the viewport shrinks.",
+      "risposte": [
+        "A color",
+        "The ability of the layout to reorganize itself without losing content when the viewport shrinks",
+        "A font",
+        "A sound"
+      ]
+    },
+    "d32d930d4440": {
+      "domanda": "What is an affordance?",
+      "spiegazione": "An affordance is the perceived property of an object that suggests its use.",
+      "risposte": [
+        "A font",
+        "A file",
+        "The perceived property of an object that suggests how it might be used",
+        "A color"
+      ]
+    },
+    "4d98d45b26fd": {
+      "domanda": "According to the course, Universal Design is:",
+      "spiegazione": "Universal Design is not 'design for disabled people': it is design that works better for everyone (curb-cut effect).",
+      "risposte": [
+        "A design approach exclusively reserved for people with disabilities",
+        "A technique usable only on modern mobile devices",
+        "Design that works better for everyone",
+        "A method designed only for users who are already very experienced"
+      ]
+    },
+    "e38f582410ea": {
+      "domanda": "Why are subtitles an example of universal design?",
+      "spiegazione": "Subtitles are a curb-cut effect: originally designed for the deaf, they are used by everyone in noisy or quiet environments.",
+      "risposte": [
+        "Originally created for the deaf, they are then used by everyone, for example on trains or in noisy environments",
+        "By law",
+        "For aesthetics",
+        "They are inexpensive"
+      ]
+    },
+    "b2266262c82b": {
+      "domanda": "What is the purpose of a persona during the design phase?",
+      "spiegazione": "Personas serve as a model of real users throughout the entire process, keeping people at the center of decisions.",
+      "risposte": [
+        "A to choose the most suitable domain name for the website",
+        "A to model real users",
+        "A to actually write the source code of the application",
+        "A to create effective advertising campaigns for the product"
+      ]
+    },
+    "4d8c3d7fbedf": {
+      "domanda": "What is the user trying to figure out in the 'Gulf of Execution'?",
+      "spiegazione": "Gulf of Execution: the user is trying to figure out how to act. Gulf of Evaluation: what happened afterward.",
+      "risposte": [
+        "Who created it",
+        "What happened",
+        "How much it costs",
+        "How to act"
+      ]
+    },
+    "fcbafe005138": {
+      "domanda": "What is the primary method most screen reader users employ to navigate a webpage?",
+      "spiegazione": "Over 60-70% of screen reader users use headings (H key) as their primary method, immediately obtaining a map of the structure.",
+      "risposte": [
+        "Printing",
+        "Navigating between headings using the H key",
+        "Using the mouse",
+        "Starting a full reading from the beginning to the end of all the text"
+      ]
+    },
+    "58064078803d": {
+      "domanda": "What is the typical function of the H key in a screen reader?",
+      "spiegazione": "The H key jumps to the next heading (H1, H2, H3), announcing the level and text: it acts as the page's 'map'.",
+      "risposte": [
+        "To open the full list of all form fields present",
+        "To jump to the next heading",
+        "To save",
+        "To close"
+      ]
+    },
+    "0665df078234": {
+      "domanda": "What does the AFA model stand for in accessibility personas?",
+      "spiegazione": "AFA = Ability, Familiarity, and Attitude: the three dimensions of an accessibility persona.",
+      "risposte": [
+        "Ability, Familiarity, and Attitude",
+        "Analysis, Feedback, and Advancement",
+        "Audio, Format, and Alignment",
+        "Access, Filter, and User Account"
+      ]
+    },
+    "4f76b2b4341a": {
+      "domanda": "How is the Gestalt principle of 'common region' applied?",
+      "spiegazione": "For the common region principle, elements within the same area delimited by borders or boxes are perceived as a group.",
+      "risposte": [
+        "Only with red color",
+        "By placing related elements close to each other and far from different ones",
+        "With sounds",
+        "With borders or boxes that group elements"
+      ]
+    },
+    "793c24c74672": {
+      "domanda": "What does the WCAG 2.4.3 (Focus Order) criterion require?",
+      "spiegazione": "The 2.4.3 Focus Order criterion requires that the keyboard navigation sequence follows a logical and meaningful order.",
+      "risposte": [
+        "A chromatic order",
+        "A logical order",
+        "A random order",
+        "An alphabetical order"
+      ]
+    },
+    "bddf70aaf4cf": {
+      "domanda": "What is Valerio's specific condition (low vision due to glaucoma)?",
+      "spiegazione": "Valerio does not use screen readers: he requires magnification, high contrast, and information not conveyed solely through color.",
+      "risposte": [
+        "He does not use screen readers but relies on zoom and contrast",
+        "He uses speech",
+        "He is blind",
+        "He communicates exclusively through sign language and interpreters"
+      ]
+    },
+    "6175565bb8d8": {
+      "domanda": "What is the difference between a task and an experience?",
+      "spiegazione": "A task is 'what you do' (observable actions); an experience is 'how you live it' (actions + thoughts + emotions + issues).",
+      "risposte": [
+        "They are code",
+        "The task is the action, the experience is the lived experience",
+        "The difference lies solely in the device, mobile for one and desktop for the other",
+        "They are the same"
+      ]
+    },
+    "90c82c9c82da": {
+      "domanda": "What causes should be associated with issues in the journey map?",
+      "spiegazione": "Each block has a cause attributable to the AFA model: Ability, Familiarity, or Attitude.",
+      "risposte": [
+        "Price, Brand, and Current Market",
+        "Speed, Cost, and Reliability",
+        "Ability, Familiarity, and Attitude",
+        "Memory, Processor, and Screen"
+      ]
+    },
+    "0c836fb82d14": {
+      "domanda": "What is the purpose of the P.O.U.R. grid?",
+      "spiegazione": "P.O.U.R. is a reading framework for reasoning about every design choice: pages, components, content, code, and errors.",
+      "risposte": [
+        "To record",
+        "To reason about every design choice by analyzing pages, components, content, code, and errors",
+        "To color",
+        "To measure"
+      ]
+    },
+    "92e092bf27c8": {
+      "domanda": "What is the key difference between a persona and a stereotype?",
+      "spiegazione": "A persona is derived from real research and guides decisions; a stereotype is based on unverified assumptions and justifies them.",
+      "risposte": [
+        "The price",
+        "The persona is based on real research and guides decisions, while the stereotype is based on assumptions and justifies them",
+        "None",
+        "The gender"
+      ]
+    },
+    "b838df5241a4": {
+      "domanda": "Why should information not rely solely on color?",
+      "spiegazione": "Color alone is insufficient for colorblind or low-vision users: at least a secondary channel (text, icon, border, position) is required.",
+      "risposte": [
+        "Color is prohibited",
+        "Color is slow",
+        "Not everyone can see it",
+        "Color is expensive"
+      ]
+    },
+    "e2e4fd4d520c": {
+      "domanda": "Which person in the course has autism?",
+      "spiegazione": "Francesco has an autism spectrum disorder: he prefers familiar and predictable sites, clear labels, and few ambiguities.",
+      "risposte": [
+        "Francesco",
+        "Emily",
+        "Valerio",
+        "Steven"
+      ]
+    },
+    "0eb27ab0d8c0": {
+      "domanda": "Which WCAG criterion mandates that everything must be keyboard accessible?",
+      "spiegazione": "The WCAG 2.1.1 (Keyboard) criterion requires that all functionality be usable via keyboard when possible.",
+      "risposte": [
+        "WCAG 1.4.5",
+        "WCAG 1.4.3",
+        "WCAG 2.4.7",
+        "WCAG 2.1.1"
+      ]
+    },
+    "77f0e8104b8d": {
+      "domanda": "When does a page have a keyboard accessibility barrier?",
+      "spiegazione": "When a page cannot be used without a mouse, there is a barrier: guidelines 2.1.1, 2.4.7, and 2.4.3 must be respected.",
+      "risposte": [
+        "When it cannot be used without a mouse",
+        "When it contains a very large number of images and multimedia content",
+        "With many colors",
+        "If it is long"
+      ]
+    },
+    "a15a1b2e07f1": {
+      "domanda": "What does the user build in their mind when interacting with a system?",
+      "spiegazione": "The user builds a mental model of how the system works; understanding it is crucial for the designer.",
+      "risposte": [
+        "A password",
+        "A backup",
+        "A model of how it works",
+        "A detailed log of all operations performed during the session"
+      ]
+    },
+    "10ee86a181aa": {
+      "domanda": "What is a 'persona' in UX?",
+      "spiegazione": "A persona is a fictional but realistic character created by synthesizing research data on real users.",
+      "risposte": [
+        "A font",
+        "A fictional but realistic character that synthesizes research data on real users",
+        "A cookie",
+        "An employee"
+      ]
+    },
+    "1b21047f1373": {
+      "domanda": "What does the Universal Design principle 'Simple and Intuitive Use' state?",
+      "spiegazione": "Simple and Intuitive Use: the use is easy to understand regardless of experience, knowledge, or language; in digital contexts, clear labels and simple language.",
+      "risposte": [
+        "It is fast",
+        "It costs less",
+        "Easy to understand regardless of experience and language",
+        "It ensures adequate physical space to approach and use the object"
+      ]
+    },
+    "9e0fed685f24": {
+      "domanda": "What does the course mean by 'Designer different from User'?",
+      "spiegazione": "Designer != User: the designer does not know the user's needs a priori; listening, empathy, and observation are required.",
+      "risposte": [
+        "That the user's opinion should never be taken into consideration",
+        "That they receive very different financial compensation",
+        "That the designer is software and the user is a real person",
+        "That they have different needs"
+      ]
+    },
+    "b6a5e7730a81": {
+      "domanda": "Recommended solution for a data table that cannot reflow?",
+      "spiegazione": "Data tables do not flatten: in a container with overflow-x: auto, they have their own scroll without breaking the rest.",
+      "risposte": [
+        "Hide it",
+        "Put it in a container with overflow-x auto",
+        "Delete it",
+        "Convert it to a static image to be downloaded separately from the page"
+      ]
+    },
+    "335a2bcb43a4": {
+      "domanda": "Who is Luca among the course personas?",
+      "spiegazione": "Luca has been blind since birth: he uses a screen reader, keyboard, and braille display; he needs semantic code and descriptive links.",
+      "risposte": [
+        "A person with cerebral palsy and minimal use of hands",
+        "A deaf person who communicates using sign language",
+        "A person with low vision who uses a screen magnifier",
+        "Blind from birth"
+      ]
+    },
+    "c404af6f1dc1": {
+      "domanda": "What happens when the user hesitates in front of the interface?",
+      "spiegazione": "Key phrase: if the user hesitates, the UX is failing. Hesitation signals that the experience is not clear.",
+      "risposte": [
+        "It means the branding is working very well",
+        "The UX is failing",
+        "It means the product is having great success",
+        "It is the sign that the layout is perfectly optimized"
+      ]
+    },
+    "11e42037e72e": {
+      "domanda": "What is a wireframe?",
+      "spiegazione": "A wireframe is the structural representation of a screen: blocks, hierarchy, interactive elements, and CTAs.",
+      "risposte": [
+        "The code",
+        "The structural representation of a screen: blocks, hierarchy, interactive elements, and CTAs",
+        "A CSS",
+        "A database"
+      ]
+    },
+    "6bac0ed112d7": {
+      "domanda": "Where should 'Student Support' be placed in a good sitemap?",
+      "spiegazione": "Support should not be hidden: 'Student Support' at the first level, so that users who get stuck can find help immediately.",
+      "risposte": [
+        "Hidden at the bottom of the page, within the site footer",
+        "Inside a very deep sub-section of the menu",
+        "It should be removed because it is considered of little use to users",
+        "At the first level"
+      ]
+    },
+    "c76c9358c777": {
+      "domanda": "What does the Gestalt principle of 'similarity' state?",
+      "spiegazione": "For similarity, elements that are similar in shape, size, or color are perceived as having the same function.",
+      "risposte": [
+        "Elements similar in shape, size, or color are perceived as having the same function",
+        "Text wins",
+        "Edges connect",
+        "Neighbors matter"
+      ]
+    },
+    "cb03657bebc1": {
+      "domanda": "Which question does Garrett's 'Structure' layer answer?",
+      "spiegazione": "The Structure layer addresses how the user achieves their goal and the paths they take through the system: this is where information architecture comes to life.",
+      "risposte": [
+        "Who pays",
+        "How the user reaches the goal and what paths they take within the system",
+        "Which color to use",
+        "How much it costs"
+      ]
+    },
+    "7aeee21fcc86": {
+      "domanda": "What does a user flow describe?",
+      "spiegazione": "A user flow describes the system: screens, connections, and conditions required to complete a task.",
+      "risposte": [
+        "The color",
+        "The sequence of screens, connections, and decisions needed to complete a task",
+        "The emotions",
+        "The price"
+      ]
+    },
+    "14e0f24e0274": {
+      "domanda": "What are the two qualities of good design?",
+      "spiegazione": "Good design = Discoverability (I understand which actions I can take) + Understanding (I understand how the product is used).",
+      "risposte": [
+        "Aesthetics and price",
+        "Discoverability and understanding",
+        "Development and testing",
+        "Marketing and sales"
+      ]
+    },
+    "77b01db2b378": {
+      "domanda": "In a user flow, which shape represents a decision?",
+      "spiegazione": "In the diagram, the diamond represents a decision; the rectangle represents a screen; the labeled arrow represents an action.",
+      "risposte": [
+        "The circle",
+        "The star",
+        "The diamond",
+        "The rectangle"
+      ]
+    },
+    "92e0554667e5": {
+      "domanda": "What is a page without headings compared to, for a screen reader?",
+      "spiegazione": "For Luca, a page without headings is like a city without signs: you can get there, but with much greater effort.",
+      "risposte": [
+        "A city without road signs",
+        "A book",
+        "A detailed road map with all directions clearly marked",
+        "A game"
+      ]
+    },
+    "cd2c29303992": {
+      "domanda": "How is the principle 'Flexibility in Use' translated into digital design?",
+      "spiegazione": "Flexibility in Use: adaptability to different preferences and abilities; in digital design, scalable fonts and responsive layouts.",
+      "risposte": [
+        "Scalable font and responsive layout",
+        "Bright colors",
+        "A fixed font",
+        "A series of confirmations and options to undo accidental actions"
+      ]
+    },
+    "bd7be2ad120a": {
+      "domanda": "What do the 'divergent' moments of the Double Diamond correspond to?",
+      "spiegazione": "Divergent moments open up the field of possibilities (exploration); convergent moments narrow down towards a choice.",
+      "risposte": [
+        "To the final phase of delivery and product release to the market",
+        "To the exploration of possible solutions",
+        "To synthesis",
+        "To testing"
+      ]
+    },
+    "be875590142e": {
+      "domanda": "The principle 'Same disability != same need' compares:",
+      "spiegazione": "Luca (blind) needs semantic code and screen readers; Valerio (low vision) needs zoom and contrast: different needs.",
+      "risposte": [
+        "Francesco and Emily",
+        "Emily and Steven",
+        "Luca and Valerio",
+        "Francesco and Steven"
+      ]
+    },
+    "9e01be1eb3b1": {
+      "domanda": "Which person in the course uses a screen reader, a keyboard, and braille?",
+      "spiegazione": "Luca, who has been blind since birth, uses screen readers (JAWS/NVDA), a keyboard, and a braille display; he requires semantic code.",
+      "risposte": [
+        "Steven",
+        "Luca",
+        "Emily",
+        "Valerio"
+      ]
+    },
+    "6dc64a6184ed": {
+      "domanda": "What does the WCAG 'Perceivable' principle require?",
+      "spiegazione": "Perceivable: information must be understandable through different channels (not just audio, not just images).",
+      "risposte": [
+        "Animations",
+        "English only",
+        "That information can be understood through different sensory channels",
+        "Bright colors"
+      ]
+    },
+    "c99993bc6b12": {
+      "domanda": "Which keys move the keyboard focus between elements?",
+      "spiegazione": "Tab moves the focus to the next element, Shift+Tab to the previous one, and Enter activates: this is the basic way to navigate without a mouse.",
+      "risposte": [
+        "Up and down arrows",
+        "Tab and Shift+Tab",
+        "F1 and F2 keys",
+        "Ctrl and Alt"
+      ]
+    },
+    "3de20ac67118": {
+      "domanda": "What does the acronym UX stand for?",
+      "spiegazione": "UX = User Experience: the overall experience experienced when interacting with a product or service.",
+      "risposte": [
+        "A font",
+        "A browser",
+        "A page",
+        "User Experience, the overall experience experienced when interacting with a product or service"
+      ]
+    },
+    "f7caad8af1c8": {
+      "domanda": "What is Information Architecture?",
+      "spiegazione": "IA is the organization of content: what exists, how it is grouped, how one navigates, and how each item is named.",
+      "risposte": [
+        "Hosting",
+        "The system structure: what exists, how it is grouped, how one navigates, and how it is named",
+        "Color",
+        "Code"
+      ]
+    },
+    "b43f08c1594b": {
+      "domanda": "What are the four principles summarized by the acronym P.O.U.R.?",
+      "spiegazione": "P.O.U.R. = Perceivable, Operable, Understandable, Robust: the four WCAG principles.",
+      "risposte": [
+        "Page and Network",
+        "Perceivable, Operable, Understandable, Robust",
+        "Pixels and URLs",
+        "Privacy, Honesty, Usability, and Research applied to user experience"
+      ]
+    },
+    "6cb882cede4a": {
+      "domanda": "How is a 'broad' navigation characterized?",
+      "spiegazione": "A broad structure has many top-level sections and little depth: everything is visible at once, but there is a risk of an overcrowded menu.",
+      "risposte": [
+        "Many top-level sections",
+        "Few prominent sections and many nested levels",
+        "Exclusively clickable images without text",
+        "Total absence of a visible navigation menu"
+      ]
+    },
+    "e160627039c6": {
+      "domanda": "What is a signifier?",
+      "spiegazione": "A signifier is an explicit signal that communicates where and how to act, clarifying the affordance.",
+      "risposte": [
+        "A page",
+        "An error",
+        "An explicit visual or tactile cue that communicates where and how to perform an action",
+        "A menu"
+      ]
+    },
+    "5da07fc3eecf": {
+      "domanda": "When navigating via keyboard, which question is crucial to ask?",
+      "spiegazione": "When navigating via keyboard, you should ask: Is the focus visible? Does the order make sense? Is there a point where you lose track of where you are?",
+      "risposte": [
+        "What color it is",
+        "Is the focus visible and does the order make sense?",
+        "How much it costs",
+        "Which font family has been chosen for the page text"
+      ]
+    },
+    "0608cdfa16b0": {
+      "domanda": "What does 'What' correspond to in the Why-What-How model?",
+      "spiegazione": "'What' defines the functionality: what the product concretely allows the user to do.",
+      "risposte": [
+        "The product's functionality",
+        "The price",
+        "The aesthetics",
+        "The deep motivations and values that drive the user to use it"
+      ]
+    },
+    "a3c2e9a7fe6a": {
+      "domanda": "What is the digital equivalent of the 'Perceptible Information' principle?",
+      "spiegazione": "Perceptible Information: information must be conveyed regardless of the senses, so alt text and no information relying solely on color.",
+      "risposte": [
+        "Low price",
+        "An icon",
+        "Provide alt text for images and do not rely on color alone for conveying information",
+        "A menu"
+      ]
+    },
+    "a3f73828dd49": {
+      "domanda": "In a user flow, the rectangle represents:",
+      "spiegazione": "The rectangle represents a screen; the diamond represents a decision; the labeled arrow represents the action between screens.",
+      "risposte": [
+        "A screen",
+        "An error message that appears suddenly",
+        "A color palette chosen for the entire application",
+        "A conditional decision among multiple alternative paths"
+      ]
+    },
+    "e1ddd9de369f": {
+      "domanda": "What does 'journey first, screen second' mean?",
+      "spiegazione": "Building interfaces without having mapped the experience means solving before understanding the problem.",
+      "risposte": [
+        "Draw the UI",
+        "Write code",
+        "Map the experience before designing",
+        "Always start by choosing the color palette of the final product"
+      ]
+    },
+    "4e7b748dc247": {
+      "domanda": "What is a sitemap?",
+      "spiegazione": "A sitemap is the visual representation of the structure: sections, subsections, and relationships. It is the blueprint of the site before UI.",
+      "risposte": [
+        "The visual representation of the structure",
+        "A backup",
+        "A cookie",
+        "A list reserved for search engines with all page URLs"
+      ]
+    }
+  }
+}

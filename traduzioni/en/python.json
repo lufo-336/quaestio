@@ -1,0 +1,2218 @@
+{
+  "nome": "Python",
+  "categorie": {
+    "Tipi di dati e operatori": "Data Types and Operators",
+    "Ambiente e strumenti": "Environment and Tools",
+    "OOP": "OOP",
+    "Funzioni": "Functions",
+    "ORM e SQLAlchemy": "ORM and SQLAlchemy",
+    "Strutture dati": "Data Structures",
+    "Database e DB-API": "Databases and DB-API",
+    "Controllo del flusso ed eccezioni": "Flow Control and Exceptions",
+    "File e formati di dati": "Files and Data Formats",
+    "Progettazione del software": "Software Design",
+    "Moduli e package": "Modules and Packages"
+  },
+  "domande": {
+    "74343633d758": {
+      "domanda": "What does this code print?\n\nprint(\"Python\"[::-1])",
+      "spiegazione": "With a step of -1, slicing traverses the sequence in reverse: the string is reversed.",
+      "risposte": [
+        "n",
+        "nohtyP",
+        "P",
+        "Python"
+      ]
+    },
+    "b2c24c690979": {
+      "domanda": "What does the command pip freeze > requirements.txt produce?",
+      "spiegazione": "pip freeze lists the packages in the environment in the name==version format; with pip install -r requirements.txt they are reinstalled identically.",
+      "risposte": [
+        "Installed packages with exact versions",
+        "A .zip archive with all the project's source code",
+        "A block that prevents updating installed packages",
+        "The list of modules that the project actually imports in the code"
+      ]
+    },
+    "a3c679fe9ee1": {
+      "domanda": "What does this code print?\n\nclass Dipendente: pass\nclass Manager(Dipendente): pass\nm = Manager()\nprint(isinstance(m, Dipendente), issubclass(Dipendente, Manager))",
+      "spiegazione": "A Manager is a Dipendente (isinstance accepts subclasses); the reverse is not true.",
+      "risposte": [
+        "False False",
+        "True False",
+        "True True",
+        "False True"
+      ]
+    },
+    "1d782d79dc40": {
+      "domanda": "In the function def area(base, height) called with area(3, 5), what are base and height called?",
+      "spiegazione": "Parameters are the names in the definition; arguments are the values passed in the call (3 and 5).",
+      "risposte": [
+        "Attributes",
+        "Default values",
+        "Arguments",
+        "Parameters"
+      ]
+    },
+    "a058a929d1ab": {
+      "domanda": "What does Base.metadata.create_all(engine) do?",
+      "spiegazione": "It is convenient in development; in real applications, the schema evolves with migration tools like Alembic.",
+      "risposte": [
+        "Deletes and recreates all tables from scratch, losing existing data",
+        "Creates all model tables that do not yet exist",
+        "Inserts sample data",
+        "Generates migration files"
+      ]
+    },
+    "6928e53c5594": {
+      "domanda": "In Python, what is a variable?",
+      "spiegazione": "Variables are references to objects: the type belongs to the object, not the variable, which can point to objects of different types.",
+      "risposte": [
+        "An object of type var",
+        "A copy of the assigned value, independent of the original",
+        "A label that points to an object",
+        "A memory cell with a fixed type at declaration"
+      ]
+    },
+    "d508621023c2": {
+      "domanda": "Which environment saves the notebook to Google Drive and loses uploaded files at the end of the session?",
+      "spiegazione": "Colab runs in the cloud and has an integrated AI assistant; Jupyter runs locally and accesses the PC's files.",
+      "risposte": [
+        "IDLE",
+        "Google Colab",
+        "Jupyter Notebook locally",
+        "Python REPL"
+      ]
+    },
+    "f2a6febe514e": {
+      "domanda": "What does this code print?\n\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)",
+      "spiegazione": "A describes...",
+      "risposte": [
+        "0",
+        "None",
+        "<bound method>",
+        "TypeError"
+      ]
+    },
+    "ae6fa75383e6": {
+      "domanda": "What does this code print?\n\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))",
+      "spiegazione": "get() does not raise exceptions: it returns None or the specified fallback value.",
+      "risposte": [
+        "0 0",
+        "None None",
+        "None 0",
+        "Raises KeyError"
+      ]
+    },
+    "886bb8119b17": {
+      "domanda": "Which placeholder do sqlite3 and psycopg2 parameterized queries use?",
+      "spiegazione": "The placeholder depends on the driver. In SQLAlchemy, with text(), named parameters are used (:name).",
+      "risposte": [
+        "Both use {}",
+        "Both use ?",
+        "sqlite3 uses %s, psycopg2 uses ?",
+        "sqlite3 uses ?, psycopg2 uses %s"
+      ]
+    },
+    "2c84de8885f9": {
+      "domanda": "What is polymorphism?",
+      "spiegazione": "Car and ElectricCar both have refuel(), with different behaviors: the caller of refuel() does not need to know which one is being used.",
+      "risposte": [
+        "Automatic conversion of an object into the type required by the function",
+        "Different classes implement the same method in their own way",
+        "The ability of a class to inherit from multiple parent classes simultaneously",
+        "The ability to define multiple methods with the same name but different parameters"
+      ]
+    },
+    "21e8874f97b4": {
+      "domanda": "What does this code print?\n\nr = print(\"x\")\nprint(r)",
+      "spiegazione": "print outputs but does not return anything: a function without a return statement returns None.",
+      "risposte": [
+        "x and then x",
+        "x and then an empty line",
+        "None and then x",
+        "x and then None"
+      ]
+    },
+    "27c3a57e4d89": {
+      "domanda": "Which exception does this code raise?\n\nprint(int(\"abc\"))",
+      "spiegazione": "ValueError: the type is correct (a string is acceptable for int()), but the value does not represent a number.",
+      "risposte": [
+        "None: prints 0",
+        "ValueError",
+        "TypeError",
+        "NameError"
+      ]
+    },
+    "bf4090ed33d6": {
+      "domanda": "What does this code print?\n\nprint(-7 // 2)",
+      "spiegazione": "// rounds down (towards negative infinity), so -3.5 becomes -4, not -3.",
+      "risposte": [
+        "-3.5",
+        "-3",
+        "3",
+        "-4"
+      ]
+    },
+    "1936ea40b1df": {
+      "domanda": "Why is it an error to write except Exception: before except ValueError: in the same try block?",
+      "spiegazione": "The first matching except clause wins: more specific exceptions must come before more general ones.",
+      "risposte": [
+        "Because Python flags it as a syntax error at compile time",
+        "The second except would never be executed",
+        "Because ValueError is not a subclass of Exception and would not be caught",
+        "Because a try block can have only one except at a time"
+      ]
+    },
+    "d7ddac247f6f": {
+      "domanda": "What does this code print?\n\na = [[1], [2]]\nb = a.copy()\na[0].append(9)\nprint(b)",
+      "spiegazione": "copy() performs a shallow copy: the outer list is new, but the inner lists are shared. To copy them, copy.deepcopy is needed.",
+      "risposte": [
+        "[[1], [2]]",
+        "[[1, 9], [2]]",
+        "[[1], [2], 9]",
+        "[[9], [2]]"
+      ]
+    },
+    "69c462a31447": {
+      "domanda": "Which of these values is truthy?",
+      "spiegazione": "\"0\" is a non-empty string, so it is true. 0, the empty string, and the empty list are false, as are None and False.",
+      "risposte": [
+        "0",
+        "\"0\"",
+        "\"\"",
+        "[]"
+      ]
+    },
+    "056547a10652": {
+      "domanda": "Which exception does this code raise if the file does not exist?\n\nopen(\"non_esiste.txt\")",
+      "spiegazione": "The default mode is r, which requires the file to exist. FileNotFoundError is a subclass of OSError.",
+      "risposte": [
+        "IOError",
+        "ValueError",
+        "FileNotFoundError",
+        "KeyError"
+      ]
+    },
+    "de072fb47358": {
+      "domanda": "What does uv offer that pip alone does not?",
+      "spiegazione": "uv replaces pip, virtualenv, and pip-tools: it manages .venv, the project (pyproject.toml), and generates uv.lock with exact versions.",
+      "risposte": [
+        "Integrated virtual environments and a lock file",
+        "Running .py files directly from the terminal",
+        "Support for Python standard library modules",
+        "The ability to install packages downloaded from PyPI"
+      ]
+    },
+    "3db0ec3efd2c": {
+      "domanda": "What does this code print?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(repr(f.readline()))",
+      "spiegazione": "readline() returns a line including the final newline character; it is removed with strip().",
+      "risposte": [
+        "'uno'",
+        "'uno\\n'",
+        "'uno\\ndue\\n'",
+        "['uno\\n', 'due\\n']"
+      ]
+    },
+    "9f1a99058fd6": {
+      "domanda": "What is the purpose of the raise statement?",
+      "spiegazione": "raise raises an exception, for example raise ValueError(\"Invalid age\"): it is used to validate data and halt execution with a clear message.",
+      "risposte": [
+        "To raise an exception",
+        "To print the traceback without stopping the program",
+        "To re-execute the try block from the beginning after an error",
+        "To ignore an already raised exception and proceed with the next statement"
+      ]
+    },
+    "70a1da246c45": {
+      "domanda": "Who created UML?",
+      "spiegazione": "UML was created in 1997 by unifying the methods of Grady Booch, James Rumbaugh, and Ivar Jacobson; it is now maintained by the OMG.",
+      "risposte": [
+        "Fowler and Beck",
+        "Gamma, Helm, Johnson, and Vlissides",
+        "Booch, Rumbaugh, and Jacobson",
+        "Kernighan and Ritchie"
+      ]
+    },
+    "849afab3034c": {
+      "domanda": "In the example with Gasoline and Electricity, what determines the different behavior of refuel()?",
+      "spiegazione": "refuel() is the same, inherited: the fuel object created in the constructor changes. It is composition.",
+      "risposte": [
+        "The fuel object to which refuel() delegates",
+        "The class name",
+        "The override of refuel() done in the child class",
+        "A parameter passed to refuel()"
+      ]
+    },
+    "d7da9fe73ebf": {
+      "domanda": "What does this code print?\n\nprint(bool(\"False\"))",
+      "spiegazione": "A string is falsy only if it is empty. \"False\" is not empty, so it is truthy: the content does not matter.",
+      "risposte": [
+        "False",
+        "0",
+        "Raises ValueError",
+        "True"
+      ]
+    },
+    "0fb888a4d9b4": {
+      "domanda": "In a Fowler use case, what does a numbered exception 5a indicate?",
+      "spiegazione": "Extensions attach to the step of the main scenario where they occur.",
+      "risposte": [
+        "An alternative that branches off from step 5 of the main scenario",
+        "An optional step",
+        "A non-functional requirement",
+        "The fifth use case of the system"
+      ]
+    },
+    "31690bff490c": {
+      "domanda": "What happens when executing this code?\n\nprint(\"Age: \" + 25)",
+      "spiegazione": "Python is dynamically but strongly typed: it does not implicitly convert an int to a str. You need str(25) or an f-string.",
+      "risposte": [
+        "Raises TypeError",
+        "Prints Age: 25",
+        "Prints Age: 25.0",
+        "Raises ValueError"
+      ]
+    },
+    "571ec955e15f": {
+      "domanda": "What happens when executing this code?\n\nimport json\njson.loads(\"{'nome': 'Marco'}\")",
+      "spiegazione": "JSON requires double quotes: with single quotes, the text is not valid JSON.",
+      "risposte": [
+        "Returns a string",
+        "Returns None",
+        "Returns {'nome': 'Marco'}",
+        "Raises JSONDecodeError"
+      ]
+    },
+    "c830c5dc3d44": {
+      "domanda": "In the example deployment diagram, the Flask API communicates with the database via JDBC. What is strange?",
+      "spiegazione": "In Python, a driver compliant with DB-API (PEP 249) is used, such as PyMySQL or mysqlclient.",
+      "risposte": [
+        "JDBC is Java's standard driver; in Python, the role is played by DB-API",
+        "MySQL does not support remote connections",
+        "Flask cannot use databases",
+        "Nothing, JDBC is Python's standard driver"
+      ]
+    },
+    "c426e336d1ca": {
+      "domanda": "What does the acronym REPL stand for?",
+      "spiegazione": "REPL is the interactive shell (prompt >>>): it reads a line, evaluates it, prints the result, and repeats.",
+      "risposte": [
+        "Read–Execute–Parse Loop",
+        "Read–Eval–Print Loop",
+        "Run–Execute–Print Line",
+        "Run–Eval–Process Loop"
+      ]
+    },
+    "b04180b47ac2": {
+      "domanda": "What does a method decorated with @classmethod receive as its first parameter?",
+      "spiegazione": "A classmethod receives the class; its typical use is as an alternative constructor, such as Studente.from_csv_row(\"Anna,28\").",
+      "risposte": [
+        "The module",
+        "The instance (self)",
+        "Nothing",
+        "The class (cls)"
+      ]
+    },
+    "d4cb756cd361": {
+      "domanda": "What does this code print?\n\ndef stats(a, b):\n    return a + b, a * b\nr = stats(3, 4)\nprint(r)",
+      "spiegazione": "return a + b, a * b returns a single tuple; with s, p = stats(3, 4) it is unpacked.",
+      "risposte": [
+        "7",
+        "[7, 12]",
+        "(7, 12)",
+        "7 12"
+      ]
+    },
+    "e0c339ad040c": {
+      "domanda": "In a UML class diagram, what does a filled diamond indicate?",
+      "spiegazione": "Filled diamond: composition, the part cannot exist without the whole. Empty diamond: aggregation, the part can exist independently.",
+      "risposte": [
+        "Composition",
+        "Aggregation",
+        "Dependency",
+        "Inheritance"
+      ]
+    },
+    "b9c4a05d3ec3": {
+      "domanda": "What happens when executing this code?\n\nlen = 10\nprint(len(\"ciao\"))",
+      "spiegazione": "Assigning len = 10 shadows the built-in len function: len becomes an int, and an int is not callable.",
+      "risposte": [
+        "Prints 4",
+        "Prints 10",
+        "Raises NameError",
+        "Raises TypeError"
+      ]
+    },
+    "e94a3e1bee91": {
+      "domanda": "What advantage of \"diagrams as code\" stems from the diagram being text rather than an image?",
+      "spiegazione": "The other advantages from the slide: interoperability, automation in the build process, automatic validation, and integration into documentation.",
+      "risposte": [
+        "More polished graphics",
+        "Versioning with git alongside the software",
+        "Works without an editor",
+        "No need to know the notation"
+      ]
+    },
+    "27e992e1c1a9": {
+      "domanda": "What does this code print?\n\nwith open(\"dati.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ciao\")\nprint(f.closed)",
+      "spiegazione": "The `with` statement uses a context manager that closes the file upon exiting the block, even in case of an error.",
+      "risposte": [
+        "True",
+        "False",
+        "ValueError",
+        "None"
+      ]
+    },
+    "8b3a37c0903d": {
+      "domanda": "What does this code print?\n\nprint(type({}).__name__)",
+      "spiegazione": "{} is an empty dictionary. An empty set is written as set().",
+      "risposte": [
+        "set",
+        "dict",
+        "tuple",
+        "list"
+      ]
+    },
+    "c06f2035150c": {
+      "domanda": "Which PEP defines the DB-API, the standard interface for database drivers in Python?",
+      "spiegazione": "PEP 249: for this connect, cursor, execute, fetchall, commit have the same names in sqlite3, psycopg2, and other drivers.",
+      "risposte": [
+        "PEP 249",
+        "PEP 484",
+        "PEP 20",
+        "PEP 8"
+      ]
+    },
+    "945c097b0147": {
+      "domanda": "What does this code print?\n\ndef aggiungi(voce, lista=[]):\n    lista.append(voce)\n    return lista\naggiungi(\"a\")\nprint(aggiungi(\"b\"))",
+      "spiegazione": "The default value is evaluated only once, when def is executed: the list is shared between calls. Fix: lista=None and lista = [] inside.",
+      "risposte": [
+        "[]",
+        "['a', 'b']",
+        "['b']",
+        "['a']"
+      ]
+    },
+    "227540db065f": {
+      "domanda": "What happens with the second open() call in \"x\" mode?\n\nimport os\nif os.path.exists(\"unico.txt\"):\n    os.remove(\"unico.txt\")\nopen(\"unico.txt\", \"x\").close()\nopen(\"unico.txt\", \"x\")",
+      "spiegazione": "The \"x\" mode creates a new file only: if the file already exists, it raises FileExistsError.",
+      "risposte": [
+        "The text is appended to the end",
+        "Raises PermissionError",
+        "The file is overwritten",
+        "Raises FileExistsError"
+      ]
+    },
+    "ddc8b9a02980": {
+      "domanda": "Which connection string opens the SQLite database in the school.db file?",
+      "spiegazione": "Three slashes indicate a relative path; sqlite:// without a path indicates an in-memory database.",
+      "risposte": [
+        "file://school.db",
+        "sqlite://school.db/",
+        "sqlite:school.db",
+        "sqlite:///school.db"
+      ]
+    },
+    "e896378d31bd": {
+      "domanda": "How is a custom exception defined?",
+      "spiegazione": "class SaldoInsufficiente(Exception): pass — so that the caller can catch that specific error.",
+      "risposte": [
+        "With the keyword exception ErrorName:",
+        "With a function that returns an error message",
+        "With a class that inherits from Exception",
+        "With raise followed by a string"
+      ]
+    },
+    "1e35987a3d1a": {
+      "domanda": "What does this code print?\n\nimport json\nprint(json.dumps({1: True, \"x\": None}))",
+      "spiegazione": "In JSON, keys are always strings, True becomes true, and None becomes null; double quotes are used.",
+      "risposte": [
+        "{\"1\": true, \"x\": null}",
+        "{1: true, 'x': null}",
+        "{\"1\": True, \"x\": None}",
+        "{1: True, 'x': None}"
+      ]
+    },
+    "b647e25b8ad3": {
+      "domanda": "What does this code print?\n\nprint(-7 % 2)",
+      "spiegazione": "The remainder follows integer division such that (a // b) * b + a % b == a: (-4)*2 + 1 = -7.",
+      "risposte": [
+        "1",
+        "-3",
+        "0",
+        "-1"
+      ]
+    },
+    "2f7dd909f599": {
+      "domanda": "What does 'self' represent in class methods?",
+      "spiegazione": "anna.media() is translated to Studente.media(anna): self is anna. The name self is just a convention.",
+      "risposte": [
+        "A reserved keyword, mandatory in every function",
+        "The instance on which the method is called",
+        "The module in which the class was defined",
+        "The class itself, shared among all instances"
+      ]
+    },
+    "2804509fc2af": {
+      "domanda": "Which exception does this code raise?\n\ncontatore = 0\ndef incrementa():\n    contatore += 1\nincrementa()",
+      "spiegazione": "The assignment makes contatore local to the function, and += tries to read it before assigning a value. global contatore is needed.",
+      "risposte": [
+        "SyntaxError",
+        "NameError",
+        "TypeError",
+        "UnboundLocalError"
+      ]
+    },
+    "ecbc1ce71d33": {
+      "domanda": "What does this code print?\n\nprint(\"-\".join([\"a\", \"b\", \"c\"]))",
+      "spiegazione": "join is a method of the separator: it joins the elements of the list by placing the separator only between each element.",
+      "risposte": [
+        "a-b-c",
+        "['a', 'b', 'c']",
+        "-a-b-c-",
+        "abc"
+      ]
+    },
+    "3e5d6fc4e559": {
+      "domanda": "What does this code print?\n\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)",
+      "spiegazione": "== compares values (which are equal), while is checks identity: they are two distinct lists in memory.",
+      "risposte": [
+        "False False",
+        "True False",
+        "False True",
+        "True True"
+      ]
+    },
+    "a913a6e65019": {
+      "domanda": "What does this code print?\n\nprint(all([]), any([]))",
+      "spiegazione": "all() is true if no element is false (vacuously true for an empty list); any() is true if at least one element is true.",
+      "risposte": [
+        "True False",
+        "Raises ValueError: empty list",
+        "True True",
+        "False True"
+      ]
+    },
+    "cf7aa85932fc": {
+      "domanda": "What does this code print?\n\nprice = 49.99\nprint(f\"{price * 3:.2f}\")",
+      "spiegazione": "In an f-string, any expression can be placed between braces; :.2f formats it with two decimal places.",
+      "risposte": [
+        "149.97",
+        "149.9700",
+        "149.970000",
+        "150.0"
+      ]
+    },
+    "9c9720f9edae": {
+      "domanda": "What does this code print?\n\ndef f():\n    return 0\nprint(\"A\" if f else \"B\", \"A\" if f() else \"B\")",
+      "spiegazione": "A describes the behavior of `f` without parentheses, which is the function object and always evaluates to true; B describes the behavior of `f()`, which executes the function and returns 0, which is false.",
+      "risposte": [
+        "B A",
+        "A B",
+        "B B",
+        "A A"
+      ]
+    },
+    "375f760a12e7": {
+      "domanda": "Between which markers is a PlantUML diagram written?",
+      "spiegazione": "The source code is in a .puml file; to convert it into an image, a renderer is needed (PlantUML server or Java + Graphviz).",
+      "risposte": [
+        "@startuml and @enduml",
+        "```uml and ```",
+        "BEGIN and END",
+        "<uml> and </uml>"
+      ]
+    },
+    "60799f69e5c5": {
+      "domanda": "What type of value does input() return?",
+      "spiegazione": "input() always returns a str (even if empty). To perform calculations, it must be converted, for example using int() or float().",
+      "risposte": [
+        "An int if the user types only digits",
+        "The type inferred from what the user types",
+        "Always a string",
+        "None if the user presses only Enter"
+      ]
+    },
+    "8375e9e77d58": {
+      "domanda": "In a C4 context diagram, what does System_Ext represent?",
+      "spiegazione": "In the Library example, the email service is a System_Ext: the system uses it but does not build it.",
+      "risposte": [
+        "A container of the system",
+        "An external system, not developed by us",
+        "A test system",
+        "An additional module that extends the main system"
+      ]
+    },
+    "a99f6333c67e": {
+      "domanda": "What does the Car/Driver example from the abstraction lesson demonstrate?",
+      "spiegazione": "By using a start() method, the class exposes a simple interface and manages its own details: Driver only calls car.start().",
+      "risposte": [
+        "That a class cannot have more than three attributes",
+        "That methods must always return a string",
+        "That Driver must inherit from Car",
+        "That without abstraction, the user of the class must know all its internal details, making the code fragile"
+      ]
+    },
+    "8377e0ba5afa": {
+      "domanda": "What does this code print?\n\ndef modifica(lista):\n    lista.append(99)\na = [1, 2]\nmodifica(a)\nprint(a)",
+      "spiegazione": "Python passes by object reference: the function receives the same list, and the modification (mutable) is visible outside.",
+      "risposte": [
+        "[99]",
+        "[1, 2]",
+        "[1, 2, 99]",
+        "None"
+      ]
+    },
+    "d1e392f66801": {
+      "domanda": "In a Jupyter notebook cell, what does the initial ! indicate in !python --version?",
+      "spiegazione": "Lines starting with ! are not Python: the notebook passes them to the system shell.",
+      "risposte": [
+        "A shell command",
+        "That the cell should be executed before all others",
+        "That the cell's output should not be displayed",
+        "That the line is a comment and will be ignored"
+      ]
+    },
+    "80e737184d52": {
+      "domanda": "What does the \"w\" mode do if the file already exists?",
+      "spiegazione": "w creates the file or truncates it; a appends to the end; x fails if the file exists.",
+      "risposte": [
+        "Opens it in read-only mode",
+        "Appends to the end",
+        "Raises an error",
+        "Truncates it and rewrites it"
+      ]
+    },
+    "a86fae66c909": {
+      "domanda": "What happens when executing this code?\n\nprint(int(\"3.5\"))",
+      "spiegazione": "int() on a string only accepts an integer: \"3.5\" is not one. You need int(float(\"3.5\")).",
+      "risposte": [
+        "Prints 3.5",
+        "Prints 3",
+        "Prints 4",
+        "Raises ValueError"
+      ]
+    },
+    "0ddfaf506d4c": {
+      "domanda": "What does this code print?\n\nprint(0.1 + 0.2 == 0.3)",
+      "spiegazione": "0.1 + 0.2 evaluates to 0.30000000000000004: IEEE 754 floats are approximated in binary. Use math.isclose() for comparison.",
+      "risposte": [
+        "False",
+        "0.3",
+        "True",
+        "0.30000000000000004"
+      ]
+    },
+    "cd075ba58c03": {
+      "domanda": "In BPMN, what are lanes within a pool used for?",
+      "spiegazione": "In the example, the \"Policy Management\" pool has three lanes: User, Policy Office, IT Department. Decisions are represented by gateways.",
+      "risposte": [
+        "To divide the process by participant (who does what)",
+        "To number the activities",
+        "To indicate decisions",
+        "To represent messages between processes"
+      ]
+    },
+    "da112e77f40e": {
+      "domanda": "What is the purpose of the global keyword inside a function?",
+      "spiegazione": "Without global, assigning a name inside a function creates a local variable that shadows the global one.",
+      "risposte": [
+        "To declare a constant that can no longer be modified",
+        "To make a variable visible in all modules of the program",
+        "To import a variable defined in another file",
+        "To assign a module variable"
+      ]
+    },
+    "948066ba926e": {
+      "domanda": "What does this code print?\n\ndef incrementa(n):\n    n += 1\nx = 5\nincrementa(x)\nprint(x)",
+      "spiegazione": "Integers are immutable: n += 1 creates a new object bound only to the local name n, and x remains 5.",
+      "risposte": [
+        "UnboundLocalError",
+        "5",
+        "6",
+        "None"
+      ]
+    },
+    "8672eceb2aea": {
+      "domanda": "What does this code print?\n\nprint(list(dict.fromkeys([3, 1, 3, 2, 1])))",
+      "spiegazione": "dict.fromkeys removes duplicates while preserving the order of first appearance, because dictionaries remember insertion order.",
+      "risposte": [
+        "[3, 1, 2]",
+        "[1, 2, 3]",
+        "[3, 2, 1]",
+        "[3, 1, 3, 2, 1]"
+      ]
+    },
+    "e8f60a46aad0": {
+      "domanda": "What does this code print?\n\nfor n in [3, 5, 7]:\n    if n % 2 == 0:\n        print(\"pari\")\n        break\nelse:\n    print(\"nessun pari\")",
+      "spiegazione": "The else block of a loop is executed only if the loop completes without encountering a break.",
+      "risposte": [
+        "nessun pari",
+        "Niente",
+        "pari e poi nessun pari",
+        "pari"
+      ]
+    },
+    "4d56e6f83a47": {
+      "domanda": "What does this code print?\n\nd = {\"a\": 1, \"b\": 2}\nd.update({\"b\": 20, \"c\": 3})\nprint(d.pop(\"a\"), d)",
+      "spiegazione": "update overwrites existing keys and adds new ones; pop removes the key and returns its value.",
+      "risposte": [
+        "1 {'b': 2, 'c': 3}",
+        "1 {'b': 20, 'c': 3}",
+        "{'a': 1}",
+        "a {'b': 20, 'c': 3}"
+      ]
+    },
+    "1a29a80a78fe": {
+      "domanda": "What does this code print?\n\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")",
+      "spiegazione": "A describes...",
+      "risposte": [
+        "1 3 5",
+        "1 3 5 7 9",
+        "1 3 5 7",
+        "0 2 4 6"
+      ]
+    },
+    "0a76a85b4f10": {
+      "domanda": "What is the difference between a package and a library?",
+      "spiegazione": "Module: a file. Package: a folder of modules. Library: a collection of packages and modules (e.g., Pandas).",
+      "risposte": [
+        "Package: a folder of modules; Library: a collection of packages for a specific domain",
+        "A library contains only one module, while a package contains many",
+        "No difference: the two terms indicate exactly the same thing in Python",
+        "A package is written in Python, while a library is always written in C"
+      ]
+    },
+    "ee81739d46ce": {
+      "domanda": "What is a context manager?",
+      "spiegazione": "With files, cleanup is closing; with an sqlite3 connection, it is committing or rolling back.",
+      "risposte": [
+        "An object that, with with, prepares and then cleans up resources",
+        "A special type of file, opened in read-only mode",
+        "A module of the standard library that manages environment variables",
+        "A class that intercepts and handles all exceptions of the program"
+      ]
+    },
+    "613dd47b9d31": {
+      "domanda": "Which exception does this code raise?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"SELECT * FROM inesistente\")",
+      "spiegazione": "OperationalError: nonexistent table or SQL error. IntegrityError, on the other hand, is for a violated constraint (NOT NULL, UNIQUE, CHECK).",
+      "risposte": [
+        "sqlite3.OperationalError",
+        "KeyError",
+        "sqlite3.IntegrityError",
+        "FileNotFoundError"
+      ]
+    },
+    "cab76a2e605a": {
+      "domanda": "What does the % operator calculate?",
+      "spiegazione": "% is the modulo, i.e., the remainder. The integer part of the division is //. (Course notebook 02 describes % as the \"integer part\": this is an error.)",
+      "risposte": [
+        "The integer part of the division",
+        "The remainder of the division",
+        "Division with decimals",
+        "The percentage"
+      ]
+    },
+    "da491cddeb54": {
+      "domanda": "In modern Python versions, is the __init__.py file mandatory to create a package?",
+      "spiegazione": "Without __init__.py, you get a namespace package; the file remains widely used to initialize the package and control its imports.",
+      "risposte": [
+        "Yes: without that file, nothing can be imported from the folder",
+        "Yes, but only on Windows",
+        "No, and it is discouraged to use it",
+        "No, it can be missing, but it remains the standard way"
+      ]
+    },
+    "07934ca70fb9": {
+      "domanda": "How do you get an interface in Python, which lacks the interface construct?",
+      "spiegazione": "Pythonic approach: duck typing. To enforce a contract: an abstract class (ABC) with all abstract methods.",
+      "risposte": [
+        "With an empty class",
+        "With the protocol keyword",
+        "It is not possible",
+        "With duck typing or with an ABC that has only abstract methods"
+      ]
+    },
+    "d0965e5e48c0": {
+      "domanda": "What does this code print?\n\nn = 7\nprint(\"pari\" if n % 2 == 0 else \"dispari\")",
+      "spiegazione": "It is the conditional expression (Python's \"ternary\"): value_if_true if condition else value_if_false.",
+      "risposte": [
+        "dispari",
+        "1",
+        "True",
+        "pari"
+      ]
+    },
+    "46c1bad140d3": {
+      "domanda": "In a notebook, what determines the value of variables at a given moment?",
+      "spiegazione": "Cells are executed one by one and in any order: the execution sequence matters, not their position in the document.",
+      "risposte": [
+        "The selected kernel",
+        "The last saved cell",
+        "The order in which cells have been executed",
+        "The order in which cells appear in the document"
+      ]
+    },
+    "d108bf08c49b": {
+      "domanda": "What is duck typing?",
+      "spiegazione": "\"If it walks like a duck and quacks like a duck, it is a duck\": start_vehicle(x) works with any x that has start().",
+      "risposte": [
+        "A way to declare interfaces using the interface keyword",
+        "It matters that an object has the methods needed, not what class it belongs to",
+        "A type check performed before execution",
+        "Automatic conversion between compatible types"
+      ]
+    },
+    "4f477f046fb1": {
+      "domanda": "Which exception does this code raise?\n\nd = {\"a\": 1}\nprint(d[\"b\"])",
+      "spiegazione": "Accessing a missing key with square brackets raises KeyError; d.get(\"b\") would return None.",
+      "risposte": [
+        "ValueError",
+        "IndexError",
+        "KeyError",
+        "NameError"
+      ]
+    },
+    "e65af168651f": {
+      "domanda": "What does this code print?\n\nx = 3\nwhile x > 0:\n    x -= 1\nprint(x)",
+      "spiegazione": "The loop continues as long as x > 0: it stops when x equals 0, which is the value printed after the loop.",
+      "risposte": [
+        "1",
+        "3",
+        "0",
+        "-1"
+      ]
+    },
+    "71e8b3ba1f14": {
+      "domanda": "What does this code print?\n\ngriglia = [[0] * 2] * 2\ngriglia[0][0] = 1\nprint(griglia)",
+      "spiegazione": "[[0] * 2] * 2 creates two references to the same row. Distinct rows: [[0] * 2 for _ in range(2)].",
+      "risposte": [
+        "[[1, 1], [0, 0]]",
+        "[[1, 0], [1, 0]]",
+        "[[1, 0], [0, 0]]",
+        "[[1, 0]]"
+      ]
+    },
+    "fb295f16b393": {
+      "domanda": "Does an attribute defined with relationship() become a column in the table?",
+      "spiegazione": "relationship is a navigation attribute between objects: SQLAlchemy executes the necessary SELECT when it is accessed.",
+      "risposte": [
+        "Yes, a column of list type",
+        "Yes, if create_all is called",
+        "No: only mapped_column attributes end up in the table",
+        "Yes, but only in PostgreSQL databases"
+      ]
+    },
+    "f3927b367f89": {
+      "domanda": "What is SQLModel?",
+      "spiegazione": "It is developed by the author of FastAPI: a single model serves as both a table and the API data format.",
+      "risposte": [
+        "The standard SQL language",
+        "A library that combines SQLAlchemy and Pydantic, widely used with FastAPI",
+        "A relational database",
+        "SQLAlchemy's Core"
+      ]
+    },
+    "7094780628ee": {
+      "domanda": "What do .limit(10).offset(20) do in a query?",
+      "spiegazione": "limit sets the number of results, offset sets how many to skip: this is the typical pagination used by REST APIs.",
+      "risposte": [
+        "To limit the execution time",
+        "To get results from 10 to 20",
+        "For pagination: 10 results skipping the first 20",
+        "To get 20 results skipping the first 10"
+      ]
+    },
+    "252fc4d59108": {
+      "domanda": "In BPMN, which type of activity is performed by a person without the assistance of software?",
+      "spiegazione": "A User task is performed by a person using software. Service tasks and script tasks are executed by the system. In the example \"Verify user identity\", it is a Manual task.",
+      "risposte": [
+        "Service task",
+        "User task",
+        "Script task",
+        "Manual task"
+      ]
+    },
+    "ecd02916d422": {
+      "domanda": "What is the primary purpose of a virtual environment?",
+      "spiegazione": "A venv isolates a project's libraries: it prevents version conflicts, avoids installing anything at the system level, and makes the environment reproducible.",
+      "risposte": [
+        "To run Python faster thanks to ahead-of-time compilation of the code",
+        "To allow importing standard library modules, which are otherwise unavailable",
+        "To isolate the dependencies of each project",
+        "To run Python programs on machines where the interpreter is not installed"
+      ]
+    },
+    "a44014050680": {
+      "domanda": "What does this code print?\n\nimport sqlite3, os\nif os.path.exists(\"prova.db\"):\n    os.remove(\"prova.db\")\nconn = sqlite3.connect(\"prova.db\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.commit()\nconn.execute(\"INSERT INTO t VALUES (1)\")\nconn.close()\nconn = sqlite3.connect(\"prova.db\")\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone()[0])",
+      "spiegazione": "The insertion was not committed with commit(): closing the connection rolls back the transaction.",
+      "risposte": [
+        "OperationalError",
+        "0",
+        "None",
+        "1"
+      ]
+    },
+    "73a5037030b3": {
+      "domanda": "module_a and module_b both define processa_dati(). What does this code print?\n\nopen(\"modulo_a.py\", \"w\").write('def processa_dati(): return \"A\"\\n')\nopen(\"modulo_b.py\", \"w\").write('def processa_dati(): return \"B\"\\n')\nfrom modulo_a import *\nfrom modulo_b import *\nprint(processa_dati())",
+      "spiegazione": "The last import * silently overwrites the name imported from the first: a good reason to use explicit imports.",
+      "risposte": [
+        "Asks which one to choose",
+        "B",
+        "NameError",
+        "A"
+      ]
+    },
+    "80ce0eb6f9c4": {
+      "domanda": "\"The search in the catalog must respond in less than one second\" is a:",
+      "spiegazione": "It does not specify what the system does but how it should do it (performance): it is non-functional.",
+      "risposte": [
+        "User",
+        "Functional",
+        "Non-functional",
+        "Domain"
+      ]
+    },
+    "83d225f46c17": {
+      "domanda": "What happens when executing this code?\n\ndef f(*args, c):\n    return sum(args) + c\nprint(f(1, 2, 3))",
+      "spiegazione": "A parameter defined after *args is keyword-only: all positional arguments are collected into args.",
+      "risposte": [
+        "Prints 6",
+        "Prints 5",
+        "Prints 3",
+        "Raises TypeError: c must be passed by name"
+      ]
+    },
+    "719aeec02cf8": {
+      "domanda": "What does a deployment diagram show?",
+      "spiegazione": "In the SmartAllianz example: browser, web server with the VueJS app, application server with the Flask API, database server with MySQL.",
+      "risposte": [
+        "The system classes with attributes, methods, and relationships",
+        "The distribution of artifacts across nodes",
+        "The flow of activities and decisions in a process",
+        "The system's use cases and the actors involved"
+      ]
+    },
+    "17bbe1ffe501": {
+      "domanda": "What is one of the limitations of ORMs mentioned in the lecture?",
+      "spiegazione": "ORMs and direct SQL are complementary: for reporting and advanced optimizations, SQL is written manually.",
+      "risposte": [
+        "They do not eliminate the need to know SQL, and the generated queries may not be optimal",
+        "They do not support relationships between tables",
+        "They work only with SQLite",
+        "They do not allow transactions"
+      ]
+    },
+    "6f633db44c9e": {
+      "domanda": "What does this code print?\n\nclass Studente:\n    def __init__(self, nome):\n        self.nome = nome\n    def __str__(self):\n        return \"Studente \" + self.nome\nprint(Studente(\"Anna\"))",
+      "spiegazione": "print calls the special __str__ method to obtain the readable representation of the object.",
+      "risposte": [
+        "<__main__.Studente object>",
+        "Studente Anna",
+        "Anna",
+        "Studente"
+      ]
+    },
+    "1d45750db1ec": {
+      "domanda": "What is the difference between a use case and a scenario?",
+      "spiegazione": "A scenario is an instance of a use case: one where everything goes right, or one where something goes wrong.",
+      "risposte": [
+        "A use case collects all interactions between the actor and the system for a goal; a scenario is a single sequence of steps",
+        "A scenario collects multiple use cases",
+        "They are synonyms",
+        "A use case describes the graphical interface, a scenario the database"
+      ]
+    },
+    "ca4d5458f528": {
+      "domanda": "What does the file contain after this code?\n\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())",
+      "spiegazione": "A describes the correct output. writelines, like write, does not add newlines: they must be added explicitly.",
+      "risposte": [
+        "MarcoGiulia",
+        "['Marco', 'Giulia']",
+        "Marco and Giulia on two lines",
+        "Marco Giulia"
+      ]
+    },
+    "3fb5a449a000": {
+      "domanda": "What does the cursor's rowcount attribute indicate after an UPDATE?",
+      "spiegazione": "The id of the last inserted row is lastrowid. Checking rowcount after UPDATE and DELETE is good practice.",
+      "risposte": [
+        "The number of modified rows",
+        "The id of the last inserted row",
+        "The number of columns in the table",
+        "The total number of rows in the table"
+      ]
+    },
+    "1c718ebeda13": {
+      "domanda": "What does this code print?\n\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))",
+      "spiegazione": "append adds a single element (the entire list); extend adds elements one by one.",
+      "risposte": [
+        "4 3",
+        "3 4",
+        "3 3",
+        "4 4"
+      ]
+    },
+    "ef4428b36644": {
+      "domanda": "What does this code print?\n\nprint(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
+      "spiegazione": "sep is the separator between arguments (default is a space) and end is the closing character (default is a newline).",
+      "risposte": [
+        "a-b-c-!",
+        "a b c!",
+        "abc-!",
+        "a-b-c!"
+      ]
+    },
+    "fa9313756b6c": {
+      "domanda": "What does this code print?\n\nprint(type(True) == int, isinstance(True, int))",
+      "spiegazione": "type() returns the exact class (bool); isinstance() also accepts subclasses, and bool is a subclass of int.",
+      "risposte": [
+        "True True",
+        "False False",
+        "False True",
+        "True False"
+      ]
+    },
+    "84a00c07c387": {
+      "domanda": "What does this code print?\n\nconteggio = {}\nfor p in \"il gatto e il cane\".split():\n    conteggio[p] = conteggio.get(p, 0) + 1\nprint(conteggio[\"il\"])",
+      "spiegazione": "get(p, 0) retrieves the current value or 0 if the key is not yet present: this is the classic idiom for counting frequencies.",
+      "risposte": [
+        "1",
+        "2",
+        "0",
+        "KeyError"
+      ]
+    },
+    "31e3de6308b7": {
+      "domanda": "What happens when executing this code?\n\ns = \"ciao\"\ns[0] = \"C\"",
+      "spiegazione": "Strings do not support item assignment. To \"modify\" them, a new string is created, for example s = \"C\" + s[1:].",
+      "risposte": [
+        "Raises IndexError",
+        "s becomes Ciao",
+        "A new string Ciao is created and assigned to s",
+        "Raises TypeError: strings are immutable"
+      ]
+    },
+    "e2422c01879f": {
+      "domanda": "What happens when executing UPDATE students SET grade = 30 without a WHERE clause?",
+      "spiegazione": "Without WHERE, UPDATE and DELETE affect all rows: this is why they should always be written with a condition.",
+      "risposte": [
+        "All rows in the table are updated",
+        "Only the first row is updated",
+        "The query fails",
+        "Nothing happens until the id is specified"
+      ]
+    },
+    "01eb4d12a539": {
+      "domanda": "How are native SQL queries executed in SQLAlchemy?",
+      "spiegazione": "session.execute(text(\"SELECT * FROM users WHERE age > :age\"), {\"age\": 18}): parameters remain protected against SQL injection.",
+      "risposte": [
+        "Only with the sqlite3 driver",
+        "By concatenating values with an f-string",
+        "It is not possible",
+        "With text(), using named parameters like :age"
+      ]
+    },
+    "78d08d4a4c13": {
+      "domanda": "What does this code print?\n\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)",
+      "spiegazione": "A describes...",
+      "risposte": [
+        "0 0 0",
+        "1 0 0",
+        "1 1 1",
+        "1 0 1"
+      ]
+    },
+    "4b5b51ab84c1": {
+      "domanda": "In the DB-API, what does the Cursor do?",
+      "spiegazione": "The Connection manages the session and transactions (commit, rollback, close); the Cursor executes (execute) and reads (fetchone, fetchall).",
+      "risposte": [
+        "Creates the database file",
+        "Manages commits and rollbacks of open transactions on the connection",
+        "Executes queries and reads the result rows",
+        "Opens the connection to the server"
+      ]
+    },
+    "896e7f9a2581": {
+      "domanda": "What does the index=False option of DataFrame.to_csv() do?",
+      "spiegazione": "Without index=False, the file has an extra first column (0, 1, 2…), which is annoying when passing it to other tools.",
+      "risposte": [
+        "Removes duplicate rows",
+        "Sorts the rows",
+        "Avoids writing the column with the DataFrame's numeric index",
+        "Does not write the header"
+      ]
+    },
+    "f2d3e021f5da": {
+      "domanda": "In an ORM, what does a row in a table correspond to?",
+      "spiegazione": "Table → class, row → instance, column → attribute.",
+      "risposte": [
+        "An instance of the class",
+        "A module",
+        "A class",
+        "An attribute"
+      ]
+    },
+    "730b9519741d": {
+      "domanda": "What do the two print statements output?\n\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)",
+      "spiegazione": "A describes the correct behavior: `add()` registers the object but does not write it to the database; the ID is assigned by the database during the INSERT operation, which occurs at commit (or flush).",
+      "risposte": [
+        "0 1",
+        "Raises InvalidRequestError",
+        "None 1",
+        "1 1"
+      ]
+    },
+    "0e59a407407e": {
+      "domanda": "What does this code print?\n\ndef g():\n    try:\n        return \"try\"\n    finally:\n        print(\"finally\", end=\" \")\nprint(g())",
+      "spiegazione": "The finally block is executed even when the try block exits via a return statement: it prints first, and then the function returns \"try\".",
+      "risposte": [
+        "try finally",
+        "finally",
+        "try",
+        "finally try"
+      ]
+    },
+    "a19ccc9af5a4": {
+      "domanda": "Where is a function's docstring stored?",
+      "spiegazione": "The string enclosed in triple quotes immediately after the def statement is stored in __doc__: it is read by help() and editors.",
+      "risposte": [
+        "In the __name__ attribute",
+        "In a .doc file created next to the module, with the same name",
+        "In the function's __doc__ attribute",
+        "In the bytecode, but it is not accessible"
+      ]
+    },
+    "068fb42a7d4b": {
+      "domanda": "What does this code print?\n\ndef dividi(a, b):\n    try:\n        r = a / b\n    except ZeroDivisionError:\n        print(\"zero\", end=\" \")\n    else:\n        print(\"ok\", end=\" \")\n    finally:\n        print(\"fine\", end=\" \")\ndividi(1, 0)",
+      "spiegazione": "The exception triggers the except block; the else block executes only if the try block does not raise an exception; the finally block always executes.",
+      "risposte": [
+        "zero",
+        "ok fine",
+        "zero ok fine",
+        "zero fine"
+      ]
+    },
+    "8bfa99317b8f": {
+      "domanda": "From which class do all Python classes inherit, directly or indirectly?",
+      "spiegazione": "object is the mother of all classes: every class inherits from it, even if not explicitly stated.",
+      "risposte": [
+        "ABC",
+        "object",
+        "Base",
+        "type"
+      ]
+    },
+    "df6f523afe87": {
+      "domanda": "In which language is the uv package manager written?",
+      "spiegazione": "uv is developed by Astral in Rust, which is why it is much faster than pip at resolving and downloading dependencies.",
+      "risposte": [
+        "Java",
+        "C++",
+        "Rust",
+        "Go"
+      ]
+    },
+    "a9d38703756a": {
+      "domanda": "What types do args and kwargs have inside this function?\n\ndef f(*args, **kwargs):\n    print(type(args).__name__, type(kwargs).__name__)\nf(1, 2, nome=\"Luca\")",
+      "spiegazione": "*args collects positional arguments into a tuple, **kwargs keyword arguments into a dictionary.",
+      "risposte": [
+        "tuple list",
+        "tuple dict",
+        "list dict",
+        "dict tuple"
+      ]
+    },
+    "2deacb1695ee": {
+      "domanda": "Which exception does this code raise?\n\nnumeri = [1, 2]\nprint(numeri[5])",
+      "spiegazione": "An out-of-bounds index on a sequence raises IndexError.",
+      "risposte": [
+        "ValueError",
+        "IndexError",
+        "KeyError",
+        "None: prints None"
+      ]
+    },
+    "98b35132cf13": {
+      "domanda": "What is the difference between json.dump and json.dumps?",
+      "spiegazione": "The final 's' stands for string. Similarly, load reads from a file and loads reads from a string.",
+      "risposte": [
+        "dump writes to a file, dumps returns a string",
+        "dumps is the deprecated version of dump",
+        "dump reads, dumps writes",
+        "dump is for dictionaries, dumps for lists"
+      ]
+    },
+    "ee36a88056e1": {
+      "domanda": "What happens when compiling this call?\n\ndef f(a, b):\n    pass\nf(a=1, 2)",
+      "spiegazione": "In mixed calls, positional arguments must come before keyword arguments.",
+      "risposte": [
+        "Raises SyntaxError",
+        "Works: a is 2 and b is 1",
+        "Raises TypeError at runtime",
+        "Works: a is 1 and b is 2"
+      ]
+    },
+    "c4c84c41abe2": {
+      "domanda": "What does this code print?\n\nclass Car:\n    def __init__(self):\n        self.__km = 120\nprint(Car()._Car__km)",
+      "spiegazione": "Privacy with __ is a reinforced convention, not a barrier: the actual name after mangling is _Car__km.",
+      "risposte": [
+        "None",
+        "0",
+        "AttributeError",
+        "120"
+      ]
+    },
+    "463e006e192a": {
+      "domanda": "What is the purpose of the if __name__ == \"__main__\": block?",
+      "spiegazione": "This allows the same file to function both as a script and as a module, without triggering tests or prints for those who import it.",
+      "risposte": [
+        "To declare the main function, which is mandatory in every program",
+        "To prevent the module from being imported by other files in the project",
+        "To execute code only if the file is run directly",
+        "To make the module import faster for others"
+      ]
+    },
+    "b5968d3fcf4c": {
+      "domanda": "What do the two queries return?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE s(nome TEXT)\")\nconn.executemany(\"INSERT INTO s VALUES (?)\", [(\"Anna\",), (\"Luca\",)])\nnome = \"x' OR '1'='1\"\nprint(len(conn.execute(f\"SELECT * FROM s WHERE nome = '{nome}'\").fetchall()),\n      len(conn.execute(\"SELECT * FROM s WHERE nome = ?\", (nome,)).fetchall()))",
+      "spiegazione": "The apostrophe closes the SQL string and OR '1'='1' is always true. With the placeholder, the input is treated as a value.",
+      "risposte": [
+        "All rows: it is a SQL injection, while the parameterized query returns nothing",
+        "A SQL syntax error",
+        "No rows in both cases",
+        "All rows in both cases"
+      ]
+    },
+    "6d51671540eb": {
+      "domanda": "In a bank transfer (withdraw from A, deposit into B), why is a transaction required?",
+      "spiegazione": "A transaction is a logical unit: commit confirms everything, rollback undoes everything, and the database does not remain in an intermediate state.",
+      "risposte": [
+        "Because SQLite does not allow executing two UPDATE statements one after the other",
+        "To make the two queries faster by executing them in parallel",
+        "To protect the queries from SQL injection on the parameters",
+        "Because the two operations succeed or fail together"
+      ]
+    },
+    "b3840d403e18": {
+      "domanda": "What does the <<include>> relationship between two use cases mean?",
+      "spiegazione": "\"Activate new policy\" always includes \"Activate user account\". <<extend>> indicates instead a conditional additional behavior.",
+      "risposte": [
+        "That the second occurs only under certain conditions",
+        "That the first always includes the second",
+        "That the two use cases are alternative",
+        "That the second inherits from the first"
+      ]
+    },
+    "8ff75ef0d866": {
+      "domanda": "Which motto summarizes the philosophy of Python cited in the lesson on interfaces?",
+      "spiegazione": "EAFP: instead of checking first, you attempt the operation and handle any resulting exception.",
+      "risposte": [
+        "Explicit is better than implicit, always",
+        "It is easier to ask for forgiveness than permission",
+        "One object, one responsibility",
+        "Better to prevent than to cure"
+      ]
+    },
+    "71842d09ccfb": {
+      "domanda": "What does this code print?\n\nprimo, *altri = [10, 20, 30]\nprint(primo, altri)",
+      "spiegazione": "Unpacking with the asterisk collects all remaining elements into a list.",
+      "risposte": [
+        "10 20",
+        "10 (20, 30)",
+        "[10] [20, 30]",
+        "10 [20, 30]"
+      ]
+    },
+    "592167535212": {
+      "domanda": "What does this code print?\n\nprint(round(2.5), round(3.5))",
+      "spiegazione": "round() on .5 cases rounds to the nearest even number (banker's rounding): 2.5 becomes 2, 3.5 becomes 4.",
+      "risposte": [
+        "2 4",
+        "2 3",
+        "3 4",
+        "3 3"
+      ]
+    },
+    "7a74173d42f4": {
+      "domanda": "What does it mean that Python is dynamically typed?",
+      "spiegazione": "No declaration is needed: the type belongs to the value, and the same variable can later be assigned a value of a different type. However, it does not automatically convert incompatible types (strong typing).",
+      "risposte": [
+        "It automatically converts any type into any other type",
+        "Types must be declared, but they can be changed afterward",
+        "The type belongs to the value, not to the variable",
+        "Neither variables nor values have a precise type"
+      ]
+    },
+    "b385e1cc022e": {
+      "domanda": "What is the purpose of back_populates in a bidirectional relationship?",
+      "spiegazione": "If you set corso.teacher = docente, the course automatically appears in docente.courses. It must be declared on both sides and names the attribute of the other class.",
+      "risposte": [
+        "A to keep the two sides of the relationship synchronized in memory",
+        "B to create the foreign key column",
+        "C to cascade delete related objects",
+        "D to eagerly load related objects"
+      ]
+    },
+    "fbb5e9906d35": {
+      "domanda": "What does this code print?\n\nclass A:\n    def f(self):\n        print(\"A\", end=\" \")\nclass B(A):\n    def f(self):\n        super().f()\n        print(\"B\", end=\" \")\nB().f()",
+      "spiegazione": "This is an override that extends: super().f() first executes the parent's code, then the child adds its own.",
+      "risposte": [
+        "A",
+        "B",
+        "B A",
+        "A B"
+      ]
+    },
+    "504601e58432": {
+      "domanda": "What does this code print?\n\nprint(issubclass(FileNotFoundError, OSError))",
+      "spiegazione": "Exceptions are classes organized in a hierarchy: FileNotFoundError inherits from OSError, which inherits from Exception.",
+      "risposte": [
+        "None",
+        "OSError",
+        "False",
+        "True"
+      ]
+    },
+    "9d289aa26eb7": {
+      "domanda": "What does this code print?\n\nprint(type((5)).__name__, type((5,)).__name__)",
+      "spiegazione": "The comma creates the tuple, not the parentheses: (5) is an integer, (5,) is a single-element tuple.",
+      "risposte": [
+        "int tuple",
+        "tuple int",
+        "int int",
+        "tuple tuple"
+      ]
+    },
+    "1731beca55a2": {
+      "domanda": "What does this code print?\n\nclass A:\n    def chi(self): return \"A\"\nclass B:\n    def chi(self): return \"B\"\nclass C(B, A):\n    pass\nprint(C().chi())",
+      "spiegazione": "With multiple inheritance, the first class in the MRO that defines the method wins: B, because it is listed first.",
+      "risposte": [
+        "TypeError",
+        "A",
+        "B",
+        "AB"
+      ]
+    },
+    "58f4c105fd70": {
+      "domanda": "What does this code print?\n\ndef area(base, altezza):\n    return base * altezza\nmisure = [3, 5]\nprint(area(*misure))",
+      "spiegazione": "In the call, * unpacks the list into positional arguments: area(3, 5).",
+      "risposte": [
+        "15",
+        "TypeError",
+        "[3, 5]",
+        "35"
+      ]
+    },
+    "e35093311e88": {
+      "domanda": "What should be done after session.commit() raises an exception?",
+      "spiegazione": "After an error, the failed transaction must be rolled back: the Session is unusable until a rollback is performed.",
+      "risposte": [
+        "Call commit() again",
+        "Nothing, the Session recovers by itself",
+        "Recreate the Engine",
+        "Call session.rollback() before using the Session again"
+      ]
+    },
+    "fb30ee941a19": {
+      "domanda": "What does this code print?\n\nprint(\"10\" < \"2\")",
+      "spiegazione": "Strings are compared lexicographically, character by character: \"1\" comes before \"2\".",
+      "risposte": [
+        "None",
+        "True",
+        "False",
+        "TypeError"
+      ]
+    },
+    "398341018427": {
+      "domanda": "What does this code print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nwith conn:\n    conn.execute(\"INSERT INTO t VALUES (1)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+      "spiegazione": "The connection used with the `with` statement commits (or rolls back on error) but does not close: it can continue to be used.",
+      "risposte": [
+        "ProgrammingError: connection closed",
+        "(1,)",
+        "1",
+        "None"
+      ]
+    },
+    "1fb633e92e05": {
+      "domanda": "What does this code print?\n\nprint(int(-3.99))",
+      "spiegazione": "Applying int() to a float truncates toward zero: it removes the decimal part without rounding.",
+      "risposte": [
+        "-3",
+        "3",
+        "-3.99 (unchanged)",
+        "-4"
+      ]
+    },
+    "d9f9bf00ba8e": {
+      "domanda": "What does this code print?\n\nfrom decimal import Decimal\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))",
+      "spiegazione": "The decimal module performs exact decimal arithmetic, provided the values are created from strings. print displays the human-readable form.",
+      "risposte": [
+        "0.3",
+        "0.30000000000000004",
+        "0.30",
+        "Decimal('0.3')"
+      ]
+    },
+    "ce8785041f26": {
+      "domanda": "What does this code print?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    f.read()\n    print(repr(f.read()))",
+      "spiegazione": "A file has a current position: after the first read() it is at the end, and a second read() returns an empty string.",
+      "risposte": [
+        "''",
+        "EOFError",
+        "'uno\\ndue\\n'",
+        "None"
+      ]
+    },
+    "84e67f6658e1": {
+      "domanda": "In the SQLAlchemy Core, what does the Dialect do?",
+      "spiegazione": "The Engine is the entry point, the Pool reuses connections, and the Dialect handles differences between DBMS.",
+      "risposte": [
+        "Reuses open connections",
+        "Tracks modified objects",
+        "Adapts the generated SQL to the specific database",
+        "Maps classes to tables"
+      ]
+    },
+    "e04a0f9b1234": {
+      "domanda": "What does this code print?\n\ns = \"Python\"\nprint(s[1:4])",
+      "spiegazione": "Slicing includes the start index (1, 'y') and excludes the end index (4, 'o').",
+      "risposte": [
+        "ytho",
+        "Pyt",
+        "pyth",
+        "yth"
+      ]
+    },
+    "5ac331df8787": {
+      "domanda": "In a one-to-many relationship Teacher → Course, where is the foreign key located?",
+      "spiegazione": "teacher_id exists only in courses. The association table is used for many-to-many relationships (secondary).",
+      "risposte": [
+        "In both tables",
+        "In an association table",
+        "In the courses table (N side)",
+        "In the teachers table (1 side)"
+      ]
+    },
+    "a7633ee4bc73": {
+      "domanda": "What does this code print?\n\nprint(len({1, 2, 2, 3, 3, 3}))",
+      "spiegazione": "A set contains only unique elements: duplicates are removed.",
+      "risposte": [
+        "3",
+        "1",
+        "4",
+        "6"
+      ]
+    },
+    "adc574c0cbad": {
+      "domanda": "Which data structure is unordered and does not allow duplicates?",
+      "spiegazione": "A set is used to remove duplicates and check for membership very quickly; its order is not guaranteed.",
+      "risposte": [
+        "dict",
+        "list",
+        "set",
+        "tuple"
+      ]
+    },
+    "be1d35a1d37a": {
+      "domanda": "What does the last line print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,), (4,)])\ncur = conn.execute(\"SELECT x FROM t ORDER BY x\")\ncur.fetchone()\ncur.fetchmany(2)\nprint(cur.fetchall())",
+      "spiegazione": "The cursor advances: fetchone retrieves 1, fetchmany(2) retrieves 2 and 3, and fetchall returns only the remaining rows.",
+      "risposte": [
+        "[(4,)]",
+        "[(3,), (4,)]",
+        "[(1,), (2,), (3,), (4,)]",
+        "[]"
+      ]
+    },
+    "294c321b17a5": {
+      "domanda": "After importing math_utils, what is the name of the somma function in the module?",
+      "spiegazione": "When using import modulo, names remain in the module's namespace and are accessed using qualified names: modulo.nome.",
+      "risposte": [
+        "somma(5, 3)",
+        "math_utils::somma(5, 3)",
+        "math_utils.somma(5, 3)",
+        "import.somma(5, 3)"
+      ]
+    },
+    "e8e416536b5c": {
+      "domanda": "What happens when executing this code?\n\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)",
+      "spiegazione": "Studente redefines __init__ without calling super().__init__(nome): the nome attribute is never created.",
+      "risposte": [
+        "Prints WSA",
+        "Prints Anna",
+        "Raises AttributeError",
+        "Prints None"
+      ]
+    },
+    "555d784d3e6b": {
+      "domanda": "What does sqlite3.connect(\"scuola.db\") do if the file does not exist?",
+      "spiegazione": "SQLite is a file-based database with no server: connect creates the file if it is missing.",
+      "risposte": [
+        "Returns None",
+        "Creates it",
+        "Raises FileNotFoundError",
+        "Asks for confirmation"
+      ]
+    },
+    "29e4028d57dd": {
+      "domanda": "Which pillar of OOP answers the question \"what can I reuse?\"",
+      "spiegazione": "Abstraction: \"what does it do?\"; Encapsulation: \"how do I protect data and methods?\"; Inheritance: \"what can I reuse?\"; Polymorphism: \"how do I use different objects with the same interface?\"",
+      "risposte": [
+        "Abstraction",
+        "Polymorphism",
+        "Inheritance",
+        "Encapsulation"
+      ]
+    },
+    "e0d96312ff1a": {
+      "domanda": "What does sys.path contain?",
+      "spiegazione": "sys.path includes the script directory, the standard library, and installed packages. Already imported modules are stored in sys.modules.",
+      "risposte": [
+        "The list of modules already imported in this run",
+        "The directories where modules are searched for",
+        "A copy of the operating system's PATH variable",
+        "The full path of the Python interpreter in use"
+      ]
+    },
+    "c32c6b84da43": {
+      "domanda": "In what order does Python look up a name according to the LEGB rule?",
+      "spiegazione": "First the local scope of the function, then the enclosing functions, then the module, and finally Python's built-in names.",
+      "risposte": [
+        "Global, Local, Enclosing, Built-in",
+        "Built-in, Global, Enclosing, Local",
+        "Local, External, Global, Base",
+        "Local, Enclosing, Global, Built-in"
+      ]
+    },
+    "a15966ff74e3": {
+      "domanda": "What happens when executing this code?\n\nd = {[1, 2]: \"x\"}",
+      "spiegazione": "Dictionary keys must be immutable (hashable): a tuple is fine, a list is not.",
+      "risposte": [
+        "Converts the list to a tuple",
+        "Raises KeyError",
+        "Creates a dictionary with key [1, 2]",
+        "Raises TypeError: a list is not hashable"
+      ]
+    },
+    "a85743a1d33d": {
+      "domanda": "What happens when calling c.somma(1, 2)?\n\nclass Calcolatrice:\n    def somma(self, a, b):\n        return a + b\n    def somma(self, a, b, c):\n        return a + b + c\nc = Calcolatrice()\nprint(c.somma(1, 2))",
+      "spiegazione": "Python does not support method overloading: the second definition replaces the first. This can be simulated using default parameters or *args.",
+      "risposte": [
+        "Prints 3",
+        "Python selects the first method",
+        "Raises SyntaxError",
+        "Raises TypeError: missing argument c"
+      ]
+    },
+    "26d65b842ab7": {
+      "domanda": "What are the four levels of the C4 model?",
+      "spiegazione": "Four levels of increasing zoom; at the Code level, UML and ERD are reused.",
+      "risposte": [
+        "Class, Component, Container, Cloud",
+        "Concept, Container, Component, Class",
+        "Context, Container, Component, Code",
+        "Context, Class, Code, Cluster"
+      ]
+    },
+    "83d48a7a8061": {
+      "domanda": "What is the difference between lista.pop(i) and lista.remove(x)?",
+      "spiegazione": "pop(0) removes the element at index 0 and returns it; remove(30) removes the first occurrence of the value 30.",
+      "risposte": [
+        "pop works by index and returns the element, remove works by value",
+        "pop always removes the last element, remove always removes the first",
+        "No difference: they are two different names for the same list method",
+        "pop returns a new list, remove modifies the existing list in place"
+      ]
+    },
+    "78c2d8a2df76": {
+      "domanda": "What is the value of __name__ in a file that is imported by another?",
+      "spiegazione": "It is set to \"__main__\" only when the file is executed directly; when it is imported, it is set to the module's name.",
+      "risposte": [
+        "The file path",
+        "\"__main__\"",
+        "None",
+        "The module name"
+      ]
+    },
+    "a637ced5ac43": {
+      "domanda": "What does this code print?\n\nd = {\"a\": 1, \"b\": 2}\nprint(1 in d, \"a\" in d)",
+      "spiegazione": "The `in` operator on a dictionary checks keys, not values. To check values: 1 in d.values().",
+      "risposte": [
+        "False False",
+        "True True",
+        "False True",
+        "True False"
+      ]
+    },
+    "072bddc6447e": {
+      "domanda": "What does this code print?\n\nprint(True + True)",
+      "spiegazione": "bool is a subclass of int: True equals 1 and False equals 0.",
+      "risposte": [
+        "True",
+        "1",
+        "2",
+        "TrueTrue"
+      ]
+    },
+    "289f902a2d53": {
+      "domanda": "What does fetchone() return when there are no more rows?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+      "spiegazione": "fetchone returns None when results are exhausted; fetchall would return an empty list.",
+      "risposte": [
+        "Raises IndexError",
+        "An empty tuple ()",
+        "None",
+        "Raises StopIteration"
+      ]
+    },
+    "82004610c147": {
+      "domanda": "From which public repository does pip download libraries?",
+      "spiegazione": "PyPI, the Python Package Index, is the official repository for Python packages. npm is for JavaScript, NuGet for .NET, and Maven for Java.",
+      "risposte": [
+        "PyPI (pypi.org)",
+        "Maven",
+        "NuGet",
+        "npm"
+      ]
+    },
+    "207b74f30db6": {
+      "domanda": "What does this code print?\n\ndef saluta(nome=\"ospite\"):\n    return \"Ciao \" + nome\nprint(saluta(), saluta(\"Anna\"))",
+      "spiegazione": "A parameter with a default value can be omitted: in that case, the default value is used.",
+      "risposte": [
+        "Ciao  Ciao Anna",
+        "Ciao Anna Ciao Anna",
+        "Ciao ospite Ciao Anna",
+        "TypeError"
+      ]
+    },
+    "e8b3c6ec7c4d": {
+      "domanda": "What does this code print?\n\ndef quadrato(x):\n    return x * x\nf = quadrato\nprint(f(4), list(map(quadrato, [1, 2])))",
+      "spiegazione": "Functions are objects: they can be assigned to variables and passed to other functions, such as map.",
+      "risposte": [
+        "quadrato [1, 4]",
+        "TypeError",
+        "16 [1, 4]",
+        "16 [2, 4]"
+      ]
+    },
+    "b14c8a3720ae": {
+      "domanda": "When is the else block of a try executed?",
+      "spiegazione": "The else block contains code to be executed if everything went well; the finally block, on the other hand, is executed in all cases.",
+      "risposte": [
+        "Only after the finally block",
+        "Always",
+        "Only if the try block did not raise any exceptions",
+        "Only if an unhandled exception was raised"
+      ]
+    },
+    "8ff9f24dcad3": {
+      "domanda": "What type do the values read with csv.reader have?\n\nimport csv\nwith open(\"v.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    csv.writer(f).writerow([1, 2.5])\nwith open(\"v.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    riga = next(csv.reader(f))\nprint(riga)",
+      "spiegazione": "The csv module reads everything as str: conversions are the responsibility of the program. Pandas, on the other hand, recognizes the types.",
+      "risposte": [
+        "Numbers: [1, 2.5]",
+        "A tuple: (1, 2.5)",
+        "Strings: ['1', '2.5']",
+        "A dictionary"
+      ]
+    },
+    "4e42015b30bc": {
+      "domanda": "Which type of database is best suited for data in JSON document format?",
+      "spiegazione": "For machine learning embeddings, a vector database (e.g., Qdrant, Weaviate) is used instead.",
+      "risposte": [
+        "Relational, such as SQLite",
+        "Vector, such as Qdrant",
+        "Graph",
+        "Document-oriented, such as MongoDB"
+      ]
+    },
+    "28a35ddf3c39": {
+      "domanda": "What is the typical format of a user story?",
+      "spiegazione": "A user story is the agile and lightweight version of a requirement. \"Given... when... then\" is the format for acceptance criteria (Gherkin).",
+      "risposte": [
+        "If <condition> then <action>",
+        "As a <role> I want <goal> so that <benefit>",
+        "ID, name, main scenario, exceptions",
+        "Given <context>, when <event>, then <result>"
+      ]
+    },
+    "29e5a3e23cd2": {
+      "domanda": "What does this code print?\n\nprint(0 and 20, 0 or 20)",
+      "spiegazione": "and and or return one of the operands: 0 and 20 returns the first falsy value (0), 0 or 20 returns the first truthy value (20).",
+      "risposte": [
+        "False True",
+        "0 20",
+        "0 True",
+        "False 20"
+      ]
+    },
+    "fabfef981892": {
+      "domanda": "Why is a Python module already, in effect, a singleton?",
+      "spiegazione": "An object created at the top level of config.py is the same for anyone who imports config.",
+      "risposte": [
+        "Because all variables of a module become constants",
+        "Because the same module cannot be imported from two different files",
+        "Because it is executed only once and then reused",
+        "Because a module can contain at most one class inside it"
+      ]
+    },
+    "79f3d3ec9703": {
+      "domanda": "What does this code print?\n\nvoti = [28, 24, 30]\nvoti = voti.sort()\nprint(voti)",
+      "spiegazione": "sort() sorts in place and returns None: assigning the result loses the list. sorted(voti) returns a new list instead.",
+      "risposte": [
+        "[24, 28, 30]",
+        "None",
+        "[30, 28, 24]",
+        "[28, 24, 30]"
+      ]
+    },
+    "c7bddb124e89": {
+      "domanda": "What is the N+1 problem in lazy loading?",
+      "spiegazione": "With 5 teachers and lazy loading, 6 queries are needed; with selectinload (eager loading), only 2 are sufficient.",
+      "risposte": [
+        "An error that occurs when the model has more than N linked tables",
+        "An extra query for each loaded object",
+        "A limit on the number of sessions that can be opened simultaneously",
+        "A query that always returns one extra row than expected"
+      ]
+    },
+    "0476f5c8c4d9": {
+      "domanda": "Why can a tuple be used as a dictionary key while a list cannot?",
+      "spiegazione": "Keys must have a stable hash, so they must be immutable.",
+      "risposte": [
+        "Because the tuple is faster",
+        "Because the list can contain duplicates",
+        "Because the tuple is ordered",
+        "Because the tuple is immutable and therefore hashable"
+      ]
+    },
+    "53a887887585": {
+      "domanda": "Which of these definitions contains a syntax error?",
+      "spiegazione": "Parameters with default values must come after required parameters: def f(a=1, b) is invalid.",
+      "risposte": [
+        "def f(a, *args, c=1):",
+        "def f(*args, **kwargs):",
+        "def f(a, b=1):",
+        "def f(a=1, b):"
+      ]
+    },
+    "b7425851f3f5": {
+      "domanda": "What does this code print?\n\nprint([x * x for x in range(5) if x % 2 == 0])",
+      "spiegazione": "The if at the end of the comprehension filters: only 0, 2, 4 remain, which squared give 0, 4, 16.",
+      "risposte": [
+        "[0, 1, 4, 9, 16]",
+        "[0, 4, 16]",
+        "[4, 16]",
+        "[1, 9]"
+      ]
+    },
+    "8e32e72c5dfa": {
+      "domanda": "What does a single leading underscore (_km) conventionally indicate for an attribute?",
+      "spiegazione": "A single underscore: \"protected\" convention. Two underscores: name mangling. In no case is there a true prohibition like private in Java/C#.",
+      "risposte": [
+        "A constant, which cannot be changed after assignment",
+        "A class attribute, shared by all instances",
+        "Private: Python prevents any access from outside",
+        "Protected by convention, but accessible"
+      ]
+    },
+    "2c36fa64b90b": {
+      "domanda": "In ElementTree, what is the difference between find and findall?",
+      "spiegazione": "To search through all descendants, at any depth, use iter().",
+      "risposte": [
+        "find searches at any depth, findall only among direct children",
+        "find returns the first child with that tag, findall all children with that tag",
+        "None",
+        "find returns the text, findall the elements"
+      ]
+    },
+    "9446b68d621d": {
+      "domanda": "Which of these is the Read operation in CRUD?",
+      "spiegazione": "Create = INSERT, Read = SELECT, Update = UPDATE, Delete = DELETE.",
+      "risposte": [
+        "SELECT",
+        "INSERT",
+        "DELETE",
+        "UPDATE"
+      ]
+    },
+    "7478caa5b8eb": {
+      "domanda": "What do .pyc files contain that Python creates in the __pycache__ directory?",
+      "spiegazione": "Python compiles the source code into bytecode, which is executed by the Python Virtual Machine; for imported modules, it saves the bytecode in .pyc files so that the compilation step can be skipped on subsequent runs.",
+      "risposte": [
+        "Backup copies of the source files, created on every file save",
+        "The error log from the last program execution",
+        "The compiled bytecode of the modules",
+        "Libraries downloaded from PyPI for that project"
+      ]
+    },
+    "be0c71ac7aec": {
+      "domanda": "What happens when executing this code?\n\nprint(\"Python\"[2:100])",
+      "spiegazione": "A slice beyond the limits is truncated without errors; it is a single index beyond the limits (s[100]) that raises an IndexError.",
+      "risposte": [
+        "Prints thon",
+        "Prints an empty string",
+        "Prints t",
+        "Raises IndexError"
+      ]
+    },
+    "7470e4d185b6": {
+      "domanda": "What does this code print?\n\nfor i, nome in enumerate([\"Anna\", \"Luca\"], start=1):\n    print(i, nome, end=\" \")",
+      "spiegazione": "enumerate yields (index, element) pairs; start=1 makes the counting begin at 1 instead of 0.",
+      "risposte": [
+        "0 Anna 1 Luca",
+        "1 Anna 2 Luca",
+        "1 Anna 1 Luca",
+        "Anna 1 Luca 2"
+      ]
+    },
+    "59f68034ff3c": {
+      "domanda": "When is the __init__.py file of a package executed?",
+      "spiegazione": "It is executed upon package import, like a module: it can initialize the package or expose names of internal modules.",
+      "risposte": [
+        "Only during installation with pip",
+        "Every time a function of the package is called",
+        "Never: it only serves to mark the folder",
+        "When the package is imported"
+      ]
+    },
+    "653548e6f196": {
+      "domanda": "What does this code print?\n\nprint(list(zip([1, 2, 3], \"ab\")))",
+      "spiegazione": "zip pairs elements one by one and stops at the shortest sequence.",
+      "risposte": [
+        "ValueError",
+        "[(1, 'a'), (2, 'b')]",
+        "[(1, 'a'), (2, 'b'), (3, None)]",
+        "[1, 'a', 2, 'b']"
+      ]
+    },
+    "9068601a1926": {
+      "domanda": "What does this code print?\n\ndef incrementa(n: int) -> int:\n    return n + 1\nprint(incrementa(1.5))",
+      "spiegazione": "Type hints document but are not enforced by the interpreter: 1.5 is accepted without errors.",
+      "risposte": [
+        "2",
+        "None",
+        "TypeError",
+        "2.5"
+      ]
+    },
+    "a4e7838c3610": {
+      "domanda": "What does this code print?\n\nimport json\nprint(json.loads(json.dumps((1, 2))))",
+      "spiegazione": "JSON does not support tuples: a tuple is converted to an array, which becomes a list in Python.",
+      "risposte": [
+        "'[1, 2]'",
+        "{1, 2}",
+        "[1, 2]",
+        "(1, 2)"
+      ]
+    },
+    "4a843eebba54": {
+      "domanda": "What does this code print?\n\nprint({1, 2, 3} & {2, 3, 4}, {1, 2} ^ {2, 3})",
+      "spiegazione": "& is the intersection (common elements); ^ is the symmetric difference (elements that are in only one of the two sets).",
+      "risposte": [
+        "{1, 2, 3, 4} {1, 2, 3}",
+        "{1, 4} {1, 3}",
+        "{2, 3} {1, 3}",
+        "{2, 3} {2}"
+      ]
+    },
+    "772639a5b73d": {
+      "domanda": "What happens when executing this code?\n\nnumeri = [1, 2, 3]\nnumeri.remove(5)",
+      "spiegazione": "A describes...",
+      "risposte": [
+        "Nothing happens",
+        "Raises IndexError",
+        "Raises KeyError",
+        "Raises ValueError"
+      ]
+    },
+    "c0d6bc65823c": {
+      "domanda": "What does this code print?\n\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)",
+      "spiegazione": "Identity map: within a Session, a row always corresponds to the same Python object.",
+      "risposte": [
+        "False",
+        "MultipleResultsFound",
+        "None",
+        "True"
+      ]
+    },
+    "011d98ddb3de": {
+      "domanda": "What does this code print?\n\ndef d(nome, ruolo):\n    return nome + \"-\" + ruolo\nprint(d(ruolo=\"docente\", nome=\"Gallo\"))",
+      "spiegazione": "With keyword arguments, matching occurs by name, so the order in the call does not matter.",
+      "risposte": [
+        "docente-Gallo",
+        "TypeError",
+        "nome-ruolo",
+        "Gallo-docente"
+      ]
+    },
+    "56554f3ab271": {
+      "domanda": "What is the difference between Mapped[int] and Mapped[Optional[int]] in a column?",
+      "spiegazione": "The column type and nullability are inferred from the annotation.",
+      "risposte": [
+        "The first is NOT NULL, the second allows NULL",
+        "Optional creates a TEXT column instead of INTEGER",
+        "None: both annotations produce exactly the same column",
+        "Optional also makes the column the primary key of the table"
+      ]
+    },
+    "e0062460b359": {
+      "domanda": "What does a lambda function do?",
+      "spiegazione": "lambda x: x * 2 is equivalent to def f(x): return x * 2; it is mainly used as an argument, for example as the key= parameter of sorted.",
+      "risposte": [
+        "An anonymous function with a single expression",
+        "A generator that yields values one at a time on demand",
+        "An immediate function call, without the need for parentheses",
+        "An asynchronous function to be executed with the await keyword"
+      ]
+    },
+    "9ec9469069c2": {
+      "domanda": "Why is the file opened with newline='' when using the csv module?",
+      "spiegazione": "Without newline='', on Windows each line ends with \\r\\r\\n and empty lines appear: this is indicated in the documentation, also mentioned in the slide.",
+      "risposte": [
+        "To read the file faster by avoiding character conversion",
+        "Because otherwise commas between values would be ignored",
+        "To prevent the first line from being treated as a header",
+        "Because the module handles line endings itself"
+      ]
+    },
+    "6fdf3556b867": {
+      "domanda": "What does this code print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,)])\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone())",
+      "spiegazione": "Even with a single column, a row is a tuple: to get the number, you need fetchone()[0].",
+      "risposte": [
+        "(3,)",
+        "[(3,)]",
+        "3",
+        "[3]"
+      ]
+    },
+    "c13d0d7c43bd": {
+      "domanda": "How is the association User \"1\" -- \"0..*\" Policy read?",
+      "spiegazione": "The multiplicity near Policy (0..*) indicates how many policies a user has; the one near User (1) indicates how many users a policy has.",
+      "risposte": [
+        "Each user has exactly one policy",
+        "A user has at least one policy",
+        "A policy can have multiple users",
+        "A user has zero or more policies, and each policy has one user"
+      ]
+    },
+    "0a3bdd69d0be": {
+      "domanda": "Python does not have a do…while loop. How is it implemented?",
+      "spiegazione": "while True executes the body at least once; the break inside implements the exit condition.",
+      "risposte": [
+        "With the repeat … until keyword",
+        "With a while loop followed by an else block",
+        "while True: with a break",
+        "With for i in range(1): followed by the loop body"
+      ]
+    },
+    "127de0331565": {
+      "domanda": "What does this code print?\n\nnome = \"\" or \"Anonimo\"\nprint(nome)",
+      "spiegazione": "\"\" is falsy, so or returns the second operand: it is the idiomatic fallback value pattern.",
+      "risposte": [
+        "True",
+        "(empty string)",
+        "False",
+        "Anonimo"
+      ]
+    },
+    "f283738820b1": {
+      "domanda": "What does this code print?\n\nprint(list(range(1, 10, 3)))",
+      "spiegazione": "range(start, stop, step): starts at 1, steps by 3, and excludes the stop value (10).",
+      "risposte": [
+        "[1, 4, 7, 10]",
+        "[1, 4, 7]",
+        "[1, 3, 6, 9]",
+        "[3, 6, 9]"
+      ]
+    },
+    "16db1c2672e4": {
+      "domanda": "By which alias is Pandas conventionally imported?",
+      "spiegazione": "Established conventions: pandas as pd, numpy as np, matplotlib.pyplot as plt.",
+      "risposte": [
+        "import pandas as pds",
+        "import pandas as pa",
+        "import pandas as pd",
+        "import pandas as p"
+      ]
+    },
+    "3b2567230a79": {
+      "domanda": "Which command creates a virtual environment in the .venv folder?",
+      "spiegazione": "The venv module from the standard library is invoked with python -m venv <folder>; it is then activated with .venv\\Scripts\\activate on Windows.",
+      "risposte": [
+        "venv create .venv",
+        "pip install venv .venv",
+        "python --venv .venv",
+        "python -m venv .venv"
+      ]
+    },
+    "c812c2933bcf": {
+      "domanda": "What does the __init__ method do?",
+      "spiegazione": "It is the constructor (initializer): it is called automatically when you write Class(...).",
+      "risposte": [
+        "Destroys the object when there are no more references to it",
+        "Imports the class",
+        "Defines static methods",
+        "Initializes the attributes of a newly created object"
+      ]
+    },
+    "dcce5ecbd08f": {
+      "domanda": "What does this code print?\n\nfor i in range(3):\n    print(i, end=\" \")",
+      "spiegazione": "range(3) generates 0, 1, 2: the stop value is exclusive.",
+      "risposte": [
+        "0 1 2",
+        "1 2 3",
+        "1 2",
+        "0 1 2 3"
+      ]
+    },
+    "1b011cdcbb22": {
+      "domanda": "Why is it advisable to always pass encoding=\"utf-8\" to open() on Windows?",
+      "spiegazione": "Without specifying encoding, the system default is used: \"perché\" becomes 6 bytes in cp1252 and 7 in UTF-8, and it would be read incorrectly on Linux.",
+      "risposte": [
+        "Because a UTF-8 file always takes up less space than a cp1252 file",
+        "Because on Windows the default is cp1252",
+        "Because without encoding the open() function always raises an exception",
+        "Because otherwise the file is opened in binary mode"
+      ]
+    },
+    "3dd1753117ef": {
+      "domanda": "What does this code print?\n\nprint(10 / 2)",
+      "spiegazione": "The / operator performs true division and always returns a float, even when the result is an integer.",
+      "risposte": [
+        "2",
+        "5.00",
+        "5",
+        "5.0"
+      ]
+    },
+    "6f1336ddf12e": {
+      "domanda": "The slide states that \"without super(), the method is overridden\". What is the correct description?",
+      "spiegazione": "Redefining a parent class method is always an override; super() determines whether to reuse the parent's code.",
+      "risposte": [
+        "super() is used only in constructors",
+        "Both are overrides: with super(), the override extends the parent method; without it, it replaces it",
+        "With super(), there is no override",
+        "Without super(), the parent method is still executed"
+      ]
+    },
+    "94d41aebfa2e": {
+      "domanda": "What is the purpose of conn.row_factory = sqlite3.Row?",
+      "spiegazione": "By default, each row is a tuple and accessed by position; with sqlite3.Row, it can also be accessed by name.",
+      "risposte": [
+        "To count the rows",
+        "To return rows as ORM objects",
+        "To read row columns by name, such as r[\"nome\"]",
+        "To sort the rows"
+      ]
+    },
+    "7b9d0cc4eab3": {
+      "domanda": "What does this code print?\n\nvoti = {\"Anna\": 28, \"Luca\": 17}\nprint({n: v for n, v in voti.items() if v >= 18})",
+      "spiegazione": "This is a filtered dict comprehension: it keeps only the key-value pairs where the grade is at least 18.",
+      "risposte": [
+        "['Anna']",
+        "{'Anna': 28}",
+        "{'Anna': True, 'Luca': False}",
+        "{'Luca': 17}"
+      ]
+    },
+    "6591a4d333a8": {
+      "domanda": "What happens when executing this code?\n\nfrom math import sqrt\nprint(math.sqrt(16))",
+      "spiegazione": "A describes the correct behavior: `from math import sqrt` imports only `sqrt` into the namespace; the name `math` does not exist.",
+      "risposte": [
+        "Raises ImportError",
+        "Prints 4.0",
+        "Raises NameError",
+        "Prints 4"
+      ]
+    },
+    "94dfbe50cda6": {
+      "domanda": "What does this code print?\n\ng = (x for x in range(3))\nprint(list(g), list(g))",
+      "spiegazione": "Parentheses create a generator, not a tuple: it yields values only once and then is exhausted.",
+      "risposte": [
+        "[0, 1, 2] [0, 1, 2]",
+        "(0, 1, 2) (0, 1, 2)",
+        "[0, 1, 2] []",
+        "[] []"
+      ]
+    },
+    "6e32b3261556": {
+      "domanda": "Which configuration file does uv init create?",
+      "spiegazione": "uv init creates a project with pyproject.toml; package.json is the equivalent of npm.",
+      "risposte": [
+        "pyproject.toml",
+        "requirements.txt",
+        "package.json",
+        "setup.cfg"
+      ]
+    },
+    "6590270eac43": {
+      "domanda": "What happens when executing this code?\n\nfrom abc import ABC, abstractmethod\nclass Vehicle(ABC):\n    @abstractmethod\n    def start(self): pass\nclass Barca(Vehicle):\n    pass\nb = Barca()",
+      "spiegazione": "A class with unimplemented abstract methods cannot be instantiated: the error occurs at creation, not at method invocation.",
+      "risposte": [
+        "Raises NotImplementedError",
+        "Raises TypeError when creating the object",
+        "Works, but b.start() will raise an error",
+        "Works, start() returns None"
+      ]
+    },
+    "90aea155fa00": {
+      "domanda": "In SQLAlchemy 2, which function is the starting point for building queries?",
+      "spiegazione": "session.query() was the previous style. select() is enriched with where, order_by, join, limit, offset.",
+      "risposte": [
+        "execute_sql()",
+        "session.query()",
+        "find()",
+        "select()"
+      ]
+    },
+    "c14dcb388a35": {
+      "domanda": "What does the dot in 'from .statistiche import media' within __init__.py indicate?",
+      "spiegazione": "The dot indicates the current package: it is a relative import.",
+      "risposte": [
+        "A private module, hidden from those importing the package from the outside",
+        "A relative import: the statistics module of the same package",
+        "A syntax error",
+        "The statistics module of the standard library"
+      ]
+    },
+    "6dbd5e3f1383": {
+      "domanda": "What is a module in Python?",
+      "spiegazione": "A module is a .py file, and its name is the file name without the extension. A folder of modules is a package.",
+      "risposte": [
+        "A package installed with pip",
+        "A single .py file",
+        "A folder containing multiple Python files",
+        "A class with only static methods"
+      ]
+    },
+    "d44801fcca57": {
+      "domanda": "Why is there a comma after id_studente in the call cur.execute(\"... WHERE id = ?\", (id_studente,))?",
+      "spiegazione": "The comma creates the tuple. Alternatively, a list can be passed: [id_studente].",
+      "risposte": [
+        "To indicate that the query parameter is optional",
+        "Because a tuple is needed, and the comma creates the tuple",
+        "To separate the parameter value from its SQL type",
+        "It's a typo in the slide: the comma is not needed and can be removed"
+      ]
+    },
+    "369fd81c1f28": {
+      "domanda": "In SQLAlchemy, what does the Unit of Work do at the time of commit()?",
+      "spiegazione": "The Session tracks modified objects; the Unit of Work transforms those changes into the correct SQL statements.",
+      "risposte": [
+        "Converts application queries into stored procedures",
+        "Closes all pool connections and frees used memory",
+        "Automatically creates tables in the database that are still missing",
+        "Selects the SQL statements to send and their order"
+      ]
+    },
+    "516cc29619e1": {
+      "domanda": "What does this code print?\n\ndef f():\n    pass\nprint(f())",
+      "spiegazione": "A function without a return statement returns None.",
+      "risposte": [
+        "pass",
+        "0",
+        "An empty string",
+        "None"
+      ]
+    },
+    "7a03be578641": {
+      "domanda": "What does cascade=\"all, delete-orphan\" do on a relationship?",
+      "spiegazione": "Without cascade, SQLAlchemy tries to detach the children by setting the foreign key to NULL, which fails if the column is NOT NULL.",
+      "risposte": [
+        "Eagerly loads the children",
+        "When the parent object is deleted, it also deletes the related child objects",
+        "Prevents deleting the parent",
+        "Automatically creates the child objects"
+      ]
+    },
+    "0299daebedc3": {
+      "domanda": "The utilities.py module contains print(\"Modulo caricato\"). How many times does the message appear?\n\nopen(\"utilities.py\", \"w\").write('print(\"Modulo caricato\")\\n')\nimport utilities\nimport utilities",
+      "spiegazione": "A module is executed upon its first import and then kept in memory (sys.modules): the second import does not re-execute it.",
+      "risposte": [
+        "Two",
+        "None",
+        "One",
+        "Depends on the order"
+      ]
+    },
+    "f7167716ce72": {
+      "domanda": "What does the Factory pattern do?",
+      "spiegazione": "Example: create_reader(\"data.csv\") returns a CSVReader, create_reader(\"data.json\") returns a JSONReader. A single instance is the Singleton.",
+      "risposte": [
+        "Creates objects on behalf of their users, choosing the right class based on a parameter",
+        "Ensures that only one instance of a class exists",
+        "Notifies objects when a state changes",
+        "Copies an existing object"
+      ]
+    },
+    "3f113875d451": {
+      "domanda": "What happens at the print(car.__km) line?\n\nclass Car:\n    def __init__(self):\n        self.__km = 0\ncar = Car()\nprint(car.__km)",
+      "spiegazione": "Due to name mangling, inside the class __km becomes _Car__km: from the outside, car.__km does not exist.",
+      "risposte": [
+        "Prints 0",
+        "Prints None",
+        "Raises AttributeError",
+        "Raises PermissionError"
+      ]
+    },
+    "f062a1c6056d": {
+      "domanda": "Which uv command adds pandas to the project dependencies?",
+      "spiegazione": "uv add adds the dependency to pyproject.toml and installs it, creating .venv if it does not exist.",
+      "risposte": [
+        "uv put pandas",
+        "uv new pandas",
+        "uv add pandas",
+        "uv get pandas"
+      ]
+    },
+    "37fe82fd16ce": {
+      "domanda": "What does this code print?\n\nx = 2147483647\nprint(x + 1)",
+      "spiegazione": "Python integers have arbitrary precision: there is no overflow; they grow as long as there is memory.",
+      "risposte": [
+        "-2147483648",
+        "2147483648",
+        "OverflowError",
+        "2.147483648e9"
+      ]
+    },
+    "c94989de9504": {
+      "domanda": "What does this code print?\n\ndati = [(\"a\", 3), (\"b\", 1), (\"c\", 2)]\nprint(sorted(dati, key=lambda t: t[1]))",
+      "spiegazione": "The key parameter specifies how elements are compared: the lambda function returns the second value of each tuple.",
+      "risposte": [
+        "[('a', 3), ('b', 1), ('c', 2)]",
+        "[('b', 1), ('c', 2), ('a', 3)]",
+        "[('a', 3), ('c', 2), ('b', 1)]",
+        "[1, 2, 3]"
+      ]
+    },
+    "88d9647c3ad5": {
+      "domanda": "What does this code print?\n\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint(\" \".join(k.__name__ for k in D.__mro__))",
+      "spiegazione": "The MRO (C3 linearization) always places a class before its parents: A, which is the parent of both B and C, appears after both of them.",
+      "risposte": [
+        "D A B C object",
+        "D B C A object",
+        "D C B A object",
+        "D B A C object"
+      ]
+    },
+    "719435ee1446": {
+      "domanda": "According to the lecture, what is the main issue with from module import *?",
+      "spiegazione": "The issue is not speed (the module must be executed anyway), but namespace management.",
+      "risposte": [
+        "It fills the namespace and equal names overwrite each other",
+        "It significantly slows down execution because it loads the module multiple times",
+        "It also imports all modules of Python's standard library",
+        "It works only with packages and never with single modules"
+      ]
+    },
+    "5d63ebb2a546": {
+      "domanda": "What does this code print?\n\nprint(not \"\", not 10)",
+      "spiegazione": "not is the only logical operator that always returns a bool: the empty string is false, 10 is true.",
+      "risposte": [
+        "False True",
+        "'' 10",
+        "True False",
+        "True 10"
+      ]
+    }
+  }
+}
