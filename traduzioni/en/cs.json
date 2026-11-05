@@ -71,13 +71,13 @@
     },
     "52e3c6352d52": {
       "domanda": "What does the `var` keyword do in C#?",
-      "spiegazione": "With `var`, the compiler infers the type from the assigned value: `var x = 42` creates an int, `var s = \"hello\"` creates a string. Important: the type is fixed after assignment and cannot change. `var` is not dynamic typing but static type inference.",
       "risposte": [
         "Declares a variable without a fixed type, which can change type over time",
-        "Allows the compiler to automatically infer the type from the initialization",
-        "Declares a global variable accessible from the entire program",
+        "Lets the compiler automatically infer the type from the assigned value",
+        "Declares a global variable accessible from the whole program",
         "Is a synonym for `object` and accepts any value"
-      ]
+      ],
+      "spiegazione": "With `var` the compiler infers the type from the assigned value: `var x = 42` creates an int, `var s = \"ciao\"` creates a string. Important: the type is fixed after the assignment and cannot change. `var` is not dynamic typing but static type inference."
     },
     "0df7fc281f52": {
       "domanda": "How do you format a decimal number with 2 digits after the decimal point in string interpolation?",
@@ -420,14 +420,14 @@
       ]
     },
     "56d6cbbfb1fd": {
-      "domanda": "What is the difference between explicit casting and implicit conversion?",
-      "spiegazione": "Implicit conversion: occurs automatically for 'widening' conversions without data loss (`int → long`, `int → double`). Explicit casting: required for 'narrowing' conversions that may lose data (`double → int`, `long → int`); written as `(targetType)value`. Explicit casting is a programmer's assertion.",
+      "domanda": "What is the difference between an explicit cast and an implicit conversion?",
       "risposte": [
-        "They are operationally identical and use the exact same C# syntax",
-        "Explicit casting is written as (type)value, while implicit conversion happens automatically for always-safe conversions",
-        "Implicit casting is significantly slower than explicit casting at runtime",
-        "Only explicit casting is actually compiled by the modern C# compiler"
-      ]
+        "They are operationally identical and use the same exact C# syntax",
+        "The explicit cast is written (tipo)valore; the implicit conversion happens automatically for always-safe conversions",
+        "The implicit cast is significantly slower than the explicit one at runtime",
+        "Only the explicit cast is actually compiled by the modern C# compiler"
+      ],
+      "spiegazione": "Implicit conversion: it happens automatically for 'widening' conversions that lose no data (`int → long`, `int → double`). Explicit cast: necessary for 'narrowing' conversions that may lose data (`double → int`, `long → int`); it is written as `(tipoTarget)valore`. The explicit cast is an assertion made by the programmer."
     },
     "8c93008fde43": {
       "domanda": "What does `Convert.ToInt32(\"42\")` return in C#?",
@@ -780,14 +780,14 @@
       ]
     },
     "614bd63cdb42": {
-      "domanda": "Why is a `SqliteConnection` wrapped in a `using (var conn = new SqlteConnection(...))` block?",
-      "spiegazione": "The `using` block ensures automatic closing of the connection and disposal of resources, even in case of an error. It does not import namespaces. Limited visibility is a side effect, not the purpose. The path is always in the connection string.",
+      "domanda": "Why is a `SqliteConnection` wrapped in a block `using (var conn = new SqliteConnection(...))`?",
       "risposte": [
         "To automatically import the Microsoft.Data.Sqlite namespace",
-        "To declare a variable conn visible only within the block",
-        "To ensure that the connection is closed and released even in case of an exception",
+        "To declare a variable conn visible only inside the block",
+        "To ensure the connection is closed and released even in case of an exception",
         "To create a new database instance without specifying the path"
-      ]
+      ],
+      "spiegazione": "The `using` block ensures the connection is automatically closed and its resources released (Dispose), even in case of an error. It does not import any namespace. The limited visibility is a side effect, not the purpose. The path is always in the connection string."
     },
     "008bde543175": {
       "domanda": "How do you protect an SQL query from the insertion of malicious values (SQL Injection)?",
@@ -821,13 +821,13 @@
     },
     "269cd7e4a24b": {
       "domanda": "Which SQL operator searches for titles that partially contain a word?",
-      "spiegazione": "`LIKE` with wildcards `%` finds the term in any position (`%term%`). `=` requires exact equality. `IN` checks membership in a list. `BETWEEN` is for ranges, not free-text search.",
       "risposte": [
-        "= (equal) for exact title comparison",
-        "LIKE with the pattern '%term%' for partial matching",
+        "= (equal) for an exact title comparison",
+        "LIKE with the pattern '%termine%' for partial matching",
         "IN with a list of predefined titles",
         "BETWEEN for an alphabetical range of titles"
-      ]
+      ],
+      "spiegazione": "`LIKE` with the wildcards `%` finds the term in any position (`%termine%`). `=` requires exact equality. `IN` checks membership in a list. `BETWEEN` is for ranges, not for free-text search."
     },
     "58eb28869662": {
       "domanda": "What does the following code produce if `x = 15`? `if (x > 10) { Console.WriteLine(\"A\"); } else { Console.WriteLine(\"B\"); }`",
@@ -881,13 +881,13 @@
     },
     "63ff53490557": {
       "domanda": "What does `!true` produce in C#?",
-      "spiegazione": "The `!` (NOT) operator inverts the boolean value: `!true` = false, `!false` = true. It is commonly used to make conditions more readable, for example `if (!found)` instead of `if (found == false)`.",
       "risposte": [
         "1",
         "false",
         "Compilation error",
         "true"
-      ]
+      ],
+      "spiegazione": "The `!` operator (NOT) inverts the boolean value: `!true` = false, `!false` = true. It is widely used to make conditions more readable, for example `if (!trovato)` instead of `if (trovato == false)`."
     },
     "db77474ba83e": {
       "domanda": "What happens if you omit `break` in a `case` of a `switch` statement in C#?",
@@ -1020,14 +1020,14 @@
       ]
     },
     "bbf30089fc05": {
-      "domanda": "What is the correct syntax for the ternary operator in C#?",
-      "spiegazione": "The ternary operator has the form `condition ? trueValue : falseValue`. It is useful for simple assignments on a single line, but becomes hard to read if the expressions are complex.",
+      "domanda": "What is the correct form of the ternary operator in C#?",
       "risposte": [
-        "condition ? trueValue : falseValue",
-        "condition ?? trueValue : falseValue",
-        "if (condition) trueValue else falseValue",
-        "condition -> trueValue : falseValue"
-      ]
+        "condizione ? valoreSeVero : valoreSefalso",
+        "condizione ?? valoreSeVero : valoreSefalso",
+        "if (condizione) valoreSeVero else valoreSefalso",
+        "condizione -> valoreSeVero : valoreSefalso"
+      ],
+      "spiegazione": "The ternary operator has the form `condizione ? valoreSeVero : valoreSefalso`. It is useful for simple one-line assignments, but becomes hard to read if the expressions are complex."
     },
     "639c108d29b2": {
       "domanda": "Which construct is most appropriate when comparing a variable against many different fixed values?",
@@ -1071,13 +1071,13 @@
     },
     "e202f70dde71": {
       "domanda": "What does the `!` operator do in C#?",
-      "spiegazione": "`!` is the logical NOT operator. It inverts the boolean value: `!true` yields `false`, `!false` yields `true`. Useful in loops: `while (!found)` continues as long as `found` is `false`.",
       "risposte": [
         "Negates a number",
         "Inverts a boolean value: `!true` is `false`, `!false` is `true`",
-        "Performs integer division",
+        "Performs an integer division",
         "Compares two strings"
-      ]
+      ],
+      "spiegazione": "`!` is the logical NOT operator. It inverts the boolean value: `!true` produces `false`, `!false` produces `true`. Useful in loops: `while (!trovato)` keeps going as long as `trovato` is `false`."
     },
     "584d7fc39296": {
       "domanda": "What does the null-coalescing operator `??` do?",
@@ -1121,13 +1121,13 @@
     },
     "7ae930ad1b91": {
       "domanda": "Which keyword introduces a condition?",
-      "spiegazione": "`if (condition) { ... }` is the basic conditional construct.",
       "risposte": [
         "if",
-        "Use when as in other languages",
-        "Declared with the check keyword",
-        "Construct introduced by test condition"
-      ]
+        "It uses when, as in other languages",
+        "It is declared with the word check",
+        "A construct introduced by test condition"
+      ],
+      "spiegazione": "`if (condizione) { ... }` is the basic conditional construct."
     },
     "5561df570ed5": {
       "domanda": "Which operator expresses logical AND?",
@@ -1320,14 +1320,14 @@
       ]
     },
     "830e91a2d741": {
-      "domanda": "What is the correct syntax for the `do-while` loop in C# including the semicolon?",
-      "spiegazione": "The `do-while` syntax requires the semicolon after the closing parenthesis of the condition: `do { body } while (condition);`. It is one of the rare cases in C# where the semicolon goes after a curly brace. Forgetting it causes a compilation error.",
+      "domanda": "What is the correct syntax of the `do-while` in C#, including the semicolon?",
       "risposte": [
-        "while { } do (condition);",
-        "do { } while (condition)",
-        "do { } while (condition);",
-        "do while (condition) { }"
-      ]
+        "while { } do (condizione);",
+        "do { } while (condizione)",
+        "do { } while (condizione);",
+        "do while (condizione) { }"
+      ],
+      "spiegazione": "The do-while syntax requires the semicolon after the closing parenthesis of the condition: `do { corpo } while (condizione);`. It is one of the rare cases in C# where the semicolon goes after a curly brace. Forgetting it causes a compilation error."
     },
     "dfef9f7fced2": {
       "domanda": "What does a nested loop mean in C#?",
@@ -1400,14 +1400,14 @@
       ]
     },
     "c9728b2bdd42": {
-      "domanda": "Which loop iterates over all elements of a collection?",
-      "spiegazione": "`foreach (var x in collection)` iterates without the need for an index.",
+      "domanda": "Which loop iterates over all the elements of a collection?",
       "risposte": [
         "foreach",
         "The keyword iterate each",
-        "Construct called repeat all",
-        "Declared with the keyword each"
-      ]
+        "A construct called repeat all",
+        "It is declared with the word each"
+      ],
+      "spiegazione": "`foreach (var x in collezione)` iterates without needing an index."
     },
     "df094f5ae145": {
       "domanda": "Which loop executes at least once?",
@@ -1541,13 +1541,13 @@
     },
     "51c9bd43a929": {
       "domanda": "How do you remove an element by index from a `List<T>`?",
-      "spiegazione": "`RemoveAt(index)` removes the element at the specified position and shifts subsequent elements to fill the gap. `Remove(value)`, on the other hand, removes the first occurrence of a specific value. Using an invalid index causes `ArgumentOutOfRangeException`.",
       "risposte": [
-        "lista[index] = null",
-        "lista.Delete(index)",
-        "lista.RemoveAt(index)",
-        "lista.Remove(index)"
-      ]
+        "lista[indice] = null",
+        "lista.Delete(indice)",
+        "lista.RemoveAt(indice)",
+        "lista.Remove(indice)"
+      ],
+      "spiegazione": "`RemoveAt(indice)` removes the element at the specified position and shifts the following elements to fill the gap. `Remove(valore)` instead removes the first occurrence of a specific value. Using the wrong index causes an `ArgumentOutOfRangeException`."
     },
     "65baaae1e948": {
       "domanda": "What is the syntax to access the third element of an array `numeri`?",
@@ -1570,14 +1570,14 @@
       ]
     },
     "069e68a124f6": {
-      "domanda": "Which method completely empties a `List<T>` by removing all elements?",
-      "spiegazione": "`List<T>.Clear()` removes all elements from the list in a single operation, setting `Count` to 0. `RemoveAll()` takes a predicate and removes only the elements that satisfy it, not all of them. `Empty()` and `Reset()` do not exist as methods of `List<T>` in C#.",
+      "domanda": "Which method completely empties a `List<T>` by removing all its elements?",
       "risposte": [
         "lista.Empty()",
         "lista.Reset()",
         "lista.RemoveAll()",
         "lista.Clear()"
-      ]
+      ],
+      "spiegazione": "`lista.Clear()` removes all the elements from the list in a single operation, bringing `Count` to 0. `RemoveAll()` takes a predicate and removes the elements that satisfy it, not all of them. `Empty()` and `Reset()` do not exist as methods of List<T> in C#."
     },
     "80a9f6688db9": {
       "domanda": "How do you declare and initialize an array of strings with the days of the week in C#?",
@@ -1621,13 +1621,13 @@
     },
     "6242c849bfa9": {
       "domanda": "What does `lista.RemoveAt(2)` do on a `List<string>`?",
-      "spiegazione": "`.RemoveAt(index)` removes the element at the specified position (0-based). The third element is at index `2`. Subsequent elements shift down by one position. To remove by value, use `.Remove(value)`.",
       "risposte": [
         "Removes the element with value \"2\"",
         "Removes the third element (index 2)",
         "Removes the last 2 elements",
         "Throws an exception"
-      ]
+      ],
+      "spiegazione": "`.RemoveAt(indice)` removes the element at the indicated position (0-based). The third element is at index `2`. The following elements shift back by one position. To remove by value, use `.Remove(valore)`."
     },
     "703264a817e1": {
       "domanda": "What does `Array.Reverse(arr)` do in C#?",
@@ -1721,13 +1721,13 @@
     },
     "33457bf64ca0": {
       "domanda": "How do you add an element to the end of a `List<string>`?",
-      "spiegazione": "`.Add(element)` appends an element to the end of the list. `.Insert(index, element)` inserts it at a specific position. `.Remove(element)` removes the first occurrence of a value.",
       "risposte": [
         ".Append(\"x\")",
         ".Add(\"x\")",
         ".Push(\"x\")",
         ".Insert(\"x\")"
-      ]
+      ],
+      "spiegazione": "`.Add(elemento)` adds an element to the end of the list. `.Insert(indice, elemento)` inserts it at a specific position. `.Remove(elemento)` removes the first occurrence of a value."
     },
     "ad909c2a721d": {
       "domanda": "What does `Array.Sort(arr)` do on an integer array?",
@@ -1740,14 +1740,14 @@
       ]
     },
     "7ff76d43848b": {
-      "domanda": "What does `Array.IndexOf(arr, value)` return if the value is not present in the array?",
-      "spiegazione": "`Array.IndexOf()` returns `-1` if the searched element is not present in the array. If found, it returns the index of the first occurrence.",
+      "domanda": "What does `Array.IndexOf(arr, valore)` return if the value is not present in the array?",
       "risposte": [
         "0",
         "null",
         "-1",
         "Throws an exception"
-      ]
+      ],
+      "spiegazione": "`Array.IndexOf()` returns `-1` if the element being searched for is not present in the array. If it is found, it returns the index of its first occurrence."
     },
     "c3560875514e": {
       "domanda": "How do you create an array of 5 integers all initialized to zero?",
@@ -1770,14 +1770,14 @@
       ]
     },
     "ff23b4da210f": {
-      "domanda": "How do you add a pair to `Dictionary<string, int> dict`?",
-      "spiegazione": "`dict.Add(key, value)` adds a new pair. Equivalent: `dict[\"a\"] = 1` (the indexer). Important difference: `Add` throws an exception if the key already exists, whereas the indexer overwrites the existing value. Use one or the other based on the desired behavior.",
+      "domanda": "How do you add a key-value pair to a `Dictionary<string, int> dict`?",
       "risposte": [
         "dict.Push(\"a\", 1)",
         "dict.Add(\"a\", 1)",
         "dict.Insert(\"a\", 1)",
         "dict.Set(\"a\", 1)"
-      ]
+      ],
+      "spiegazione": "`dict.Add(chiave, valore)` adds a new pair. Equivalent: `dict[\"a\"] = 1` (the indexer). Important difference: `Add` throws an exception if the key already exists, while the indexer overwrites the existing value. Use one or the other depending on the behavior you want."
     },
     "a94e3ec697fe": {
       "domanda": "What happens if you call `dict.Add(\"a\", 2)` when the key \"a\" already exists?",
@@ -1960,14 +1960,14 @@
       ]
     },
     "67afc109e8c3": {
-      "domanda": "With the SQL `LIKE` operator, what value should be passed to the parameter for a partial title search?",
-      "spiegazione": "The parameter value must include the wildcards: `'%' + term + '%'`. Manually placing wildcards in the query is less clean; passing only the term would result in an exact match. An array is not supported by `LIKE` in this manner.",
+      "domanda": "With the SQL operator `LIKE`, which value must be passed to the parameter for a partial title search?",
       "risposte": [
-        "The exact term enclosed in single quotes, like '%term%'",
-        "The string `'%' + term + '%'` as the value of the @term parameter",
-        "An array of strings containing all titles already in the list",
-        "The numeric code of the material converted to a search string"
-      ]
+        "The exact term enclosed in single quotes, such as '%termine%'",
+        "The string `'%' + termine + '%'` as the value of the parameter @termine",
+        "An array of strings containing all the titles already present in the list",
+        "The numeric code of the material converted into a search string"
+      ],
+      "spiegazione": "The parameter value must include the wildcards: `'%' + termine + '%'`. Putting the wildcards in the query by hand is less clean; passing only the term would give an exact match. An array is not supported by LIKE in that way."
     },
     "b79588b0af4f": {
       "domanda": "What is meant by a `void` method in C#?",
@@ -1990,14 +1990,14 @@
       ]
     },
     "c9374e8c7bea": {
-      "domanda": "What does the `static` keyword indicate in a method?",
-      "spiegazione": "A `static` method belongs to the class itself, not to a specific instance. It is called using `ClassName.MethodName()` without creating an object. The `Main` method is always static. Non-static (instance) methods, on the other hand, require an object and can access its fields via `this`.",
+      "domanda": "What does the `static` keyword indicate on a method?",
       "risposte": [
         "The method cannot be modified after compilation",
         "The method belongs to the class and can be called without creating an object",
         "The method is executed only once at program startup",
-        "The method has variables that retain their value between calls"
-      ]
+        "The method has variables that keep their value between one call and the next"
+      ],
+      "spiegazione": "A `static` method belongs to the class itself, not to a specific instance. It is called with `NomeClasse.NomeMetodo()` without creating an object. The `Main` method is always static. Non-static (instance) methods, by contrast, require an object and can access its fields through `this`."
     },
     "55d1281ab31f": {
       "domanda": "What is meant by the 'scope' of a variable?",
@@ -2010,14 +2010,14 @@
       ]
     },
     "26b6747b591f": {
-      "domanda": "What is the correct signature of a method that takes two `int` parameters and returns a `double`?",
-      "spiegazione": "The method signature follows the structure: `returnType MethodName(paramType1 paramName1, paramType2 paramName2)`. Therefore, `double Calcola(int a, int b)` declares a method named Calcola that takes two int parameters and returns a double. The `→` syntax is used in other languages, and `: double` is used in TypeScript.",
+      "domanda": "What is the correct signature of a method that receives two `int` and returns a `double`?",
       "risposte": [
         "int Calcola(double a, double b)",
         "Calcola(int a, int b) : double",
         "void Calcola(int a, int b) → double",
         "double Calcola(int a, int b)"
-      ]
+      ],
+      "spiegazione": "The method signature is structured as: `tipoRitorno NomeMetodo(tipoParam1 nomeParam1, tipoParam2 nomeParam2)`. So `double Calcola(int a, int b)` declares a method called Calcola that receives two int and returns a double. The syntax with `→` belongs to other languages; `: double` is TypeScript."
     },
     "8bf9ddf40e83": {
       "domanda": "Which static method calculates the square root of a number in C#?",
@@ -2071,23 +2071,23 @@
     },
     "c98304dea3e8": {
       "domanda": "Which of the following is a valid method signature in C#?",
-      "spiegazione": "The correct signature is: modifier (`static`), return type (`int`), method name (`Somma`), parameters with type and name (`int a, int b`). The order `static type name(params)` is fixed.",
       "risposte": [
         "static void int Somma(a, b)",
         "static int Somma(int a, int b)",
         "int static Somma(int a, int b)",
         "void static Somma(int a, int b)"
-      ]
+      ],
+      "spiegazione": "The correct signature is: modifier (`static`), return type (`int`), method name (`Somma`), parameters with type and name (`int a, int b`). The order `static tipo nome(params)` is fixed."
     },
     "b7195c66d794": {
       "domanda": "Why do static methods use the `static` keyword?",
-      "spiegazione": "Static methods belong to the class, not to an instance. They are invoked using `ClassName.Method()` and do not have access to instance fields via `this`. `Main` is static, so it can directly call only other static methods.",
       "risposte": [
         "Because they are faster",
         "Because they belong to the class and not to specific instances",
         "Because they cannot have parameters",
         "Because they cannot be called from Main"
-      ]
+      ],
+      "spiegazione": "`static` methods belong to the class, not to an object. They are called with `NomeClasse.Metodo()` and have no access to instance fields through `this`. `Main` is static, so it can directly call only other static methods."
     },
     "90a16c7f5ce2": {
       "domanda": "What is recursion?",
@@ -2570,14 +2570,14 @@
       ]
     },
     "ffa4adb182ab": {
-      "domanda": "Are `static` fields of a class shared among all instances?",
-      "spiegazione": "Static fields exist at the class level, not at the instance level: there is a single shared copy. Modifying `Studente.Contatore` from any instance (or even without an instance) modifies the same value.",
+      "domanda": "Are the `static` fields of a class shared among all instances?",
       "risposte": [
         "No, each instance has its own copy",
-        "Yes, there is a single shared copy among all instances",
+        "Yes, there is a single copy shared among all instances",
         "Only if declared `public static`",
         "It depends on the field type"
-      ]
+      ],
+      "spiegazione": "`static` fields exist at the class level, not the instance level: there is a single shared copy. Modifying `Studente.Contatore` from any instance (or even without an instance) modifies the same value."
     },
     "f66479a4453a": {
       "domanda": "What is a computed property in C#?",
@@ -2640,14 +2640,14 @@
       ]
     },
     "05722226ec46": {
-      "domanda": "What does the `get` accessor of a property in C# do?",
-      "spiegazione": "The `get` accessor defines how the value is read: it is invoked when the property is accessed for reading (`int x = student.Age`). The `set` accessor is invoked when a value is assigned (`student.Age = 20`).",
+      "domanda": "What does the `get` block of a property do in C#?",
       "risposte": [
-        "Writes a value to the field",
-        "Reads and returns the field's value",
+        "Writes a value into the field",
+        "Reads and returns the value of the field",
         "Validates the input",
         "Deletes the field"
-      ]
+      ],
+      "spiegazione": "The `get` block defines how the value is read: it is called when the property is read (`int x = studente.Eta`). The `set` block is called when a value is assigned (`studente.Eta = 20`)."
     },
     "b84a904197e8": {
       "domanda": "Which of the following is an example of an instance method?",
@@ -2921,23 +2921,23 @@
     },
     "9fb1461c9bd5": {
       "domanda": "Which keyword declares a class?",
-      "spiegazione": "`class ClassName { ... }` declares a class.",
       "risposte": [
         "class",
-        "type is used as the keyword",
+        "It uses type as the keyword",
         "The struct keyword",
         "It is declared with object"
-      ]
+      ],
+      "spiegazione": "`class NomeClasse { ... }` declares a class."
     },
     "3898eafbb332": {
       "domanda": "Which operator creates a new instance?",
-      "spiegazione": "`new ClassName()` invokes the constructor and creates the object.",
       "risposte": [
         "new",
         "The create operator is used",
         "The make operator is called",
         "The build construction operator"
-      ]
+      ],
+      "spiegazione": "`new NomeClasse()` invokes the constructor and creates the object."
     },
     "2839856b31c8": {
       "domanda": "Which keyword refers to the current instance?",
@@ -3111,13 +3111,13 @@
     },
     "ef1f2af8f1eb": {
       "domanda": "What does the declaration `public class Cane : Animale` mean?",
-      "spiegazione": "The syntax `class Child : Parent` indicates that Child inherits from Parent: Cane is an Animale (an 'is-a' relationship). Cane automatically receives all public and protected members of Animale. The parent (Animale) is defined BEFORE the child (Cane) and knows nothing about its children.",
       "risposte": [
         "Cane is an alias of Animale",
         "Cane inherits from Animale",
         "Animale inherits from Cane",
         "Cane is a copy of Animale"
-      ]
+      ],
+      "spiegazione": "The syntax `class Figlia : Padre` indicates that Figlia inherits from Padre: Cane is an Animale (an 'is-a' relationship). Cane automatically receives all the public and protected members of Animale. The parent (Animale) is defined BEFORE the child (Cane) and knows nothing about its children."
     },
     "b109645584eb": {
       "domanda": "Which access modifier allows access to a member from the class itself and from child classes, but not from outside?",
@@ -3200,14 +3200,14 @@
       ]
     },
     "ccb79533cd64": {
-      "domanda": "If Manager inherits from Employee, which is the base class and which is the derived class?",
-      "spiegazione": "In `class Manager : Employee`, Employee is the base class (or parent, or superclass) and Manager is the derived class (or child, or subclass). The derived class is a specialization of the base class: every Manager is also an Employee, but not vice versa.",
+      "domanda": "If Manager inherits from Dipendente, which is the base class and which is the derived class?",
       "risposte": [
         "They are at the same level",
-        "Manager is the base, Employee is the derived",
-        "Employee is the base, Manager is the derived",
+        "Manager is the base, Dipendente is the derived",
+        "Dipendente is the base, Manager is the derived",
         "It depends on the visibility"
-      ]
+      ],
+      "spiegazione": "In `class Manager : Dipendente`, Dipendente is the base class (or parent, or superclass) and Manager is the derived class (or child, or subclass). The derived class is a specialization of the base: every Manager is also a Dipendente, but not vice versa."
     },
     "9da92f87321d": {
       "domanda": "What does this code print? `Animale a = new Cane(); Console.WriteLine(a is Cane);`",
@@ -3301,13 +3301,13 @@
     },
     "a86645e14e75": {
       "domanda": "What does the `is` operator do in C#?",
-      "spiegazione": "The `is` operator checks at runtime whether an object is of a certain type (or a derived type): `if (animal is Dog)` returns true if `animal` is a Dog. Modern form with pattern matching: `if (animal is Dog d)` also performs the cast into variable d.",
       "risposte": [
-        "Checks if an object is of a certain type (or a derived type)",
-        "Compares two values for direct equality like the == operator",
+        "Checks whether an object is of a certain type (or one of its derived types)",
+        "Compares two values for direct equality, as the == operator does",
         "Performs a conditional assignment of a value to a variable",
-        "Creates a temporary alias to access members of a class"
-      ]
+        "Creates a temporary alias to access the members of a class"
+      ],
+      "spiegazione": "The `is` operator checks at runtime whether an object is of a certain type (or of a derived type): `if (animale is Cane)` returns true if `animale` is a Cane. Modern form with pattern matching: `if (animale is Cane c)` also performs the cast into the variable c."
     },
     "2dd85e241243": {
       "domanda": "What does the `as` operator do in C#?",
@@ -3761,13 +3761,13 @@
     },
     "8979a9afe377": {
       "domanda": "Which keyword declares an abstract class in C#?",
-      "spiegazione": "The syntax is `abstract class ClassName`. An abstract class is an 'incomplete' class: it cannot be instantiated directly, but serves as a base for other classes. It can contain abstract methods (without implementation) and/or regular methods with implementation.",
       "risposte": [
         "virtual",
         "abstract",
         "static",
         "sealed"
-      ]
+      ],
+      "spiegazione": "Use `abstract class NomeClasse`. An abstract class is an 'incomplete' class: it cannot be instantiated directly, but serves as a base for other classes. It can contain abstract methods (without implementation) and/or normal methods with an implementation."
     },
     "e95a0feef888": {
       "domanda": "Can an abstract class be instantiated with `new` in C#?",
@@ -3931,13 +3931,13 @@
     },
     "dc20ec29f412": {
       "domanda": "Which keyword is used to manually throw an exception in C#?",
-      "spiegazione": "`throw` throws an exception: `throw new ArgumentException(\"Invalid age\");`. It is used to signal error conditions when invalid states are detected in your methods. `raise` is from Python, `throw` is also used in Java/JavaScript.",
       "risposte": [
         "raise",
         "throw",
         "fire",
         "trigger"
-      ]
+      ],
+      "spiegazione": "`throw` throws an exception: `throw new ArgumentException(\"Età non valida\");`. It is used to signal error conditions when invalid states are detected in your own methods. `raise` belongs to Python, while `throw` also exists in Java/JavaScript."
     },
     "61609e7708d9": {
       "domanda": "What does a `FormatException` represent?",
@@ -4000,14 +4000,14 @@
       ]
     },
     "2eeb8fe99dd2": {
-      "domanda": "How do you access the text message of a caught `Exception e`?",
-      "spiegazione": "The `Message` property of Exception contains the textual description of the error: `Console.WriteLine($\"Error: {e.Message}\");`. It is the first thing to log/display to the user. For technical details, use `e.StackTrace` (useful during debugging but not to show to the end user).",
+      "domanda": "How do you access the text message of a caught exception `Exception e`?",
       "risposte": [
         "e.Text",
         "e.Message",
         "e.Description",
         "e.Info"
-      ]
+      ],
+      "spiegazione": "The `Message` property of Exception contains the textual description of the error: `Console.WriteLine($\"Errore: {e.Message}\");`. It is the first thing to log or show to the user. For technical details use `e.StackTrace` (useful while debugging, but not to show to the end user)."
     },
     "d2fda377ef05": {
       "domanda": "Which of these is the worst practice in exception handling?",
@@ -4080,14 +4080,14 @@
       ]
     },
     "9a1bfd05d65e": {
-      "domanda": "In the catch block of the BtnAggiungiLibro_Click method, what is displayed to the user in case of an error?",
-      "spiegazione": "The catch block displays `MessageBox.Show($\"Errore salvataggio:\\n{ex.Message}\", \"Errore DB\", ...)` with the title 'Errore DB'. It does not display the file path. It does not use a hidden console. It does not ask to rename the database.",
+      "domanda": "In the catch block of the method BtnAggiungiLibro_Click, what is shown to the user in case of an error?",
       "risposte": [
         "The full path of the .db file that caused the conflict",
-        "The complete stack trace in a hidden debug console",
+        "The full stack trace in a hidden debug console",
         "A MessageBox with title 'Errore DB' and the exception message",
-        "A dialog box to choose a new name for the database"
-      ]
+        "A dialog to choose a new name for the database"
+      ],
+      "spiegazione": "The catch shows `MessageBox.Show($\\\"Errore salvataggio:\n{ex.Message}\\\", \\\"Errore DB\\\", ...)` with the title 'Errore DB'. It does not show the file path, it does not use a hidden console, and it does not ask to rename the database."
     },
     "bf542a0d1c82": {
       "domanda": "What is LINQ in C#?",
@@ -4131,13 +4131,13 @@
     },
     "3c7d54ad96aa": {
       "domanda": "Which C# operator is used in lambda expressions?",
-      "spiegazione": "The lambda operator is `=>` (sometimes called 'goes to'): `x => x * 2` defines an anonymous function that takes x and returns x*2. Full syntax: `(parameters) => expression` or `(parameters) => { statements; }`. `->` is used for pointers in C/C++.",
       "risposte": [
         "->",
         "=>",
         ":=",
         "<<"
-      ]
+      ],
+      "spiegazione": "The lambda operator is `=>` (sometimes called 'goes to'): `x => x * 2` defines an anonymous function that receives x and returns x*2. Full syntax: `(parametri) => espressione` or `(parametri) => { istruzioni; }`. `->` belongs to pointers in C/C++."
     },
     "c0e98cf5ad6f": {
       "domanda": "What does `lista.First()` return on an empty list?",
@@ -4170,14 +4170,14 @@
       ]
     },
     "cd00684903b4": {
-      "domanda": "What does `lista.Any()` return when called without arguments?",
-      "spiegazione": "`Any()` without arguments checks whether the collection contains at least one element. It is preferred over `Count() > 0` for performance reasons: it stops at the first found element. With a predicate `Any(x => x.Age > 18)`, it checks whether there EXISTS at least one element that satisfies the condition.",
+      "domanda": "What does `lista.Any()` return when called with no arguments?",
       "risposte": [
         "true if the collection contains at least one element, false if it is empty",
-        "Returns a random element chosen at runtime from the passed collection",
-        "Counts the total number of elements present in the current collection",
-        "Always returns true regardless of the collection's content"
-      ]
+        "A random element chosen at runtime from the passed collection",
+        "The total count of the elements present in the current collection",
+        "Always true, regardless of the content of the collection"
+      ],
+      "spiegazione": "`Any()` with no arguments checks whether the collection contains at least one element. It is preferable to `Count() > 0` for performance reasons: it stops at the first element found. With a predicate, `Any(x => x.Eta > 18)` checks whether there EXISTS at least one element that satisfies the condition."
     },
     "510d351e3734": {
       "domanda": "How do you write a lambda that takes x and y and returns their sum?",
@@ -4261,13 +4261,13 @@
     },
     "96b6dc552826": {
       "domanda": "What does `where T : class` allow you to do in a generic method?",
-      "spiegazione": "`where` clauses impose constraints on type parameters: `where T : class` restricts T to reference types (strings, classes). Other constraints: `where T : struct` (value types), `where T : ClassName` (must inherit from ClassName), `where T : new()` (must have a parameterless constructor).",
       "risposte": [
-        "Makes type T a static class with members shared across instances",
-        "Constrains T to be a reference type (not a value type like int)",
-        "Constrains T to be mandatory type int or primitive numeric types",
-        "Converts type T to object, losing type information"
-      ]
+        "Makes the type T a static class with members shared among instances",
+        "Constrains T to be a reference type (not a value type such as int)",
+        "Constrains T to be necessarily int or a primitive numeric type",
+        "Turns the type T into object, losing the type information"
+      ],
+      "spiegazione": "`where` clauses impose constraints on type parameters: `where T : class` restricts T to reference types (string, classes). Other constraints: `where T : struct` (value types), `where T : NomeClasse` (must inherit from NomeClasse), `where T : new()` (must have a parameterless constructor)."
     },
     "dad2cbdc5540": {
       "domanda": "In which namespace is `List<T>` located?",
@@ -4401,13 +4401,13 @@
     },
     "f21825ef5227": {
       "domanda": "How do you create a specific date for March 15, 2024?",
-      "spiegazione": "The standard constructor is `new DateTime(year, month, day)`: `new DateTime(2024, 3, 15)`. There are overloads to include hours, minutes, and seconds: `new DateTime(2024, 3, 15, 14, 30, 0)`. To parse a string, use `DateTime.Parse(\"15/03/2024\")` (be mindful of the local format).",
       "risposte": [
         "new DateTime(2024, 3, 15)",
         "DateTime.Create(15, 3, 2024)",
         "new DateTime(\"15/03/2024\")",
         "DateTime(\"2024-03-15\")"
-      ]
+      ],
+      "spiegazione": "The standard constructor is `new DateTime(anno, mese, giorno)`: `new DateTime(2024, 3, 15)`. There are overloads to include hours, minutes and seconds: `new DateTime(2024, 3, 15, 14, 30, 0)`. To parse a string, use `DateTime.Parse(\"15/03/2024\")` (be careful with the locale format)."
     },
     "8c3264175044": {
       "domanda": "What does the `Year` property of a DateTime return?",
@@ -4450,14 +4450,14 @@
       ]
     },
     "ecdaaf8ae05c": {
-      "domanda": "Which of these is a valid positional record declaration?",
-      "spiegazione": "The correct form is `public record TypeName(parameters);` with a trailing semicolon. `class record` and `struct record` are not valid syntax (they are alternative keywords). There is also the block form `public record P { public string N { get; init; } }`, but not the one shown in the fourth answer.",
+      "domanda": "Which of these is a valid record declaration with positional syntax?",
       "risposte": [
         "`public record P(string N, int E);`",
         "`public class record P(string N){}`",
         "`public struct record P(int N) {}`",
         "`public abstract record P {string N;}`"
-      ]
+      ],
+      "spiegazione": "The correct form is `public record NomeTipo(parametri);` with the final semicolon. `class record` and `struct record` are not valid syntax (they are alternative keywords). There is also the block form `public record P { public string N { get; init; } }`, but not the one shown in the fourth answer."
     },
     "64a7e5804934": {
       "domanda": "The `with` expression on a record:",
@@ -4561,13 +4561,13 @@
     },
     "cc73c5fa6b53": {
       "domanda": "A local variable declared inside a method:",
-      "spiegazione": "Local variables exist only within the method's stack frame: they are allocated when the method starts and removed when it ends. They are not visible from other methods, even within the same class. To share state across multiple methods, a class field is used.",
       "risposte": [
-        "It is visible throughout the program from every file in the application",
-        "It is visible throughout the class where the method is declared",
-        "It is accessible from outside using the syntax `class.method.variable`",
-        "It is visible only within the method, born with the call and dying at the end"
-      ]
+        "Is visible throughout the program from every file of the application",
+        "Is visible throughout the class in which the declared method appears",
+        "Is accessible from outside with the syntax `classe.metodo.variabile`",
+        "Is visible only inside the method: it is created when the method is called and disappears when it ends"
+      ],
+      "spiegazione": "Local variables live only in the method's stack frame: they are allocated when the method starts and removed when it ends. They are not visible from other methods, not even from the same class. To share state among several methods, use a field of the class."
     },
     "eed57a2547c1": {
       "domanda": "Can I use a variable declared inside an `if` branch from outside the `if` branch?",
@@ -4980,14 +4980,14 @@
       ]
     },
     "53327ee6d86e": {
-      "domanda": "Which method is used to display a message to the user in WinForms?",
-      "spiegazione": "`MessageBox.Show(text, title)` displays a modal dialog box with the message and an OK button. It is the standard method for displaying results or warnings in WinForms.",
+      "domanda": "Which method is used to show a message to the user in WinForms?",
       "risposte": [
         "Console.WriteLine()",
         "MessageBox.Show()",
         "Dialog.Show()",
         "Alert.Display()"
-      ]
+      ],
+      "spiegazione": "`MessageBox.Show(testo, titolo)` shows a modal dialog window with the message and an OK button. It is the standard method for showing results or warnings in WinForms."
     },
     "a8a31c5136d5": {
       "domanda": "How is the `sender` parameter used in an event handler shared by multiple buttons?",
@@ -5000,14 +5000,14 @@
       ]
     },
     "b4abb9356e92": {
-      "domanda": "In WinForms, how do you read the text entered by the user in a `TextBox` named `txtNome`?",
-      "spiegazione": "The `.Text` property of a TextBox contains the current text. In reading: `string nome = txtNome.Text;`. In writing: `txtNome.Text = \"Value\";`.",
+      "domanda": "In WinForms, how do you read the text typed by the user in a `TextBox` named `txtNome`?",
       "risposte": [
         "txtNome.Value",
         "txtNome.Input",
         "txtNome.Text",
         "txtNome.Content"
-      ]
+      ],
+      "spiegazione": "The `.Text` property of a TextBox contains the current text. Reading: `string nome = txtNome.Text;`. Writing: `txtNome.Text = \"Valore\";`."
     },
     "e1430230d510": {
       "domanda": "In an AND search, if one condition is false, what happens to the remaining checks?",
@@ -5030,14 +5030,14 @@
       ]
     },
     "34a5ef7b99d5": {
-      "domanda": "Which string method is used to find students whose name STARTS with a certain text?",
-      "spiegazione": "`StartsWith(prefix)` returns `true` if the string starts with the specified prefix. For case-insensitive search, use `.ToUpper().StartsWith(input.ToUpper())`.",
+      "domanda": "Which string method is used to search for students whose name STARTS with a certain text?",
       "risposte": [
         ".Contains()",
         ".StartsWith()",
         ".BeginsWith()",
         ".IndexOf()"
-      ]
+      ],
+      "spiegazione": "`.StartsWith(prefisso)` returns `true` if the string starts with the indicated prefix. For a case-insensitive search, use `.ToUpper().StartsWith(input.ToUpper())`."
     },
     "e2b65d7827ed": {
       "domanda": "What is the difference between AND and OR searches on a list of objects?",
@@ -5171,13 +5171,13 @@
     },
     "cf6bfe33e387": {
       "domanda": "How do you perform a partial search on a book title in SQLite?",
-      "spiegazione": "`LIKE` with the `%` wildcard is the standard SQL syntax for partial matching: `%term%` means \"contains\". `CONTAINS` and `MATCH` are not supported in standard SQLite; `LIKE =` is syntactically incorrect.",
       "risposte": [
-        "Use `WHERE Titolo LIKE @t` with parameter `\"%term%\"`.",
+        "Use `WHERE Titolo LIKE @t` with the parameter `\"%termine%\"`.",
         "Use `WHERE Titolo CONTAINS @t` for partial matching.",
         "Use `WHERE Titolo LIKE = @t` with the equals sign included.",
-        "Use `WHERE Titolo MATCH @t` as in some NoSQL databases."
-      ]
+        "Use `WHERE Titolo MATCH @t`, as in some NoSQL databases."
+      ],
+      "spiegazione": "`LIKE` with the wildcard `%` is the standard SQL syntax for partial matches: `%termine%` means \"contains\". `CONTAINS` and `MATCH` are not supported in standard SQLite; `LIKE =` is syntactically wrong."
     },
     "8fe5bbd358d6": {
       "domanda": "Why is `SqliteConnection` wrapped in a `using` block?",
@@ -5220,14 +5220,14 @@
       ]
     },
     "c2d4504d5013": {
-      "domanda": "Why introduce a repository class (e.g., `DatabaseManager`) instead of writing queries directly in forms or pages?",
-      "spiegazione": "The Repository pattern separates persistence from the UI: you call high-level methods like `Add(x)` or `GetAll()` without writing SQL in forms/pages, and changing the database becomes easier. Mixing SQL and UI makes the code hard to maintain.",
+      "domanda": "Why introduce a repository class (e.g. `DatabaseManager`) instead of writing the queries directly in the forms or pages?",
       "risposte": [
-        "To isolate data access: the rest of the app calls high-level methods without knowing SQL",
-        "Because otherwise the queries won't work",
-        "Because WinForms and web don't support SQLite",
+        "To isolate data access: the rest of the app calls high-level methods without knowing the SQL",
+        "Because otherwise the queries do not work",
+        "Because WinForms and the web do not support SQLite",
         "Because a global singleton is mandatory"
-      ]
+      ],
+      "spiegazione": "The Repository pattern separates persistence from the UI: you call methods such as `Aggiungi(x)` or `GetAll()` without writing SQL in the forms or pages, and changing the database becomes easier. Mixing SQL and UI makes the code hard to maintain."
     },
     "21e59f656b16": {
       "domanda": "How is the value of an `@titolo` parameter passed to the SQLite command?",
@@ -5271,13 +5271,13 @@
     },
     "f4e1c57b6d39": {
       "domanda": "What is the correct syntax to update the availability of a material?",
-      "spiegazione": "The standard SQL syntax is `UPDATE table SET column=value WHERE condition`. `MODIFY` does not exist in SQLite, the `VALUES` syntax is only for `INSERT`, and `ALTER TABLE` modifies the schema (structure), not the data.",
       "risposte": [
-        "`UPDATE Materials SET Available=@d WHERE Code=@c;`",
-        "`MODIFY Materials Available=@d WHERE Code=@c;` as in some SQL dialects",
-        "`UPDATE Materials (Available) VALUES (@d) WHERE Code=@c;` with mixed syntax",
-        "`ALTER TABLE Materials SET Available=@d WHERE Code=@c;` to modify values"
-      ]
+        "`UPDATE Materiali SET Disponibile=@d WHERE Codice=@c;`",
+        "`MODIFY Materiali Disponibile=@d WHERE Codice=@c;` as in some SQL dialects",
+        "`UPDATE Materiali (Disponibile) VALUES (@d) WHERE Codice=@c;` with mixed syntax",
+        "`ALTER TABLE Materiali SET Disponibile=@d WHERE Codice=@c;` to modify values"
+      ],
+      "spiegazione": "The standard SQL syntax is `UPDATE tabella SET colonna=valore WHERE condizione`. `MODIFY` does not exist in SQLite, the `VALUES` syntax is only for `INSERT`, and `ALTER TABLE` modifies the schema (the structure), not the data."
     },
     "518c266638a5": {
       "domanda": "What does `%` represent in `WHERE Titolo LIKE '%eco%'`?",
@@ -5291,23 +5291,23 @@
     },
     "0b00f07c6547": {
       "domanda": "What is the SQL command to delete a material with a specific code?",
-      "spiegazione": "`DELETE FROM table WHERE condition` is the standard SQL syntax for deleting rows. `DROP` removes an entire table or object; `REMOVE` does not exist in SQL; `TRUNCATE` empties the entire table and does not accept `WHERE`.",
       "risposte": [
         "`DELETE FROM Materiali WHERE Codice=@c;` deletes the row",
         "`DROP FROM Materiali WHERE Codice=@c;` to remove a row",
         "`REMOVE FROM Materiali WHERE Codice=@c;` as in some dialects",
         "`TRUNCATE Materiali WHERE Codice=@c;` for targeted cleanup"
-      ]
+      ],
+      "spiegazione": "`DELETE FROM tabella WHERE condizione` is the standard SQL syntax for deleting rows. `DROP` removes an entire table or object; `REMOVE` does not exist in SQL; `TRUNCATE` empties the entire table and does not accept `WHERE`."
     },
     "5bfabbae2250": {
       "domanda": "What does `reader.Read()` return on a `SqliteDataReader`?",
-      "spiegazione": "`Read()` advances to the next record and returns a `bool`: it is used as the condition in a `while` loop. Column values are read using `reader[\"nome\"]` or `reader.GetInt32(index)` after calling `Read()`.",
       "risposte": [
         "`true` if there is a row available, `false` at the end of the reader.",
         "A string containing the value of the first column of the current row",
-        "A dictionary of columns with name-value pairs of the current row",
-        "A `List<object>` containing the values of all read columns"
-      ]
+        "A dictionary of columns with the name-value pairs of the current row",
+        "A `List<object>` containing the values of all the columns read"
+      ],
+      "spiegazione": "`Read()` advances to the next record and returns a `bool`: it is used as the condition of the `while`. The column values are read with `reader[\"nome\"]` or `reader.GetInt32(indice)` after calling `Read()`."
     },
     "314858bc3044": {
       "domanda": "Which query returns the number of books grouped by availability?",
@@ -5350,14 +5350,14 @@
       ]
     },
     "bf39c43a6418": {
-      "domanda": "Which of these options is `not` a method of `SqliteCommand`?",
-      "spiegazione": "`ExecuteAll()` does not exist. The actual execution methods are `ExecuteNonQuery()` (for modifications), `ExecuteReader()` (for reading results row by row), and `ExecuteScalar()` (for obtaining a single value).",
+      "domanda": "Which of these options is **NOT** a method of `SqliteCommand`?",
       "risposte": [
-        "`ExecuteAll()` to execute and iterate all records in one go",
+        "`ExecuteAll()` to execute and iterate over all the records in one go",
         "`ExecuteNonQuery()`",
         "`ExecuteReader()`",
         "`ExecuteScalar()`"
-      ]
+      ],
+      "spiegazione": "`ExecuteAll()` does not exist. The actual execution methods are `ExecuteNonQuery()` (for modifications), `ExecuteReader()` (to read results row by row) and `ExecuteScalar()` (to get a single value)."
     },
     "f507fc59c21d": {
       "domanda": "When is the `SqliteConnection` closed when used with `using`?",
@@ -5430,14 +5430,14 @@
       ]
     },
     "b711ac173c62": {
-      "domanda": "How do you display an error message in WinForms?",
-      "spiegazione": "`MessageBox.Show` is the standard method for alert dialogs; it can take a title, buttons, and an icon. `Console.WriteLine` writes to the console (not visible in standalone WinForms). `Form.Alert` and `Application.Notify` do not exist.",
+      "domanda": "How do you show an error message in WinForms?",
       "risposte": [
-        "`MessageBox.Show(\"Error\");`",
-        "`Console.WriteLine(\"Error\");` prints the message to the console of the main form opened",
-        "`Form.Alert(\"Error\");` shows a modal alert as a static method of the Form class",
-        "`Application.Notify(\"Error\");` as a dedicated method for notifying the end user"
-      ]
+        "`MessageBox.Show(\"Errore\");`",
+        "`Console.WriteLine(\"Errore\");` prints the message to the console of the open main form",
+        "`Form.Alert(\"Errore\");` shows a modal alert as a static method of the Form class",
+        "`Application.Notify(\"Errore\");` as a method dedicated to notifying the end user"
+      ],
+      "spiegazione": "`MessageBox.Show` is the standard method for alert dialogs; it can take a title, buttons and an icon. `Console.WriteLine` writes to the console (not visible in a standalone WinForms app). `Form.Alert` and `Application.Notify` do not exist."
     },
     "93d33eef05a0": {
       "domanda": "What is the purpose of a generic method like `Apri<T>() where T : Base, new()`?",
@@ -5451,13 +5451,13 @@
     },
     "a50b2f5fd401": {
       "domanda": "How do you add a row with multiple columns to a `ListView`?",
-      "spiegazione": "`ListViewItem` represents the first cell; the others are added as `SubItems`. `DataSource` belongs to `DataGridView`/`BindingSource`, not `ListView`. `listView.Add(...)` and `Rows.Add(...)` do not exist in `ListView`.",
       "risposte": [
-        "Create `var item = new ListViewItem(\"first cell\"); item.SubItems.Add(\"second\"); listView.Items.Add(item);`.",
-        "Call `listView.Add(\"a\", \"b\", \"c\");` directly on the control.",
-        "Set a `DataTable` as the `DataSource` of the `ListView`.",
-        "Use `listView.Rows.Add(\"a\", \"b\")` as in `DataGridView`."
-      ]
+        "You create `var item = new ListViewItem(\"prima cella\"); item.SubItems.Add(\"seconda\"); listView.Items.Add(item);`.",
+        "You call `listView.Add(\"a\", \"b\", \"c\");` directly on the control.",
+        "You set a `DataTable` as the `DataSource` of the `ListView`.",
+        "You use `listView.Rows.Add(\"a\", \"b\")`, as in `DataGridView`."
+      ],
+      "spiegazione": "`ListViewItem` represents the first cell; the others are added as `SubItems`. `DataSource` belongs to `DataGridView`/`BindingSource`, not to `ListView`. `listView.Add(...)` and `Rows.Add(...)` do not exist in `ListView`."
     },
     "a656950c3a4e": {
       "domanda": "How do you intercept the Enter key in a search `TextBox`?",
@@ -5571,13 +5571,13 @@
     },
     "c3975e438dbb": {
       "domanda": "What does `this.StartPosition = FormStartPosition.CenterScreen;` do?",
-      "spiegazione": "`FormStartPosition.CenterScreen` positions the form at the center of the primary screen upon its first opening. It has no effect on the cursor, secondary monitors, or internal controls (which are centered using other mechanisms).",
       "risposte": [
         "Centers the form on the screen when it opens.",
-        "Centers each control inside the form relative to the main right panel",
-        "Centers the form relative to the secondary monitor in multi-monitor configurations",
-        "Sets the initial position of the mouse cursor at the exact center of the form upon creation"
-      ]
+        "Centers every control inside the form relative to the main panel on the right",
+        "Centers the form relative to the secondary monitor in multi-screen configurations",
+        "Sets the initial position of the mouse cursor at the exact center of the form when it is created"
+      ],
+      "spiegazione": "`StartPosition.CenterScreen` places the form at the center of the primary screen when it is first opened. It has no effect on the cursor, the secondary monitor or the internal controls (which are centered by other mechanisms)."
     },
     "01b5fe1d7a68": {
       "domanda": "How do you subscribe to a `Click` event using an inline lambda?",
@@ -5670,14 +5670,14 @@
       ]
     },
     "179df4e41fc5": {
-      "domanda": "Which is the correct signature for a generic method `Primo<T>` that returns the first element of a `List<T>`?",
-      "spiegazione": "In C#, the type parameter `<T>` must appear immediately after the method name. The syntax `<T> T Primo(...)` is Java; the other forms are not valid C#. The signature is `public Type Name<T>(...)`.",
+      "domanda": "Which signature is correct for a generic method `Primo<T>` that returns the first element of a `List<T>`?",
       "risposte": [
-        "`public T Primo<T>(List<T> lista) => lista[0];` with the type parameter immediately after the method name.",
+        "`public T Primo<T>(List<T> lista) => lista[0];` with the type parameter right after the method name.",
         "`public <T> T Primo(List<T> lista) { return lista[0]; }`",
         "`public T Primo(List<T> lista) { return lista[0]; }`",
         "`public T<Generic> Primo(List<T> lista) { return lista[0]; }`"
-      ]
+      ],
+      "spiegazione": "In C# the type parameter `<T>` goes right after the method name. The syntax `<T> T Primo(...)` is Java; the other forms are not valid C#. The signature is `public Tipo Nome<T>(...)`."
     },
     "f6d87bddb71f": {
       "domanda": "Why is it better to use a generic method or class instead of accepting `object`?",
@@ -5700,14 +5700,14 @@
       ]
     },
     "aa72a6b6c60e": {
-      "domanda": "What does `out T` allow in the definition of a generic interface like `IEnumerable<out T>`?",
-      "spiegazione": "`out` indicates covariance on the type parameters of generic interfaces: the type can be used as a return value and accepts conversions to a base type. It is different from `out` on method parameters (output).",
+      "domanda": "What does `out T` allow in the definition of a generic interface such as `IEnumerable<out T>`?",
       "risposte": [
-        "Marks `T` as covariant: you can assign `IEnumerable<Dog>` to a variable of type `IEnumerable<Animal>`.",
-        "Marks `T` as an output parameter from a function.",
+        "Marks `T` as covariant: you can assign `IEnumerable<Cane>` to an `IEnumerable<Animale>` variable.",
+        "Marks `T` as an output parameter of a function.",
         "Marks `T` as `nullable` by default.",
         "Marks `T` as non-instantiable."
-      ]
+      ],
+      "spiegazione": "`out` indicates covariance on the type parameters of generic interfaces: the type can be used as a return value and accepts conversions to a base type. It is different from `out` on method parameters (output)."
     },
     "567570682ebe": {
       "domanda": "What does the `Repository<T> where T : Entita` class do when instantiated as `new Repository<Libro>()`?",
@@ -5821,13 +5821,13 @@
     },
     "1606463d164b": {
       "domanda": "How do you declare a positional record `Persona` with `Nome` and `Eta`?",
-      "spiegazione": "The positional syntax is `public record Name(parameters);`: it automatically generates immutable properties, a constructor, `Equals`, `GetHashCode`, `ToString`, and `Deconstruct`. The other forms are not syntactically valid.",
       "risposte": [
         "`public record Persona(string Nome, int Eta);`",
-        "`public record Persona { string Nome; int Eta; }` as a C# body definition",
+        "`public record Persona { string Nome; int Eta; }` as a definition in C# bodies",
         "`public class record Persona(string Nome, int Eta);` to indicate the record type",
-        "`public struct record Persona { string Nome; int Eta; }` as a value type record"
-      ]
+        "`public struct record Persona { string Nome; int Eta; }` as a record value type"
+      ],
+      "spiegazione": "The positional syntax is `public record Nome(parametri);`: it automatically generates immutable properties, a constructor, `Equals`, `GetHashCode`, `ToString` and `Deconstruct`. The other forms are not syntactically valid."
     },
     "1b63c1a6acf8": {
       "domanda": "What is the main difference between `record` and `class` in C#?",
@@ -5970,14 +5970,14 @@
       ]
     },
     "05a101a5dafe": {
-      "domanda": "What is the correct syntax for a `try/catch` block in C#?",
-      "spiegazione": "C# uses `try { ... } catch (Exception e) { ... }`. The keyword `except` is used in Python, while `begin/end` is used in Pascal/VB. The exact keyword in C# is `catch`.",
+      "domanda": "What is the correct syntax of a `try/catch` in C#?",
       "risposte": [
         "`try { ... } catch (Exception ex) { ... }`",
-        "`try { ... } except (Exception ex) { ... }` as it occurs in Python-like languages.",
-        "`try ... catch ex Exception ... end` as it occurs in the VB family of languages.",
-        "`begin try ... end catch (ex) ... end try` as it occurs in named block languages."
-      ]
+        "`try { ... } except (Exception ex) { ... }` as in Python-like languages.",
+        "`try ... catch ex Exception ... end` as in the VB family of languages.",
+        "`begin try ... end catch (ex) ... end try` as in languages with named blocks."
+      ],
+      "spiegazione": "C# uses `try { ... } catch (Eccezione e) { ... }`. The word `except` belongs to Python, `begin/end` to Pascal/VB. The exact keyword in C# is `catch`."
     },
     "488edb5c901d": {
       "domanda": "What does SQLite throw when a `UNIQUE` constraint on a column is violated during an `INSERT`?",
@@ -6000,14 +6000,14 @@
       ]
     },
     "5cc2ad7986b8": {
-      "domanda": "How do you manually throw an exception of type `ArgumentException`?",
-      "spiegazione": "In C#, exceptions are thrown using `throw new ExceptionType(...)`. `raise` is used in Python; the `new` keyword before the instance is mandatory; `Exception.Throw` does not exist as a static method (although `Exception.Rethrow` exists, it is different).",
+      "domanda": "How do you manually raise an exception of type `ArgumentException`?",
       "risposte": [
-        "`throw new ArgumentException(\"message\");`",
-        "`raise ArgumentException(\"msg\");` as it happens in languages like Python or Ruby.",
+        "`throw new ArgumentException(\"messaggio\");`",
+        "`raise ArgumentException(\"msg\");` as in languages like Python or Ruby.",
         "`Exception.Throw(\"msg\");` as a static method of the `Exception` class.",
-        "`throw ArgumentException(\"msg\");` without the `new` keyword before the instance."
-      ]
+        "`throw ArgumentException(\"msg\");` without the `new` keyword in front of the instance."
+      ],
+      "spiegazione": "In C# you throw with `throw new TipoEccezione(...)`. `raise` belongs to Python; the `new` in front of the instance is mandatory; there is no static `Exception.Throw` (there is `Exception.Rethrow`, but it is different)."
     },
     "936104c8e106": {
       "domanda": "How are different exceptions handled differently?",
@@ -6060,14 +6060,14 @@
       ]
     },
     "32da1dd53ac8": {
-      "domanda": "How do you sort a list of books in descending order by year?",
-      "spiegazione": "`OrderByDescending` is the standard LINQ call for descending order; it returns a new sorted sequence. `Sort` does not accept SQL strings; `Reverse` simply reverses the current order; `-year` might work but is a fragile hack.",
+      "domanda": "How do you sort a list of books by year in descending order?",
       "risposte": [
-        "With `libri.OrderByDescending(l => l.Anno)` which returns a new sequence sorted from the most recent to the oldest book without modifying the original list.",
+        "With `libri.OrderByDescending(l => l.Anno)`, which returns a new sequence sorted from the most recent book to the oldest, without modifying the original list.",
         "With `libri.Sort(\"Anno DESC\")`.",
         "With `libri.Reverse()`.",
         "With `libri.OrderBy(l => -l.Anno)`."
-      ]
+      ],
+      "spiegazione": "`OrderByDescending` is the standard LINQ call for descending order; it returns a new sorted sequence. `Sort` does not accept SQL strings; `Reverse` simply inverts the current order; `-anno` may work but is a fragile trick."
     },
     "77080fdfe184": {
       "domanda": "What does an `abstract` class represent in C#?",
@@ -6080,14 +6080,14 @@
       ]
     },
     "ac31a9841130": {
-      "domanda": "What does an interface like `IPrestabile { void RegistraPrestito(); }` guarantee?",
-      "spiegazione": "An interface is a contract: any type implementing it must provide the declared members, allowing the caller to work through abstraction (`IPrestable p`) without knowing the concrete type. It does not add automatic persistence or inheritance.",
+      "domanda": "What does an interface such as `IPrestabile { void RegistraPrestito(); }` guarantee?",
       "risposte": [
-        "That every type implementing it provides a `RegistraPrestito()` method with that signature, enabling uniform treatment via the `IPrestable` type",
-        "That the loan is automatically recorded",
+        "That every type implementing it provides a method `RegistraPrestito()` with that signature, allowing them to be treated uniformly through the `IPrestabile` type",
+        "That the loan is registered automatically",
         "That the class is automatically persisted in the database",
-        "That the class is inherited from a concrete base class"
-      ]
+        "That the class inherits from a concrete base class"
+      ],
+      "spiegazione": "An interface is a contract: whoever implements it must provide the declared members, so the caller can work through the abstraction (`IPrestabile p`) without knowing the concrete type. It adds no automatic persistence or inheritance."
     },
     "17b4dbee6015": {
       "domanda": "What is the main difference between an interface and an abstract class in C#?",
@@ -6230,14 +6230,14 @@
       ]
     },
     "91868cbc22aa": {
-      "domanda": "What is the purpose of `asp-route-id=\"@item.Id\"` in a link or form?",
-      "spiegazione": "`asp-route-{name}` passes a value to the route: here `id` is passed to the method (e.g., `OnPostElimina(int id)`). It is not the HTML id attribute, nor does it sort or validate.",
+      "domanda": "What is `asp-route-id=\"@item.Id\"` used for in a link or form?",
       "risposte": [
         "To set the id attribute of the generated HTML element",
         "To pass the id as a route parameter to the handler",
-        "To reorder the list of items based on the id",
-        "To validate that the id field value is correct"
-      ]
+        "To reorder the list of elements based on the id",
+        "To validate that the value of the id field is correct"
+      ],
+      "spiegazione": "`asp-route-{nome}` passes a value to the route: here `id` reaches the method (e.g. `OnPostElimina(int id)`). It is not the HTML id attribute, and it neither sorts nor validates."
     },
     "1cdf6f523181": {
       "domanda": "Why is `return RedirectToPage()` often used after an `OnPost` that saves data?",
@@ -6300,14 +6300,14 @@
       ]
     },
     "d014646555aa": {
-      "domanda": "If a page receives an unregistered `ProductRepository` in its constructor, what happens?",
-      "spiegazione": "Dependency injection cannot build an unregistered service: it throws an 'Unable to resolve service for type ...' error. You need to add an `AddSingleton/AddScoped/AddTransient` for that type.",
+      "domanda": "If a page receives in its constructor a `ProductRepository` that is not registered in `Program.cs`, what happens?",
       "risposte": [
-        "The page continues to work normally but is much slower than usual",
-        "A runtime error of the type 'Unable to resolve service' is obtained",
-        "The repository is automatically instantiated by the DI framework",
+        "The page keeps working normally but is much slower than usual",
+        "You get a runtime error such as 'Unable to resolve service'",
+        "The repository is instantiated automatically by the DI framework",
         "The page is simply ignored by the routing system"
-      ]
+      ],
+      "spiegazione": "Dependency injection does not know how to build a service that is not registered: you get 'Unable to resolve service for type ...'. An `AddSingleton/AddScoped/AddTransient` call must be added for that type."
     },
     "e2e539d7be4f": {
       "domanda": "What does `public class IndexModel(ProductRepository repo) : PageModel` mean?",
@@ -6431,13 +6431,13 @@
     },
     "032c7494e2d8": {
       "domanda": "Why is `List<T>` defined as a 'generic' collection?",
-      "spiegazione": "`List<T>` is generic because the element type (`T`) is a parameter determined at usage (`List<int>`, `List<Product>`...), ensuring type safety without casting. It does have an element type.",
       "risposte": [
-        "Because it can contain elements of a single type `T`, chosen at usage, with compile-time type safety",
+        "Because it can contain elements of a single type `T`, chosen at use time, with compile-time type safety",
         "Because it only accepts numbers",
         "Because it has no defined element type",
         "Because it is slower than an array"
-      ]
+      ],
+      "spiegazione": "`List<T>` is generic because the element type (`T`) is a parameter decided at use time (`List<int>`, `List<Prodotto>`...), guaranteeing type safety without casts. It most certainly does have an element type."
     },
     "53561e5c951e": {
       "domanda": "What does the `where T : new()` constraint on a generic type allow?",
@@ -6500,14 +6500,14 @@
       ]
     },
     "cd7e13f608f8": {
-      "domanda": "What is the default characteristic of positional `records`?",
-      "spiegazione": "A positional record generates `init` properties (settable only at creation), making them immutable. They can have methods and support inheritance between records. Immutability is what makes them suitable for data.",
+      "domanda": "What characteristic do positional `record`s have by default?",
       "risposte": [
-        "They are immutable: generated properties are read-only, settable only at creation",
-        "They are mutable exactly like normal classes",
+        "They are immutable: the generated properties are read-only, settable only at creation",
+        "They are mutable, exactly like normal classes",
         "They cannot contain methods",
         "They do not support inheritance"
-      ]
+      ],
+      "spiegazione": "A positional record generates `init` properties (settable only at creation), so they are immutable. It can have methods and supports inheritance between records. Immutability is what makes them suitable for data."
     },
     "17b7aad274a3": {
       "domanda": "When is it advisable to use `foreach` instead of `for`?",

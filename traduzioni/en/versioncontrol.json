@@ -458,13 +458,13 @@
     },
     "88699e9bcd82": {
       "domanda": "How do you write bold text in Markdown?",
-      "spiegazione": "**text** = bold; *text* = italic; ~~text~~ = strikethrough; `text` = inline code.",
       "risposte": [
-        "~~text~~",
-        "`text`",
-        "**text**",
-        "*text*"
-      ]
+        "~~testo~~",
+        "`testo`",
+        "**testo**",
+        "*testo*"
+      ],
+      "spiegazione": "**testo** = bold; *testo* = italic; ~~testo~~ = strikethrough; `testo` = inline code."
     },
     "4d87fb8edb33": {
       "domanda": "How do you write a task list with interactive checkboxes on GitHub?",
@@ -1068,13 +1068,13 @@
     },
     "917361b94eb6": {
       "domanda": "How do you write italic text in Markdown?",
-      "spiegazione": "*text* produces italic; **text** produces bold, ~~text~~ produces strikethrough, and `text` produces inline code.",
       "risposte": [
-        "**text**",
-        "*text*",
-        "`text`",
-        "~~text~~"
-      ]
+        "**testo**",
+        "*testo*",
+        "`testo`",
+        "~~testo~~"
+      ],
+      "spiegazione": "*testo* produces italic; **testo** bold, ~~testo~~ strikethrough and `testo` inline code."
     },
     "d91a3b6a28d0": {
       "domanda": "What are badges used for in a README?",

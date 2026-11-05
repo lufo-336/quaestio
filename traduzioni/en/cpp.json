@@ -251,23 +251,23 @@
     },
     "f7b7c10597e8": {
       "domanda": "What is an explicit cast in C? Example: `(float)10 / 3`",
-      "spiegazione": "An explicit cast `(type)expression` forces the conversion before using the value. Without a cast, `10 / 3` is integer division (→ 3); `(float)10 / 3` converts 10 to float before division, 3 is implicitly promoted for compatibility, resulting in 3.333333. The cast makes the intent explicit. Common uses: avoiding integer division, suppressing conversion warnings, converting generic `void*` (`(int*)malloc(...)`). In C++, typed casts (`static_cast<T>`) are preferred for safety.",
       "risposte": [
-        "The programmer forces the conversion of one type to another",
-        "A standard library function for conversion",
+        "The programmer forces the conversion of one type into another",
+        "A standard library function for converting",
         "A conversion handled automatically by the compiler",
         "A syntax error reserved only for C++"
-      ]
+      ],
+      "spiegazione": "The explicit cast `(tipo)espressione` forces the conversion before the value is used. Without the cast, `10 / 3` is integer division (→ 3); `(float)10 / 3` converts 10 to float before the division, the 3 is implicitly promoted for compatibility, result 3.333333. The cast makes the intent explicit. Common uses: avoiding integer division, suppressing conversion warnings, converting generic `void*` pointers (`(int*)malloc(...)`). In C++, typed casts (`static_cast<T>`) are preferred because they are safer."
     },
     "7c71eaa5b4c4": {
       "domanda": "What is an implicit conversion in C?",
-      "spiegazione": "Implicit conversions occur automatically when mixing compatible types without writing `(type)`. Examples: `double d = 5;` int→double. `int i = 3.7;` double→int (truncates to 3). `int + double` promotes the int to double. They are convenient but can hide bugs: `short` becoming `int` altering arithmetic, precision loss in float→int, silent truncations. Modern compilers warn with `-Wconversion`. Rule: when a conversion might be surprising, it is better to make it explicit.",
       "risposte": [
-        "The compiler converts types without explicit instruction",
+        "The compiler converts types without an explicit statement",
         "A cast function from the standard library stdlib",
         "A compilation error for incompatible types",
         "A conversion that the programmer writes with a cast"
-      ]
+      ],
+      "spiegazione": "Implicit conversions happen automatically when compatible types are mixed without writing `(tipo)`. Examples: `double d = 5;` int→double. `int i = 3.7;` double→int (truncates to 3). `int + double` promotes the int to double. They are convenient but can hide bugs: `short` becoming `int` and changing the arithmetic, loss of precision in float→int, silent truncations. Modern compilers warn with `-Wconversion`. Rule: when a conversion could be surprising, it is better to make it explicit."
     },
     "650e22886553": {
       "domanda": "What does `strcpy(dest, src)` do in C?",
@@ -311,13 +311,13 @@
     },
     "240a14cf18d2": {
       "domanda": "What does `realloc(ptr, nuova_dim)` do?",
-      "spiegazione": "`realloc` resizes a block allocated with malloc/calloc. If the new size is larger, it may extend in place or move to a larger block (in this case, the content is automatically copied and the old one freed). If it is smaller, it truncates. **CRITICAL TRAP**: if realloc fails, it returns NULL without freeing the original block. Writing `ptr = realloc(ptr, n);` is a bug: you lose the reference to the old block. Safe pattern: `void *tmp = realloc(ptr, n); if (tmp) ptr = tmp; else { /* handle error, ptr still valid */ }`.",
       "risposte": [
         "Copies ptr to a fixed default address",
-        "Frees the memory pointed to by ptr returning NULL",
+        "Frees the memory pointed to by ptr, returning NULL",
         "Resizes the block pointed to by ptr to the new size",
-        "Allocates a new block independent from ptr"
-      ]
+        "Allocates a new block independent of ptr"
+      ],
+      "spiegazione": "`realloc` resizes a block allocated with malloc/calloc. If the new size is larger, it can extend in place or move to a larger block (in that case the contents are copied automatically and the old block is freed). If it is smaller, it truncates. **CRITICAL TRAP**: if realloc fails it returns NULL without freeing the original block. Writing `ptr = realloc(ptr, n);` is a bug: you lose the reference to the old block. Safe pattern: `void *tmp = realloc(ptr, n); if (tmp) ptr = tmp; else { /* gestisci errore, ptr ancora valido */ }`."
     },
     "821709da7748": {
       "domanda": "What is a dangling pointer in C?",
@@ -341,13 +341,13 @@
     },
     "feb753d8b85d": {
       "domanda": "Which function opens a file in standard C?",
-      "spiegazione": "`fopen(path, mode)` from `<stdio.h>` opens a file and returns a `FILE*` to be used with other I/O functions; NULL if the operation fails (file not found, insufficient permissions, disk full). Modes: `\"r\"` read (file must exist), `\"w\"` write (truncates if exists, creates otherwise), `\"a\"` append (at the end), `\"r+\"` read+write, `\"rb\"/\"wb\"` binary. `open()` exists but is a low-level POSIX syscall (from `<fcntl.h>`) that returns a numeric file descriptor. After fopen, always call fclose.",
       "risposte": [
-        "`FileOpen(path)` wrapper of stdlib",
-        "`open(path, flags)` from stdio.h",
-        "`fopen(path, mode)` from stdio.h",
+        "`FileOpen(path)` wrapper from the stdlib",
+        "`open(percorso, flags)` from stdio.h",
+        "`fopen(percorso, modalita)` from stdio.h",
         "`read(fd, buf, n)` to open and read"
-      ]
+      ],
+      "spiegazione": "`fopen(percorso, modalita)` from `<stdio.h>` opens a file and returns a `FILE*` to use with the other I/O functions; it returns NULL if opening fails (nonexistent file, insufficient permissions, full disk). Modes: `\"r\"` read (the file must exist), `\"w\"` write (truncates if it exists, creates it otherwise), `\"a\"` append (at the end), `\"r+\"` read+write, `\"rb\"/\"wb\"` binary. `open()` exists but is a low-level POSIX syscall (from `<fcntl.h>`) that returns a numeric file descriptor. After fopen always call fclose."
     },
     "8b42542f6862": {
       "domanda": "Why call `fclose()` after using a file?",
@@ -360,14 +360,14 @@
       ]
     },
     "08582d9ddeb3": {
-      "domanda": "How do you read an integer from a file opened with `FILE *f`?",
-      "spiegazione": "`fscanf(file, format, &variables...)` reads formatted data from a file: it is the file-based equivalent of `scanf()`. It returns the number of successfully read items or EOF. Typical pattern: `while (fscanf(f, \"%d\", &x) == 1) { /* process x */ }`. Alternative for binary (non-textual) data: `fread(&x, sizeof(int), 1, f)` reads raw bytes. Beware with fscanf/scanf: they skip whitespace before numeric formats (%d, %f) but not before %c; in case of non-conforming input, they may leave the cursor in an unexpected state.",
+      "domanda": "How do you read an integer from an open file with `FILE *f`?",
       "risposte": [
         "`fgets(x, f)`",
         "`readInt(f, &x)`",
         "`fread(x, f)`",
         "`fscanf(f, \"%d\", &x)`"
-      ]
+      ],
+      "spiegazione": "`fscanf(file, formato, &variabili...)` reads formatted data from a file: analogous to `scanf()` but on a file. It returns the number of items successfully read, or EOF. Typical pattern: `while (fscanf(f, \"%d\", &x) == 1) { /* processa x */ }`. Alternative for binary (non-text) data: `fread(&x, sizeof(int), 1, f)` reads the raw bytes. Be careful with fscanf/scanf: they skip whitespace before numeric formats (%d, %f) but not before %c; with non-conforming input they can leave the cursor in an unexpected state."
     },
     "0cc49ca25d91": {
       "domanda": "Which opening mode appends to the end without deleting the content?",
@@ -380,14 +380,14 @@
       ]
     },
     "bf4d3b77ae5f": {
-      "domanda": "How do you access the element at row 1, column 2 of a matrix `m` in C?",
-      "spiegazione": "In C, arrays are indexed as `m[row][col]`, with indices starting at 0. Row 1, column 2 → `m[1][2]` (second row, third column in common parlance). `m[1,2]` does NOT cause an error but has a different meaning: the comma operator evaluates the first expression and discards it, using only the value of the second → `m[1,2]` becomes `m[2]`, which is the entire row at index 2 (a pointer, not an element). `m(1,2)` is a syntax error: arrays are not functions. Memory layout: contiguous row-major, offset of `m[i][j]` is `i*ncol + j`.",
+      "domanda": "How do you access the element in row 1, column 2 of a matrix `m` in C?",
       "risposte": [
         "`m[2][1]`",
         "`m(1,2)`",
         "`m[1,2]`",
         "`m[1][2]`"
-      ]
+      ],
+      "spiegazione": "In C matrices are indexed as `m[riga][colonna]`, indices start at 0. Row 1, column 2 → `m[1][2]` (the second row, third column in the usual sense). `m[1,2]` does NOT give an error but has a different meaning: the comma operator evaluates the first expression and discards it, using only the value of the second → `m[1,2]` becomes `m[2]`, that is the entire row with index 2 (a pointer, not an element). `m(1,2)` is a syntax error: matrices are not functions. Memory layout: contiguous, row-major; the offset of `m[i][j]` is `i*ncol + j`."
     },
     "27aaf68986a5": {
       "domanda": "Why is the number of columns mandatory when passing `int m[][4]` to a function?",
@@ -411,13 +411,13 @@
     },
     "23351021a945": {
       "domanda": "Which symbol represents a decision in a flowchart?",
-      "spiegazione": "In standard flowcharts, the **diamond** (or rhombus) represents a decision: it contains a condition, with two outgoing arrows labeled `YES` (true) and `NO` (false). Key symbols: oval for start/end, rectangle for generic instruction, parallelogram for input/output, rounded rectangle for subroutines. A simple IF/THEN selection has the NO branch bypassing the block; a double IF/THEN/ELSE selection has two blocks that then converge after the diamond.",
       "risposte": [
         "Parallelogram with two incoming arrows",
         "Rectangle with one outgoing arrow",
         "Oval with one initial outgoing arrow",
-        "Diamond with two outgoing YES/NO arrows"
-      ]
+        "Diamond with two outgoing arrows SI/NO"
+      ],
+      "spiegazione": "In standard flowcharts, the **diamond** (or rhombus) represents a decision: it contains a condition and two outgoing arrows labeled `SI` (true) and `NO` (false). Main symbols: oval for start/end, rectangle for a generic instruction, parallelogram for input/output, rectangle with rounded corners for a subroutine. A simple IF/THEN selection has the NO branch bypassing the block; a double IF/THEN/ELSE selection has two blocks that converge again after the diamond."
     },
     "93cc743399ae": {
       "domanda": "The three fundamental properties of an algorithm are:",
@@ -461,23 +461,23 @@
     },
     "7ae187af5c8f": {
       "domanda": "How do you read a file line by line in C++?",
-      "spiegazione": "`std::getline(stream, string)` (from `<string>`) reads from the stream up to a delimiter (default `'\\n'`), storing the result in the string without including the newline character. In a loop: `string line; while (getline(file, line)) { /* process */ }` — it terminates at the end of the file. The operator `file >> line` reads a single **word** instead (it stops at the first whitespace), skipping spaces and newlines — not suitable for lines containing spaces. Variant with a custom delimiter: `getline(file, line, ';')` splits by semicolon, useful for simple CSVs.",
       "risposte": [
-        "`while (getline(file, line))`",
+        "`while (getline(file, riga))`",
         "`while (file.read())`",
-        "`for (file.readLine(line))`",
-        "`while (file >> line)`"
-      ]
+        "`for (file.readLine(riga))`",
+        "`while (file >> riga)`"
+      ],
+      "spiegazione": "`std::getline(stream, stringa)` (from `<string>`) reads from the stream up to a delimiter (default `'\\n'`) and puts the result in the string without including the newline. In a loop: `string riga; while (getline(file, riga)) { /* processa */ }` — it ends at end of file. The operator `file >> riga` instead reads a single **word** (it stops at the first whitespace), skipping spaces and newlines — not suitable for lines containing spaces. Variant with a custom delimiter: `getline(file, riga, ';')` splits on semicolons, useful for simple CSV files."
     },
     "e45fc1a887df": {
-      "domanda": "Which method of `std::string` returns the position of the first occurrence of a substring?",
-      "spiegazione": "`s.find(sub)` returns the index (`size_t`, unsigned integer) of the first occurrence of the substring, or the constant `std::string::npos` if not found. Typical usage: `if (s.find(\"ciao\") != string::npos) { /* found */ }`. Useful variants: `s.find(sub, pos)` starts from pos, `s.rfind(sub)` searches from the end, `s.find_first_of(\"aeiou\")` finds the first vowel, `s.find_last_not_of(\" \\t\")` useful for trimming. **Warning**: `npos` is unsigned and typically equals 2^64 - 1; comparisons with int can be surprising.",
+      "domanda": "Which `std::string` method returns the position of the first occurrence of a substring?",
       "risposte": [
         "`s.find(\"ao\")`",
         "`s.indexOf(\"ao\")`",
         "`s.locate(\"ao\")`",
         "`s.search(\"ao\")`"
-      ]
+      ],
+      "spiegazione": "`s.find(sub)` returns the index (`size_t`, an unsigned integer) of the first occurrence of the substring, or the constant `std::string::npos` if it is not found. Typical use: `if (s.find(\"ciao\") != string::npos) { /* trovata */ }`. Useful variants: `s.find(sub, pos)` starts from pos, `s.rfind(sub)` searches from the end, `s.find_first_of(\"aeiou\")` finds the first vowel, `s.find_last_not_of(\" \\t\")` is useful for trimming. **Warning**: `npos` is unsigned and typically equals 2^64 - 1; comparisons with int can be surprising."
     },
     "15563e2aa3c5": {
       "domanda": "How do you convert a `std::string` to an integer in C++?",
@@ -491,13 +491,13 @@
     },
     "a0de531c1c9c": {
       "domanda": "What does `s.substr(2, 3)` return if `s = \"Programmazione\"`?",
-      "spiegazione": "`substr(pos, length)` extracts a substring starting at index pos (inclusive) taking at most length characters. Indices of `\"Programmazione\"`: [0]='P', [1]='r', [2]='o', [3]='g', [4]='r'. `substr(2, 3)` takes [2],[3],[4] → `\"ogr\"`. Variant with a single argument: `substr(2)` takes from position 2 to the end. If pos > size(), `std::out_of_range` is thrown; if pos+len exceeds, it returns what it can (not an error). `substr(0, n)` is the standard way to get the first n characters.",
       "risposte": [
         "`\"ogra\"`",
         "`\"ogr\"`",
         "`\"gr\"`",
         "`\"Pro\"`"
-      ]
+      ],
+      "spiegazione": "`substr(pos, lunghezza)` extracts a substring starting at index pos (included), taking at most lunghezza characters. Indices of `\"Programmazione\"`: [0]='P', [1]='r', [2]='o', [3]='g', [4]='r'. `substr(2, 3)` takes [2], [3], [4] → `\"ogr\"`. One-argument variant: `substr(2)` takes from position 2 to the end. If pos > size(), `std::out_of_range` is thrown; if pos+len overshoots, it returns whatever it can (this is not an error). `substr(0, n)` is the standard way to get the first n characters."
     },
     "ab74a2ee41de": {
       "domanda": "What is meant by constructor overloading?",
@@ -550,14 +550,14 @@
       ]
     },
     "1267668ce837": {
-      "domanda": "What does `const` mean after a method signature? Example: `int getVoto() const;`",
-      "spiegazione": "`const` after the signature declares that the method does not modify the object's state: no non-mutable attribute can be written, nor can non-const methods be called on `this`. const methods can be called on both const and non-const objects; non-const methods only on non-const ones. Golden rule: all methods that logically do not modify the object (getters, queries) should be declared const — failing to do so limits usability (cannot be passed as `const&`). Exception: `mutable` attributes can be modified even by const methods (internal caches, debug counters, mutexes).",
+      "domanda": "What does `const` after a method signature mean? Example: `int getVoto() const;`",
       "risposte": [
         "The method always returns the same value",
         "The method has no formal parameters",
         "The method cannot modify the attributes",
-        "The method cannot be called by derived classes"
-      ]
+        "The method cannot be called from derived classes"
+      ],
+      "spiegazione": "`const` after the signature declares that the method does not modify the object's state: no non-mutable attribute can be written, and non-const methods cannot be called on `this`. const methods can be called on both const and non-const objects; non-const methods only on non-const objects. Golden rule: all methods that logically do not modify the object (getters, queries) should be declared const — not doing so limits usability (they cannot be passed through a `const&`). Exception: `mutable` attributes can be modified even by const methods (internal caches, debug counters, mutexes)."
     },
     "9317463d4003": {
       "domanda": "How do you sort a `std::vector<int> v` in ascending order?",
@@ -641,23 +641,23 @@
     },
     "1af5c8ba26ae": {
       "domanda": "What does `argc` represent in `int main(int argc, char *argv[])`?",
-      "spiegazione": "`argc` (argument count) is the total number of arguments passed via the command line, always including argument 0: the name/path of the executed program. Thus, it is at least 1. Example: `./prog ciao 42` → `argc = 3`, with `argv[0]=\"./prog\"`, `argv[1]=\"ciao\"`, `argv[2]=\"42\"`. Arguments are always strings (char*): to convert them to numbers, use `atoi`/`strtol`/`sscanf`. Typical pattern: `if (argc < 2) { fprintf(stderr, \"Usage: %s <file>\\n\", argv[0]); return 1; }`. Alternative signature: `int main(void)` with no parameters if they are not needed.",
       "risposte": [
         "The total number of arguments (including the program name)",
-        "The program's return code",
-        "The number of defined global variables",
+        "The return code of the program",
+        "The number of global variables defined",
         "The length in bytes of the first argument"
-      ]
+      ],
+      "spiegazione": "`argc` (argument count) is the total number of arguments passed from the command line, always including argument 0: the name/path of the program being run. So it is at least 1. Example: `./prog ciao 42` → `argc = 3`, with `argv[0]=\"./prog\"`, `argv[1]=\"ciao\"`, `argv[2]=\"42\"`. Arguments are always strings (char*): to convert them to numbers use `atoi`/`strtol`/`sscanf`. Typical pattern: `if (argc < 2) { fprintf(stderr, \"Uso: %s <file>\\n\", argv[0]); return 1; }`. Alternative signature: `int main(void)` without parameters if they are not needed."
     },
     "737999fb12fe": {
       "domanda": "What does `argv[0]` contain in `main(int argc, char *argv[])`?",
-      "spiegazione": "`argv[0]` always contains the name or path used to invoke the executable. User-provided arguments start from `argv[1]`. Example: when executing `/usr/bin/grep ciao file.txt`, `argv[0]` can be `\"/usr/bin/grep\"` or `\"grep\"` depending on how it was called. This allows programs to: self-identify in error messages (`Usage: %s ...`), behave differently based on the name (historical technique: `grep`/`egrep`/`fgrep` were the same executable with symbolic links). `argv[argc]` is always a NULL terminator by standard.",
       "risposte": [
         "The first argument provided by the user",
         "The name or path of the executable",
-        "Always the empty string for compatibility",
+        "Always the empty string, for compatibility",
         "The total number of arguments passed"
-      ]
+      ],
+      "spiegazione": "`argv[0]` always contains the name or path with which the executable was invoked. The arguments provided by the user start from `argv[1]`. Example: running `/usr/bin/grep ciao file.txt`, `argv[0]` can be `\"/usr/bin/grep\"` or `\"grep\"` depending on how it was called. This allows programs to: identify themselves in error messages (`Uso: %s ...`), behave differently depending on the name (historical technique: `grep`/`egrep`/`fgrep` were the same executable with symbolic links). `argv[argc]` is always the NULL terminator, by standard."
     },
     "8bd30a895920": {
       "domanda": "What is the working principle of Insertion Sort?",
@@ -901,13 +901,13 @@
     },
     "2522813e11dc": {
       "domanda": "What is typically included in a header file (.h) in C?",
-      "spiegazione": "A header (.h) contains declarations and type definitions, not implementations: function prototypes, `typedef`, `#define` macros, `extern` for global variables, struct/enum/union definitions (types, not instances), C++ classes, templates, inline functions. Never define global variables (`int counter;`) — this causes linker errors if the header is included in multiple `.c` files; use `extern int counter;` in the header and `int counter;` in a single `.c` file. Always use include guards (`#ifndef X / #define X / ... / #endif`) or `#pragma once`. Purpose: allow multiple `.c` files to use shared declarations by sharing them via `#include`, while keeping implementations compiled only once.",
       "risposte": [
-        "Ready-to-execute executable code",
+        "Executable code ready to run",
         "Exclusively the program's main() function",
         "Only shared global variables",
-        "Prototypes, typedef, macros, include guards (no implementations)"
-      ]
+        "Prototypes, typedefs, macros, include guards (not implementations)"
+      ],
+      "spiegazione": "A header (.h) contains declarations and type definitions, not implementations: function prototypes, `typedef`, `#define` macros, `extern` for global variables, struct/enum/union definitions (types, not instances), C++ classes, templates, inline functions. Never define global variables here (`int contatore;`): they cause a linker error if the header is included in several `.c` files; use `extern int contatore;` in the header and `int contatore;` in just one `.c`. Always use include guards (`#ifndef X / #define X / ... / #endif`) or `#pragma once`. Purpose: let several `.c` files share the same declarations through `#include`, while implementations are compiled only once."
     },
     "9690d73fe86b": {
       "domanda": "What does static memory contain in a C program?",
@@ -930,24 +930,24 @@
       ]
     },
     "2c5bcdb2d154": {
-      "domanda": "What is an initialization list in a C++ constructor? Example: `Classe(int v) : attr(v) {}`",
-      "spiegazione": "The initialization list (after the `:` in the constructor signature) initializes attributes BEFORE the body executes. It is mandatory for: `const` attributes, references (which cannot be reassigned after), objects without a default constructor, and base classes (by calling their constructor). Even when not mandatory, it is preferred for efficiency: without the init list, the attribute is default-constructed and then assigned in the body (two operations); with the init list, it is constructed only once with the correct value. Syntax: `Classe(int v, string s) : n(v), nome(s) { /* optional body */ }`. The initialization order follows the **declaration order of attributes** in the class, NOT the order in the list — compilers warn in case of divergence.",
+      "domanda": "What is the initialization list in a C++ constructor? Example: `Classe(int v) : attr(v) {}`",
       "risposte": [
-        "A type of array of variable parameters",
-        "A mechanism to initialize attributes before the body",
-        "A way to inherit base constructors",
+        "A type of array with variable parameters",
+        "A mechanism for initializing attributes before the body",
+        "A way to inherit the base class constructors",
         "An alternative way to declare variables"
-      ]
+      ],
+      "spiegazione": "The initialization list (after `:` in the constructor signature) initializes the attributes BEFORE the body is executed. It is mandatory for: `const` attributes, references (they cannot be reassigned afterwards), objects without a default constructor, base classes (calling their constructor). Even when not mandatory, it is preferred for efficiency: without an init list, the attribute is default-constructed and then reassigned in the body (two operations); with an init list, it is constructed only once with the right value. Syntax: `Classe(int v, string s) : n(v), nome(s) { /* corpo opzionale */ }`. The initialization order follows the **declaration of the attributes** in the class, NOT the order in the list — compilers warn when they diverge."
     },
     "e76949a31d6a": {
       "domanda": "What does a destructor do in C++?",
-      "spiegazione": "The destructor (`~ClassName()`) is called automatically when the object is destroyed: end of scope for stack objects, `delete` for heap objects, end of program for global objects. It is used to release resources acquired in the constructor: heap memory (delete), files (fclose), locks (unlock), network connections. It is fundamental to the RAII pattern. The default destructor generated by the compiler calls the destructors of member attributes in reverse order of construction, but does not handle raw resources (malloc'd pointers). Rule: if the class manages resources manually, a custom destructor is likely needed (and also copy/move constructor + assignment — see Rule of Three/Five). The destructor should be `virtual` if the class is a base for polymorphism.",
       "risposte": [
-        "Called upon destruction to release resources",
-        "Prevents the creation of new objects of the class",
-        "Creates an exact copy of the original object",
-        "Automatically resets all attributes to zero"
-      ]
+        "It is called on destruction to release resources",
+        "It prevents the creation of new objects of the class",
+        "It creates an exact copy of the original object",
+        "It automatically resets all attributes to zero"
+      ],
+      "spiegazione": "The destructor (`~NomeClasse()`) is called automatically when the object is destroyed: at the end of scope for stack objects, on `delete` for heap objects, at the end of the program for global objects. It is used to release resources acquired in the constructor: heap memory (delete), files (fclose), locks (unlock), network connections. It is the basis of the RAII pattern. The default destructor generated by the compiler calls the destructors of the attributes in reverse order of construction, but does not handle raw resources (malloc'd pointers). Rule: if the class manages resources manually, it probably needs a custom destructor (and also a copy/move constructor and assignment — see Rule of Three/Five). The destructor must be `virtual` if the class is the base of a polymorphic hierarchy."
     },
     "f2ae26c721ac": {
       "domanda": "What is a copy constructor?",
@@ -1000,14 +1000,14 @@
       ]
     },
     "69a9c4301792": {
-      "domanda": "Difference between `printf` and `fprintf`?",
-      "spiegazione": "`printf(fmt, ...)` always prints to stdout (standard output). `fprintf(FILE*, fmt, ...)` prints to an open file — it can be a real file, stdout, stderr, or any other stream. Common usage: `fprintf(stderr, \"Error: %s\\n\", msg);` for error messages (stderr is unbuffered and separate from stdout in Unix pipelines). `sprintf(buffer, fmt, ...)` writes to a string in memory (risk of overflow, prefer `snprintf` which limits the size). All these functions share the same format string. Under the hood, `printf(fmt)` ≡ `fprintf(stdout, fmt)`.",
+      "domanda": "What is the difference between `printf` and `fprintf`?",
       "risposte": [
         "`fprintf` is significantly faster",
-        "`printf` to stdout, `fprintf` to specified FILE*",
+        "`printf` writes to stdout, `fprintf` to the specified FILE*",
         "`printf` accepts more arguments than `fprintf`",
-        "They are identical in every way"
-      ]
+        "They are identical in every respect"
+      ],
+      "spiegazione": "`printf(fmt, ...)` always prints to stdout (standard output). `fprintf(FILE*, fmt, ...)` prints to an open file — it can be a real file, stdout, stderr or any other stream. Classic use: `fprintf(stderr, \"Errore: %s\\n\", msg);` for error messages (stderr is unbuffered and separate from stdout in Unix pipelines). `sprintf(buffer, fmt, ...)` writes to an in-memory string (risk of overflow; prefer `snprintf`, which limits the size). All of these functions share the same format string. Under the hood, `printf(fmt)` ≡ `fprintf(stdout, fmt)`."
     },
     "98c4595da25d": {
       "domanda": "What does `unsigned` applied to an integer do?",
@@ -1050,14 +1050,14 @@
       ]
     },
     "70e8a19c694a": {
-      "domanda": "What is the name of the base class constructor in a derived class?",
-      "spiegazione": "In C++, the base class constructor is called in the derived class's initialization list: `class Derived : public Base { public: Derived(int x, int y) : Base(x), member(y) {} };`. Bases are constructed before the derived class members; members are constructed in declaration order. If the base constructor is not explicitly called, the default constructor is invoked — if the base has no default constructor, a compilation error occurs. Since C++11, it is possible to delegate to another constructor of the same class: `Derived() : Derived(0, 0) {}`. The `super`/`base` keywords of Java/C# do not exist in C++; the base class name is always used.",
+      "domanda": "How is the base class constructor called in a derived class?",
       "risposte": [
-        "`base(parameters)` dedicated keyword",
-        "`parent(parameters)` in initialization list",
-        "`super(parameters)` as in Java",
-        "`BaseName(parameters)` in initialization list"
-      ]
+        "`base(parametri)` dedicated keyword",
+        "`parent(parametri)` in the initialization list",
+        "`super(parametri)` as in Java",
+        "`NomeBase(parametri)` in the initialization list"
+      ],
+      "spiegazione": "In C++ the base class constructor is called in the initialization list of the derived class: `class Derivata : public Base { public: Derivata(int x, int y) : Base(x), membro(y) {} };`. Bases are constructed before the members of the derived class; members are constructed in declaration order. If the base constructor is not explicitly called, the default one is invoked — if the base has no default constructor you get a compilation error. Since C++11 you can delegate to another constructor of the same class: `Derivata() : Derivata(0, 0) {}`. The `super`/`base` keywords of Java/C# do not exist in C++: you always use the name of the base class."
     },
     "7f6363540871": {
       "domanda": "Which specifier makes a member accessible to the class and its derivatives, but not externally?",
@@ -1151,13 +1151,13 @@
     },
     "40a9a70414fa": {
       "domanda": "How do you declare a function pointer that takes two ints and returns an int?",
-      "spiegazione": "Function pointer syntax: `return_type (*name)(parameters)`. The parentheses around `*ptr` are **mandatory**: without them, `int *ptr(int, int)` would declare a function returning `int*`, not a function pointer. Usage: assign `ptr = &somma;` (the `&` is optional: `ptr = somma;`), call `ptr(3, 5)` (or `(*ptr)(3, 5)`). For clarity, use typedef: `typedef int (*BinOp)(int, int); BinOp p = somma;`. In C++11+, prefer `std::function<int(int,int)>` or `auto` + lambda.",
       "risposte": [
         "`int (*ptr)(int, int);`",
         "`int ptr(int, int);`",
         "`int *ptr(int, int);`",
         "`ptr<int(int,int)>;`"
-      ]
+      ],
+      "spiegazione": "Function pointer syntax: `tipo_ritorno (*nome)(parametri)`. The parentheses around `*ptr` are **mandatory**: without them, `int *ptr(int, int)` would declare a function returning `int*`, not a function pointer. Usage: assign `ptr = &somma;` (the `&` is optional: `ptr = somma;`), call `ptr(3, 5)` (or `(*ptr)(3, 5)`). For clarity, use a typedef: `typedef int (*BinOp)(int, int); BinOp p = somma;`. In C++11 and later, prefer `std::function<int(int,int)>` or `auto` with a lambda."
     },
     "3a241ae8aa3c": {
       "domanda": "A typical use of function pointers in C?",
@@ -1180,14 +1180,14 @@
       ]
     },
     "98689e50e70f": {
-      "domanda": "What does `perror(\"message\")` do in C?",
-      "spiegazione": "`perror(msg)` prints to stderr the custom message followed by `: ` and the textual description of errno. Example: if `fopen(\"missing.txt\",\"r\")` fails with errno=ENOENT, `perror(\"fopen\")` prints `fopen: No such file or directory`. Flexible alternative: `fprintf(stderr, \"%s: %s\\n\", msg, strerror(errno));`. It does not terminate the program: error handling remains with the caller. Important: call it immediately after the failed syscall.",
+      "domanda": "What does `perror(\"messaggio\")` do in C?",
       "risposte": [
         "Sets the value of errno to zero",
         "Terminates the program with a fatal error",
-        "Prints to stderr the message + errno description",
+        "Prints the message plus the errno description to stderr",
         "Returns the error code as a string"
-      ]
+      ],
+      "spiegazione": "`perror(msg)` prints to stderr the custom message followed by `: ` and the textual description of errno. Example: if `fopen(\"mancante.txt\",\"r\")` fails with errno=ENOENT, `perror(\"fopen\")` prints `fopen: No such file or directory`. A more flexible alternative: `fprintf(stderr, \"%s: %s\\n\", msg, strerror(errno));`. It does not terminate the program: handling the error is up to the caller. Important: call it right after the failed system call."
     },
     "1acc3f17c6f7": {
       "domanda": "How do you generate a random integer in C?",
@@ -1441,13 +1441,13 @@
     },
     "fb9d8164bdba": {
       "domanda": "What is a lambda function in C++?",
-      "spiegazione": "A lambda is an anonymous function defined on the fly at the point of use. Syntax: `[capture](parameters) -> return_type { body }`. Example: `auto somma = [](int a, int b) { return a + b; }; somma(3, 5);` → 8. The return type is often omitted. The **capture** allows using variables from the outer context: `[x]` by value (copy), `[&x]` by reference, `[=]` all by value, `[&]` all by reference. Introduced in C++11, they are a cornerstone of modern functional programming: STL (`std::sort` with comparator), callbacks, events, threads. Under the hood, the compiler generates a class with an overloaded operator().",
       "risposte": [
         "A parameterized template function",
         "A function from the math library",
-        "An inline anonymous function with context capture",
-        "A pure abstract virtual function"
-      ]
+        "An anonymous inline function with context capture",
+        "An abstract pure virtual function"
+      ],
+      "spiegazione": "A lambda is an anonymous function defined on the spot where it is used. Syntax: `[capture](parametri) -> return_type { body }`. Example: `auto somma = [](int a, int b) { return a + b; }; somma(3, 5);` → 8. The return type is often omitted. The **capture** lets you use variables from the outer context: `[x]` by value (copy), `[&x]` by reference, `[=]` everything by value, `[&]` everything by reference. Introduced in C++11, it is the basis of modern functional programming: the STL (`std::sort` with a comparator), callbacks, events, threads. Under the hood, the compiler generates a class with an overloaded operator()."
     },
     "3170d796af5a": {
       "domanda": "What does the capture list `[&]` do in a lambda?",
@@ -1511,13 +1511,13 @@
     },
     "a7c07466b64d": {
       "domanda": "What is the RAII principle in C++?",
-      "spiegazione": "RAII (Resource Acquisition Is Initialization) ties the lifecycle of resources to the lifecycle of objects. The constructor acquires the resource (memory, file, mutex, connection), and the destructor releases it. If the object goes out of scope (even due to an exception!), the destructor is triggered automatically: zero risk of leaks. Example: `{ std::ofstream f(\"a.txt\"); f << data; } // automatic fclose here`. Typical RAII classes: smart pointers, `std::lock_guard`, `std::ifstream`/`ofstream`, STL containers. It is the idiomatic C++ pattern for exception safety — no try/finally (which doesn't exist in C++ precisely for this reason). No RAII in C (no destructors) → manual cleanup.",
       "risposte": [
-        "Technique to reduce boilerplate",
+        "A technique to reduce boilerplate",
         "Random Access Is Immediate",
-        "Pattern to optimize memory",
+        "A pattern to optimize memory",
         "Resource Acquisition Is Initialization"
-      ]
+      ],
+      "spiegazione": "RAII (Resource Acquisition Is Initialization) ties the lifetime of resources to the lifetime of objects. The constructor acquires the resource (memory, file, mutex, connection), the destructor releases it. If the object leaves its scope (even because of an exception!), the destructor runs automatically: zero risk of leaks. Example: `{ std::ofstream f(\"a.txt\"); f << data; } // fclose automatico qui`. Typical RAII classes: smart pointers, `std::lock_guard`, `std::ifstream`/`ofstream`, STL containers. It is the idiomatic C++ pattern for exception safety — no try/finally (which does not exist in C++ precisely for this reason). No RAII in C (no destructors) → manual cleanup."
     },
     "cc8334febcf7": {
       "domanda": "What is operator overloading in C++?",
@@ -1551,13 +1551,13 @@
     },
     "7ec2231a4bc5": {
       "domanda": "What does the `git commit` command do?",
-      "spiegazione": "`git commit` creates a permanent 'checkpoint' in the **local** repository with the changes added to the staging area (via `git add`). Each commit includes: a snapshot of the files, a unique SHA-1 hash, a message, the author, a timestamp, and a reference to the parent commit. Typical syntax: `git commit -m \"Added input validation\"`. To send to the remote: `git push`. Differences: `git add` → stage (prepares), `git commit` → saves locally, `git push` → sends to the remote. The `-a` variant performs add+commit for all tracked files. `--amend` modifies the previous commit. Commits form a DAG — the project history.",
       "risposte": [
         "Uploads changes to the remote server",
         "Downloads the latest changes from the remote",
         "Creates a new development branch",
-        "Saves staged changes in the local repository"
-      ]
+        "Saves the staged changes in the local repository"
+      ],
+      "spiegazione": "`git commit` creates a permanent 'checkpoint' in the **local** repository with the changes added to the staging area (with `git add`). Each commit has: a snapshot of the files, a unique SHA-1 hash, a message, an author, a timestamp, a reference to the parent commit. Typical form: `git commit -m \"Aggiunta validazione input\"`. To send it to the remote: `git push`. Differences: `git add` → stage (prepare), `git commit` → save locally, `git push` → send to the remote. The `-a` variant does add+commit for all tracked files. `--amend` modifies the previous commit. Commits form a DAG — the project's history."
     },
     "a942599918ec": {
       "domanda": "What does `git clone <url>` do?",
@@ -1611,23 +1611,23 @@
     },
     "308f3f0e04a6": {
       "domanda": "What is a debugger and how is it used in development?",
-      "spiegazione": "A debugger allows controlled code execution: breakpoints, variable inspection, step-by-step execution (step into/over/out), runtime variable modification, call stack inspection, and memory inspection. GDB (GNU Debugger) is the standard for C/C++ on Linux. Workflow: compile with `-g`, run `gdb ./program`, use commands like `break main`, `run`, `next`, `print variable`, `backtrace`. IDEs such as Visual Studio, CLion, and VSCode provide graphical frontends over gdb/lldb. It is essential for debugging non-reproducible issues: race conditions, memory corruption, crashes in libraries, and strange behaviors.",
       "risposte": [
-        "Program that automatically fixes bugs",
-        "Tool for step-by-step execution and state inspection",
+        "A program that automatically fixes bugs",
+        "A tool to run step by step and inspect state",
         "A special compiler for debug code",
-        "Tool for measuring code performance"
-      ]
+        "A tool to measure code performance"
+      ],
+      "spiegazione": "A debugger lets you run code in a controlled way: breakpoints, variable inspection, step-by-step execution (step into/over/out), modifying variables on the fly, call stack, memory. GDB (GNU Debugger) is the standard for C/C++ on Linux. Workflow: compile with `-g`, then `gdb ./programma`, with commands `break main`, `run`, `next`, `print variable`, `backtrace`. IDEs such as Visual Studio, CLion and VSCode offer graphical front-ends over gdb/lldb. Essential for bugs that cannot be reproduced with print statements alone: race conditions, memory corruption, crashes in libraries, strange behaviors."
     },
     "607f8ad8c7c1": {
-      "domanda": "What is the purpose of a Makefile?",
-      "spiegazione": "A Makefile defines rules to automate compilation: `target: dependencies` followed by a command. `make` checks timestamps and compiles only what has changed (incremental build) — saving time on large projects. Example: `programma: main.o utils.o\\n\\tgcc -o programma main.o utils.o`. Variables: `CC = gcc`, `CFLAGS = -Wall -O2`. Pattern rules: `%.o: %.c` compiles each .c into .o. `.PHONY: clean` for non-file targets. Modern alternatives: CMake (cross-platform generator), Meson, Bazel, Ninja. Make remains the foundation of many projects due to its simplicity.",
+      "domanda": "What is a Makefile for?",
       "risposte": [
-        "To automatically format code",
-        "Automates compilation: dependencies and commands",
-        "To manage library packages",
-        "To create configuration files"
-      ]
+        "Automatically formatting the code",
+        "Automating compilation: dependencies and commands",
+        "Managing library packages",
+        "Creating configuration files"
+      ],
+      "spiegazione": "A Makefile defines rules to automate compilation: `target: dipendenze` followed by a command. `make` checks timestamps and compiles only what has been modified (incremental build), which saves time on large projects. Example: `programma: main.o utils.o\\n\\tgcc -o programma main.o utils.o`. Variables: `CC = gcc`, `CFLAGS = -Wall -O2`. Pattern rules: `%.o: %.c` compiles every .c into .o. `.PHONY: clean` for targets that are not files. Modern alternatives: CMake (cross-platform generator), Meson, Bazel, Ninja. Make remains the base of many projects for its simplicity."
     },
     "cdaeccc6b1ae": {
       "domanda": "What is `std::pair` in C++?",
@@ -1660,14 +1660,14 @@
       ]
     },
     "7e7aa879db49": {
-      "domanda": "When is it preferable to use `const char*` instead of `std::string`?",
-      "spiegazione": "`std::string` is the default choice in modern C++: automatic memory, convenient methods (find, substr, +), for dynamic strings. But `const char*` is useful in: 1) **C APIs** that accept `char*` — `std::string` offers `.c_str()` to convert, accepting `const char*` makes the function usable by both. 2) **Constant literals** in .rodata: `const char* msg = \"Error\";` does not allocate, `std::string msg = \"Error\";` allocates on the heap. 3) **Performance-critical** (embedded, kernel, hot path) where allocations matter. Mixing the two: always fine for reading, pay attention to pointer lifetime.",
+      "domanda": "When is `const char*` preferable to `std::string`?",
       "risposte": [
         "`const char*` is always preferable in C++",
         "When the string exceeds 255 characters",
-        "C API interface, constant literals, no-heap",
-        "std::string is always preferable absolutely"
-      ]
+        "For interfacing with C APIs, constant literals, no heap",
+        "std::string is always preferable, absolutely"
+      ],
+      "spiegazione": "`std::string` is the default choice in modern C++: automatic memory management, convenient methods (find, substr, +), suitable for dynamic strings. But `const char*` is useful in: 1) **C APIs** that accept `char*` — `std::string` offers `.c_str()` to convert, and accepting `const char*` makes the function usable from both. 2) **Constant literals** in .rodata: `const char* msg = \"Errore\";` does not allocate, while `std::string msg = \"Errore\";` allocates on the heap. 3) **Performance-critical** code (embedded, kernel, hot paths) where allocations matter. Mixing the two: always fine for reading, but watch the lifetime of the pointers."
     },
     "024b3ac7d6d3": {
       "domanda": "What is the purpose of `std::optional<T>` in C++17?",
@@ -1700,14 +1700,14 @@
       ]
     },
     "92e20bec3eb7": {
-      "domanda": "What is a hash function in computer science?",
-      "spiegazione": "A hash function maps variable-length data to a fixed-size value (the hash). A good hash: 1) Deterministic (same input → same output), 2) Uniform distribution (minimizes collisions), 3) Fast to compute. Simple example: `hash(s) = sum of characters % N`. Applications: **hash table** (maps key → index in array: O(1) amortized access), checksum, passwords (one-way encryption — verified by comparing hashes, not the original password), fingerprinting (file integrity verification). Differences from encryption: hash is one-way (cannot revert to input). Notable examples: MD5 (deprecated for security), SHA-256 (current cryptographic standard), FNV/MurmurHash (non-cryptographic but fast, for hash tables).",
+      "domanda": "What is a hash function in computing?",
       "risposte": [
-        "File compression algorithm",
-        "Data integrity verifier for transmitted data",
-        "Function that encrypts data for security",
-        "Function that maps input to a fixed-size index"
-      ]
+        "A file compression algorithm",
+        "A checker of the integrity of transmitted data",
+        "A function that encrypts data for security",
+        "A function that maps input to a fixed-size index"
+      ],
+      "spiegazione": "A hash function maps data of variable size to a value of fixed size (the hash). A good hash is: 1) deterministic (same input → same output), 2) uniformly distributed (it minimizes collisions), 3) fast to compute. Simple example: `hash(s) = somma caratteri % N`. Applications: **hash tables** (map a key → index in an array: O(1) amortized access), checksums, passwords (one-way encryption — you verify by comparing hashes, not the original password), fingerprinting (checking file integrity). Difference from encryption: a hash is one-way (you cannot go back to the input). Well-known examples: MD5 (deprecated for security), SHA-256 (the current cryptographic standard), FNV/MurmurHash (non-cryptographic but fast, for hash tables)."
     },
     "b7d2a24ed3e8": {
       "domanda": "What does `snprintf(buf, 10, \"%d\", n)` do?",
@@ -1841,13 +1841,13 @@
     },
     "2fab46cb56f9": {
       "domanda": "What is an integer overflow exploit?",
-      "spiegazione": "An integer overflow occurs when an operation produces a value outside the range of the type. Security consequences: if the overflowed value is used to calculate an allocation size, a smaller buffer than expected can be allocated, followed by writing the required volume → attacker-controlled buffer overflow. Classic example: `size_t size = num_elem * elem_size;` — if num_elem * elem_size overflows, size becomes small, `malloc(size)` allocates little, but subsequent code writes `num_elem * elem_size` actual bytes. Familiar: CVE OpenSSH, MS Windows. Prevention: check for overflow before the calculation (`if (a > SIZE_MAX / b) error`), use functions with checks (`__builtin_mul_overflow`), prefer larger types (uint64_t), UBSan.",
       "risposte": [
         "The number exceeds the PC's available memory",
-        "Virus that infects numerical calculators",
-        "Graphical error in modern displays",
-        "Calculation that causes wrap-around, security vulnerability"
-      ]
+        "A virus that infects numeric calculators",
+        "A graphical error in modern displays",
+        "A calculation that causes wrap-around, a security vulnerability"
+      ],
+      "spiegazione": "An integer overflow occurs when an operation produces a value outside the range of the type. Security consequences: if the overflowed value is used to compute an allocation size, a smaller buffer than expected may be allocated, followed by writing the full required amount → a buffer overflow controlled by the attacker. Classic example: `size_t size = num_elem * elem_size;` — if num_elem * elem_size overflows, size becomes small, `malloc(size)` allocates little, but the subsequent code writes `num_elem * elem_size` real bytes. Well-known cases: OpenSSH CVEs, MS Windows. Prevention: check for overflow before the calculation (`if (a > SIZE_MAX / b) errore`), use functions with built-in checks (`__builtin_mul_overflow`), prefer larger types (uint64_t), UBSan."
     },
     "d69f7a5148c2": {
       "domanda": "How is SQL injection prevented in a query constructed from user input?",
@@ -1980,14 +1980,14 @@
       ]
     },
     "775d7c85040c": {
-      "domanda": "What is `std::format` used for in C++20?",
-      "spiegazione": "`std::format` (C++20, from `<format>`) is the modern string formatting facility: `auto s = std::format(\"Name: {}, age: {}\", name, age);`. It is type-safe (compile-time type checking with a constant format string), extensible (user-defined types can define their own format specifiers), and fast (faster than sprintf + streams). Syntax inspired by Python: `{}` placeholder, `{:>10}` right alignment with width 10, `{:.2f}` 2 decimal places, `{:#x}` hexadecimal with 0x prefix, `{0} {0}` reuse by index. Advantages over `printf`: type-safe (no format string attacks, no mismatches), type-aware (no `%d` vs `%ld` issues), extensible to custom types. Advantages over `stringstream`: more concise, faster, and more readable format strings. Backport for C++17: fmt library (basis of the standard).",
+      "domanda": "What is `std::format` in C++20 for?",
       "risposte": [
-        "Format source code",
-        "Convert between different data formats",
-        "Type-safe string formatting like Python",
-        "Configure terminal layout"
-      ]
+        "Formatting source code",
+        "Converting between different data formats",
+        "Type-safe string formatting like in Python",
+        "Configuring the terminal layout"
+      ],
+      "spiegazione": "`std::format` (C++20, from `<format>`) is modern string formatting: `auto s = std::format(\"Nome: {}, età: {}\", nome, eta);`. It is type-safe (types checked at compile time with a constant format string), extensible (you can define formatting for user types), and fast (faster than sprintf + streams). Its syntax is inspired by Python: `{}` placeholder, `{:>10}` right alignment with width 10, `{:.2f}` 2 decimals, `{:#x}` hexadecimal with the 0x prefix, `{0} {0}` index reuse. Advantages over `printf`: type-safe (no format-string attacks, no mismatches), it respects the type (no `%d` vs `%ld`), extensible to custom types. Advantages over `stringstream`: more concise, faster, readable format string. Backport for C++17: the fmt library (on which the standard is based)."
     },
     "754a2c7a9eb6": {
       "domanda": "What is a 'pure function' in programming?",
@@ -2041,13 +2041,13 @@
     },
     "905f484fb1dd": {
       "domanda": "When is `std::weak_ptr` used?",
-      "spiegazione": "`weak_ptr` is a non-owning observer of an object managed by `shared_ptr`: it does not keep the object alive and does not increment the reference count. It checks if the object still exists using `.lock()`, which returns a `shared_ptr` (nullptr if already destroyed). **Problem solved — cycles**: two `shared_ptr`s pointing to each other are never destroyed (refcount always ≥1 for each). Example: `class Parent { shared_ptr<Child> c; }; class Child { shared_ptr<Parent> p; };` — eternal leak. Solution: Child uses `weak_ptr<Parent>` instead. **Cache usage**: `weak_ptr` in a cache does not keep objects alive; if not used elsewhere, they are released normally. **Observer pattern**: listeners that observe without owning. Validity check before use: `if (auto sp = wp.lock()) { /* use sp */ }` — atomic in multi-thread.",
       "risposte": [
         "For objects that can be destroyed by the user",
         "As a lighter alternative to `unique_ptr`",
-        "When you want a weaker pointer than the normal one",
+        "When you want a pointer weaker than the normal one",
         "For non-owning observation, breaking shared_ptr cycles"
-      ]
+      ],
+      "spiegazione": "A `weak_ptr` is a non-owning observer of an object managed by a `shared_ptr`: it does not keep the object alive and does not increase the reference count. You check whether the object still exists with `.lock()`, which returns a shared_ptr (nullptr if it has already been destroyed). **Problem solved — cycles**: two shared_ptrs that point to each other are never destroyed (each refcount stays ≥1). Example: `class Parent { shared_ptr<Child> c; }; class Child { shared_ptr<Parent> p; };` — an eternal leak. Solution: Child uses `weak_ptr<Parent>` instead. **Cache use**: a `weak_ptr` in a cache does not keep objects alive; if they are not used elsewhere, they are released normally. **Observer pattern**: listeners that observe without owning. Validity check before use: `if (auto sp = wp.lock()) { /* usa sp */ }` — atomic in multi-threaded code."
     },
     "7a493d5d3a86": {
       "domanda": "What does `constexpr` allow in a C++ function?",

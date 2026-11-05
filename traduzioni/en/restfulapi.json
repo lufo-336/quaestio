@@ -477,13 +477,13 @@
     },
     "ae57bcbc346b": {
       "domanda": "Why doesn't `fetch` reject the Promise when the server responds with 404?",
-      "spiegazione": "Therefore, an explicit check on `response.ok` is needed; otherwise, the error goes unnoticed, and you attempt to use a body that doesn't contain the expected data.",
       "risposte": [
-        "Because from `fetch`'s perspective, the request was successful: a 404 is a regular HTTP response, delivered correctly",
+        "Because from `fetch`'s point of view the request succeeded: a 404 is a regular HTTP response, correctly delivered",
         "Because the body is missing",
-        "Because it's a known bug",
-        "Because Promise rejection is reserved for errors thrown by the application code, while 404 comes from the remote server"
-      ]
+        "Because it is a known bug",
+        "Because rejecting a Promise is reserved for errors raised by the application's code, while the 404 comes from the remote server"
+      ],
+      "spiegazione": "An explicit check on `risposta.ok` is therefore needed; otherwise the error goes unnoticed and you try to use a body that does not contain the expected data."
     },
     "b51819fe1b69": {
       "domanda": "Which status code typically accompanies a successful DELETE request without a body?",
@@ -696,14 +696,14 @@
       ]
     },
     "c14f56f717bd": {
-      "domanda": "Why must the `total` field in pagination be calculated after applying filters?",
-      "spiegazione": "With `?status=completed`, the verified total is 16, not 50: it is the number of elements that satisfy the filter, not those of the entire dataset.",
+      "domanda": "Why must the pagination `totale` field be computed after the filters are applied?",
       "risposte": [
-        "Otherwise, the client would calculate the wrong number of pages and display empty pages",
-        "Because filters are optional",
+        "Because otherwise the client would compute a wrong number of pages and show empty pages",
+        "Because the filters are optional",
         "For aesthetic consistency",
         "Because JSON Schema requires it"
-      ]
+      ],
+      "spiegazione": "With `?stato=completata` the verified total is 16, not 50: it is the number of items that satisfy the filter, not the number in the whole dataset."
     },
     "ffc6160455eb": {
       "domanda": "What is the recommended maximum nesting level in a URL?",
@@ -796,14 +796,14 @@
       ]
     },
     "285dcc1eb112": {
-      "domanda": "Why does the login response return `Invalid credentials` for both non-existent emails and incorrect passwords?",
-      "spiegazione": "This is a deliberate choice against account enumeration: the generic message does not provide useful information to someone probing the API.",
+      "domanda": "Why does login respond with `Credenziali non valide` both when the email does not exist and when the password is wrong?",
       "risposte": [
-        "Because bcrypt does not distinguish between the two cases",
+        "Because bcrypt does not distinguish the two cases",
         "To simplify the code",
-        "Because the GDPR mandates it",
-        "Because a more precise message (\"email not found\") would reveal to an attacker which email addresses are registered in the system"
-      ]
+        "Because the GDPR requires it",
+        "Because a more precise message (\"email non trovata\") would reveal to an attacker which addresses are registered in the system"
+      ],
+      "spiegazione": "It is a deliberate choice against account enumeration: the generic message gives no useful information to whoever probes the API."
     },
     "0b0b1e3859ae": {
       "domanda": "Which component of the client-server model always initiates the communication?",
@@ -887,13 +887,13 @@
     },
     "aff4b35f8889": {
       "domanda": "Why is `GET /users/admin` a poorly designed URL?",
-      "spiegazione": "Identifiers should be in the path, filters in the query string: the correct form is `GET /users?role=admin`, which removes any ambiguity.",
       "risposte": [
-        "Because it is unclear whether `admin` is a user ID or a role filter",
+        "Because it is unclear whether `admin` is a user's id or a filter on the role",
         "Because it is too short",
-        "Because it lacks a version number",
+        "Because the version number is missing",
         "Because it uses the plural"
-      ]
+      ],
+      "spiegazione": "Identifiers belong in the path and filters in the query string: the correct form is `GET /users?ruolo=admin`, which removes any ambiguity."
     },
     "a0a8e93793ef": {
       "domanda": "Which curl flag displays the entire request/response cycle, including headers?",
@@ -1527,13 +1527,13 @@
     },
     "0fa1fdb5a400": {
       "domanda": "Which of the following is NOT one of the six architectural constraints of REST?",
-      "spiegazione": "Authentication is a cross-cutting concern that an API may implement, but REST does not mandate it: an API can be RESTful even without it. The six constraints are client-server, stateless, cacheable, uniform interface, layered system, and code on demand (optional).",
       "risposte": [
         "Uniform interface",
         "Mandatory authentication",
-        "Stateless communication",
-        "Cacheable responses"
-      ]
+        "Statelessness between requests (stateless)",
+        "Ability to cache responses (cacheable)"
+      ],
+      "spiegazione": "Authentication is a cross-cutting concern that an API may implement, but REST does not require it: an API can be RESTful without it. The six constraints are client-server, stateless, cacheable, uniform interface, layered system and code on demand (optional)."
     },
     "695347746b1c": {
       "domanda": "What is the purpose of the HTTP Content-Type header?",

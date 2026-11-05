@@ -188,14 +188,14 @@
       ]
     },
     "c2518cd04fb3": {
-      "domanda": "What is the Third Normal Form (3NF)?",
-      "spiegazione": "3NF requires that the table is in 2NF and that there are no transitive dependencies: no non-key attribute must depend on another non-key attribute (only on the primary key). E.g., if zip determines city, and city is a non-key attribute, there is a transitive dependency.",
+      "domanda": "What is Third Normal Form (3NF)?",
       "risposte": [
         "The table is in 1NF and there are no repeated attributes in any column",
         "The table is in 2NF and there are no transitive dependencies: no non-key attribute depends on another non-key attribute",
-        "The table has at least three foreign keys pointing to other tables",
-        "The table does not use JOINs with more than three tables in any query"
-      ]
+        "The table has at least three foreign keys to other tables",
+        "The table never uses JOINs with more than three tables in any query"
+      ],
+      "spiegazione": "3NF requires the table to be in 2NF and to have no transitive dependencies: no non-key attribute may depend on another non-key attribute (only on the primary key). E.g.: if cap determines citta, and citta is a non-key attribute, there is a transitive dependency."
     },
     "dbb5b1a32a1d": {
       "domanda": "Which anomaly occurs when updating redundant data modifies it only in some rows, creating inconsistency?",

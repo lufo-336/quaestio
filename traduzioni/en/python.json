@@ -86,13 +86,13 @@
     },
     "f2a6febe514e": {
       "domanda": "What does this code print?\n\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)",
-      "spiegazione": "A describes...",
       "risposte": [
         "0",
         "None",
         "<bound method>",
         "TypeError"
-      ]
+      ],
+      "spiegazione": "@property lets a method be read like an attribute: c.saldo, without parentheses."
     },
     "ae6fa75383e6": {
       "domanda": "What does this code print?\n\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))",
@@ -265,14 +265,14 @@
       ]
     },
     "31690bff490c": {
-      "domanda": "What happens when executing this code?\n\nprint(\"Age: \" + 25)",
-      "spiegazione": "Python is dynamically but strongly typed: it does not implicitly convert an int to a str. You need str(25) or an f-string.",
+      "domanda": "What happens when this code is run?\n\nprint(\"Età: \" + 25)",
       "risposte": [
         "Raises TypeError",
-        "Prints Age: 25",
-        "Prints Age: 25.0",
+        "Prints Età: 25",
+        "Prints Età: 25.0",
         "Raises ValueError"
-      ]
+      ],
+      "spiegazione": "Python is dynamically typed but strongly typed: it does not implicitly convert an int to str. You need str(25) or an f-string."
     },
     "571ec955e15f": {
       "domanda": "What happens when executing this code?\n\nimport json\njson.loads(\"{'nome': 'Marco'}\")",
@@ -516,13 +516,13 @@
     },
     "375f760a12e7": {
       "domanda": "Between which markers is a PlantUML diagram written?",
-      "spiegazione": "The source code is in a .puml file; to convert it into an image, a renderer is needed (PlantUML server or Java + Graphviz).",
       "risposte": [
         "@startuml and @enduml",
         "```uml and ```",
         "BEGIN and END",
         "<uml> and </uml>"
-      ]
+      ],
+      "spiegazione": "The source lives in a .puml file; to turn it into an image you need a renderer (a PlantUML server, or Java + Graphviz)."
     },
     "60799f69e5c5": {
       "domanda": "What type of value does input() return?",
@@ -666,13 +666,13 @@
     },
     "1a29a80a78fe": {
       "domanda": "What does this code print?\n\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")",
-      "spiegazione": "A describes...",
       "risposte": [
         "1 3 5",
         "1 3 5 7 9",
         "1 3 5 7",
         "0 2 4 6"
-      ]
+      ],
+      "spiegazione": "continue skips the even numbers; at the first odd number greater than 6 (that is, 7), break exits the loop before the print."
     },
     "0a76a85b4f10": {
       "domanda": "What is the difference between a package and a library?",
@@ -1016,13 +1016,13 @@
     },
     "78d08d4a4c13": {
       "domanda": "What does this code print?\n\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)",
-      "spiegazione": "A describes...",
       "risposte": [
         "0 0 0",
         "1 0 0",
         "1 1 1",
         "1 0 1"
-      ]
+      ],
+      "spiegazione": "a.n = 1 creates an instance attribute on a, which hides the class attribute; b and C still see the class attribute."
     },
     "4b5b51ab84c1": {
       "domanda": "In the DB-API, what does the Cursor do?",
@@ -1815,14 +1815,14 @@
       ]
     },
     "772639a5b73d": {
-      "domanda": "What happens when executing this code?\n\nnumeri = [1, 2, 3]\nnumeri.remove(5)",
-      "spiegazione": "A describes...",
+      "domanda": "What happens when this code is run?\n\nnumeri = [1, 2, 3]\nnumeri.remove(5)",
       "risposte": [
         "Nothing happens",
         "Raises IndexError",
         "Raises KeyError",
         "Raises ValueError"
-      ]
+      ],
+      "spiegazione": "remove() on a value that is not in the list raises ValueError; discard() on sets, by contrast, raises no error."
     },
     "c0d6bc65823c": {
       "domanda": "What does this code print?\n\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)",

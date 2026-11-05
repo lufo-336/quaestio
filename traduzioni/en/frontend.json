@@ -360,13 +360,13 @@
     },
     "49978b3fc31d": {
       "domanda": "What are template literals in JavaScript?",
-      "spiegazione": "Template literals (backtick `) allow: (1) interpolation with ${expression} — e.g., `Hello, ${name}!`; (2) multi-line strings without \\n; (3) arbitrary expressions inside ${}: `The double is ${x * 2}`. Before template literals, concatenation with + was used: 'Hello, ' + name + '!' — less readable. Backticks should not be confused with single or double quotes.",
       "risposte": [
         "They are predefined functions used to format text strings",
-        "Strings in backticks with ${} interpolation and multi-line support",
-        "A mechanism to import entire HTML templates into JavaScript code",
-        "They are special comments used to document source code"
-      ]
+        "Strings in backticks with ${} interpolation and multiple lines",
+        "A mechanism for importing entire HTML templates inside JavaScript code",
+        "They are special comments used to document the source code"
+      ],
+      "spiegazione": "Template literals (backtick `) allow: (1) interpolation with ${espressione} — e.g. `Ciao, ${nome}!`; (2) strings spanning multiple lines without \\n; (3) arbitrary expressions inside ${}: `Il doppio è ${x * 2}`. Before template literals, concatenation with + was used: 'Ciao, ' + nome + '!' — less readable. Backticks should not be confused with single or double quotes."
     },
     "d00da6fd537a": {
       "domanda": "What happens if the break is omitted in a switch case?",
@@ -439,14 +439,14 @@
       ]
     },
     "2538cb36c44b": {
-      "domanda": "What does the return keyword do in a function?",
-      "spiegazione": "return does two things: it immediately halts the function's execution and returns the specified value to the caller. A function without a return statement (or with return; and no value) implicitly returns undefined. The separation between computation (function with return) and display (the caller using the result) is a fundamental best practice for reusable and testable code.",
+      "domanda": "What does the `return` keyword do in a function?",
       "risposte": [
-        "Immediately prints the specified value to the browser console",
-        "Exits the function and returns a value",
-        "Recursively calls itself",
-        "Declares a new local variable within the function"
-      ]
+        "Immediately prints the given value in the browser console",
+        "Exits the function, returning a value",
+        "Calls the function itself again, recursively",
+        "Declares a new local variable inside the function"
+      ],
+      "spiegazione": "`return` does two things: it immediately interrupts the function's execution and returns the specified value to the caller. A function without a return (or with a bare return; and no value) implicitly returns `undefined`. Separating computation (a function with a return) from display (whoever uses the result) is a fundamental best practice for reusable and testable code."
     },
     "a77b25af53d9": {
       "domanda": "What is a callback function?",
@@ -2049,14 +2049,14 @@
       ]
     },
     "bb9944173a03": {
-      "domanda": "How do you read the value of a CSS variable in JavaScript?",
-      "spiegazione": "CSS variables (custom properties) live in the browser: they are read using getComputedStyle(element).getPropertyValue('--name') and modified using element.style.setProperty('--name', value). SCSS variables, on the other hand, no longer exist at runtime.",
+      "domanda": "How do you read the value of a CSS variable from JavaScript?",
       "risposte": [
-        "It is not possible to read them from JavaScript",
+        "It cannot be read from JavaScript",
         "With getComputedStyle(el).getPropertyValue('--nome')",
-        "With the cssVar('--nome') function built into the browser",
+        "With the built-in cssVar('--nome') function in the browser",
         "With document.getVariable('--nome')"
-      ]
+      ],
+      "spiegazione": "CSS variables (custom properties) live in the browser: they are read with getComputedStyle(elemento).getPropertyValue('--nome') and modified with elemento.style.setProperty('--nome', valore). SCSS variables, on the other hand, no longer exist at runtime."
     },
     "4a6755c46674": {
       "domanda": "What are the roles of HTML, CSS, and JavaScript in a web page?",
