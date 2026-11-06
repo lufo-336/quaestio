@@ -27,7 +27,7 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
 it/en; **11 materie / 2383 domande**. Domande tradotte in inglese sul branch
 `feature/traduzione-domande-en` (non ancora su `main`). Ultima release APK:
-`apk-2026-10-23`. Restano da verificare a mano: una partita intera, Gestione
+`apk-2026-11-06` (domande in inglese). Restano da verificare a mano: una partita intera, Gestione
 contenuti, Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
 ## Stack
