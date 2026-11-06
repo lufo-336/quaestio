@@ -22,13 +22,15 @@ termine: anche Android/iOS.
 Luca sta imparando C# in parallelo a un corso. Il progetto è anche un esercizio
 didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
-## Stato attuale (2026-11-05)
+## Stato attuale (2026-11-06)
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
-it/en; **11 materie / 2383 domande**. Domande tradotte in inglese sul branch
-`feature/traduzione-domande-en` (non ancora su `main`). Ultima release APK:
-`apk-2026-11-06` (domande in inglese). Restano da verificare a mano: una partita intera, Gestione
-contenuti, Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
+e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
+`apk-2026-11-06` (domande in inglese). Exe desktop portabile in
+`%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** (simulatore
+sul Mac) sul branch `feature/ios`, da provare; **WebAssembly** in roadmap.
+Restano da verificare a mano: una partita intera, Gestione contenuti,
+Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
 ## Stack
 
