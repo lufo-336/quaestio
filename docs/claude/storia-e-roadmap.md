@@ -683,3 +683,19 @@ Chiuso il 2026-07-28: vedi la sezione Step 8 sopra e la **Trappola 21**. La
 raccomandazione che era rimasta inevasa per due tentativi ("prima la
 diagnostica, poi il codice") si è rivelata giusta — ma l'evidenza da stampare
 non era solo `e.Source`/`e.Route`/`e.Handled`: era **l'elemento con focus**.
+
+### 🗺️ In roadmap — versione web (WebAssembly) (chiesta il 2026-11-06)
+
+Perché: l'app iOS nativa senza Apple Developer Program (99 $/anno) gira solo
+sui device di Luca, con profili da rinnovare ogni 7 giorni. Per farla usare
+**ad altri, ovunque** (iPhone, iPad, PC di scuola) la strada gratuita è un head
+browser di Avalonia (`Avalonia.Browser`, `net10.0-browser`), ospitato come sito
+statico (es. GitHub Pages) e aggiungibile alla schermata Home come una PWA.
+Da verificare prima di pianificare:
+- **persistenza**: in WASM il file system di .NET è in memoria; cronologia,
+  sospesi e preferenze (`StorageService`) vanno salvati altrove (localStorage /
+  IndexedDB del browser), quindi i dati restano **in quel browser**;
+- dimensione del download iniziale e tempi di avvio su telefono;
+- UI touch (`AppEnv.TouchMode`) e safe area su Safari iOS;
+- import di contenuti (Gestione contenuti) senza accesso al file system.
+L'iOS nativo (spec `2026-11-06-ios-simulatore-design.md`) resta, per studio.
