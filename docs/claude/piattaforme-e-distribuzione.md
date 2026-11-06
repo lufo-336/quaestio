@@ -71,6 +71,12 @@ Output: `wsa.quiz.desktop\bin\Release\net10.0\win-x64\publish\Wsa.Quiz.Desktop.e
 — copiabile e avviabile su qualsiasi Windows x64, senza installare .NET.
 (Per i PC ARM, es. Surface recenti, ripetere con `-r win-arm64`.)
 
+**Uso portabile su questo PC** (2026-11-06): il solo exe copiato come
+`%LOCALAPPDATA%\Programs\Quaestio\Quaestio.exe` + collegamento
+`Quaestio.lnk` sul desktop. Niente installazione; i dati restano in
+`%APPDATA%\WsaQuiz` come con `dotnet run`. Per aggiornarlo: rifare il publish e
+ricopiare l'exe (con l'app chiusa).
+
 Accanto all'eseguibile il publish copia anche `materie.json` e `domande/`, ma
 **non servono**: se non li trova nel bin, `MainView.Caricamento` ripiega sulle
 risorse incorporate (la stessa strada di Android, vedi M2). Verificato il
