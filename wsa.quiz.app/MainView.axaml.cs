@@ -242,14 +242,16 @@ public partial class MainView : UserControl
             bottoni[i].Classes.Set("attiva", i == IndiceSezione);
     }
 
-    // ------------------------------------------------------------------ SAFE AREA (edge-to-edge Android)
+    // ------------------------------------------------------------------ SAFE AREA (edge-to-edge Android/iOS)
 
     /// <summary>
     /// Su Android con targetSdk 35+ l'edge-to-edge è forzato: l'app disegna dietro
     /// status bar e barra di navigazione di sistema, che altrimenti coprono header
     /// e bottom navigation. Le insets reali arrivano da <see cref="AppEnv.SystemBarInsetsPx"/>,
     /// popolate dalla MainActivity Android via <c>WindowInsets.systemBars()</c> (fonte
-    /// autorevole: l'InsetsManager di Avalonia qui riporta bottom=0). Le applico come
+    /// autorevole: l'InsetsManager di Avalonia qui riporta bottom=0). Su iOS nessuno
+    /// popola AppEnv: la fonte è l'InsetsManager del TopLevel, inoltrato da
+    /// <see cref="InoltraSafeAreaIos"/>. Le applico come
     /// padding: header accent e bottom nav si estendono DIETRO le barre di sistema, ma
     /// il loro contenuto resta nell'area sicura. Solo su touch (desktop: return anticipato).
     /// </summary>
@@ -259,18 +261,47 @@ public partial class MainView : UserControl
         if (!AppEnv.TouchMode) return;
 
         AppEnv.SystemBarInsetsChanged += OnSystemBarInsetsChanged;
+        if (OperatingSystem.IsIOS())
+        {
+            _insetsIos = TopLevel.GetTopLevel(this)?.InsetsManager;
+            if (_insetsIos != null)
+            {
+                _insetsIos.SafeAreaChanged += OnSafeAreaIosChanged;
+                InoltraSafeAreaIos();
+            }
+        }
         ApplicaSafeArea();
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         AppEnv.SystemBarInsetsChanged -= OnSystemBarInsetsChanged;
+        if (_insetsIos != null)
+        {
+            _insetsIos.SafeAreaChanged -= OnSafeAreaIosChanged;
+            _insetsIos = null;
+        }
         base.OnDetachedFromVisualTree(e);
     }
 
     // Le insets Android arrivano su thread UI ma le rimando comunque sul dispatcher
     // per disaccoppiarle dal dispatch di sistema.
     private void OnSystemBarInsetsChanged() => Dispatcher.UIThread.Post(ApplicaSafeArea);
+
+    // iOS: l'InsetsManager del TopLevel dà la safe area in unità logiche; la porto in
+    // pixel fisici (come fa la MainActivity) e la passo ad AppEnv, così ApplicaSafeArea
+    // resta l'unico punto che applica i padding.
+    private IInsetsManager? _insetsIos;
+
+    private void OnSafeAreaIosChanged(object? sender, SafeAreaChangedArgs e) => InoltraSafeAreaIos();
+
+    private void InoltraSafeAreaIos()
+    {
+        if (_insetsIos == null) return;
+        var p = _insetsIos.SafeAreaPadding;
+        double scala = TopLevel.GetTopLevel(this)?.RenderScaling ?? 1.0;
+        AppEnv.SetSystemBarInsetsPx(p.Left * scala, p.Top * scala, p.Right * scala, p.Bottom * scala);
+    }
 
     private void ApplicaSafeArea()
     {

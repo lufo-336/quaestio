@@ -61,10 +61,13 @@ Budget: nessuna spesa (niente Apple Developer Program).
   un'ipotesi: se nel simulatore la UI è già al posto giusto, o sbagliata, la
   prova manuale decide. *(Scelta di Opus.)*
 - `AppEnv.ScalaTouch` (0,85) resta quello di Android: si tara dopo averla vista.
+- Rotazioni: **iPhone solo verticale** (la UI touch è pensata in colonna),
+  **iPad tutte e quattro**. *(Scelta di Opus.)*
 
 ## Chi fa cosa
 
-- Codice: piano descrittivo → Haiku su Windows (build di app e desktop; l'head
-  iOS su Windows potrebbe non compilare senza Mac) → Sonnet in revisione.
+- Codice: piano descrittivo → Haiku su Windows (build di app e desktop) →
+  Sonnet in revisione. Verificato poi: l'head iOS **compila anche su Windows**
+  (solo C#, `iossimulator-x64`); l'app vera si produce solo sul Mac.
 - Build e prova nel simulatore: **Luca sul Mac**, con i comandi esatti forniti
   da Opus.

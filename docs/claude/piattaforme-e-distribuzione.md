@@ -134,6 +134,36 @@ Release pubblicate finora: `apk-2026-07-21`, `apk-2026-09-09`, `apk-2026-10-23` 
 Nelle note di release conviene sempre segnalare **se la firma è cambiata**: chi
 aggiorna deve sapere che dovrà disinstallare e perdere i dati locali.
 
+### iOS (simulatore sul Mac) — dal 2026-11-06
+
+Head `wsa.quiz.ios` (`net10.0-ios`), **fuori dalla solution**. Su Windows
+`dotnet build wsa.quiz.ios` compila il C# (utile come controllo), ma l'app si
+produce e si lancia solo su **macOS + Xcode**. Ogni versione del workload `ios`
+vuole una versione precisa di Xcode: se non coincide il build lo dice, e si
+installa quella (Xcode 26.5/26.6 chiedono macOS 26.2+).
+
+Una volta sul Mac:
+
+```sh
+sw_vers -productVersion; xcodebuild -version; dotnet --version
+sudo dotnet workload install ios
+sudo xcode-select -s /Applications/Xcode.app && sudo xcodebuild -license accept
+xcodebuild -runFirstLaunch && xcodebuild -downloadPlatform iOS   # runtime del simulatore
+```
+
+Ogni volta:
+
+```sh
+git fetch && git checkout feature/ios && git pull        # (poi: main)
+xcrun simctl list devices available | grep -E "iPhone|iPad"
+dotnet build wsa.quiz.ios -t:Run -r iossimulator-arm64 -p:_DeviceName=:v2:udid=<UDID>
+```
+
+Senza `-p:_DeviceName` usa il simulatore predefinito. Dati utente nella sandbox
+dell'app (restano finché non la si disinstalla dal simulatore). Il device vero
+(iPad, Apple ID gratuito, profilo di 7 giorni) è un passo successivo: lì il
+Release usa AOT + trimming, da verificare.
+
 ### Test su device fisico (adb)
 
 > Ricostruito dai comandi realmente usati nelle sessioni su device (Samsung

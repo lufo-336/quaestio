@@ -15,11 +15,12 @@ public static class AppEnv
 
     /// <summary>
     /// Insets delle barre di sistema (status bar in alto, navigation bar in basso)
-    /// in PIXEL FISICI, lette direttamente da <c>WindowInsets.systemBars()</c> nella
-    /// <c>MainActivity</c> Android. Fonte autorevole: l'<see cref="IInsetsManager"/>
-    /// di Avalonia su questo device riporta <c>bottom=0</c> (nav bar non vista) →
-    /// la bottom nav finiva sotto i tasti Android. La conversione px→unità di layout
-    /// avviene in <c>MainView.ApplicaSafeArea</c>. Desktop: resta a zero.
+    /// in PIXEL FISICI. Su Android sono lette direttamente da <c>WindowInsets.systemBars()</c>
+    /// nella <c>MainActivity</c>: l'<see cref="IInsetsManager"/> di Avalonia su questo
+    /// device riporta <c>bottom=0</c> (nav bar non vista) → la bottom nav finiva sotto
+    /// i tasti Android. Su iOS il valore arriva da <c>MainView</c> (InsetsManager del
+    /// TopLevel). La conversione px→unità di layout avviene in <c>MainView.ApplicaSafeArea</c>.
+    /// Desktop: resta a zero.
     /// </summary>
     public static Thickness SystemBarInsetsPx { get; private set; }
 
@@ -27,7 +28,7 @@ public static class AppEnv
     /// dispatcha le insets dopo il primo layout e a ogni rotazione/resume).</summary>
     public static event Action? SystemBarInsetsChanged;
 
-    /// <summary>Chiamato dalla MainActivity Android col valore in pixel fisici.</summary>
+    /// <summary>Chiamato dalla MainActivity Android e da MainView su iOS, col valore in pixel fisici.</summary>
     public static void SetSystemBarInsetsPx(double left, double top, double right, double bottom)
     {
         var t = new Thickness(left, top, right, bottom);
