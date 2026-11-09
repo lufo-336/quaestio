@@ -47,11 +47,10 @@ Budget: nessuna spesa (niente Apple Developer Program).
 - **Versione Avalonia 12.0.2** come il resto del repo (il template è già a
   12.1.x: l'aggiornamento è un lavoro a parte).
 - **Non nella solution**: con l'head iOS dentro, `dotnet build Wsa.Quiz.sln` su
-  Windows fallirebbe. Si builda con `dotnet build wsa.quiz.ios`. *(Scelta di
-  Opus.)*
+  Windows fallirebbe. Si builda con `dotnet build wsa.quiz.ios`.
 - iOS minimo **15.0** (non 13.0): permette la chiave `UILaunchScreen` di
   Info.plist al posto di uno storyboard. Senza launch screen iOS fa girare
-  l'app in modalità compatibilità, rimpicciolita. *(Scelta di Opus.)*
+  l'app in modalità compatibilità, rimpicciolita.
 - `ApplicationId` `it.eduits.wsaquiz`, nome mostrato «Quaestio», come Android.
 - **Safe area**: su Android le insets arrivano dalla `MainActivity` in
   `AppEnv.SetSystemBarInsetsPx`. Su iOS la fonte è l'`InsetsManager` del
@@ -59,48 +58,15 @@ Budget: nessuna spesa (niente Apple Developer Program).
   pixel e passato allo stesso `AppEnv.SetSystemBarInsetsPx`. Così
   `MainView.ApplicaSafeArea` resta l'unico punto che applica i padding. È
   un'ipotesi: se nel simulatore la UI è già al posto giusto, o sbagliata, la
-  prova manuale decide. *(Scelta di Opus.)*
+  prova manuale decide.
 - `AppEnv.ScalaTouch` (0,85) resta quello di Android: si tara dopo averla vista.
 - Rotazioni: **iPhone solo verticale** (la UI touch è pensata in colonna),
-  **iPad tutte e quattro**. *(Scelta di Opus.)*
+  **iPad tutte e quattro**.
 
 ## Chi fa cosa
 
-- Codice: piano descrittivo → Haiku su Windows (build di app e desktop) →
-  Sonnet in revisione. Verificato poi: l'head iOS **compila anche su Windows**
-  (solo C#, `iossimulator-x64`); l'app vera si produce solo sul Mac.
-- Build e prova nel simulatore: **Luca sul Mac**, con i comandi esatti forniti
-  da Opus.
-
-## Misure (esperimento Haiku scrive / Sonnet rivede / Opus corregge)
-
-Scopo: capire se conviene far scrivere il codice a Haiku e tenere i modelli
-grandi per revisione e correzione. Due cose da misurare per ogni fase:
-
-- **Consumo**: `/usage` (quota del piano Pro) letto **prima e dopo** la fase,
-  e `/cost` (token della sessione) a fine sessione. **Una sessione per fase**,
-  altrimenti i numeri si mescolano.
-- **Qualità**: cosa ha dovuto sistemare la fase dopo (errori di build, bug,
-  rifacimenti), così si vede quanto lavoro "costa" il codice di Haiku.
-
-| Data | Fase | Modello | `/usage` prima → dopo | `/cost` | Esito / cosa è stato corretto |
-|---|---|---|---|---|---|
-| 2026-11-06 | Spec + piano | Opus | non misurato | non misurato | spec e piano (commit `c074c4a`) |
-| 2026-11-06 | Scrittura codice | Haiku | non misurato | non misurato | head iOS + safe area (commit `13d5615`) |
-| 2026-11-06 | Revisione | Sonnet | non misurato | non misurato | revisione del codice di Haiku (dettagli non annotati) |
-| 2026-11-06 | Correzioni | Opus | non misurato | non misurato | correzioni prima del commit `13d5615` (dettagli non annotati) |
-| 2026-11-09 | Prova sul Mac + debug | Opus | prima: non letto → dopo: 11% sessione, 70% settimana | ~1,09 $ stimati (Opus: 1,1k in, 12,9k out, 1,7M cache read, 61k cache write); 2 min 28 s API su 44 min totali | **0 modifiche al codice**. Errore di link dovuto a `obj/` vecchio dopo il cambio SDK (build pulito); la schermata bianca non si è ripresentata. iPhone 17 e iPad 9ª gen. funzionano |
-| 2026-11-09 | iPad fisico (Debug + Release AOT) | Opus | prima: non letto → dopo: 3% sessione, 71% settimana | ~1,65 $ stimati (Opus: 3,9k in, 23,4k out, 3,2M cache read, 65,8k cache write); 4 min 45 s API su 1 h 08 min totali | Nessun bug nel codice: Debug e Release (AOT + trimming) funzionano, i JSON vengono scritti nonostante i warning IL2026. **Aggiunta l'icona** che mancava (catalog `AppIcon` + `<AppIcon>` nel csproj; primo tentativo con `XSAppIconAssets` in Info.plist scartato, actool non rilanciato dal build incrementale). Quasi tutto il tempo speso a guidare la firma (Xcode 27 senza modulo per il nuovo progetto, autorizzazione dello sviluppatore sull'iPad) |
-
-Note sulla riga del 2026-11-09: la misura copre tutta la sessione (anche doc
-e questa tabella, non solo il debug). Il costo in dollari è solo un'indicazione:
-col Pro non si paga, conta la quota `/usage`. La riga Haiku di `/cost` (0,0005 $)
-sono chiamate interne di Claude Code, non lavoro sul codice. Quasi tutto l'input
-viene dalla cache (96%): per confrontare le fasi conviene guardare **output** e
-**quota `/usage`**.
-
-Le prime righe sono ricostruite dal messaggio di commit: i consumi di quelle
-fasi sono persi. Da qui in avanti si compila la tabella durante il lavoro.
-
-Esito parziale: il codice di Haiku, dopo la revisione di Sonnet e le correzioni
-di Opus, ha funzionato al primo avvio nel simulatore senza altre modifiche.
+- Codice: scritto su Windows (build di app e desktop). L'head iOS **compila
+  anche su Windows** (solo C#, `iossimulator-x64`); l'app vera si produce solo
+  sul Mac.
+- Build e prova nel simulatore: **Luca sul Mac**, con i comandi in
+  `docs/claude/piattaforme-e-distribuzione.md`.
