@@ -1,0 +1,35 @@
+<!-- Head iOS. Su Windows compila il C# (controllo utile), ma per produrre l'app e
+     lanciarla nel simulatore servono macOS + Xcode. Sta fuori da Wsa.Quiz.sln apposta:
+     cosi' la build della solution non richiede il workload ios. Comandi in
+     docs/claude/piattaforme-e-distribuzione.md (sezione iOS). -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- OutputType=Exe distingue un'APP iOS (produce .app) da una libreria.
+         Senza, il build non produce l'app da lanciare nel simulatore. -->
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-ios</TargetFramework>
+    <!-- 15 e non 13 (template): la chiave UILaunchScreen di Info.plist (da iOS 14)
+         sostituisce lo storyboard; senza launch screen l'app gira rimpicciolita. -->
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- RootNamespace 'Wsa.Quiz.Ios' per coerenza con 'Wsa.Quiz.Droid' su Android
+         (li' serviva contro lo shadowing del namespace Android.*, Trappola 1). -->
+    <RootNamespace>Wsa.Quiz.Ios</RootNamespace>
+    <AssemblyName>Wsa.Quiz.iOS</AssemblyName>
+    <ApplicationId>it.eduits.wsaquiz</ApplicationId>
+    <ApplicationTitle>Quaestio</ApplicationTitle>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.iOS" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\wsa.quiz.app\Wsa.Quiz.App.csproj" />
+  </ItemGroup>
+
+</Project>

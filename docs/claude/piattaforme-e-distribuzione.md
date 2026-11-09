@@ -134,6 +134,71 @@ Release pubblicate finora: `apk-2026-07-21`, `apk-2026-09-09`, `apk-2026-10-23` 
 Nelle note di release conviene sempre segnalare **se la firma è cambiata**: chi
 aggiorna deve sapere che dovrà disinstallare e perdere i dati locali.
 
+### iOS (simulatore sul Mac) — dal 2026-11-06
+
+Head `wsa.quiz.ios` (`net10.0-ios`), **fuori dalla solution**. Su Windows
+`dotnet build wsa.quiz.ios` compila il C# (utile come controllo), ma l'app si
+produce e si lancia solo su **macOS + Xcode**. Ogni versione del workload `ios`
+vuole una versione precisa di Xcode: se non coincide il build lo dice, e si
+installa quella (Xcode 26.5/26.6 chiedono macOS 26.2+).
+
+Una volta sul Mac:
+
+```sh
+sw_vers -productVersion; xcodebuild -version; dotnet --version
+sudo dotnet workload install ios
+sudo xcode-select -s /Applications/Xcode.app && sudo xcodebuild -license accept
+xcodebuild -runFirstLaunch && xcodebuild -downloadPlatform iOS   # runtime del simulatore
+```
+
+Ogni volta:
+
+```sh
+git fetch && git checkout feature/ios && git pull        # (poi: main)
+xcrun simctl list devices available | grep -E "iPhone|iPad"
+dotnet build wsa.quiz.ios -t:Run -r iossimulator-arm64 -p:_DeviceName=:v2:udid=<UDID>
+```
+
+Senza `-p:_DeviceName` usa il simulatore predefinito.
+
+**Con Xcode 27 (verificato il 2026-11-09, Mac M1 8 GB, Xcode 27.2, SDK
+10.0.403 / workload iOS 27.1)** il comando sopra non basta:
+
+- **Simulator.app non esiste più**: il simulatore si vede da **DeviceHub**
+  (`/Applications/Xcode.app/Contents/Applications/DeviceHub.app`).
+- **`-t:Run` fallisce** (MT1008: mlaunch cerca Simulator.app). Si fa build
+  normale e poi si installa e lancia con `simctl`.
+- **Versione Xcode**: il workload 27.1 vuole Xcode 27.1; con 27.2 serve
+  `-p:ValidateXcodeVersion=false`.
+- **Dopo un cambio di SDK/workload, pulire `bin/` e `obj/` del head iOS.** Il
+  build incrementale si tiene la `libxamarin-dotnet-debug.dylib` del workload
+  vecchio (in `obj/.../nativelibraries/`) mentre rigenera `main.arm64.mm` col
+  nuovo, quindi il link fallisce con
+  `Undefined symbols: _xamarin_initialize_dynamic_registrar`.
+
+```sh
+U=<UDID>                                   # es. iPhone 17
+xcrun simctl boot $U                       # se non è già acceso
+open /Applications/Xcode.app/Contents/Applications/DeviceHub.app
+rm -rf wsa.quiz.ios/bin wsa.quiz.ios/obj   # solo dopo un cambio di SDK/workload
+dotnet build wsa.quiz.ios -r iossimulator-arm64 -p:ValidateXcodeVersion=false
+xcrun simctl install $U wsa.quiz.ios/bin/Debug/net10.0-ios/iossimulator-arm64/Wsa.Quiz.iOS.app
+xcrun simctl launch --console-pty $U it.eduits.wsaquiz   # stdout dell'app nel terminale
+xcrun simctl io $U screenshot /tmp/quaestio-ios.png      # screenshot senza toccare DeviceHub
+xcrun simctl shutdown all                                # quando si ha finito
+```
+
+Con 8 GB di RAM conviene usare **un solo simulatore**. Un primo avvio con il Mac
+sotto pressione di memoria (watchdog 0x8BADF00D nel log) ha dato schermata
+bianca; rifatto con il Mac scarico e un build pulito, l'app è partita normale.
+Il messaggio `Socket error while connecting to IDE on 127.0.0.1:10000` è
+innocuo: è il debugger che non trova l'IDE.
+
+Dati utente nella sandbox
+dell'app (restano finché non la si disinstalla dal simulatore). Il device vero
+(iPad, Apple ID gratuito, profilo di 7 giorni) è un passo successivo: lì il
+Release usa AOT + trimming, da verificare.
+
 ### Test su device fisico (adb)
 
 > Ricostruito dai comandi realmente usati nelle sessioni su device (Samsung
