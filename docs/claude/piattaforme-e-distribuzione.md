@@ -154,7 +154,7 @@ xcodebuild -runFirstLaunch && xcodebuild -downloadPlatform iOS   # runtime del s
 Ogni volta:
 
 ```sh
-git fetch && git checkout feature/ios && git pull        # (poi: main)
+git fetch && git checkout main && git pull
 xcrun simctl list devices available | grep -E "iPhone|iPad"
 dotnet build wsa.quiz.ios -t:Run -r iossimulator-arm64 -p:_DeviceName=:v2:udid=<UDID>
 ```

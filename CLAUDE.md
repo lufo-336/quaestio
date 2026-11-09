@@ -22,13 +22,14 @@ termine: anche Android/iOS.
 Luca sta imparando C# in parallelo a un corso. Il progetto è anche un esercizio
 didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
-## Stato attuale (2026-11-06)
+## Stato attuale (2026-11-09)
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
 e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
 `apk-2026-11-06` (domande in inglese). Exe desktop portabile in
-`%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** (simulatore
-sul Mac) sul branch `feature/ios`, da provare; **WebAssembly** in roadmap.
+`%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
+(head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
+provato il 2026-11-09; prossimo passo iPad fisico; **WebAssembly** in roadmap.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
 Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
