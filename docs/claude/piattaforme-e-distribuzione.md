@@ -195,9 +195,62 @@ Il messaggio `Socket error while connecting to IDE on 127.0.0.1:10000` è
 innocuo: è il debugger che non trova l'IDE.
 
 Dati utente nella sandbox
-dell'app (restano finché non la si disinstalla dal simulatore). Il device vero
-(iPad, Apple ID gratuito, profilo di 7 giorni) è un passo successivo: lì il
-Release usa AOT + trimming, da verificare.
+dell'app (restano finché non la si disinstalla dal simulatore).
+
+#### iPad fisico (Apple ID gratuito) — verificato il 2026-11-09
+
+iPad 9ª gen. "<nome iPad>" (UDID `<UDID iPad>`), Debug e Release
+(AOT + trimming) funzionanti: prove a mano ok, `cronologia.json` e
+`preferenze.json` scritti in `Documents/.config/WsaQuiz/` del container
+dell'app.
+
+**Preparazione (una volta, poi ogni 7 giorni per il profilo):**
+
+1. iPad col cavo → "Autorizza questo computer"; Impostazioni → Privacy e
+   sicurezza → **Modalità sviluppatore** attiva (compare dopo il primo
+   collegamento a Xcode).
+2. Xcode → Settings → Accounts: Apple ID (Personal Team).
+3. **Progetto Xcode usa-e-getta** per far generare certificato e profilo:
+   File → New → Project → iOS App. In Xcode 27 non compare il modulo: crea
+   subito il progetto (formato nuovo `project.xcproj`) con bundle id
+   segnaposto. Poi ⌘1 → progetto → target → **Signing & Capabilities**:
+   Team = Personal Team, Bundle Identifier = `it.eduits.wsaquiz`. Destinazione
+   = iPad, ▶︎. Crearlo **fuori dal repo** (si può cancellare dopo).
+4. Sull'iPad: Impostazioni → Generali → **VPN e gestione dispositivi** → Apple
+   ID → **Autorizza**. Senza, `devicectl ... launch` fallisce con
+   `invalid code signature, inadequate entitlements or its profile has not been
+   explicitly trusted by the user` anche se la firma è giusta.
+
+Controllo: `xcrun devicectl list devices` (iPad `connected`, `physical`) e
+`security find-identity -v -p codesigning` (1 identità "Apple Development").
+Il profilo sta in `~/Library/Developer/Xcode/UserData/Provisioning Profiles/` e
+**scade dopo 7 giorni**: rilanciare ▶︎ dal progetto Xcode per rinnovarlo.
+
+**Build, installa, lancia:**
+
+```sh
+D=<UDID iPad>                        # UDID dell'iPad
+SIGN=(-p:ValidateXcodeVersion=false
+      -p:CodesignKey="Apple Development: <tuo Apple ID> (<TEAM>)"
+      -p:CodesignProvision="iOS Team Provisioning Profile: it.eduits.wsaquiz")
+dotnet build wsa.quiz.ios -c Release -r ios-arm64 "${SIGN[@]}"   # o senza -c Release
+A=wsa.quiz.ios/bin/Release/net10.0-ios/ios-arm64/Wsa.Quiz.iOS.app
+xcrun devicectl device install app --device $D $A
+xcrun devicectl device process launch --device $D --terminate-existing it.eduits.wsaquiz
+xcrun devicectl device capture screenshot --device $D --destination /tmp/ipad.png
+xcrun devicectl device info files --device $D --domain-type appDataContainer \
+      --domain-identifier it.eduits.wsaquiz       # file salvati dall'app
+```
+
+Reinstallare sopra non cancella i dati. Il Release (~57 MB, build ~2,5 min
+sull'M1) dà warning IL2026 su System.Text.Json, ma il trimming di default su
+nella pratica lettura (materie/domande) e scrittura (cronologia, preferenze)
+funzionano.
+
+**Icona**: `wsa.quiz.ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png`
+(da `branding/icon.svg` con angoli squadrati, senza alpha) + `<AppIcon>AppIcon</AppIcon>`
+nel csproj. Se si cambia solo la proprietà, il build incrementale non rilancia
+actool: `rm -rf wsa.quiz.ios/obj/*/net10.0-ios/*/actool`.
 
 ### Test su device fisico (adb)
 

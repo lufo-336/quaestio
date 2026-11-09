@@ -90,6 +90,7 @@ grandi per revisione e correzione. Due cose da misurare per ogni fase:
 | 2026-11-06 | Revisione | Sonnet | non misurato | non misurato | revisione del codice di Haiku (dettagli non annotati) |
 | 2026-11-06 | Correzioni | Opus | non misurato | non misurato | correzioni prima del commit `13d5615` (dettagli non annotati) |
 | 2026-11-09 | Prova sul Mac + debug | Opus | prima: non letto → dopo: 11% sessione, 70% settimana | ~1,09 $ stimati (Opus: 1,1k in, 12,9k out, 1,7M cache read, 61k cache write); 2 min 28 s API su 44 min totali | **0 modifiche al codice**. Errore di link dovuto a `obj/` vecchio dopo il cambio SDK (build pulito); la schermata bianca non si è ripresentata. iPhone 17 e iPad 9ª gen. funzionano |
+| 2026-11-09 | iPad fisico (Debug + Release AOT) | Opus | prima: non letto → dopo: 3% sessione, 71% settimana | ~1,65 $ stimati (Opus: 3,9k in, 23,4k out, 3,2M cache read, 65,8k cache write); 4 min 45 s API su 1 h 08 min totali | Nessun bug nel codice: Debug e Release (AOT + trimming) funzionano, i JSON vengono scritti nonostante i warning IL2026. **Aggiunta l'icona** che mancava (catalog `AppIcon` + `<AppIcon>` nel csproj; primo tentativo con `XSAppIconAssets` in Info.plist scartato, actool non rilanciato dal build incrementale). Quasi tutto il tempo speso a guidare la firma (Xcode 27 senza modulo per il nuovo progetto, autorizzazione dello sviluppatore sull'iPad) |
 
 Note sulla riga del 2026-11-09: la misura copre tutta la sessione (anche doc
 e questa tabella, non solo il debug). Il costo in dollari è solo un'indicazione:

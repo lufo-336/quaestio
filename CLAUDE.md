@@ -29,7 +29,8 @@ e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
 `apk-2026-11-06` (domande in inglese). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
-provato il 2026-11-09; prossimo passo iPad fisico; **WebAssembly** in roadmap.
+provato il 2026-11-09; **iPad fisico** (Apple ID gratuito, Debug e Release
+AOT) provato il 2026-11-09; **WebAssembly** in roadmap.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
 Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
