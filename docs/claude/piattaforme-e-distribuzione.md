@@ -159,7 +159,42 @@ xcrun simctl list devices available | grep -E "iPhone|iPad"
 dotnet build wsa.quiz.ios -t:Run -r iossimulator-arm64 -p:_DeviceName=:v2:udid=<UDID>
 ```
 
-Senza `-p:_DeviceName` usa il simulatore predefinito. Dati utente nella sandbox
+Senza `-p:_DeviceName` usa il simulatore predefinito.
+
+**Con Xcode 27 (verificato il 2026-11-09, Mac M1 8 GB, Xcode 27.2, SDK
+10.0.403 / workload iOS 27.1)** il comando sopra non basta:
+
+- **Simulator.app non esiste più**: il simulatore si vede da **DeviceHub**
+  (`/Applications/Xcode.app/Contents/Applications/DeviceHub.app`).
+- **`-t:Run` fallisce** (MT1008: mlaunch cerca Simulator.app). Si fa build
+  normale e poi si installa e lancia con `simctl`.
+- **Versione Xcode**: il workload 27.1 vuole Xcode 27.1; con 27.2 serve
+  `-p:ValidateXcodeVersion=false`.
+- **Dopo un cambio di SDK/workload, pulire `bin/` e `obj/` del head iOS.** Il
+  build incrementale si tiene la `libxamarin-dotnet-debug.dylib` del workload
+  vecchio (in `obj/.../nativelibraries/`) mentre rigenera `main.arm64.mm` col
+  nuovo, quindi il link fallisce con
+  `Undefined symbols: _xamarin_initialize_dynamic_registrar`.
+
+```sh
+U=<UDID>                                   # es. iPhone 17
+xcrun simctl boot $U                       # se non è già acceso
+open /Applications/Xcode.app/Contents/Applications/DeviceHub.app
+rm -rf wsa.quiz.ios/bin wsa.quiz.ios/obj   # solo dopo un cambio di SDK/workload
+dotnet build wsa.quiz.ios -r iossimulator-arm64 -p:ValidateXcodeVersion=false
+xcrun simctl install $U wsa.quiz.ios/bin/Debug/net10.0-ios/iossimulator-arm64/Wsa.Quiz.iOS.app
+xcrun simctl launch --console-pty $U it.eduits.wsaquiz   # stdout dell'app nel terminale
+xcrun simctl io $U screenshot /tmp/quaestio-ios.png      # screenshot senza toccare DeviceHub
+xcrun simctl shutdown all                                # quando si ha finito
+```
+
+Con 8 GB di RAM conviene usare **un solo simulatore**. Un primo avvio con il Mac
+sotto pressione di memoria (watchdog 0x8BADF00D nel log) ha dato schermata
+bianca; rifatto con il Mac scarico e un build pulito, l'app è partita normale.
+Il messaggio `Socket error while connecting to IDE on 127.0.0.1:10000` è
+innocuo: è il debugger che non trova l'IDE.
+
+Dati utente nella sandbox
 dell'app (restano finché non la si disinstalla dal simulatore). Il device vero
 (iPad, Apple ID gratuito, profilo di 7 giorni) è un passo successivo: lì il
 Release usa AOT + trimming, da verificare.
