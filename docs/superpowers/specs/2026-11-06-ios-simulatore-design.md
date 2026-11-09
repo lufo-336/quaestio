@@ -71,3 +71,28 @@ Budget: nessuna spesa (niente Apple Developer Program).
   (solo C#, `iossimulator-x64`); l'app vera si produce solo sul Mac.
 - Build e prova nel simulatore: **Luca sul Mac**, con i comandi esatti forniti
   da Opus.
+
+## Misure (esperimento Haiku scrive / Sonnet rivede / Opus corregge)
+
+Scopo: capire se conviene far scrivere il codice a Haiku e tenere i modelli
+grandi per revisione e correzione. Due cose da misurare per ogni fase:
+
+- **Consumo**: `/usage` (quota del piano Pro) letto **prima e dopo** la fase,
+  e `/cost` (token della sessione) a fine sessione. **Una sessione per fase**,
+  altrimenti i numeri si mescolano.
+- **Qualità**: cosa ha dovuto sistemare la fase dopo (errori di build, bug,
+  rifacimenti), così si vede quanto lavoro "costa" il codice di Haiku.
+
+| Data | Fase | Modello | `/usage` prima → dopo | `/cost` | Esito / cosa è stato corretto |
+|---|---|---|---|---|---|
+| 2026-11-06 | Spec + piano | Opus | non misurato | non misurato | spec e piano (commit `c074c4a`) |
+| 2026-11-06 | Scrittura codice | Haiku | non misurato | non misurato | head iOS + safe area (commit `13d5615`) |
+| 2026-11-06 | Revisione | Sonnet | non misurato | non misurato | revisione del codice di Haiku (dettagli non annotati) |
+| 2026-11-06 | Correzioni | Opus | non misurato | non misurato | correzioni prima del commit `13d5615` (dettagli non annotati) |
+| 2026-11-09 | Prova sul Mac + debug | Opus | non misurato | non misurato | **0 modifiche al codice**. Errore di link dovuto a `obj/` vecchio dopo il cambio SDK (build pulito); la schermata bianca non si è ripresentata. iPhone 17 e iPad 9ª gen. funzionano |
+
+Le prime righe sono ricostruite dal messaggio di commit: i consumi di quelle
+fasi sono persi. Da qui in avanti si compila la tabella durante il lavoro.
+
+Esito parziale: il codice di Haiku, dopo la revisione di Sonnet e le correzioni
+di Opus, ha funzionato al primo avvio nel simulatore senza altre modifiche.
