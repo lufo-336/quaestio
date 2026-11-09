@@ -89,7 +89,14 @@ grandi per revisione e correzione. Due cose da misurare per ogni fase:
 | 2026-11-06 | Scrittura codice | Haiku | non misurato | non misurato | head iOS + safe area (commit `13d5615`) |
 | 2026-11-06 | Revisione | Sonnet | non misurato | non misurato | revisione del codice di Haiku (dettagli non annotati) |
 | 2026-11-06 | Correzioni | Opus | non misurato | non misurato | correzioni prima del commit `13d5615` (dettagli non annotati) |
-| 2026-11-09 | Prova sul Mac + debug | Opus | non misurato | non misurato | **0 modifiche al codice**. Errore di link dovuto a `obj/` vecchio dopo il cambio SDK (build pulito); la schermata bianca non si è ripresentata. iPhone 17 e iPad 9ª gen. funzionano |
+| 2026-11-09 | Prova sul Mac + debug | Opus | prima: non letto → dopo: 11% sessione, 70% settimana | ~1,09 $ stimati (Opus: 1,1k in, 12,9k out, 1,7M cache read, 61k cache write); 2 min 28 s API su 44 min totali | **0 modifiche al codice**. Errore di link dovuto a `obj/` vecchio dopo il cambio SDK (build pulito); la schermata bianca non si è ripresentata. iPhone 17 e iPad 9ª gen. funzionano |
+
+Note sulla riga del 2026-11-09: la misura copre tutta la sessione (anche doc
+e questa tabella, non solo il debug). Il costo in dollari è solo un'indicazione:
+col Pro non si paga, conta la quota `/usage`. La riga Haiku di `/cost` (0,0005 $)
+sono chiamate interne di Claude Code, non lavoro sul codice. Quasi tutto l'input
+viene dalla cache (96%): per confrontare le fasi conviene guardare **output** e
+**quota `/usage`**.
 
 Le prime righe sono ricostruite dal messaggio di commit: i consumi di quelle
 fasi sono persi. Da qui in avanti si compila la tabella durante il lavoro.
