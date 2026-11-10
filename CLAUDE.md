@@ -34,6 +34,21 @@ AOT) provato il 2026-11-09; **WebAssembly** in roadmap.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
 Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
+## Prossima feature: WebAssembly — misurare il consumo (temporaneo)
+
+L'head WebAssembly si fa col flusso **Haiku scrive → Sonnet rivede → Opus
+corregge**, misurando ogni fase. Claude: all'inizio di ogni fase chiedi a Luca
+`/usage`, alla fine `/usage` + `/cost`.
+
+1. **Una sessione per fase**, con `/clear` o una sessione nuova in mezzo.
+2. **`/usage` all'inizio e alla fine** di ogni fase, **`/cost`** alla fine
+   (quello di inizio è il dato che finora è sempre mancato).
+3. Annotare **cosa ha dovuto sistemare la fase dopo** (build, bug, rifacimenti).
+
+I numeri **non** vanno nei doc del repo: Luca li porta su Windows, finiscono in
+`C:\Users\<utente>\dev\llm-locale` come Test 16. Finito WebAssembly, togliere
+questa sezione.
+
 ## Stack
 
 - **.NET 10** (target framework — `net10.0` su tutti e tre i csproj)
