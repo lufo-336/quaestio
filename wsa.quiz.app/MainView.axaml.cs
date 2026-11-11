@@ -387,6 +387,7 @@ public partial class MainView : UserControl
 
             _preferenze = _storage.CaricaPreferenze();
             Application.Current!.RequestedThemeVariant = _preferenze.TemaScuro ? ThemeVariant.Dark : ThemeVariant.Light;
+            Tavolozza.Applica(_preferenze.ColoreAccento);
 
             _materie = _storage.CaricaMaterie();
             var materieUtente = _contenutiUtente.CaricaMaterieUtente();

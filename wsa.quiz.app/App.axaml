@@ -8,6 +8,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://Wsa.Quiz.App/Themes/Sizes.Desktop.axaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="AccentoBrush" Color="#0078D4"/>
+            <SolidColorBrush x:Key="AccentoHoverBrush" Color="#2B90DE"/>
+            <SolidColorBrush x:Key="AccentoPressedBrush" Color="#005FB0"/>
         </ResourceDictionary>
     </Application.Resources>
 
@@ -22,24 +25,25 @@
           Qui definiamo i quattro stati (default, hover, pressed, disabled) sul
           ContentPresenter del template. I bottoni applicabili usano Classes="accent".
         -->
-        <!-- Sfondi in hex esplicito (azzurro Fluent), NON DynamicResource
-             SystemAccentColorBrush: su Android quel resource puo' risolversi in
-             un colore invisibile (bianco/trasparente), rendendo il bottone
-             abilitato invisibile (testo bianco su bianco). Vedi Trappola 6/20. -->
+        <!-- Sfondi via DynamicResource a brush applicativi (AccentoBrush), NON
+             DynamicResource SystemAccentColorBrush: su Android quel resource puo'
+             risolversi in un colore invisibile (bianco/trasparente), rendendo il bottone
+             abilitato invisibile (testo bianco su bianco). Vedi Trappola 6/20.
+             I brush sono impostati dinamicamente da Tavolozza.Applica. -->
         <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#0078D4"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
         </Style>
         <Style Selector="Button.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#2B90DE"/>
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#2B90DE"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
         </Style>
         <Style Selector="Button.accent:pressed /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#005FB0"/>
+            <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#005FB0"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
         </Style>
         <Style Selector="Button.accent:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <!-- Grigio neutro: contrasto su sfondo chiaro senza essere "vivo".

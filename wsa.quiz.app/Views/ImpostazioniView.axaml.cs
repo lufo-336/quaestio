@@ -8,9 +8,11 @@ using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
+using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
@@ -27,6 +29,19 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
 
     private StorageService? _storage;
 
+    public IReadOnlyList<ColoreSelezionabile> ColoriDisponibili { get; }
+
+    public string? ColoreSelezionato
+    {
+        get => ColoriDisponibili.FirstOrDefault(c => c.Selezionato)?.Id;
+        set
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            SelezionaColore(value);
+            Raise();
+        }
+    }
+
     private bool _temaScuro;
     public bool TemaScuro
     {
@@ -37,6 +52,8 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
             _temaScuro = value;
             Raise();
             ApplicaTema();
+            foreach (var c in ColoriDisponibili)
+                c.NotificaCambioTema();
             Salva(p => p.TemaScuro = _temaScuro);
         }
     }
@@ -44,6 +61,9 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     public ImpostazioniView()
     {
         InitializeComponent();
+        ColoriDisponibili = Tavolozza.Colori
+            .Select(c => new ColoreSelezionabile(c.Id, c.Nome, new SolidColorBrush(c.Base)))
+            .ToList();
         DataContext = this;
     }
 
@@ -63,13 +83,37 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
         _storage = storage;
         _temaScuro = preferenze.TemaScuro;
 
+        string coloreAttivo = string.IsNullOrEmpty(preferenze.ColoreAccento) ? "blu" : preferenze.ColoreAccento;
+        foreach (var c in ColoriDisponibili)
+            c.Selezionato = string.Equals(c.Id, coloreAttivo, StringComparison.OrdinalIgnoreCase);
+        if (!ColoriDisponibili.Any(c => c.Selezionato) && ColoriDisponibili.Count > 0)
+            ColoriDisponibili[0].Selezionato = true;
+
         _percorsoDati = storage.CartellaUtente;
         _contenutiEtichetta = $"{Plurale(materie.Count, Strings.Impostazioni_Materia_Uno, Strings.Impostazioni_Materia_Molti)} · " +
                               $"{Plurale(domandeAttive.Count, Strings.Impostazioni_DomandaAttiva_Uno, Strings.Impostazioni_DomandaAttiva_Molti)}";
 
         Raise(nameof(TemaScuro));
+        Raise(nameof(ColoreSelezionato));
         Raise(nameof(PercorsoDati));
         Raise(nameof(ContenutiEtichetta));
+    }
+
+    public void SelezionaColore(string id)
+    {
+        foreach (var c in ColoriDisponibili)
+            c.Selezionato = string.Equals(c.Id, id, StringComparison.OrdinalIgnoreCase);
+
+        Tavolozza.Applica(id);
+        Salva(p => p.ColoreAccento = id);
+    }
+
+    private void OnColoreClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: ColoreSelezionabile item })
+        {
+            ColoreSelezionato = item.Id;
+        }
     }
 
     private static string Plurale(int n, string singolare, string plurale)
@@ -187,6 +231,7 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     private void ApplicaTema()
     {
         Application.Current!.RequestedThemeVariant = _temaScuro ? ThemeVariant.Dark : ThemeVariant.Light;
+        Tavolozza.Riapplica();   // alcuni colori hanno una variante per il tema scuro
     }
 
     /// <summary>

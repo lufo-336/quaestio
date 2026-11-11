@@ -11,6 +11,9 @@ public class PreferenzeUtente
     public int TabIniziale { get; set; } = 0;
     public bool TemaScuro { get; set; } = false;
 
+    /// <summary>Id del colore d'accento scelto dall'utente ("blu", "viola", ...). Default: "blu".</summary>
+    public string ColoreAccento { get; set; } = "blu";
+
     /// <summary>Codice lingua ("it", "en"); vuoto = segui la lingua di sistema.</summary>
     public string Lingua { get; set; } = "";
 

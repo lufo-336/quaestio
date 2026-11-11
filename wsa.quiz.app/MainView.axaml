@@ -52,7 +52,7 @@
             <Setter Property="Background" Value="Transparent"/>
         </Style>
         <Style Selector="Button.nav.attiva Border.indicatore">
-            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
         </Style>
         <!-- Icone stile Lucide (viewBox 24, stroke 2). -->
         <Style Selector="Button.nav Path">
@@ -76,7 +76,7 @@
         <!-- Header -->
         <Border x:Name="HeaderBorder"
                 DockPanel.Dock="Top"
-                Background="#0078D4"
+                Background="{DynamicResource AccentoBrush}"
                 Padding="20,12">
             <Grid ColumnDefinitions="*,Auto">
                 <TextBlock Text="Quaestio"
