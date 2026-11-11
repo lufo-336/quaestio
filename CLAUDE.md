@@ -22,7 +22,7 @@ termine: anche Android/iOS.
 Luca sta imparando C# in parallelo a un corso. Il progetto è anche un esercizio
 didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
-## Stato attuale (2026-11-09)
+## Stato attuale (2026-11-11)
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
 e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
@@ -30,24 +30,11 @@ e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
 provato il 2026-11-09; **iPad fisico** (Apple ID gratuito, Debug e Release
-AOT) provato il 2026-11-09; **WebAssembly** in roadmap.
+AOT) provato il 2026-11-09; **WebAssembly** su `main` (head `wsa.quiz.browser`,
+dati in `localStorage`, deploy automatico su GitHub Pages), provato nel
+browser il 2026-11-10.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
 Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
-
-## Prossima feature: WebAssembly — misurare il consumo (temporaneo)
-
-L'head WebAssembly si fa col flusso **Haiku scrive → Sonnet rivede → Opus
-corregge**, misurando ogni fase. Claude: all'inizio di ogni fase chiedi a Luca
-`/usage`, alla fine `/usage` + `/cost`.
-
-1. **Una sessione per fase**, con `/clear` o una sessione nuova in mezzo.
-2. **`/usage` all'inizio e alla fine** di ogni fase, **`/cost`** alla fine
-   (quello di inizio è il dato che finora è sempre mancato).
-3. Annotare **cosa ha dovuto sistemare la fase dopo** (build, bug, rifacimenti).
-
-I numeri **non** vanno nei doc del repo: Luca li porta su Windows, finiscono in
-`C:\Users\<utente>\dev\llm-locale` come Test 16. Finito WebAssembly, togliere
-questa sezione.
 
 ## Stack
 
@@ -167,3 +154,4 @@ volta, non è ciò che si consegna. Per produrre eseguibili autonomi vedi sotto.
 24. La debug key Android e' diversa su ogni macchina
 25. `Focus()` senza `NavigationMethod` = focus invisibile
 26. Il `Padding` di uno `ScrollViewer` NON entra nell'altezza scorrevole
+27. WebAssembly: JsonSerializerIsReflectionDisabled, assembly satellite .resx (loadAllSatelliteResources) e cartella _framework su GitHub Pages (.nojekyll)

@@ -319,3 +319,48 @@ dotnet build wsa.quiz.android -c Debug -t:Build `
 
 Senza queste due proprietà il Debug usa il fast-deployment e l'APK installato
 via `adb install` crasha con `monodroid: No assemblies found ... Exiting`.
+
+## WebAssembly (browser)
+
+L'head **`wsa.quiz.browser`** (`net10.0-browser`) sta **fuori da `Wsa.Quiz.sln`**
+come `wsa.quiz.ios` e `wsa.quiz.android`, così il build della solution resta
+veloce e senza dipendenze da workload su ogni macchina.
+
+- **Controllo veloce della compilazione C#** (funziona su ogni macchina anche senza
+  workload):
+  ```sh
+  dotnet build wsa.quiz.browser
+  ```
+- **Prerequisito una tantum** per eseguire o pubblicare il bundle WebAssembly
+  completo (link di SkiaSharp/HarfBuzzSharp in `dotnet.native.wasm`):
+  ```sh
+  dotnet workload install wasm-tools      # su macOS/Linux con sudo
+  ```
+- **Server locale di prova**:
+  ```sh
+  dotnet run --project wsa.quiz.browser
+  ```
+  e aprire nel browser l'URL `http://localhost:...` stampato a terminale.
+- **Cartella statica distribuibile gratuitamente** (GitHub Pages / Cloudflare Pages):
+  ```sh
+  dotnet publish wsa.quiz.browser -c Release
+  ```
+  Output in `wsa.quiz.browser/bin/Release/net10.0-browser/browser-wasm/AppBundle/`.
+
+- **Deploy automatico su GitHub Pages (CI/CD)**:
+  Il workflow `.github/workflows/deploy-wasm.yml` compila e pubblica
+  automaticamente l'applicazione su GitHub Pages a ogni `push` sul branch `main`
+  (oppure manualmente tramite `workflow_dispatch`).
+  Il workflow:
+  1. Installa .NET SDK 10 (`actions/setup-dotnet@v4` con `dotnet-version: '10.0.x'`).
+  2. Installa il workload `wasm-tools` (`dotnet workload install wasm-tools`).
+  3. Esegue `dotnet publish wsa.quiz.browser/Wsa.Quiz.Browser.csproj -c Release -o release`.
+  4. Crea `release/wwwroot/.nojekyll` (necessario per servire la cartella `_framework/` che inizia con underscore, altrimenti Jekyll la ignora con 404).
+  5. Carica l'artefatto da `release/wwwroot` (`actions/upload-pages-artifact@v3`) e pubblica su Pages (`actions/deploy-pages@v4`).
+  
+  In `wsa.quiz.browser/wwwroot/main.js` lo splash screen HTML iniziale viene
+  rimosso (`document.querySelector('.quaestio-splash')?.remove()`) non appena il
+  runtime è inizializzato e pronto all'esecuzione di `dotnetRuntime.runMain`.
+  Nota: in `Wsa.Quiz.Browser.csproj` è abilitata la proprietà
+  `<JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>`
+  per evitare l'errore `JsonSerializerIsReflectionDisabled` su `System.Text.Json` (Trappola 27).

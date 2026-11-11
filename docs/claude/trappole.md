@@ -265,3 +265,27 @@
     tamponava proprio questo. **Soluzione**: il margine pagina va su un `Border`
     (o sul `Margin` del figlio) **dentro** lo scroll. Si vede solo se la pagina
     scorre davvero: un harness a dimensioni desktop non lo mostra.
+
+27. **WebAssembly: JsonSerializerIsReflectionDisabled, assembly satellite .resx (loadAllSatelliteResources) e cartella _framework su GitHub Pages (.nojekyll)**
+    *(scoperta 2026-11-11 con l'head browser)*:
+    - **System.Text.Json reflection**: l'SDK WebAssembly (`Microsoft.NET.Sdk.WebAssembly`)
+      disabilita di default la reflection a runtime per ridurre le dimensioni dei binari,
+      causando `InvalidOperationException: JsonSerializerIsReflectionDisabled`
+      quando si deserializzano modelli senza source generator (es. in
+      `StorageService.CaricaMaterie`). **Soluzione**: aggiungere
+      `<JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>`
+      nel `PropertyGroup` di `Wsa.Quiz.Browser.csproj`.
+    - **Assembly satellite `.resx` (localizzazione/cambio lingua)**: in `Microsoft.NET.Sdk.WebAssembly`,
+      `dotnet.js` scarica gli assembly satellite (es. `en/Wsa.Quiz.Core.resources.wasm`
+      generato da `Strings.en.resx`) solo se `config.loadAllSatelliteResources === true`.
+      Senza di esso, al cambio lingua le traduzioni dei contenuti (JSON `avares://traduzioni/en/*.json`)
+      passano in inglese ma tutta la UI (`Strings.resx`) cade in fallback sull'italiano, producendo
+      un mix linguistico. **Soluzione**: aggiungere `.withConfig({ loadAllSatelliteResources: true })`
+      prima di `.create()` nella catena di bootstrap in `wsa.quiz.browser/wwwroot/main.js`.
+    - **Cartella `_framework/` e Jekyll su GitHub Pages**: Jekyll per impostazione
+      predefinita ignora file e directory il cui nome inizia con un carattere underscore (`_`).
+      I file di bootstrap e i binari WASM di .NET risiedono in `_framework/`, perciò
+      senza un file `.nojekyll` nella root distribuita, le richieste a `_framework/dotnet.js`
+      e runtime falliscono con errore HTTP 404. **Soluzione**: includere un file
+      vuoto `.nojekyll` in `wsa.quiz.browser/wwwroot/.nojekyll` e assicurarsi che
+      venga mantenuto nell'output pubblicato (`touch release/wwwroot/.nojekyll` nel workflow CI).
