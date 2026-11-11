@@ -275,6 +275,15 @@
       `StorageService.CaricaMaterie`). **Soluzione**: aggiungere
       `<JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>`
       nel `PropertyGroup` di `Wsa.Quiz.Browser.csproj`.
+    - **...e il trimming della publish Release** (scoperto 2026-11-11 sul sito
+      pubblicato, NON con `dotnet run`/Debug che non fa trimming): riattivata la
+      reflection, il trimmer taglia comunque da `Wsa.Quiz.Core` le parti che JSON
+      usa solo via reflection. Nessun errore: la cronologia si carica ma
+      `RisultatoQuiz.Dettagli` resta **vuota in silenzio** → dettaglio partita
+      "Nessuna risposta registrata" e Statistiche "Nessuna sessione". **Soluzione**:
+      `<TrimmerRootAssembly Include="Wsa.Quiz.Core" />` nel csproj browser.
+      Verifica: `dotnet publish wsa.quiz.browser -c Release`, servire `wwwroot`
+      in locale, aprire il dettaglio di una partita.
     - **Assembly satellite `.resx` (localizzazione/cambio lingua)**: in `Microsoft.NET.Sdk.WebAssembly`,
       `dotnet.js` scarica gli assembly satellite (es. `en/Wsa.Quiz.Core.resources.wasm`
       generato da `Strings.en.resx`) solo se `config.loadAllSatelliteResources === true`.

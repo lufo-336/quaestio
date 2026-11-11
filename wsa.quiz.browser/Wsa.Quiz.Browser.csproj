@@ -21,6 +21,14 @@
     <PackageReference Include="Avalonia.Browser" Version="12.0.2" />
   </ItemGroup>
 
+  <!-- Il trimming della publish Release taglia da Wsa.Quiz.Core cio' che
+       System.Text.Json usa solo via reflection: la cronologia si caricava ma
+       RisultatoQuiz.Dettagli restava vuota (dettaglio partita e Statistiche
+       vuoti). Si tiene intera la libreria dei modelli/servizi. Trappola 27. -->
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Wsa.Quiz.Core" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\wsa.quiz.app\Wsa.Quiz.App.csproj" />
   </ItemGroup>
