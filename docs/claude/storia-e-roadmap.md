@@ -527,6 +527,8 @@ portable basta, e la toolchain (Inno Setup/MSIX) è Windows-only. Fatto il resto
   un numero da allineare a mano. Non tocca l'APK: l'head Android continua a usare
   i suoi `ApplicationVersion` / `ApplicationDisplayVersion` (verificato:
   `versionName="1.0"`, `versionCode="1"` invariati).
+  *(2026-11-11: passati a **2.0.0**; ora anche Android e iOS mostrano
+  `$(Version)` tramite `ApplicationDisplayVersion`, e `ApplicationVersion` = 2.)*
 - **About dentro Impostazioni**, non come 7ª sezione: la bottom-nav Android ha
   già 6 icone. Quattro riquadri — app+versione, contenuti caricati (stessi
   conteggi dell'header, quindi al netto delle sezioni nascoste), cartella dati

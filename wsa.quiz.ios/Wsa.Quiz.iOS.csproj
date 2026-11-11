@@ -20,8 +20,8 @@
     <AssemblyName>Wsa.Quiz.iOS</AssemblyName>
     <ApplicationId>it.eduits.wsaquiz</ApplicationId>
     <ApplicationTitle>Quaestio</ApplicationTitle>
-    <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <!-- Icona: Assets.xcassets/AppIcon.appiconset (PNG 1024x1024 opaco, angoli
          squadrati: li arrotonda iOS). Senza questa proprieta' actool non riceve
          -app-icon e l'app resta senza icona; XSAppIconAssets in Info.plist

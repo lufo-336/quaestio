@@ -119,7 +119,10 @@ release su GitHub. Prima era committato in `dist/`, e sei versioni da ~30 MB nel
 storia pesavano 75 dei 76 MB che ogni clone si portava dietro; la storia è stata
 riscritta per toglierle e `dist/` è ora nel `.gitignore`.
 
-Per pubblicare una versione nuova: `dotnet build wsa.quiz.android -c Release`, poi
+Per pubblicare una versione nuova: aumenta di 1 `ApplicationVersion` in
+`wsa.quiz.android/Wsa.Quiz.Android.csproj` (è il `versionCode`: se non cresce,
+Android rifiuta di installare l'APK sopra quello vecchio; il numero visibile viene
+da `<Version>` in `Directory.Build.props`), poi `dotnet build wsa.quiz.android -c Release`, poi
 
 ```powershell
 gh release create apk-AAAA-MM-GG `

@@ -3,10 +3,13 @@
   <!-- Versione unica per tutti i progetti della solution (step 14).
        La schermata About la legge a runtime dall'assembly, cosi' non c'e'
        un numero da tenere allineato a mano in due posti.
-       Nota: l'head Android NON eredita il versionName da qui - continua a
-       usare ApplicationVersion / ApplicationDisplayVersion nel suo csproj. -->
+       Android e iOS prendono da qui anche il numero mostrato dal sistema
+       (ApplicationDisplayVersion = $(Version) nei loro csproj); il contatore
+       intero ApplicationVersion resta nei csproj e va aumentato di 1 a ogni
+       APK/IPA pubblicato, altrimenti l'aggiornamento non si installa sopra.
+       Regola: terzo numero = correzioni, secondo = funzioni nuove. -->
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
 </Project>

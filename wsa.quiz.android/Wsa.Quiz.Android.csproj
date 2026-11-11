@@ -14,8 +14,8 @@
     <RootNamespace>Wsa.Quiz.Droid</RootNamespace>
     <AssemblyName>Wsa.Quiz.Android</AssemblyName>
     <ApplicationId>it.eduits.wsaquiz</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
 

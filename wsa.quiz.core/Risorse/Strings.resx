@@ -64,7 +64,7 @@
   <data name="Impostazioni_TemaScuro" xml:space="preserve"><value>Scuro</value></data>
   <data name="Impostazioni_TemaChiaro" xml:space="preserve"><value>Chiaro</value></data>
   <data name="Impostazioni_Informazioni" xml:space="preserve"><value>Informazioni</value></data>
-  <data name="Impostazioni_DescrizioneApp" xml:space="preserve"><value>App di quiz per lo studio del corso WsA (Web &amp; Software Architect).</value></data>
+  <data name="Impostazioni_DescrizioneApp" xml:space="preserve"><value>App per studiare con i quiz, su qualsiasi materia: puoi importare le tue domande da Gestione contenuti. È nata durante il corso WsA (Web &amp; Software Architect), per questo include già domande di informatica.</value></data>
   <data name="Impostazioni_Contenuti" xml:space="preserve"><value>Contenuti</value></data>
   <data name="Impostazioni_ContenutiNota" xml:space="preserve"><value>Le sezioni nascoste da Gestione contenuti non sono conteggiate.</value></data>
   <data name="Impostazioni_Dati" xml:space="preserve"><value>Dati</value></data>
