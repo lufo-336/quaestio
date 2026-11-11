@@ -203,6 +203,12 @@
                            Foreground="{DynamicResource SystemBaseMediumColor}"
                            Margin="20,4,20,12"/>
 
+                <!-- Le due liste (tabella desktop, card touch) stanno in un Grid: nel
+                     DockPanel solo l'ULTIMO figlio riempie lo spazio, gli altri senza Dock
+                     vanno a sinistra larghi quanto il contenuto. Senza il Grid la tabella
+                     (penultima) restava stretta e le colonne non stavano sotto
+                     l'intestazione, perche' l'ultima era la lista card nascosta. -->
+                <Grid>
                 <ScrollViewer x:Name="ScrollTabella"
                               Margin="20,0,20,0"
                               VerticalScrollBarVisibility="Auto"
@@ -390,6 +396,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </ScrollViewer>
+                </Grid>
             </DockPanel>
 
             <!-- DETTAGLIO -->

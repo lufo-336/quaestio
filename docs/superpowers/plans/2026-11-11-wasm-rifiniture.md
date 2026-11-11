@@ -123,9 +123,11 @@ la scriva in console e mostri un messaggio, lasciando l'app utilizzabile.
 ## Esito (2026-11-11)
 
 - Task 1, 2, 3: fatti da Antigravity (pipeline write → build → review), verificati nel browser.
-- Task 4 (colonne Cronologia): **non risolto**. Né lo stile `Stretch` sui `ListBoxItem`
-  né `HorizontalScrollBarVisibility="Disabled"` (sulla ListBox e su `ScrollTabella`)
-  cambiano qualcosa: modifiche annullate. Da capire se succede anche su desktop.
+- Task 4 (colonne Cronologia): la diagnosi del piano era sbagliata (stile `Stretch` e
+  `HorizontalScrollBarVisibility` non cambiavano nulla). Una diagnostica con le
+  `Bounds` ha mostrato che era stretto `ScrollTabella` stesso: nel `DockPanel` l'ultimo
+  figlio era la lista card touch (nascosta), quindi la tabella veniva agganciata a
+  sinistra. Risolto mettendo le due liste in un `Grid`. Riguardava anche il desktop.
 - Task 5: il gestore globale `Dispatcher.UIThread.UnhandledException` **non** intercetta
   l'eccezione (il runtime esce lo stesso): tolto, insieme a `MostraAnnulla`. Sostituito
   da `try/catch` nei 4 gestori file di `GestioneContenutiView` (errore mostrato sotto il
