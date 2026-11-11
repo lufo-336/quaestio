@@ -14,6 +14,14 @@ public static class AppEnv
     public static bool TouchMode { get; set; }
 
     /// <summary>
+    /// Valore usato da <see cref="App.OnFrameworkInitializationCompleted"/> quando il
+    /// lifetime e' <c>ISingleViewApplicationLifetime</c>. Default <c>true</c> (Android e iOS
+    /// sono sempre touch); l'head browser lo imposta all'avvio in base al
+    /// dispositivo (<c>true</c> su telefono/tablet, <c>false</c> su PC desktop).
+    /// </summary>
+    public static bool UsaTouchInSingleView { get; set; } = true;
+
+    /// <summary>
     /// Insets delle barre di sistema (status bar in alto, navigation bar in basso)
     /// in PIXEL FISICI. Su Android sono lette direttamente da <c>WindowInsets.systemBars()</c>
     /// nella <c>MainActivity</c>: l'<see cref="IInsetsManager"/> di Avalonia su questo

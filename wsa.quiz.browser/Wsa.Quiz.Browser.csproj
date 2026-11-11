@@ -1,0 +1,28 @@
+<!-- Head WebAssembly per il browser. Sta fuori da Wsa.Quiz.sln apposta:
+     cosi' la build della solution non richiede il workload wasm-tools. Comandi in
+     docs/claude/piattaforme-e-distribuzione.md (sezione WebAssembly). -->
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-browser</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Wsa.Quiz.Browser</RootNamespace>
+    <AssemblyName>Wsa.Quiz.Browser</AssemblyName>
+    <WasmMainJSPath>wwwroot\main.js</WasmMainJSPath>
+    <!-- L'SDK WebAssembly disabilita di default la reflection di System.Text.Json
+         (causando JsonSerializerIsReflectionDisabled in StorageService.CaricaMaterie). -->
+    <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Browser" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\wsa.quiz.app\Wsa.Quiz.App.csproj" />
+  </ItemGroup>
+
+</Project>

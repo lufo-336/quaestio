@@ -94,22 +94,35 @@ public partial class App : Application
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
         {
-            AppEnv.TouchMode = true;
-            Resources.MergedDictionaries.Add(new ResourceInclude(new Uri("avares://Wsa.Quiz.App/"))
+            AppEnv.TouchMode = AppEnv.UsaTouchInSingleView;
+            if (AppEnv.TouchMode)
             {
-                Source = new Uri("avares://Wsa.Quiz.App/Themes/Sizes.Touch.axaml")
-            });
-            // Scala globale touch: avvolgo la MainView in un LayoutTransformControl
-            // alla RADICE single-view. Qui l'host dà al wrapper un'altezza limitata
-            // (= area schermo), quindi gli ScrollViewer interni restano limitati e
-            // restano scrollabili. (Un tentativo precedente metteva il transform più
-            // in basso, dove l'altezza era illimitata → l'ultima opzione finiva
-            // irraggiungibile sotto la bottom nav; vedi commit c9a8a2d.)
-            singleView.MainView = new LayoutTransformControl
+                Resources.MergedDictionaries.Add(new ResourceInclude(new Uri("avares://Wsa.Quiz.App/"))
+                {
+                    Source = new Uri("avares://Wsa.Quiz.App/Themes/Sizes.Touch.axaml")
+                });
+                // Scala globale touch: avvolgo la MainView in un LayoutTransformControl
+                // alla RADICE single-view. Qui l'host da' al wrapper un'altezza limitata
+                // (= area schermo), quindi gli ScrollViewer interni restano limitati e
+                // restano scrollabili. (Un tentativo precedente metteva il transform piu'
+                // in basso, dove l'altezza era illimitata -> l'ultima opzione finiva
+                // irraggiungibile sotto la bottom nav; vedi commit c9a8a2d.)
+                singleView.MainView = new LayoutTransformControl
+                {
+                    LayoutTransform = new ScaleTransform(AppEnv.ScalaTouch, AppEnv.ScalaTouch),
+                    Child = new MainView()
+                };
+            }
+            else
             {
-                LayoutTransform = new ScaleTransform(AppEnv.ScalaTouch, AppEnv.ScalaTouch),
-                Child = new MainView()
-            };
+                // Browser su PC desktop: si avvolge MainView in un Border, che eredita da
+                // Decorator, cosi' SostituisciVistaPrincipale al cambio lingua continua
+                // a funzionare tramite case Decorator dec:.
+                singleView.MainView = new Border
+                {
+                    Child = new MainView()
+                };
+            }
         }
 
         base.OnFrameworkInitializationCompleted();

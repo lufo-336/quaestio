@@ -20,6 +20,13 @@ public class StorageService
     private readonly string _filePausa;
     private readonly string _filePreferenze;
 
+    /// <summary>
+    /// Se valorizzata (head WebAssembly), viene chiamata dopo ogni scrittura
+    /// (contenuto non nullo) o cancellazione (contenuto nullo) di un file utente
+    /// con il percorso assoluto completo. Su desktop, CLI, Android e iOS resta null.
+    /// </summary>
+    public static Action<string, string?>? OnFilePersisted { get; set; }
+
     private static readonly JsonSerializerOptions OpzioniScrittura = new()
     {
         WriteIndented = true
@@ -95,10 +102,13 @@ public class StorageService
     /// - Windows: %APPDATA%\WsaQuiz
     /// - macOS:   ~/Library/Application Support/WsaQuiz
     /// - Linux:   ~/.config/WsaQuiz
+    /// - Browser (WASM): /WsaQuiz (in MEMFS, sincronizzato con localStorage)
     /// </summary>
     public static string CartellaUtenteDefault()
     {
         var baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        if (string.IsNullOrEmpty(baseFolder))
+            baseFolder = "/";
         return Path.Combine(baseFolder, "WsaQuiz");
     }
 
@@ -295,6 +305,17 @@ public class StorageService
         string temp = percorso + ".tmp";
         File.WriteAllText(temp, contenuto);
         File.Move(temp, percorso, overwrite: true);
+        OnFilePersisted?.Invoke(Path.GetFullPath(percorso), contenuto);
+    }
+
+    /// <summary>
+    /// Elimina un file se esiste e notifica il listener di persistenza.
+    /// </summary>
+    internal static void EliminaFile(string percorso)
+    {
+        if (File.Exists(percorso))
+            File.Delete(percorso);
+        OnFilePersisted?.Invoke(Path.GetFullPath(percorso), null);
     }
 
     /// <summary>
@@ -439,7 +460,7 @@ public class StorageService
         pause.RemoveAll(p => p.SessioneId == sessioneId);
         if (pause.Count == 0)
         {
-            File.Delete(_filePausa);
+            EliminaFile(_filePausa);
             return;
         }
         string json = JsonSerializer.Serialize(pause, OpzioniScrittura);

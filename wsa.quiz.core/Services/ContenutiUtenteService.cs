@@ -167,7 +167,11 @@ public class ContenutiUtenteService
 
         string cartellaMateria = Path.Combine(_cartellaContenuti, "domande", materiaId);
         if (Directory.Exists(cartellaMateria))
+        {
+            foreach (var file in Directory.EnumerateFiles(cartellaMateria, "*", SearchOption.AllDirectories))
+                StorageService.EliminaFile(file);
             Directory.Delete(cartellaMateria, recursive: true);
+        }
     }
 
     // ---------------------------------------------------------------- SEZIONI ESCLUSE

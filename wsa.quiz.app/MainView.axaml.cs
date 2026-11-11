@@ -249,10 +249,10 @@ public partial class MainView : UserControl
     /// status bar e barra di navigazione di sistema, che altrimenti coprono header
     /// e bottom navigation. Le insets reali arrivano da <see cref="AppEnv.SystemBarInsetsPx"/>,
     /// popolate dalla MainActivity Android via <c>WindowInsets.systemBars()</c> (fonte
-    /// autorevole: l'InsetsManager di Avalonia qui riporta bottom=0). Su iOS nessuno
-    /// popola AppEnv: la fonte è l'InsetsManager del TopLevel, inoltrato da
-    /// <see cref="InoltraSafeAreaIos"/>. Le applico come
-    /// padding: header accent e bottom nav si estendono DIETRO le barre di sistema, ma
+    /// autorevole: l'InsetsManager di Avalonia qui riporta bottom=0). Su iOS e nel browser
+    /// mobile (quando TouchMode e' attivo) nessuno popola AppEnv: la fonte e'
+    /// l'InsetsManager del TopLevel se presente, inoltrato da <see cref="InoltraSafeAreaIos"/>.
+    /// Le applico come padding: header accent e bottom nav si estendono DIETRO le barre di sistema, ma
     /// il loro contenuto resta nell'area sicura. Solo su touch (desktop: return anticipato).
     /// </summary>
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -261,7 +261,7 @@ public partial class MainView : UserControl
         if (!AppEnv.TouchMode) return;
 
         AppEnv.SystemBarInsetsChanged += OnSystemBarInsetsChanged;
-        if (OperatingSystem.IsIOS())
+        if (OperatingSystem.IsIOS() || OperatingSystem.IsBrowser())
         {
             _insetsIos = TopLevel.GetTopLevel(this)?.InsetsManager;
             if (_insetsIos != null)

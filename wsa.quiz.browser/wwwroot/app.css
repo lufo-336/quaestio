@@ -1,0 +1,31 @@
+html, body, #out {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1e1e1e;
+    font-family: sans-serif;
+}
+
+.quaestio-splash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
+    user-select: none;
+}
+
+.quaestio-splash h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.quaestio-splash p {
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: 0;
+}
