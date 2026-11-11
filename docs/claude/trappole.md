@@ -284,6 +284,17 @@
       `<TrimmerRootAssembly Include="Wsa.Quiz.Core" />` nel csproj browser.
       Verifica: `dotnet publish wsa.quiz.browser -c Release`, servire `wwwroot`
       in locale, aprire il dettaglio di una partita.
+    - **Eccezione in un `async void` dopo una chiamata JavaScript = app morta**
+      (2026-11-11): nel browser il runtime .NET esce ("runtime already exited") e
+      la pagina va ricaricata. `Dispatcher.UIThread.UnhandledException` **non** la
+      intercetta (provato). Rimedio: `try/catch` dentro i gestori che usano
+      `StorageProvider` (schema `EsportaSicuro` di `CronologiaView`). Dopo un'eccezione
+      a metà selezione, il selettore file di Avalonia resta inerte fino al reload.
+    - **Test locale della publish e cache del browser**: `_framework/dotnet.js` non
+      ha l'hash nel nome, Chrome lo riusa e carica gli assembly della build
+      PRECEDENTE. Per ogni build nuova servire `wwwroot` su una **porta nuova**
+      (origine nuova, niente cache) e controllare il nome di `Wsa.Quiz.App.*.wasm` in
+      `performance.getEntriesByType('resource')`.
     - **Assembly satellite `.resx` (localizzazione/cambio lingua)**: in `Microsoft.NET.Sdk.WebAssembly`,
       `dotnet.js` scarica gli assembly satellite (es. `en/Wsa.Quiz.Core.resources.wasm`
       generato da `Strings.en.resx`) solo se `config.loadAllSatelliteResources === true`.

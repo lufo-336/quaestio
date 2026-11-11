@@ -139,7 +139,13 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     /// Su Android non c'e' un file manager a cui passare la cartella dati, quindi
     /// il bottone "Apri cartella" resta nascosto.
     /// </summary>
-    public bool MostraApriCartella => !AppEnv.TouchMode;
+    public bool MostraApriCartella => !AppEnv.TouchMode && !OperatingSystem.IsBrowser();
+
+    public bool MostraPercorsoDati => !OperatingSystem.IsBrowser();
+
+    public string DatiDescrizione => OperatingSystem.IsBrowser()
+        ? Strings.Impostazioni_DatiDescrizioneBrowser
+        : Strings.Impostazioni_DatiDescrizione;
 
     private static string LeggiVersione()
     {

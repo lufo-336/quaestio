@@ -252,4 +252,6 @@
   <data name="Gestione_MateriaCreata" xml:space="preserve"><value>Materia "{0}" creata con {1} domande.</value></data>
   <data name="Gestione_DomandeAggiunte" xml:space="preserve"><value>{0} domande aggiunte a "{1}", {2} duplicate saltate.</value></data>
   <data name="Cronologia_PercA" xml:space="preserve"><value>a</value></data>
+  <data name="Impostazioni_DatiDescrizioneBrowser" xml:space="preserve"><value>Cronologia, sessioni sospese, preferenze e contenuti importati sono salvati nel browser, solo su questo dispositivo. Se cancelli i dati di navigazione del sito, si perdono: per un backup usa Esporta → JSON in Cronologia.</value></data>
+  <data name="Errore_ImprevistoDettaglio" xml:space="preserve"><value>L'operazione non è andata a buon fine, ma puoi continuare a usare l'app. Dettaglio: {0}</value></data>
 </root>

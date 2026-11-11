@@ -126,11 +126,12 @@
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2">
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_Dati}" FontWeight="SemiBold"/>
-                            <TextBlock Text="{x:Static r:Strings.Impostazioni_DatiDescrizione}"
+                            <TextBlock Text="{Binding DatiDescrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
                                        Foreground="{DynamicResource SystemBaseMediumColor}"/>
                             <SelectableTextBlock Text="{Binding PercorsoDati}"
+                                                 IsVisible="{Binding MostraPercorsoDati}"
                                                  FontSize="11"
                                                  FontFamily="monospace"
                                                  TextWrapping="Wrap"

@@ -252,4 +252,6 @@
   <data name="Gestione_MateriaCreata" xml:space="preserve"><value>Subject "{0}" created with {1} questions.</value></data>
   <data name="Gestione_DomandeAggiunte" xml:space="preserve"><value>{0} questions added to "{1}", {2} duplicates skipped.</value></data>
   <data name="Cronologia_PercA" xml:space="preserve"><value>to</value></data>
+  <data name="Impostazioni_DatiDescrizioneBrowser" xml:space="preserve"><value>History, paused sessions, preferences and imported content are saved in the browser, on this device only. Clearing the site's browsing data deletes them: for a backup use Export → JSON in History.</value></data>
+  <data name="Errore_ImprevistoDettaglio" xml:space="preserve"><value>The operation did not complete, but you can keep using the app. Details: {0}</value></data>
 </root>

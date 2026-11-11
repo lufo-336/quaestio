@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
@@ -136,6 +137,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     private void MostraErrori(List<string> errori)
     {
         PannelloAnteprima.IsVisible = true;
+        Dispatcher.UIThread.Post(() => PannelloAnteprima.BringIntoView(), DispatcherPriority.Background);
         AnteprimaTitoloText.Text = string.Format(Strings.Gestione_FileNonValido, errori.Count);
         AnteprimaLista.ItemsSource = errori;
         BottoneConferma.IsVisible = false;
@@ -145,6 +147,7 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     private void MostraAnteprima(string titolo, List<Domanda> domande)
     {
         PannelloAnteprima.IsVisible = true;
+        Dispatcher.UIThread.Post(() => PannelloAnteprima.BringIntoView(), DispatcherPriority.Background);
         AnteprimaTitoloText.Text = titolo;
         AnteprimaLista.ItemsSource = domande
             .Select(d => $"[{d.Categoria}] {(d.DomandaTesto.Length <= 70 ? d.DomandaTesto : d.DomandaTesto[..70] + "…")}")
@@ -169,7 +172,16 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     private void OnSelettoreMateriaChanged(object? sender, SelectionChangedEventArgs e) =>
         BottoneImportAggiungi.IsEnabled = SelettoreMateria.SelectedItem is MateriaListItem;
 
+    // I gestori che usano il selettore file sono avvolti in try/catch (come
+    // EsportaSicuro in CronologiaView): nel browser un'eccezione che esce da un
+    // async void dopo una chiamata JavaScript chiude l'intero runtime .NET.
     private async void OnScegliFileNuovaMateriaClick(object? sender, RoutedEventArgs e)
+    {
+        try { await ScegliFileNuovaMateriaAsync(); }
+        catch (Exception ex) { EsitoNuovaMateria.Text = string.Format(Strings.Errore_ImprevistoDettaglio, ex.Message); }
+    }
+
+    private async Task ScegliFileNuovaMateriaAsync()
     {
         string nome = NomeNuovaMateria.Text?.Trim() ?? "";
         if (string.IsNullOrWhiteSpace(nome))
@@ -195,6 +207,12 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     }
 
     private async void OnScegliFileAggiungiClick(object? sender, RoutedEventArgs e)
+    {
+        try { await ScegliFileAggiungiAsync(); }
+        catch (Exception ex) { EsitoAggiungi.Text = string.Format(Strings.Errore_ImprevistoDettaglio, ex.Message); }
+    }
+
+    private async Task ScegliFileAggiungiAsync()
     {
         if (SelettoreMateria.SelectedItem is not MateriaListItem materia)
         {
@@ -244,10 +262,16 @@ public partial class GestioneContenutiView : TabellaViewBase<MateriaListItem>
     }
 
     private async void OnScaricaGuidaClick(object? sender, RoutedEventArgs e) =>
-        await ScaricaFile("avares://Wsa.Quiz.App/Assets/Guida/GUIDA_GENERAZIONE_DOMANDE.md", "GUIDA_GENERAZIONE_DOMANDE.md");
+        await ScaricaFileSicuro("avares://Wsa.Quiz.App/Assets/Guida/GUIDA_GENERAZIONE_DOMANDE.md", "GUIDA_GENERAZIONE_DOMANDE.md");
 
     private async void OnScaricaMotoreClick(object? sender, RoutedEventArgs e) =>
-        await ScaricaFile("avares://Wsa.Quiz.App/Assets/Guida/quiz-engine.js", "quiz-engine.js");
+        await ScaricaFileSicuro("avares://Wsa.Quiz.App/Assets/Guida/quiz-engine.js", "quiz-engine.js");
+
+    private async Task ScaricaFileSicuro(string uriAsset, string nomeSuggerito)
+    {
+        try { await ScaricaFile(uriAsset, nomeSuggerito); }
+        catch (Exception ex) { EsitoNuovaMateria.Text = string.Format(Strings.Errore_ImprevistoDettaglio, ex.Message); }
+    }
 
     private async Task ScaricaFile(string uriAsset, string nomeSuggerito)
     {

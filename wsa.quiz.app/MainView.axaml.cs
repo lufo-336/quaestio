@@ -146,6 +146,9 @@ public partial class MainView : UserControl
             // Evidenzia (no-op su desktop) tenuta per simmetria; AggiornaNav esce subito.
             Tabs.SelectionChanged += (_, _) => { AggiornaNav(); SalvaTabSeCambiata(); };
         }
+
+        if (OperatingSystem.IsBrowser())
+            FooterBar.IsVisible = false;
     }
 
     /// <summary>Allinea larghezza e altezza delle 4 pagine al viewport dello SwipeHost,
