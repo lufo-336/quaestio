@@ -11,6 +11,30 @@
             <SolidColorBrush x:Key="AccentoBrush" Color="#0078D4"/>
             <SolidColorBrush x:Key="AccentoHoverBrush" Color="#2B90DE"/>
             <SolidColorBrush x:Key="AccentoPressedBrush" Color="#005FB0"/>
+
+            <!-- Codice nelle domande (TestoConCodice). Font incluso nell'app
+                 (JetBrains Mono NL = senza legature: "!=" resta "!=") cosi' e'
+                 uguale ovunque, anche su WebAssembly che non ha font di sistema.
+                 Colori per tema: riquadro chiaro nel tema chiaro, tipo editor
+                 nel tema scuro. Brush, non Color (trappola 7). -->
+            <FontFamily x:Key="FontCodice">avares://Wsa.Quiz.App/Assets/Fonts#JetBrains Mono NL</FontFamily>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="CodiceSfondo" Color="#F3F4F6"/>
+                    <SolidColorBrush x:Key="CodiceBordo" Color="#DADDE2"/>
+                    <SolidColorBrush x:Key="CodiceTesto" Color="#1F1F1F"/>
+                    <SolidColorBrush x:Key="CodiceNumeri" Color="#8A8F99"/>
+                    <!-- semitrasparente: leggibile anche sui bottoni verdi/rossi -->
+                    <SolidColorBrush x:Key="ChipSfondo" Color="#1A000000"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="CodiceSfondo" Color="#1E1F24"/>
+                    <SolidColorBrush x:Key="CodiceBordo" Color="#2E3038"/>
+                    <SolidColorBrush x:Key="CodiceTesto" Color="#E6E6E6"/>
+                    <SolidColorBrush x:Key="CodiceNumeri" Color="#6C7080"/>
+                    <SolidColorBrush x:Key="ChipSfondo" Color="#26FFFFFF"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 

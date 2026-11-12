@@ -38,6 +38,8 @@
        rasterizzata con ImageMagick. -->
   <ItemGroup>
     <AvaloniaResource Include="Assets\Branding\quaestio-icon.png" />
+    <!-- Font del codice (JetBrains Mono NL, licenza OFL in Assets/Fonts/OFL.txt) -->
+    <AvaloniaResource Include="Assets\Fonts\*.ttf" />
   </ItemGroup>
 
 </Project>
