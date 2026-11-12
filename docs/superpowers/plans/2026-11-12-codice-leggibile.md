@@ -21,7 +21,7 @@
 - Trappole da rispettare: 5 (`x:DataType`), 7 (niente `DynamicResource` di tipo `Color` nei Setter), 11 (scroll innestati), 12 (`Foreground` sui bottoni accent), 15 (niente solution folder), 20 (niente `SystemAccentColorBrush`).
 - Testo malformato (backtick non chiuso) → mostrato com'è, mai eccezioni.
 - Commit **e push** alla fine di ogni task (preferenza di Luca).
-- Lavoro di volume (Task 4, 5, 7, 8) passa da `agy` (skill `antigravity`); Claude rivede il diff, compila, esegue i test.
+- Lavoro di volume (Task 4, 5, 6b, 7, 8) passa da `agy` (skill `antigravity`); Claude rivede il diff, compila, esegue i test.
 
 ## Review Focus
 
@@ -45,7 +45,8 @@
 | `wsa.quiz.app/Controls/TestoConCodice.cs` (new) | controllo che disegna i segmenti |
 | `wsa.quiz.app/Views/{Quiz,Riepilogo,CronologiaDettaglio,CategoriaDettaglio}View.axaml` (mod) | sostituzione dei `TextBlock` di testo/risposte/spiegazione |
 | `generazione-domande/strumenti/converti_codice.py` (new) | conversione one-shot Python + C# + traduzioni |
-| `domande/python/python_domande.json`, `domande/cs/csharp_domande_unificate.json`, `traduzioni/en/python.json`, `traduzioni/en/cs.json` (mod) | dati convertiti |
+| `domande/python/python_domande.json`, `domande/cs/csharp_domande_unificate.json`, `traduzioni/en/python.json`, `traduzioni/en/cs.json` (mod) | dati convertiti (Task 6) |
+| `domande/{sql,frontend,versioncontrol,restfulapi}/*.json` + traduzioni en (mod) | backtick sul codice "nudo" (Task 6b) |
 | `generazione-domande/quiz-engine.js` (mod), `generazione-domande/quiz-engine.test.js` (new) | motore + test |
 | `generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md` (mod) | guida riscritta |
 | `docs/claude/contenuti-e-dati.md`, `docs/claude/architettura-gui.md` (mod) | documentazione |
@@ -193,6 +194,31 @@
 - [ ] **Step 4:** Run `dotnet test wsa.quiz.core.tests` → PASS (tutti). Run `git diff --stat` → toccati solo i 4 JSON + script.
 - [ ] **Step 5:** avvia desktop in inglese (Impostazioni → lingua) e apri un quiz Python: le domande convertite sono in inglese (nessuna ricaduta in italiano).
 - [ ] **Step 6: commit + push** — `data: codice Python e C# nel formato a blocchi, traduzioni ri-chiavate`
+
+### Task 6b: Backtick nelle materie con codice "nudo" (agy)
+
+SQL, Frontend, Version Control (e 1 domanda REST) hanno codice scritto come testo normale o tra apici (misura 2026-11-12, solo testo domanda: SQL ~54, Frontend ~23, VC ~34, REST 1). Lavoro di giudizio, non meccanico.
+
+**Files:**
+- Modify: `generazione-domande/strumenti/converti_codice.py` (nuova modalità `--richiava`)
+- Modify: `wsa.quiz.core.tests/IntegritaDatiTests.cs`
+- Modify: `domande/{sql,frontend,versioncontrol,restfulapi}/*.json`, `traduzioni/en/{sql,frontend,versioncontrol,restfulapi}.json`
+
+**Interfaces:**
+- Consumes: formula ID e ri-chiavatura del Task 6; `TestoConCodice.Analizza` (Task 1).
+- Produces: `python3 -I generazione-domande/strumenti/converti_codice.py --richiava <materiaId> <banco_vecchio.json>` — confronta banco vecchio (es. estratto con `git show HEAD:<percorso>`) e attuale **per posizione** (stesso numero e ordine di domande, errore altrimenti), sposta ogni chiave di `traduzioni/en/<materiaId>.json` da ID vecchio a ID nuovo.
+
+- [ ] **Step 1: test che fallisce** `NessunCodiceNudo` in `IntegritaDatiTests.cs`: per domanda e risposte di queste materie, considerando **solo i segmenti `Testo`** (codice già tra backtick escluso), nessuna corrispondenza con:
+  - sql: `\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|TRUNCATE|JOIN|WHERE|GROUP BY|ORDER BY)\b` (maiuscolo, case-sensitive)
+  - frontend: `<[a-z][a-z0-9]*[ >/]|=>|document\.|addEventListener|console\.`
+  - versioncontrol: `\bgit [a-z-]+`
+  - restfulapi: `\b(GET|POST|PUT|DELETE|PATCH) /`
+  Run `dotnet test wsa.quiz.core.tests` → FAIL (elenca le domande).
+- [ ] **Step 2:** aggiungi `--richiava` allo script.
+- [ ] **Step 3 (agy, una materia per sessione):** in domanda, risposte **e spiegazione** racchiudi tra backtick il codice (istruzioni SQL, nomi di tabella/colonna dentro un'istruzione, tag e attributi HTML, proprietà CSS, comandi git con le loro opzioni, metodo+percorso HTTP); togli gli apici `'…'` usati al posto dei backtick (`'git fetch'` → `` `git fetch` ``). Le parole usate come concetto restano testo ("un revert annulla…"); il comando letterale va tra backtick ("si usa `git revert`"). Stesse modifiche, agli stessi indici, nel file inglese. Nessun'altra modifica al testo (niente riscritture: è il punto 4).
+- [ ] **Step 4:** per ogni materia: `git show HEAD:<banco> > /tmp/vecchio.json` poi `--richiava <materiaId> /tmp/vecchio.json`. Rivedi il diff a campione (≥15 domande per materia).
+- [ ] **Step 5:** Run `dotnet test wsa.quiz.core.tests` → PASS (tutti, inclusi `Traduzioni_NessunaChiaveOrfana` e `NessunFenceNonChiuso`).
+- [ ] **Step 6: commit + push** — una per materia: `data(<materia>): codice tra backtick`
 
 ### Task 7: Motore — validazione codice, lunghezze senza backtick, riferimenti al corso, `--audit` (agy)
 
