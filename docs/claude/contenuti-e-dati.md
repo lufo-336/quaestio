@@ -32,6 +32,23 @@ viaggiano con git come tutto il resto; la copia su `G:\Il mio Drive\_claude\quae
 cartella `memory` di Claude, agganciata da una junction. Vedi `_claude\LEGGIMI.md`
 sul Drive per l'assetto completo.
 
+### Convenzione codice nelle domande
+
+- **Blocchi multiriga**: racchiusi tra triple backtick con identificatore di linguaggio
+  obbligatorio (```lang ... ```). Linguaggi ammessi: `python`, `csharp`, `cpp`, `c`, `sql`,
+  `html`, `css`, `js`, `bash`, `json`, `http`.
+- **Codice inline**: racchiuso tra singoli backtick (`` `inline` ``) in domanda, risposte
+  e spiegazione.
+- **Risposte**: se sono interamente codice/output vanno tra backtick (es. `` `TypeError` ``, `` `(7, 12)` ``);
+  se sono miste (testo + codice), solo la parte di codice va tra backtick (es. ``Solleva `KeyError` ``);
+  termini usati come concetto in linguaggio naturale restano testo normale (es. `'Nessuna'`).
+- **Righe brevi**: consigliato un massimo di **~60 caratteri** per riga, per garantire la leggibilità
+  su smartphone senza obbligare a scrollare in orizzontale.
+- **Universalità**: nessun riferimento al contesto del corso (lezioni, slide, docente, dispense, compiti),
+  nemmeno dentro i commenti o i nomi di variabile nel codice.
+- Per generare o validare banchi vedi `generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md` e il motore
+  `quiz-engine.js` (`--audit`).
+
 ## Storage condiviso console ↔ GUI
 
 `StorageService` ha due costruttori:
@@ -61,8 +78,17 @@ Default cross-platform via helper statico `StorageService.CartellaUtenteDefault(
 ### Modello dati — note
 
 - `Domanda.Id` è uno **SHA256 troncato a 12 char hex** calcolato su
-  `testo|risposte|indice_corretta`. Stabile a riordini, cambia se cambia il
-  contenuto. Utile per matching cronologia/sospesi.
+  `testo|risposte|indice_corretta` (`StorageService.GeneraId`). Stabile a riordini,
+  cambia se cambia il contenuto. Utile per matching cronologia/sospesi.
+  **Nota critica sulle traduzioni**: cambiare il testo (anche solo aggiungendo backtick
+  o formattando un blocco di codice) **cambia l'ID della domanda**. Poiché le traduzioni
+  in `traduzioni/en/<materia>.json` sono indicizzate per ID, qualsiasi modifica al testo
+  richiede di **ri-chiavare le traduzioni** per evitare che diventino orfane e smettano
+  di comparire nell'app. Strumenti a supporto in `generazione-domande/strumenti/`:
+  - `converti_codice.py --richiava <materiaId> <banco_vecchio.json>`: aggiorna i file di
+    traduzione rimappando le vecchie chiavi sui nuovi ID.
+  - `coppie_it_en.py`: permette di esportare ed importare domande it/en affiancate (`esporta` / `importa`)
+    eseguendo la ri-chiavatura automatica.
 - `RisultatoQuiz.Id` è un **Guid stringa** generato in `SalvaRisultato`.
 - `OpzioniQuiz.Categorie` usa la chiave `"NomeMateria/Categoria"` per
   supportare multi-materia.

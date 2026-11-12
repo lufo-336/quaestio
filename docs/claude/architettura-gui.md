@@ -100,6 +100,46 @@ Nei `.axaml` gli stessi hex sono ancora hard-coded (XAML non legge facilmente
 costanti C# senza risorse). La centralizzazione vera richiederebbe risorse
 XAML — fuori scope finché non serve.
 
+### Rendering del testo con codice (TestoConCodice)
+
+Il controllo custom `TestoConCodice` (`wsa.quiz.app/Controls/TestoConCodice.cs`, che eredita
+da `ContentControl`) si occupa del rendering di domande, risposte e spiegazioni riconoscendo
+automaticamente codice inline e blocchi di codice. È interamente implementato in code-behind
+(senza file XAML) e sostituisce i vecchi `TextBlock` semplici in tutte le viste dell'app
+(`QuizView`, `RiepilogoView`, `CronologiaDettaglioView`, `CategoriaDettaglioView`).
+
+Funzionamento:
+- Utilizza il parser condiviso in `Wsa.Quiz.Core.Services.TestoConCodice.Analizza(testo)`
+  per suddividere la stringa in segmenti (`Testo`, `Inline`, `Blocco`).
+- **Blocchi di codice multiriga**: vengono renderizzati all'interno di un `Border` con
+  bordo arrotondato, padding e uno `ScrollViewer` configurato con scroll **esclusivamente orizzontale**
+  (`VerticalScrollBarVisibility = Disabled`). Questo garantisce che il riquadro non intercetti lo
+  scroll verticale della pagina, prevenendo anomalie di scrolling annidato (Trappola 11). All'interno
+  del blocco, una `Grid` a due colonne affianca i numeri di riga a sinistra (allineati a destra) e il
+  codice a destra (`TextWrapping = NoWrap`).
+- **Codice inline**: viene inserito come `Run` con font ridotto al 90% e background semitrasparente
+  (`ChipSfondo`), integrato negli inlines di un `TextBlock` wrapped.
+- **Supporto dinamico al cambio tema**: per evitare le limitazioni dei Setter cromatici (Trappola 7),
+  i controlli collegano i brush mediante `GetResourceObservable(chiave)` (`LegaRisorsa`),
+  aggiornandosi reattivamente quando l'utente alterna tema chiaro e tema scuro.
+
+#### Risorse grafiche per il codice (`App.axaml`)
+
+- **`FontCodice`**: `avares://Wsa.Quiz.App/Assets/Fonts#JetBrains Mono NL`. Font a larghezza fissa
+  incorporato come risorsa dell'app per assicurare un rendering identico su tutte le piattaforme
+  (inclusa WebAssembly, che non dispone di font monospazio di sistema affidabili). La variante **NL**
+  ("No Ligatures") è essenziale per il codice didattico: impedisce che operatori come `!=`, `==`, `>=`
+  o `=>` vengano uniti in legature tipografiche (es. `≠`), preservando i caratteri esatti del codice.
+- **ThemeDictionaries (`Light` e `Dark`)**:
+  - `CodiceSfondo`: sfondo del riquadro (`#F3F4F6` Light / `#1E1F24` Dark).
+  - `CodiceBordo`: bordo sottile del riquadro (`#DADDE2` Light / `#2E3038` Dark).
+  - `CodiceTesto`: colore del testo del codice nel blocco (`#1F1F1F` Light / `#E6E6E6` Dark).
+  - `CodiceNumeri`: colore attenuato dei numeri di riga (`#8A8F99` Light / `#6C7080` Dark).
+  - `ChipSfondo`: sfondo semitrasparente del codice inline (`#1A000000` Light / `#26FFFFFF` Dark).
+    Essendo semitrasparente (nero o bianco con alpha), si fonde con lo sfondo sottostante ed è
+    perfettamente leggibile sia sul fondo pagina, sia sui bottoni di risposta colorati di verde o rosso
+    nella fase di feedback (Trappola 12).
+
 ## Decisioni UX consolidate
 
 - **Home unificata** ("Caso A"): materie a sinistra (checkbox), categorie
