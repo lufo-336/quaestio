@@ -26,8 +26,8 @@
         "A blank line"
       ]
     },
-    "a09e8d134e49": {
-      "domanda": "What does the warning 'LF will be replaced by CRLF' mean on Windows?",
+    "6591c1ee1f04": {
+      "domanda": "What does the warning `LF will be replaced by CRLF` mean on Windows?",
       "spiegazione": "It is not an error: it simply confirms that Git converts line endings (LF<->CRLF) on Windows and can be ignored; files and commits remain intact.",
       "risposte": [
         "It means that text files are now corrupted and have become unreadable",
@@ -48,7 +48,7 @@
     },
     "4c68ff8554fc": {
       "domanda": "What are the four phases of a branch lifecycle?",
-      "spiegazione": "Lifecycle: create (you create the branch), develop (you add commits), merge (you bring changes back to main), delete (you remove the pointer; the commits remain).",
+      "spiegazione": "Lifecycle: create (you create the branch), develop (you add commits), merge (you bring changes back to `main`), delete (you remove the pointer; the commits remain).",
       "risposte": [
         "Create, develop, merge, delete",
         "You download the branch, modify it, push it, and finally archive it",
@@ -56,14 +56,14 @@
         "You open it, lock it, then unlock it, and finally close it"
       ]
     },
-    "adedbc8215c0": {
+    "cc39309e476b": {
       "domanda": "Why doesn't Git track empty directories, and how can this be resolved?",
-      "spiegazione": "Git tracks file contents, not directories: to force tracking of an empty directory, a conventional .gitkeep file is placed inside it.",
+      "spiegazione": "Git tracks file contents, not directories: to force tracking of an empty directory, a conventional `.gitkeep` file is placed inside it.",
       "risposte": [
         "It renames them; a hyphen is sufficient",
-        "Git tracks content, not directories: by convention, a placeholder file .gitkeep is placed inside",
+        "Git tracks content, not directories: by convention, a placeholder file `.gitkeep` is placed inside",
         "It deletes them; there is no workaround",
-        "It can only be resolved with git init"
+        "It can only be resolved with `git init`"
       ]
     },
     "6759e6c36834": {
@@ -86,24 +86,24 @@
         "Using the double slash //"
       ]
     },
-    "62ed7281c946": {
-      "domanda": "Why is the 'rm -rf' command considered one of the most dangerous?",
-      "spiegazione": "rm -rf deletes recursively and forcefully: -f suppresses warnings, and since Unix has no trash/recycle bin, files are gone immediately and cannot be recovered.",
+    "04269529e2fb": {
+      "domanda": "Why is the `rm -rf` command considered one of the most dangerous?",
+      "spiegazione": "`rm -rf` deletes recursively and forcefully: `-f` suppresses warnings, and since Unix has no trash/recycle bin, files are gone immediately and cannot be recovered.",
       "risposte": [
         "Because it only runs on macOS",
         "Because it asks for too many confirmations",
         "Because it is very slow",
-        "Because -f suppresses warnings and in Unix there is no trash: files disappear immediately and cannot be recovered"
+        "Because `-f` suppresses warnings and in Unix there is no trash: files disappear immediately and cannot be recovered"
       ]
     },
-    "26df5255ff20": {
-      "domanda": "Why is git revert used to undo a commit that has already been pushed, instead of git reset?",
-      "spiegazione": "On a shared branch, reset is not used (as it rewrites others' history): git revert adds a commit that undoes the effect, preserving the history.",
+    "242ad41d1c4d": {
+      "domanda": "Why is `git revert` used to undo a commit that has already been pushed, instead of `git reset`?",
+      "spiegazione": "On a shared branch, reset is not used (as it rewrites others' history): `git revert` adds a commit that undoes the effect, preserving the history.",
       "risposte": [
         "Reset deletes the branch",
         "Reset is slower",
         "Revert asks for a password",
-        "Because git revert creates a new commit that undoes the effect of the previous one, preserving the shared history"
+        "Because `git revert` creates a new commit that undoes the effect of the previous one, preserving the shared history"
       ]
     },
     "3d2eeda19840": {
@@ -126,9 +126,9 @@
         "Only the chosen license for the project and its terms of use"
       ]
     },
-    "70f804e1ea98": {
-      "domanda": "What does HEAD represent in Git?",
-      "spiegazione": "HEAD points to the current active position: usually to a branch, but it can also point directly to a commit (detached HEAD).",
+    "49654204966a": {
+      "domanda": "What does `HEAD` represent in Git?",
+      "spiegazione": "`HEAD` points to the current active position: usually to a branch, but it can also point directly to a commit (detached `HEAD`).",
       "risposte": [
         "The absolute first commit",
         "The main remote server",
@@ -136,9 +136,9 @@
         "The current active point in the repository history"
       ]
     },
-    "98b9f4a92356": {
-      "domanda": "What are remote tracking branches (e.g., origin/main)?",
-      "spiegazione": "Remote tracking branches (origin/main, etc.) record the last known state of the remote; you do not commit to them, they are updated via fetch/pull.",
+    "09779248fcff": {
+      "domanda": "What are remote tracking branches (e.g., `origin/main`)?",
+      "spiegazione": "Remote tracking branches (`origin/main`, etc.) record the last known state of the remote; you do not commit to them, they are updated via fetch/pull.",
       "risposte": [
         "Backup copies of files",
         "Release tags",
@@ -146,14 +146,14 @@
         "Branches where you commit"
       ]
     },
-    "b761c3222adc": {
+    "c3fb9bd392e3": {
       "domanda": "What is needed to copy a directory along with all its contents?",
-      "spiegazione": "cp alone copies files; for a directory and all its contents, cp -r (recursive) is required.",
+      "spiegazione": "`cp` alone copies files; for a directory and all its contents, `cp -r` (recursive) is required.",
       "risposte": [
-        "The -r flag, i.e., cp -r source/ destination/",
-        "The touch command on the directory",
-        "The simple cp command",
-        "The mv command with the addition of the -r flag"
+        "The `-r` flag, i.e., `cp -r source/ destination/`",
+        "The `touch` command on the directory",
+        "The simple `cp` command",
+        "The `mv` command with the addition of the `-r` flag"
       ]
     },
     "fdb8211d943a": {
@@ -186,9 +186,9 @@
         "Only possible as root"
       ]
     },
-    "d03910533b64": {
-      "domanda": "What is the risk of a detached HEAD?",
-      "spiegazione": "In a detached HEAD state, commits do not belong to any branch: switching branches makes them unreachable and Git will eventually garbage-collect them.",
+    "3218e1d748f5": {
+      "domanda": "What is the risk of a detached `HEAD`?",
+      "spiegazione": "In a detached `HEAD` state, commits do not belong to any branch: switching branches makes them unreachable and Git will eventually garbage-collect them.",
       "risposte": [
         "Blocks others' pushes",
         "Commits made in that state are not attached to a branch, and switching branches makes them unreachable",
@@ -196,11 +196,11 @@
         "Slows down commands"
       ]
     },
-    "77485b6c1f84": {
+    "6bfe7e20a49f": {
       "domanda": "What should you never do on a shared branch?",
       "spiegazione": "Never force-push on a shared branch: it rewrites the remote history and breaks everyone else's copies.",
       "risposte": [
-        "Perform a normal git pull operation from the remote",
+        "Perform a normal `git pull` operation from the remote",
         "Download updates from the server using the `git fetch` command",
         "Check the repository status with the `git status` command",
         "A force push"
@@ -216,9 +216,9 @@
         "Ctrl+C"
       ]
     },
-    "15fccab2c116": {
-      "domanda": "What does the 'refactor' type indicate in Conventional Commits?",
-      "spiegazione": "'refactor' is a code change that does not add features or fix bugs; 'chore' refers to maintenance and configuration.",
+    "911dcd5299a5": {
+      "domanda": "What does the `refactor` type indicate in Conventional Commits?",
+      "spiegazione": "`refactor` is a code change that does not add features or fix bugs; `chore` refers to maintenance and configuration.",
       "risposte": [
         "An urgent fix for a critical bug in production",
         "A code change that does not fix a bug or add a feature",
@@ -226,9 +226,9 @@
         "A change to documentation only"
       ]
     },
-    "34a6fbcec40b": {
-      "domanda": "What does 'git fetch' do?",
-      "spiegazione": "git fetch downloads new data from the remote and updates tracking branches, but does not touch your local files/branches: it is a safety check.",
+    "5342911b4f17": {
+      "domanda": "What does `git fetch` do?",
+      "spiegazione": "`git fetch` downloads new data from the remote and updates tracking branches, but does not touch your local files/branches: it is a safety check.",
       "risposte": [
         "Opens a new pull request directly on the GitHub website",
         "Downloads new data from the remote and immediately merges it into the local branch",
@@ -248,7 +248,7 @@
     },
     "2852b9a9e5fd": {
       "domanda": "Why do pull requests exist?",
-      "spiegazione": "PRs prevent changes from being merged into main without oversight: at least one reviewer examines them, and a permanent record with comments is kept.",
+      "spiegazione": "PRs prevent changes from being merged into `main` without oversight: at least one reviewer examines them, and a permanent record with comments is kept.",
       "risposte": [
         "For review before merging",
         "To automatically delete branches after they are created",
@@ -256,24 +256,24 @@
         "To deliberately slow down the work of other team members"
       ]
     },
-    "e4e5e22587ac": {
-      "domanda": "What characterizes a detached HEAD?",
-      "spiegazione": "A detached HEAD occurs when HEAD points directly to a commit (e.g., checkout of a hash or tag) rather than to a branch.",
+    "dfd993db3e52": {
+      "domanda": "What characterizes a detached `HEAD`?",
+      "spiegazione": "A detached `HEAD` occurs when `HEAD` points directly to a commit (e.g., checkout of a hash or tag) rather than to a branch.",
       "risposte": [
         "Push is blocked",
-        "HEAD points directly to a specific commit instead of a branch (e.g., checkout of a hash)",
-        "main has been deleted",
+        "`HEAD` points directly to a specific commit instead of a branch (e.g., checkout of a hash)",
+        "`main` has been deleted",
         "The repo is corrupted"
       ]
     },
-    "841453c3e559": {
+    "df86e9832e8e": {
       "domanda": "To undo a local, unshared commit while keeping the changes staged?",
-      "spiegazione": "git reset --soft HEAD~1 undoes the last local commit while leaving the changes in the staging area.",
+      "spiegazione": "`git reset --soft HEAD~1` undoes the last local commit while leaving the changes in the staging area.",
       "risposte": [
-        "Force push everything to the remote using git push --force",
-        "Create a new revert commit with the git revert HEAD command",
-        "Re-clone the project from scratch using git clone",
-        "git reset --soft HEAD~1"
+        "Force push everything to the remote using `git push --force`",
+        "Create a new revert commit with the `git revert HEAD` command",
+        "Re-clone the project from scratch using `git clone`",
+        "`git reset --soft HEAD~1`"
       ]
     },
     "5bc20a9ebcd6": {
@@ -286,9 +286,9 @@
         "That the history is deleted at regular time intervals"
       ]
     },
-    "1f5f0f7b848c": {
-      "domanda": "Inside the .git folder, what is the purpose of the objects/ subfolder?",
-      "spiegazione": "The objects/ folder stores all content (files, directory trees, commits) as compressed data.",
+    "2be987341604": {
+      "domanda": "Inside the `.git` folder, what is the purpose of the `objects/` subfolder?",
+      "spiegazione": "The `objects/` folder stores all content (files, directory trees, commits) as compressed data.",
       "risposte": [
         "Keeps a log of commands",
         "Stores file contents, directory structures, and commits as compressed data",
@@ -306,19 +306,19 @@
         "If it has no branch"
       ]
     },
-    "b11dc1fa7946": {
-      "domanda": "How do you apply .gitignore rules to many files that were already committed by mistake?",
-      "spiegazione": "The index is cleared with git rm -r --cached . (files remain on disk), everything is re-added with git add . (ignored files are excluded), and then a new commit is made.",
+    "e5e2c2bdd9fd": {
+      "domanda": "How do you apply `.gitignore` rules to many files that were already committed by mistake?",
+      "spiegazione": "The index is cleared with `git rm -r --cached .` (files remain on disk), everything is re-added with `git add .` (ignored files are excluded), and then a new commit is made.",
       "risposte": [
         "It is not possible",
-        "After committing the work: git rm -r --cached . then git add . and finally a new commit",
+        "After committing the work: `git rm -r --cached .` then `git add .` and finally a new commit",
         "The repo is deleted",
-        ".gitignore is renamed"
+        "`.gitignore` is renamed"
       ]
     },
     "d9028c11d533": {
       "domanda": "Which Windows terminal includes Git and a Unix shell?",
-      "spiegazione": "Git Bash is a Windows terminal that provides the git command and various Unix utilities not available in the Command Prompt.",
+      "spiegazione": "Git Bash is a Windows terminal that provides the `git` command and various Unix utilities not available in the Command Prompt.",
       "risposte": [
         "Paint",
         "Git Bash",
@@ -346,14 +346,14 @@
         "To create branches"
       ]
     },
-    "59c9ff096bb8": {
+    "b0e7b81c4773": {
       "domanda": "What are the 'three levels of Git' described in the remote repository notes?",
-      "spiegazione": "The three levels: Remote (source of truth on GitHub), Remote-Tracking (origin/main, a local mirror updated only by fetch), and Local (your main).",
+      "spiegazione": "The three levels: Remote (source of truth on GitHub), Remote-Tracking (`origin/main`, a local mirror updated only by fetch), and Local (your `main`).",
       "risposte": [
-        "Remote, Remote-Tracking (origin/main), and Local",
+        "Remote, Remote-Tracking (`origin/main`), and Local",
         "frontend, backend, database",
         "The three phases of draft, review, and then production",
-        "init, add, commit"
+        "`init`, `add`, `commit`"
       ]
     },
     "03dfd7c8d775": {
@@ -366,9 +366,9 @@
         "> appends, >> overwrites"
       ]
     },
-    "8e0cfb21a1a6": {
-      "domanda": "In a file with conflicts, what does the section under '<<<<<<< HEAD' represent?",
-      "spiegazione": "The section between '<<<<<<< HEAD' and '=======' is the version of the current branch; under '=======' is the incoming version.",
+    "89d207d46c4e": {
+      "domanda": "In a file with conflicts, what does the section under `<<<<<<< HEAD` represent?",
+      "spiegazione": "The section between `<<<<<<< HEAD` and `=======` is the version of the current branch; under `=======` is the incoming version.",
       "risposte": [
         "The incoming version from the other branch being merged",
         "The current branch",
@@ -386,29 +386,29 @@
         "Consistency: everyone uses the same style for every commit"
       ]
     },
-    "2eb9638dcb5a": {
-      "domanda": "How do you undo the very first commit when 'git reset --soft HEAD~1' doesn't work?",
-      "spiegazione": "reset --soft HEAD~1 cannot undo the first commit (there is no parent): in that case, use git update-ref -d HEAD.",
+    "65be4004df7d": {
+      "domanda": "How do you undo the very first commit when `git reset --soft HEAD~1` doesn't work?",
+      "spiegazione": "`reset --soft HEAD~1` cannot undo the first commit (there is no parent): in that case, use `git update-ref -d HEAD`.",
       "risposte": [
         "By manually deleting the hidden configuration files folder",
         "By pushing the commit to the remote and then downloading it again with a pull",
-        "With git update-ref -d HEAD",
-        "By simply running the exact same git reset command again"
+        "With `git update-ref -d HEAD`",
+        "By simply running the exact same `git reset` command again"
       ]
     },
-    "a29e6ef7e8c7": {
+    "a509e4930c4d": {
       "domanda": "What is the correct order of the 'forward flow' to save changes?",
-      "spiegazione": "Forward flow: you edit the file (working dir), git add (staging), git commit (local repo), git push (remote).",
+      "spiegazione": "Forward flow: you edit the file (working dir), `git add` (staging), `git commit` (local repo), `git push` (remote).",
       "risposte": [
-        "push, commit, add, edit",
+        "`push`, `commit`, `add`, `edit`",
         "First commit, then push, then add, and finally edit the file",
-        "Edit file, git add, git commit, git push",
-        "add, push, commit, edit"
+        "Edit file, `git add`, `git commit`, `git push`",
+        "`add`, `push`, `commit`, `edit`"
       ]
     },
-    "c60036d30b7f": {
-      "domanda": "What does the -r flag do in 'grep -r searchterm folder/'?",
-      "spiegazione": "grep -r searches recursively through all files in a folder and its subfolders; -i ignores case.",
+    "942d19ae33dc": {
+      "domanda": "What does the `-r` flag do in `grep -r searchterm folder/`?",
+      "spiegazione": "`grep -r` searches recursively through all files in a folder and its subfolders; `-i` ignores case.",
       "risposte": [
         "Ignores case differences completely",
         "Counts matches",
@@ -416,9 +416,9 @@
         "Searches recursively"
       ]
     },
-    "a6b471ef73df": {
-      "domanda": "What is a README file?",
-      "spiegazione": "The README is the project's 'front door': it explains what it does, why it exists, and how to use it.",
+    "cb1be0890bcf": {
+      "domanda": "What is a `README` file?",
+      "spiegazione": "The `README` is the project's 'front door': it explains what it does, why it exists, and how to use it.",
       "risposte": [
         "The first thing you see when visiting a project: it explains what it does, why it exists, and how to use it",
         "A list of known bugs",
@@ -426,13 +426,13 @@
         "A Git config file"
       ]
     },
-    "e7d67b4411c4": {
-      "domanda": "Where does GitHub look for the README first?",
-      "spiegazione": "GitHub looks for the README in this order: .github folder, then the root (most common location), and finally the docs folder.",
+    "d18de21a5138": {
+      "domanda": "Where does GitHub look for the `README` first?",
+      "spiegazione": "GitHub looks for the `README` in this order: `.github` folder, then the root (most common location), and finally the `docs` folder.",
       "risposte": [
         "In the repository root, which is also the most commonly used location",
-        "In the .github folder",
-        "Exclusively inside the docs folder of the main project",
+        "In the `.github` folder",
+        "Exclusively inside the `docs` folder of the main project",
         "In the temp folder"
       ]
     },
@@ -446,14 +446,14 @@
         "A folder on the server"
       ]
     },
-    "78362761088d": {
+    "17b09a25fbff": {
       "domanda": "Which command displays the history with an ASCII graph of all branches?",
-      "spiegazione": "'git log --oneline --graph --all' draws the ASCII graph of branches and merges for all branches.",
+      "spiegazione": "`git log --oneline --graph --all` draws the ASCII graph of branches and merges for all branches.",
       "risposte": [
-        "git show HEAD",
-        "git status",
-        "git diff HEAD",
-        "git log --oneline --graph --all"
+        "`git show HEAD`",
+        "`git status`",
+        "`git diff HEAD`",
+        "`git log --oneline --graph --all`"
       ]
     },
     "88699e9bcd82": {
@@ -486,39 +486,39 @@
         "A single central server"
       ]
     },
-    "26df139a24d1": {
+    "6f7a340bb6f7": {
       "domanda": "Where are personal ignore rules, valid only on your own machine, placed?",
-      "spiegazione": ".gitignore is shared with the team; for local-only rules, .git/info/exclude is used, which is never committed nor shared.",
+      "spiegazione": "`.gitignore` is shared with the team; for local-only rules, `.git/info/exclude` is used, which is never committed nor shared.",
       "risposte": [
-        "In the .git/info/exclude file, never shared",
-        "In a dedicated README file",
-        "In the config.json file",
-        "Directly inside the .gitignore file shared with the team"
+        "In the `.git/info/exclude` file, never shared",
+        "In a dedicated `README` file",
+        "In the `config.json` file",
+        "Directly inside the `.gitignore` file shared with the team"
       ]
     },
-    "1c07751c9882": {
-      "domanda": "What does the '**/debug/' pattern indicate in a .gitignore file?",
-      "spiegazione": "The recursive ** pattern matches directories at any depth: **/debug/ ignores every directory named debug, regardless of its location.",
+    "4c9fe14d55d0": {
+      "domanda": "What does the `**/debug/` pattern indicate in a `.gitignore` file?",
+      "spiegazione": "The recursive `**` pattern matches directories at any depth: `**/debug/` ignores every directory named `debug`, regardless of its location.",
       "risposte": [
-        "Only the debug folder located in the project root",
-        "Every debug folder at any depth",
+        "Only the `debug` folder located in the project root",
+        "Every `debug` folder at any depth",
         "All files whose name contains the word debug within it",
         "A single text file named exactly debug"
       ]
     },
-    "d09403810597": {
+    "5482e6a66922": {
       "domanda": "After rebasing a branch that has already been pushed, what is needed to update the remote?",
       "spiegazione": "After a rebase, the histories diverge (different hashes): a force push is required. This is why it is dangerous on team branches.",
       "risposte": [
-        "A simple git pull",
-        "A new git clone",
+        "A simple `git pull`",
+        "A new `git clone`",
         "No action is needed, as the remote updates automatically",
         "A force push, because the histories are divergent"
       ]
     },
-    "db4f3087a541": {
-      "domanda": "What does the --cached flag do in 'git rm --cached filename'?",
-      "spiegazione": "--cached removes the file from the index (Git stops tracking it) but leaves it on disk.",
+    "807c9e285f23": {
+      "domanda": "What does the `--cached` flag do in `git rm --cached filename`?",
+      "spiegazione": "`--cached` removes the file from the index (Git stops tracking it) but leaves it on disk.",
       "risposte": [
         "Removes the file from the index but leaves it on disk",
         "Moves the selected file into another branch of the repository",
@@ -526,19 +526,19 @@
         "Deletes the file from disk"
       ]
     },
-    "c5837f8fd4b1": {
+    "b28592f6e5ff": {
       "domanda": "Which command should always be executed first to check the repository status?",
-      "spiegazione": "git status shows what is staged, modified, and untracked: it should be executed before making changes.",
+      "spiegazione": "`git status` shows what is staged, modified, and untracked: it should be executed before making changes.",
       "risposte": [
-        "git merge",
-        "git push",
-        "git status",
-        "git clone"
+        "`git merge`",
+        "`git push`",
+        "`git status`",
+        "`git clone`"
       ]
     },
     "107cd4d094ff": {
       "domanda": "Which branch naming convention does the handout indicate?",
-      "spiegazione": "Use short, lowercase names (e.g., feature/user-login), with words separated by '-' or '/', and no spaces or uppercase letters.",
+      "spiegazione": "Use short, lowercase names (e.g., `feature/user-login`), with words separated by '-' or '/', and no spaces or uppercase letters.",
       "risposte": [
         "Short, lowercase names, with words separated by a hyphen or slash",
         "Only sequential numbers",
@@ -546,13 +546,13 @@
         "Always the author's name"
       ]
     },
-    "28c13033ac97": {
+    "496fa61cbf80": {
       "domanda": "What is the key difference between merge and rebase when updating a branch?",
-      "spiegazione": "Merge adds a merge commit (non-linear history, safe for shared branches); rebase replays commits onto main (linear history) but rewrites the hashes.",
+      "spiegazione": "Merge adds a merge commit (non-linear history, safe for shared branches); rebase replays commits onto `main` (linear history) but rewrites the hashes.",
       "risposte": [
         "They are identical",
         "Rebase is safe for shared branches",
-        "Merge creates a merge commit and non-linear history; rebase replays commits onto main, rewriting the hashes",
+        "Merge creates a merge commit and non-linear history; rebase replays commits onto `main`, rewriting the hashes",
         "Merge rewrites the hashes"
       ]
     },
@@ -566,12 +566,12 @@
         "Ctrl+Z"
       ]
     },
-    "b0b5e778e79d": {
+    "b8b0c76e22a3": {
       "domanda": "Which of these is a correct naming format for a feature branch?",
-      "spiegazione": "Common formats: feature/user-login, bugfix/missing-header, docs/update-readme: lowercase, no spaces, with / or -.",
+      "spiegazione": "Common formats: `feature/user-login`, `bugfix/missing-header`, `docs/update-readme`: lowercase, no spaces, with / or -.",
       "risposte": [
         "Feature Login",
-        "feature/user-login",
+        "`feature/user-login`",
         "FEATURE_LOGIN",
         "login branch 1"
       ]
@@ -586,51 +586,51 @@
         "An offline compressed copy"
       ]
     },
-    "22cc6cf7291a": {
+    "8b7eb22d65a2": {
       "domanda": "Which pull variant maintains a linear history by avoiding a merge commit?",
-      "spiegazione": "git pull --rebase replays your local commits on top of the remote ones, maintaining a linear history without merge commits.",
+      "spiegazione": "`git pull --rebase` replays your local commits on top of the remote ones, maintaining a linear history without merge commits.",
       "risposte": [
-        "git pull --rebase",
-        "git pull --squash",
-        "git pull --force",
-        "git pull --all"
+        "`git pull --rebase`",
+        "`git pull --squash`",
+        "`git pull --force`",
+        "`git pull --all`"
       ]
     },
-    "6af3b45535e1": {
-      "domanda": "What does 'git branch -vv' show in addition to 'git branch'?",
-      "spiegazione": "git branch -vv shows for each local branch the commit details and the upstream status (the linked tracking branch).",
+    "e640642579c2": {
+      "domanda": "What does `git branch -vv` show in addition to `git branch`?",
+      "spiegazione": "`git branch -vv` shows for each local branch the commit details and the upstream status (the linked tracking branch).",
       "risposte": [
         "Only the list of local branch names without any additional information",
         "Details and upstream",
-        "Only HEAD",
+        "Only `HEAD`",
         "Exclusively the branches located on the shared remote server"
       ]
     },
-    "173960df0eb7": {
+    "e4be8f976819": {
       "domanda": "During the installation of Git for Windows, what value should be set for the default branch?",
-      "spiegazione": "The installation guide indicates to set 'main' as the default branch name.",
+      "spiegazione": "The installation guide indicates to set `main` as the default branch name.",
       "risposte": [
-        "master",
-        "trunk",
-        "main",
-        "dev"
+        "`master`",
+        "`trunk`",
+        "`main`",
+        "`dev`"
       ]
     },
-    "6e6106cd8755": {
-      "domanda": "What does 'git diff --staged' show?",
-      "spiegazione": "git diff --staged compares the staging area with the last commit: it shows what has already been staged.",
+    "9c322db8037c": {
+      "domanda": "What does `git diff --staged` show?",
+      "spiegazione": "`git diff --staged` compares the staging area with the last commit: it shows what has already been staged.",
       "risposte": [
         "Changes in staging compared to the last commit",
         "Unstaged changes",
-        "Differences between the HEAD branch and the remote branch",
+        "Differences between the `HEAD` branch and the remote branch",
         "Ignored files"
       ]
     },
-    "0deb9d445026": {
-      "domanda": "What does the HEAD file record inside .git?",
-      "spiegazione": "HEAD records which branch (or commit) is currently active; refs/ contains branch and tag names, config holds settings.",
+    "a5766b93d793": {
+      "domanda": "What does the HEAD file record inside `.git`?",
+      "spiegazione": "`HEAD` records which branch (or commit) is currently active; `refs/` contains branch and tag names, `config` holds settings.",
       "risposte": [
-        "The full URL of the remote repository named origin",
+        "The full URL of the remote repository named `origin`",
         "The name and email of the author of the last commit",
         "The list of all files ignored by Git",
         "The current branch"
@@ -646,14 +646,14 @@
         "Restore works only offline"
       ]
     },
-    "2dbac1a225ec": {
+    "d0adb652cde0": {
       "domanda": "On GitHub, what is the name of the default branch for new repositories?",
-      "spiegazione": "GitHub uses 'main' as the default branch; if git init creates 'master', it should be renamed to main (git branch -M main).",
+      "spiegazione": "GitHub uses `main` as the default branch; if `git init` creates `master`, it should be renamed to `main` (`git branch -M main`).",
       "risposte": [
-        "trunk",
-        "base",
-        "main",
-        "master"
+        "`trunk`",
+        "`base`",
+        "`main`",
+        "`master`"
       ]
     },
     "f925f0b34211": {
@@ -666,13 +666,13 @@
         "To describe the image: screen readers use it for people who cannot see it"
       ]
     },
-    "0e2074c2f7fa": {
+    "4299673ad474": {
       "domanda": "Where are GitHub issues stored?",
       "spiegazione": "Issues are a GitHub feature: they are not in the local repository nor do they appear in the commit history; their number is displayed with the # symbol.",
       "risposte": [
-        "In a hidden branch called issues",
-        "In the local .git folder",
-        "Inside the project's README file",
+        "In a hidden branch called `issues`",
+        "In the local `.git` folder",
+        "Inside the project's `README` file",
         "Only on GitHub: they are not in the local repo nor in the commit history"
       ]
     },
@@ -686,9 +686,9 @@
         "Summary line <= 50 characters, blank line, then explanation"
       ]
     },
-    "347a3b742521": {
-      "domanda": "What does the command 'git log --author=\"Maria\"' filter?",
-      "spiegazione": "git log --author=\"Maria\" shows only the commits made by the specified author.",
+    "c33d48346e2f": {
+      "domanda": "What does the command `git log --author=\"Maria\"` filter?",
+      "spiegazione": "`git log --author=\"Maria\"` shows only the commits made by the specified author.",
       "risposte": [
         "All branches that contain the letter M in the name",
         "Commits made by a specific author",
@@ -696,14 +696,14 @@
         "The largest files"
       ]
     },
-    "25ee18d1a650": {
+    "3a7d3cfaa9c1": {
       "domanda": "How should the file be named and what is the most common location?",
-      "spiegazione": "It should be named README.md in all uppercase; the most common location is the root of the repository, where GitHub automatically detects and displays it.",
+      "spiegazione": "It should be named `README.md` in all uppercase; the most common location is the root of the repository, where GitHub automatically detects and displays it.",
       "risposte": [
-        "README.md in all uppercase in the repo root",
-        "A file named Readme placed inside the .git hidden folder",
-        "index.md in the home directory",
-        "readme.txt in the docs folder"
+        "`README.md` in all uppercase in the repo root",
+        "A file named Readme placed inside the `.git` hidden folder",
+        "`index.md` in the home directory",
+        "`readme.txt` in the `docs` folder"
       ]
     },
     "3db0e952a3ec": {
@@ -716,24 +716,24 @@
         "cd /"
       ]
     },
-    "49b8ab84c7cc": {
-      "domanda": "What does the git init command create in a directory?",
-      "spiegazione": "git init creates the hidden .git directory in the project: that directory is the repository.",
+    "c204848a44bd": {
+      "domanda": "What does the `git init` command create in a directory?",
+      "spiegazione": "`git init` creates the hidden `.git` directory in the project: that directory is the repository.",
       "risposte": [
         "A new personal account on the GitHub platform",
         "A compressed backup copy of all files present",
-        "A README file automatically compiled with the title",
-        "The .git directory"
+        "A `README` file automatically compiled with the title",
+        "The `.git` directory"
       ]
     },
-    "111f54175105": {
-      "domanda": "What is the difference between 'git branch -d' and 'git branch -D'?",
-      "spiegazione": "-d is safe delete (fails if there are unmerged commits); -D forces deletion even of an unmerged branch.",
+    "61f547bc6a4c": {
+      "domanda": "What is the difference between `git branch -d` and `git branch -D`?",
+      "spiegazione": "`-d` is safe delete (fails if there are unmerged commits); `-D` forces deletion even of an unmerged branch.",
       "risposte": [
-        "-d is a safe deletion, -D forces deletion even if it hasn't been merged",
-        "-D creates a branch instead of deleting it completely",
+        "`-d` is a safe deletion, `-D` forces deletion even if it hasn't been merged",
+        "`-D` creates a branch instead of deleting it completely",
         "There is no difference",
-        "-d only works online"
+        "`-d` only works online"
       ]
     },
     "2936516b6bf7": {
@@ -756,8 +756,8 @@
         "init, add, commit, and push"
       ]
     },
-    "c9475e647a28": {
-      "domanda": "What does 'git merge --squash feature-branch' do?",
+    "fbbe7caee038": {
+      "domanda": "What does `git merge --squash feature-branch` do?",
       "spiegazione": "Squash & merge condenses all commits from the branch into a single commit: linear history without noise, but atomic history is lost.",
       "risposte": [
         "Performs an automatic push",
@@ -766,9 +766,9 @@
         "Creates two parents"
       ]
     },
-    "b26c6f897901": {
-      "domanda": "What does the -u flag do in 'git push -u origin main'?",
-      "spiegazione": "-u (--set-upstream) links the local branch to the remote one: it is executed once, then only 'git push' is needed.",
+    "da04309bfba6": {
+      "domanda": "What does the `-u` flag do in `git push -u origin main`?",
+      "spiegazione": "`-u` (`--set-upstream`) links the local branch to the remote one: it is executed once, then only `git push` is needed.",
       "risposte": [
         "Forces the rewriting of the history present on the remote repository",
         "Updates the Git installation to the latest available version",
@@ -796,14 +796,14 @@
         "A failed commit"
       ]
     },
-    "fd3acf602f45": {
+    "1bead5db11b8": {
       "domanda": "Which command opens the interactive editor to squash commits?",
-      "spiegazione": "git rebase -i main opens the interactive editor where you change 'pick' to 'squash' to combine commits.",
+      "spiegazione": "`git rebase -i main` opens the interactive editor where you change `pick` to `squash` to combine commits.",
       "risposte": [
-        "git squash main",
-        "git merge -i main",
-        "git rebase -i main",
-        "git commit -i"
+        "`git squash main`",
+        "`git merge -i main`",
+        "`git rebase -i main`",
+        "`git commit -i`"
       ]
     },
     "c652cfe12e73": {
@@ -828,7 +828,7 @@
     },
     "5b466b0846dd": {
       "domanda": "Within what size limit does GitHub continue to render a README?",
-      "spiegazione": "GitHub stops rendering a README beyond 500 KiB: for larger documentation, the README is used as an entry point and links to files in the docs folder.",
+      "spiegazione": "GitHub stops rendering a README beyond 500 KiB: for larger documentation, the `README` is used as an entry point and links to files in the `docs` folder.",
       "risposte": [
         "Within 50 KiB",
         "There is no limit",
@@ -836,9 +836,9 @@
         "Within 5 MiB per each Markdown file in the repository"
       ]
     },
-    "ad92bde22627": {
-      "domanda": "What does 'git reset --mixed HEAD~1' (the default behavior) do?",
-      "spiegazione": "--mixed (default) undoes the last commit and moves the changes back to the working directory (unstaged).",
+    "b7035632fbf9": {
+      "domanda": "What does `git reset --mixed HEAD~1` (the default behavior) do?",
+      "spiegazione": "`--mixed` (default) undoes the last commit and moves the changes back to the working directory (unstaged).",
       "risposte": [
         "Pushes the changes to the remote",
         "Permanently deletes everything",
@@ -866,9 +866,9 @@
         "A 100 characters for each line of the body"
       ]
     },
-    "31bdcf4c3be6": {
-      "domanda": "What does the 'cd ..' command do?",
-      "spiegazione": "cd .. moves up one level to the parent directory; cd ~ goes to the home directory, cd - to the previous directory.",
+    "a08a27c961c8": {
+      "domanda": "What does the `cd ..` command do?",
+      "spiegazione": "`cd ..` moves up one level to the parent directory; `cd ~` goes to the home directory, `cd -` to the previous directory.",
       "risposte": [
         "Moves up one level to the parent directory",
         "Lists files",
@@ -876,24 +876,24 @@
         "Goes to the home directory"
       ]
     },
-    "df27a07dcfcb": {
+    "8be7f2808ece": {
       "domanda": "What is the sequence to connect a local repository to a new empty remote?",
-      "spiegazione": "Sequence: add the remote (git remote add origin <url>), rename the branch to main (git branch -M main), then git push -u origin main.",
+      "spiegazione": "Sequence: add the remote (`git remote add origin <url>`), rename the branch to `main` (`git branch -M main`), then `git push -u origin main`.",
       "risposte": [
         "pull, add, status",
-        "git remote add origin <url>, then git branch -M main, then git push -u origin main",
+        "`git remote add origin <url>`, then `git branch -M main`, then `git push -u origin main`",
         "clone, init, push",
         "fetch, merge, commit"
       ]
     },
-    "e469b14468ec": {
+    "50deeea88eff": {
       "domanda": "What is a code review?",
       "spiegazione": "A code review is a conversation, not a pass/fail test: the reviewer looks for bugs, unclear code, and violations of team standards.",
       "risposte": [
         "Reading the code before the merge",
         "Compiling the source code to check for errors",
         "An automated test that can only be passed or completely failed",
-        "The permanent deletion of a branch after it has been merged into main"
+        "The permanent deletion of a branch after it has been merged into `main`"
       ]
     },
     "83d5154a57af": {
@@ -916,8 +916,8 @@
         "Conjugated in the future tense, indicating what will be done in the following commit"
       ]
     },
-    "c2a085fc6935": {
-      "domanda": "What should you never do with a file that still contains the '<<<<<<<' markers?",
+    "de8a326725d5": {
+      "domanda": "What should you never do with a file that still contains the `<<<<<<<` markers?",
       "spiegazione": "You should never commit a file that still contains conflict markers: the code would be broken.",
       "risposte": [
         "Commit it",
@@ -926,9 +926,9 @@
         "Read it carefully to understand which parts are in conflict"
       ]
     },
-    "1d10390ae051": {
-      "domanda": "Why should you not manually modify the .git folder?",
-      "spiegazione": "The .git folder is entirely managed by Git via its commands: it should never be modified manually.",
+    "70b283bd05d3": {
+      "domanda": "Why should you not manually modify the `.git` folder?",
+      "spiegazione": "The `.git` folder is entirely managed by Git via its commands: it should never be modified manually.",
       "risposte": [
         "Because the folder is always recreated from scratch on every commit",
         "Because it is protected by the operating system and cannot be opened",
@@ -966,34 +966,34 @@
         "The file now contains..."
       ]
     },
-    "2a9f8c6822a6": {
-      "domanda": "Which command lists remote tracking branches (e.g., origin/main)?",
-      "spiegazione": "git branch -a lists all branches, including remote tracking branches such as origin/main.",
+    "b0176a885613": {
+      "domanda": "Which command lists remote tracking branches (e.g., `origin/main`)?",
+      "spiegazione": "`git branch -a` lists all branches, including remote tracking branches such as `origin/main`.",
       "risposte": [
-        "git branch -a",
-        "git branch -m",
-        "git branch -d",
-        "git branch -c"
+        "`git branch -a`",
+        "`git branch -m`",
+        "`git branch -d`",
+        "`git branch -c`"
       ]
     },
-    "1d029800b845": {
+    "f99ad5cb4540": {
       "domanda": "Which command lists local branches, with an asterisk on the current one?",
-      "spiegazione": "git branch alone lists local branches and marks the current one with an asterisk (*).",
+      "spiegazione": "`git branch` alone lists local branches and marks the current one with an asterisk (*).",
       "risposte": [
-        "git log",
-        "git status",
-        "git switch",
-        "git branch"
+        "`git log`",
+        "`git status`",
+        "`git switch`",
+        "`git branch`"
       ]
     },
-    "a5fd71e40acf": {
-      "domanda": "Which git reset option permanently discards changes?",
+    "4f90c4991cc4": {
+      "domanda": "Which `git reset` option permanently discards changes?",
       "spiegazione": "A describes keeping staged changes, B discards them permanently, C moves them to the working directory (default), D keeps them unstaged.",
       "risposte": [
-        "--keep",
-        "--hard",
-        "--mixed",
-        "--soft"
+        "`--keep`",
+        "`--hard`",
+        "`--mixed`",
+        "`--soft`"
       ]
     },
     "4b0e5bbe907e": {
@@ -1016,9 +1016,9 @@
         "Indicates hidden files"
       ]
     },
-    "68b8b6a8d99c": {
-      "domanda": "What does 'git commit --amend' do?",
-      "spiegazione": "--amend replaces the last commit with a new one, which is useful for fixing a typo or adding a forgotten file without creating an extra commit.",
+    "da7707a77163": {
+      "domanda": "What does `git commit --amend` do?",
+      "spiegazione": "`--amend` replaces the last commit with a new one, which is useful for fixing a typo or adding a forgotten file without creating an extra commit.",
       "risposte": [
         "To create a new branch",
         "To merge two different branches",
@@ -1026,14 +1026,14 @@
         "To delete the history"
       ]
     },
-    "9b334bb6838e": {
-      "domanda": "Where must the .gitignore file be located to be recognized by Git?",
-      "spiegazione": "The .gitignore file should be placed in the project root, in the same location as the .git directory, to be recognized.",
+    "785f1682c50d": {
+      "domanda": "Where must the `.gitignore` file be located to be recognized by Git?",
+      "spiegazione": "The `.gitignore` file should be placed in the project root, in the same location as the `.git` directory, to be recognized.",
       "risposte": [
-        "Inside the .git folder",
-        "In the project root directory, where .git is located",
+        "Inside the `.git` folder",
+        "In the project root directory, where `.git` is located",
         "In the user's home directory of the operating system",
-        "In node_modules"
+        "In `node_modules`"
       ]
     },
     "578265a24421": {
@@ -1046,19 +1046,19 @@
         "Never, it is deprecated"
       ]
     },
-    "4435038943cf": {
+    "2dd7ee22e217": {
       "domanda": "In the most common workflow, how are rebase and merge combined?",
-      "spiegazione": "Common practice: use rebase to keep the feature branch up to date during development, then use merge --no-ff to record the integration point in main.",
+      "spiegazione": "Common practice: use rebase to keep the feature branch up to date during development, then use `merge --no-ff` to record the integration point in `main`.",
       "risposte": [
-        "Use rebase to keep the branch up to date, then merge --no-ff to integrate it into main",
+        "Use rebase to keep the branch up to date, then `merge --no-ff` to integrate it into `main`",
         "Perform only a merge at the end of the day",
         "They are never used together",
         "Use only rebase always"
       ]
     },
-    "cd2e1679522b": {
-      "domanda": "Inside .git, what does the refs/ subdirectory contain?",
-      "spiegazione": "refs/ stores branch and tag names as text files pointing to specific commits.",
+    "8331394094d8": {
+      "domanda": "Inside `.git`, what does the `refs/` subdirectory contain?",
+      "spiegazione": "`refs/` stores branch and tag names as text files pointing to specific commits.",
       "risposte": [
         "Branch and tag names",
         "The user's personal settings for the code editor",
@@ -1086,19 +1086,19 @@
         "They replace the title"
       ]
     },
-    "e61e32759684": {
+    "0641910ec364": {
       "domanda": "Which command shows only the last 5 commits in a compact format?",
-      "spiegazione": "git log --oneline -5 displays each of the last 5 commits on a single line.",
+      "spiegazione": "`git log --oneline -5` displays each of the last 5 commits on a single line.",
       "risposte": [
-        "git log --last 5",
-        "git log --oneline -5",
-        "git show -5",
-        "git diff -5"
+        "`git log --last 5`",
+        "`git log --oneline -5`",
+        "`git show -5`",
+        "`git diff -5`"
       ]
     },
-    "4c27b73a7931": {
-      "domanda": "What does the pipe operator | do between two commands?",
-      "spiegazione": "The pipe | sends the output of one command as the input to the next, allowing simple commands to be chained together (e.g., ls | wc -l).",
+    "f1ad4703ba3e": {
+      "domanda": "What does the pipe operator `|` do between two commands?",
+      "spiegazione": "The pipe `|` sends the output of one command as the input to the next, allowing simple commands to be chained together (e.g., `ls | wc -l`).",
       "risposte": [
         "Clears the produced output",
         "Saves all the command's output into a text file",
@@ -1106,14 +1106,14 @@
         "Sends the output of one command to the input of the next"
       ]
     },
-    "20d6c8230994": {
+    "b097974794c4": {
       "domanda": "Which command opens the full manual for a command?",
-      "spiegazione": "man <command> opens the manual page (exit with q); alternatively, <command> --help displays a brief help message.",
+      "spiegazione": "`man <command>` opens the manual page (exit with `q`); alternatively, `<command> --help` displays a brief help message.",
       "risposte": [
-        "man",
-        "doc",
-        "help",
-        "info"
+        "`man`",
+        "`doc`",
+        "`help`",
+        "`info`"
       ]
     },
     "da0b57d825be": {
@@ -1136,8 +1136,8 @@
         "It must consist of exactly ten words, no more and no less"
       ]
     },
-    "8c6172b1aa16": {
-      "domanda": "Why is a trailing space after a .gitignore rule a problem?",
+    "ec3a8b3a5984": {
+      "domanda": "Why is a trailing space after a `.gitignore` rule a problem?",
       "spiegazione": "A trailing space silently breaks the rule: Git looks for a file whose name includes that space, and the rule never matches anything.",
       "risposte": [
         "It creates a comment",
@@ -1146,9 +1146,9 @@
         "It makes the file larger"
       ]
     },
-    "6f643c6e060b": {
-      "domanda": "What does the 'touch filename.txt' command do if the file does not exist?",
-      "spiegazione": "touch creates an empty file if it does not exist; if it already exists, it only updates the timestamp without changing its content.",
+    "017bd903b93e": {
+      "domanda": "What does the `touch filename.txt` command do if the file does not exist?",
+      "spiegazione": "`touch` creates an empty file if it does not exist; if it already exists, it only updates the timestamp without changing its content.",
       "risposte": [
         "Renames it by adding a progressive numeric suffix to the name",
         "Creates an empty file",
@@ -1158,7 +1158,7 @@
     },
     "80400d0ba239": {
       "domanda": "What is the most important category of files to ignore?",
-      "spiegazione": "The most important rule: always ignore secrets and credentials (.env, API keys, passwords, tokens).",
+      "spiegazione": "The most important rule: always ignore secrets and credentials (`.env`, API keys, passwords, tokens).",
       "risposte": [
         "Normal plain text files present in the project",
         "Image files used within the project",
@@ -1186,19 +1186,19 @@
         "Searches backward through the command history while typing"
       ]
     },
-    "c65bf6e3a2d5": {
-      "domanda": "What does 'git add src/' do?",
-      "spiegazione": "git add src/ stages all the files contained in the src directory.",
+    "6439107c2d5b": {
+      "domanda": "What does `git add src/` do?",
+      "spiegazione": "`git add src/` stages all the files contained in the `src` directory.",
       "risposte": [
-        "Creates a new folder called src inside the project root",
-        "Stages the src folder",
-        "Moves the src folder into the remote repository",
-        "Deletes all files contained within the src folder"
+        "Creates a new folder called `src` inside the project root",
+        "Stages the `src` folder",
+        "Moves the `src` folder into the remote repository",
+        "Deletes all files contained within the `src` folder"
       ]
     },
     "1baddb4678b9": {
       "domanda": "In a merge commit, which parent does Git consider the 'official' path?",
-      "spiegazione": "Git treats the first parent as the official path (the branch you were on); the tilde (~) follows the first parent.",
+      "spiegazione": "Git treats the first parent as the official path (the branch you were on); the tilde (`~`) follows the first parent.",
       "risposte": [
         "The first",
         "Neither, because a merge commit has no parents",
@@ -1206,19 +1206,19 @@
         "Both parents are treated equally by Git"
       ]
     },
-    "32f4830f42b9": {
+    "a2b55711ae58": {
       "domanda": "Which command helps find the commit that introduced a bug?",
-      "spiegazione": "git bisect allows you to walk backwards through commits to pinpoint exactly which one introduced a bug.",
+      "spiegazione": "`git bisect` allows you to walk backwards through commits to pinpoint exactly which one introduced a bug.",
       "risposte": [
-        "git fetch",
-        "git clone",
-        "git bisect",
-        "git stash"
+        "`git fetch`",
+        "`git clone`",
+        "`git bisect`",
+        "`git stash`"
       ]
     },
-    "fb177d101fe8": {
-      "domanda": "What is 'origin' in Git?",
-      "spiegazione": "origin is not a special keyword: it is simply the conventional alias for the remote URL, so you don't have to type it in full.",
+    "b91e67eb7abe": {
+      "domanda": "What is `origin` in Git?",
+      "spiegazione": "`origin` is not a special keyword: it is simply the conventional alias for the remote URL, so you don't have to type it in full.",
       "risposte": [
         "The conventional name always given to the main branch",
         "The alias for the remote",
@@ -1226,19 +1226,19 @@
         "The very first commit created when a project starts"
       ]
     },
-    "5a8e7499f24c": {
-      "domanda": "What does 'git log main..origin/main --oneline' display?",
-      "spiegazione": "It shows the commits present on origin/main but not yet on the local main: useful as a safety check after a fetch.",
+    "8e40973cd1fc": {
+      "domanda": "What does `git log main..origin/main --oneline` display?",
+      "spiegazione": "It shows the commits present on `origin/main` but not yet on the local `main`: useful as a safety check after a fetch.",
       "risposte": [
-        "Commits on origin/main that are not yet in the local repository",
+        "Commits on `origin/main` that are not yet in the local repository",
         "All commits in the entire project history starting from the first one",
         "The modified files",
         "Only the commits you have created locally and not yet pushed"
       ]
     },
-    "54a484be9f32": {
-      "domanda": "What does the tilde symbol mean in 'HEAD~2'?",
-      "spiegazione": "HEAD~N means 'go back N commits from the current point'; HEAD~2 is two commits before HEAD.",
+    "2600f69a6114": {
+      "domanda": "What does the tilde symbol mean in `HEAD~2`?",
+      "spiegazione": "`HEAD~N` means 'go back N commits from the current point'; `HEAD~2` is two commits before `HEAD`.",
       "risposte": [
         "Shows the two main branches of the repository simultaneously",
         "Go forward by two commits",
@@ -1268,7 +1268,7 @@
     },
     "22383950d968": {
       "domanda": "What is the purpose of a release branch?",
-      "spiegazione": "A release branch (e.g., release/v1.0) is a stable environment where only bug fixes are performed, while new feature development continues on main.",
+      "spiegazione": "A release branch (e.g., `release/v1.0`) is a stable environment where only bug fixes are performed, while new feature development continues on `main`.",
       "risposte": [
         "To delete existing tags",
         "It is primarily used to contain and host documentation",
@@ -1276,29 +1276,29 @@
         "To develop new features"
       ]
     },
-    "cf4782e89a1b": {
+    "3eeae7169374": {
       "domanda": "Which filename is valid because Git recognizes it?",
-      "spiegazione": "The name must be exactly .gitignore: .Gitignore or .gitignore.txt are not recognized (note the .txt added by some editors).",
+      "spiegazione": "The name must be exactly `.gitignore`: `.Gitignore` or `.gitignore.txt` are not recognized (note the `.txt` added by some editors).",
       "risposte": [
-        ".Gitignore",
-        ".gitignore.txt",
-        "gitignore",
-        ".gitignore"
+        "`.Gitignore`",
+        "`.gitignore.txt`",
+        "`gitignore`",
+        "`.gitignore`"
       ]
     },
-    "d613a1ad5ee3": {
+    "ba7865f5fae2": {
       "domanda": "Which command displays only the first 5 lines of a file?",
-      "spiegazione": "head -n 5 prints the first 5 lines; tail displays the last lines, less scrolls through long files (q to exit).",
+      "spiegazione": "`head -n 5` prints the first 5 lines; `tail` displays the last lines, `less` scrolls through long files (`q` to exit).",
       "risposte": [
-        "cat -5",
-        "less -5",
-        "head -n 5",
-        "tail -n 5"
+        "`cat -5`",
+        "`less -5`",
+        "`head -n 5`",
+        "`tail -n 5`"
       ]
     },
     "0dccc42c91ee": {
       "domanda": "What is commit squashing before a merge?",
-      "spiegazione": "Squash combines small/confused commits into a single clean one, usually with git rebase -i, changing 'pick' to 'squash'.",
+      "spiegazione": "Squash combines small/confused commits into a single clean one, usually with `git rebase -i`, changing `pick` to `squash`.",
       "risposte": [
         "Delete the branch",
         "Combine multiple small or unclear commits into one",
@@ -1326,14 +1326,14 @@
         "A numbered list"
       ]
     },
-    "1ae65a957080": {
-      "domanda": "What does 'git clone <url> my-folder' do?",
-      "spiegazione": "git clone <url> <folder> downloads the repository into a folder with the specified name, instead of using the repository's default name.",
+    "1661e676fd26": {
+      "domanda": "What does `git clone <url> my-folder` do?",
+      "spiegazione": "`git clone <url> <folder>` downloads the repository into a folder with the specified name, instead of using the repository's default name.",
       "risposte": [
-        "Moves my-folder to the cloud",
-        "Renames the remote repository to my-folder on the server",
-        "Creates a remote named my-folder",
-        "Clones the repository into a folder named my-folder instead of the default name"
+        "Moves `my-folder` to the cloud",
+        "Renames the remote repository to `my-folder` on the server",
+        "Creates a remote named `my-folder`",
+        "Clones the repository into a folder named `my-folder` instead of the default name"
       ]
     },
     "36a5c99059f5": {
@@ -1346,19 +1346,19 @@
         "Open on disk, closed in the editor, and then permanently saved"
       ]
     },
-    "64a94bad3048": {
+    "1800ef7f4e2a": {
       "domanda": "In the 'simple team workflow', what is the rule regarding the main branch?",
-      "spiegazione": "In the simple team workflow, main is long-lived, always contains working code, and you never commit directly to it: you work on feature branches via PRs.",
+      "spiegazione": "In the simple team workflow, `main` is long-lived, always contains working code, and you never commit directly to it: you work on feature branches via PRs.",
       "risposte": [
-        "The main branch should be deleted immediately after every version release",
-        "You commit directly to main multiple times a day during work",
+        "The `main` branch should be deleted immediately after every version release",
+        "You commit directly to `main` multiple times a day during work",
         "Never commit directly to it",
-        "The main branch is considered a temporary and intermediate branch"
+        "The `main` branch is considered a temporary and intermediate branch"
       ]
     },
-    "adf0f41677b8": {
-      "domanda": "What is the purpose of a .gitignore file?",
-      "spiegazione": ".gitignore lists files/folders to ignore (e.g., node_modules/, .env, *.log): they are never staged or committed, even with git add .",
+    "b3f3b0e476b9": {
+      "domanda": "What is the purpose of a `.gitignore` file?",
+      "spiegazione": "`.gitignore` lists files/folders to ignore (e.g., `node_modules/`, `.env`, `*.log`): they are never staged or committed, even with `git add .`",
       "risposte": [
         "To encrypt secret files containing project credentials",
         "To automatically create new branches on every commit operation",
@@ -1376,19 +1376,19 @@
         "The tabs dedicated to profile, notifications, organizations, and personal settings"
       ]
     },
-    "74755ffe58a0": {
-      "domanda": "Which command shows which .gitignore rule is ignoring a file?",
-      "spiegazione": "git check-ignore -v filename shows the path, line number, and exact rule that ignores the file; empty output = not ignored.",
+    "b7ceb10df018": {
+      "domanda": "Which command shows which `.gitignore` rule is ignoring a file?",
+      "spiegazione": "`git check-ignore -v filename` shows the path, line number, and exact rule that ignores the file; empty output = not ignored.",
       "risposte": [
-        "git diff filename",
-        "git check-ignore -v",
-        "git log filename",
-        "git status filename"
+        "`git diff filename`",
+        "`git check-ignore -v`",
+        "`git log filename`",
+        "`git status filename`"
       ]
     },
-    "4ba68a5e7347": {
-      "domanda": "What does 'git add .' do?",
-      "spiegazione": "git add . stages all changes in the current directory and its subdirectories.",
+    "a26d978c3105": {
+      "domanda": "What does `git add .` do?",
+      "spiegazione": "`git add .` stages all changes in the current directory and its subdirectories.",
       "risposte": [
         "Pushes to remote",
         "Creates a commit",
@@ -1406,19 +1406,19 @@
         "The concept that every change is automatically recorded, allowing you to revert to any previous state"
       ]
     },
-    "5e66570f7866": {
+    "5bc793bab755": {
       "domanda": "In a repository with no commits yet, how do you unstage a file?",
-      "spiegazione": "In a new repository without commits, 'git restore --staged' may fail: use git rm --cached, which works with or without commits.",
+      "spiegazione": "In a new repository without commits, `git restore --staged` may fail: use `git rm --cached`, which works with or without commits.",
       "risposte": [
-        "With a simple git revert",
-        "With git rm --cached <file>, which works even without commits",
-        "With git reset --hard",
+        "With a simple `git revert`",
+        "With `git rm --cached <file>`, which works even without commits",
+        "With `git reset --hard`",
         "By executing a forced push to the shared remote repository"
       ]
     },
-    "8138ad694570": {
-      "domanda": "What does 'git config --global merge.tool vscode' do?",
-      "spiegazione": "That command sets VS Code as the merge tool; then 'git mergetool' opens the visual tool on conflicting files.",
+    "aac2c5a2b913": {
+      "domanda": "What does `git config --global merge.tool vscode` do?",
+      "spiegazione": "That command sets VS Code as the merge tool; then `git mergetool` opens the visual tool on conflicting files.",
       "risposte": [
         "Creates a branch",
         "Opens VS Code",
@@ -1426,9 +1426,9 @@
         "Sets VS Code as the default visual tool to resolve merge conflicts"
       ]
     },
-    "66ff71bad0b0": {
-      "domanda": "What does 'git show HEAD~1 --name-only' display?",
-      "spiegazione": "--name-only lists only which files have changed in the commit (in this case, the one before HEAD), without showing the diff.",
+    "0cce3a2fd4eb": {
+      "domanda": "What does `git show HEAD~1 --name-only` display?",
+      "spiegazione": "`--name-only` lists only which files have changed in the commit (in this case, the one before `HEAD`), without showing the diff.",
       "risposte": [
         "Only the names of changed files",
         "The complete list of all branches and tags present in the local repository",
@@ -1436,14 +1436,14 @@
         "The detailed message of every commit in the entire project history"
       ]
     },
-    "d024a1b02ee0": {
+    "5f76c7abaa26": {
       "domanda": "What is a fast-forward merge?",
-      "spiegazione": "If main has no new commits since the branch was created, the merge is fast-forward: the main pointer advances without creating a new commit.",
+      "spiegazione": "If `main` has no new commits since the branch was created, the merge is fast-forward: the `main` pointer advances without creating a new commit.",
       "risposte": [
         "A merge that deletes the branch",
         "A merge that requires conflicts",
         "Always creates an extra commit",
-        "When main hasn't changed since the branch was created, Git moves the pointer forward without a new commit"
+        "When `main` hasn't changed since the branch was created, Git moves the pointer forward without a new commit"
       ]
     },
     "2a8cea2a88e0": {
@@ -1486,11 +1486,11 @@
         "A paid server"
       ]
     },
-    "639efa84f39b": {
-      "domanda": "Why run 'git pull origin main' before creating a new feature branch?",
-      "spiegazione": "If the local main is outdated, the created branch lacks recent commits, which increases the likelihood of future conflicts. Always pull main first.",
+    "836c7b488568": {
+      "domanda": "Why run `git pull origin main` before creating a new feature branch?",
+      "spiegazione": "If the local `main` is outdated, the created branch lacks recent commits, which increases the likelihood of future conflicts. Always pull `main` first.",
       "risposte": [
-        "If main is outdated, the branch is created without recent commits",
+        "If `main` is outdated, the branch is created without recent commits",
         "To encrypt files",
         "To delete old branches",
         "Because this operation significantly speeds up the subsequent push"
@@ -1506,14 +1506,14 @@
         "To enable automated tools to generate release notes and decide the version number"
       ]
     },
-    "07ec32aa2cc9": {
+    "fa8324224a67": {
       "domanda": "How do you remove an untracked file in Git?",
       "spiegazione": "An untracked file is not known to Git: it is simply deleted from the file system; Git has nothing to revert.",
       "risposte": [
-        "It is removed from the index with git restore --staged <file>",
+        "It is removed from the index with `git restore --staged <file>`",
         "It is deleted from the disk",
-        "The git revert command is used, specifying the name of the file to remove",
-        "A git reset --hard is executed to completely clean the state"
+        "The `git revert` command is used, specifying the name of the file to remove",
+        "A `git reset --hard` is executed to completely clean the state"
       ]
     },
     "4b9927853690": {
@@ -1526,9 +1526,9 @@
         "Ctrl+B"
       ]
     },
-    "7f904b4cebb6": {
-      "domanda": "What does 'ls | wc -l' do?",
-      "spiegazione": "ls lists files and pipes them to wc -l, which counts lines: thus counting the files in the directory.",
+    "463919814391": {
+      "domanda": "What does `ls | wc -l` do?",
+      "spiegazione": "`ls` lists files and pipes them to `wc -l`, which counts lines: thus counting the files in the directory.",
       "risposte": [
         "Deletes everything",
         "Shows the first ones",
@@ -1546,9 +1546,9 @@
         "Remove #42"
       ]
     },
-    "008ae60a4c6e": {
-      "domanda": "In the output of a diff, what do lines starting with + indicate?",
-      "spiegazione": "In a diff: '-' = removed lines, '+' = added lines, no prefix = unchanged lines.",
+    "44a06b38d375": {
+      "domanda": "In the output of a diff, what do lines starting with `+` indicate?",
+      "spiegazione": "In a diff: `-` = removed lines, `+` = added lines, no prefix = unchanged lines.",
       "risposte": [
         "Added lines",
         "Removed lines",
@@ -1556,9 +1556,9 @@
         "Broken lines"
       ]
     },
-    "33a42bdc13e9": {
-      "domanda": "What is the purpose of the # character in a .gitignore line?",
-      "spiegazione": "Lines starting with # are comments and are ignored by Git.",
+    "d39b6e16808e": {
+      "domanda": "What is the purpose of the `#` character in a `.gitignore` line?",
+      "spiegazione": "Lines starting with `#` are comments and are ignored by Git.",
       "risposte": [
         "Forces file tracking",
         "Ignores the specified directory",
@@ -1576,9 +1576,9 @@
         "To print it"
       ]
     },
-    "f9f35a3663ca": {
-      "domanda": "What does 'git commit' without the -m flag allow you to do?",
-      "spiegazione": "Without -m, git commit opens the default editor (Vim, Nano, or VS Code) to write a multi-paragraph message.",
+    "3af4defc8ce7": {
+      "domanda": "What does `git commit` without the `-m` flag allow you to do?",
+      "spiegazione": "Without `-m`, `git commit` opens the default editor (Vim, Nano, or VS Code) to write a multi-paragraph message.",
       "risposte": [
         "Skips the message",
         "Cancels the commit",
@@ -1586,33 +1586,33 @@
         "Creates two commits"
       ]
     },
-    "e0b35dcb3779": {
-      "domanda": "How do you exit the 'less' command while scrolling through a file?",
-      "spiegazione": "You exit less by pressing the q key (quit).",
+    "af00f0793ba4": {
+      "domanda": "How do you exit the `less` command while scrolling through a file?",
+      "spiegazione": "You exit `less` by pressing the `q` key (quit).",
       "risposte": [
         "By completely closing the terminal window you are using",
         "By pressing the Ctrl plus Alt plus Del key combination",
-        "By typing the word exit followed by pressing the Enter key",
-        "By pressing q"
+        "By typing the word `exit` followed by pressing the Enter key",
+        "By pressing `q`"
       ]
     },
-    "96e7ebc48b7f": {
-      "domanda": "What is the difference between git init and git clone?",
-      "spiegazione": "git init starts with an empty repository without history; git clone downloads an existing repository complete with history and configures the origin remote.",
+    "b1ab78c917e3": {
+      "domanda": "What is the difference between `git init` and `git clone`?",
+      "spiegazione": "`git init` starts with an empty repository without history; `git clone` downloads an existing repository complete with history and configures the `origin` remote.",
       "risposte": [
-        "init downloads from GitHub",
+        "`init` downloads from GitHub",
         "They are synonyms",
-        "clone deletes files",
-        "git init creates an empty repository without history, while git clone copies an existing repository with its entire history"
+        "`clone` deletes files",
+        "`git init` creates an empty repository without history, while `git clone` copies an existing repository with its entire history"
       ]
     },
-    "20908c93f6ac": {
-      "domanda": "What does the command 'diff file1.txt file2.txt' do?",
-      "spiegazione": "diff compares two files and displays the differences between them.",
+    "69ef0f8ebe5e": {
+      "domanda": "What does the command `diff file1.txt file2.txt` do?",
+      "spiegazione": "`diff` compares two files and displays the differences between them.",
       "risposte": [
         "Merges the two files",
         "Displays the differences between the two files",
-        "Copies file1 into file2, overwriting it",
+        "Copies `file1` into `file2`, overwriting it",
         "Deletes the second file specified in the command"
       ]
     },
@@ -1636,9 +1636,9 @@
         "Because it physically deletes all files present in the branch"
       ]
     },
-    "550ff89bc457": {
-      "domanda": "What does 'git diff' show without any additional arguments?",
-      "spiegazione": "git diff compares the working directory with the staging area: it shows changes that are not yet staged.",
+    "8766c9b1db2b": {
+      "domanda": "What does `git diff` show without any additional arguments?",
+      "spiegazione": "`git diff` compares the working directory with the staging area: it shows changes that are not yet staged.",
       "risposte": [
         "Changes already committed",
         "The list of remotes",
@@ -1666,9 +1666,9 @@
         "The reviewer does it"
       ]
     },
-    "131571556134": {
-      "domanda": "Why is it better to use relative links instead of absolute URLs in the README?",
-      "spiegazione": "Relative links (e.g., ./docs/setup.md) remain valid after cloning the repo and do not break if branch names change.",
+    "de61024c9406": {
+      "domanda": "Why is it better to use relative links instead of absolute URLs in the `README`?",
+      "spiegazione": "Relative links (e.g., `./docs/setup.md`) remain valid after cloning the repo and do not break if branch names change.",
       "risposte": [
         "Because they remain functional when the repository is cloned and do not break if branch names change",
         "Because they are shorter",
@@ -1686,9 +1686,9 @@
         "Use a verb at the beginning to describe the action taken"
       ]
     },
-    "e63fcb724ec4": {
-      "domanda": "What does the config file inside the .git folder contain?",
-      "spiegazione": "The config file holds repository settings, such as the remote URL.",
+    "49e6a030ead2": {
+      "domanda": "What does the `config` file inside the `.git` folder contain?",
+      "spiegazione": "The `config` file holds repository settings, such as the remote URL.",
       "risposte": [
         "The compressed contents",
         "The complete list of all commits with author and date",
@@ -1696,14 +1696,14 @@
         "The repository settings, such as the remote URL"
       ]
     },
-    "b8d2c42bedfb": {
+    "f925658794b8": {
       "domanda": "Which command aborts an ongoing merge, restoring the previous state?",
-      "spiegazione": "git merge --abort cancels the ongoing merge and restores the previous state.",
+      "spiegazione": "`git merge --abort` cancels the ongoing merge and restores the previous state.",
       "risposte": [
-        "git merge --abort",
-        "git merge --undo",
-        "git revert --stop",
-        "git reset --merge"
+        "`git merge --abort`",
+        "`git merge --undo`",
+        "`git revert --stop`",
+        "`git reset --merge`"
       ]
     },
     "5b24d03cf4b0": {
@@ -1748,7 +1748,7 @@
     },
     "023439d87326": {
       "domanda": "Why is Git valuable even for a solo developer?",
-      "spiegazione": "Even when working alone: you can experiment without risks (every state is recoverable), you have a project journal, use git bisect for bugs, and have an offsite backup with push.",
+      "spiegazione": "Even when working alone: you can experiment without risks (every state is recoverable), you have a project journal, use `git bisect` for bugs, and have an offsite backup with push.",
       "risposte": [
         "Only useful for PRs",
         "Allows safe experimentation, tracking history, finding bugs, and having a remote backup",
@@ -1756,54 +1756,54 @@
         "Has no value at all"
       ]
     },
-    "166b6efe70f0": {
-      "domanda": "Why does the appendix suggest using 'git commit' without -m?",
-      "spiegazione": "Without -m, git commit opens the editor (e.g., VS Code): it is easy to write multi-line messages and see the character count.",
+    "9cb051722179": {
+      "domanda": "Why does the appendix suggest using `git commit` without `-m`?",
+      "spiegazione": "Without `-m`, `git commit` opens the editor (e.g., VS Code): it is easy to write multi-line messages and see the character count.",
       "risposte": [
-        "Because -m is deprecated",
+        "Because `-m` is deprecated",
         "Because it opens the default editor and allows writing multi-line messages while seeing the character count",
         "Because it is faster",
         "Because it creates more commits"
       ]
     },
-    "5a7a5d5d015c": {
-      "domanda": "Which ls flag also shows hidden files (those starting with a dot)?",
-      "spiegazione": "ls -a lists all files, including hidden ones that start with a dot (e.g., .gitignore, .env).",
+    "0bd3abd11b50": {
+      "domanda": "Which `ls` flag also shows hidden files (those starting with a dot)?",
+      "spiegazione": "`ls -a` lists all files, including hidden ones that start with a dot (e.g., `.gitignore`, `.env`).",
       "risposte": [
-        "-l",
-        "-a",
-        "-r",
-        "-h"
+        "`-l`",
+        "`-a`",
+        "`-r`",
+        "`-h`"
       ]
     },
-    "964d619ee20c": {
-      "domanda": "What does the alias 'git config --global alias.lg ...' suggested by the guide allow you to do?",
-      "spiegazione": "The lg alias is set to 'log --graph --oneline --decorate --all', so you only need to type git lg to view a tree log of the repository.",
+    "3e69100c59cc": {
+      "domanda": "What does the alias `git config --global alias.lg ...` suggested by the guide allow you to do?",
+      "spiegazione": "The `lg` alias is set to `log --graph --oneline --decorate --all`, so you only need to type `git lg` to view a tree log of the repository.",
       "risposte": [
         "Deletes the history",
-        "By typing 'git lg' you get a colored tree log of the repository",
+        "By typing `git lg` you get a colored tree log of the repository",
         "Sends commits",
         "Creates a branch"
       ]
     },
-    "74be7e98cc14": {
-      "domanda": "In the .gitignore file, what does the pattern '*.log' do?",
-      "spiegazione": "The asterisk is a wildcard: *.log ignores every file that ends with .log.",
+    "0ace26af0003": {
+      "domanda": "In the `.gitignore` file, what does the pattern `*.log` do?",
+      "spiegazione": "The asterisk is a wildcard: `*.log` ignores every file that ends with `.log`.",
       "risposte": [
         "Ignores a file that is named exactly log",
-        "Ignores files that end with .log",
+        "Ignores files that end with `.log`",
         "Automatically creates a new log file inside the project",
         "Ignores the entire folder named log"
       ]
     },
-    "006e49b439ef": {
-      "domanda": "Which two commands is 'git pull' a shortcut for?",
-      "spiegazione": "git pull = git fetch (downloads) + git merge (merges) of the remote branch into the current local branch.",
+    "5edd82c365b9": {
+      "domanda": "Which two commands is `git pull` a shortcut for?",
+      "spiegazione": "`git pull` = `git fetch` (downloads) + `git merge` (merges) of the remote branch into the current local branch.",
       "risposte": [
-        "The git clone command followed immediately by git init",
-        "First git add and then the git commit command",
-        "git fetch and git merge",
-        "The git status command followed by the git log command"
+        "The `git clone` command followed immediately by `git init`",
+        "First `git add` and then the `git commit` command",
+        "`git fetch` and `git merge`",
+        "The `git status` command followed by the `git log` command"
       ]
     },
     "d833f8d362fc": {
@@ -1816,14 +1816,14 @@
         "Docs is centralized, Git is distributed"
       ]
     },
-    "d6c86bf80b5a": {
+    "2929ff7401d8": {
       "domanda": "What is a pull request (PR)?",
       "spiegazione": "A PR is a GitHub feature (not a Git command) used to request merging your branch into another, enabling comments and reviews.",
       "risposte": [
         "A config file",
         "A protected branch",
         "A Git command",
-        "A formal request, a GitHub feature, to merge your branch into another branch (usually main)"
+        "A formal request, a GitHub feature, to merge your branch into another branch (usually `main`)"
       ]
     },
     "690cf234de12": {
@@ -1856,64 +1856,64 @@
         "Only one"
       ]
     },
-    "351d07202634": {
+    "259bb65c4981": {
       "domanda": "Which scope should be selected when creating a PAT for normal repository work?",
-      "spiegazione": "For basic git work, the 'repo' scope should be selected; the lecture notes also suggest setting an expiration (e.g., 90 days) instead of 'No expiration'.",
+      "spiegazione": "For basic git work, the `repo` scope should be selected; the lecture notes also suggest setting an expiration (e.g., 90 days) instead of 'No expiration'.",
       "risposte": [
-        "admin:org",
-        "gist",
-        "delete_repo",
-        "repo, which covers basic repository work"
+        "`admin:org`",
+        "`gist`",
+        "`delete_repo`",
+        "`repo`, which covers basic repository work"
       ]
     },
-    "7ccb2e8b666d": {
+    "e949f03862d6": {
       "domanda": "What is the suggested commit message format in Git Fundamentals?",
-      "spiegazione": "The format is 'type(scope): short description', with type being feat, fix, docs, style, refactor, chore.",
+      "spiegazione": "The format is `type(scope): short description`, with type being `feat`, `fix`, `docs`, `style`, `refactor`, `chore`.",
       "risposte": [
         "An initial hashtag followed by a brief textual description",
         "A sequential number followed by a descriptive title of the commit",
         "The date, then the time, and finally the name of the commit author",
-        "type(scope): description"
+        "`type(scope): description`"
       ]
     },
-    "74924c9191d3": {
+    "0e5d606a4f45": {
       "domanda": "Which modern command creates a new branch and immediately switches to it?",
-      "spiegazione": "git switch -c <branch> creates the branch and moves HEAD to it; 'git branch' only creates it without switching.",
+      "spiegazione": "`git switch -c <branch>` creates the branch and moves `HEAD` to it; `git branch` only creates it without switching.",
       "risposte": [
-        "git branch feature/login",
-        "git switch -c feature/login",
-        "git merge feature/login",
-        "git tag feature/login"
+        "`git branch feature/login`",
+        "`git switch -c feature/login`",
+        "`git merge feature/login`",
+        "`git tag feature/login`"
       ]
     },
-    "0daaec86b459": {
-      "domanda": "Which command sets 'main' as the default branch for new repositories?",
-      "spiegazione": "git config --global init.defaultBranch main sets main as the global default for new repositories.",
+    "915aeb525eb3": {
+      "domanda": "Which command sets `main` as the default branch for new repositories?",
+      "spiegazione": "`git config --global init.defaultBranch main` sets `main` as the global default for new repositories.",
       "risposte": [
-        "It is sufficient to run the command git init main",
-        "git config --global init.defaultBranch main",
-        "The command git branch is used, specifying the name main",
-        "It is set by the command git switch main alone"
+        "It is sufficient to run the command `git init main`",
+        "`git config --global init.defaultBranch main`",
+        "The command `git branch` is used, specifying the name `main`",
+        "It is set by the command `git switch main` alone"
       ]
     },
-    "5272d12c534d": {
+    "2b0d3c6b5e9d": {
       "domanda": "How do you remove a file from the staging area while keeping the changes?",
-      "spiegazione": "git restore --staged <file> moves the file from the staging area back to the working directory without losing the changes.",
+      "spiegazione": "`git restore --staged <file>` moves the file from the staging area back to the working directory without losing the changes.",
       "risposte": [
-        "git rm <file>",
-        "git reset --hard delete the desired file from the folder",
-        "git restore --staged <file>",
-        "git revert <file>"
+        "`git rm <file>`",
+        "`git reset --hard` delete the desired file from the folder",
+        "`git restore --staged <file>`",
+        "`git revert <file>`"
       ]
     },
-    "29436a1f2e3b": {
+    "88ac1a9fd52f": {
       "domanda": "Which command searches for a text pattern within a file?",
-      "spiegazione": "grep searches for a word or pattern inside a file; with -i it ignores case, and with -r it searches recursively.",
+      "spiegazione": "`grep` searches for a word or pattern inside a file; with `-i` it ignores case, and with `-r` it searches recursively.",
       "risposte": [
-        "mkdir",
-        "wc",
-        "touch",
-        "grep"
+        "`mkdir`",
+        "`wc`",
+        "`touch`",
+        "`grep`"
       ]
     },
     "2675815b72d9": {
@@ -1946,29 +1946,29 @@
         "The reason for the change (the problem solved, the intent), not the how, which the diff already shows"
       ]
     },
-    "b6ec70af0099": {
-      "domanda": "What does 'mkdir -p projects/myapp/src' do?",
-      "spiegazione": "mkdir -p creates the entire directory chain, including any missing parent directories, in a single command.",
+    "3daff9f3d42a": {
+      "domanda": "What does `mkdir -p projects/myapp/src` do?",
+      "spiegazione": "`mkdir -p` creates the entire directory chain, including any missing parent directories, in a single command.",
       "risposte": [
         "Deletes the directories",
         "Creates the directory and all missing parent directories in one go",
         "Lists the contents of the directories specified in the path",
-        "Renames the src directory"
+        "Renames the `src` directory"
       ]
     },
-    "570994998897": {
+    "9b9a4288e013": {
       "domanda": "Which command reverts a tracked file to its last committed state?",
-      "spiegazione": "git restore <file> discards changes in the working directory, restoring the file to its last committed state (permanent operation).",
+      "spiegazione": "`git restore <file>` discards changes in the working directory, restoring the file to its last committed state (permanent operation).",
       "risposte": [
-        "git restore <file>",
-        "git push <file>",
-        "git commit <file>",
-        "git clone <file>"
+        "`git restore <file>`",
+        "`git push <file>`",
+        "`git commit <file>`",
+        "`git clone <file>`"
       ]
     },
-    "5aa74448d2a7": {
-      "domanda": "Which site automatically generates .gitignore rules based on OS, editor, and language?",
-      "spiegazione": "gitignore.io (Toptal) generates .gitignore templates based on the operating system, IDE/editor, and programming languages used.",
+    "35a3e46d8822": {
+      "domanda": "Which site automatically generates `.gitignore` rules based on OS, editor, and language?",
+      "spiegazione": "gitignore.io (Toptal) generates `.gitignore` templates based on the operating system, IDE/editor, and programming languages used.",
       "risposte": [
         "npmjs.com",
         "readme.so",
@@ -1976,9 +1976,9 @@
         "shields.io"
       ]
     },
-    "ee3c54e87fce": {
-      "domanda": "What does the 'feat' type indicate in a commit message?",
-      "spiegazione": "feat = new feature; fix = bug fix; docs = documentation; style = formatting; refactor = refactoring; chore = maintenance.",
+    "fbc81b4aea15": {
+      "domanda": "What does the `feat` type indicate in a commit message?",
+      "spiegazione": "`feat` = new feature; `fix` = bug fix; `docs` = documentation; `style` = formatting; `refactor` = refactoring; `chore` = maintenance.",
       "risposte": [
         "New feature",
         "Formatting",
@@ -2006,9 +2006,9 @@
         "The number of lines"
       ]
     },
-    "a4046d1aed9f": {
-      "domanda": "What are the three main reasons to use a .gitignore?",
-      "spiegazione": "A .gitignore keeps the repository clean (no temporary/build files), protects secrets (API keys, .env), and reduces conflicts on machine-specific files.",
+    "8da67da5bade": {
+      "domanda": "What are the three main reasons to use a `.gitignore`?",
+      "spiegazione": "A `.gitignore` keeps the repository clean (no temporary/build files), protects secrets (API keys, `.env`), and reduces conflicts on machine-specific files.",
       "risposte": [
         "To make it easier to rename, move, and copy files",
         "Clean repo, secrets, conflicts",
@@ -2016,9 +2016,9 @@
         "To allow compiling code, running tests, and deploying"
       ]
     },
-    "a1557a5888a9": {
-      "domanda": "What is the purpose of the --no-ff option in 'git merge --no-ff'?",
-      "spiegazione": "--no-ff forces the creation of a merge commit even when a fast-forward would be possible, to keep track of the branch's existence.",
+    "8892f2fb9e53": {
+      "domanda": "What is the purpose of the `--no-ff` option in `git merge --no-ff`?",
+      "spiegazione": "`--no-ff` forces the creation of a merge commit even when a fast-forward would be possible, to keep track of the branch's existence.",
       "risposte": [
         "To delete the branch",
         "To merge multiple branches",
@@ -2026,34 +2026,34 @@
         "To skip conflicts"
       ]
     },
-    "6be89c41004a": {
+    "1c92e79f8ff5": {
       "domanda": "How do you correctly NOT ignore a file inside a folder that is otherwise ignored?",
-      "spiegazione": "If you ignore the entire folder (logs/), Git no longer looks inside, and negation does not work: you ignore the contents (logs/*) and then make the exception.",
+      "spiegazione": "If you ignore the entire folder (`logs/`), Git no longer looks inside, and negation does not work: you ignore the contents (`logs/*`) and then make the exception.",
       "risposte": [
-        "Ignoring the contents with logs/* and then adding the exception !logs/config.php",
-        "Writing logs/ and then !logs/config.php",
+        "Ignoring the contents with `logs/*` and then adding the exception `!logs/config.php`",
+        "Writing `logs/` and then `!logs/config.php`",
         "It is not possible in any way to make such an exception",
-        "Deleting the .gitignore file entirely from the project"
+        "Deleting the `.gitignore` file entirely from the project"
       ]
     },
-    "548ef38ecef7": {
+    "11fde22c33ad": {
       "domanda": "Which command checks the installed version of Git?",
-      "spiegazione": "git version prints the installed version of Git on the machine.",
+      "spiegazione": "`git version` prints the installed version of Git on the machine.",
       "risposte": [
-        "git check",
-        "git ver",
-        "git info",
-        "git version"
+        "`git check`",
+        "`git ver`",
+        "`git info`",
+        "`git version`"
       ]
     },
-    "fc18213d8880": {
+    "15ec4ed70e7c": {
       "domanda": "Which command lists remotes with their full URLs?",
-      "spiegazione": "git remote -v (verbose) lists remotes with their full URLs.",
+      "spiegazione": "`git remote -v` (verbose) lists remotes with their full URLs.",
       "risposte": [
-        "git remote -v",
-        "git remote -a",
-        "git remote -l",
-        "git remote -u"
+        "`git remote -v`",
+        "`git remote -a`",
+        "`git remote -l`",
+        "`git remote -u`"
       ]
     },
     "f03b2cc06929": {
@@ -2116,34 +2116,34 @@
         "Both save manually"
       ]
     },
-    "6533644c18bd": {
-      "domanda": "How are commits made in a detached HEAD state recovered?",
-      "spiegazione": "To preserve them, a branch is created at the current location: git switch -c my-recovery-branch.",
+    "518c1c8a12ea": {
+      "domanda": "How are commits made in a detached `HEAD` state recovered?",
+      "spiegazione": "To preserve them, a branch is created at the current location: `git switch -c my-recovery-branch`.",
       "risposte": [
-        "By deleting the hidden .git folder and then running git init again",
-        "By downloading the entire project again with the git clone command",
-        "With git switch -c <nome>",
-        "By executing a forced push to the remote with git push --force"
+        "By deleting the hidden `.git` folder and then running `git init` again",
+        "By downloading the entire project again with the `git clone` command",
+        "With `git switch -c <nome>`",
+        "By executing a forced push to the remote with `git push --force`"
       ]
     },
-    "0665862b024e": {
-      "domanda": "What is the purpose of the double dash -- in a command like 'git add -- -config.json'?",
-      "spiegazione": "The -- separates flags from filenames: it is used, for example, to add a file whose name starts with a dash.",
+    "4f46263d1b79": {
+      "domanda": "What is the purpose of the double dash `--` in a command like `git add -- -config.json`?",
+      "spiegazione": "The `--` separates flags from filenames: it is used, for example, to add a file whose name starts with a dash.",
       "risposte": [
         "To completely ignore the file specified immediately after the command",
         "To create a commit",
         "To force the push",
-        "To separate options from filenames (protects names starting with -)"
+        "To separate options from filenames (protects names starting with `-`)"
       ]
     },
-    "3917619412d9": {
+    "44190a0133b9": {
       "domanda": "What is the correct way to close multiple issues from a PR description?",
-      "spiegazione": "The keyword must be repeated for each issue: 'Closes #42, Closes #67'. The form 'Closes #42, #67' closes only issue #42.",
+      "spiegazione": "The keyword must be repeated for each issue: `Closes #42, Closes #67`. The form `Closes #42, #67` closes only issue #42.",
       "risposte": [
         "It is not possible to close more than one",
-        "Repeat the keyword: Closes #42, Closes #67",
+        "Repeat the keyword: `Closes #42, Closes #67`",
         "List only the issue numbers separated by a comma",
-        "Simply write Closes #42, #67"
+        "Simply write `Closes #42, #67`"
       ]
     },
     "b2e0cfe622c7": {
@@ -2176,34 +2176,34 @@
         "A lightweight formatting language that is written as plain text and becomes a formatted page"
       ]
     },
-    "73c80b5e98c0": {
+    "4398eba91727": {
       "domanda": "Which command is used only once to create a local repository from a remote one?",
-      "spiegazione": "git clone is a one-time setup command that creates the local repository from a remote one: it is not part of the daily workflow.",
+      "spiegazione": "`git clone` is a one-time setup command that creates the local repository from a remote one: it is not part of the daily workflow.",
       "risposte": [
-        "git clone",
-        "git status",
-        "git diff",
-        "git add"
+        "`git clone`",
+        "`git status`",
+        "`git diff`",
+        "`git add`"
       ]
     },
-    "a805ebce5fec": {
-      "domanda": "Which git log flag displays one line per commit with the short SHA and message?",
-      "spiegazione": "git log --oneline displays a compact line per commit with the abbreviated SHA and message.",
+    "53d7c871b3e0": {
+      "domanda": "Which `git log` flag displays one line per commit with the short SHA and message?",
+      "spiegazione": "`git log --oneline` displays a compact line per commit with the abbreviated SHA and message.",
       "risposte": [
-        "--stat",
-        "--oneline",
-        "--patch",
-        "--verbose"
+        "`--stat`",
+        "`--oneline`",
+        "`--patch`",
+        "`--verbose`"
       ]
     },
-    "dbf0f9a33691": {
+    "086ab4824ea1": {
       "domanda": "Which command forces the addition of a file that would otherwise be ignored?",
-      "spiegazione": "git add -f (force) adds a file even if it matches a rule in .gitignore.",
+      "spiegazione": "`git add -f` (force) adds a file even if it matches a rule in `.gitignore`.",
       "risposte": [
-        "git add -u",
-        "git add -i",
-        "git add -p",
-        "git add -f"
+        "`git add -u`",
+        "`git add -i`",
+        "`git add -p`",
+        "`git add -f`"
       ]
     },
     "aa43a06b4e9b": {
@@ -2216,19 +2216,19 @@
         "To compress and reduce the size of the project history"
       ]
     },
-    "ace45a45dc9b": {
-      "domanda": "Why does adding an already committed file to .gitignore have no effect?",
-      "spiegazione": ".gitignore only ignores files that have never been tracked. For a file that is already committed, you must remove it from the index using git rm --cached (the file remains on disk).",
+    "b8b3899dfdc2": {
+      "domanda": "Why does adding an already committed file to `.gitignore` have no effect?",
+      "spiegazione": "`.gitignore` only ignores files that have never been tracked. For a file that is already committed, you must remove it from the index using `git rm --cached` (the file remains on disk).",
       "risposte": [
-        "Because .gitignore is disabled",
+        "Because `.gitignore` is disabled",
         "Because Git needs to be restarted",
-        "Because .gitignore only affects files that have never been tracked: for a file already tracked, you first need to use git rm --cached",
+        "Because `.gitignore` only affects files that have never been tracked: for a file already tracked, you first need to use `git rm --cached`",
         "Because the file is large"
       ]
     },
-    "1d24de26aad7": {
-      "domanda": "What does the ! character do in a .gitignore rule?",
-      "spiegazione": "! creates an exception: after '*.log', '!important.log' ensures that all logs are ignored except that one.",
+    "2086c7ef688d": {
+      "domanda": "What does the `!` character do in a `.gitignore` rule?",
+      "spiegazione": "`!` creates an exception: after `*.log`, `!important.log` ensures that all logs are ignored except that one.",
       "risposte": [
         "Creates an exception to a previous rule",
         "Indicates that the rule should be applied recursively to every folder",
@@ -2236,13 +2236,13 @@
         "Forces the file to be committed"
       ]
     },
-    "a6cf6a19a22c": {
-      "domanda": "What should you do if you accidentally push commits to main in a shared repository?",
-      "spiegazione": "In a shared repository, reset --hard or push --force rewrite history and break other people's copies: in that case, contact the team lead immediately.",
+    "237662bffb3b": {
+      "domanda": "What should you do if you accidentally push commits to `main` in a shared repository?",
+      "spiegazione": "In a shared repository, `reset --hard` or `push --force` rewrite history and break other people's copies: in that case, contact the team lead immediately.",
       "risposte": [
         "Delete the repository",
-        "Run git reset --hard",
-        "Do not use reset --hard or push --force because they rewrite history, but contact the team lead immediately",
+        "Run `git reset --hard`",
+        "Do not use `reset --hard` or `push --force` because they rewrite history, but contact the team lead immediately",
         "Create a new clone"
       ]
     },
@@ -2256,9 +2256,9 @@
         "The VCS is slower"
       ]
     },
-    "14bb8585b4f1": {
-      "domanda": "What is the difference between git add \"*.txt\" and git add *.txt?",
-      "spiegazione": "git add \"*.txt\" lets Git handle the pattern (safe and recursive); git add *.txt expands the pattern in the shell, which is less portable on Windows and not recursive.",
+    "76174d0a3daf": {
+      "domanda": "What is the difference between `git add \"*.txt\"` and `git add *.txt`?",
+      "spiegazione": "`git add \"*.txt\"` lets Git handle the pattern (safe and recursive); `git add *.txt` expands the pattern in the shell, which is less portable on Windows and not recursive.",
       "risposte": [
         "Only the first one deletes",
         "The second one creates files",
@@ -2266,19 +2266,19 @@
         "With quotes, Git handles the pattern (recursive and cross-platform); without, the terminal expands it"
       ]
     },
-    "7e7f45f1707b": {
-      "domanda": "Why does the lecture advise against running 'git add .' blindly?",
-      "spiegazione": "You should run git status first, to know exactly which files will end up in staging.",
+    "cb14d445e4fd": {
+      "domanda": "Why does the lecture advise against running `git add .` blindly?",
+      "spiegazione": "You should run `git status` first, to know exactly which files will end up in staging.",
       "risposte": [
         "Because that command is now deprecated in recent versions of Git",
         "Because it deletes all modified files without asking for confirmation",
         "Because it only works on Linux-based operating systems",
-        "Better to run git status first"
+        "Better to run `git status` first"
       ]
     },
-    "b1e0a1626da9": {
-      "domanda": "What does the interactive 'git add -p' option do?",
-      "spiegazione": "git add -p (patch) splits the changes of a file into hunks and asks for each one y (yes), n (no), or s (split), for cleaner commits.",
+    "faddc1ac1e7d": {
+      "domanda": "What does the interactive `git add -p` option do?",
+      "spiegazione": "`git add -p` (patch) splits the changes of a file into hunks and asks for each one y (yes), n (no), or s (split), for cleaner commits.",
       "risposte": [
         "Stages individual change hunks within a file, asking y/n/s for each",
         "Creates a pull request",
@@ -2286,8 +2286,8 @@
         "Compresses commits"
       ]
     },
-    "b1de8bcfe2f7": {
-      "domanda": "In the analogy, what does the 'published' main branch correspond to?",
+    "f9530c90419a": {
+      "domanda": "In the analogy, what does the 'published' `main` branch correspond to?",
       "spiegazione": "Main is like a published book; a branch is like a private draft: you publish (merge) only when the draft is ready.",
       "risposte": [
         "A rough draft that is thrown away at the end of the work",
@@ -2296,14 +2296,14 @@
         "A published book"
       ]
     },
-    "bc31c5b3d44d": {
+    "3a43cc12c410": {
       "domanda": "Which commands configure the name and email for Git globally?",
       "spiegazione": "They are configured with `git config --global user.name \"first name last name\"` and `git config --global user.email \"...\"`.",
       "risposte": [
-        "git remote add user",
-        "git set name and git set email",
-        "git config --global user.name and git config --global user.email",
-        "git init --user"
+        "`git remote add user`",
+        "`git set name` and `git set email`",
+        "`git config --global user.name` and `git config --global user.email`",
+        "`git init --user`"
       ]
     },
     "83b13e9eda74": {
@@ -2316,14 +2316,14 @@
         "An initial hashtag immediately followed by the linked issue number"
       ]
     },
-    "66ecfac6d23b": {
+    "db8bd4be5dac": {
       "domanda": "What is the legacy syntax, still valid, for discarding changes to a file?",
-      "spiegazione": "git checkout -- <file> is the legacy syntax for discarding changes; today git restore is preferred as it is clearer.",
+      "spiegazione": "`git checkout -- <file>` is the legacy syntax for discarding changes; today `git restore` is preferred as it is clearer.",
       "risposte": [
-        "git undo file",
-        "git checkout -- <file>, replaced today by the clearer git restore",
-        "git drop file",
-        "git erase file"
+        "`git undo file`",
+        "`git checkout -- <file>`, replaced today by the clearer `git restore`",
+        "`git drop file`",
+        "`git erase file`"
       ]
     },
     "02d2765a1a69": {
@@ -2346,14 +2346,14 @@
         "The final commit"
       ]
     },
-    "47fcdae40f90": {
-      "domanda": "What does 'git remote add origin <url>' do?",
-      "spiegazione": "git remote add origin <url> associates a new remote named origin with the local repository; remote remove deletes it, and set-url changes its URL.",
+    "6c290bb81f04": {
+      "domanda": "What does `git remote add origin <url>` do?",
+      "spiegazione": "`git remote add origin <url>` associates a new remote named `origin` with the local repository; `remote remove` deletes it, and `set-url` changes its URL.",
       "risposte": [
         "Changes the URL of a remote that already existed",
-        "Deletes the origin remote",
+        "Deletes the `origin` remote",
         "Downloads the repository",
-        "Adds a new remote named origin pointing to the specified URL"
+        "Adds a new remote named `origin` pointing to the specified URL"
       ]
     },
     "f08bfe6feec4": {
