@@ -1495,12 +1495,12 @@
         "string, integer, float, boolean, null, function"
       ]
     },
-    "aae8f74c1209": {
-      "domanda": "A client executes DELETE /users/42 twice; the second request returns 404. Is the operation still idempotent?",
-      "spiegazione": "Idempotency concerns the effect on the server state, not the status code. After the first DELETE, user 42 no longer exists; the second request leaves the state unchanged. The change from 200/204 to 404 is irrelevant: DELETE is idempotent by specification (RFC 9110).",
+    "3caba709afb6": {
+      "domanda": "A client executes `DELETE /users/42` twice; the second request returns `404`. Is the operation still idempotent?",
+      "spiegazione": "Idempotency concerns the effect on the server state, not the status code. After the first `DELETE`, user 42 no longer exists; the second request leaves the state unchanged. The change from `200`/`204` to `404` is irrelevant: `DELETE` is idempotent by specification (RFC 9110).",
       "risposte": [
         "Yes, but only if the client sends the same headers",
-        "No, DELETE is never an idempotent method",
+        "No, `DELETE` is never an idempotent method",
         "Yes, the final server state is identical after both",
         "No, because the returned status code changes between the first and second request"
       ]
@@ -1625,14 +1625,14 @@
         "JSON.toString()"
       ]
     },
-    "a2e15c652520": {
+    "7f4b358f358e": {
       "domanda": "Which URL correctly follows REST naming conventions?",
-      "spiegazione": "GET /users/42: plural noun, ID in the path, action expressed by the HTTP method (no verb in the URL). /users/42/update repeats the action; /getUserById is an RPC style with ID in the query; /users/admin uses a role instead of a consistent identifier.",
+      "spiegazione": "`GET /users/42`: plural noun, ID in the path, action expressed by the HTTP method (no verb in the URL). `/users/42/update` repeats the action; `/getUserById` is an RPC style with ID in the query; `/users/admin` uses a role instead of a consistent identifier.",
       "risposte": [
-        "GET /getUserById?id=42",
-        "POST /users/42/update",
-        "GET /users/42",
-        "DELETE /users/admin"
+        "`GET /getUserById?id=42`",
+        "`POST /users/42/update`",
+        "`GET /users/42`",
+        "`DELETE /users/admin`"
       ]
     },
     "ab4aec35b022": {

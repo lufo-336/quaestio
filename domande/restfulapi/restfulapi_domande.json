@@ -1926,15 +1926,15 @@
     {
         "id": 149,
         "categoria": "Metodi HTTP",
-        "domanda": "Un client esegue DELETE /users/42 due volte; la seconda risponde 404. L'operazione è comunque idempotente?",
+        "domanda": "Un client esegue `DELETE /users/42` due volte; la seconda risponde `404`. L'operazione è comunque idempotente?",
         "risposte": [
             "Sì, ma solo se il client invia gli stessi header",
-            "No, DELETE non è mai un metodo idempotente",
+            "No, `DELETE` non è mai un metodo idempotente",
             "Sì, lo stato finale del server è identico dopo entrambe",
             "No, perché lo status code restituito cambia tra la prima e la seconda richiesta"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "L'idempotenza riguarda l'effetto sullo stato del server, non lo status code. Dopo la prima DELETE l'utente 42 non esiste; la seconda lascia lo stato invariato. Il cambio 200/204 → 404 è irrilevante: DELETE è idempotente per specifica (RFC 9110)."
+        "spiegazione": "L'idempotenza riguarda l'effetto sullo stato del server, non lo status code. Dopo la prima `DELETE` l'utente 42 non esiste; la seconda lascia lo stato invariato. Il cambio `200`/`204` → `404` è irrilevante: `DELETE` è idempotente per specifica (RFC 9110)."
     },
     {
         "id": 150,
@@ -2097,13 +2097,13 @@
         "categoria": "Design delle URL",
         "domanda": "Quale URL segue correttamente le convenzioni di naming REST?",
         "risposte": [
-            "GET /getUserById?id=42",
-            "POST /users/42/update",
-            "GET /users/42",
-            "DELETE /users/admin"
+            "`GET /getUserById?id=42`",
+            "`POST /users/42/update`",
+            "`GET /users/42`",
+            "`DELETE /users/admin`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "GET /users/42: sostantivo plurale, id nel path, azione espressa dal metodo HTTP (nessun verbo nell'URL). /users/42/update ripete l'azione; /getUserById è stile RPC con id in query; /users/admin usa un ruolo al posto di un identificatore coerente."
+        "spiegazione": "`GET /users/42`: sostantivo plurale, id nel path, azione espressa dal metodo HTTP (nessun verbo nell'URL). `/users/42/update` ripete l'azione; `/getUserById` è stile RPC con id in query; `/users/admin` usa un ruolo al posto di un identificatore coerente."
     },
     {
         "id": 163,
