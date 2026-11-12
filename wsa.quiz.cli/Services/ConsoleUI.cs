@@ -1,4 +1,5 @@
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Services;
 using System.Text;
 
 namespace Wsa.Quiz.Cli.Services;
@@ -72,90 +73,34 @@ public static class ConsoleUI
             return;
         }
 
-        // Prima: blocchi triple-backtick (anche multilinea). Semplifichiamo: trattiamo
-        // l'input come sequenza di segmenti normali / inline-code / code-block.
-        var segmenti = Tokenizza(testo);
+        // Stesso parser della GUI (Core): testo / codice inline / blocchi ```lang.
+        var segmenti = TestoConCodice.Analizza(testo);
 
         Console.Write(prefisso);
         foreach (var seg in segmenti)
         {
             switch (seg.Tipo)
             {
-                case Segmento.Kind.Normale:
+                case TipoSegmento.Testo:
                     StampaConWrap(seg.Testo, prefisso, testoColor);
                     break;
-                case Segmento.Kind.InlineCode:
+                case TipoSegmento.Inline:
                     Scrivi(seg.Testo, C_Codice);
                     break;
-                case Segmento.Kind.CodeBlock:
+                case TipoSegmento.Blocco:
                     Console.WriteLine();
                     Console.WriteLine();
-                    foreach (var riga in seg.Testo.Split('\n'))
+                    var righe = seg.Testo.Split('\n');
+                    for (int n = 0; n < righe.Length; n++)
                     {
-                        var pulita = riga.TrimEnd('\r');
-                        Scrivi(prefisso + "│ ", C_Soft);
-                        ScriviRiga(pulita, C_Codice);
+                        Scrivi(prefisso + $"{n + 1,2} │ ", C_Soft);
+                        ScriviRiga(righe[n], C_Codice);
                     }
                     Console.Write(prefisso);
                     break;
             }
         }
         Console.WriteLine();
-    }
-
-    private record Segmento(Segmento.Kind Tipo, string Testo)
-    {
-        public enum Kind { Normale, InlineCode, CodeBlock }
-    }
-
-    private static List<Segmento> Tokenizza(string s)
-    {
-        var risultato = new List<Segmento>();
-        int i = 0;
-        var buf = new StringBuilder();
-
-        void Flush()
-        {
-            if (buf.Length > 0)
-            {
-                risultato.Add(new Segmento(Segmento.Kind.Normale, buf.ToString()));
-                buf.Clear();
-            }
-        }
-
-        while (i < s.Length)
-        {
-            // Triple backtick?
-            if (i + 2 < s.Length && s[i] == '`' && s[i + 1] == '`' && s[i + 2] == '`')
-            {
-                Flush();
-                int inizio = i + 3;
-                // Salto un eventuale identificatore di linguaggio fino a newline
-                int nl = s.IndexOf('\n', inizio);
-                if (nl >= 0) inizio = nl + 1;
-                int fine = s.IndexOf("```", inizio);
-                if (fine < 0) fine = s.Length;
-                risultato.Add(new Segmento(Segmento.Kind.CodeBlock, s.Substring(inizio, fine - inizio)));
-                i = fine + 3;
-                continue;
-            }
-
-            if (s[i] == '`')
-            {
-                Flush();
-                int fine = s.IndexOf('`', i + 1);
-                if (fine < 0) { buf.Append(s[i]); i++; continue; }
-                risultato.Add(new Segmento(Segmento.Kind.InlineCode, s.Substring(i + 1, fine - i - 1)));
-                i = fine + 1;
-                continue;
-            }
-
-            buf.Append(s[i]);
-            i++;
-        }
-
-        Flush();
-        return risultato;
     }
 
     /// <summary>Stampa una stringa con word-wrap rispetto alla larghezza del terminale.</summary>
