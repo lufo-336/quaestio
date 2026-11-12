@@ -28,29 +28,29 @@
     "HTML, CSS e JS insieme": "HTML, CSS and JS Together"
   },
   "domande": {
-    "265a9a1359dd": {
+    "f9c283ccd1c2": {
       "domanda": "What is the correct tag to declare the HTML5 document type?",
-      "spiegazione": "<!DOCTYPE html> is the mandatory declaration that must appear as the first line of every HTML5 page. It tells the browser that the document uses the HTML5 standard. In previous versions (HTML4, XHTML), the declaration was much longer and more complex. Without DOCTYPE, the browser enters 'quirks mode' and may render the page unpredictably.",
+      "spiegazione": "`<!DOCTYPE html>` is the mandatory declaration that must appear as the first line of every HTML5 page. It tells the browser that the document uses the HTML5 standard. In previous versions (HTML4, XHTML), the declaration was much longer and more complex. Without `DOCTYPE`, the browser enters 'quirks mode' and may render the page unpredictably.",
       "risposte": [
-        "<html5>",
-        "<!DOCTYPE html>",
-        "<doctype HTML5>",
-        "<?html version='5'?>"
+        "`<html5>`",
+        "`<!DOCTYPE html>`",
+        "`<doctype HTML5>`",
+        "`<?html version='5'?>`"
       ]
     },
-    "09849555d930": {
+    "867bc9a29c5f": {
       "domanda": "Where should page metadata, such as charset and tab title, be inserted in an HTML document?",
-      "spiegazione": "The <head> tag contains all page metadata: charset, tab title (<title>), CSS links, scripts, and search engine descriptions. Nothing in the <head> is directly displayed on the page. The <body> tag, on the other hand, contains all visible content. The <meta> tag is a child element of <head>, not the container.",
+      "spiegazione": "The `<head>` tag contains all page metadata: charset, tab title (`<title>`), CSS links, scripts, and search engine descriptions. Nothing in the `<head>` is directly displayed on the page. The `<body>` tag, on the other hand, contains all visible content. The `<meta>` tag is a child element of `<head>`, not the container.",
       "risposte": [
-        "In the <body> tag",
-        "In the <meta> tag",
-        "In the <head> tag",
-        "In the <html> tag"
+        "In the `<body>` tag",
+        "In the `<meta>` tag",
+        "In the `<head>` tag",
+        "In the `<html>` tag"
       ]
     },
-    "5e2281bfd348": {
-      "domanda": "What does the charset='UTF-8' attribute do in the <meta> tag?",
-      "spiegazione": "UTF-8 is a character encoding that covers virtually all languages in the world. Without charset='UTF-8', accented characters like à, è, ò might not display correctly. It should be placed in the <head>: <meta charset='UTF-8'>. It is one of the first things to include in every HTML page to avoid display issues.",
+    "03eb6247108a": {
+      "domanda": "What does the `charset='UTF-8'` attribute do in the `<meta>` tag?",
+      "spiegazione": "UTF-8 is a character encoding that covers virtually all languages in the world. Without `charset='UTF-8'`, accented characters like à, è, ò might not display correctly. It should be placed in the `<head>`: `<meta charset='UTF-8'>`. It is one of the first things to include in every HTML page to avoid display issues.",
       "risposte": [
         "Sets the page loading speed",
         "Defines the character encoding, enabling accented characters",
@@ -60,7 +60,7 @@
     },
     "952d365379db": {
       "domanda": "What is the difference between a block-level tag and an inline tag?",
-      "spiegazione": "Block-level tags (div, p, h1-h6, section, article...) occupy the full width of their container and start on a new line before and after. Inline tags (span, a, strong, em, img...) are inserted within the text flow without starting a new line. This distinction affects layout: you should not place a block-level element inside an inline element.",
+      "spiegazione": "Block-level tags (`div`, `p`, `h1-h6`, `section`, `article`...) occupy the full width of their container and start on a new line before and after. Inline tags (`span`, `a`, `strong`, `em`, `img`...) are inserted within the text flow without starting a new line. This distinction affects layout: you should not place a block-level element inside an inline element.",
       "risposte": [
         "Block-level tags are always rendered faster by current browsers",
         "Inline tags cannot in any way contain other text or other elements",
@@ -68,39 +68,39 @@
         "In everyday practice, there is no concrete difference between the two types"
       ]
     },
-    "f8960cd358b2": {
+    "a87de8a269d7": {
       "domanda": "How do you open a link in a new browser tab?",
-      "spiegazione": "The target='_blank' attribute instructs the browser to open the link in a new tab or window. For security, when using target='_blank', it is good practice to also add rel='noopener noreferrer', which prevents the opened page from accessing the original page via window.opener, thereby mitigating potential attacks.",
+      "spiegazione": "The `target='_blank'` attribute instructs the browser to open the link in a new tab or window. For security, when using `target='_blank'`, it is good practice to also add `rel='noopener noreferrer'`, which prevents the opened page from accessing the original page via `window.opener`, thereby mitigating potential attacks.",
       "risposte": [
-        "By adding a specific attribute to the link called new='tab'",
-        "Using the dedicated tag called <newlink> instead of <a>",
-        "With the target='_blank' attribute on the <a> tag",
-        "By adding the open attribute to the <a> element set to the value true"
+        "By adding a specific attribute to the link called `new='tab'`",
+        "Using the dedicated tag called `<newlink>` instead of `<a>`",
+        "With the `target='_blank'` attribute on the `<a>` tag",
+        "By adding the `open` attribute to the `<a>` element set to the value `true`"
       ]
     },
-    "b8eb6574f129": {
+    "3cb3d66df0b6": {
       "domanda": "What is the correct structure to create an unordered list with three items?",
-      "spiegazione": "<ul> (unordered list) creates a list with bullet points. Its children must be <li> (list item) tags. <ol> (ordered list) creates a numbered list instead. <dt> belongs to definition lists (<dl>). The <list> tag does not exist in HTML. The correct combination is always: a <ul> or <ol> container with <li> children.",
+      "spiegazione": "`<ul>` (unordered list) creates a list with bullet points. Its children must be `<li>` (list item) tags. `<ol>` (ordered list) creates a numbered list instead. `<dt>` belongs to definition lists (`<dl>`). The `<list>` tag does not exist in HTML. The correct combination is always: a `<ul>` or `<ol>` container with `<li>` children.",
       "risposte": [
-        "<list><item>A</item><item>B</item><item>C</item></list>",
-        "<ul><li>A</li><li>B</li><li>C</li></ul>",
-        "<ol><li>A</li><li>B</li><li>C</li></ol>",
-        "<ul><dt>A</dt><dt>B</dt><dt>C</dt></ul>"
+        "`<list><item>A</item><item>B</item><item>C</item></list>`",
+        "`<ul><li>A</li><li>B</li><li>C</li></ul>`",
+        "`<ol><li>A</li><li>B</li><li>C</li></ol>`",
+        "`<ul><dt>A</dt><dt>B</dt><dt>C</dt></ul>`"
       ]
     },
-    "bba0d4fbb78c": {
+    "91915a93c2d0": {
       "domanda": "Which tag represents a header cell in an HTML table?",
-      "spiegazione": "<th> (table header) is the header cell: by default it is bold and centered. <td> (table data) is the normal cell. <tr> (table row) is the row containing the cells. <thead> is the header section that groups the header rows. The correct structure is: <table><thead><tr><th>Name</th></tr></thead><tbody><tr><td>Mario</td></tr></tbody></table>.",
+      "spiegazione": "`<th>` (table header) is the header cell: by default it is bold and centered. `<td>` (table data) is the normal cell. `<tr>` (table row) is the row containing the cells. `<thead>` is the header section that groups the header rows. The correct structure is: `<table><thead><tr><th>Name</th></tr></thead><tbody><tr><td>Mario</td></tr></tbody></table>`.",
       "risposte": [
-        "<td>",
-        "<tr>",
-        "<th>",
-        "<thead>"
+        "`<td>`",
+        "`<tr>`",
+        "`<th>`",
+        "`<thead>`"
       ]
     },
-    "d9134705c160": {
-      "domanda": "What is the purpose of the colspan attribute in a table cell?",
-      "spiegazione": "colspan='N' causes a cell to span N horizontal columns. Similarly, rowspan='N' causes a cell to span N vertical rows. Example: <td colspan='2'>Title</td> makes that cell occupy two columns. It is useful for headers that span multiple columns, such as in complex tables. Do not confuse it with CSS width: colspan affects the HTML structure, not the styling.",
+    "1985341a5b4e": {
+      "domanda": "What is the purpose of the `colspan` attribute in a table cell?",
+      "spiegazione": "`colspan='N'` causes a cell to span N horizontal columns. Similarly, `rowspan='N'` causes a cell to span N vertical rows. Example: `<td colspan='2'>Title</td>` makes that cell occupy two columns. It is useful for headers that span multiple columns, such as in complex tables. Do not confuse it with CSS `width`: `colspan` affects the HTML structure, not the styling.",
       "risposte": [
         "Sets the column color",
         "Defines the minimum width of the column in pixels",
@@ -108,19 +108,19 @@
         "Links the cell to an external stylesheet"
       ]
     },
-    "d12d21ee42f5": {
-      "domanda": "What is the purpose of the 'for' attribute in the <label> tag?",
-      "spiegazione": "The 'for' attribute of a <label> must match the id of the associated input. This creates a semantic link: clicking the label focuses the input. It improves accessibility for screen readers and increases the clickable area (useful on mobile). Example: <label for='email'>Email</label><input id='email' type='email'>.",
+    "30318f7d23e1": {
+      "domanda": "What is the purpose of the `for` attribute in the `<label>` tag?",
+      "spiegazione": "The `for` attribute of a `<label>` must match the `id` of the associated input. This creates a semantic link: clicking the label focuses the input. It improves accessibility for screen readers and increases the clickable area (useful on mobile). Example: `<label for='email'>Email</label><input id='email' type='email'>`.",
       "risposte": [
         "Indicates how many times the field can be filled by the user",
-        "Links the label to its input via the id",
+        "Links the label to its input via the `id`",
         "Specifies the exact format of the data the field expects",
         "Sets the text that appears as default inside the field"
       ]
     },
-    "cff6d2578faa": {
-      "domanda": "What does the 'required' attribute do on an input field?",
-      "spiegazione": "The required attribute enables native browser validation: if the user attempts to submit the form with the field empty, the browser displays an error message and blocks the submission. No JavaScript is needed for this basic validation. Other native HTML validation attributes include: type='email', type='number', min, max, maxlength, pattern.",
+    "0936b50d0b14": {
+      "domanda": "What does the `required` attribute do on an input field?",
+      "spiegazione": "The `required` attribute enables native browser validation: if the user attempts to submit the form with the field empty, the browser displays an error message and blocks the submission. No JavaScript is needed for this basic validation. Other native HTML validation attributes include: `type='email'`, `type='number'`, `min`, `max`, `maxlength`, `pattern`.",
       "risposte": [
         "Adds a red color style to the field",
         "Blocks form submission if the field is empty",
@@ -128,39 +128,39 @@
         "Sets a default value"
       ]
     },
-    "6eda19e702c9": {
-      "domanda": "What is the difference between <button type='submit'> and <button type='button'>?",
-      "spiegazione": "type='submit' is the default behavior of a <button> inside a form: it submits the data to the server (or to the URL specified in the action attribute). type='button' has no default behavior: it is useful for buttons that should only execute JavaScript without submitting the form. If you omit the type attribute, the default is 'submit', which can cause accidental form submissions.",
+    "605ba8ed8b9f": {
+      "domanda": "What is the difference between `<button type='submit'>` and `<button type='button'>`?",
+      "spiegazione": "`type='submit'` is the default behavior of a `<button>` inside a form: it submits the data to the server (or to the URL specified in the `action` attribute). `type='button'` has no default behavior: it is useful for buttons that should only execute JavaScript without submitting the form. If you omit the `type` attribute, the default is `submit`, which can cause accidental form submissions.",
       "risposte": [
         "There is no practical difference between the two button types",
-        "The button type is now considered completely obsolete in HTML5",
-        "submit submits the form; button does nothing by default",
-        "submit reloads the page, while button opens a new tab"
+        "The `button` type is now considered completely obsolete in HTML5",
+        "`submit` submits the form; `button` does nothing by default",
+        "`submit` reloads the page, while `button` opens a new tab"
       ]
     },
-    "732d46be9d94": {
+    "e78ea2a7c4f8": {
       "domanda": "Which HTML5 tag is most suitable for containing the main site navigation?",
-      "spiegazione": "<nav> is the semantic tag for main navigation. Screen readers recognize it as a navigation region and can skip directly to it. <div> would work visually but lacks semantic meaning. <header> contains the page or section heading. <aside> is for side content that is related but not primary. Using correct semantic tags improves accessibility and SEO.",
+      "spiegazione": "`<nav>` is the semantic tag for main navigation. Screen readers recognize it as a navigation region and can skip directly to it. `<div>` would work visually but lacks semantic meaning. `<header>` contains the page or section heading. `<aside>` is for side content that is related but not primary. Using correct semantic tags improves accessibility and SEO.",
       "risposte": [
-        "<div id='menu'>",
-        "<nav>",
-        "<header>",
-        "<aside>"
+        "`<div id='menu'>`",
+        "`<nav>`",
+        "`<header>`",
+        "`<aside>`"
       ]
     },
-    "564c5354bc38": {
-      "domanda": "What is the difference between <section> and <article>?",
-      "spiegazione": "<article> represents self-contained, independent content (a blog post, a newspaper article, a comment): it could be extracted and published elsewhere while retaining its meaning. <section> groups thematically related content that is not necessarily autonomous. An <article> can contain multiple <section> elements; a <section> can contain multiple <article> elements. Both improve semantic structure compared to using only <div>.",
+    "a59913b1b80c": {
+      "domanda": "What is the difference between `<section>` and `<article>`?",
+      "spiegazione": "`<article>` represents self-contained, independent content (a blog post, a newspaper article, a comment): it could be extracted and published elsewhere while retaining its meaning. `<section>` groups thematically related content that is not necessarily autonomous. An `<article>` can contain multiple `<section>` elements; a `<section>` can contain multiple `<article> elements. Both improve semantic structure compared to using only `<div>`.",
       "risposte": [
         "There is no difference between the two: they are simply synonyms",
-        "<article> must always contain an h1, while <section> is not required to",
-        "<section> groups related content; <article> is autonomous",
-        "<section> is used for CSS, while <article> is used for JavaScript"
+        "`<article>` must always contain an `h1`, while `<section>` is not required to",
+        "`<section>` groups related content; `<article>` is autonomous",
+        "`<section>` is used for CSS, while `<article>` is used for JavaScript"
       ]
     },
-    "e19ec12ac4c8": {
-      "domanda": "Why is the alt attribute important for <img> tags?",
-      "spiegazione": "The alt attribute serves two key functions: (1) Accessibility — screen readers read the alt text to visually impaired users; (2) SEO — search engines use alt to understand the image content. An empty alt attribute (alt='') should be used for decorative images that screen readers should ignore. The title attribute, instead, displays a tooltip on hover, but does not replace alt.",
+    "249ad61358bb": {
+      "domanda": "Why is the `alt` attribute important for `<img>` tags?",
+      "spiegazione": "The `alt` attribute serves two key functions: (1) Accessibility — screen readers read the alt text to visually impaired users; (2) SEO — search engines use `alt` to understand the image content. An empty `alt` attribute (`alt=''`) should be used for decorative images that screen readers should ignore. The `title` attribute, instead, displays a tooltip on hover, but does not replace `alt`.",
       "risposte": [
         "Improves accessibility for screen readers and SEO",
         "Changes the image size",
@@ -168,19 +168,19 @@
         "Sets the title that appears on mouse hover"
       ]
     },
-    "8e96dd1b1845": {
+    "7966d8f9d062": {
       "domanda": "How do you link an external CSS stylesheet to an HTML page?",
-      "spiegazione": "The <link rel='stylesheet' href='style.css'> tag should be placed in the <head> of the HTML. rel='stylesheet' indicates the relationship between the document and the linked file. Separating HTML and CSS into distinct files is a best practice: structure and presentation remain independent, CSS can be shared across multiple pages, and the browser caches it for subsequent visits.",
+      "spiegazione": "The `<link rel='stylesheet' href='style.css'>` tag should be placed in the `<head>` of the HTML. `rel='stylesheet'` indicates the relationship between the document and the linked file. Separating HTML and CSS into distinct files is a best practice: structure and presentation remain independent, CSS can be shared across multiple pages, and the browser caches it for subsequent visits.",
       "risposte": [
-        "<style src='style.css'>",
-        "<css href='style.css'>",
-        "<link rel='stylesheet' href='style.css'> in the <head>",
-        "<script type='css' src='style.css'>"
+        "`<style src='style.css'>`",
+        "`<css href='style.css'>`",
+        "`<link rel='stylesheet' href='style.css'>` in the `<head>`",
+        "`<script type='css' src='style.css'>`"
       ]
     },
     "6754cafddaf3": {
       "domanda": "What does specificity mean in CSS?",
-      "spiegazione": "Specificity determines which CSS rule wins when multiple rules apply to the same element. Priority order: !important > inline style > ID (#id, weight 100) > class/attribute/pseudo-class (.class, [attr], :hover, weight 10) > tag/pseudo-element (p, ::before, weight 1). When specificity is equal, the rule declared last in the CSS file wins. Understanding specificity is essential to avoid unexpected behavior.",
+      "spiegazione": "Specificity determines which CSS rule wins when multiple rules apply to the same element. Priority order: `!important` > inline style > ID (`#id`, weight 100) > class/attribute/pseudo-class (`.class`, `[attr]`, `:hover`, weight 10) > tag/pseudo-element (`p`, `::before`, weight 1). When specificity is equal, the rule declared last in the CSS file wins. Understanding specificity is essential to avoid unexpected behavior.",
       "risposte": [
         "Indicates the speed at which the browser actually applies the rules",
         "Simply corresponds to the number of properties contained in a rule",
@@ -188,59 +188,59 @@
         "Establishes the alphabetical order in which selectors are evaluated"
       ]
     },
-    "3a95783c5ddd": {
-      "domanda": "What is the difference between rem and em as CSS measurement units?",
-      "spiegazione": "rem (root em) is always relative to the font-size of the <html> element (default 16px): 1rem = 16px. It is predictable because it does not 'accumulate'. em is relative to the font-size of the direct parent, which can cause cascading effects: if a parent has font-size 1.5em and the child has font-size 1.5em, the child results in 2.25x. For layout and spacing, rem is more manageable; em is useful for scalable components.",
+    "eb4ee553d9ea": {
+      "domanda": "What is the difference between `rem` and `em` as CSS measurement units?",
+      "spiegazione": "`rem` (root em) is always relative to the `font-size` of the `<html>` element (default `16px`): `1rem` = `16px`. It is predictable because it does not 'accumulate'. `em` is relative to the font-size of the direct parent, which can cause cascading effects: if a parent has `font-size` `1.5em` and the child has `font-size` `1.5em`, the child results in 2.25x. For layout and spacing, `rem` is more manageable; `em` is useful for scalable components.",
       "risposte": [
-        "rem is used to define colors, while em is for fonts",
-        "rem is relative to the root (html); em to the parent",
+        "`rem` is used to define colors, while `em` is for fonts",
+        "`rem` is relative to the root (`html`); `em` to the parent",
         "They are effectively identical and always produce the exact same result",
-        "rem works only on Firefox, while em is supported by all browsers"
+        "`rem` works only on Firefox, while `em` is supported by all browsers"
       ]
     },
-    "df9fc1d01aa1": {
+    "699c4ae2823e": {
       "domanda": "What is the correct order of the CSS box model, from inside out?",
-      "spiegazione": "The CSS box model consists of: content (the actual content), padding (space between the content and the border), border (the border itself), and margin (space between the border and other elements). With box-sizing: border-box, padding and border are included in the declared width — the most intuitive behavior. With box-sizing: content-box (default), width refers only to the content, and padding + border are added on top.",
+      "spiegazione": "The CSS box model consists of: `content` (the actual content), `padding` (space between the content and the border), `border` (the border itself), and `margin` (space between the border and other elements). With `box-sizing: border-box`, `padding` and `border` are included in the declared width — the most intuitive behavior. With `box-sizing: content-box` (default), `width` refers only to the `content`, and `padding` + `border` are added on top.",
       "risposte": [
-        "margin → border → padding → content",
-        "content → margin → padding → border",
-        "padding → content → border → margin",
-        "content → padding → border → margin"
+        "`margin` → `border` → `padding` → `content`",
+        "`content` → `margin` → `padding` → `border`",
+        "`padding` → `content` → `border` → `margin`",
+        "`content` → `padding` → `border` → `margin`"
       ]
     },
-    "a9e5184ee185": {
+    "ff0be33c7de0": {
       "domanda": "How do you horizontally center a block-level element using CSS?",
-      "spiegazione": "Setting margin: auto on the left and right sides horizontally centers a block-level element, but only if it has a defined width (or max-width). Without a width, the element takes up the full available width, leaving no space to distribute. text-align: center centers inline content (text, images) inside the container, not the element itself. margin: 40px auto is a shorthand: 40px for top/bottom, auto for left/right.",
+      "spiegazione": "Setting `margin: auto` on the left and right sides horizontally centers a block-level element, but only if it has a defined width (or `max-width`). Without a `width`, the element takes up the full available width, leaving no space to distribute. `text-align: center` centers inline content (text, images) inside the container, not the element itself. `margin: 40px auto` is a shorthand: `40px` for top/bottom, `auto` for left/right.",
       "risposte": [
-        "You simply use the text-align property with a value of center",
-        "It is sufficient to set the margin property directly to the auto value",
-        "Set margin-left and margin-right to auto, with a width",
-        "You apply the position property to the element with a value of center"
+        "You simply use the `text-align` property with a value of `center`",
+        "It is sufficient to set the `margin` property directly to the `auto` value",
+        "Set `margin-left` and `margin-right` to `auto`, with a `width`",
+        "You apply the `position` property to the element with a value of `center`"
       ]
     },
-    "7e52ca881ae7": {
-      "domanda": "What does box-sizing: border-box do?",
-      "spiegazione": "With the default value content-box, if you declare width: 300px and add padding: 20px, the element ends up being 340px wide. With border-box, padding and border are already included in the 300px: the content shrinks, but the element remains 300px wide. border-box is the most intuitive behavior and is often applied globally with * { box-sizing: border-box; } in modern CSS resets.",
+    "f08f614858d8": {
+      "domanda": "What does `box-sizing: border-box` do?",
+      "spiegazione": "With the default value `content-box`, if you declare `width: 300px` and add `padding: 20px`, the element ends up being `340px` wide. With `border-box`, `padding` and `border` are already included in the `300px`: the content shrinks, but the element remains `300px` wide. `border-box` is the most intuitive behavior and is often applied globally with `* { box-sizing: border-box; }` in modern CSS resets.",
       "risposte": [
         "Adds a visible border to all elements",
-        "Makes padding and border included in the declared width",
-        "Disables the element's padding",
+        "Makes `padding` and `border` included in the declared width",
+        "Disables the element's `padding`",
         "Makes the border invisible"
       ]
     },
-    "fb510b934313": {
+    "6fbb08fc2add": {
       "domanda": "Which property is applied to a container to enable Flexbox?",
-      "spiegazione": "Applying display: flex to an element makes it a 'flex container', and its direct children automatically become 'flex items'. Nothing else is needed to enable Flexbox. Once enabled, properties such as justify-content, align-items, flex-direction, and gap can be used to control the layout. display: inline-flex creates a flex container that behaves as an inline element externally.",
+      "spiegazione": "Applying `display: flex` to an element makes it a 'flex container', and its direct children automatically become 'flex items'. Nothing else is needed to enable Flexbox. Once enabled, properties such as `justify-content`, `align-items`, `flex-direction`, and `gap` can be used to control the layout. `display: inline-flex` creates a flex container that behaves as an inline element externally.",
       "risposte": [
-        "flex: enable",
-        "display: flex",
-        "flexbox: true",
-        "layout: flex"
+        "`flex: enable`",
+        "`display: flex`",
+        "`flexbox: true`",
+        "`layout: flex`"
       ]
     },
-    "c0ac97366d8a": {
-      "domanda": "What does justify-content: space-between do in a flex container?",
-      "spiegazione": "justify-content manages distribution along the main axis (horizontal by default). space-between: equal space between elements, no space at the edges. space-around: equal space around each element (edges have half space). space-evenly: identical space between all gaps, including edges. center: elements grouped in the center. flex-start (default): elements at the start. flex-end: elements at the end.",
+    "9fd94ed806c4": {
+      "domanda": "What does `justify-content: space-between` do in a flex container?",
+      "spiegazione": "`justify-content` manages distribution along the main axis (horizontal by default). `space-between`: equal space between elements, no space at the edges. `space-around`: equal space around each element (edges have half space). `space-evenly`: identical space between all gaps, including edges. `center`: elements grouped in the center. `flex-start` (default): elements at the start. `flex-end`: elements at the end.",
       "risposte": [
         "Aligns and groups all elements exactly in the center",
         "Equal space between items, first and last at the edges",
@@ -248,9 +248,9 @@
         "Aligns elements along the vertical axis of the flex container"
       ]
     },
-    "edd9af0a2a4b": {
-      "domanda": "What is the purpose of align-items in a flex container?",
-      "spiegazione": "align-items controls how flex items align on the cross axis (vertical if flex-direction is row). Values: stretch (default — they expand to fill the container), center (centered), flex-start (top), flex-end (bottom), baseline (aligned on the text baseline). Do not confuse with justify-content, which acts on the main axis (horizontal).",
+    "aa313b9cac06": {
+      "domanda": "What is the purpose of `align-items` in a flex container?",
+      "spiegazione": "`align-items` controls how flex items align on the cross axis (vertical if `flex-direction` is `row`). Values: `stretch` (default — they expand to fill the container), `center` (centered), `flex-start` (top), `flex-end` (bottom), `baseline` (aligned on the text baseline). Do not confuse with `justify-content`, which acts on the main axis (horizontal).",
       "risposte": [
         "Controls the distribution of items along the main axis of the flex container",
         "Automatically sorts elements in ascending alphabetical order",
@@ -258,9 +258,9 @@
         "Sets the minimum size each element can take"
       ]
     },
-    "87eff0c07b25": {
-      "domanda": "What does flex-direction: column do?",
-      "spiegazione": "With flex-direction: column, elements are arranged from top to bottom instead of left to right. This also reverses the role of the properties: justify-content now controls the vertical axis and align-items the horizontal axis. column-reverse arranges elements from bottom to top. It is useful for vertical layouts such as sidebars or card stacks.",
+    "e3989b9bab3a": {
+      "domanda": "What does `flex-direction: column` do?",
+      "spiegazione": "With `flex-direction: column`, elements are arranged from top to bottom instead of left to right. This also reverses the role of the properties: `justify-content` now controls the vertical axis and `align-items` the horizontal axis. `column-reverse` arranges elements from bottom to top. It is useful for vertical layouts such as sidebars or card stacks.",
       "risposte": [
         "Arranges elements in a horizontal row",
         "Sets the main axis vertically: elements in a column",
@@ -268,19 +268,19 @@
         "Automatically creates multiple side-by-side text columns like in print newspapers"
       ]
     },
-    "cffa98d8d8f1": {
-      "domanda": "Which position value removes the element from the normal document flow?",
-      "spiegazione": "position: absolute removes the element from the flow: other elements ignore it and 'overlap' it. The element is positioned relative to the first ancestor with a non-static position. position: relative keeps the element in the flow but allows moving it relative to its original position. position: fixed is similar to absolute but relative to the viewport. position: sticky is a hybrid: it follows the scroll until a certain point.",
+    "8a20bd7716d7": {
+      "domanda": "Which `position` value removes the element from the normal document flow?",
+      "spiegazione": "`position: absolute` removes the element from the flow: other elements ignore it and 'overlap' it. The element is positioned relative to the first ancestor with a non-`static` `position`. `position: relative` keeps the element in the flow but allows moving it relative to its original position. `position: fixed` is similar to `absolute` but relative to the viewport. `position: sticky` is a hybrid: it follows the scroll until a certain point.",
       "risposte": [
-        "position: static",
-        "position: relative",
-        "position: absolute",
-        "position: sticky"
+        "`position: static`",
+        "`position: relative`",
+        "`position: absolute`",
+        "`position: sticky`"
       ]
     },
-    "6cc2a60c155f": {
-      "domanda": "What does position: fixed do?",
-      "spiegazione": "position: fixed removes the element from the flow and anchors it to the viewport (the browser window). The element remains in the same position on the screen regardless of scrolling. It is typically used for fixed headers, 'back to top' buttons, chatbots, and cookie banners. The top, right, bottom, and left coordinates refer to the edges of the viewport.",
+    "cf78679c19ef": {
+      "domanda": "What does `position: fixed` do?",
+      "spiegazione": "`position: fixed` removes the element from the flow and anchors it to the viewport (the browser window). The element remains in the same position on the screen regardless of scrolling. It is typically used for fixed headers, 'back to top' buttons, chatbots, and cookie banners. The `top`, `right`, `bottom`, and `left` coordinates refer to the edges of the viewport.",
       "risposte": [
         "Locks the element in place preventing modification via JavaScript",
         "Anchors the element to the window: it stays fixed on scroll",
@@ -298,44 +298,44 @@
         "depth"
       ]
     },
-    "f850756a1909": {
-      "domanda": "What does @media (max-width: 768px) { } do?",
-      "spiegazione": "max-width: 768px means 'screen width up to 768px': the rules activate on mobile and tablet devices with narrow screens. The Desktop-First approach uses max-width. The Mobile-First approach (recommended) instead uses min-width: styles for mobile are written first, then rules with min-width are added for larger screens. Common breakpoints: 480px (mobile), 768px (tablet), 1024px (small desktop).",
+    "4fa1da59062b": {
+      "domanda": "What does `@media (max-width: 768px) { }` do?",
+      "spiegazione": "`max-width: 768px` means 'screen width up to 768px': the rules activate on mobile and tablet devices with narrow screens. The Desktop-First approach uses `max-width`. The Mobile-First approach (recommended) instead uses `min-width`: styles for mobile are written first, then rules with `min-width` are added for larger screens. Common breakpoints: `480px` (mobile), `768px` (tablet), `1024px` (small desktop).",
       "risposte": [
-        "The rules apply only on screens wider than 768px",
-        "The rules apply on screens up to 768px wide (mobile and tablet)",
+        "The rules apply only on screens wider than `768px`",
+        "The rules apply on screens up to `768px` wide (mobile and tablet)",
         "Automatically hides all page elements wider than 768 pixels",
-        "Sets the maximum width of the body to 768px"
+        "Sets the maximum width of the `body` to `768px`"
       ]
     },
-    "663625b723c3": {
+    "6fd67d2391e7": {
       "domanda": "How do you control the visual order of a single flex item?",
-      "spiegazione": "The order property on a flex item controls its visual order relative to others. The default value is 0: lower values appear first, higher values appear later. Example: if an element has order: -1, it appears before all other elements with order: 0. This does not change the order in the DOM (and thus in the HTML), which can create accessibility issues if used in a non-intuitive way.",
+      "spiegazione": "The order property on a flex item controls its visual order relative to others. The default value is `0`: lower values appear first, higher values appear later. Example: if an element has `order: -1`, it appears before all other elements with `order: 0`. This does not change the order in the DOM (and thus in the HTML), which can create accessibility issues if used in a non-intuitive way.",
       "risposte": [
-        "With the z-index property",
-        "With the order property",
-        "With the flex-direction property on the single element",
-        "With position: relative and left"
+        "With the `z-index` property",
+        "With the `order` property",
+        "With the `flex-direction` property on the single element",
+        "With `position: relative` and `left`"
       ]
     },
-    "9361eda6c8f5": {
-      "domanda": "What is the difference between let and const in JavaScript?",
-      "spiegazione": "let declares a variable that can be reassigned: let x = 5; x = 10 is valid. const declares a constant reference: const x = 5; x = 10 throws a TypeError. Note: const on an object or array does not make the contents immutable — you can add/modify properties. Only the reference is constant. Use const by default; use let only when you know you need to reassign.",
+    "ca7934d66304": {
+      "domanda": "What is the difference between `let` and `const` in JavaScript?",
+      "spiegazione": "`let` declares a variable that can be reassigned: `let x = 5; x = 10` is valid. `const` declares a constant reference: `const x = 5; x = 10` throws a `TypeError`. Note: `const` on an object or array does not make the contents immutable — you can add/modify properties. Only the reference is constant. Use `const` by default; use `let` only when you know you need to reassign.",
       "risposte": [
-        "let is for numbers; const is for strings",
-        "let can be reassigned; const cannot be reassassigned (but a const object can be modified internally)",
-        "const is faster than let at runtime",
+        "`let` is for numbers; `const` is for strings",
+        "`let` can be reassigned; `const` cannot be reassassigned (but a `const` object can be modified internally)",
+        "`const` is faster than `let` at runtime",
         "They are identical: the distinction is purely stylistic"
       ]
     },
-    "2cc1a1d9d2a4": {
-      "domanda": "What does typeof 42 return?",
-      "spiegazione": "typeof always returns a string with the type name. typeof 42 → 'number'. typeof 'ciao' → 'string'. typeof true → 'boolean'. typeof undefined → 'undefined'. typeof null → 'object' (historical JS bug!). typeof [] → 'object'. typeof function(){} → 'function'. To distinguish arrays from objects, use Array.isArray(value).",
+    "ddf51a660bae": {
+      "domanda": "What does `typeof 42` return?",
+      "spiegazione": "`typeof` always returns a string with the type name. `typeof 42` → `'number'`. `typeof 'ciao'` → `'string'`. `typeof true` → `'boolean'`. `typeof undefined` → `'undefined'`. `typeof null` → `'object'` (historical JS bug!). `typeof []` → `'object'`. `typeof function(){}` → `'function'`. To distinguish arrays from objects, use `Array.isArray(value)`.",
       "risposte": [
-        "42",
-        "'number'",
-        "'integer'",
-        "true"
+        "`42`",
+        "`'number'`",
+        "`'integer'`",
+        "`true`"
       ]
     },
     "3842d50a56c8": {
@@ -348,79 +348,79 @@
         "Calculates the power of a number"
       ]
     },
-    "0ff773aa6b10": {
-      "domanda": "What is the difference between == and === in JavaScript?",
-      "spiegazione": "With ==: 5 == '5' → true (JS converts '5' to 5). With ===: 5 === '5' → false (different types). Implicit type conversions with == lead to unexpected results: '' == false → true, null == undefined → true. For this reason, it is recommended to always use ===, which performs no conversions. The same logic applies to != vs !==.",
+    "24675823fa88": {
+      "domanda": "What is the difference between `==` and `===` in JavaScript?",
+      "spiegazione": "With `==`: `5 == '5'` → `true` (JS converts `'5'` to `5`). With `===`: `5 === '5'` → `false` (different types). Implicit type conversions with `==` lead to unexpected results: `'' == false` → `true`, `null == undefined` → `true`. For this reason, it is recommended to always use `===`, which performs no conversions. The same logic applies to `!=` vs `!==`.",
       "risposte": [
         "In practice, there is no difference between the two comparison operators",
-        "The === operator is significantly slower than the == operator",
-        "== compares with type coercion; === compares value and type",
-        "== compares both value and type; === compares only the value"
+        "The `===` operator is significantly slower than the `==` operator",
+        "`==` compares with type coercion; `===` compares value and type",
+        "`==` compares both value and type; `===` compares only the value"
       ]
     },
-    "49978b3fc31d": {
+    "b1338a5afa7a": {
       "domanda": "What are template literals in JavaScript?",
       "risposte": [
         "They are predefined functions used to format text strings",
-        "Strings in backticks with ${} interpolation and multiple lines",
+        "Strings in backticks with `${}` interpolation and multiple lines",
         "A mechanism for importing entire HTML templates inside JavaScript code",
         "They are special comments used to document the source code"
       ],
-      "spiegazione": "Template literals (backtick `) allow: (1) interpolation with ${espressione} — e.g. `Ciao, ${nome}!`; (2) strings spanning multiple lines without \\n; (3) arbitrary expressions inside ${}: `Il doppio è ${x * 2}`. Before template literals, concatenation with + was used: 'Ciao, ' + nome + '!' — less readable. Backticks should not be confused with single or double quotes."
+      "spiegazione": "Template literals (backtick) allow: (1) interpolation with `${espressione}` — e.g. `Ciao, ${nome}!`; (2) strings spanning multiple lines without `\\n`; (3) arbitrary expressions inside `${}`: `Il doppio è ${x * 2}`. Before template literals, concatenation with `+` was used: `'Ciao, ' + nome + '!'` — less readable. Backticks should not be confused with single or double quotes."
     },
-    "d00da6fd537a": {
-      "domanda": "What happens if the break is omitted in a switch case?",
-      "spiegazione": "Without a break, after executing the block of the matching case, JavaScript continues and executes the block of the next case, and then the one after that, until it finds a break or reaches the end of the switch. This behavior is called 'fall-through'. It can be intentional (to group cases with the same action) but is often a bug. Always use break after each case, unless the fall-through is deliberate and commented.",
+    "2ce4e490c0ee": {
+      "domanda": "What happens if the `break` is omitted in a `switch` `case`?",
+      "spiegazione": "Without a `break`, after executing the block of the matching `case`, JavaScript continues and executes the block of the next `case`, and then the one after that, until it finds a `break` or reaches the end of the `switch`. This behavior is called 'fall-through'. It can be intentional (to group cases with the same action) but is often a bug. Always use `break` after each `case`, unless the fall-through is deliberate and commented.",
       "risposte": [
         "The program throws a syntax error",
-        "The case is ignored",
-        "Execution continues into the next case (fall-through)",
-        "The switch terminates automatically"
+        "The `case` is ignored",
+        "Execution continues into the next `case` (fall-through)",
+        "The `switch` terminates automatically"
       ]
     },
-    "19032bf5ff11": {
+    "b36e35226cd9": {
       "domanda": "Which values are considered 'falsy' in JavaScript?",
-      "spiegazione": "The falsy values (treated as false in an if statement) are exactly: false, 0, -0, 0n (BigInt zero), '' (empty string), null, undefined, NaN. Everything else is truthy — including '0' (string containing zero), [] (empty array), {} (empty object), 'false' (string 'false'). Knowing falsy values is essential: if (myArray.length) is a common pattern to check if an array is not empty.",
+      "spiegazione": "The falsy values (treated as `false` in an `if` statement) are exactly: `false`, `0`, `-0`, `0n` (BigInt zero), `''` (empty string), `null`, `undefined`, `NaN`. Everything else is truthy — including `'0'` (string containing zero), `[]` (empty array), `{}` (empty object), `'false'` (string 'false'). Knowing falsy values is essential: `if (myArray.length)` is a common pattern to check if an array is not empty.",
       "risposte": [
-        "Only false and 0",
-        "false, 0, '', null, undefined, and NaN",
-        "Only null and undefined",
+        "Only `false` and `0`",
+        "`false`, `0`, `''`, `null`, `undefined`, and `NaN`",
+        "Only `null` and `undefined`",
         "All negative values and empty strings"
       ]
     },
-    "b4c18bce9b45": {
+    "85196aeae651": {
       "domanda": "Which method adds an element to the end of an array?",
-      "spiegazione": "push() adds one or more elements to the end of the array and returns the new length. pop() removes and returns the last element. unshift() adds to the beginning, shift() removes from the beginning. These four methods modify the original array. Examples: [1,2].push(3) → [1,2,3]. [1,2,3].pop() → returns 3, array becomes [1,2]. Remember the mnemonic: push/pop work at the end, shift/unshift at the beginning.",
+      "spiegazione": "`push()` adds one or more elements to the end of the array and returns the new length. `pop()` removes and returns the last element. `unshift()` adds to the beginning, `shift()` removes from the beginning. These four methods modify the original array. Examples: `[1,2].push(3)` → `[1,2,3]`. `[1,2,3].pop()` → returns `3`, array becomes `[1,2]`. Remember the mnemonic: `push`/`pop` work at the end, `shift`/`unshift` at the beginning.",
       "risposte": [
-        "array.add(element)",
-        "array.append(element)",
-        "array.push(element)",
-        "array.insert(element)"
+        "`array.add(element)`",
+        "`array.append(element)`",
+        "`array.push(element)`",
+        "`array.insert(element)`"
       ]
     },
-    "ff75d6536b04": {
-      "domanda": "What is the difference between forEach and map on arrays?",
-      "spiegazione": "forEach executes a callback for each element but returns undefined: it is used for side effects (logging, DOM updates). map executes a callback for each element and collects the results into a NEW array: it is used for data transformation. Example: [1,2,3].map(x => x*2) → [2,4,6]. [1,2,3].forEach(x => console.log(x)) → prints 1,2,3 but returns undefined. Neither forEach nor map modifies the original array.",
+    "f07d3ded056f": {
+      "domanda": "What is the difference between `forEach` and `map` on arrays?",
+      "spiegazione": "`forEach` executes a callback for each element but returns `undefined`: it is used for side effects (logging, DOM updates). `map` executes a callback for each element and collects the results into a NEW array: it is used for data transformation. Example: `[1,2,3].map(x => x*2)` → `[2,4,6]`. `[1,2,3].forEach(x => console.log(x))` → prints 1,2,3 but returns `undefined`. Neither `forEach` nor `map` modifies the original array.",
       "risposte": [
-        "forEach works on objects, while map is designed for arrays",
-        "map modifies the original array directly, while forEach does not touch it",
-        "forEach returns nothing; map creates a new array",
+        "`forEach` works on objects, while `map` is designed for arrays",
+        "`map` modifies the original array directly, while `forEach` does not touch it",
+        "`forEach` returns nothing; `map` creates a new array",
         "They are two completely identical methods, just with different names"
       ]
     },
-    "2fa2772e91a5": {
-      "domanda": "What does the filter method return on an array?",
-      "spiegazione": "filter takes a callback that returns true or false for each element and creates a NEW array with only the elements for which the callback returned true. Example: [1,2,3,4,5].filter(n => n > 3) → [4,5]. The original array is not modified. find instead returns only the FIRST element that satisfies the condition (not an array). findIndex returns the index of the first element.",
+    "c78e97c8e9bc": {
+      "domanda": "What does the `filter` method return on an array?",
+      "spiegazione": "`filter` takes a callback that returns `true` or `false` for each element and creates a NEW array with only the elements for which the callback returned `true`. Example: `[1,2,3,4,5].filter(n => n > 3)` → `[4,5]`. The original array is not modified. `find` instead returns only the FIRST element that satisfies the condition (not an array). `findIndex` returns the index of the first element.",
       "risposte": [
         "Returns only the first element that satisfies the given condition",
-        "Returns a boolean value, i.e., simply true or false",
+        "Returns a boolean value, i.e., simply `true` or `false`",
         "A new array with the elements that pass the test",
         "Returns the total number of elements that satisfy the condition"
       ]
     },
-    "82176221201f": {
-      "domanda": "What does the find method do on an array?",
-      "spiegazione": "find returns the FIRST element of the array for which the callback returns true, or undefined if no element satisfies the condition. [3,7,1,9].find(n => n > 5) → 7 (not 9, which is greater than 5 but is not the FIRST). findIndex is similar but returns the index instead of the value. find does not modify the original array. Do not confuse it with filter, which returns all matching elements in an array.",
+    "11ed225f5499": {
+      "domanda": "What does the `find` method do on an array?",
+      "spiegazione": "`find` returns the FIRST element of the array for which the callback returns `true`, or `undefined` if no element satisfies the condition. `[3,7,1,9].find(n => n > 5)` → `7` (not 9, which is greater than 5 but is not the FIRST). `findIndex` is similar but returns the index instead of the value. `find` does not modify the original array. Do not confuse it with `filter`, which returns all matching elements in an array.",
       "risposte": [
         "Returns an array with all found elements",
         "Returns the first element that satisfies the condition",
@@ -430,7 +430,7 @@
     },
     "88629c2c8b67": {
       "domanda": "What is meant by 'scope' in JavaScript?",
-      "spiegazione": "Scope is the region of code in which a variable is accessible. let and const have block scope {}: they exist only within the {} in which they are declared. Global variables (declared outside any function or block) are accessible everywhere. Function-local variables are not accessible from the outside. Understanding scope helps avoid bugs such as accessing undefined variables or accidentally overwriting global variables.",
+      "spiegazione": "Scope is the region of code in which a variable is accessible. `let` and `const` have block scope `{}`: they exist only within the `{}` in which they are declared. Global variables (declared outside any function or block) are accessible everywhere. Function-local variables are not accessible from the outside. Understanding scope helps avoid bugs such as accessing `undefined` variables or accidentally overwriting global variables.",
       "risposte": [
         "The size of the JavaScript file",
         "The visibility and accessibility of a variable in a certain part of the code",
@@ -438,7 +438,7 @@
         "The execution speed of a function"
       ]
     },
-    "2538cb36c44b": {
+    "97803832f8b1": {
       "domanda": "What does the `return` keyword do in a function?",
       "risposte": [
         "Immediately prints the given value in the browser console",
@@ -446,11 +446,11 @@
         "Calls the function itself again, recursively",
         "Declares a new local variable inside the function"
       ],
-      "spiegazione": "`return` does two things: it immediately interrupts the function's execution and returns the specified value to the caller. A function without a return (or with a bare return; and no value) implicitly returns `undefined`. Separating computation (a function with a return) from display (whoever uses the result) is a fundamental best practice for reusable and testable code."
+      "spiegazione": "`return` does two things: it immediately interrupts the function's execution and returns the specified value to the caller. A function without a `return` (or with a bare `return;` and no value) implicitly returns `undefined`. Separating computation (a function with a `return`) from display (whoever uses the result) is a fundamental best practice for reusable and testable code."
     },
     "a77b25af53d9": {
       "domanda": "What is a callback function?",
-      "spiegazione": "A callback is a function passed as an argument to another function, which will invoke it at an appropriate time. Example: array.forEach(callback) invokes the callback for each element. setTimeout(callback, 1000) invokes the callback after one second. btn.addEventListener('click', callback) invokes the callback on click. Callbacks are the fundamental mechanism for asynchronous and event-driven programming in JavaScript.",
+      "spiegazione": "A callback is a function passed as an argument to another function, which will invoke it at an appropriate time. Example: `array.forEach(callback)` invokes the callback for each element. `setTimeout(callback, 1000)` invokes the callback after one second. `btn.addEventListener('click', callback)` invokes the callback on click. Callbacks are the fundamental mechanism for asynchronous and event-driven programming in JavaScript.",
       "risposte": [
         "A function that calls itself, thus implementing recursion",
         "A special function that accepts no input parameters",
@@ -458,49 +458,49 @@
         "A function whose purpose is to return another function"
       ]
     },
-    "6744dc854584": {
+    "95b86047fc6a": {
       "domanda": "What is the syntax of an arrow function that multiplies a number by 2?",
-      "spiegazione": "Arrow functions have the syntax (parameters) => expression. With a single parameter, parentheses are optional. With a single expression, the return is implicit. n => n * 2 is equivalent to function(n) { return n * 2; }. With multiple parameters: (a, b) => a + b. With multiple statements, {} and an explicit return are required: (n) => { const double = n * 2; return double; }. A describes the correct syntax. B is incorrect because it lacks the function keyword and braces, which are not needed here but the syntax shown is actually correct for a single expression, however, the question asks for the syntax of an arrow function, and B is the correct arrow function syntax. Wait, let's re-evaluate. A is not valid JS. B is valid arrow function syntax. C is not valid JS. D is not valid JS. So B is the correct answer. The explanation should point out that B is the correct arrow function syntax.",
+      "spiegazione": "Arrow functions have the syntax `(parameters) => expression`. With a single parameter, parentheses are optional. With a single expression, the `return` is implicit. `n => n * 2` is equivalent to `function(n) { return n * 2; }`. With multiple parameters: `(a, b) => a + b`. With multiple statements, `{}` and an explicit `return` are required: `(n) => { const double = n * 2; return double; }`. A describes the correct syntax. B is incorrect because it lacks the `function` keyword and braces, which are not needed here but the syntax shown is actually correct for a single expression, however, the question asks for the syntax of an arrow function, and B is the correct arrow function syntax. Wait, let's re-evaluate. A is not valid JS. B is valid arrow function syntax. C is not valid JS. D is not valid JS. So B is the correct answer. The explanation should point out that B is the correct arrow function syntax.",
       "risposte": [
-        "function(n) => { n * 2 }",
-        "n => n * 2",
-        "fn n { return n * 2 }",
-        "arrow(n) { n * 2 }"
+        "`function(n) => { n * 2 }`",
+        "`n => n * 2`",
+        "`fn n { return n * 2 }`",
+        "`arrow(n) { n * 2 }`"
       ]
     },
-    "723950299500": {
+    "87b6959bffa2": {
       "domanda": "What is a closure in JavaScript?",
-      "spiegazione": "A closure is created when an inner function 'remembers' the variables of the outer function that encloses it. Example: function create() { let count = 0; return () => count++; } The returned function still has access to count even after create() has finished executing. This allows for the creation of private variables (not accessible from the outside). Each call to create() creates an independent closure with its own copy of count.",
+      "spiegazione": "A closure is created when an inner function 'remembers' the variables of the outer function that encloses it. Example: `function create() { let count = 0; return () => count++; }` The returned function still has access to `count` even after `create()` has finished executing. This allows for the creation of private variables (not accessible from the outside). Each call to `create()` creates an independent closure with its own copy of `count`.",
       "risposte": [
         "A method to close the browser",
         "A function that has access to the variables of its outer scope, even after that scope has finished executing",
         "An HTML tag to wrap JavaScript code",
-        "An error that occurs when a function has no return"
+        "An error that occurs when a function has no `return`"
       ]
     },
-    "fe94ecc235d3": {
-      "domanda": "In a literal object, what does the 'this' keyword refer to inside a method?",
-      "spiegazione": "Inside a method of a literal object, 'this' refers to the owner object of the method. Example: const student = { name: 'Mario', greet() { return 'Hi, I am ' + this.name; } }; student.greet() → 'Hi, I am Mario'. Note: in arrow functions, 'this' is not dynamically bound — it retains the 'this' of the surrounding context. For object methods, use function() {} or the shorthand method() {}.",
+    "67344ec11042": {
+      "domanda": "In a literal object, what does the `this` keyword refer to inside a method?",
+      "spiegazione": "Inside a method of a literal object, `this` refers to the owner object of the method. Example: `const student = { name: 'Mario', greet() { return 'Hi, I am ' + this.name; } };` `student.greet()` → `'Hi, I am Mario'`. Note: in arrow functions, `this` is not dynamically bound — it retains the `this` of the surrounding context. For object methods, use `function() {}` or the shorthand `method() {}`.",
       "risposte": [
-        "It always refers to the browser window, i.e., the window object",
+        "It always refers to the browser window, i.e., the `window` object",
         "The object on which the method is called",
         "It refers to the function itself in which it is used",
-        "The keyword 'this' is not valid inside literal objects"
+        "The keyword `this` is not valid inside literal objects"
       ]
     },
-    "9b8f330c1ff8": {
-      "domanda": "What does the new keyword do when calling a constructor?",
-      "spiegazione": "new performs three automatic operations: (1) creates a new empty object {}; (2) assigns this object to this inside the constructor function; (3) implicitly returns this. Example: function Persona(nome) { this.nome = nome; } — let p = new Persona('Mario') creates an object { nome: 'Mario' }. Without new, this in a normal function in strict mode is undefined; outside strict mode it points to window (global).",
+    "1fa30aff6372": {
+      "domanda": "What does the `new` keyword do when calling a constructor?",
+      "spiegazione": "`new` performs three automatic operations: (1) creates a new empty object `{}`; (2) assigns this object to `this` inside the constructor function; (3) implicitly returns `this`. Example: `function Persona(nome) { this.nome = nome; }` — `let p = new Persona('Mario')` creates an object `{ nome: 'Mario' }`. Without `new`, `this` in a normal function in strict mode is `undefined`; outside strict mode it points to `window` (global).",
       "risposte": [
         "Simply creates a copy of the already existing object in memory",
-        "Creates an object, binds it to this, and returns it",
+        "Creates an object, binds it to `this`, and returns it",
         "Imports the indicated constructor from an external module",
         "Declares the constructor as private and not accessible from outside"
       ]
     },
     "bfbbac402e29": {
       "domanda": "What is the difference between a regular method and a static method in an ES6 class?",
-      "spiegazione": "A regular method is called on an instance: let p = new Prodotto(); p.descrizione(). A static method is called on the class: Prodotto.confronta(p1, p2). Static methods do not have access to the instance's this (they do not have 'instance state'). They are used for utility functions associated with the class but not with a specific instance, such as factory methods, comparators, or validators.",
+      "spiegazione": "A regular method is called on an instance: `let p = new Prodotto(); p.descrizione()`. A static method is called on the class: `Prodotto.confronta(p1, p2)`. Static methods do not have access to the instance's `this` (they do not have 'instance state'). They are used for utility functions associated with the class but not with a specific instance, such as factory methods, comparators, or validators.",
       "risposte": [
         "Static methods execute faster than other methods",
         "Regular methods are on the instance, static methods are on the class",
@@ -508,9 +508,9 @@
         "There is no practical difference between the two types of methods"
       ]
     },
-    "f0059f00c73d": {
-      "domanda": "What does JSON.stringify(object) do?",
-      "spiegazione": "JSON.stringify(obj) serializes a JavaScript object into a JSON-formatted string. Example: JSON.stringify({nome: 'Mario', eta: 30}) → '{\"nome\":\"Mario\",\"eta\":30}'. It is necessary to save objects in localStorage (which accepts only strings) or send them to a server via fetch. The reverse operation is JSON.parse(string) which converts a JSON string into a JavaScript object.",
+    "bf85f0266d00": {
+      "domanda": "What does `JSON.stringify(object)` do?",
+      "spiegazione": "`JSON.stringify(obj)` serializes a JavaScript object into a JSON-formatted string. Example: `JSON.stringify({nome: 'Mario', eta: 30})` → `'{\"nome\":\"Mario\",\"eta\":30}'`. It is necessary to save objects in `localStorage` (which accepts only strings) or send them to a server via `fetch`. The reverse operation is `JSON.parse(string)` which converts a JSON string into a JavaScript object.",
       "risposte": [
         "Converts a JavaScript object into a JSON string",
         "Converts a JSON string into a JavaScript object",
@@ -518,79 +518,79 @@
         "Prints the object to the console in a readable format"
       ]
     },
-    "a5d0529bd005": {
-      "domanda": "Why does getMonth() on a Date object return a value from 0 to 11?",
-      "spiegazione": "getMonth() returns 0 for January, 1 for February, ..., 11 for December. This is a design choice from the 1990s inspired by zero-indexed arrays. To get the 'human' month number, always add +1: let month = date.getMonth() + 1. getDate() returns the day of the month (1-31, starting from 1 here). getFullYear() returns the 4-digit year. getDay() returns the day of the week (0=Sunday, 6=Saturday).",
+    "e1498024e0dd": {
+      "domanda": "Why does `getMonth()` on a `Date` object return a value from 0 to 11?",
+      "spiegazione": "`getMonth()` returns 0 for January, 1 for February, ..., 11 for December. This is a design choice from the 1990s inspired by zero-indexed arrays. To get the 'human' month number, always add +1: `let month = date.getMonth() + 1`. `getDate()` returns the day of the month (1-31, starting from 1 here). `getFullYear()` returns the 4-digit year. `getDay()` returns the day of the week (0=Sunday, 6=Saturday).",
       "risposte": [
         "It's a JavaScript bug that was never fixed",
         "Because months in computing are always counted from 0",
         "It's a historical design choice: month arrays are zero-indexed, so January=0",
-        "getMonth() returns from 1 to 12, not from 0 to 11"
+        "`getMonth()` returns from 1 to 12, not from 0 to 11"
       ]
     },
-    "f76fe55de4f3": {
-      "domanda": "What does document.getElementById('mioId') return?",
-      "spiegazione": "getElementById returns a reference to the actual DOM element — modifying it in JavaScript immediately updates the page. If no element with that id is found, it returns null. IDs must be unique within a page: if there are duplicates, the browser returns the first one. To select by class, attribute, or complex CSS selector, use querySelector or querySelectorAll.",
+    "ef5bcda53d8b": {
+      "domanda": "What does `document.getElementById('mioId')` return?",
+      "spiegazione": "`getElementById` returns a reference to the actual DOM element — modifying it in JavaScript immediately updates the page. If no element with that id is found, it returns `null`. IDs must be unique within a page: if there are duplicates, the browser returns the first one. To select by class, attribute, or complex CSS selector, use `querySelector` or `querySelectorAll`.",
       "risposte": [
         "A copy of the HTML element as a string",
         "A direct reference to the element in the DOM — not a copy",
-        "The value of the id attribute",
+        "The value of the `id` attribute",
         "An array of all elements with that id"
       ]
     },
-    "e1877c74f389": {
+    "41cdc8cf8581": {
       "domanda": "Which property reads the text written in an input field?",
-      "spiegazione": ".value reads and writes the current content of input, textarea, and select elements. It ALWAYS returns a string, even for number type inputs. Therefore, Number(input.value) is necessary before performing mathematical operations. .innerHTML and .textContent are for non-input elements (div, p, span) and read/write the HTML content or text of the element. To clear an input after use: input.value = ''.",
+      "spiegazione": "`.value` reads and writes the current content of `input`, `textarea`, and `select` elements. It ALWAYS returns a string, even for `number` type inputs. Therefore, `Number(input.value)` is necessary before performing mathematical operations. `.innerHTML` and `.textContent` are for non-input elements (`div`, `p`, `span`) and read/write the HTML content or text of the element. To clear an input after use: `input.value = ''`.",
       "risposte": [
-        ".innerHTML",
-        ".textContent",
-        ".value",
-        ".innerText"
+        "`.innerHTML`",
+        "`.textContent`",
+        "`.value`",
+        "`.innerText`"
       ]
     },
-    "cc70127df32b": {
-      "domanda": "What is the difference between innerHTML and textContent?",
-      "spiegazione": "innerHTML renderses markup: element.innerHTML = '<b>Hello</b>' displays bold text. Danger: if the content comes from the user, a malicious actor can inject <script> or tags with events (XSS). textContent inserts everything as plain text: element.textContent = '<b>Hello</b>' literally displays '<b>Hello</b>'. Always use textContent for output of user-provided data. Use innerHTML only for markup that you control.",
+    "ccd15bbb318b": {
+      "domanda": "What is the difference between `innerHTML` and `textContent`?",
+      "spiegazione": "`innerHTML` renderses markup: `element.innerHTML = '<b>Hello</b>'` displays bold text. Danger: if the content comes from the user, a malicious actor can inject `<script>` or tags with events (XSS). `textContent` inserts everything as plain text: `element.textContent = '<b>Hello</b>'` literally displays `<b>Hello</b>`. Always use `textContent` for output of user-provided data. Use `innerHTML` only for markup that you control.",
       "risposte": [
-        "innerHTML is significantly slower, while textContent is faster",
-        "innerHTML interprets HTML; textContent inserts only text",
-        "textContent handles only numbers, while innerHTML accepts text and numbers",
+        "`innerHTML` is significantly slower, while `textContent` is faster",
+        "`innerHTML` interprets HTML; `textContent` inserts only text",
+        "`textContent` handles only numbers, while `innerHTML` accepts text and numbers",
         "They are completely equivalent from the browser's rendering perspective"
       ]
     },
-    "cf8253536d80": {
-      "domanda": "What does addEventListener do compared to the onclick attribute?",
-      "spiegazione": "element.onclick = fn overwrites any previous handler. element.addEventListener('click', fn) adds a new listener without removing others. You can add multiple addEventListener calls on the same element and for the same event: they accumulate. addEventListener also supports a third parameter for advanced options (once, capture, passive). The modern best practice is to always use addEventListener.",
+    "bcab447cf393": {
+      "domanda": "What does `addEventListener` do compared to the `onclick` attribute?",
+      "spiegazione": "`element.onclick = fn` overwrites any previous handler. `element.addEventListener('click', fn)` adds a new listener without removing others. You can add multiple `addEventListener` calls on the same element and for the same event: they accumulate. `addEventListener` also supports a third parameter for advanced options (`once`, `capture`, `passive`). The modern best practice is to always use `addEventListener`.",
       "risposte": [
-        "addEventListener is now completely obsolete: you should always use onclick",
-        "The onclick attribute is much more reliable on mobile devices",
-        "addEventListener adds multiple listeners without overwriting",
+        "`addEventListener` is now completely obsolete: you should always use `onclick`",
+        "The `onclick` attribute is much more reliable on mobile devices",
+        "`addEventListener` adds multiple listeners without overwriting",
         "There is actually no concrete functional difference between the two"
       ]
     },
-    "ff9527b114ee": {
-      "domanda": "What does classList.toggle('class') do on an element?",
-      "spiegazione": "classList.toggle('class') acts as a toggle: if the class is missing, it adds it; if it is present, it removes it. This is ideal for implementing on/off effects. Other classList methods: add('class') — always adds; remove('class') — always removes; contains('class') — returns true/false; replace('old', 'new') — replaces. classList operates without overwriting other classes on the element, unlike element.className = '...'.",
+    "34eafad6d1d8": {
+      "domanda": "What does `classList.toggle('class')` do on an element?",
+      "spiegazione": "`classList.toggle('class')` acts as a toggle: if the class is missing, it adds it; if it is present, it removes it. This is ideal for implementing on/off effects. Other `classList` methods: `add('class')` — always adds; `remove('class')` — always removes; `contains('class')` — returns `true`/`false`; `replace('old', 'new')` — replaces. `classList` operates without overwriting other classes on the element, unlike `element.className = '...'`.",
       "risposte": [
         "Always adds the class",
         "Always removes the class",
         "Adds the class if absent, removes it if present",
-        "Checks if the class is present and returns true or false"
+        "Checks if the class is present and returns `true` or `false`"
       ]
     },
-    "c1fc5bcf2d60": {
-      "domanda": "What is the difference between querySelector and querySelectorAll?",
-      "spiegazione": "querySelector('#id') returns the first element that matches the CSS selector, or null if not found. querySelectorAll('.class') returns a NodeList with all matching elements (empty if none found). NodeList has native forEach but not map/filter — use [...nodeList] or Array.from(nodeList) to convert it to a full array. Both accept any valid CSS selector.",
+    "c7960be1a5a2": {
+      "domanda": "What is the difference between `querySelector` and `querySelectorAll`?",
+      "spiegazione": "`querySelector('#id')` returns the first element that matches the CSS selector, or `null` if not found. `querySelectorAll('.class')` returns a `NodeList` with all matching elements (empty if none found). `NodeList` has native `forEach` but not `map`/`filter` — use `[...nodeList]` or `Array.from(nodeList)` to convert it to a full array. Both accept any valid CSS selector.",
       "risposte": [
-        "querySelector uses CSS selectors, while querySelectorAll uses XPath",
-        "querySelector returns the first; querySelectorAll returns all",
-        "querySelector is significantly slower than querySelectorAll",
-        "querySelectorAll selects only classes, querySelector also ids"
+        "`querySelector` uses CSS selectors, while `querySelectorAll` uses XPath",
+        "`querySelector` returns the first; `querySelectorAll` returns all",
+        "`querySelector` is significantly slower than `querySelectorAll`",
+        "`querySelectorAll` selects only classes, `querySelector` also ids"
       ]
     },
-    "b10a45b34bfb": {
-      "domanda": "What does DOMContentLoaded do?",
-      "spiegazione": "document.addEventListener('DOMContentLoaded', fn) executes the function when the DOM is ready to be manipulated, without waiting for images or other files. It differs from the load event (window.addEventListener('load', fn)), which waits for everything to load. Wrapping code in DOMContentLoaded prevents errors when the script is in the <head> and tries to access elements that do not yet exist. Modern alternative: place the <script> tag before </body>.",
+    "22aa131f88b5": {
+      "domanda": "What does `DOMContentLoaded` do?",
+      "spiegazione": "`document.addEventListener('DOMContentLoaded', fn)` executes the function when the DOM is ready to be manipulated, without waiting for images or other files. It differs from the `load` event (`window.addEventListener('load', fn)`), which waits for everything to load. Wrapping code in `DOMContentLoaded` prevents errors when the script is in the `<head>` and tries to access elements that do not yet exist. Modern alternative: place the `<script>` tag before `</body>`.",
       "risposte": [
         "It triggers when the page is closed",
         "It triggers when the DOM is ready, before images and CSS",
@@ -598,34 +598,34 @@
         "It triggers every time you click on the page"
       ]
     },
-    "3112128f05e3": {
-      "domanda": "Why is innerHTML += discouraged in a loop?",
-      "spiegazione": "Each innerHTML += reads the current HTML, appends the new piece, and rewrites the entire DOM. In a loop over 100 elements, this reconstructs the DOM 100 times, destroys and recreates all existing event listeners, and is very slow. The correct solution: accumulate everything in a string and assign it only once. Example: let html = ''; arr.forEach(el => html += '<li>' + el + '</li>'); ulElement.innerHTML = html;",
+    "27943776f8bc": {
+      "domanda": "Why is `innerHTML +=` discouraged in a loop?",
+      "spiegazione": "Each `innerHTML +=` reads the current HTML, appends the new piece, and rewrites the entire DOM. In a loop over 100 elements, this reconstructs the DOM 100 times, destroys and recreates all existing event listeners, and is very slow. The correct solution: accumulate everything in a string and assign it only once. Example: `let html = ''; arr.forEach(el => html += '<li>' + el + '</li>'); ulElement.innerHTML = html;`",
       "risposte": [
-        "Because += does not work with HTML strings",
-        "Because each += re-parses all previous HTML and rebuilds the DOM, also losing existing event listeners",
+        "Because `+=` does not work with HTML strings",
+        "Because each `+=` re-parses all previous HTML and rebuilds the DOM, also losing existing event listeners",
         "Because it causes syntax errors",
-        "Because it is slower than textContent"
+        "Because it is slower than `textContent`"
       ]
     },
-    "3255b9a7135a": {
+    "6755e4435ad8": {
       "domanda": "How do you navigate to the first element child (ignoring text nodes) of a DOM element?",
-      "spiegazione": "firstElementChild returns the first child that is an HTML element, ignoring text nodes (spaces, newlines) and comments. firstChild returns the first child of any type, including text nodes — it is often a text node containing only whitespace, which causes confusion. children returns the HTMLCollection of element children. childNodes returns all child nodes, including text nodes.",
+      "spiegazione": "`firstElementChild` returns the first child that is an HTML element, ignoring text nodes (spaces, newlines) and comments. `firstChild` returns the first child of any type, including text nodes — it is often a text node containing only whitespace, which causes confusion. `children` returns the `HTMLCollection` of element children. `childNodes` returns all child nodes, including text nodes.",
       "risposte": [
-        ".childNodes[0]",
-        ".firstChild",
-        ".firstElementChild",
-        ".children('first')"
+        "`.childNodes[0]`",
+        "`.firstChild`",
+        "`.firstElementChild`",
+        "`.children('first')`"
       ]
     },
-    "1ea4f02a75c6": {
-      "domanda": "What does Number('42') do in JavaScript?",
-      "spiegazione": "Number() converts its argument to a number. Number('42') → 42. Number('3.14') → 3.14. Number('') → 0. Number('hello') → NaN. Number(true) → 1. Number(false) → 0. Number(null) → 0. This is necessary because the .value property of an input always returns a string. parseFloat('3.14px') → 3.14 (more permissive: ignores text after). parseInt('3.14') → 3 (truncates decimals).",
+    "ad7862e57103": {
+      "domanda": "What does `Number('42')` do in JavaScript?",
+      "spiegazione": "`Number()` converts its argument to a number. `Number('42')` → `42`. `Number('3.14')` → `3.14`. `Number('')` → `0`. `Number('hello')` → `NaN`. `Number(true)` → `1`. `Number(false)` → `0`. `Number(null)` → `0`. This is necessary because the `.value` property of an input always returns a string. `parseFloat('3.14px')` → `3.14` (more permissive: ignores text after). `parseInt('3.14')` → `3` (truncates decimals).",
       "risposte": [
-        "Returns the string '42'",
+        "Returns the string `'42'`",
         "Throws an error because 42 is already a number",
-        "Converts the string '42' to the number 42",
-        "Returns true"
+        "Converts the string `'42'` to the number 42",
+        "Returns `true`"
       ]
     },
     "c5432f9ec6b0": {
@@ -638,9 +638,9 @@
         "forEach"
       ]
     },
-    "994fd573ecbc": {
-      "domanda": "What does the continue statement do in a loop?",
-      "spiegazione": "continue skips the remaining code in the current iteration and proceeds directly to the next one. Example: for (let i=0; i<5; i++) { if (i===2) continue; console.log(i); } prints 0,1,3,4 (skips 2). break instead terminates the loop entirely. return inside a loop-function exits the entire function. continue is useful for skipping special cases without nesting code in if...else.",
+    "d14b6ec852d9": {
+      "domanda": "What does the `continue` statement do in a loop?",
+      "spiegazione": "`continue` skips the remaining code in the current iteration and proceeds directly to the next one. Example: `for (let i=0; i<5; i++) { if (i===2) continue; console.log(i); }` prints 0,1,3,4 (skips 2). `break` instead terminates the loop entirely. `return` inside a loop-function exits the entire function. `continue` is useful for skipping special cases without nesting code in `if...else`.",
       "risposte": [
         "Immediately and completely terminates the execution of the entire loop",
         "Skips the rest of the current iteration and proceeds to the next one",
@@ -648,19 +648,19 @@
         "Pauses the loop for an interval of about one second"
       ]
     },
-    "21bb60ff318b": {
-      "domanda": "What is the difference between for...of and for...in?",
-      "spiegazione": "for...of iterates over values: for (const val of [1,2,3]) → val is 1, then 2, then 3. It works on any iterable (array, string, Set, Map, NodeList). for...in iterates over property names: for (const chiave in oggetto) → chiave is the property name. It is discouraged on arrays because it also iterates over inherited properties. Use for...of for arrays and iterables, for...in for object properties.",
+    "9fd3e681f5fa": {
+      "domanda": "What is the difference between `for...of` and `for...in`?",
+      "spiegazione": "`for...of` iterates over values: `for (const val of [1,2,3])` → `val` is 1, then 2, then 3. It works on any iterable (array, string, `Set`, `Map`, `NodeList`). `for...in` iterates over property names: `for (const chiave in oggetto)` → `chiave` is the property name. It is discouraged on arrays because it also iterates over inherited properties. Use `for...of` for arrays and iterables, `for...in` for object properties.",
       "risposte": [
-        "for...of iterates over values; for...in over keys",
-        "for...of is intended for arrays, while for...in is for strings",
-        "for...in is significantly faster than for...of",
+        "`for...of` iterates over values; `for...in` over keys",
+        "`for...of` is intended for arrays, while `for...in` is for strings",
+        "`for...in` is significantly faster than `for...of`",
         "They are exactly the same thing, just with different syntax"
       ]
     },
-    "bd9419d3c1a4": {
-      "domanda": "What does reduce do on an array?",
-      "spiegazione": "reduce(callback, initialValue) iterates over the array, accumulating a result. The callback receives (accumulator, currentElement). Example: [1,2,3,4].reduce((acc, n) => acc + n, 0) → 10 (sum). You can also find the maximum: arr.reduce((max, n) => n > max ? n : max). It is the most powerful and flexible method: everything you can do with filter/map can be done with reduce, but not vice versa.",
+    "c10ac67583d9": {
+      "domanda": "What does `reduce` do on an array?",
+      "spiegazione": "`reduce(callback, initialValue)` iterates over the array, accumulating a result. The callback receives `(accumulator, currentElement)`. Example: `[1,2,3,4].reduce((acc, n) => acc + n, 0)` → `10` (sum). You can also find the maximum: `arr.reduce((max, n) => n > max ? n : max)`. It is the most powerful and flexible method: everything you can do with `filter`/`map` can be done with `reduce`, but not vice versa.",
       "risposte": [
         "Reduces the array by removing exactly half of its elements",
         "Removes all duplicate elements present in the array",
@@ -668,19 +668,19 @@
         "Sorts the array elements in ascending order of value"
       ]
     },
-    "e278e9c8a279": {
+    "9ee4e789e36b": {
       "domanda": "What does hoisting mean for function declarations in JavaScript?",
-      "spiegazione": "The JavaScript engine moves function declarations to the top of the current scope before executing the code. This means you can call a function declaration before it appears in the code. Example: saluta(); function saluta() { console.log('Ciao'); } — this works. Function expressions (let fn = function(){}) and arrow functions are NOT subject to hoisting in the same way: calling them before their declaration results in a ReferenceError.",
+      "spiegazione": "The JavaScript engine moves `function` declarations to the top of the current scope before executing the code. This means you can call a function declaration before it appears in the code. Example: `saluta(); function saluta() { console.log('Ciao'); }` — this works. Function expressions (`let fn = function(){}`) and arrow functions are NOT subject to hoisting in the same way: calling them before their declaration results in a `ReferenceError`.",
       "risposte": [
         "Functions are moved to a separate file",
         "Function declarations are 'moved' to the top of the scope by the JS engine, so they can be called before the declaration",
         "Functions are automatically executed when the page loads",
-        "let and const are subject to hoisting like functions"
+        "`let` and `const` are subject to hoisting like functions"
       ]
     },
     "2a6dbac1e931": {
       "domanda": "How many primitive types are there in JavaScript?",
-      "spiegazione": "JavaScript has 7 primitive types: string, number, boolean, null, undefined, symbol (ES6), bigint (ES2020). Primitives are immutable and are copied by value. Everything else is an object (Object), including arrays, functions, and dates. Fun fact: typeof null → 'object' is a historical bug in JS. typeof function(){} → 'function' even though functions are technically objects. BigInt is used for integers beyond Number.MAX_SAFE_INTEGER.",
+      "spiegazione": "JavaScript has 7 primitive types: `string`, `number`, `boolean`, `null`, `undefined`, `symbol` (ES6), `bigint` (ES2020). Primitives are immutable and are copied by value. Everything else is an object (`Object`), including arrays, functions, and dates. Fun fact: `typeof null` → `'object'` is a historical bug in JS. `typeof function(){}` → `'function'` even though functions are technically objects. `BigInt` is used for integers beyond `Number.MAX_SAFE_INTEGER`.",
       "risposte": [
         "5",
         "6",
@@ -708,69 +708,69 @@
         "Shows the element exclusively to search engines, remaining invisible to users"
       ]
     },
-    "587f62e2517a": {
-      "domanda": "What is the difference between type='text' and type='email' in an input?",
-      "spiegazione": "type='email' provides two benefits: (1) native validation — the browser checks that the format contains @ and a domain before submitting the form; (2) on mobile devices, it displays an email-optimized keyboard (with the @ key). It does not guarantee that the email address exists, only that the format is correct. Other useful types: 'number' for numbers, 'tel' for phone numbers (numeric keyboard), 'url' for URLs, 'date' for dates.",
+    "c26606ce91da": {
+      "domanda": "What is the difference between `type='text'` and `type='email'` in an input?",
+      "spiegazione": "`type='email'` provides two benefits: (1) native validation — the browser checks that the format contains `@` and a domain before submitting the form; (2) on mobile devices, it displays an email-optimized keyboard (with the `@` key). It does not guarantee that the email address exists, only that the format is correct. Other useful types: `'number'` for numbers, `'tel'` for phone numbers (numeric keyboard), `'url'` for URLs, `'date'` for dates.",
       "risposte": [
         "There is no visual or functional difference",
-        "type='email' adds native browser validation (must contain @) and optimizes the keyboard on mobile",
-        "type='email' automatically encrypts the content",
-        "type='text' cannot contain special characters"
+        "`type='email'` adds native browser validation (must contain `@`) and optimizes the keyboard on mobile",
+        "`type='email'` automatically encrypts the content",
+        "`type='text'` cannot contain special characters"
       ]
     },
-    "83343abbbbc5": {
+    "ad51e65f9d77": {
       "domanda": "How do you declare a private field in a modern ES6 class?",
-      "spiegazione": "Private class fields (ES2022) are declared with a # prefix before the name: class Persona { #nome; constructor(n) { this.#nome = n; } }. They are truly private: accessing istanza.#nome from outside throws a SyntaxError. Before private fields, the _nome convention (with an underscore) was used, but it does not guarantee true privacy—it is merely a convention among developers. Closures are another way to achieve private variables.",
+      "spiegazione": "Private class fields (ES2022) are declared with a `#` prefix before the name: `class Persona { #nome; constructor(n) { this.#nome = n; } }`. They are truly private: accessing `istanza.#nome` from outside throws a `SyntaxError`. Before private fields, the `_nome` convention (with an underscore) was used, but it does not guarantee true privacy—it is merely a convention among developers. Closures are another way to achieve private variables.",
       "risposte": [
-        "With the private prefix:",
-        "With the _nome prefix (convention)",
-        "With the # symbol before the name: #nome",
+        "With the `private:` prefix",
+        "With the `_nome` prefix (convention)",
+        "With the `#` symbol before the name: `#nome`",
         "Private fields do not exist in JavaScript"
       ]
     },
-    "74d05bc6436f": {
-      "domanda": "What happens if you pass a function with () to addEventListener?",
-      "spiegazione": "btn.addEventListener('click', saluta()) — the () execute the function immediately and pass its return value (often undefined) as the listener. The function is NOT called on click. Correct: btn.addEventListener('click', saluta) — you pass the function reference, not its result. If you need to pass arguments: btn.addEventListener('click', () => saluta('Mario')) — an arrow function that calls saluta with parameters.",
+    "2e71f5a1986e": {
+      "domanda": "What happens if you pass a function with `()` to `addEventListener`?",
+      "spiegazione": "`btn.addEventListener('click', saluta())` — the `()` execute the function immediately and pass its return value (often `undefined`) as the listener. The function is NOT called on click. Correct: `btn.addEventListener('click', saluta)` — you pass the function reference, not its result. If you need to pass arguments: `btn.addEventListener('click', () => saluta('Mario'))` — an arrow function that calls `saluta` with parameters.",
       "risposte": [
         "The function is registered correctly",
         "The function is executed immediately on load, not on the event",
         "A syntax error is thrown",
-        "addEventListener ignores the ()"
+        "`addEventListener` ignores the `()`"
       ]
     },
-    "4972f0d6a047": {
-      "domanda": "What is the difference between <strong> and <b>?",
-      "spiegazione": "<strong> indicates semantic importance: screen readers can emphasize the word when reading the content. <b> applies visual bold styling without adding semantic meaning—like a div with font-weight: bold. Analogy: <em> vs <i> — em has meaning (emphasis), i is just italic styling. For accessibility and SEO, prefer semantic tags. Use <b> and <i> only for typographical conventions without meaning (e.g., book titles in italics).",
+    "c4feb2317bf1": {
+      "domanda": "What is the difference between `<strong>` and `<b>`?",
+      "spiegazione": "`<strong>` indicates semantic importance: screen readers can emphasize the word when reading the content. `<b>` applies visual bold styling without adding semantic meaning—like a `div` with `font-weight: bold`. Analogy: `<em>` vs `<i>` — `em` has meaning (emphasis), `i` is just italic styling. For accessibility and SEO, prefer semantic tags. Use `<b>` and `<i>` only for typographical conventions without meaning (e.g., book titles in italics).",
       "risposte": [
         "No difference: both render text bold",
-        "<strong> has semantic importance (strong emphasis); <b> is purely stylistic (no added meaning)",
-        "<b> is for headings; <strong> is for single words",
-        "<strong> works only in HTML5; <b> works in all versions"
+        "`<strong>` has semantic importance (strong emphasis); `<b>` is purely stylistic (no added meaning)",
+        "`<b>` is for headings; `<strong>` is for single words",
+        "`<strong>` works only in HTML5; `<b>` works in all versions"
       ]
     },
-    "95e362100d95": {
-      "domanda": "What does flex: 1 do on a flex item?",
-      "spiegazione": "flex: 1 is shorthand for three properties: flex-grow: 1 (the item can grow to fill space), flex-shrink: 1 (it can shrink if necessary), flex-basis: 0 (it starts from a size of 0 before distributing space). With flex: 1 on all children, space is divided equally. With flex: 2 on one item and flex: 1 on the others, that item takes double. It is equivalent to saying 'occupies all available space proportionally'.",
+    "18f7452d01da": {
+      "domanda": "What does `flex: 1` do on a flex item?",
+      "spiegazione": "`flex: 1` is shorthand for three properties: `flex-grow: 1` (the item can grow to fill space), `flex-shrink: 1` (it can shrink if necessary), `flex-basis: 0` (it starts from a size of 0 before distributing space). With `flex: 1` on all children, space is divided equally. With `flex: 2` on one item and `flex: 1` on the others, that item takes double. It is equivalent to saying 'occupies all available space proportionally'.",
       "risposte": [
         "Sets the overall width of the element to exactly one pixel",
-        "Shorthand for grow:1 shrink:1 basis:0: fills the space",
+        "Shorthand for `grow:1 shrink:1 basis:0`: fills the space",
         "Sets the display order of the element to the value one",
         "Makes the element the first among all children of the flex container"
       ]
     },
-    "c35d7486939d": {
-      "domanda": "What is printed: console.log(typeof typeof 42)?",
-      "spiegazione": "Evaluation proceeds from the inside out: typeof 42 → 'number' (a string). Then typeof 'number' → 'string' (typeof applied to a string returns 'string'). Thus, the result is 'string'. This illustrates two concepts: (1) typeof ALWAYS returns a string; (2) expressions are evaluated from the inside out. It is a typical trick question in JavaScript quizzes.",
+    "1496ffe8a6f5": {
+      "domanda": "What is printed: `console.log(typeof typeof 42)`?",
+      "spiegazione": "Evaluation proceeds from the inside out: `typeof 42` → `'number'` (a string). Then `typeof 'number'` → `'string'` (`typeof` applied to a string returns `'string'`). Thus, the result is `'string'`. This illustrates two concepts: (1) `typeof` ALWAYS returns a string; (2) expressions are evaluated from the inside out. It is a typical trick question in JavaScript quizzes.",
       "risposte": [
-        "'number'",
-        "'string'",
-        "42",
-        "undefined"
+        "`'number'`",
+        "`'string'`",
+        "`42`",
+        "`undefined`"
       ]
     },
-    "2a6c9dd52fab": {
-      "domanda": "What does [1,2,3].length return?",
-      "spiegazione": "length returns the number of elements in the array (always maximum index + 1). An array with elements at indices 0, 1, 2 has length 3. The last valid index is always length - 1. Note: length can be set manually — reducing it truncates the array. Example: let a = [1,2,3]; a.length = 2; → a is now [1,2]. Using length in for loop conditions is essential: for (let i=0; i < arr.length; i++).",
+    "371d90e4cbf6": {
+      "domanda": "What does `[1,2,3].length` return?",
+      "spiegazione": "`length` returns the number of elements in the array (always maximum index + 1). An array with elements at indices 0, 1, 2 has `length` 3. The last valid index is always `length - 1`. Note: `length` can be set manually — reducing it truncates the array. Example: `let a = [1,2,3]; a.length = 2;` → `a` is now `[1,2]`. Using `length` in `for` loop conditions is essential: `for (let i=0; i < arr.length; i++)`.",
       "risposte": [
         "2",
         "3",
@@ -778,19 +778,19 @@
         "4"
       ]
     },
-    "72ea437d80ff": {
-      "domanda": "What is the difference between margin and padding?",
-      "spiegazione": "Margin is the space outside the element (between its border and other elements). Padding is the space inside the element (between the content and the border). The background-color fills the padding but not the margin. Vertically adjacent element margins can 'collapse' (margin collapsing): the effective margin is the larger of the two, not the sum. Padding never collapses.",
+    "b39f84828205": {
+      "domanda": "What is the difference between `margin` and `padding`?",
+      "spiegazione": "`margin` is the space outside the element (between its border and other elements). `padding` is the space inside the element (between the content and the border). The `background-color` fills the padding but not the margin. Vertically adjacent element margins can 'collapse' (margin collapsing): the effective margin is the larger of the two, not the sum. Padding never collapses.",
       "risposte": [
-        "margin is for text; padding is for images",
-        "margin is the outer space of the element (outside the border); padding is the inner space (between content and border)",
-        "padding is outer; margin is inner",
+        "`margin` is for text; `padding` is for images",
+        "`margin` is the outer space of the element (outside the border); `padding` is the inner space (between content and border)",
+        "`padding` is outer; `margin` is inner",
         "They are the same thing with different names"
       ]
     },
     "998ca2c47183": {
       "domanda": "What does a function with default parameters do?",
-      "spiegazione": "Default parameters (ES6) are declared using = value: function greet(name = 'User') { return 'Hello ' + name; }. greet('Mario') → 'Hello Mario'. greet() → 'Hello User'. The default is used only if the argument is undefined (not passed or explicitly undefined). Default parameters must come after required parameters.",
+      "spiegazione": "Default parameters (ES6) are declared using `= value`: `function greet(name = 'User') { return 'Hello ' + name; }`. `greet('Mario')` → `'Hello Mario'`. `greet()` → `'Hello User'`. The default is used only if the argument is `undefined` (not passed or explicitly `undefined`). Default parameters must come after required parameters.",
       "risposte": [
         "Default parameters do not exist in JavaScript",
         "Default parameters make the function slower",
@@ -798,9 +798,9 @@
         "Default parameters are mandatory"
       ]
     },
-    "02b974c2e50c": {
-      "domanda": "What are rest parameters (...args)?",
-      "spiegazione": "Rest parameters (...arrayName) collect all remaining arguments into an array. function sum(...numbers) { return numbers.reduce((a, b) => a + b, 0); } — sum(1, 2, 3, 4) → 10. They must be the last parameter. Example with a normal parameter: function log(prefix, ...messages) collects all messages after the prefix. Do not confuse with the spread operator (...) which does the opposite: it expands an array into arguments.",
+    "c937e1d4fe2d": {
+      "domanda": "What are rest parameters (`...args`)?",
+      "spiegazione": "Rest parameters (`...arrayName`) collect all remaining arguments into an array. `function sum(...numbers) { return numbers.reduce((a, b) => a + b, 0); }` — `sum(1, 2, 3, 4)` → `10`. They must be the last parameter. Example with a normal parameter: `function log(prefix, ...messages)` collects all messages after the prefix. Do not confuse with the spread operator (`...`) which does the opposite: it expands an array into arguments.",
       "risposte": [
         "A way to import functions from other files",
         "Parameters that are not used in the function",
@@ -808,24 +808,24 @@
         "They are aliases for default parameters"
       ]
     },
-    "8c3b496ed64f": {
+    "75fd72cc132e": {
       "domanda": "What is the purpose of getters and setters in a class?",
-      "spiegazione": "A getter allows defining a computed property: accessing object.property executes a function. A setter intercepts assignment and adds logic (validation, side effects). Example: set age(v) { if (v < 0) throw new Error('Negative age'); this.#age = v; }. The call object.age = -1 invokes the setter. The syntax is the same as for normal properties for users of the class.",
+      "spiegazione": "A getter allows defining a computed property: accessing `object.property` executes a function. A setter intercepts assignment and adds logic (validation, side effects). Example: `set age(v) { if (v < 0) throw new Error('Negative age'); this.#age = v; }`. The call `object.age = -1` invokes the setter. The syntax is the same as for normal properties for users of the class.",
       "risposte": [
-        "get and set are keywords for declaring variables",
+        "`get` and `set` are keywords for declaring variables",
         "They allow accessing or modifying private properties with custom validation, using normal property syntax",
         "Getters make a property read-only forever",
         "Setters automatically increment a property's value"
       ]
     },
-    "85931f3d95f4": {
-      "domanda": "What does the event object passed automatically to event callbacks contain?",
-      "spiegazione": "The event object (often called e or evt) is passed automatically to the callback: btn.addEventListener('click', (e) => { console.log(e.target); }). Common properties: e.target (the element that triggered the event), e.type (event type), e.clientX/clientY (mouse coordinates), e.key (pressed key), e.preventDefault() (blocks default behavior like form submission). e.target differs from e.currentTarget: target is the clicked element, currentTarget is the element with the listener.",
+    "6cf81d99b3b2": {
+      "domanda": "What does the `event` object passed automatically to event callbacks contain?",
+      "spiegazione": "The `event` object (often called `e` or `evt`) is passed automatically to the callback: `btn.addEventListener('click', (e) => { console.log(e.target); })`. Common properties: `e.target` (the element that triggered the event), `e.type` (event type), `e.clientX/clientY` (mouse coordinates), `e.key` (pressed key), `e.preventDefault()` (blocks default behavior like form submission). `e.target` differs from `e.currentTarget`: `target` is the clicked element, `currentTarget` is the element with the listener.",
       "risposte": [
-        "Only the event type (click, keydown...)",
+        "Only the event type (`click`, `keydown`...)",
         "Event information: type, target element, mouse coordinates, pressed key, and more",
         "The content of the clicked element",
-        "The window object"
+        "The `window` object"
       ]
     },
     "62e5abeaf05a": {
@@ -848,19 +848,19 @@
         "There is no practical difference"
       ]
     },
-    "f600f60ea62f": {
-      "domanda": "What does isNaN('ciao') do in JavaScript?",
-      "spiegazione": "isNaN(value) returns true if the value is NaN or cannot be converted to a number. isNaN('ciao') → true. isNaN(42) → false. isNaN('42') → false (because '42' converts to 42). NaN (Not a Number) is the result of invalid mathematical operations such as parseInt('ciao') or 0/0. NaN === NaN is false (the only value not equal to itself) — use isNaN() to check for it.",
+    "e58501c41519": {
+      "domanda": "What does `isNaN('ciao')` do in JavaScript?",
+      "spiegazione": "`isNaN(value)` returns `true` if the value is `NaN` or cannot be converted to a number. `isNaN('ciao')` → `true`. `isNaN(42)` → `false`. `isNaN('42')` → `false` (because `'42'` converts to `42`). `NaN` (Not a Number) is the result of invalid mathematical operations such as `parseInt('ciao')` or `0/0`. `NaN === NaN` is `false` (the only value not equal to itself) — use `isNaN()` to check for it.",
       "risposte": [
-        "Returns false",
+        "Returns `false`",
         "Throws an error",
-        "Returns true because 'ciao' is not a valid number",
-        "Returns 'NaN'"
+        "Returns `true` because `'ciao'` is not a valid number",
+        "Returns `NaN`"
       ]
     },
-    "2317c8869a06": {
-      "domanda": "What does the <aside> tag represent?",
-      "spiegazione": "<aside> represents content tangentially related to the main content: sidebars, callout boxes, author biographies, related links, advertisements. It should be placed near the content it relates to. Screen readers can identify it and allow users to skip it. Do not confuse it with <footer> (footer) or <section> (thematic section).",
+    "e1ad7e2456c7": {
+      "domanda": "What does the `<aside>` tag represent?",
+      "spiegazione": "`<aside>` represents content tangentially related to the main content: sidebars, callout boxes, author biographies, related links, advertisements. It should be placed near the content it relates to. Screen readers can identify it and allow users to skip it. Do not confuse it with `<footer>` (footer) or `<section>` (thematic section).",
       "risposte": [
         "A hidden comment in the page",
         "Content that is related but not essential, such as a sidebar, a callout box, or an advertisement",
@@ -868,9 +868,9 @@
         "The footer of the current section"
       ]
     },
-    "f49f4b4e9597": {
-      "domanda": "What does the spread operator (...) do on an array?",
-      "spiegazione": "The spread operator (...) expands an iterable. Array copy: [...arr1] creates a shallow copy. Concatenation: [...arr1, ...arr2]. Passing as arguments: Math.max(...numbers). Copy with addition: [...arr, newElement]. Do not confuse with the rest parameter, which does the opposite (collects arguments into an array). It also works with objects (ES2018): {...obj1, ...obj2} merges properties.",
+    "ccca7f219225": {
+      "domanda": "What does the spread operator (`...`) do on an array?",
+      "spiegazione": "The spread operator (`...`) expands an iterable. Array copy: `[...arr1]` creates a shallow copy. Concatenation: `[...arr1, ...arr2]`. Passing as arguments: `Math.max(...numbers)`. Copy with addition: `[...arr, newElement]`. Do not confuse with the rest parameter, which does the opposite (collects arguments into an array). It also works with objects (ES2018): `{...obj1, ...obj2}` merges properties.",
       "risposte": [
         "Removes duplicate elements",
         "Joins all elements into a string",
@@ -888,39 +888,39 @@
         "block is obsolete: always use inline-block"
       ]
     },
-    "459cf1bf21cf": {
-      "domanda": "What is the difference between a literal object and one created with new?",
-      "spiegazione": "A literal object {} creates a single specific object. A constructor or class allows creating multiple instances with the same structure but different values: let p1 = new Persona('Mario'); let p2 = new Persona('Luigi'). Use a literal when you only need one object; use classes or constructors when you need many of the same shape. Methods in classes are on the prototype (not duplicated per instance).",
+    "8ca3cdd5f509": {
+      "domanda": "What is the difference between a literal object and one created with `new`?",
+      "spiegazione": "A literal object `{}` creates a single specific object. A constructor or class allows creating multiple instances with the same structure but different values: `let p1 = new Persona('Mario'); let p2 = new Persona('Luigi')`. Use a literal when you only need one object; use classes or constructors when you need many of the same shape. Methods in classes are on the prototype (not duplicated per instance).",
       "risposte": [
         "There is no practical difference between the two approaches",
         "The literal object is faster; the class is only for methods",
-        "With new you create multiple instances of the same structure",
+        "With `new` you create multiple instances of the same structure",
         "Literal objects do not support method definition in any way"
       ]
     },
-    "23a490d5444f": {
-      "domanda": "What does gap do in a flex container?",
-      "spiegazione": "gap (shorthand for row-gap and column-gap) sets the space between flex items or grid items without adding space to the container's edges. Before gap, margin was used on individual elements with hacks to remove the margin on the first or last item. gap: 24px sets 24px between all items. gap: 16px 24px sets 16px between rows and 24px between columns. Much cleaner and more intuitive than margin.",
+    "31a7393850fe": {
+      "domanda": "What does `gap` do in a flex container?",
+      "spiegazione": "`gap` (shorthand for `row-gap` and `column-gap`) sets the space between flex items or grid items without adding space to the container's edges. Before `gap`, `margin` was used on individual elements with hacks to remove the margin on the first or last item. `gap: 24px` sets `24px` between all items. `gap: 16px 24px` sets `16px` between rows and `24px` between columns. Much cleaner and more intuitive than `margin`.",
       "risposte": [
         "Adds a border between the items",
-        "Adds space between flex items without using margin",
+        "Adds space between flex items without using `margin`",
         "Sets the outer space of the container",
-        "gap does not exist in CSS: margin is used"
+        "`gap` does not exist in CSS: `margin` is used"
       ]
     },
-    "4c57b54a15cf": {
-      "domanda": "What does element.classList.contains('miaClasse') do?",
-      "spiegazione": "classList.contains('classe') returns true or false and enables conditional checks. Example: if (elemento.classList.contains('attivo')) { /* do something */ }. It is essential when you want to execute different logic based on the current state of the element. The other methods: add adds, remove removes, toggle toggles, replace(old, new) replaces.",
+    "eaebce5efdec": {
+      "domanda": "What does `element.classList.contains('miaClasse')` do?",
+      "spiegazione": "`classList.contains('classe')` returns `true` or `false` and enables conditional checks. Example: `if (elemento.classList.contains('attivo')) { /* do something */ }`. It is essential when you want to execute different logic based on the current state of the element. The other methods: `add` adds, `remove` removes, `toggle` toggles, `replace(old, new)` replaces.",
       "risposte": [
-        "Adds 'miaClasse' to the element",
-        "Returns true if the element has that class, false otherwise",
-        "Removes 'miaClasse' from the element",
-        "Replaces all classes of the element with 'miaClasse'"
+        "Adds `miaClasse` to the element",
+        "Returns `true` if the element has that class, `false` otherwise",
+        "Removes `miaClasse` from the element",
+        "Replaces all classes of the element with `miaClasse`"
       ]
     },
-    "62aa7d8f1113": {
-      "domanda": "What is the purpose of the <head> tag in HTML?",
-      "spiegazione": "The <head> tag contains information about the page that the browser uses but does not display directly: <title> (tab title), <meta charset> (encoding), <link> (external CSS), <script> (JavaScript), <meta name='description'> (SEO), <meta name='viewport'> (responsive). Everything you want to show to the user goes in the <body>. A well-structured <head> improves SEO, performance, and accessibility.",
+    "35dfee9a1e23": {
+      "domanda": "What is the purpose of the `<head>` tag in HTML?",
+      "spiegazione": "The `<head>` tag contains information about the page that the browser uses but does not display directly: `<title>` (tab title), `<meta charset>` (encoding), `<link>` (external CSS), `<script>` (JavaScript), `<meta name='description'>` (SEO), `<meta name='viewport'>` (responsive). Everything you want to show to the user goes in the `<body>`. A well-structured `<head>` improves SEO, performance, and accessibility.",
       "risposte": [
         "Contains the visible header of the page",
         "Contains metadata: charset, tab title, CSS links, scripts — nothing is visible in the browser",
@@ -928,14 +928,14 @@
         "Contains only the logo and navigation"
       ]
     },
-    "01a141f393a8": {
-      "domanda": "What will be the output of: console.log(0.1 + 0.2 === 0.3)?",
-      "spiegazione": "0.1 + 0.2 in JavaScript is not exactly 0.3 but 0.30000000000000004, due to the way IEEE 754 floating-point numbers are represented in binary. Therefore, 0.1 + 0.2 === 0.3 → false. Solution: round before comparison, e.g., Math.round((0.1 + 0.2) * 10) / 10 === 0.3, or compare the difference: Math.abs(a - b) < 0.0001. This applies to almost all programming languages, not just JavaScript.",
+    "a4c67769c37b": {
+      "domanda": "What will be the output of: `console.log(0.1 + 0.2 === 0.3)`?",
+      "spiegazione": "`0.1 + 0.2` in JavaScript is not exactly `0.3` but `0.30000000000000004`, due to the way IEEE 754 floating-point numbers are represented in binary. Therefore, `0.1 + 0.2 === 0.3` → `false`. Solution: round before comparison, e.g., `Math.round((0.1 + 0.2) * 10) / 10 === 0.3`, or compare the difference: `Math.abs(a - b) < 0.0001`. This applies to almost all programming languages, not just JavaScript.",
       "risposte": [
-        "true",
-        "false, due to floating-point representation",
-        "undefined",
-        "NaN"
+        "`true`",
+        "`false`, due to floating-point representation",
+        "`undefined`",
+        "`NaN`"
       ]
     },
     "567ae30d4cd2": {
@@ -948,19 +948,19 @@
         "Positions the element relative to its parent"
       ]
     },
-    "85c1d915d3bc": {
-      "domanda": "What is the difference between while and do...while?",
-      "spiegazione": "while checks the condition before executing the block: if the condition is false from the start, the block is never executed. do...while executes the block at least once, then checks the condition. It is useful for interactive menus, input validation (ask until you get a valid value). Example: do { input = ask(); } while (!valid(input)). Both can become infinite loops if the condition never changes.",
+    "89dda9494ccf": {
+      "domanda": "What is the difference between `while` and `do...while`?",
+      "spiegazione": "`while` checks the condition before executing the block: if the condition is false from the start, the block is never executed. `do...while` executes the block at least once, then checks the condition. It is useful for interactive menus, input validation (ask until you get a valid value). Example: `do { input = ask(); } while (!valid(input))`. Both can become infinite loops if the condition never changes.",
       "risposte": [
         "There is no practical difference",
-        "do...while checks the condition at the end: the block is executed at least once",
-        "do...while is faster than while",
-        "while can be infinite; do...while cannot"
+        "`do...while` checks the condition at the end: the block is executed at least once",
+        "`do...while` is faster than `while`",
+        "`while` can be infinite; `do...while` cannot"
       ]
     },
-    "4422b3535d42": {
-      "domanda": "What does the placeholder attribute do in an input field?",
-      "spiegazione": "placeholder displays a gray hint text in the empty field, which disappears as soon as the user starts typing. It is not the field's value: if the form is submitted with the field empty, the placeholder is not submitted. It does not replace the <label>: the placeholder disappears during typing and can cause accessibility issues if used as the only instruction. Always use label + placeholder together.",
+    "d4e1109e1991": {
+      "domanda": "What does the `placeholder` attribute do in an input field?",
+      "spiegazione": "`placeholder` displays a gray hint text in the empty field, which disappears as soon as the user starts typing. It is not the field's value: if the form is submitted with the field empty, the `placeholder` is not submitted. It does not replace the `<label>`: the `placeholder` disappears during typing and can cause accessibility issues if used as the only instruction. Always use `label` + `placeholder` together.",
       "risposte": [
         "Sets the default value of the field that is submitted with the form",
         "Displays descriptive text in the field that disappears when the user starts typing",
@@ -968,9 +968,9 @@
         "Sets the maximum length of the text"
       ]
     },
-    "cdc5f268d78f": {
-      "domanda": "What does for...in do on an object?",
-      "spiegazione": "for (const key in object) iterates over the names of enumerable properties. To get the value, use object[key]. Example: for (const k in student) { console.log(k + ': ' + student[k]); }. Note: it also iterates over properties inherited from the prototype — use hasOwnProperty() to filter only own properties. It is discouraged on arrays because it also iterates over numeric indices as strings.",
+    "797fc94dcbcc": {
+      "domanda": "What does `for...in` do on an object?",
+      "spiegazione": "`for (const key in object)` iterates over the names of enumerable properties. To get the value, use `object[key]`. Example: `for (const k in student) { console.log(k + ': ' + student[k]); }`. Note: it also iterates over properties inherited from the prototype — use `hasOwnProperty()` to filter only own properties. It is discouraged on arrays because it also iterates over numeric indices as strings.",
       "risposte": [
         "Iterates over the object's values",
         "Iterates over the object's keys (property names)",
@@ -988,44 +988,44 @@
         "Applies the style to the first element in the list"
       ]
     },
-    "46d9fa362dcc": {
-      "domanda": "What does document.querySelector('ul li:first-child') do?",
-      "spiegazione": "querySelector accepts any valid CSS selector, including combinators and pseudo-classes. 'ul li:first-child' selects the first <li> child of an <ul>. The key point: querySelector returns ONLY the first matching element found in the entire document. To select all matching elements, use querySelectorAll. The power of querySelector lies in reusing the CSS selector knowledge already acquired.",
+    "e0febf5a40c8": {
+      "domanda": "What does `document.querySelector('ul li:first-child')` do?",
+      "spiegazione": "`querySelector` accepts any valid CSS selector, including combinators and pseudo-classes. `ul li:first-child` selects the first `<li>` child of an `<ul>`. The key point: `querySelector` returns ONLY the first matching element found in the entire document. To select all matching elements, use `querySelectorAll`. The power of `querySelector` lies in reusing the CSS selector knowledge already acquired.",
       "risposte": [
-        "Selects all li elements inside a ul",
-        "Selects the first li that is a direct child of a ul in the page",
-        "Selects only the ul and not its children",
-        "Generates an error: querySelector does not support combined selectors"
+        "Selects all `li` elements inside a `ul`",
+        "Selects the first `li` that is a direct child of a `ul` in the page",
+        "Selects only the `ul` and not its children",
+        "Generates an error: `querySelector` does not support combined selectors"
       ]
     },
-    "77ac36cc6b2d": {
-      "domanda": "What is the result of: let a = [1,2,3]; let b = a; b.push(4); console.log(a)?",
-      "spiegazione": "Arrays (and all objects) in JavaScript are assigned by reference: let b = a does not create a copy — both a and b point to the same array in memory. Modifying b also modifies a. Output: [1,2,3,4]. To create an independent copy, use the spread syntax: let b = [...a]. This is a fundamental distinction: primitives (number, string, boolean) are copied by value; objects and arrays are copied by reference.",
+    "1f322c8a4e28": {
+      "domanda": "What is the result of: `let a = [1,2,3]; let b = a; b.push(4); console.log(a)`?",
+      "spiegazione": "Arrays (and all objects) in JavaScript are assigned by reference: `let b = a` does not create a copy — both `a` and `b` point to the same array in memory. Modifying `b` also modifies `a`. Output: `[1,2,3,4]`. To create an independent copy, use the spread syntax: `let b = [...a]`. This is a fundamental distinction: primitives (`number`, `string`, `boolean`) are copied by value; objects and arrays are copied by reference.",
       "risposte": [
-        "[1, 2, 3]",
-        "[1, 2, 3, 4]",
-        "undefined",
+        "`[1, 2, 3]`",
+        "`[1, 2, 3, 4]`",
+        "`undefined`",
         "Generates an error"
       ]
     },
-    "8b5581f482d5": {
-      "domanda": "Which Array-like method is natively available on NodeList?",
-      "spiegazione": "A NodeList (returned by querySelectorAll) has native forEach. It does not have map, filter, reduce, or other array methods. To use all array methods, convert the NodeList: [...nodeList] using the spread operator or Array.from(nodeList). An HTMLCollection (returned by getElementsByClassName or getElementsByTagName) doesn't even have forEach: you must use [...HTMLCollection].forEach(). Use querySelectorAll to get forEach directly.",
+    "f2b6808578af": {
+      "domanda": "Which Array-like method is natively available on `NodeList`?",
+      "spiegazione": "A `NodeList` (returned by `querySelectorAll`) has native `forEach`. It does not have `map`, `filter`, `reduce`, or other array methods. To use all array methods, convert the `NodeList`: `[...nodeList]` using the spread operator or `Array.from(nodeList)`. An `HTMLCollection` (returned by `getElementsByClassName` or `getElementsByTagName`) doesn't even have `forEach`: you must use `[...HTMLCollection].forEach()`. Use `querySelectorAll` to get `forEach` directly.",
       "risposte": [
-        "map",
-        "filter",
-        "forEach",
-        "reduce"
+        "`map`",
+        "`filter`",
+        "`forEach`",
+        "`reduce`"
       ]
     },
-    "1b995a000219": {
-      "domanda": "What does: console.log(typeof null) print?",
-      "spiegazione": "typeof null returns 'object' — this is a well-known JavaScript bug present since the first version (1995) and never fixed for backward compatibility with existing code. null represents the intentional absence of a value and is not an object. To check if a value is null, use the strict equality comparison === null (not typeof). null === null → true. null == undefined → true (with double equals). null === undefined → false (with triple equals).",
+    "edc9df1f44d4": {
+      "domanda": "What does: `console.log(typeof null)` print?",
+      "spiegazione": "`typeof null` returns `object` — this is a well-known JavaScript bug present since the first version (1995) and never fixed for backward compatibility with existing code. `null` represents the intentional absence of a value and is not an object. To check if a value is `null`, use the strict equality comparison `=== null` (not `typeof`). `null === null` → `true`. `null == undefined` → `true` (with double equals). `null === undefined` → `false` (with triple equals).",
       "risposte": [
-        "'null'",
-        "'undefined'",
-        "'object'",
-        "'empty'"
+        "`null`",
+        "`undefined`",
+        "`object`",
+        "`empty`"
       ]
     },
     "abb3aac6ebd9": {
@@ -1040,7 +1040,7 @@
     },
     "8faf79d99062": {
       "domanda": "What is JSX?",
-      "spiegazione": "JSX is a JavaScript syntax extension that allows writing HTML-like markup inside components. It is then transformed (by Vite/Babel) into regular JavaScript calls. It requires a single root element and uses className instead of class.",
+      "spiegazione": "JSX is a JavaScript syntax extension that allows writing HTML-like markup inside components. It is then transformed (by Vite/Babel) into regular JavaScript calls. It requires a single root element and uses `className` instead of `class`.",
       "risposte": [
         "A new markup language",
         "A data format similar to JSON",
@@ -1048,24 +1048,24 @@
         "A library specialized in creating complex animations and transitions for React interfaces"
       ]
     },
-    "aa27fb26a3e8": {
+    "930d7a9daa05": {
       "domanda": "What is a component in React?",
       "spiegazione": "A component is a JavaScript function that returns JSX. It is the reusable building block used to construct the interface; it is named with an uppercase initial and can receive data via props.",
       "risposte": [
         "A dedicated CSS file",
         "A function that returns JSX, reusable as a UI building block",
-        "A special instruction that directly connects React to a remote database via fetch",
+        "A special instruction that directly connects React to a remote database via `fetch`",
         "A global app variable"
       ]
     },
-    "a1846c1ff458": {
+    "d2851e279f82": {
       "domanda": "How are data passed from a parent component to a child component?",
-      "spiegazione": "Data is passed from the parent to the child via props, as attributes: <Card nome='Mario' />. In the child, they are read from the parameters (often destructured). The flow is unidirectional, from top to bottom.",
+      "spiegazione": "Data is passed from the parent to the child via props, as attributes: `<Card nome='Mario' />`. In the child, they are read from the parameters (often destructured). The flow is unidirectional, from top to bottom.",
       "risposte": [
         "By directly modifying the child's internal state from outside the component",
         "Via props",
         "By using a global variable shared among all components in the application",
-        "By saving them in localStorage and then reading them back inside the child"
+        "By saving them in `localStorage` and then reading them back inside the child"
       ]
     },
     "4e533f8e438e": {
@@ -1078,9 +1078,9 @@
         "They are exactly the same thing as internal state"
       ]
     },
-    "99f655c07461": {
-      "domanda": "What is the special children prop?",
-      "spiegazione": "children is the prop that contains the content inserted between a component's tags: <Card>this text</Card>. The component uses it with {children} to render that content internally.",
+    "5e3e8a603b85": {
+      "domanda": "What is the special `children` prop?",
+      "spiegazione": "`children` is the prop that contains the content inserted between a component's tags: `<Card>this text</Card>`. The component uses it with `{children}` to render that content internally.",
       "risposte": [
         "A list of child components",
         "The prop containing the content written between the component's tags",
@@ -1088,29 +1088,29 @@
         "A state hook"
       ]
     },
-    "2292a1aeea70": {
-      "domanda": "What is the purpose of the key attribute in a list rendered with map?",
-      "spiegazione": "key is a unique and stable identifier that React uses to recognize each element in a list between renders. The data's id should be used, not the index if the list can change. It is required for elements generated with map.",
+    "cd39923a82e3": {
+      "domanda": "What is the purpose of the `key` attribute in a list rendered with `map`?",
+      "spiegazione": "`key` is a unique and stable identifier that React uses to recognize each element in a list between renders. The data's id should be used, not the index if the list can change. It is required for elements generated with `map`.",
       "risposte": [
         "A to automatically sort the list elements in ascending order",
         "A to uniquely identify each element",
         "A to apply a different style to each element in the rendered list",
-        "A to link each element to a key in localStorage"
+        "A to link each element to a key in `localStorage`"
       ]
     },
-    "bc8ff72bcd06": {
+    "9be21ee815a4": {
       "domanda": "How do you render a list of items in React?",
-      "spiegazione": "You use map on the array: it produces a new array of JSX elements, one per item. forEach is not suitable because it returns nothing. Each generated element must have a unique key.",
+      "spiegazione": "You use `map` on the array: it produces a new array of JSX elements, one per item. `forEach` is not suitable because it returns nothing. Each generated element must have a unique `key`.",
       "risposte": [
-        "With a for loop written inside the return",
-        "With the forEach method",
-        "With map on the array: one JSX element per item, each with a key",
-        "With a dedicated renderList() function that React provides to draw lists"
+        "With a `for` loop written inside the `return`",
+        "With the `forEach` method",
+        "With `map` on the array: one JSX element per item, each with a `key`",
+        "With a dedicated `renderList()` function that React provides to draw lists"
       ]
     },
-    "ab789379632e": {
-      "domanda": "What is the purpose of the useState hook?",
-      "spiegazione": "useState creates a state variable: const [value, setValue] = useState(initial). Unlike a regular variable, when the state changes (via the setter), React re-renders the component, updating the interface.",
+    "4c57f24f8a59": {
+      "domanda": "What is the purpose of the `useState` hook?",
+      "spiegazione": "`useState` creates a state variable: `const [value, setValue] = useState(initial)`. Unlike a regular variable, when the state changes (via the setter), React re-renders the component, updating the interface.",
       "risposte": [
         "To import external components",
         "To create state that, when changed, causes the component to re-render",
@@ -1118,19 +1118,19 @@
         "To define props"
       ]
     },
-    "5285f1ae18a6": {
-      "domanda": "How do you correctly update state created with useState?",
-      "spiegazione": "State updates only by calling the setter returned by useState (e.g., setKnown(true)). Reassigning the variable manually does not work: React won't detect the change and won't update the interface.",
+    "db317afedc73": {
+      "domanda": "How do you correctly update state created with `useState`?",
+      "spiegazione": "State updates only by calling the setter returned by `useState` (e.g., `setKnown(true)`). Reassigning the variable manually does not work: React won't detect the change and won't update the interface.",
       "risposte": [
         "By directly reassigning the state variable using the assignment operator",
         "By calling the setter function",
-        "By modifying the corresponding DOM element via document.getElementById",
-        "By reloading the entire page with location.reload()"
+        "By modifying the corresponding DOM element via `document.getElementById`",
+        "By reloading the entire page with `location.reload()`"
       ]
     },
-    "724bdc47d175": {
-      "domanda": "Why should you not modify state directly (e.g., variable = newValue)?",
-      "spiegazione": "React decides when to re-render based on calls to the setter. By manually modifying the state variable, React does not detect the change and the UI remains outdated. This is why you should always use the useState setter.",
+    "0aa79dd92553": {
+      "domanda": "Why should you not modify state directly (e.g., `variable = newValue`)?",
+      "spiegazione": "React decides when to re-render based on calls to the setter. By manually modifying the state variable, React does not detect the change and the UI remains outdated. This is why you should always use the `useState` setter.",
       "risposte": [
         "Because it immediately causes a syntax error",
         "Because state is read-only forever",
@@ -1138,29 +1138,29 @@
         "Because manually modifying the variable significantly slows down the execution of the entire browser"
       ]
     },
-    "230f1b9d5053": {
+    "abadd8d13711": {
       "domanda": "How do you register a click handler in React?",
-      "spiegazione": "In React, events are written in camelCase (onClick, onChange, onSubmit) and you pass the function reference without parentheses: onClick={myFunction}. Adding parentheses would execute it immediately during render.",
+      "spiegazione": "In React, events are written in camelCase (`onClick`, `onChange`, `onSubmit`) and you pass the function reference without parentheses: `onClick={myFunction}`. Adding parentheses would execute it immediately during render.",
       "risposte": [
-        "Using the all-lowercase onclick attribute",
-        "Using the onClick attribute to which you pass the function without parentheses",
-        "Manually adding an addEventListener inside the component constructor after mounting",
-        "Using the handleClick prop"
+        "Using the all-lowercase `onclick` attribute",
+        "Using the `onClick` attribute to which you pass the function without parentheses",
+        "Manually adding an `addEventListener` inside the component constructor after mounting",
+        "Using the `handleClick` prop"
       ]
     },
-    "bc3cd6f98d6c": {
-      "domanda": "How do you perform conditional rendering with the && operator?",
-      "spiegazione": "With {condition && element}, if the condition is true, the element is rendered; otherwise, nothing is rendered. This is the most common way to show something only under certain conditions; alternatively, the ternary operator can be used.",
+    "48f94878c20e": {
+      "domanda": "How do you perform conditional rendering with the `&&` operator?",
+      "spiegazione": "With `{condition && element}`, if the condition is true, the element is rendered; otherwise, nothing is rendered. This is the most common way to show something only under certain conditions; alternatively, the ternary operator can be used.",
       "risposte": [
-        "Write a classic if construct directly inside the return block",
-        "{condition && element}: renders it if the condition is true",
-        "Use the React.if() function by passing the condition and the element to display",
-        "Set the visible property of the JSX element to true or false"
+        "Write a classic `if` construct directly inside the `return` block",
+        "`{condition && element}`: renders it if the condition is true",
+        "Use the `React.if()` function by passing the condition and the element to display",
+        "Set the `visible` property of the JSX element to `true` or `false`"
       ]
     },
-    "e00df2777ed7": {
-      "domanda": "How many roots can a component's return statement have?",
-      "spiegazione": "The return must have a single root element. To return multiple adjacent elements, a fragment <>...</> is used, which groups them without adding an unnecessary div to the DOM.",
+    "901e41d7b33a": {
+      "domanda": "How many roots can a component's `return` statement have?",
+      "spiegazione": "The `return` must have a single root element. To return multiple adjacent elements, a fragment `<>...</>` is used, which groups them without adding an unnecessary `div` to the DOM.",
       "risposte": [
         "Any number of elements can be returned, all placed side by side",
         "Exactly two root elements can be returned for each component",
@@ -1168,13 +1168,13 @@
         "It is not possible to return any element from the component"
       ]
     },
-    "41d1df14d37a": {
-      "domanda": "Why is className used instead of class in JSX?",
-      "spiegazione": "In JSX, the code is written in JavaScript, where class is a reserved keyword (for ES6 classes). Therefore, className is used to assign a CSS class.",
+    "fff10541ff93": {
+      "domanda": "Why is `className` used instead of `class` in JSX?",
+      "spiegazione": "In JSX, the code is written in JavaScript, where `class` is a reserved keyword (for ES6 classes). Therefore, `className` is used to assign a CSS class.",
       "risposte": [
-        "Because class is slower to process",
-        "Because class is a reserved keyword in JavaScript",
-        "Because className automatically applies the same styles to nested child components",
+        "Because `class` is slower to process",
+        "Because `class` is a reserved keyword in JavaScript",
+        "Because `className` automatically applies the same styles to nested child components",
         "They are perfectly equivalent; it's just a matter of preference"
       ]
     },
@@ -1208,24 +1208,24 @@
         "Open and closed"
       ]
     },
-    "8cc50b6e52f7": {
-      "domanda": "What does the fetch() function return?",
-      "spiegazione": "fetch() returns a Promise that resolves to a Response object. To retrieve the data, you first await the response, then call response.json() (also a Promise) to read its body.",
+    "0410273a925c": {
+      "domanda": "What does the `fetch()` function return?",
+      "spiegazione": "`fetch()` returns a `Promise` that resolves to a `Response` object. To retrieve the data, you first await the response, then call `response.json()` (also a `Promise`) to read its body.",
       "risposte": [
         "The ready-made data directly as a JavaScript object",
-        "A Promise",
+        "A `Promise`",
         "A text string with the raw content of the server response",
         "The HTTP status code of the response as an integer"
       ]
     },
-    "fc653e7c1573": {
+    "b3e108cf8848": {
       "domanda": "How do you get the JSON body from a fetch response?",
-      "spiegazione": "You call response.json(): it returns a Promise that resolves to the corresponding JavaScript object. Typically: const res = await fetch(url); const dati = await res.json();",
+      "spiegazione": "You call `response.json()`: it returns a `Promise` that resolves to the corresponding JavaScript object. Typically: `const res = await fetch(url); const dati = await res.json();`",
       "risposte": [
-        "It is read from the response.body property in text format",
-        "You use JSON.parse directly by passing the response object",
-        "By calling response.json() (which returns a Promise)",
-        "It is always converted using the response.text() method of the response"
+        "It is read from the `response.body` property in text format",
+        "You use `JSON.parse` directly by passing the response object",
+        "By calling `response.json()` (which returns a `Promise`)",
+        "It is always converted using the `response.text()` method of the response"
       ]
     },
     "54afd91f7ff6": {
@@ -1248,13 +1248,13 @@
         "That the function is executed in a separate thread from the browser"
       ]
     },
-    "eea665c80bd4": {
-      "domanda": "How are errors handled with async/await?",
-      "spiegazione": "With async/await, errors (rejected Promises or exceptions) are handled using try/catch: the 'risky' code goes in the try block, and error handling in the catch block. With then(), .catch() is used instead.",
+    "59ea8d1c0235": {
+      "domanda": "How are errors handled with `async/await`?",
+      "spiegazione": "With `async/await`, errors (rejected Promises or exceptions) are handled using `try/catch`: the 'risky' code goes in the `try` block, and error handling in the `catch` block. With `then()`, `.catch()` is used instead.",
       "risposte": [
-        "With an error property",
-        "With a simple if/else block",
-        "With a try/catch block around the asynchronous code",
+        "With an `error` property",
+        "With a simple `if/else` block",
+        "With a `try/catch` block around the asynchronous code",
         "By registering a global handler that automatically intercepts every exception thrown in the application"
       ]
     },
@@ -1268,9 +1268,9 @@
         "An array method"
       ]
     },
-    "1a8c3ed242af": {
-      "domanda": "What does the response.ok property of a fetch response indicate?",
-      "spiegazione": "response.ok is true if the HTTP status code is in the success range 200–299. It should be checked because fetch does NOT reject the Promise on HTTP errors like 404 or 500; it must be verified manually.",
+    "66a4e8962f98": {
+      "domanda": "What does the `response.ok` property of a fetch response indicate?",
+      "spiegazione": "`response.ok` is `true` if the HTTP status code is in the success range 200–299. It should be checked because `fetch` does NOT reject the `Promise` on HTTP errors like `404` or `500`; it must be verified manually.",
       "risposte": [
         "The content of the response body converted to an object",
         "Whether the HTTP status is between 200 and 299",
@@ -1298,14 +1298,14 @@
         "A browser optimized for responsive sites"
       ]
     },
-    "b155a19526c0": {
+    "5d84f80b879b": {
       "domanda": "How do you include Bootstrap via CDN?",
-      "spiegazione": "Via CDN, Bootstrap's CSS is linked using a <link> tag in the <head>, and, if interactive components are needed, the JavaScript bundle is included via a <script> tag at the bottom of the body. No installation is required.",
+      "spiegazione": "Via CDN, Bootstrap's CSS is linked using a `<link>` tag in the `<head>`, and, if interactive components are needed, the JavaScript bundle is included via a `<script>` tag at the bottom of the `body`. No installation is required.",
       "risposte": [
-        "It is installed by running the npm install bootstrap command in the project terminal",
-        "With a <link> to the CSS in the <head>",
-        "You write import bootstrap at the top of the app's main JavaScript file",
-        "You add the bootstrap='true' attribute directly to the <html> tag"
+        "It is installed by running the `npm install bootstrap` command in the project terminal",
+        "With a `<link>` to the CSS in the `<head>`",
+        "You write `import bootstrap` at the top of the app's main JavaScript file",
+        "You add the `bootstrap='true'` attribute directly to the `<html>` tag"
       ]
     },
     "9a077de7dcbf": {
@@ -1368,9 +1368,9 @@
         "Completely blocks page scrolling every time the menu is opened by the user"
       ]
     },
-    "6bdce811b024": {
-      "domanda": "What does a utility class like m-3 do?",
-      "spiegazione": "m-3 sets the margin on all sides to level 3 of Bootstrap's spacing scale (0–5). There are side and axis variants: mt-, mb-, ms-, me-, mx-, my-; and the analogous p- for padding.",
+    "16f71fe00ce8": {
+      "domanda": "What does a utility class like `m-3` do?",
+      "spiegazione": "`m-3` sets the margin on all sides to level 3 of Bootstrap's spacing scale (0–5). There are side and axis variants: `mt-`, `mb-`, `ms-`, `me-`, `mx-`, `my-`; and the analogous `p-` for padding.",
       "risposte": [
         "Sets the margin to level 3 of the scale",
         "Automatically creates three columns inside the current element",
@@ -1378,29 +1378,29 @@
         "Applies the third color theme among the predefined ones to the element"
       ]
     },
-    "3e5f044f88ca": {
-      "domanda": "What does the d-flex utility class do?",
-      "spiegazione": "d-flex applies display: flex, turning the element into a flex container. It can be combined with other utilities like justify-content-center, align-items-center, and flex-column to manage layout without writing custom CSS.",
+    "9147ebe1ebb7": {
+      "domanda": "What does the `d-flex` utility class do?",
+      "spiegazione": "`d-flex` applies `display: flex`, turning the element into a flex container. It can be combined with other utilities like `justify-content-center`, `align-items-center`, and `flex-column` to manage layout without writing custom CSS.",
       "risposte": [
         "Hides the element on all devices",
-        "Applies display: flex to the element, enabling Flexbox",
+        "Applies `display: flex` to the element, enabling Flexbox",
         "Adds a shadow to the element to give it depth",
         "Makes the element's text bold"
       ]
     },
-    "531cf4b0c199": {
+    "43a030d5b90a": {
       "domanda": "Where should your custom CSS file be linked relative to Bootstrap's CSS?",
       "spiegazione": "Your custom CSS should be linked after Bootstrap: at the same specificity, the last loaded rule wins, so your customizations override the framework. Linking it before would make Bootstrap win.",
       "risposte": [
         "Before Bootstrap",
         "It doesn't matter, the order is completely irrelevant",
         "After Bootstrap, so that at equal specificity your rules override the framework's",
-        "Inside a <style> tag, mandatory in the body"
+        "Inside a `<style>` tag, mandatory in the `body`"
       ]
     },
     "eff0f6e77707": {
       "domanda": "What is a card in Bootstrap?",
-      "spiegazione": "A card is a flexible container (card class) for grouping related content: image (card-img-top), body (card-body) with title (card-title), text (card-text) and buttons. It is one of the most used components.",
+      "spiegazione": "A card is a flexible container (`card` class) for grouping related content: image (`card-img-top`), body (`card-body`) with title (`card-title`), text (`card-text`) and buttons. It is one of the most used components.",
       "risposte": [
         "A module for securely sending online payments",
         "A bordered container for displaying related content",
@@ -1418,19 +1418,19 @@
         "A CSS framework similar to Bootstrap"
       ]
     },
-    "93c2778448f5": {
+    "78cd6647b1d0": {
       "domanda": "Do browsers read SCSS files directly?",
-      "spiegazione": "Browsers do not understand SCSS: they only read CSS. For this reason, SCSS must be compiled into CSS (e.g., using sass --watch), and the resulting .css file, not the .scss file, should be linked in the HTML.",
+      "spiegazione": "Browsers do not understand SCSS: they only read CSS. For this reason, SCSS must be compiled into CSS (e.g., using `sass --watch`), and the resulting `.css` file, not the `.scss` file, should be linked in the HTML.",
       "risposte": [
         "Yes, all modern browsers natively interpret them",
         "No, it must first be compiled into CSS",
         "Yes, but only if a specific meta tag is added in the head",
-        "Yes, provided it is linked with a special <scss> tag"
+        "Yes, provided it is linked with a special `<scss>` tag"
       ]
     },
     "ba7ef5437e3c": {
       "domanda": "What does the Sass compiler do?",
-      "spiegazione": "The Sass compiler reads .scss files and produces the corresponding .css files. It is typically invoked with 'sass --watch scss:css', which automatically recompiles on every save.",
+      "spiegazione": "The Sass compiler reads `.scss` files and produces the corresponding `.css` files. It is typically invoked with `sass --watch scss:css`, which automatically recompiles on every save.",
       "risposte": [
         "Compresses all images in the project",
         "Executes the JavaScript code contained in the page",
@@ -1438,13 +1438,13 @@
         "Automatically uploads the site to a remote server"
       ]
     },
-    "ca2a4c164f58": {
+    "ab336db6b5a9": {
       "domanda": "How do you declare a variable in SCSS?",
-      "spiegazione": "In SCSS, variables are declared using the $ symbol: $color-primary: #2563eb;. They are resolved at compile time, so the final CSS contains the value, not the variable name. (Native CSS variables use --name instead.)",
+      "spiegazione": "In SCSS, variables are declared using the `$` symbol: `$color-primary: #2563eb;`. They are resolved at compile time, so the final CSS contains the value, not the variable name. (Native CSS variables use `--name` instead.)",
       "risposte": [
-        "With the -- prefix, as in native CSS variables",
-        "With the $ symbol before the name",
-        "With the var keyword followed by the variable name",
+        "With the `--` prefix, as in native CSS variables",
+        "With the `$` symbol before the name",
+        "With the `var` keyword followed by the variable name",
         "With curly braces around the chosen name"
       ]
     },
@@ -1478,9 +1478,9 @@
         "A portion of a page"
       ]
     },
-    "17c9c9a4dfa1": {
-      "domanda": "What is the purpose of the @use rule in SCSS?",
-      "spiegazione": "@use loads another SCSS file (typically a partial), making its variables and mixins available. It is the modern replacement for @import (deprecated) and supports namespaces (e.g., @use 'variables' as vars).",
+    "c6287988eb6a": {
+      "domanda": "What is the purpose of the `@use` rule in SCSS?",
+      "spiegazione": "`@use` loads another SCSS file (typically a partial), making its variables and mixins available. It is the modern replacement for `@import` (deprecated) and supports namespaces (e.g., `@use 'variables' as vars`).",
       "risposte": [
         "It is used to execute an external JavaScript file",
         "It imports a partial into an SCSS file",
@@ -1498,9 +1498,9 @@
         "A compiler configuration file"
       ]
     },
-    "ad340015192a": {
-      "domanda": "What does the @include directive do?",
-      "spiegazione": "@include inserts, at the point where it is written, the declarations defined in a mixin (passing any parameters). E.g.: @include flex-center(column);",
+    "d174b1724452": {
+      "domanda": "What does the `@include` directive do?",
+      "spiegazione": "`@include` inserts, at the point where it is written, the declarations defined in a mixin (passing any parameters). E.g.: `@include flex-center(column);`",
       "risposte": [
         "Loads a background image into the element",
         "Inserts the rules of a mixin",
@@ -1528,39 +1528,39 @@
         "The CSS variable works only inside mixins"
       ]
     },
-    "f2f8ae38c424": {
+    "2ca0a612de5e": {
       "domanda": "What is the difference between a class selector and an ID selector?",
-      "spiegazione": "A class (.name) can be applied to multiple elements, and an element can have more than one; an ID (#name) identifies a single element and has higher specificity. Course rule of thumb: CSS with classes, IDs for JavaScript and anchors.",
+      "spiegazione": "A class (`.name`) can be applied to multiple elements, and an element can have more than one; an ID (`#name`) identifies a single element and has higher specificity. Course rule of thumb: CSS with classes, IDs for JavaScript and anchors.",
       "risposte": [
         "The class is always applied faster by the browser",
         "The class is reusable; the ID is unique",
         "The ID is used exclusively for defining hyperlinks",
-        "The class only works if applied to div elements"
+        "The class only works if applied to `div` elements"
       ]
     },
-    "e892e534c2cc": {
-      "domanda": "What does the 'nav a' rule select?",
-      "spiegazione": "The space is the descendant combinator: 'nav a' selects all <a> elements contained within a <nav>, at any depth. For direct children only, use 'nav > a' instead.",
+    "57e49b332870": {
+      "domanda": "What does the `nav a` rule select?",
+      "spiegazione": "The space is the descendant combinator: `nav a` selects all `<a>` elements contained within a `<nav>`, at any depth. For direct children only, use `nav > a` instead.",
       "risposte": [
-        "Only the first link inside nav",
-        "All <a> descendants of <nav>",
-        "<nav> elements that are inside an <a>",
-        "Elements that are both nav and a simultaneously"
+        "Only the first link inside `nav`",
+        "All `<a>` descendants of `<nav>`",
+        "`<nav>` elements that are inside an `<a>`",
+        "Elements that are both `nav` and `a` simultaneously"
       ]
     },
-    "569927da3cff": {
-      "domanda": "What do the vw and vh units represent?",
-      "spiegazione": "1vw is 1% of the viewport width, 1vh is 1% of the viewport height. They are useful for full-screen sections (e.g., height: 100vh) or dimensions that scale with the window.",
+    "c29f6aa7af9a": {
+      "domanda": "What do the `vw` and `vh` units represent?",
+      "spiegazione": "`1vw` is 1% of the viewport width, `1vh` is 1% of the viewport height. They are useful for full-screen sections (e.g., `height: 100vh`) or dimensions that scale with the window.",
       "risposte": [
         "The dimensions in centimeters of an element on the screen",
-        "1% of the viewport width (vw) and height (vh)",
+        "1% of the viewport width (`vw`) and height (`vh`)",
         "The width and height of only the parent element",
         "Two variants of pixels optimized for printing"
       ]
     },
-    "5cf044f04fe9": {
-      "domanda": "What does the transition property do?",
-      "spiegazione": "transition makes the change of a property between two states gradual (e.g., transition: all 0.3s ease). It is typically used to animate changes on :hover, such as color, size, or shadow.",
+    "68b589d04911": {
+      "domanda": "What does the `transition` property do?",
+      "spiegazione": "`transition` makes the change of a property between two states gradual (e.g., `transition: all 0.3s ease`). It is typically used to animate changes on `:hover`, such as color, size, or shadow.",
       "risposte": [
         "Moves the element from one page of the site to another",
         "Changes the element's color completely instantly",
@@ -1568,9 +1568,9 @@
         "Hides the element with a fade-out effect on page load"
       ]
     },
-    "e6310fffc0ab": {
-      "domanda": "What does the box-shadow property do?",
-      "spiegazione": "box-shadow adds a shadow: the values indicate horizontal offset, vertical offset, blur radius, and color, e.g., box-shadow: 0 4px 12px rgba(0,0,0,0.3). It is used to give depth to cards and buttons.",
+    "fab54bd1edd4": {
+      "domanda": "What does the `box-shadow` property do?",
+      "spiegazione": "`box-shadow` adds a shadow: the values indicate horizontal offset, vertical offset, blur radius, and color, e.g., `box-shadow: 0 4px 12px rgba(0,0,0,0.3)`. It is used to give depth to cards and buttons.",
       "risposte": [
         "Adds a colored border to the element",
         "Adds a shadow to the element (x and y offset, blur, and color)",
@@ -1578,19 +1578,19 @@
         "Draws a frame around the inner text"
       ]
     },
-    "8e2b82f2c249": {
+    "f6fa0f68593e": {
       "domanda": "What are CSS variables (custom properties)?",
-      "spiegazione": "Custom properties are declared using --name (typically in :root to make them global) and used with var(--name). Unlike SCSS variables, they are native, dynamic, and readable/modifiable via JavaScript.",
+      "spiegazione": "Custom properties are declared using `--name` (typically in `:root` to make them global) and used with `var(--name)`. Unlike SCSS variables, they are native, dynamic, and readable/modifiable via JavaScript.",
       "risposte": [
         "An SCSS exclusive",
         "JavaScript functions for styling",
-        "Values declared with --name and used with var(), living in the browser",
+        "Values declared with `--name` and used with `var()`, living in the browser",
         "A special syntax that allows importing entire external style sheets dynamically"
       ]
     },
-    "1c33969012b7": {
-      "domanda": "What does the :nth-child(2n) pseudo-class select?",
-      "spiegazione": ":nth-child(2n) selects even-positioned children (2, 4, 6...), useful for the 'zebra' effect in tables. You can use formulas like 2n+1 (odd), 3n, or keywords like odd/even.",
+    "468c2d1b756c": {
+      "domanda": "What does the `:nth-child(2n)` pseudo-class select?",
+      "spiegazione": "`:nth-child(2n)` selects even-positioned children (2, 4, 6...), useful for the 'zebra' effect in tables. You can use formulas like `2n+1` (odd), `3n`, or keywords like `odd`/`even`.",
       "risposte": [
         "Only the second child element",
         "Child elements in even positions (zebra effect)",
@@ -1598,9 +1598,9 @@
         "The second element from the end"
       ]
     },
-    "1218369fafc4": {
-      "domanda": "What is the purpose of the ::before pseudo-element?",
-      "spiegazione": "::before creates generated content at the beginning of an element; it always requires the content property (even if empty). ::after does the same but after the content. They are used for icons, decorations, and graphical details.",
+    "c66af6ba8349": {
+      "domanda": "What is the purpose of the `::before` pseudo-element?",
+      "spiegazione": "`::before` creates generated content at the beginning of an element; it always requires the `content` property (even if empty). `::after` does the same but after the content. They are used for icons, decorations, and graphical details.",
       "risposte": [
         "Selects the previous element in the page structure",
         "Inserts generated content before the element",
@@ -1618,19 +1618,19 @@
         "Hides the mouse cursor"
       ]
     },
-    "5ff42dcb28f5": {
-      "domanda": "On which elements does the z-index property work?",
-      "spiegazione": "z-index controls the stacking order (higher values on top) but only affects positioned elements, i.e., those with a position value other than static. It is ignored on static elements.",
+    "b208f7b574ed": {
+      "domanda": "On which elements does the `z-index` property work?",
+      "spiegazione": "`z-index` controls the stacking order (higher values on top) but only affects positioned elements, i.e., those with a `position` value other than `static`. It is ignored on `static` elements.",
       "risposte": [
         "It works on all elements without any exceptions",
-        "It only affects div elements",
-        "Only on elements with a non-static position",
+        "It only affects `div` elements",
+        "Only on elements with a non-`static` `position`",
         "It only works within flex containers"
       ]
     },
     "b275acdcfc39": {
       "domanda": "What is Responsive Web Design?",
-      "spiegazione": "RWD is the approach that allows the layout to adapt to every screen size. The three key ingredients are: the viewport meta tag, fluid dimensions (%, rem, vw, max-width), and media queries.",
+      "spiegazione": "RWD is the approach that allows the layout to adapt to every screen size. The three key ingredients are: the `viewport` meta tag, fluid dimensions (`%`, `rem`, `vw`, `max-width`), and media queries.",
       "risposte": [
         "A JavaScript library for layout",
         "The approach where the layout adapts to the screen size (viewport, fluid units, and media queries)",
@@ -1638,9 +1638,9 @@
         "An alternative framework to Bootstrap"
       ]
     },
-    "8ca32a0bf44d": {
-      "domanda": "What is the purpose of the viewport meta tag?",
-      "spiegazione": "<meta name='viewport' content='width=device-width, initial-scale=1.0'> instructs the mobile browser to use the actual device width instead of simulating a desktop view. Without it, media queries do not behave as expected on smartphones.",
+    "a473eefa340b": {
+      "domanda": "What is the purpose of the `viewport` meta tag?",
+      "spiegazione": "`<meta name='viewport' content='width=device-width, initial-scale=1.0'>` instructs the mobile browser to use the actual device width instead of simulating a desktop view. Without it, media queries do not behave as expected on smartphones.",
       "risposte": [
         "A to set the tab title",
         "A to improve search engine ranking",
@@ -1658,12 +1658,12 @@
         "max-width only works in print"
       ]
     },
-    "0c4f999ee544": {
+    "3821f0bb2379": {
       "domanda": "What makes an image fluid in a responsive layout?",
-      "spiegazione": "With img { max-width: 100%; height: auto; }, the image never exceeds the container's width and maintains its aspect ratio, shrinking on small devices. It is a basic responsive pattern.",
+      "spiegazione": "With `img { max-width: 100%; height: auto; }`, the image never exceeds the container's width and maintains its aspect ratio, shrinking on small devices. It is a basic responsive pattern.",
       "risposte": [
-        "The HTML attribute responsive='true'",
-        "The rule img { max-width: 100%; height: auto; }",
+        "The HTML attribute `responsive='true'`",
+        "The rule `img { max-width: 100%; height: auto; }`",
         "Always setting a fixed width in pixels for the image",
         "Loading the image in SVG format obligatorily"
       ]
@@ -1678,14 +1678,14 @@
         "Because they prevent horizontal scrolling in all cases"
       ]
     },
-    "62484986399a": {
-      "domanda": "What is the difference between content-box and border-box?",
-      "spiegazione": "With content-box (default), padding and border are added to the declared width; with border-box, they are included within the width, which is more intuitive. This is why * { box-sizing: border-box; } is often set.",
+    "2f48b9addea5": {
+      "domanda": "What is the difference between `content-box` and `border-box`?",
+      "spiegazione": "With `content-box` (default), padding and border are added to the declared `width`; with `border-box`, they are included within the `width`, which is more intuitive. This is why `* { box-sizing: border-box; }` is often set.",
       "risposte": [
-        "content-box is only for text",
+        "`content-box` is only for text",
         "There is no practical difference between the two values",
-        "With content-box (default), width applies only to the content, and padding+border are added; with border-box, width already includes padding and border",
-        "border-box always removes margins"
+        "With `content-box` (default), `width` applies only to the content, and padding+border are added; with `border-box`, `width` already includes padding and border",
+        "`border-box` always removes margins"
       ]
     },
     "7f2fbcaceab0": {
@@ -1708,9 +1708,9 @@
         "Automatically increases the height to show everything"
       ]
     },
-    "6db1975827b7": {
-      "domanda": "What does array destructuring do, as in const [a, b] = [1, 2]?",
-      "spiegazione": "Array destructuring assigns elements to variables based on their position: const [a, b] = [1, 2] results in a=1 and b=2. You can skip elements using commas and use the rest syntax: const [first, ...rest] = arr.",
+    "fbf40bb68e56": {
+      "domanda": "What does array destructuring do, as in `const [a, b] = [1, 2]`?",
+      "spiegazione": "Array destructuring assigns elements to variables based on their position: `const [a, b] = [1, 2]` results in `a=1` and `b=2`. You can skip elements using commas and use the rest syntax: `const [first, ...rest] = arr`.",
       "risposte": [
         "Removes the first two elements from the original array",
         "Extracts values into variables by position",
@@ -1718,19 +1718,19 @@
         "Creates a deep, independent copy of the original array"
       ]
     },
-    "e01ff944dac5": {
-      "domanda": "What does object destructuring do, as in const { nome } = utente?",
-      "spiegazione": "Object destructuring creates variables from properties: const { nome, email } = utente. You can rename (const { nome: n } = ...) and provide defaults. It is the typical way to receive props in React components.",
+    "148a6bc3b692": {
+      "domanda": "What does object destructuring do, as in `const { nome } = utente`?",
+      "spiegazione": "Object destructuring creates variables from properties: `const { nome, email } = utente`. You can rename (`const { nome: n } = ...`) and provide defaults. It is the typical way to receive props in React components.",
       "risposte": [
         "Renames the property",
-        "Deletes the nome property",
-        "Extracts the nome property into a variable with the same name",
+        "Deletes the `nome` property",
+        "Extracts the `nome` property into a variable with the same name",
         "Transforms the entire object into an ordered array of its properties and their values"
       ]
     },
-    "a89b5711b6b1": {
-      "domanda": "What is the difference between spread and rest (both using ...)?",
-      "spiegazione": "Same symbol (...), opposite usage: spread expands an iterable (e.g., [...arr], Math.max(...n)); rest collects multiple values into an array (e.g., function parameters function f(...args)).",
+    "c621b40aa2b5": {
+      "domanda": "What is the difference between spread and rest (both using `...`)?",
+      "spiegazione": "Same symbol (`...`), opposite usage: spread expands an iterable (e.g., `[...arr]`, `Math.max(...n)`); rest collects multiple values into an array (e.g., function parameters `function f(...args)`).",
       "risposte": [
         "They are the same thing with two names",
         "spread expands, rest collects",
@@ -1738,83 +1738,83 @@
         "rest is faster than spread at runtime"
       ]
     },
-    "3463fc3c1acf": {
+    "afd9d079690e": {
       "domanda": "What is the ternary operator?",
-      "spiegazione": "The ternary operator is a compact way to write an if/else as an expression: condition ? valueIfTrue : valueIfFalse. It is widely used, for example, in conditional rendering in JSX and for quick assignments.",
+      "spiegazione": "The ternary operator is a compact way to write an `if/else` as an expression: `condition ? valueIfTrue : valueIfFalse`. It is widely used, for example, in conditional rendering in JSX and for quick assignments.",
       "risposte": [
-        "A compact if: condition ? ifTrue : ifFalse",
+        "A compact `if`: `condition ? ifTrue : ifFalse`",
         "An operator that works on three arrays simultaneously",
         "A function that always returns three distinct values",
         "A loop that repeats exactly three times"
       ]
     },
-    "7d8b5224f883": {
-      "domanda": "What does optional chaining (?.) do?",
-      "spiegazione": "utente?.indirizzo?.citta returns undefined (without error) if utente or indirizzo are null/undefined, instead of throwing a TypeError. It is useful for safely accessing nested data that might be missing.",
+    "1cf13f306bec": {
+      "domanda": "What does optional chaining (`?.`) do?",
+      "spiegazione": "`utente?.indirizzo?.citta` returns `undefined` (without error) if `utente` or `indirizzo` are `null`/`undefined`, instead of throwing a `TypeError`. It is useful for safely accessing nested data that might be missing.",
       "risposte": [
         "Makes a property mandatory",
-        "Accesses a nested property, returning undefined instead of throwing an error if an intermediate level is null or undefined",
+        "Accesses a nested property, returning `undefined` instead of throwing an error if an intermediate level is `null` or `undefined`",
         "Automatically creates the property if it is missing",
         "Compares two objects for equality"
       ]
     },
-    "309b3bcb60d5": {
-      "domanda": "What does the nullish coalescing operator (??) do?",
-      "spiegazione": "a ?? b returns a if a is not null/undefined, otherwise b. It differs from || because it does not treat falsy values like 0, '' or false as triggers: name ?? 'Anonymous' keeps 0 and '' as valid values, whereas || would discard them.",
+    "d423ec722416": {
+      "domanda": "What does the nullish coalescing operator (`??`) do?",
+      "spiegazione": "`a ?? b` returns `a` if `a` is not `null`/`undefined`, otherwise `b`. It differs from `||` because it does not treat falsy values like `0`, `''` or `false` as triggers: `name ?? 'Anonymous'` keeps `0` and `''` as valid values, whereas `||` would discard them.",
       "risposte": [
         "Sums two numbers",
         "Compares types",
-        "Returns the right operand only when the left one is null or undefined (unlike || which triggers on all falsy values like 0 or an empty string)",
+        "Returns the right operand only when the left one is `null` or `undefined` (unlike `||` which triggers on all falsy values like `0` or an empty string)",
         "Checks if a value is a number"
       ]
     },
-    "26167a987acf": {
-      "domanda": "What is the difference between null and undefined?",
-      "spiegazione": "undefined indicates a declared variable with no value (assigned by the JS engine); null is a 'empty' value set voluntarily by the developer. Fun fact: typeof null is 'object', a historical bug; null == undefined is true, but null === undefined is false.",
+    "cedde1e6e415": {
+      "domanda": "What is the difference between `null` and `undefined`?",
+      "spiegazione": "`undefined` indicates a declared variable with no value (assigned by the JS engine); `null` is a 'empty' value set voluntarily by the developer. Fun fact: `typeof null` is `'object'`, a historical bug; `null == undefined` is `true`, but `null === undefined` is `false`.",
       "risposte": [
         "They are perfect synonyms",
-        "undefined is the absence of a value not assigned by the system; null is an empty value intentionally assigned by the programmer",
-        "null is a number, undefined is a string",
-        "null always causes an error"
+        "`undefined` is the absence of a value not assigned by the system; `null` is an empty value intentionally assigned by the programmer",
+        "`null` is a number, `undefined` is a string",
+        "`null` always causes an error"
       ]
     },
-    "fdc3996eb0ea": {
-      "domanda": "What is the result of '5' + 2 in JavaScript?",
-      "spiegazione": "When using the + operator between a string and a number, JavaScript converts the number to a string and concatenates them: '5' + 2 results in '52'. Other operators, however, convert to a number: '5' - 2 yields 3. This is a classic effect of implicit type coercion.",
+    "377986fef003": {
+      "domanda": "What is the result of `'5' + 2` in JavaScript?",
+      "spiegazione": "When using the `+` operator between a string and a number, JavaScript converts the number to a string and concatenates them: `'5' + 2` results in `'52'`. Other operators, however, convert to a number: `'5' - 2` yields `3`. This is a classic effect of implicit type coercion.",
       "risposte": [
         "Generates a type error",
-        "The string '52'",
-        "The number 7",
-        "The value NaN"
+        "The string `'52'`",
+        "The number `7`",
+        "The value `NaN`"
       ]
     },
-    "6b1d35b3dffa": {
-      "domanda": "What does JSON.parse(string) do?",
-      "spiegazione": "JSON.parse converts a JSON-formatted string into a usable JavaScript object. It is the inverse operation of JSON.stringify. It throws an error if the string is not valid JSON, so it is often used within a try/catch block.",
+    "26d5673c03af": {
+      "domanda": "What does `JSON.parse(string)` do?",
+      "spiegazione": "`JSON.parse` converts a JSON-formatted string into a usable JavaScript object. It is the inverse operation of `JSON.stringify`. It throws an error if the string is not valid JSON, so it is often used within a `try/catch` block.",
       "risposte": [
-        "Checks if a string is in valid JSON format, returning true or false",
+        "Checks if a string is in valid JSON format, returning `true` or `false`",
         "Converts a JSON string into a JavaScript object",
         "Downloads a JSON file from a specified remote server",
         "Formats and indents a JSON string to make it readable"
       ]
     },
-    "1cc592011bf3": {
-      "domanda": "What is the difference between JSON.stringify and JSON.parse?",
-      "spiegazione": "JSON.stringify(object) produces a JSON string (to save or send it); JSON.parse(string) reconstructs the object from the string. They are the two inverse operations used, for example, with localStorage and fetch.",
+    "b04d963c77a4": {
+      "domanda": "What is the difference between `JSON.stringify` and `JSON.parse`?",
+      "spiegazione": "`JSON.stringify(object)` produces a JSON string (to save or send it); `JSON.parse(string)` reconstructs the object from the string. They are the two inverse operations used, for example, with `localStorage` and `fetch`.",
       "risposte": [
         "They are simply two different names for the same operation",
-        "The stringify operation is significantly slower than parse",
-        "stringify: object to string; parse: the reverse",
+        "The `stringify` operation is significantly slower than `parse`",
+        "`stringify`: object to string; `parse`: the reverse",
         "Both are used to convert text strings to numbers"
       ]
     },
-    "8e0545a8cd59": {
-      "domanda": "How do you save an object in localStorage?",
-      "spiegazione": "localStorage only stores strings: to save an object, use localStorage.setItem('key', JSON.stringify(object)) and to read it back, use JSON.parse(localStorage.getItem('key')).",
+    "755930fd9d18": {
+      "domanda": "How do you save an object in `localStorage`?",
+      "spiegazione": "`localStorage` only stores strings: to save an object, use `localStorage.setItem('key', JSON.stringify(object))` and to read it back, use `JSON.parse(localStorage.getItem('key'))`.",
       "risposte": [
-        "Directly with localStorage.setItem('key', object)",
-        "By converting it to a string first with JSON.stringify, because localStorage only stores strings",
-        "localStorage cannot contain objects in any way",
+        "Directly with `localStorage.setItem('key', object)`",
+        "By converting it to a string first with `JSON.stringify`, because `localStorage` only stores strings",
+        "`localStorage` cannot contain objects in any way",
         "By saving each property of the object in a separate key, one by one"
       ]
     },
@@ -1828,9 +1828,9 @@
         "Only localStorage allows saving objects, while sessionStorage accepts only strings"
       ]
     },
-    "b373810a54b6": {
-      "domanda": "What value does Math.random() return?",
-      "spiegazione": "Math.random() returns a random decimal in [0, 1). To get an integer within a range, it is combined with Math.floor: Math.floor(Math.random() * 90) + 1 yields a random integer from 1 to 90.",
+    "a089130377b0": {
+      "domanda": "What value does `Math.random()` return?",
+      "spiegazione": "`Math.random()` returns a random decimal in [0, 1). To get an integer within a range, it is combined with `Math.floor`: `Math.floor(Math.random() * 90) + 1` yields a random integer from 1 to 90.",
       "risposte": [
         "A random integer between 1 and 100",
         "A random decimal number between 0 (inclusive) and 1 (exclusive)",
@@ -1838,19 +1838,19 @@
         "A random number between -1 and 1"
       ]
     },
-    "aca781940591": {
-      "domanda": "What is the difference between Math.floor and Math.round?",
-      "spiegazione": "Math.floor always rounds down (Math.floor(4.9) is 4); Math.round rounds to the nearest integer (Math.round(4.5) is 5). Math.ceil, on the other hand, always rounds up.",
+    "58b0a35cf254": {
+      "domanda": "What is the difference between `Math.floor` and `Math.round`?",
+      "spiegazione": "`Math.floor` always rounds down (`Math.floor(4.9)` is `4`); `Math.round` rounds to the nearest integer (`Math.round(4.5)` is `5`). `Math.ceil`, on the other hand, always rounds up.",
       "risposte": [
-        "floor rounds down; round rounds to the nearest integer",
+        "`floor` rounds down; `round` rounds to the nearest integer",
         "They are identical",
-        "floor doubles the number",
-        "round always rounds up without exceptions"
+        "`floor` doubles the number",
+        "`round` always rounds up without exceptions"
       ]
     },
-    "2cb403c6c77c": {
-      "domanda": "What does the includes() string method do?",
-      "spiegazione": "'ciao mondo'.includes('mondo') returns true. It is useful for simple searches. Other common string methods: toUpperCase/toLowerCase, trim, split, slice, replace, indexOf.",
+    "a85e4d1c8129": {
+      "domanda": "What does the `includes()` string method do?",
+      "spiegazione": "`'ciao mondo'.includes('mondo')` returns `true`. It is useful for simple searches. Other common string methods: `toUpperCase`/`toLowerCase`, `trim`, `split`, `slice`, `replace`, `indexOf`.",
       "risposte": [
         "Appends additional text to the end of the original string",
         "Indicates whether the string contains a substring",
@@ -1858,29 +1858,29 @@
         "Splits the string into an array of individual words"
       ]
     },
-    "5e9f29344c1d": {
+    "f5bb18255be7": {
       "domanda": "What is a regex (regular expression)?",
-      "spiegazione": "A regex is a pattern that describes a text format, used to search, validate, or replace strings. For example, /^\\d{10}$/.test(tel) checks that 'tel' consists of exactly 10 digits.",
+      "spiegazione": "A regex is a pattern that describes a text format, used to search, validate, or replace strings. For example, `/^\\d{10}$/.test(tel)` checks that `tel` consists of exactly 10 digits.",
       "risposte": [
         "A type of loop",
-        "A text pattern used to search and validate strings (e.g., /^\\d{10}$/.test(tel))",
+        "A text pattern used to search and validate strings (e.g., `/^\\d{10}$/.test(tel)`)",
         "A function that sorts strings",
         "A method to convert strings to numbers"
       ]
     },
-    "a79cd5499877": {
-      "domanda": "What is the correct syntax for addEventListener?",
-      "spiegazione": "The syntax is element.addEventListener('click', function): the first argument is the event type (without 'on'), and the second is the callback. A third options parameter can be added (once, capture, passive).",
+    "7aa4a5c831dc": {
+      "domanda": "What is the correct syntax for `addEventListener`?",
+      "spiegazione": "The syntax is `element.addEventListener('click', function)`: the first argument is the event type (without `on`), and the second is the callback. A third options parameter can be added (`once`, `capture`, `passive`).",
       "risposte": [
-        "element.addEventListener(callback)",
-        "element.addEventListener('eventType', callback)",
-        "element.addEventListener('eventType') followed separately by the function",
-        "addEventListener(element, 'eventType', callback)"
+        "`element.addEventListener(callback)`",
+        "`element.addEventListener('eventType', callback)`",
+        "`element.addEventListener('eventType')` followed separately by the function",
+        "`addEventListener(element, 'eventType', callback)`"
       ]
     },
-    "6fb0d05cba65": {
-      "domanda": "What does the event object's preventDefault() method do?",
-      "spiegazione": "preventDefault() prevents the browser's default action for that event: for example, on a form submit it prevents the page from reloading. It is crucial in SPAs for handling forms via JavaScript.",
+    "b8a1619fd590": {
+      "domanda": "What does the event object's `preventDefault()` method do?",
+      "spiegazione": "`preventDefault()` prevents the browser's default action for that event: for example, on a form submit it prevents the page from reloading. It is crucial in SPAs for handling forms via JavaScript.",
       "risposte": [
         "Prevents other listeners from being executed afterwards",
         "Blocks the event's default behavior",
@@ -1888,24 +1888,24 @@
         "Restarts the current page from scratch"
       ]
     },
-    "6453b3083759": {
-      "domanda": "What does event.target represent?",
-      "spiegazione": "event.target is the element that originated the event (e.g., the typed input or the clicked button). Its value is often read using event.target.value. It must be distinguished from event.currentTarget, which is the element on which the listener is registered.",
+    "193f32889838": {
+      "domanda": "What does `event.target` represent?",
+      "spiegazione": "`event.target` is the element that originated the event (e.g., the typed input or the clicked button). Its value is often read using `event.target.value`. It must be distinguished from `event.currentTarget`, which is the element on which the listener is registered.",
       "risposte": [
-        "The window object",
+        "The `window` object",
         "The type of the generated event",
         "The element that triggered the event (e.g., the field or button)",
-        "The callback function associated with that event via addEventListener"
+        "The callback function associated with that event via `addEventListener`"
       ]
     },
-    "55df2de9c52a": {
-      "domanda": "What is the difference between event.target and event.currentTarget?",
-      "spiegazione": "In the presence of bubbling, target is the innermost element that triggered the event, while currentTarget is the element to which the listener was attached (and which is currently handling it).",
+    "670eb8b78457": {
+      "domanda": "What is the difference between `event.target` and `event.currentTarget`?",
+      "spiegazione": "In the presence of bubbling, `target` is the innermost element that triggered the event, while `currentTarget` is the element to which the listener was attached (and which is currently handling it).",
       "risposte": [
         "They are always the same element",
-        "target is the element that generated the event; currentTarget is the one on which the listener is registered",
-        "currentTarget exists only on forms",
-        "target works only with click"
+        "`target` is the element that generated the event; `currentTarget` is the one on which the listener is registered",
+        "`currentTarget` exists only on forms",
+        "`target` works only with click"
       ]
     },
     "be181eb5abd5": {
@@ -1918,19 +1918,19 @@
         "A mechanism that allows creating and manually triggering custom events on any element"
       ]
     },
-    "2e18220366a1": {
+    "c71adcedf326": {
       "domanda": "How do you pass a function to a listener without executing it immediately?",
-      "spiegazione": "You pass the function reference without parentheses: addEventListener('click', saluta). Adding parentheses (saluta()) would execute the function immediately, and the listener would receive its return value. To pass arguments, use an arrow function: () => saluta('Mario').",
+      "spiegazione": "You pass the function reference without parentheses: `addEventListener('click', saluta)`. Adding parentheses (`saluta()`) would execute the function immediately, and the listener would receive its return value. To pass arguments, use an arrow function: `() => saluta('Mario')`.",
       "risposte": [
-        "Writing the function name followed by parentheses ()",
+        "Writing the function name followed by parentheses `()`",
         "Passing the reference, i.e., the function name without parentheses",
         "Putting the function in quotes",
-        "Adding the await keyword before the function"
+        "Adding the `await` keyword before the function"
       ]
     },
-    "cb874141a166": {
-      "domanda": "What does a for...of loop iterate over in an array?",
-      "spiegazione": "for...of iterates directly over the values of an iterable (array, string, NodeList...): for (const v of [10,20]) yields v=10 then v=20. For object keys/properties, use for...in instead.",
+    "0dd768224ec5": {
+      "domanda": "What does a `for...of` loop iterate over in an array?",
+      "spiegazione": "`for...of` iterates directly over the values of an iterable (array, string, `NodeList`...): `for (const v of [10,20])` yields `v=10` then `v=20`. For object keys/properties, use `for...in` instead.",
       "risposte": [
         "The element values",
         "The indices as strings",
@@ -1968,9 +1968,9 @@
         "Inverts the logical value of the first operand"
       ]
     },
-    "bd6e461c96a2": {
-      "domanda": "What is the purpose of the <main> tag?",
-      "spiegazione": "<main> wraps the central and specific content of the page and must be unique per page. It aids accessibility and SEO by allowing screen readers to jump directly to the main content.",
+    "20a4bc6068a7": {
+      "domanda": "What is the purpose of the `<main>` tag?",
+      "spiegazione": "`<main>` wraps the central and specific content of the page and must be unique per page. It aids accessibility and SEO by allowing screen readers to jump directly to the main content.",
       "risposte": [
         "It is used to contain the site's navigation menu",
         "It wraps the main content of the page",
@@ -1978,9 +1978,9 @@
         "It inserts a sidebar with in-depth content"
       ]
     },
-    "aad13d1885b6": {
-      "domanda": "What are the <figure> and <figcaption> tags used for?",
-      "spiegazione": "<figure> groups self-contained content such as an image, chart, or code block, and <figcaption> provides its caption. Together, they create a semantic association between the content and its description.",
+    "9d7463df59e6": {
+      "domanda": "What are the `<figure>` and `<figcaption>` tags used for?",
+      "spiegazione": "`<figure>` groups self-contained content such as an image, chart, or code block, and `<figcaption>` provides its caption. Together, they create a semantic association between the content and its description.",
       "risposte": [
         "A to create a contact form",
         "B to draw geometric shapes on the page",
@@ -1988,9 +1988,9 @@
         "D to define the structure of a data table"
       ]
     },
-    "bf2cb604607c": {
-      "domanda": "What is the purpose of the lang attribute in the <html> tag?",
-      "spiegazione": "lang (e.g., <html lang='en'>) declares the primary language of the document. It improves accessibility (screen readers use the correct pronunciation) and SEO, and assists browsers with automatic translation.",
+    "b3cb12314fa3": {
+      "domanda": "What is the purpose of the `lang` attribute in the `<html>` tag?",
+      "spiegazione": "`lang` (e.g., `<html lang='en'>`) declares the primary language of the document. It improves accessibility (screen readers use the correct pronunciation) and SEO, and assists browsers with automatic translation.",
       "risposte": [
         "To automatically translate the page into the chosen language",
         "To declare the language of the page content",
@@ -1998,19 +1998,19 @@
         "To change the character set used"
       ]
     },
-    "268f966f6df8": {
-      "domanda": "What is the difference between <em> and <i>?",
-      "spiegazione": "<em> provides semantic emphasis (screen readers may emphasize its reading), while <i> applies only stylistic italics, without added meaning. It is the same relationship that exists between <strong> (semantic) and <b> (visual).",
+    "8c549417d4d4": {
+      "domanda": "What is the difference between `<em>` and `<i>`?",
+      "spiegazione": "`<em>` provides semantic emphasis (screen readers may emphasize its reading), while `<i>` applies only stylistic italics, without added meaning. It is the same relationship that exists between `<strong>` (semantic) and `<b>` (visual).",
       "risposte": [
-        "<em> is obsolete",
+        "`<em>` is obsolete",
         "They are identical for the browser",
-        "<em> indicates emphasis with semantic value; <i> applies only italics without added meaning",
-        "<i> works only in headings"
+        "`<em>` indicates emphasis with semantic value; `<i>` applies only italics without added meaning",
+        "`<i>` works only in headings"
       ]
     },
-    "96a3812a6c0c": {
-      "domanda": "What is the purpose of the controls attribute in the <video> tag?",
-      "spiegazione": "controls displays the native player controls (play/pause, seek bar, volume). Other attributes of the <video> tag are autoplay (automatic start), loop (repetition), and muted (no audio).",
+    "6e4a8f09a37f": {
+      "domanda": "What is the purpose of the `controls` attribute in the `<video>` tag?",
+      "spiegazione": "`controls` displays the native player controls (play/pause, seek bar, volume). Other attributes of the `<video>` tag are `autoplay` (automatic start), `loop` (repetition), and `muted` (no audio).",
       "risposte": [
         "A to set the maximum quality of the video to play",
         "A to display playback controls (play, pause, volume)",
@@ -2018,9 +2018,9 @@
         "A to block the download of the video file by users"
       ]
     },
-    "f051cf9424c7": {
-      "domanda": "What does a path starting with ../ indicate?",
-      "spiegazione": "../ means 'go up one directory'. For example, ../imgs/foto.jpg goes up one level and then enters imgs. './' indicates the current directory, while '/' starts from the site root.",
+    "99207c82896b": {
+      "domanda": "What does a path starting with `../` indicate?",
+      "spiegazione": "`../` means 'go up one directory'. For example, `../imgs/foto.jpg` goes up one level and then enters `imgs`. `./` indicates the current directory, while `/` starts from the site root.",
       "risposte": [
         "The current directory",
         "The site root",
@@ -2038,25 +2038,25 @@
         "Modifying the CSS file directly on disk"
       ]
     },
-    "5ba7771f7848": {
-      "domanda": "Why is the <script> tag usually placed at the end of the <body>?",
-      "spiegazione": "Scripts placed at the end of the body execute after the DOM has been built, so functions like document.getElementById can find the elements. Alternatively, the defer attribute or the DOMContentLoaded event can be used.",
+    "7b82d66553e2": {
+      "domanda": "Why is the `<script>` tag usually placed at the end of the `<body>`?",
+      "spiegazione": "Scripts placed at the end of the body execute after the DOM has been built, so functions like `document.getElementById` can find the elements. Alternatively, the `defer` attribute or the `DOMContentLoaded` event can be used.",
       "risposte": [
         "For aesthetic code styling reasons",
         "To make it invisible to users",
         "Because JavaScript is executed when the DOM is already built and the elements to select exist",
-        "Because JavaScript does not work at all in the <head>"
+        "Because JavaScript does not work at all in the `<head>`"
       ]
     },
-    "bb9944173a03": {
+    "76d389c10740": {
       "domanda": "How do you read the value of a CSS variable from JavaScript?",
       "risposte": [
         "It cannot be read from JavaScript",
-        "With getComputedStyle(el).getPropertyValue('--nome')",
-        "With the built-in cssVar('--nome') function in the browser",
-        "With document.getVariable('--nome')"
+        "With `getComputedStyle(el).getPropertyValue('--nome')`",
+        "With the built-in `cssVar('--nome')` function in the browser",
+        "With `document.getVariable('--nome')`"
       ],
-      "spiegazione": "CSS variables (custom properties) live in the browser: they are read with getComputedStyle(elemento).getPropertyValue('--nome') and modified with elemento.style.setProperty('--nome', valore). SCSS variables, on the other hand, no longer exist at runtime."
+      "spiegazione": "CSS variables (custom properties) live in the browser: they are read with `getComputedStyle(elemento).getPropertyValue('--nome')` and modified with `elemento.style.setProperty('--nome', valore)`. SCSS variables, on the other hand, no longer exist at runtime."
     },
     "4a6755c46674": {
       "domanda": "What are the roles of HTML, CSS, and JavaScript in a web page?",
@@ -2078,49 +2078,49 @@
         "Adding new methods to an already existing array"
       ]
     },
-    "8610690ff2be": {
+    "e2700fb6b390": {
       "domanda": "How does a closure 'remember' a variable?",
       "spiegazione": "When an inner function is returned or passed elsewhere, it retains a reference to the scope in which it was created: it continues to access the variables of the outer function even after that function has finished. This link is the closure.",
       "risposte": [
-        "By automatically saving it in the browser's localStorage",
+        "By automatically saving it in the browser's `localStorage`",
         "The inner function maintains access to the outer function's variables even after the outer function has finished",
-        "By copying the variable's value to a global property of the window object at the time of its creation",
+        "By copying the variable's value to a global property of the `window` object at the time of its creation",
         "It does not remember it at all"
       ]
     },
-    "f028c37275d2": {
+    "8b84716f7882": {
       "domanda": "What is a typical use case for closures?",
-      "spiegazione": "A classic example is the counter function: function crea(){ let n=0; return ()=>++n; }. Each call to crea() produces an independent closure with its own private n variable, incremented on each invocation and not accessible from the outside.",
+      "spiegazione": "A classic example is the counter function: `function crea(){ let n=0; return ()=>++n; }`. Each call to `crea()` produces an independent closure with its own private `n` variable, incremented on each invocation and not accessible from the outside.",
       "risposte": [
-        "Center a div on the page",
+        "Center a `div` on the page",
         "Validate HTML form fields",
         "Create a counter with private state that increments on each call and cannot be modified from outside the function",
         "Convert a string to a number"
       ]
     },
-    "5e182789c17c": {
-      "domanda": "What value does a variable declared with var have if it is used before its declaration line?",
-      "spiegazione": "With var, the declaration is 'hoisted' to the top of the scope, but not the assignment: using it before the assignment line results in undefined, not an error. This is one of the reasons why let and const are preferred.",
+    "8f43b5a91edd": {
+      "domanda": "What value does a variable declared with `var` have if it is used before its declaration line?",
+      "spiegazione": "With `var`, the declaration is 'hoisted' to the top of the scope, but not the assignment: using it before the assignment line results in `undefined`, not an error. This is one of the reasons why `let` and `const` are preferred.",
       "risposte": [
-        "Immediately throws a ReferenceError",
-        "undefined",
+        "Immediately throws a `ReferenceError`",
+        "`undefined`",
         "The value that will be assigned later in the code",
         "Always returns the numeric value zero as default"
       ]
     },
-    "4e8b2ebda2f8": {
-      "domanda": "What happens if you use a let or const variable before its declaration?",
-      "spiegazione": "let and const are subject to hoisting but remain in the 'temporal dead zone' from the top of the scope until their declaration: accessing them before that point throws a ReferenceError. Unlike var, they do not evaluate to undefined but instead cause an error.",
+    "547b1a845a8c": {
+      "domanda": "What happens if you use a `let` or `const` variable before its declaration?",
+      "spiegazione": "`let` and `const` are subject to hoisting but remain in the 'temporal dead zone' from the top of the scope until their declaration: accessing them before that point throws a `ReferenceError`. Unlike `var`, they do not evaluate to `undefined` but instead cause an error.",
       "risposte": [
-        "They evaluate to undefined",
-        "They throw a ReferenceError due to the temporal dead zone",
+        "They evaluate to `undefined`",
+        "They throw a `ReferenceError` due to the temporal dead zone",
         "They are moved to the top of the scope exactly as happens with traditional function declarations",
         "They work normally without any issues"
       ]
     },
     "6645cefa70e0": {
       "domanda": "What is the difference in hoisting between function declarations and function expressions?",
-      "spiegazione": "Function declarations (function name(){}) are hoisted entirely: they can be invoked before their definition. Function expressions (const fn=function(){}) and arrow functions follow the rules of var/let/const: calling them before declaration results in an error.",
+      "spiegazione": "Function declarations (`function name(){}`) are hoisted entirely: they can be invoked before their definition. Function expressions (`const fn=function(){}`) and arrow functions follow the rules of `var`/`let`/`const`: calling them before declaration results in an error.",
       "risposte": [
         "There is no difference",
         "Function expressions are faster",
