@@ -87,6 +87,32 @@ public class IntegritaDatiTests
         Assert.Empty(errati);
     }
 
+    // Codice riconoscibile scritto come testo normale (fuori dai backtick).
+    private static readonly Dictionary<string, Regex> CodiceNudo = new()
+    {
+        ["sql"] = new(@"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|TRUNCATE|WHERE|GROUP BY|ORDER BY)\b"),
+        ["frontend"] = new(@"<[a-z][a-z0-9]*[ >/]|=>|document\.|addEventListener|console\."),
+        ["versioncontrol"] = new(@"\bgit [a-z-]+"),
+        ["restfulapi"] = new(@"\b(GET|POST|PUT|DELETE|PATCH) /"),
+    };
+
+    [Fact]
+    public void NessunCodiceNudo()
+    {
+        var banchi = Banchi();
+        var errati = new List<string>();
+        foreach (var (materia, re) in CodiceNudo)
+            foreach (var d in banchi[materia])
+            {
+                string testoNormale = string.Join(" ", d.Risposte.Append(d.DomandaTesto)
+                    .SelectMany(TestoConCodice.Analizza)
+                    .Where(s => s.Tipo == TipoSegmento.Testo).Select(s => s.Testo));
+                var m = re.Match(testoNormale);
+                if (m.Success) errati.Add($"{materia}/{d.Id}: «{m.Value}»");
+            }
+        Assert.True(errati.Count == 0, $"{errati.Count} domande con codice fuori dai backtick:\n" + string.Join("\n", errati));
+    }
+
     [Fact]
     public void Traduzioni_NessunaChiaveOrfana()
     {
