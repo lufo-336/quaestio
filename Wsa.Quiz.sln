@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wsa.Quiz.Desktop", "wsa.qui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wsa.Quiz.Android", "wsa.quiz.android\Wsa.Quiz.Android.csproj", "{79CA3CFD-2DEE-4FB9-BFDB-69124DBB0807}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wsa.Quiz.Core.Tests", "wsa.quiz.core.tests\Wsa.Quiz.Core.Tests.csproj", "{3A0CD425-A10F-42F6-9BC8-F871559BE22D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{79CA3CFD-2DEE-4FB9-BFDB-69124DBB0807}.Release|x64.Build.0 = Release|Any CPU
 		{79CA3CFD-2DEE-4FB9-BFDB-69124DBB0807}.Release|x86.ActiveCfg = Release|Any CPU
 		{79CA3CFD-2DEE-4FB9-BFDB-69124DBB0807}.Release|x86.Build.0 = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|x64.Build.0 = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Debug|x86.Build.0 = Debug|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|x64.ActiveCfg = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|x64.Build.0 = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|x86.ActiveCfg = Release|Any CPU
+		{3A0CD425-A10F-42F6-9BC8-F871559BE22D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

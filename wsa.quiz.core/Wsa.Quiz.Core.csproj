@@ -21,4 +21,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!-- Il progetto di test usa StorageService.GeneraId (internal). -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="Wsa.Quiz.Core.Tests" />
+  </ItemGroup>
+
 </Project>
