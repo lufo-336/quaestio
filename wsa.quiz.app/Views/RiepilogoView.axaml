@@ -6,6 +6,7 @@
              xmlns:models="using:Wsa.Quiz.Core.Models"
              xmlns:views="using:Wsa.Quiz.App.Views"
              xmlns:state="using:Wsa.Quiz.App.State"
+             xmlns:c="using:Wsa.Quiz.App.Controls"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.RiepilogoView"
              Padding="{DynamicResource SzRiservaNav}"
@@ -124,34 +125,30 @@
                                         <Run Text="·"/>
                                         <Run Text="{Binding Categoria}"/>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding TestoDomanda}"
-                                               TextWrapping="Wrap"
+                                    <c:TestoConCodice Testo="{Binding TestoDomanda}"
                                                FontWeight="SemiBold"/>
                                     <Grid ColumnDefinitions="Auto,*" Margin="0,4,0,0">
                                         <TextBlock Text="{x:Static r:Strings.Comune_TuHaiRisposto}"
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding RispostaData}"
+                                        <c:TestoConCodice Grid.Column="1"
+                                                   Testo="{Binding RispostaData}"
                                                    FontSize="12"
-                                                   Foreground="#B85450"
-                                                   TextWrapping="Wrap"/>
+                                                   Foreground="#B85450"/>
                                     </Grid>
                                     <Grid ColumnDefinitions="Auto,*">
                                         <TextBlock Text="{x:Static r:Strings.Comune_CorrettaDuePunti}"
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding RispostaCorretta}"
+                                        <c:TestoConCodice Grid.Column="1"
+                                                   Testo="{Binding RispostaCorretta}"
                                                    FontSize="12"
-                                                   Foreground="#1F7A4D"
-                                                   TextWrapping="Wrap"/>
+                                                   Foreground="#1F7A4D"/>
                                     </Grid>
-                                    <TextBlock Text="{Binding Spiegazione}"
+                                    <c:TestoConCodice Testo="{Binding Spiegazione}"
                                                FontSize="11"
-                                               TextWrapping="Wrap"
                                                Margin="0,4,0,0"
                                                IsVisible="{Binding Spiegazione, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                                Foreground="{DynamicResource SystemBaseMediumHighColor}"/>

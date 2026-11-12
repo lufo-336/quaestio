@@ -83,3 +83,6 @@ old/
 # Script di migrazione usa-e-getta (rimossi 8/09/2026, erano dello Step 1)
 cleanup.ps1
 step1_cleanup.sh
+
+# cache degli script Python in generazione-domande/strumenti
+__pycache__/

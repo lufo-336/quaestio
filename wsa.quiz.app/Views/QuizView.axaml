@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
+             xmlns:c="using:Wsa.Quiz.App.Controls"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.QuizView"
              Padding="{DynamicResource SzRiservaNav}"
@@ -155,10 +156,9 @@
                         BorderThickness="1"
                         CornerRadius="6"
                         Padding="18,16">
-                    <TextBlock Text="{Binding DomandaTesto}"
+                    <c:TestoConCodice Testo="{Binding DomandaTesto}"
                                FontSize="{DynamicResource SzFontDomanda}"
-                               TextWrapping="Wrap"
-                               LineHeight="22"/>
+                               Interlinea="22"/>
                 </Border>
 
                 <ItemsControl ItemsSource="{Binding Risposte}">
@@ -174,9 +174,8 @@
                                     <TextBlock Text="{Binding EtichettaLettera}"
                                                FontWeight="Bold"
                                                VerticalAlignment="Top"/>
-                                    <TextBlock Grid.Column="1"
-                                               Text="{Binding Testo}"
-                                               TextWrapping="Wrap"/>
+                                    <c:TestoConCodice Grid.Column="1"
+                                               Testo="{Binding Testo}"/>
                                 </Grid>
                             </Button>
                         </DataTemplate>
@@ -200,10 +199,9 @@
                            FontWeight="Bold"
                            FontSize="14"
                            Foreground="#1F1F1F"/>
-                <TextBlock Grid.Row="1" Grid.Column="0"
-                           Text="{Binding SpiegazioneTesto}"
+                <c:TestoConCodice Grid.Row="1" Grid.Column="0"
+                           Testo="{Binding SpiegazioneTesto}"
                            FontSize="12"
-                           TextWrapping="Wrap"
                            Margin="0,4,0,0"
                            Foreground="#1F1F1F"
                            IsVisible="{Binding SpiegazioneTesto, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>

@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:state="using:Wsa.Quiz.App.State"
+             xmlns:c="using:Wsa.Quiz.App.Controls"
              xmlns:views="using:Wsa.Quiz.App.Views"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.CronologiaDettaglioView"
@@ -142,8 +143,7 @@
                                                    Foreground="{Binding ColoreEsito}"/>
                                     </Grid>
 
-                                    <TextBlock Text="{Binding TestoDomanda}"
-                                               TextWrapping="Wrap"
+                                    <c:TestoConCodice Testo="{Binding TestoDomanda}"
                                                FontWeight="SemiBold"/>
 
                                     <Grid ColumnDefinitions="Auto,*" Margin="0,4,0,0">
@@ -151,11 +151,10 @@
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding RispostaData}"
+                                        <c:TestoConCodice Grid.Column="1"
+                                                   Testo="{Binding RispostaData}"
                                                    FontSize="12"
-                                                   Foreground="{Binding ColoreRisposta}"
-                                                   TextWrapping="Wrap"/>
+                                                   Foreground="{Binding ColoreRisposta}"/>
                                     </Grid>
 
                                     <Grid ColumnDefinitions="Auto,*"
@@ -164,11 +163,10 @@
                                                    FontSize="11"
                                                    Foreground="{DynamicResource SystemBaseMediumColor}"
                                                    Margin="0,0,8,0"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding RispostaCorretta}"
+                                        <c:TestoConCodice Grid.Column="1"
+                                                   Testo="{Binding RispostaCorretta}"
                                                    FontSize="12"
-                                                   Foreground="#1F7A4D"
-                                                   TextWrapping="Wrap"/>
+                                                   Foreground="#1F7A4D"/>
                                     </Grid>
 
                                     <TextBlock Text="{Binding TentativiEtichetta}"
@@ -177,9 +175,8 @@
                                                FontStyle="Italic"
                                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
 
-                                    <TextBlock Text="{Binding Spiegazione}"
+                                    <c:TestoConCodice Testo="{Binding Spiegazione}"
                                                FontSize="11"
-                                               TextWrapping="Wrap"
                                                Margin="0,4,0,0"
                                                IsVisible="{Binding Spiegazione, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                                Foreground="{DynamicResource SystemBaseMediumHighColor}"/>

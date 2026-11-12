@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:stats="using:Wsa.Quiz.Core.Models.Statistiche"
              xmlns:views="using:Wsa.Quiz.App.Views"
+             xmlns:c="using:Wsa.Quiz.App.Controls"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Views.CategoriaDettaglioView"
              x:DataType="views:CategoriaDettaglioView">
@@ -49,17 +50,18 @@
                                     <Run Text="{Binding VolteVista}"/>
                                     <Run Text="{x:Static r:Strings.Statistiche_VolteSuffisso}"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Testo}"
-                                           TextWrapping="Wrap"
+                                <c:TestoConCodice Testo="{Binding Testo}"
                                            Foreground="#1F1F1F"/>
-                                <TextBlock TextWrapping="Wrap"
-                                           Foreground="#1F7A4D"
-                                           FontSize="12">
-                                    <Run Text="{x:Static r:Strings.Statistiche_CorrettaPrefisso}"/>
-                                    <Run Text="{Binding RispostaCorretta}"/>
-                                </TextBlock>
-                                <TextBlock Text="{Binding Spiegazione}"
-                                           TextWrapping="Wrap"
+                                <Grid ColumnDefinitions="Auto,*">
+                                    <TextBlock Text="{x:Static r:Strings.Statistiche_CorrettaPrefisso}"
+                                               Foreground="#1F7A4D"
+                                               FontSize="12"/>
+                                    <c:TestoConCodice Grid.Column="1"
+                                               Testo="{Binding RispostaCorretta}"
+                                               Foreground="#1F7A4D"
+                                               FontSize="12"/>
+                                </Grid>
+                                <c:TestoConCodice Testo="{Binding Spiegazione}"
                                            FontStyle="Italic"
                                            FontSize="12"
                                            Foreground="#5A5A5A"
