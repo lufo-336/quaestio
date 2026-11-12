@@ -2,12 +2,12 @@
     {
         "id": 1,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(\"Python\"[::-1])",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(\"Python\"[::-1])\n```",
         "risposte": [
-            "n",
-            "nohtyP",
-            "P",
-            "Python"
+            "`n`",
+            "`nohtyP`",
+            "`P`",
+            "`Python`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Con passo -1 lo slicing percorre la sequenza all'indietro: la stringa viene rovesciata."
@@ -28,12 +28,12 @@
     {
         "id": 3,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass Dipendente: pass\nclass Manager(Dipendente): pass\nm = Manager()\nprint(isinstance(m, Dipendente), issubclass(Dipendente, Manager))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass Dipendente: pass\nclass Manager(Dipendente): pass\nm = Manager()\nprint(isinstance(m, Dipendente), issubclass(Dipendente, Manager))\n```",
         "risposte": [
-            "False False",
-            "True False",
-            "True True",
-            "False True"
+            "`False False`",
+            "`True False`",
+            "`True True`",
+            "`False True`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Un Manager è un Dipendente (isinstance accetta le sottoclassi); il contrario non vale."
@@ -93,12 +93,12 @@
     {
         "id": 8,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)\n```",
         "risposte": [
-            "0",
-            "None",
-            "<bound method>",
-            "TypeError"
+            "`0`",
+            "`None`",
+            "`<bound method>`",
+            "`TypeError`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "@property fa leggere un metodo come un attributo: c.saldo, senza parentesi."
@@ -106,12 +106,12 @@
     {
         "id": 9,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))\n```",
         "risposte": [
-            "0 0",
-            "None None",
-            "None 0",
-            "Solleva KeyError"
+            "`0 0`",
+            "`None None`",
+            "`None 0`",
+            "Solleva `KeyError`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "get() non solleva eccezioni: restituisce None o il valore di ripiego indicato."
@@ -145,12 +145,12 @@
     {
         "id": 12,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nr = print(\"x\")\nprint(r)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nr = print(\"x\")\nprint(r)\n```",
         "risposte": [
-            "x e poi x",
-            "x e poi una riga vuota",
-            "None e poi x",
-            "x e poi None"
+            "`x` e poi `x`",
+            "`x` e poi una riga vuota",
+            "`None` e poi `x`",
+            "`x` e poi `None`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "print stampa ma non restituisce nulla: una funzione senza return restituisce None."
@@ -158,12 +158,12 @@
     {
         "id": 13,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Quale eccezione solleva questo codice?\n\nprint(int(\"abc\"))",
+        "domanda": "Quale eccezione solleva questo codice?\n\n```python\nprint(int(\"abc\"))\n```",
         "risposte": [
-            "Nessuna: stampa 0",
-            "ValueError",
-            "TypeError",
-            "NameError"
+            "Nessuna: stampa `0`",
+            "`ValueError`",
+            "`TypeError`",
+            "`NameError`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "ValueError: il tipo è giusto (una stringa va bene per int()), ma il valore non rappresenta un numero."
@@ -171,12 +171,12 @@
     {
         "id": 14,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(-7 // 2)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(-7 // 2)\n```",
         "risposte": [
-            "-3.5",
-            "-3",
-            "3",
-            "-4"
+            "`-3.5`",
+            "`-3`",
+            "`3`",
+            "`-4`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "// arrotonda verso il basso (verso meno infinito), quindi -3.5 diventa -4, non -3."
@@ -197,12 +197,12 @@
     {
         "id": 16,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\na = [[1], [2]]\nb = a.copy()\na[0].append(9)\nprint(b)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\na = [[1], [2]]\nb = a.copy()\na[0].append(9)\nprint(b)\n```",
         "risposte": [
-            "[[1], [2]]",
-            "[[1, 9], [2]]",
-            "[[1], [2], 9]",
-            "[[9], [2]]"
+            "`[[1], [2]]`",
+            "`[[1, 9], [2]]`",
+            "`[[1], [2], 9]`",
+            "`[[9], [2]]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "copy() è una copia superficiale: la lista esterna è nuova, ma le liste interne sono condivise. Per copiarle serve copy.deepcopy."
@@ -223,12 +223,12 @@
     {
         "id": 18,
         "categoria": "File e formati di dati",
-        "domanda": "Quale eccezione solleva questo codice, se il file non esiste?\n\nopen(\"non_esiste.txt\")",
+        "domanda": "Quale eccezione solleva questo codice, se il file non esiste?\n\n```python\nopen(\"non_esiste.txt\")\n```",
         "risposte": [
-            "IOError",
-            "ValueError",
-            "FileNotFoundError",
-            "KeyError"
+            "`IOError`",
+            "`ValueError`",
+            "`FileNotFoundError`",
+            "`KeyError`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "La modalità di default è r, che richiede che il file esista. FileNotFoundError è sottoclasse di OSError."
@@ -249,12 +249,12 @@
     {
         "id": 20,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa stampa questo codice?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(repr(f.readline()))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(repr(f.readline()))\n```",
         "risposte": [
-            "'uno'",
-            "'uno\\n'",
-            "'uno\\ndue\\n'",
-            "['uno\\n', 'due\\n']"
+            "`'uno'`",
+            "`'uno\\n'`",
+            "`'uno\\ndue\\n'`",
+            "`['uno\\n', 'due\\n']`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "readline() restituisce una riga compreso il carattere di a capo finale; si toglie con strip()."
@@ -301,12 +301,12 @@
     {
         "id": 24,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(bool(\"False\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(bool(\"False\"))\n```",
         "risposte": [
-            "False",
-            "0",
-            "Solleva ValueError",
-            "True"
+            "`False`",
+            "`0`",
+            "Solleva `ValueError`",
+            "`True`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Una stringa è falsa solo se vuota. \"False\" non è vuota, quindi è vera: il contenuto non conta."
@@ -327,12 +327,12 @@
     {
         "id": 26,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nprint(\"Età: \" + 25)",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nprint(\"Età: \" + 25)\n```",
         "risposte": [
-            "Solleva TypeError",
-            "Stampa Età: 25",
-            "Stampa Età: 25.0",
-            "Solleva ValueError"
+            "Solleva `TypeError`",
+            "Stampa `Età: 25`",
+            "Stampa `Età: 25.0`",
+            "Solleva `ValueError`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Python è a tipizzazione dinamica ma forte: non converte di nascosto un int in str. Serve str(25) o una f-string."
@@ -340,12 +340,12 @@
     {
         "id": 27,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nimport json\njson.loads(\"{'nome': 'Marco'}\")",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nimport json\njson.loads(\"{'nome': 'Marco'}\")\n```",
         "risposte": [
             "Restituisce una stringa",
-            "Restituisce None",
-            "Restituisce {'nome': 'Marco'}",
-            "Solleva JSONDecodeError"
+            "Restituisce `None`",
+            "Restituisce `{'nome': 'Marco'}`",
+            "Solleva `JSONDecodeError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "JSON vuole le virgolette doppie: con gli apici singoli il testo non è JSON valido."
@@ -392,12 +392,12 @@
     {
         "id": 31,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef stats(a, b):\n    return a + b, a * b\nr = stats(3, 4)\nprint(r)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef stats(a, b):\n    return a + b, a * b\nr = stats(3, 4)\nprint(r)\n```",
         "risposte": [
-            "7",
-            "[7, 12]",
-            "(7, 12)",
-            "7 12"
+            "`7`",
+            "`[7, 12]`",
+            "`(7, 12)`",
+            "`7 12`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "return a + b, a * b restituisce un'unica tupla; con s, p = stats(3, 4) la si spacchetta."
@@ -418,12 +418,12 @@
     {
         "id": 33,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nlen = 10\nprint(len(\"ciao\"))",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nlen = 10\nprint(len(\"ciao\"))\n```",
         "risposte": [
-            "Stampa 4",
-            "Stampa 10",
-            "Solleva NameError",
-            "Solleva TypeError"
+            "Stampa `4`",
+            "Stampa `10`",
+            "Solleva `NameError`",
+            "Solleva `TypeError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Assegnando len = 10 si nasconde (shadowing) la funzione built-in: len diventa un int, e un int non è chiamabile."
@@ -444,12 +444,12 @@
     {
         "id": 35,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa stampa questo codice?\n\nwith open(\"dati.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ciao\")\nprint(f.closed)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nwith open(\"dati.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ciao\")\nprint(f.closed)\n```",
         "risposte": [
-            "True",
-            "False",
-            "ValueError",
-            "None"
+            "`True`",
+            "`False`",
+            "`ValueError`",
+            "`None`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "with usa un context manager che chiude il file all'uscita dal blocco, anche in caso di errore."
@@ -457,12 +457,12 @@
     {
         "id": 36,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(type({}).__name__)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(type({}).__name__)\n```",
         "risposte": [
-            "set",
-            "dict",
-            "tuple",
-            "list"
+            "`set`",
+            "`dict`",
+            "`tuple`",
+            "`list`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "{} è un dizionario vuoto. Il set vuoto si scrive set()."
@@ -483,12 +483,12 @@
     {
         "id": 38,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef aggiungi(voce, lista=[]):\n    lista.append(voce)\n    return lista\naggiungi(\"a\")\nprint(aggiungi(\"b\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef aggiungi(voce, lista=[]):\n    lista.append(voce)\n    return lista\naggiungi(\"a\")\nprint(aggiungi(\"b\"))\n```",
         "risposte": [
-            "[]",
-            "['a', 'b']",
-            "['b']",
-            "['a']"
+            "`[]`",
+            "`['a', 'b']`",
+            "`['b']`",
+            "`['a']`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Il valore di default è calcolato una volta sola, quando def viene eseguito: la lista è condivisa fra le chiamate. Rimedio: lista=None e lista = [] dentro."
@@ -496,12 +496,12 @@
     {
         "id": 39,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa succede alla seconda open() in modalità \"x\"?\n\nimport os\nif os.path.exists(\"unico.txt\"):\n    os.remove(\"unico.txt\")\nopen(\"unico.txt\", \"x\").close()\nopen(\"unico.txt\", \"x\")",
+        "domanda": "Che cosa succede alla seconda open() in modalità \"x\"?\n\n```python\nimport os\nif os.path.exists(\"unico.txt\"):\n    os.remove(\"unico.txt\")\nopen(\"unico.txt\", \"x\").close()\nopen(\"unico.txt\", \"x\")\n```",
         "risposte": [
             "Il testo viene aggiunto in coda",
-            "Solleva PermissionError",
+            "Solleva `PermissionError`",
             "Il file viene sovrascritto",
-            "Solleva FileExistsError"
+            "Solleva `FileExistsError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "La modalità x crea solo un file nuovo: se il file esiste già solleva FileExistsError."
@@ -535,12 +535,12 @@
     {
         "id": 42,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa stampa questo codice?\n\nimport json\nprint(json.dumps({1: True, \"x\": None}))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nimport json\nprint(json.dumps({1: True, \"x\": None}))\n```",
         "risposte": [
-            "{\"1\": true, \"x\": null}",
-            "{1: true, 'x': null}",
-            "{\"1\": True, \"x\": None}",
-            "{1: True, 'x': None}"
+            "`{\"1\": true, \"x\": null}`",
+            "`{1: true, 'x': null}`",
+            "`{\"1\": True, \"x\": None}`",
+            "`{1: True, 'x': None}`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "In JSON le chiavi sono sempre stringhe, True diventa true e None diventa null; le virgolette sono doppie."
@@ -548,12 +548,12 @@
     {
         "id": 43,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(-7 % 2)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(-7 % 2)\n```",
         "risposte": [
-            "1",
-            "-3",
-            "0",
-            "-1"
+            "`1`",
+            "`-3`",
+            "`0`",
+            "`-1`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Il resto segue la divisione intera in modo che (a // b) * b + a % b == a: (-4)*2 + 1 = -7."
@@ -574,12 +574,12 @@
     {
         "id": 45,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Quale eccezione solleva questo codice?\n\ncontatore = 0\ndef incrementa():\n    contatore += 1\nincrementa()",
+        "domanda": "Quale eccezione solleva questo codice?\n\n```python\ncontatore = 0\ndef incrementa():\n    contatore += 1\nincrementa()\n```",
         "risposte": [
-            "SyntaxError",
-            "NameError",
-            "TypeError",
-            "UnboundLocalError"
+            "`SyntaxError`",
+            "`NameError`",
+            "`TypeError`",
+            "`UnboundLocalError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "L'assegnazione rende contatore locale alla funzione, e += la legge prima di averle dato un valore. Serve global contatore."
@@ -587,12 +587,12 @@
     {
         "id": 46,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(\"-\".join([\"a\", \"b\", \"c\"]))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(\"-\".join([\"a\", \"b\", \"c\"]))\n```",
         "risposte": [
-            "a-b-c",
-            "['a', 'b', 'c']",
-            "-a-b-c-",
-            "abc"
+            "`a-b-c`",
+            "`['a', 'b', 'c']`",
+            "`-a-b-c-`",
+            "`abc`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "join è un metodo del separatore: unisce gli elementi della lista mettendo il separatore solo fra l'uno e l'altro."
@@ -600,12 +600,12 @@
     {
         "id": 47,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)\n```",
         "risposte": [
-            "False False",
-            "True False",
-            "False True",
-            "True True"
+            "`False False`",
+            "`True False`",
+            "`False True`",
+            "`True True`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "== confronta i valori (uguali), is l'identità: sono due liste distinte in memoria."
@@ -613,12 +613,12 @@
     {
         "id": 48,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(all([]), any([]))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(all([]), any([]))\n```",
         "risposte": [
-            "True False",
-            "Solleva ValueError: lista vuota",
-            "True True",
-            "False True"
+            "`True False`",
+            "Solleva `ValueError`: lista vuota",
+            "`True True`",
+            "`False True`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "all() è vero se nessun elemento è falso (vacuamente vero sulla lista vuota); any() è vero se almeno un elemento è vero."
@@ -626,12 +626,12 @@
     {
         "id": 49,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprice = 49.99\nprint(f\"{price * 3:.2f}\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprice = 49.99\nprint(f\"{price * 3:.2f}\")\n```",
         "risposte": [
-            "149.97",
-            "149.9700",
-            "149.970000",
-            "150.0"
+            "`149.97`",
+            "`149.9700`",
+            "`149.970000`",
+            "`150.0`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "In una f-string fra graffe va un'espressione qualunque; :.2f la formatta con due decimali."
@@ -639,12 +639,12 @@
     {
         "id": 50,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef f():\n    return 0\nprint(\"A\" if f else \"B\", \"A\" if f() else \"B\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef f():\n    return 0\nprint(\"A\" if f else \"B\", \"A\" if f() else \"B\")\n```",
         "risposte": [
-            "B A",
-            "A B",
-            "B B",
-            "A A"
+            "`B A`",
+            "`A B`",
+            "`B B`",
+            "`A A`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "f senza parentesi è l'oggetto funzione, sempre vero; f() la esegue e restituisce 0, che è falso."
@@ -654,13 +654,13 @@
         "categoria": "Progettazione del software",
         "domanda": "Fra quali marcatori si scrive un diagramma PlantUML?",
         "risposte": [
-            "@startuml e @enduml",
-            "```uml e ```",
-            "BEGIN e END",
-            "<uml> e </uml>"
+            "`@startuml` e `@enduml`",
+            "`[uml]` e `[/uml]`",
+            "`BEGIN` e `END`",
+            "`<uml>` e `</uml>`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il sorgente sta in un file .puml; per trasformarlo in immagine serve un renderer (server PlantUML o Java + Graphviz)."
+        "spiegazione": "Il sorgente sta in un file `.puml`; per trasformarlo in immagine serve un renderer (server PlantUML o Java + Graphviz)."
     },
     {
         "id": 52,
@@ -704,12 +704,12 @@
     {
         "id": 55,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\ndef modifica(lista):\n    lista.append(99)\na = [1, 2]\nmodifica(a)\nprint(a)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef modifica(lista):\n    lista.append(99)\na = [1, 2]\nmodifica(a)\nprint(a)\n```",
         "risposte": [
-            "[99]",
-            "[1, 2]",
-            "[1, 2, 99]",
-            "None"
+            "`[99]`",
+            "`[1, 2]`",
+            "`[1, 2, 99]`",
+            "`None`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Python passa per riferimento a oggetto: la funzione riceve la stessa lista, e la modifica (mutabile) si vede fuori."
@@ -743,12 +743,12 @@
     {
         "id": 58,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nprint(int(\"3.5\"))",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nprint(int(\"3.5\"))\n```",
         "risposte": [
-            "Stampa 3.5",
-            "Stampa 3",
-            "Stampa 4",
-            "Solleva ValueError"
+            "Stampa `3.5`",
+            "Stampa `3`",
+            "Stampa `4`",
+            "Solleva `ValueError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "int() su una stringa accetta solo un intero: \"3.5\" non lo è. Serve int(float(\"3.5\"))."
@@ -756,12 +756,12 @@
     {
         "id": 59,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(0.1 + 0.2 == 0.3)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(0.1 + 0.2 == 0.3)\n```",
         "risposte": [
-            "False",
-            "0.3",
-            "True",
-            "0.30000000000000004"
+            "`False`",
+            "`0.3`",
+            "`True`",
+            "`0.30000000000000004`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "0.1 + 0.2 vale 0.30000000000000004: i float IEEE 754 sono approssimati in binario. Si confronta con math.isclose()."
@@ -795,12 +795,12 @@
     {
         "id": 62,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\ndef incrementa(n):\n    n += 1\nx = 5\nincrementa(x)\nprint(x)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef incrementa(n):\n    n += 1\nx = 5\nincrementa(x)\nprint(x)\n```",
         "risposte": [
-            "UnboundLocalError",
-            "5",
-            "6",
-            "None"
+            "`UnboundLocalError`",
+            "`5`",
+            "`6`",
+            "`None`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Gli int sono immutabili: n += 1 crea un nuovo oggetto legato al solo nome locale n, e x resta 5."
@@ -808,12 +808,12 @@
     {
         "id": 63,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(list(dict.fromkeys([3, 1, 3, 2, 1])))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(list(dict.fromkeys([3, 1, 3, 2, 1])))\n```",
         "risposte": [
-            "[3, 1, 2]",
-            "[1, 2, 3]",
-            "[3, 2, 1]",
-            "[3, 1, 3, 2, 1]"
+            "`[3, 1, 2]`",
+            "`[1, 2, 3]`",
+            "`[3, 2, 1]`",
+            "`[3, 1, 3, 2, 1]`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "dict.fromkeys toglie i duplicati conservando l'ordine di prima comparsa, perché i dizionari ricordano l'ordine di inserimento."
@@ -821,12 +821,12 @@
     {
         "id": 64,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nfor n in [3, 5, 7]:\n    if n % 2 == 0:\n        print(\"pari\")\n        break\nelse:\n    print(\"nessun pari\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfor n in [3, 5, 7]:\n    if n % 2 == 0:\n        print(\"pari\")\n        break\nelse:\n    print(\"nessun pari\")\n```",
         "risposte": [
-            "nessun pari",
+            "`nessun pari`",
             "Niente",
-            "pari e poi nessun pari",
-            "pari"
+            "`pari` e poi `nessun pari`",
+            "`pari`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "L'else di un ciclo viene eseguito solo se il ciclo termina senza incontrare break."
@@ -834,12 +834,12 @@
     {
         "id": 65,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nd = {\"a\": 1, \"b\": 2}\nd.update({\"b\": 20, \"c\": 3})\nprint(d.pop(\"a\"), d)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nd = {\"a\": 1, \"b\": 2}\nd.update({\"b\": 20, \"c\": 3})\nprint(d.pop(\"a\"), d)\n```",
         "risposte": [
-            "1 {'b': 2, 'c': 3}",
-            "1 {'b': 20, 'c': 3}",
-            "{'a': 1}",
-            "a {'b': 20, 'c': 3}"
+            "`1 {'b': 2, 'c': 3}`",
+            "`1 {'b': 20, 'c': 3}`",
+            "`{'a': 1}`",
+            "`a {'b': 20, 'c': 3}`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "update sovrascrive le chiavi esistenti e aggiunge le nuove; pop toglie la chiave e ne restituisce il valore."
@@ -847,12 +847,12 @@
     {
         "id": 66,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")\n```",
         "risposte": [
-            "1 3 5",
-            "1 3 5 7 9",
-            "1 3 5 7",
-            "0 2 4 6"
+            "`1 3 5`",
+            "`1 3 5 7 9`",
+            "`1 3 5 7`",
+            "`0 2 4 6`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "continue salta i pari; al primo dispari maggiore di 6 (cioè 7) break esce dal ciclo prima della print."
@@ -886,12 +886,12 @@
     {
         "id": 69,
         "categoria": "Database e DB-API",
-        "domanda": "Quale eccezione solleva questo codice?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"SELECT * FROM inesistente\")",
+        "domanda": "Quale eccezione solleva questo codice?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"SELECT * FROM inesistente\")\n```",
         "risposte": [
-            "sqlite3.OperationalError",
-            "KeyError",
-            "sqlite3.IntegrityError",
-            "FileNotFoundError"
+            "`sqlite3.OperationalError`",
+            "`KeyError`",
+            "`sqlite3.IntegrityError`",
+            "`FileNotFoundError`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "OperationalError: tabella inesistente o errore SQL. IntegrityError è invece per un vincolo violato (NOT NULL, UNIQUE, CHECK)."
@@ -938,12 +938,12 @@
     {
         "id": 73,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nn = 7\nprint(\"pari\" if n % 2 == 0 else \"dispari\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nn = 7\nprint(\"pari\" if n % 2 == 0 else \"dispari\")\n```",
         "risposte": [
-            "dispari",
-            "1",
-            "True",
-            "pari"
+            "`dispari`",
+            "`1`",
+            "`True`",
+            "`pari`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "È l'espressione condizionale (il \"ternario\" di Python): valore_se_vero if condizione else valore_se_falso."
@@ -977,12 +977,12 @@
     {
         "id": 76,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Quale eccezione solleva questo codice?\n\nd = {\"a\": 1}\nprint(d[\"b\"])",
+        "domanda": "Quale eccezione solleva questo codice?\n\n```python\nd = {\"a\": 1}\nprint(d[\"b\"])\n```",
         "risposte": [
-            "ValueError",
-            "IndexError",
-            "KeyError",
-            "NameError"
+            "`ValueError`",
+            "`IndexError`",
+            "`KeyError`",
+            "`NameError`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "L'accesso con le quadre a una chiave assente solleva KeyError; d.get(\"b\") restituirebbe None."
@@ -990,12 +990,12 @@
     {
         "id": 77,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nx = 3\nwhile x > 0:\n    x -= 1\nprint(x)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nx = 3\nwhile x > 0:\n    x -= 1\nprint(x)\n```",
         "risposte": [
-            "1",
-            "3",
-            "0",
-            "-1"
+            "`1`",
+            "`3`",
+            "`0`",
+            "`-1`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Il ciclo continua finché x > 0: si ferma quando x vale 0, che è il valore stampato dopo il ciclo."
@@ -1003,12 +1003,12 @@
     {
         "id": 78,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\ngriglia = [[0] * 2] * 2\ngriglia[0][0] = 1\nprint(griglia)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ngriglia = [[0] * 2] * 2\ngriglia[0][0] = 1\nprint(griglia)\n```",
         "risposte": [
-            "[[1, 1], [0, 0]]",
-            "[[1, 0], [1, 0]]",
-            "[[1, 0], [0, 0]]",
-            "[[1, 0]]"
+            "`[[1, 1], [0, 0]]`",
+            "`[[1, 0], [1, 0]]`",
+            "`[[1, 0], [0, 0]]`",
+            "`[[1, 0]]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "[[0] * 2] * 2 crea due riferimenti alla stessa riga. Righe distinte: [[0] * 2 for _ in range(2)]."
@@ -1081,12 +1081,12 @@
     {
         "id": 84,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa stampa questo codice?\n\nimport sqlite3, os\nif os.path.exists(\"prova.db\"):\n    os.remove(\"prova.db\")\nconn = sqlite3.connect(\"prova.db\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.commit()\nconn.execute(\"INSERT INTO t VALUES (1)\")\nconn.close()\nconn = sqlite3.connect(\"prova.db\")\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone()[0])",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nimport sqlite3, os\nif os.path.exists(\"prova.db\"):\n    os.remove(\"prova.db\")\nconn = sqlite3.connect(\"prova.db\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.commit()\nconn.execute(\"INSERT INTO t VALUES (1)\")\nconn.close()\nconn = sqlite3.connect(\"prova.db\")\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone()[0])\n```",
         "risposte": [
-            "OperationalError",
-            "0",
-            "None",
-            "1"
+            "`OperationalError`",
+            "`0`",
+            "`None`",
+            "`1`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "L'inserimento non è stato confermato con commit(): chiudendo la connessione la transazione viene annullata."
@@ -1094,12 +1094,12 @@
     {
         "id": 85,
         "categoria": "Moduli e package",
-        "domanda": "modulo_a e modulo_b definiscono entrambi processa_dati(). Che cosa stampa questo codice?\n\nopen(\"modulo_a.py\", \"w\").write('def processa_dati(): return \"A\"\\n')\nopen(\"modulo_b.py\", \"w\").write('def processa_dati(): return \"B\"\\n')\nfrom modulo_a import *\nfrom modulo_b import *\nprint(processa_dati())",
+        "domanda": "modulo_a e modulo_b definiscono entrambi processa_dati(). Che cosa stampa questo codice?\n\n```python\nopen(\"modulo_a.py\", \"w\").write('def processa_dati(): return \"A\"\\n')\nopen(\"modulo_b.py\", \"w\").write('def processa_dati(): return \"B\"\\n')\nfrom modulo_a import *\nfrom modulo_b import *\nprint(processa_dati())\n```",
         "risposte": [
             "Chiede quale scegliere",
-            "B",
-            "NameError",
-            "A"
+            "`B`",
+            "`NameError`",
+            "`A`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "L'ultimo import * sovrascrive in silenzio il nome importato dal primo: un buon motivo per usare import espliciti."
@@ -1120,12 +1120,12 @@
     {
         "id": 87,
         "categoria": "Funzioni",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\ndef f(*args, c):\n    return sum(args) + c\nprint(f(1, 2, 3))",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\ndef f(*args, c):\n    return sum(args) + c\nprint(f(1, 2, 3))\n```",
         "risposte": [
-            "Stampa 6",
-            "Stampa 5",
-            "Stampa 3",
-            "Solleva TypeError: c va passato per nome"
+            "Stampa `6`",
+            "Stampa `5`",
+            "Stampa `3`",
+            "Solleva `TypeError`: c va passato per nome"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Un parametro scritto dopo *args si può passare solo per nome (keyword-only): tutti i posizionali finiscono in args."
@@ -1159,12 +1159,12 @@
     {
         "id": 90,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass Studente:\n    def __init__(self, nome):\n        self.nome = nome\n    def __str__(self):\n        return \"Studente \" + self.nome\nprint(Studente(\"Anna\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass Studente:\n    def __init__(self, nome):\n        self.nome = nome\n    def __str__(self):\n        return \"Studente \" + self.nome\nprint(Studente(\"Anna\"))\n```",
         "risposte": [
-            "<__main__.Studente object>",
-            "Studente Anna",
-            "Anna",
-            "Studente"
+            "`<__main__.Studente object>`",
+            "`Studente Anna`",
+            "`Anna`",
+            "`Studente`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "print chiama il metodo speciale __str__ per ottenere la rappresentazione leggibile dell'oggetto."
@@ -1185,12 +1185,12 @@
     {
         "id": 92,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa contiene il file dopo questo codice?\n\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())",
+        "domanda": "Che cosa contiene il file dopo questo codice?\n\n```python\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())\n```",
         "risposte": [
-            "MarcoGiulia",
-            "['Marco', 'Giulia']",
+            "`MarcoGiulia`",
+            "`['Marco', 'Giulia']`",
             "Marco e Giulia su due righe",
-            "Marco Giulia"
+            "`Marco Giulia`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "writelines, come write, non aggiunge gli a capo: vanno messi esplicitamente."
@@ -1211,12 +1211,12 @@
     {
         "id": 94,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))\n```",
         "risposte": [
-            "4 3",
-            "3 4",
-            "3 3",
-            "4 4"
+            "`4 3`",
+            "`3 4`",
+            "`3 3`",
+            "`4 4`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "append aggiunge un solo elemento (la lista intera); extend aggiunge gli elementi uno per uno."
@@ -1224,12 +1224,12 @@
     {
         "id": 95,
         "categoria": "Ambiente e strumenti",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")\n```",
         "risposte": [
-            "a-b-c-!",
-            "a b c!",
-            "abc-!",
-            "a-b-c!"
+            "`a-b-c-!`",
+            "`a b c!`",
+            "`abc-!`",
+            "`a-b-c!`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "sep è il separatore fra gli argomenti (default uno spazio) ed end la chiusura (default a capo)."
@@ -1237,12 +1237,12 @@
     {
         "id": 96,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(type(True) == int, isinstance(True, int))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(type(True) == int, isinstance(True, int))\n```",
         "risposte": [
-            "True True",
-            "False False",
-            "False True",
-            "True False"
+            "`True True`",
+            "`False False`",
+            "`False True`",
+            "`True False`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "type() restituisce la classe esatta (bool); isinstance() accetta anche le sottoclassi, e bool è sottoclasse di int."
@@ -1250,12 +1250,12 @@
     {
         "id": 97,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nconteggio = {}\nfor p in \"il gatto e il cane\".split():\n    conteggio[p] = conteggio.get(p, 0) + 1\nprint(conteggio[\"il\"])",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nconteggio = {}\nfor p in \"il gatto e il cane\".split():\n    conteggio[p] = conteggio.get(p, 0) + 1\nprint(conteggio[\"il\"])\n```",
         "risposte": [
-            "1",
-            "2",
-            "0",
-            "KeyError"
+            "`1`",
+            "`2`",
+            "`0`",
+            "`KeyError`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "get(p, 0) legge il valore attuale o 0 se la chiave non c'è ancora: è l'idioma classico per contare le frequenze."
@@ -1263,12 +1263,12 @@
     {
         "id": 98,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\ns = \"ciao\"\ns[0] = \"C\"",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\ns = \"ciao\"\ns[0] = \"C\"\n```",
         "risposte": [
-            "Solleva IndexError",
-            "s diventa Ciao",
-            "Viene creata una nuova stringa Ciao assegnata a s",
-            "Solleva TypeError: le stringhe sono immutabili"
+            "Solleva `IndexError`",
+            "`s diventa Ciao`",
+            "Viene creata una nuova stringa `Ciao` assegnata a `s`",
+            "Solleva `TypeError`: le stringhe sono immutabili"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Le stringhe non supportano l'assegnazione per indice. Per \"modificarle\" si crea una nuova stringa, ad esempio s = \"C\" + s[1:]."
@@ -1302,12 +1302,12 @@
     {
         "id": 101,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)\n```",
         "risposte": [
-            "0 0 0",
-            "1 0 0",
-            "1 1 1",
-            "1 0 1"
+            "`0 0 0`",
+            "`1 0 0`",
+            "`1 1 1`",
+            "`1 0 1`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "a.n = 1 crea un attributo di istanza su a, che nasconde quello di classe; b e C vedono ancora l'attributo di classe."
@@ -1354,12 +1354,12 @@
     {
         "id": 105,
         "categoria": "ORM e SQLAlchemy",
-        "domanda": "Che cosa stampano le due print?\n\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)",
+        "domanda": "Che cosa stampano le due print?\n\n```python\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)\n```",
         "risposte": [
-            "0 1",
-            "Solleva InvalidRequestError",
-            "None 1",
-            "1 1"
+            "`0 1`",
+            "Solleva `InvalidRequestError`",
+            "`None 1`",
+            "`1 1`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "add() traccia l'oggetto ma non scrive: l'id lo assegna il database all'INSERT, che avviene al commit (o al flush)."
@@ -1367,12 +1367,12 @@
     {
         "id": 106,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef g():\n    try:\n        return \"try\"\n    finally:\n        print(\"finally\", end=\" \")\nprint(g())",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef g():\n    try:\n        return \"try\"\n    finally:\n        print(\"finally\", end=\" \")\nprint(g())\n```",
         "risposte": [
-            "try finally",
-            "finally",
-            "try",
-            "finally try"
+            "`try finally`",
+            "`finally`",
+            "`try`",
+            "`finally try`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "finally viene eseguito anche quando il try esce con un return: prima stampa, poi la funzione restituisce \"try\"."
@@ -1393,12 +1393,12 @@
     {
         "id": 108,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef dividi(a, b):\n    try:\n        r = a / b\n    except ZeroDivisionError:\n        print(\"zero\", end=\" \")\n    else:\n        print(\"ok\", end=\" \")\n    finally:\n        print(\"fine\", end=\" \")\ndividi(1, 0)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef dividi(a, b):\n    try:\n        r = a / b\n    except ZeroDivisionError:\n        print(\"zero\", end=\" \")\n    else:\n        print(\"ok\", end=\" \")\n    finally:\n        print(\"fine\", end=\" \")\ndividi(1, 0)\n```",
         "risposte": [
-            "zero",
-            "ok fine",
-            "zero ok fine",
-            "zero fine"
+            "`zero`",
+            "`ok fine`",
+            "`zero ok fine`",
+            "`zero fine`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "L'eccezione attiva l'except; else gira solo se il try non solleva eccezioni; finally gira sempre."
@@ -1432,12 +1432,12 @@
     {
         "id": 111,
         "categoria": "Funzioni",
-        "domanda": "Che tipo hanno args e kwargs dentro questa funzione?\n\ndef f(*args, **kwargs):\n    print(type(args).__name__, type(kwargs).__name__)\nf(1, 2, nome=\"Luca\")",
+        "domanda": "Che tipo hanno args e kwargs dentro questa funzione?\n\n```python\ndef f(*args, **kwargs):\n    print(type(args).__name__, type(kwargs).__name__)\nf(1, 2, nome=\"Luca\")\n```",
         "risposte": [
-            "tuple list",
-            "tuple dict",
-            "list dict",
-            "dict tuple"
+            "`tuple list`",
+            "`tuple dict`",
+            "`list dict`",
+            "`dict tuple`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "*args raccoglie gli argomenti posizionali in più in una tupla, **kwargs quelli keyword in un dizionario."
@@ -1445,12 +1445,12 @@
     {
         "id": 112,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Quale eccezione solleva questo codice?\n\nnumeri = [1, 2]\nprint(numeri[5])",
+        "domanda": "Quale eccezione solleva questo codice?\n\n```python\nnumeri = [1, 2]\nprint(numeri[5])\n```",
         "risposte": [
-            "ValueError",
-            "IndexError",
-            "KeyError",
-            "Nessuna: stampa None"
+            "`ValueError`",
+            "`IndexError`",
+            "`KeyError`",
+            "Nessuna: stampa `None`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Un indice fuori dai limiti di una sequenza solleva IndexError."
@@ -1471,12 +1471,12 @@
     {
         "id": 114,
         "categoria": "Funzioni",
-        "domanda": "Che cosa succede compilando questa chiamata?\n\ndef f(a, b):\n    pass\nf(a=1, 2)",
+        "domanda": "Che cosa succede compilando questa chiamata?\n\n```python\ndef f(a, b):\n    pass\nf(a=1, 2)\n```",
         "risposte": [
-            "Solleva SyntaxError",
-            "Funziona: a vale 2 e b vale 1",
-            "Solleva TypeError durante l'esecuzione",
-            "Funziona: a vale 1 e b vale 2"
+            "Solleva `SyntaxError`",
+            "Funziona: `a` vale 2 e `b` vale 1",
+            "Solleva `TypeError` durante l'esecuzione",
+            "Funziona: `a` vale 1 e `b` vale 2"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Nelle chiamate miste gli argomenti posizionali vanno prima di quelli keyword."
@@ -1484,12 +1484,12 @@
     {
         "id": 115,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass Car:\n    def __init__(self):\n        self.__km = 120\nprint(Car()._Car__km)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass Car:\n    def __init__(self):\n        self.__km = 120\nprint(Car()._Car__km)\n```",
         "risposte": [
-            "None",
-            "0",
-            "AttributeError",
-            "120"
+            "`None`",
+            "`0`",
+            "`AttributeError`",
+            "`120`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "La privacy con __ è una convenzione rafforzata, non una barriera: il nome vero dopo il mangling è _Car__km."
@@ -1510,7 +1510,7 @@
     {
         "id": 117,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa restituiscono le due query?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE s(nome TEXT)\")\nconn.executemany(\"INSERT INTO s VALUES (?)\", [(\"Anna\",), (\"Luca\",)])\nnome = \"x' OR '1'='1\"\nprint(len(conn.execute(f\"SELECT * FROM s WHERE nome = '{nome}'\").fetchall()),\n      len(conn.execute(\"SELECT * FROM s WHERE nome = ?\", (nome,)).fetchall()))",
+        "domanda": "Che cosa restituiscono le due query?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE s(nome TEXT)\")\nconn.executemany(\"INSERT INTO s VALUES (?)\", [(\"Anna\",), (\"Luca\",)])\nnome = \"x' OR '1'='1\"\nprint(len(conn.execute(f\"SELECT * FROM s WHERE nome = '{nome}'\").fetchall()),\n      len(conn.execute(\"SELECT * FROM s WHERE nome = ?\", (nome,)).fetchall()))\n```",
         "risposte": [
             "Tutte le righe: è una SQL injection, mentre la query parametrizzata non restituisce nulla",
             "Un errore di sintassi SQL",
@@ -1562,12 +1562,12 @@
     {
         "id": 121,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprimo, *altri = [10, 20, 30]\nprint(primo, altri)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprimo, *altri = [10, 20, 30]\nprint(primo, altri)\n```",
         "risposte": [
-            "10 20",
-            "10 (20, 30)",
-            "[10] [20, 30]",
-            "10 [20, 30]"
+            "`10 20`",
+            "`10 (20, 30)`",
+            "`[10] [20, 30]`",
+            "`10 [20, 30]`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "L'unpacking con l'asterisco raccoglie in una lista tutti gli elementi rimanenti."
@@ -1575,12 +1575,12 @@
     {
         "id": 122,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(round(2.5), round(3.5))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(round(2.5), round(3.5))\n```",
         "risposte": [
-            "2 4",
-            "2 3",
-            "3 4",
-            "3 3"
+            "`2 4`",
+            "`2 3`",
+            "`3 4`",
+            "`3 3`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "round() sui casi .5 arrotonda al pari più vicino (banker's rounding): 2.5 diventa 2, 3.5 diventa 4."
@@ -1614,12 +1614,12 @@
     {
         "id": 125,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass A:\n    def f(self):\n        print(\"A\", end=\" \")\nclass B(A):\n    def f(self):\n        super().f()\n        print(\"B\", end=\" \")\nB().f()",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass A:\n    def f(self):\n        print(\"A\", end=\" \")\nclass B(A):\n    def f(self):\n        super().f()\n        print(\"B\", end=\" \")\nB().f()\n```",
         "risposte": [
-            "A",
-            "B",
-            "B A",
-            "A B"
+            "`A`",
+            "`B`",
+            "`B A`",
+            "`A B`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "È un override che estende: super().f() esegue prima il codice del padre, poi la figlia aggiunge il suo."
@@ -1627,12 +1627,12 @@
     {
         "id": 126,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(issubclass(FileNotFoundError, OSError))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(issubclass(FileNotFoundError, OSError))\n```",
         "risposte": [
-            "None",
-            "OSError",
-            "False",
-            "True"
+            "`None`",
+            "`OSError`",
+            "`False`",
+            "`True`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Le eccezioni sono classi organizzate in gerarchia: FileNotFoundError deriva da OSError, che deriva da Exception."
@@ -1640,12 +1640,12 @@
     {
         "id": 127,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(type((5)).__name__, type((5,)).__name__)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(type((5)).__name__, type((5,)).__name__)\n```",
         "risposte": [
-            "int tuple",
-            "tuple int",
-            "int int",
-            "tuple tuple"
+            "`int tuple`",
+            "`tuple int`",
+            "`int int`",
+            "`tuple tuple`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "A creare la tupla è la virgola, non le parentesi: (5) è un intero, (5,) una tupla di un elemento."
@@ -1653,12 +1653,12 @@
     {
         "id": 128,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass A:\n    def chi(self): return \"A\"\nclass B:\n    def chi(self): return \"B\"\nclass C(B, A):\n    pass\nprint(C().chi())",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass A:\n    def chi(self): return \"A\"\nclass B:\n    def chi(self): return \"B\"\nclass C(B, A):\n    pass\nprint(C().chi())\n```",
         "risposte": [
-            "TypeError",
-            "A",
-            "B",
-            "AB"
+            "`TypeError`",
+            "`A`",
+            "`B`",
+            "`AB`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Con l'ereditarietà multipla vince la prima classe dell'MRO che definisce il metodo: B, perché è elencata per prima."
@@ -1666,12 +1666,12 @@
     {
         "id": 129,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef area(base, altezza):\n    return base * altezza\nmisure = [3, 5]\nprint(area(*misure))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef area(base, altezza):\n    return base * altezza\nmisure = [3, 5]\nprint(area(*misure))\n```",
         "risposte": [
-            "15",
-            "TypeError",
-            "[3, 5]",
-            "35"
+            "`15`",
+            "`TypeError`",
+            "`[3, 5]`",
+            "`35`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Nella chiamata, * espande la lista in argomenti posizionali: area(3, 5)."
@@ -1692,12 +1692,12 @@
     {
         "id": 131,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(\"10\" < \"2\")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(\"10\" < \"2\")\n```",
         "risposte": [
-            "None",
-            "True",
-            "False",
-            "TypeError"
+            "`None`",
+            "`True`",
+            "`False`",
+            "`TypeError`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Le stringhe si confrontano in ordine lessicografico, carattere per carattere: \"1\" viene prima di \"2\"."
@@ -1705,12 +1705,12 @@
     {
         "id": 132,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa stampa questo codice?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nwith conn:\n    conn.execute(\"INSERT INTO t VALUES (1)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nwith conn:\n    conn.execute(\"INSERT INTO t VALUES (1)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())\n```",
         "risposte": [
-            "ProgrammingError: connessione chiusa",
-            "(1,)",
-            "1",
-            "None"
+            "`ProgrammingError`: connessione chiusa",
+            "`(1,)`",
+            "`1`",
+            "`None`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "La connessione usata con with fa commit (o rollback in caso di errore) ma non viene chiusa: si può continuare a usarla."
@@ -1718,12 +1718,12 @@
     {
         "id": 133,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(int(-3.99))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(int(-3.99))\n```",
         "risposte": [
-            "-3",
-            "3",
-            "-3.99 (invariato)",
-            "-4"
+            "`-3`",
+            "`3`",
+            "`-3.99 (invariato)`",
+            "`-4`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "int() applicato a un float tronca verso lo zero: elimina la parte decimale senza arrotondare."
@@ -1731,12 +1731,12 @@
     {
         "id": 134,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nfrom decimal import Decimal\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfrom decimal import Decimal\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))\n```",
         "risposte": [
-            "0.3",
-            "0.30000000000000004",
-            "0.30",
-            "Decimal('0.3')"
+            "`0.3`",
+            "`0.30000000000000004`",
+            "`0.30`",
+            "`Decimal('0.3')`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Il modulo decimal fa aritmetica decimale esatta, purché i valori siano creati da stringhe. print mostra la forma leggibile."
@@ -1744,12 +1744,12 @@
     {
         "id": 135,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa stampa questo codice?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    f.read()\n    print(repr(f.read()))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    f.read()\n    print(repr(f.read()))\n```",
         "risposte": [
-            "''",
-            "EOFError",
-            "'uno\\ndue\\n'",
-            "None"
+            "`''`",
+            "`EOFError`",
+            "`'uno\\ndue\\n'`",
+            "`None`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Il file ha una posizione corrente: dopo il primo read() è alla fine, e un secondo read() restituisce la stringa vuota."
@@ -1770,12 +1770,12 @@
     {
         "id": 137,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\ns = \"Python\"\nprint(s[1:4])",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ns = \"Python\"\nprint(s[1:4])\n```",
         "risposte": [
-            "ytho",
-            "Pyt",
-            "pyth",
-            "yth"
+            "`ytho`",
+            "`Pyt`",
+            "`pyth`",
+            "`yth`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Lo slicing include l'indice di inizio (1, 'y') ed esclude quello di fine (4, 'o')."
@@ -1796,12 +1796,12 @@
     {
         "id": 139,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(len({1, 2, 2, 3, 3, 3}))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(len({1, 2, 2, 3, 3, 3}))\n```",
         "risposte": [
-            "3",
-            "1",
-            "4",
-            "6"
+            "`3`",
+            "`1`",
+            "`4`",
+            "`6`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Un set contiene solo elementi unici: i duplicati spariscono."
@@ -1822,12 +1822,12 @@
     {
         "id": 141,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa stampa l'ultima riga?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,), (4,)])\ncur = conn.execute(\"SELECT x FROM t ORDER BY x\")\ncur.fetchone()\ncur.fetchmany(2)\nprint(cur.fetchall())",
+        "domanda": "Che cosa stampa l'ultima riga?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,), (4,)])\ncur = conn.execute(\"SELECT x FROM t ORDER BY x\")\ncur.fetchone()\ncur.fetchmany(2)\nprint(cur.fetchall())\n```",
         "risposte": [
-            "[(4,)]",
-            "[(3,), (4,)]",
-            "[(1,), (2,), (3,), (4,)]",
-            "[]"
+            "`[(4,)]`",
+            "`[(3,), (4,)]`",
+            "`[(1,), (2,), (3,), (4,)]`",
+            "`[]`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Il cursore avanza: fetchone prende 1, fetchmany(2) prende 2 e 3, fetchall restituisce solo le righe rimanenti."
@@ -1848,12 +1848,12 @@
     {
         "id": 143,
         "categoria": "OOP",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)\n```",
         "risposte": [
-            "Stampa WSA",
-            "Stampa Anna",
-            "Solleva AttributeError",
-            "Stampa None"
+            "Stampa `WSA`",
+            "Stampa `Anna`",
+            "Solleva `AttributeError`",
+            "Stampa `None`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Studente ridefinisce __init__ senza chiamare super().__init__(nome): l'attributo nome non viene mai creato."
@@ -1913,12 +1913,12 @@
     {
         "id": 148,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nd = {[1, 2]: \"x\"}",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nd = {[1, 2]: \"x\"}\n```",
         "risposte": [
             "Converte la lista in tupla",
-            "Solleva KeyError",
-            "Crea un dizionario con chiave [1, 2]",
-            "Solleva TypeError: una lista non è hashable"
+            "Solleva `KeyError`",
+            "Crea un dizionario con chiave `[1, 2]`",
+            "Solleva `TypeError`: una lista non è hashable"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Le chiavi di un dizionario devono essere immutabili (hashable): una tupla va bene, una lista no."
@@ -1926,12 +1926,12 @@
     {
         "id": 149,
         "categoria": "OOP",
-        "domanda": "Che cosa succede alla chiamata c.somma(1, 2)?\n\nclass Calcolatrice:\n    def somma(self, a, b):\n        return a + b\n    def somma(self, a, b, c):\n        return a + b + c\nc = Calcolatrice()\nprint(c.somma(1, 2))",
+        "domanda": "Che cosa succede alla chiamata c.somma(1, 2)?\n\n```python\nclass Calcolatrice:\n    def somma(self, a, b):\n        return a + b\n    def somma(self, a, b, c):\n        return a + b + c\nc = Calcolatrice()\nprint(c.somma(1, 2))\n```",
         "risposte": [
-            "Stampa 3",
+            "Stampa `3`",
             "Python sceglie il primo metodo",
-            "Solleva SyntaxError",
-            "Solleva TypeError: manca l'argomento c"
+            "Solleva `SyntaxError`",
+            "Solleva `TypeError`: manca l'argomento c"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Python non ha l'overloading: la seconda definizione sostituisce la prima. Lo si simula con parametri di default o *args."
@@ -1978,12 +1978,12 @@
     {
         "id": 153,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nd = {\"a\": 1, \"b\": 2}\nprint(1 in d, \"a\" in d)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nd = {\"a\": 1, \"b\": 2}\nprint(1 in d, \"a\" in d)\n```",
         "risposte": [
-            "False False",
-            "True True",
-            "False True",
-            "True False"
+            "`False False`",
+            "`True True`",
+            "`False True`",
+            "`True False`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "in su un dizionario cerca fra le chiavi, non fra i valori. Per i valori: 1 in d.values()."
@@ -1991,12 +1991,12 @@
     {
         "id": 154,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(True + True)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(True + True)\n```",
         "risposte": [
-            "True",
-            "1",
-            "2",
-            "TrueTrue"
+            "`True`",
+            "`1`",
+            "`2`",
+            "`TrueTrue`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "bool è una sottoclasse di int: True vale 1 e False vale 0."
@@ -2004,12 +2004,12 @@
     {
         "id": 155,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa restituisce fetchone() quando non ci sono più righe?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+        "domanda": "Che cosa restituisce fetchone() quando non ci sono più righe?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())\n```",
         "risposte": [
-            "Solleva IndexError",
-            "Una tupla vuota ()",
-            "None",
-            "Solleva StopIteration"
+            "Solleva `IndexError`",
+            "Una tupla vuota `()`",
+            "`None`",
+            "Solleva `StopIteration`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "fetchone restituisce None a risultati finiti; fetchall restituirebbe una lista vuota."
@@ -2030,12 +2030,12 @@
     {
         "id": 157,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef saluta(nome=\"ospite\"):\n    return \"Ciao \" + nome\nprint(saluta(), saluta(\"Anna\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef saluta(nome=\"ospite\"):\n    return \"Ciao \" + nome\nprint(saluta(), saluta(\"Anna\"))\n```",
         "risposte": [
-            "Ciao  Ciao Anna",
-            "Ciao Anna Ciao Anna",
-            "Ciao ospite Ciao Anna",
-            "TypeError"
+            "`Ciao  Ciao Anna`",
+            "`Ciao Anna Ciao Anna`",
+            "`Ciao ospite Ciao Anna`",
+            "`TypeError`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Un parametro con default si può omettere: in quel caso vale il valore predefinito."
@@ -2043,12 +2043,12 @@
     {
         "id": 158,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef quadrato(x):\n    return x * x\nf = quadrato\nprint(f(4), list(map(quadrato, [1, 2])))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef quadrato(x):\n    return x * x\nf = quadrato\nprint(f(4), list(map(quadrato, [1, 2])))\n```",
         "risposte": [
-            "quadrato [1, 4]",
-            "TypeError",
-            "16 [1, 4]",
-            "16 [2, 4]"
+            "`quadrato [1, 4]`",
+            "`TypeError`",
+            "`16 [1, 4]`",
+            "`16 [2, 4]`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Le funzioni sono oggetti: si assegnano a variabili e si passano ad altre funzioni, come a map."
@@ -2069,11 +2069,11 @@
     {
         "id": 160,
         "categoria": "File e formati di dati",
-        "domanda": "Che tipo hanno i valori letti con csv.reader?\n\nimport csv\nwith open(\"v.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    csv.writer(f).writerow([1, 2.5])\nwith open(\"v.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    riga = next(csv.reader(f))\nprint(riga)",
+        "domanda": "Che tipo hanno i valori letti con csv.reader?\n\n```python\nimport csv\nwith open(\"v.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    csv.writer(f).writerow([1, 2.5])\nwith open(\"v.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    riga = next(csv.reader(f))\nprint(riga)\n```",
         "risposte": [
-            "Numeri: [1, 2.5]",
-            "Una tupla: (1, 2.5)",
-            "Stringhe: ['1', '2.5']",
+            "`Numeri: [1, 2.5]`",
+            "Una tupla: `(1, 2.5)`",
+            "`Stringhe: ['1', '2.5']`",
             "Un dizionario"
         ],
         "rispostaCorretta": 2,
@@ -2108,12 +2108,12 @@
     {
         "id": 163,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(0 and 20, 0 or 20)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(0 and 20, 0 or 20)\n```",
         "risposte": [
-            "False True",
-            "0 20",
-            "0 True",
-            "False 20"
+            "`False True`",
+            "`0 20`",
+            "`0 True`",
+            "`False 20`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "and e or restituiscono uno degli operandi: 0 and 20 restituisce il primo falso (0), 0 or 20 il primo vero (20)."
@@ -2134,12 +2134,12 @@
     {
         "id": 165,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nvoti = [28, 24, 30]\nvoti = voti.sort()\nprint(voti)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nvoti = [28, 24, 30]\nvoti = voti.sort()\nprint(voti)\n```",
         "risposte": [
-            "[24, 28, 30]",
-            "None",
-            "[30, 28, 24]",
-            "[28, 24, 30]"
+            "`[24, 28, 30]`",
+            "`None`",
+            "`[30, 28, 24]`",
+            "`[28, 24, 30]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "sort() ordina sul posto e restituisce None: assegnando il risultato si perde la lista. sorted(voti) restituisce invece una lista nuova."
@@ -2186,12 +2186,12 @@
     {
         "id": 169,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint([x * x for x in range(5) if x % 2 == 0])",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint([x * x for x in range(5) if x % 2 == 0])\n```",
         "risposte": [
-            "[0, 1, 4, 9, 16]",
-            "[0, 4, 16]",
-            "[4, 16]",
-            "[1, 9]"
+            "`[0, 1, 4, 9, 16]`",
+            "`[0, 4, 16]`",
+            "`[4, 16]`",
+            "`[1, 9]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "L'if in fondo alla comprensione filtra: restano 0, 2, 4, che elevati al quadrato danno 0, 4, 16."
@@ -2251,12 +2251,12 @@
     {
         "id": 174,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nprint(\"Python\"[2:100])",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nprint(\"Python\"[2:100])\n```",
         "risposte": [
-            "Stampa thon",
+            "Stampa `thon`",
             "Stampa una stringa vuota",
-            "Stampa t",
-            "Solleva IndexError"
+            "Stampa `t`",
+            "Solleva `IndexError`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Uno slice fuori dai limiti viene troncato senza errori; è un indice singolo fuori dai limiti (s[100]) a sollevare IndexError."
@@ -2264,12 +2264,12 @@
     {
         "id": 175,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nfor i, nome in enumerate([\"Anna\", \"Luca\"], start=1):\n    print(i, nome, end=\" \")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfor i, nome in enumerate([\"Anna\", \"Luca\"], start=1):\n    print(i, nome, end=\" \")\n```",
         "risposte": [
-            "0 Anna 1 Luca",
-            "1 Anna 2 Luca",
-            "1 Anna 1 Luca",
-            "Anna 1 Luca 2"
+            "`0 Anna 1 Luca`",
+            "`1 Anna 2 Luca`",
+            "`1 Anna 1 Luca`",
+            "`Anna 1 Luca 2`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "enumerate produce coppie (indice, elemento); start=1 fa partire il conteggio da 1 invece che da 0."
@@ -2290,12 +2290,12 @@
     {
         "id": 177,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(list(zip([1, 2, 3], \"ab\")))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(list(zip([1, 2, 3], \"ab\")))\n```",
         "risposte": [
-            "ValueError",
-            "[(1, 'a'), (2, 'b')]",
-            "[(1, 'a'), (2, 'b'), (3, None)]",
-            "[1, 'a', 2, 'b']"
+            "`ValueError`",
+            "`[(1, 'a'), (2, 'b')]`",
+            "`[(1, 'a'), (2, 'b'), (3, None)]`",
+            "`[1, 'a', 2, 'b']`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "zip accoppia elemento per elemento e si ferma alla sequenza più corta."
@@ -2303,12 +2303,12 @@
     {
         "id": 178,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef incrementa(n: int) -> int:\n    return n + 1\nprint(incrementa(1.5))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef incrementa(n: int) -> int:\n    return n + 1\nprint(incrementa(1.5))\n```",
         "risposte": [
-            "2",
-            "None",
-            "TypeError",
-            "2.5"
+            "`2`",
+            "`None`",
+            "`TypeError`",
+            "`2.5`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "I type hint documentano ma non vengono controllati dall'interprete: 1.5 viene accettato senza errori."
@@ -2316,12 +2316,12 @@
     {
         "id": 179,
         "categoria": "File e formati di dati",
-        "domanda": "Che cosa stampa questo codice?\n\nimport json\nprint(json.loads(json.dumps((1, 2))))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nimport json\nprint(json.loads(json.dumps((1, 2))))\n```",
         "risposte": [
-            "'[1, 2]'",
-            "{1, 2}",
-            "[1, 2]",
-            "(1, 2)"
+            "`'[1, 2]'`",
+            "`{1, 2}`",
+            "`[1, 2]`",
+            "`(1, 2)`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "JSON non ha le tuple: una tupla diventa un array, che torna in Python come lista."
@@ -2329,12 +2329,12 @@
     {
         "id": 180,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nprint({1, 2, 3} & {2, 3, 4}, {1, 2} ^ {2, 3})",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint({1, 2, 3} & {2, 3, 4}, {1, 2} ^ {2, 3})\n```",
         "risposte": [
-            "{1, 2, 3, 4} {1, 2, 3}",
-            "{1, 4} {1, 3}",
-            "{2, 3} {1, 3}",
-            "{2, 3} {2}"
+            "`{1, 2, 3, 4} {1, 2, 3}`",
+            "`{1, 4} {1, 3}`",
+            "`{2, 3} {1, 3}`",
+            "`{2, 3} {2}`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "& è l'intersezione (elementi comuni); ^ è la differenza simmetrica (elementi che stanno in uno solo dei due)."
@@ -2342,12 +2342,12 @@
     {
         "id": 181,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nnumeri = [1, 2, 3]\nnumeri.remove(5)",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nnumeri = [1, 2, 3]\nnumeri.remove(5)\n```",
         "risposte": [
             "Non succede nulla",
-            "Solleva IndexError",
-            "Solleva KeyError",
-            "Solleva ValueError"
+            "Solleva `IndexError`",
+            "Solleva `KeyError`",
+            "Solleva `ValueError`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "remove() di un valore assente solleva ValueError; discard() dei set, invece, non dà errore."
@@ -2355,12 +2355,12 @@
     {
         "id": 182,
         "categoria": "ORM e SQLAlchemy",
-        "domanda": "Che cosa stampa questo codice?\n\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)\n```",
         "risposte": [
-            "False",
-            "MultipleResultsFound",
-            "None",
-            "True"
+            "`False`",
+            "`MultipleResultsFound`",
+            "`None`",
+            "`True`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Identity map: dentro una Session una riga corrisponde sempre allo stesso oggetto Python."
@@ -2368,12 +2368,12 @@
     {
         "id": 183,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef d(nome, ruolo):\n    return nome + \"-\" + ruolo\nprint(d(ruolo=\"docente\", nome=\"Gallo\"))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef d(nome, ruolo):\n    return nome + \"-\" + ruolo\nprint(d(ruolo=\"docente\", nome=\"Gallo\"))\n```",
         "risposte": [
-            "docente-Gallo",
-            "TypeError",
-            "nome-ruolo",
-            "Gallo-docente"
+            "`docente-Gallo`",
+            "`TypeError`",
+            "`nome-ruolo`",
+            "`Gallo-docente`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Con gli argomenti keyword l'abbinamento avviene per nome, quindi l'ordine nella chiamata non conta."
@@ -2420,12 +2420,12 @@
     {
         "id": 187,
         "categoria": "Database e DB-API",
-        "domanda": "Che cosa stampa questo codice?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,)])\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone())",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,)])\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone())\n```",
         "risposte": [
-            "(3,)",
-            "[(3,)]",
-            "3",
-            "[3]"
+            "`(3,)`",
+            "`[(3,)]`",
+            "`3`",
+            "`[3]`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "Anche con una sola colonna una riga è una tupla: per il numero serve fetchone()[0]."
@@ -2459,12 +2459,12 @@
     {
         "id": 190,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nnome = \"\" or \"Anonimo\"\nprint(nome)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nnome = \"\" or \"Anonimo\"\nprint(nome)\n```",
         "risposte": [
-            "True",
+            "`True`",
             "(stringa vuota)",
-            "False",
-            "Anonimo"
+            "`False`",
+            "`Anonimo`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "\"\" è falsa, quindi or restituisce il secondo operando: è l'idioma del valore di ripiego."
@@ -2472,12 +2472,12 @@
     {
         "id": 191,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(list(range(1, 10, 3)))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(list(range(1, 10, 3)))\n```",
         "risposte": [
-            "[1, 4, 7, 10]",
-            "[1, 4, 7]",
-            "[1, 3, 6, 9]",
-            "[3, 6, 9]"
+            "`[1, 4, 7, 10]`",
+            "`[1, 4, 7]`",
+            "`[1, 3, 6, 9]`",
+            "`[3, 6, 9]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "range(start, stop, step): parte da 1, avanza di 3 ed esclude lo stop (10)."
@@ -2524,12 +2524,12 @@
     {
         "id": 195,
         "categoria": "Controllo del flusso ed eccezioni",
-        "domanda": "Che cosa stampa questo codice?\n\nfor i in range(3):\n    print(i, end=\" \")",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nfor i in range(3):\n    print(i, end=\" \")\n```",
         "risposte": [
-            "0 1 2",
-            "1 2 3",
-            "1 2",
-            "0 1 2 3"
+            "`0 1 2`",
+            "`1 2 3`",
+            "`1 2`",
+            "`0 1 2 3`"
         ],
         "rispostaCorretta": 0,
         "spiegazione": "range(3) genera 0, 1, 2: lo stop è escluso."
@@ -2550,12 +2550,12 @@
     {
         "id": 197,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(10 / 2)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(10 / 2)\n```",
         "risposte": [
-            "2",
-            "5.00",
-            "5",
-            "5.0"
+            "`2`",
+            "`5.00`",
+            "`5`",
+            "`5.0`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "L'operatore / è la divisione vera e restituisce sempre un float, anche quando il risultato è intero."
@@ -2589,12 +2589,12 @@
     {
         "id": 200,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\nvoti = {\"Anna\": 28, \"Luca\": 17}\nprint({n: v for n, v in voti.items() if v >= 18})",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nvoti = {\"Anna\": 28, \"Luca\": 17}\nprint({n: v for n, v in voti.items() if v >= 18})\n```",
         "risposte": [
-            "['Anna']",
-            "{'Anna': 28}",
-            "{'Anna': True, 'Luca': False}",
-            "{'Luca': 17}"
+            "`['Anna']`",
+            "`{'Anna': 28}`",
+            "`{'Anna': True, 'Luca': False}`",
+            "`{'Luca': 17}`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "È una dict comprehension con filtro: tiene solo le coppie con voto almeno 18."
@@ -2602,12 +2602,12 @@
     {
         "id": 201,
         "categoria": "Moduli e package",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nfrom math import sqrt\nprint(math.sqrt(16))",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nfrom math import sqrt\nprint(math.sqrt(16))\n```",
         "risposte": [
-            "Solleva ImportError",
-            "Stampa 4.0",
-            "Solleva NameError",
-            "Stampa 4"
+            "Solleva `ImportError`",
+            "Stampa `4.0`",
+            "Solleva `NameError`",
+            "Stampa `4`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "from math import sqrt porta nel namespace solo sqrt: il nome math non esiste."
@@ -2615,12 +2615,12 @@
     {
         "id": 202,
         "categoria": "Strutture dati",
-        "domanda": "Che cosa stampa questo codice?\n\ng = (x for x in range(3))\nprint(list(g), list(g))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ng = (x for x in range(3))\nprint(list(g), list(g))\n```",
         "risposte": [
-            "[0, 1, 2] [0, 1, 2]",
-            "(0, 1, 2) (0, 1, 2)",
-            "[0, 1, 2] []",
-            "[] []"
+            "`[0, 1, 2] [0, 1, 2]`",
+            "`(0, 1, 2) (0, 1, 2)`",
+            "`[0, 1, 2] []`",
+            "`[] []`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Le parentesi tonde creano un generatore, non una tupla: produce i valori una volta sola e poi è esaurito."
@@ -2641,12 +2641,12 @@
     {
         "id": 204,
         "categoria": "OOP",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\nfrom abc import ABC, abstractmethod\nclass Vehicle(ABC):\n    @abstractmethod\n    def start(self): pass\nclass Barca(Vehicle):\n    pass\nb = Barca()",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nfrom abc import ABC, abstractmethod\nclass Vehicle(ABC):\n    @abstractmethod\n    def start(self): pass\nclass Barca(Vehicle):\n    pass\nb = Barca()\n```",
         "risposte": [
-            "Solleva NotImplementedError",
-            "Solleva TypeError alla creazione dell'oggetto",
-            "Funziona, ma b.start() solleverà un errore",
-            "Funziona, start() restituisce None"
+            "Solleva `NotImplementedError`",
+            "Solleva `TypeError` alla creazione dell'oggetto",
+            "Funziona, ma `b.start()` solleverà un errore",
+            "Funziona, `start()` restituisce `None`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Una classe con metodi astratti non implementati non può essere istanziata: l'errore arriva alla creazione, non alla chiamata."
@@ -2719,12 +2719,12 @@
     {
         "id": 210,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndef f():\n    pass\nprint(f())",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndef f():\n    pass\nprint(f())\n```",
         "risposte": [
-            "pass",
-            "0",
+            "`pass`",
+            "`0`",
             "Una stringa vuota",
-            "None"
+            "`None`"
         ],
         "rispostaCorretta": 3,
         "spiegazione": "Una funzione senza return restituisce None."
@@ -2745,7 +2745,7 @@
     {
         "id": 212,
         "categoria": "Moduli e package",
-        "domanda": "Il modulo utilities.py contiene print(\"Modulo caricato\"). Quante volte compare il messaggio?\n\nopen(\"utilities.py\", \"w\").write('print(\"Modulo caricato\")\\n')\nimport utilities\nimport utilities",
+        "domanda": "Il modulo utilities.py contiene print(\"Modulo caricato\"). Quante volte compare il messaggio?\n\n```python\nopen(\"utilities.py\", \"w\").write('print(\"Modulo caricato\")\\n')\nimport utilities\nimport utilities\n```",
         "risposte": [
             "Due",
             "Nessuna",
@@ -2771,12 +2771,12 @@
     {
         "id": 214,
         "categoria": "OOP",
-        "domanda": "Che cosa succede alla riga print(car.__km)?\n\nclass Car:\n    def __init__(self):\n        self.__km = 0\ncar = Car()\nprint(car.__km)",
+        "domanda": "Che cosa succede alla riga print(car.__km)?\n\n```python\nclass Car:\n    def __init__(self):\n        self.__km = 0\ncar = Car()\nprint(car.__km)\n```",
         "risposte": [
-            "Stampa 0",
-            "Stampa None",
-            "Solleva AttributeError",
-            "Solleva PermissionError"
+            "Stampa `0`",
+            "Stampa `None`",
+            "Solleva `AttributeError`",
+            "Solleva `PermissionError`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "Per il name mangling, dentro la classe __km diventa _Car__km: da fuori car.__km non esiste."
@@ -2797,12 +2797,12 @@
     {
         "id": 216,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nx = 2147483647\nprint(x + 1)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nx = 2147483647\nprint(x + 1)\n```",
         "risposte": [
-            "-2147483648",
-            "2147483648",
-            "OverflowError",
-            "2.147483648e9"
+            "`-2147483648`",
+            "`2147483648`",
+            "`OverflowError`",
+            "`2.147483648e9`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "Gli int di Python hanno precisione arbitraria: non esiste overflow, crescono finché c'è memoria."
@@ -2810,12 +2810,12 @@
     {
         "id": 217,
         "categoria": "Funzioni",
-        "domanda": "Che cosa stampa questo codice?\n\ndati = [(\"a\", 3), (\"b\", 1), (\"c\", 2)]\nprint(sorted(dati, key=lambda t: t[1]))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\ndati = [(\"a\", 3), (\"b\", 1), (\"c\", 2)]\nprint(sorted(dati, key=lambda t: t[1]))\n```",
         "risposte": [
-            "[('a', 3), ('b', 1), ('c', 2)]",
-            "[('b', 1), ('c', 2), ('a', 3)]",
-            "[('a', 3), ('c', 2), ('b', 1)]",
-            "[1, 2, 3]"
+            "`[('a', 3), ('b', 1), ('c', 2)]`",
+            "`[('b', 1), ('c', 2), ('a', 3)]`",
+            "`[('a', 3), ('c', 2), ('b', 1)]`",
+            "`[1, 2, 3]`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "key indica come confrontare gli elementi: la lambda restituisce il secondo valore di ogni tupla."
@@ -2823,12 +2823,12 @@
     {
         "id": 218,
         "categoria": "OOP",
-        "domanda": "Che cosa stampa questo codice?\n\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint(\" \".join(k.__name__ for k in D.__mro__))",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint(\" \".join(k.__name__ for k in D.__mro__))\n```",
         "risposte": [
-            "D A B C object",
-            "D B C A object",
-            "D C B A object",
-            "D B A C object"
+            "`D A B C object`",
+            "`D B C A object`",
+            "`D C B A object`",
+            "`D B A C object`"
         ],
         "rispostaCorretta": 1,
         "spiegazione": "L'MRO (linearizzazione C3) mette una classe sempre prima dei propri padri: A, padre di B e C, viene dopo entrambe."
@@ -2849,12 +2849,12 @@
     {
         "id": 220,
         "categoria": "Tipi di dati e operatori",
-        "domanda": "Che cosa stampa questo codice?\n\nprint(not \"\", not 10)",
+        "domanda": "Che cosa stampa questo codice?\n\n```python\nprint(not \"\", not 10)\n```",
         "risposte": [
-            "False True",
-            "'' 10",
-            "True False",
-            "True 10"
+            "`False True`",
+            "`'' 10`",
+            "`True False`",
+            "`True 10`"
         ],
         "rispostaCorretta": 2,
         "spiegazione": "not è l'unico operatore logico che restituisce sempre un bool: la stringa vuota è falsa, 10 è vero."

@@ -999,8 +999,8 @@
         "foreach on a string"
       ]
     },
-    "2377e9a2e31e": {
-      "domanda": "What does this code produce?\n```\nint x = 5;\nif (x > 3)\n    Console.Write(\"A\");\nif (x > 4)\n    Console.Write(\"B\");\n```",
+    "12a6cb9ea0dc": {
+      "domanda": "What does this code produce?\n```csharp\nint x = 5;\nif (x > 3)\n    Console.Write(\"A\");\nif (x > 4)\n    Console.Write(\"B\");\n```",
       "spiegazione": "The two `if` statements are independent. `x > 3` is true → prints `A`. `x > 4` is true → prints `B`. The result is `AB`. If they were `else if`, the second condition would be checked only if the first were false.",
       "risposte": [
         "A",
@@ -1009,8 +1009,8 @@
         "Nothing"
       ]
     },
-    "ec92d2dcb9d0": {
-      "domanda": "What does the following code print?\n```\nfor (int i = 0; i < 3; i++)\n    Console.Write(i + \" \");\n```",
+    "95f515b983fd": {
+      "domanda": "What does the following code print?\n```csharp\nfor (int i = 0; i < 3; i++)\n    Console.Write(i + \" \");\n```",
       "spiegazione": "The loop starts with `i = 0` and continues as long as `i < 3`. It prints `0`, then `1`, then `2`. When `i` becomes `3`, the condition `i < 3` is false and the loop terminates.",
       "risposte": [
         "1 2 3",
@@ -1059,8 +1059,8 @@
         "The `default` is executed"
       ]
     },
-    "65bb62ee3b3e": {
-      "domanda": "What is the output of this code?\n```\nfor (int i = 1; i <= 5; i++)\n{\n    if (i == 3) continue;\n    Console.Write(i + \" \");\n}\n```",
+    "cdf80ee1232e": {
+      "domanda": "What is the output of this code?\n```csharp\nfor (int i = 1; i <= 5; i++)\n{\n    if (i == 3) continue;\n    Console.Write(i + \" \");\n}\n```",
       "spiegazione": "When `i == 3`, `continue` skips the `Console.Write` statement and proceeds to the next iteration. The other values are printed normally: `1 2 4 5`.",
       "risposte": [
         "1 2 3 4 5",

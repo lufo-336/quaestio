@@ -1276,7 +1276,7 @@
   {
     "id": 100,
     "categoria": "Controllo del flusso",
-    "domanda": "Cosa produce questo codice?\n```\nint x = 5;\nif (x > 3)\n    Console.Write(\"A\");\nif (x > 4)\n    Console.Write(\"B\");\n```",
+    "domanda": "Cosa produce questo codice?\n```csharp\nint x = 5;\nif (x > 3)\n    Console.Write(\"A\");\nif (x > 4)\n    Console.Write(\"B\");\n```",
     "risposte": [
       "A",
       "B",
@@ -1289,7 +1289,7 @@
   {
     "id": 101,
     "categoria": "Controllo del flusso",
-    "domanda": "Cosa stampa il seguente codice?\n```\nfor (int i = 0; i < 3; i++)\n    Console.Write(i + \" \");\n```",
+    "domanda": "Cosa stampa il seguente codice?\n```csharp\nfor (int i = 0; i < 3; i++)\n    Console.Write(i + \" \");\n```",
     "risposte": [
       "1 2 3",
       "0 1 2",
@@ -1354,7 +1354,7 @@
   {
     "id": 106,
     "categoria": "Controllo del flusso",
-    "domanda": "Qual è l'output di questo codice?\n```\nfor (int i = 1; i <= 5; i++)\n{\n    if (i == 3) continue;\n    Console.Write(i + \" \");\n}\n```",
+    "domanda": "Qual è l'output di questo codice?\n```csharp\nfor (int i = 1; i <= 5; i++)\n{\n    if (i == 3) continue;\n    Console.Write(i + \" \");\n}\n```",
     "risposte": [
       "1 2 3 4 5",
       "1 2 4 5",

@@ -14,14 +14,14 @@
     "Moduli e package": "Modules and Packages"
   },
   "domande": {
-    "74343633d758": {
-      "domanda": "What does this code print?\n\nprint(\"Python\"[::-1])",
+    "fe16a4c0fc77": {
+      "domanda": "What does this code print?\n\n```python\nprint(\"Python\"[::-1])\n```",
       "spiegazione": "With a step of -1, slicing traverses the sequence in reverse: the string is reversed.",
       "risposte": [
-        "n",
-        "nohtyP",
-        "P",
-        "Python"
+        "`n`",
+        "`nohtyP`",
+        "`P`",
+        "`Python`"
       ]
     },
     "b2c24c690979": {
@@ -34,14 +34,14 @@
         "The list of modules that the project actually imports in the code"
       ]
     },
-    "a3c679fe9ee1": {
-      "domanda": "What does this code print?\n\nclass Dipendente: pass\nclass Manager(Dipendente): pass\nm = Manager()\nprint(isinstance(m, Dipendente), issubclass(Dipendente, Manager))",
+    "84a6ef93bf8d": {
+      "domanda": "What does this code print?\n\n```python\nclass Dipendente: pass\nclass Manager(Dipendente): pass\nm = Manager()\nprint(isinstance(m, Dipendente), issubclass(Dipendente, Manager))\n```",
       "spiegazione": "A Manager is a Dipendente (isinstance accepts subclasses); the reverse is not true.",
       "risposte": [
-        "False False",
-        "True False",
-        "True True",
-        "False True"
+        "`False False`",
+        "`True False`",
+        "`True True`",
+        "`False True`"
       ]
     },
     "1d782d79dc40": {
@@ -84,24 +84,24 @@
         "Python REPL"
       ]
     },
-    "f2a6febe514e": {
-      "domanda": "What does this code print?\n\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)",
+    "b5ad2bca25f7": {
+      "domanda": "What does this code print?\n\n```python\nclass Conto:\n    def __init__(self):\n        self._saldo = 0\n    @property\n    def saldo(self):\n        return self._saldo\nc = Conto()\nprint(c.saldo)\n```",
       "risposte": [
-        "0",
-        "None",
-        "<bound method>",
-        "TypeError"
+        "`0`",
+        "`None`",
+        "`<bound method>`",
+        "`TypeError`"
       ],
       "spiegazione": "@property lets a method be read like an attribute: c.saldo, without parentheses."
     },
-    "ae6fa75383e6": {
-      "domanda": "What does this code print?\n\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))",
+    "0b3370e6b655": {
+      "domanda": "What does this code print?\n\n```python\nd = {\"a\": 1}\nprint(d.get(\"b\"), d.get(\"b\", 0))\n```",
       "spiegazione": "get() does not raise exceptions: it returns None or the specified fallback value.",
       "risposte": [
-        "0 0",
-        "None None",
-        "None 0",
-        "Raises KeyError"
+        "`0 0`",
+        "`None None`",
+        "`None 0`",
+        "Raises `KeyError`"
       ]
     },
     "886bb8119b17": {
@@ -124,34 +124,34 @@
         "The ability to define multiple methods with the same name but different parameters"
       ]
     },
-    "21e8874f97b4": {
-      "domanda": "What does this code print?\n\nr = print(\"x\")\nprint(r)",
+    "310849a6f8a2": {
+      "domanda": "What does this code print?\n\n```python\nr = print(\"x\")\nprint(r)\n```",
       "spiegazione": "print outputs but does not return anything: a function without a return statement returns None.",
       "risposte": [
-        "x and then x",
-        "x and then an empty line",
-        "None and then x",
-        "x and then None"
+        "`x` and then `x`",
+        "`x` and then an empty line",
+        "`None` and then `x`",
+        "`x` and then `None`"
       ]
     },
-    "27c3a57e4d89": {
-      "domanda": "Which exception does this code raise?\n\nprint(int(\"abc\"))",
+    "c18d0213636a": {
+      "domanda": "Which exception does this code raise?\n\n```python\nprint(int(\"abc\"))\n```",
       "spiegazione": "ValueError: the type is correct (a string is acceptable for int()), but the value does not represent a number.",
       "risposte": [
-        "None: prints 0",
-        "ValueError",
-        "TypeError",
-        "NameError"
+        "None: prints `0`",
+        "`ValueError`",
+        "`TypeError`",
+        "`NameError`"
       ]
     },
-    "bf4090ed33d6": {
-      "domanda": "What does this code print?\n\nprint(-7 // 2)",
+    "5047fc6d78c5": {
+      "domanda": "What does this code print?\n\n```python\nprint(-7 // 2)\n```",
       "spiegazione": "// rounds down (towards negative infinity), so -3.5 becomes -4, not -3.",
       "risposte": [
-        "-3.5",
-        "-3",
-        "3",
-        "-4"
+        "`-3.5`",
+        "`-3`",
+        "`3`",
+        "`-4`"
       ]
     },
     "1936ea40b1df": {
@@ -164,14 +164,14 @@
         "Because a try block can have only one except at a time"
       ]
     },
-    "d7ddac247f6f": {
-      "domanda": "What does this code print?\n\na = [[1], [2]]\nb = a.copy()\na[0].append(9)\nprint(b)",
+    "6e03fc9474c9": {
+      "domanda": "What does this code print?\n\n```python\na = [[1], [2]]\nb = a.copy()\na[0].append(9)\nprint(b)\n```",
       "spiegazione": "copy() performs a shallow copy: the outer list is new, but the inner lists are shared. To copy them, copy.deepcopy is needed.",
       "risposte": [
-        "[[1], [2]]",
-        "[[1, 9], [2]]",
-        "[[1], [2], 9]",
-        "[[9], [2]]"
+        "`[[1], [2]]`",
+        "`[[1, 9], [2]]`",
+        "`[[1], [2], 9]`",
+        "`[[9], [2]]`"
       ]
     },
     "69c462a31447": {
@@ -184,14 +184,14 @@
         "[]"
       ]
     },
-    "056547a10652": {
-      "domanda": "Which exception does this code raise if the file does not exist?\n\nopen(\"non_esiste.txt\")",
+    "0012e8ec99ed": {
+      "domanda": "Which exception does this code raise if the file does not exist?\n\n```python\nopen(\"non_esiste.txt\")\n```",
       "spiegazione": "The default mode is r, which requires the file to exist. FileNotFoundError is a subclass of OSError.",
       "risposte": [
-        "IOError",
-        "ValueError",
-        "FileNotFoundError",
-        "KeyError"
+        "`IOError`",
+        "`ValueError`",
+        "`FileNotFoundError`",
+        "`KeyError`"
       ]
     },
     "de072fb47358": {
@@ -204,14 +204,14 @@
         "The ability to install packages downloaded from PyPI"
       ]
     },
-    "3db0ec3efd2c": {
-      "domanda": "What does this code print?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(repr(f.readline()))",
+    "26f4a888c6f9": {
+      "domanda": "What does this code print?\n\n```python\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(repr(f.readline()))\n```",
       "spiegazione": "readline() returns a line including the final newline character; it is removed with strip().",
       "risposte": [
-        "'uno'",
-        "'uno\\n'",
-        "'uno\\ndue\\n'",
-        "['uno\\n', 'due\\n']"
+        "`'uno'`",
+        "`'uno\\n'`",
+        "`'uno\\ndue\\n'`",
+        "`['uno\\n', 'due\\n']`"
       ]
     },
     "9f1a99058fd6": {
@@ -244,14 +244,14 @@
         "A parameter passed to refuel()"
       ]
     },
-    "d7da9fe73ebf": {
-      "domanda": "What does this code print?\n\nprint(bool(\"False\"))",
+    "07ce4e206a25": {
+      "domanda": "What does this code print?\n\n```python\nprint(bool(\"False\"))\n```",
       "spiegazione": "A string is falsy only if it is empty. \"False\" is not empty, so it is truthy: the content does not matter.",
       "risposte": [
-        "False",
-        "0",
-        "Raises ValueError",
-        "True"
+        "`False`",
+        "`0`",
+        "Raises `ValueError`",
+        "`True`"
       ]
     },
     "0fb888a4d9b4": {
@@ -264,24 +264,24 @@
         "The fifth use case of the system"
       ]
     },
-    "31690bff490c": {
-      "domanda": "What happens when this code is run?\n\nprint(\"Età: \" + 25)",
+    "80990a73d852": {
+      "domanda": "What happens when this code is run?\n\n```python\nprint(\"Età: \" + 25)\n```",
       "risposte": [
-        "Raises TypeError",
-        "Prints Età: 25",
-        "Prints Età: 25.0",
-        "Raises ValueError"
+        "Raises `TypeError`",
+        "Prints `Età: 25`",
+        "Prints `Età: 25.0`",
+        "Raises `ValueError`"
       ],
       "spiegazione": "Python is dynamically typed but strongly typed: it does not implicitly convert an int to str. You need str(25) or an f-string."
     },
-    "571ec955e15f": {
-      "domanda": "What happens when executing this code?\n\nimport json\njson.loads(\"{'nome': 'Marco'}\")",
+    "8b5ffd938bc4": {
+      "domanda": "What happens when executing this code?\n\n```python\nimport json\njson.loads(\"{'nome': 'Marco'}\")\n```",
       "spiegazione": "JSON requires double quotes: with single quotes, the text is not valid JSON.",
       "risposte": [
         "Returns a string",
-        "Returns None",
-        "Returns {'nome': 'Marco'}",
-        "Raises JSONDecodeError"
+        "Returns `None`",
+        "Returns `{'nome': 'Marco'}`",
+        "Raises `JSONDecodeError`"
       ]
     },
     "c830c5dc3d44": {
@@ -314,14 +314,14 @@
         "The class (cls)"
       ]
     },
-    "d4cb756cd361": {
-      "domanda": "What does this code print?\n\ndef stats(a, b):\n    return a + b, a * b\nr = stats(3, 4)\nprint(r)",
+    "7a3f1fc8ec60": {
+      "domanda": "What does this code print?\n\n```python\ndef stats(a, b):\n    return a + b, a * b\nr = stats(3, 4)\nprint(r)\n```",
       "spiegazione": "return a + b, a * b returns a single tuple; with s, p = stats(3, 4) it is unpacked.",
       "risposte": [
-        "7",
-        "[7, 12]",
-        "(7, 12)",
-        "7 12"
+        "`7`",
+        "`[7, 12]`",
+        "`(7, 12)`",
+        "`7 12`"
       ]
     },
     "e0c339ad040c": {
@@ -334,14 +334,14 @@
         "Inheritance"
       ]
     },
-    "b9c4a05d3ec3": {
-      "domanda": "What happens when executing this code?\n\nlen = 10\nprint(len(\"ciao\"))",
+    "07d40eb451f9": {
+      "domanda": "What happens when executing this code?\n\n```python\nlen = 10\nprint(len(\"ciao\"))\n```",
       "spiegazione": "Assigning len = 10 shadows the built-in len function: len becomes an int, and an int is not callable.",
       "risposte": [
-        "Prints 4",
-        "Prints 10",
-        "Raises NameError",
-        "Raises TypeError"
+        "Prints `4`",
+        "Prints `10`",
+        "Raises `NameError`",
+        "Raises `TypeError`"
       ]
     },
     "e94a3e1bee91": {
@@ -354,24 +354,24 @@
         "No need to know the notation"
       ]
     },
-    "27e992e1c1a9": {
-      "domanda": "What does this code print?\n\nwith open(\"dati.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ciao\")\nprint(f.closed)",
+    "e73a543af072": {
+      "domanda": "What does this code print?\n\n```python\nwith open(\"dati.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ciao\")\nprint(f.closed)\n```",
       "spiegazione": "The `with` statement uses a context manager that closes the file upon exiting the block, even in case of an error.",
       "risposte": [
-        "True",
-        "False",
-        "ValueError",
-        "None"
+        "`True`",
+        "`False`",
+        "`ValueError`",
+        "`None`"
       ]
     },
-    "8b3a37c0903d": {
-      "domanda": "What does this code print?\n\nprint(type({}).__name__)",
+    "d65e2f8dbb4d": {
+      "domanda": "What does this code print?\n\n```python\nprint(type({}).__name__)\n```",
       "spiegazione": "{} is an empty dictionary. An empty set is written as set().",
       "risposte": [
-        "set",
-        "dict",
-        "tuple",
-        "list"
+        "`set`",
+        "`dict`",
+        "`tuple`",
+        "`list`"
       ]
     },
     "c06f2035150c": {
@@ -384,24 +384,24 @@
         "PEP 8"
       ]
     },
-    "945c097b0147": {
-      "domanda": "What does this code print?\n\ndef aggiungi(voce, lista=[]):\n    lista.append(voce)\n    return lista\naggiungi(\"a\")\nprint(aggiungi(\"b\"))",
+    "d10bf181702a": {
+      "domanda": "What does this code print?\n\n```python\ndef aggiungi(voce, lista=[]):\n    lista.append(voce)\n    return lista\naggiungi(\"a\")\nprint(aggiungi(\"b\"))\n```",
       "spiegazione": "The default value is evaluated only once, when def is executed: the list is shared between calls. Fix: lista=None and lista = [] inside.",
       "risposte": [
-        "[]",
-        "['a', 'b']",
-        "['b']",
-        "['a']"
+        "`[]`",
+        "`['a', 'b']`",
+        "`['b']`",
+        "`['a']`"
       ]
     },
-    "227540db065f": {
-      "domanda": "What happens with the second open() call in \"x\" mode?\n\nimport os\nif os.path.exists(\"unico.txt\"):\n    os.remove(\"unico.txt\")\nopen(\"unico.txt\", \"x\").close()\nopen(\"unico.txt\", \"x\")",
+    "e6ed6c2893b4": {
+      "domanda": "What happens with the second open() call in \"x\" mode?\n\n```python\nimport os\nif os.path.exists(\"unico.txt\"):\n    os.remove(\"unico.txt\")\nopen(\"unico.txt\", \"x\").close()\nopen(\"unico.txt\", \"x\")\n```",
       "spiegazione": "The \"x\" mode creates a new file only: if the file already exists, it raises FileExistsError.",
       "risposte": [
         "The text is appended to the end",
-        "Raises PermissionError",
+        "Raises `PermissionError`",
         "The file is overwritten",
-        "Raises FileExistsError"
+        "Raises `FileExistsError`"
       ]
     },
     "ddc8b9a02980": {
@@ -424,24 +424,24 @@
         "With raise followed by a string"
       ]
     },
-    "1e35987a3d1a": {
-      "domanda": "What does this code print?\n\nimport json\nprint(json.dumps({1: True, \"x\": None}))",
+    "fcf8cd73be9f": {
+      "domanda": "What does this code print?\n\n```python\nimport json\nprint(json.dumps({1: True, \"x\": None}))\n```",
       "spiegazione": "In JSON, keys are always strings, True becomes true, and None becomes null; double quotes are used.",
       "risposte": [
-        "{\"1\": true, \"x\": null}",
-        "{1: true, 'x': null}",
-        "{\"1\": True, \"x\": None}",
-        "{1: True, 'x': None}"
+        "`{\"1\": true, \"x\": null}`",
+        "`{1: true, 'x': null}`",
+        "`{\"1\": True, \"x\": None}`",
+        "`{1: True, 'x': None}`"
       ]
     },
-    "b647e25b8ad3": {
-      "domanda": "What does this code print?\n\nprint(-7 % 2)",
+    "431859e7638b": {
+      "domanda": "What does this code print?\n\n```python\nprint(-7 % 2)\n```",
       "spiegazione": "The remainder follows integer division such that (a // b) * b + a % b == a: (-4)*2 + 1 = -7.",
       "risposte": [
-        "1",
-        "-3",
-        "0",
-        "-1"
+        "`1`",
+        "`-3`",
+        "`0`",
+        "`-1`"
       ]
     },
     "2f7dd909f599": {
@@ -454,75 +454,75 @@
         "The class itself, shared among all instances"
       ]
     },
-    "2804509fc2af": {
-      "domanda": "Which exception does this code raise?\n\ncontatore = 0\ndef incrementa():\n    contatore += 1\nincrementa()",
+    "27ab86e41965": {
+      "domanda": "Which exception does this code raise?\n\n```python\ncontatore = 0\ndef incrementa():\n    contatore += 1\nincrementa()\n```",
       "spiegazione": "The assignment makes contatore local to the function, and += tries to read it before assigning a value. global contatore is needed.",
       "risposte": [
-        "SyntaxError",
-        "NameError",
-        "TypeError",
-        "UnboundLocalError"
+        "`SyntaxError`",
+        "`NameError`",
+        "`TypeError`",
+        "`UnboundLocalError`"
       ]
     },
-    "ecbc1ce71d33": {
-      "domanda": "What does this code print?\n\nprint(\"-\".join([\"a\", \"b\", \"c\"]))",
+    "0bf4f6dfc2f4": {
+      "domanda": "What does this code print?\n\n```python\nprint(\"-\".join([\"a\", \"b\", \"c\"]))\n```",
       "spiegazione": "join is a method of the separator: it joins the elements of the list by placing the separator only between each element.",
       "risposte": [
-        "a-b-c",
-        "['a', 'b', 'c']",
-        "-a-b-c-",
-        "abc"
+        "`a-b-c`",
+        "`['a', 'b', 'c']`",
+        "`-a-b-c-`",
+        "`abc`"
       ]
     },
-    "3e5d6fc4e559": {
-      "domanda": "What does this code print?\n\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)",
+    "f28c2ff79a80": {
+      "domanda": "What does this code print?\n\n```python\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)\n```",
       "spiegazione": "== compares values (which are equal), while is checks identity: they are two distinct lists in memory.",
       "risposte": [
-        "False False",
-        "True False",
-        "False True",
-        "True True"
+        "`False False`",
+        "`True False`",
+        "`False True`",
+        "`True True`"
       ]
     },
-    "a913a6e65019": {
-      "domanda": "What does this code print?\n\nprint(all([]), any([]))",
+    "aa6a59804b06": {
+      "domanda": "What does this code print?\n\n```python\nprint(all([]), any([]))\n```",
       "spiegazione": "all() is true if no element is false (vacuously true for an empty list); any() is true if at least one element is true.",
       "risposte": [
-        "True False",
-        "Raises ValueError: empty list",
-        "True True",
-        "False True"
+        "`True False`",
+        "Raises `ValueError`: empty list",
+        "`True True`",
+        "`False True`"
       ]
     },
-    "cf7aa85932fc": {
-      "domanda": "What does this code print?\n\nprice = 49.99\nprint(f\"{price * 3:.2f}\")",
+    "9aae93935be0": {
+      "domanda": "What does this code print?\n\n```python\nprice = 49.99\nprint(f\"{price * 3:.2f}\")\n```",
       "spiegazione": "In an f-string, any expression can be placed between braces; :.2f formats it with two decimal places.",
       "risposte": [
-        "149.97",
-        "149.9700",
-        "149.970000",
-        "150.0"
+        "`149.97`",
+        "`149.9700`",
+        "`149.970000`",
+        "`150.0`"
       ]
     },
-    "9c9720f9edae": {
-      "domanda": "What does this code print?\n\ndef f():\n    return 0\nprint(\"A\" if f else \"B\", \"A\" if f() else \"B\")",
+    "68821c94c49e": {
+      "domanda": "What does this code print?\n\n```python\ndef f():\n    return 0\nprint(\"A\" if f else \"B\", \"A\" if f() else \"B\")\n```",
       "spiegazione": "A describes the behavior of `f` without parentheses, which is the function object and always evaluates to true; B describes the behavior of `f()`, which executes the function and returns 0, which is false.",
       "risposte": [
-        "B A",
-        "A B",
-        "B B",
-        "A A"
+        "`B A`",
+        "`A B`",
+        "`B B`",
+        "`A A`"
       ]
     },
-    "375f760a12e7": {
+    "26aa929a5e33": {
       "domanda": "Between which markers is a PlantUML diagram written?",
       "risposte": [
-        "@startuml and @enduml",
-        "```uml and ```",
-        "BEGIN and END",
-        "<uml> and </uml>"
+        "`@startuml` and `@enduml`",
+        "`[uml]` and `[/uml]`",
+        "`BEGIN` and `END`",
+        "`<uml>` and `</uml>`"
       ],
-      "spiegazione": "The source lives in a .puml file; to turn it into an image you need a renderer (a PlantUML server, or Java + Graphviz)."
+      "spiegazione": "The source lives in a `.puml` file; to turn it into an image you need a renderer (a PlantUML server, or Java + Graphviz)."
     },
     "60799f69e5c5": {
       "domanda": "What type of value does input() return?",
@@ -554,14 +554,14 @@
         "That without abstraction, the user of the class must know all its internal details, making the code fragile"
       ]
     },
-    "8377e0ba5afa": {
-      "domanda": "What does this code print?\n\ndef modifica(lista):\n    lista.append(99)\na = [1, 2]\nmodifica(a)\nprint(a)",
+    "2fae0353b1c6": {
+      "domanda": "What does this code print?\n\n```python\ndef modifica(lista):\n    lista.append(99)\na = [1, 2]\nmodifica(a)\nprint(a)\n```",
       "spiegazione": "Python passes by object reference: the function receives the same list, and the modification (mutable) is visible outside.",
       "risposte": [
-        "[99]",
-        "[1, 2]",
-        "[1, 2, 99]",
-        "None"
+        "`[99]`",
+        "`[1, 2]`",
+        "`[1, 2, 99]`",
+        "`None`"
       ]
     },
     "d1e392f66801": {
@@ -584,24 +584,24 @@
         "Truncates it and rewrites it"
       ]
     },
-    "a86fae66c909": {
-      "domanda": "What happens when executing this code?\n\nprint(int(\"3.5\"))",
+    "3871892d5740": {
+      "domanda": "What happens when executing this code?\n\n```python\nprint(int(\"3.5\"))\n```",
       "spiegazione": "int() on a string only accepts an integer: \"3.5\" is not one. You need int(float(\"3.5\")).",
       "risposte": [
-        "Prints 3.5",
-        "Prints 3",
-        "Prints 4",
-        "Raises ValueError"
+        "Prints `3.5`",
+        "Prints `3`",
+        "Prints `4`",
+        "Raises `ValueError`"
       ]
     },
-    "0ddfaf506d4c": {
-      "domanda": "What does this code print?\n\nprint(0.1 + 0.2 == 0.3)",
+    "e0e18fb569fc": {
+      "domanda": "What does this code print?\n\n```python\nprint(0.1 + 0.2 == 0.3)\n```",
       "spiegazione": "0.1 + 0.2 evaluates to 0.30000000000000004: IEEE 754 floats are approximated in binary. Use math.isclose() for comparison.",
       "risposte": [
-        "False",
-        "0.3",
-        "True",
-        "0.30000000000000004"
+        "`False`",
+        "`0.3`",
+        "`True`",
+        "`0.30000000000000004`"
       ]
     },
     "cd075ba58c03": {
@@ -624,53 +624,53 @@
         "To assign a module variable"
       ]
     },
-    "948066ba926e": {
-      "domanda": "What does this code print?\n\ndef incrementa(n):\n    n += 1\nx = 5\nincrementa(x)\nprint(x)",
+    "bacfc6e396ea": {
+      "domanda": "What does this code print?\n\n```python\ndef incrementa(n):\n    n += 1\nx = 5\nincrementa(x)\nprint(x)\n```",
       "spiegazione": "Integers are immutable: n += 1 creates a new object bound only to the local name n, and x remains 5.",
       "risposte": [
-        "UnboundLocalError",
-        "5",
-        "6",
-        "None"
+        "`UnboundLocalError`",
+        "`5`",
+        "`6`",
+        "`None`"
       ]
     },
-    "8672eceb2aea": {
-      "domanda": "What does this code print?\n\nprint(list(dict.fromkeys([3, 1, 3, 2, 1])))",
+    "e4c314da436e": {
+      "domanda": "What does this code print?\n\n```python\nprint(list(dict.fromkeys([3, 1, 3, 2, 1])))\n```",
       "spiegazione": "dict.fromkeys removes duplicates while preserving the order of first appearance, because dictionaries remember insertion order.",
       "risposte": [
-        "[3, 1, 2]",
-        "[1, 2, 3]",
-        "[3, 2, 1]",
-        "[3, 1, 3, 2, 1]"
+        "`[3, 1, 2]`",
+        "`[1, 2, 3]`",
+        "`[3, 2, 1]`",
+        "`[3, 1, 3, 2, 1]`"
       ]
     },
-    "e8f60a46aad0": {
-      "domanda": "What does this code print?\n\nfor n in [3, 5, 7]:\n    if n % 2 == 0:\n        print(\"pari\")\n        break\nelse:\n    print(\"nessun pari\")",
+    "6e033372b781": {
+      "domanda": "What does this code print?\n\n```python\nfor n in [3, 5, 7]:\n    if n % 2 == 0:\n        print(\"pari\")\n        break\nelse:\n    print(\"nessun pari\")\n```",
       "spiegazione": "The else block of a loop is executed only if the loop completes without encountering a break.",
       "risposte": [
-        "nessun pari",
+        "`nessun pari`",
         "Niente",
-        "pari e poi nessun pari",
-        "pari"
+        "`pari` and then `nessun pari`",
+        "`pari`"
       ]
     },
-    "4d56e6f83a47": {
-      "domanda": "What does this code print?\n\nd = {\"a\": 1, \"b\": 2}\nd.update({\"b\": 20, \"c\": 3})\nprint(d.pop(\"a\"), d)",
+    "468c4612802a": {
+      "domanda": "What does this code print?\n\n```python\nd = {\"a\": 1, \"b\": 2}\nd.update({\"b\": 20, \"c\": 3})\nprint(d.pop(\"a\"), d)\n```",
       "spiegazione": "update overwrites existing keys and adds new ones; pop removes the key and returns its value.",
       "risposte": [
-        "1 {'b': 2, 'c': 3}",
-        "1 {'b': 20, 'c': 3}",
-        "{'a': 1}",
-        "a {'b': 20, 'c': 3}"
+        "`1 {'b': 2, 'c': 3}`",
+        "`1 {'b': 20, 'c': 3}`",
+        "`{'a': 1}`",
+        "`a {'b': 20, 'c': 3}`"
       ]
     },
-    "1a29a80a78fe": {
-      "domanda": "What does this code print?\n\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")",
+    "9286bbfcc120": {
+      "domanda": "What does this code print?\n\n```python\nfor n in range(10):\n    if n % 2 == 0:\n        continue\n    if n > 6:\n        break\n    print(n, end=\" \")\n```",
       "risposte": [
-        "1 3 5",
-        "1 3 5 7 9",
-        "1 3 5 7",
-        "0 2 4 6"
+        "`1 3 5`",
+        "`1 3 5 7 9`",
+        "`1 3 5 7`",
+        "`0 2 4 6`"
       ],
       "spiegazione": "continue skips the even numbers; at the first odd number greater than 6 (that is, 7), break exits the loop before the print."
     },
@@ -694,14 +694,14 @@
         "A class that intercepts and handles all exceptions of the program"
       ]
     },
-    "613dd47b9d31": {
-      "domanda": "Which exception does this code raise?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"SELECT * FROM inesistente\")",
+    "db6926ab21f1": {
+      "domanda": "Which exception does this code raise?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"SELECT * FROM inesistente\")\n```",
       "spiegazione": "OperationalError: nonexistent table or SQL error. IntegrityError, on the other hand, is for a violated constraint (NOT NULL, UNIQUE, CHECK).",
       "risposte": [
-        "sqlite3.OperationalError",
-        "KeyError",
-        "sqlite3.IntegrityError",
-        "FileNotFoundError"
+        "`sqlite3.OperationalError`",
+        "`KeyError`",
+        "`sqlite3.IntegrityError`",
+        "`FileNotFoundError`"
       ]
     },
     "cab76a2e605a": {
@@ -734,14 +734,14 @@
         "With duck typing or with an ABC that has only abstract methods"
       ]
     },
-    "d0965e5e48c0": {
-      "domanda": "What does this code print?\n\nn = 7\nprint(\"pari\" if n % 2 == 0 else \"dispari\")",
+    "786d82de1a21": {
+      "domanda": "What does this code print?\n\n```python\nn = 7\nprint(\"pari\" if n % 2 == 0 else \"dispari\")\n```",
       "spiegazione": "It is the conditional expression (Python's \"ternary\"): value_if_true if condition else value_if_false.",
       "risposte": [
-        "dispari",
-        "1",
-        "True",
-        "pari"
+        "`dispari`",
+        "`1`",
+        "`True`",
+        "`pari`"
       ]
     },
     "46c1bad140d3": {
@@ -764,34 +764,34 @@
         "Automatic conversion between compatible types"
       ]
     },
-    "4f477f046fb1": {
-      "domanda": "Which exception does this code raise?\n\nd = {\"a\": 1}\nprint(d[\"b\"])",
+    "efc018490f10": {
+      "domanda": "Which exception does this code raise?\n\n```python\nd = {\"a\": 1}\nprint(d[\"b\"])\n```",
       "spiegazione": "Accessing a missing key with square brackets raises KeyError; d.get(\"b\") would return None.",
       "risposte": [
-        "ValueError",
-        "IndexError",
-        "KeyError",
-        "NameError"
+        "`ValueError`",
+        "`IndexError`",
+        "`KeyError`",
+        "`NameError`"
       ]
     },
-    "e65af168651f": {
-      "domanda": "What does this code print?\n\nx = 3\nwhile x > 0:\n    x -= 1\nprint(x)",
+    "9e3499de418b": {
+      "domanda": "What does this code print?\n\n```python\nx = 3\nwhile x > 0:\n    x -= 1\nprint(x)\n```",
       "spiegazione": "The loop continues as long as x > 0: it stops when x equals 0, which is the value printed after the loop.",
       "risposte": [
-        "1",
-        "3",
-        "0",
-        "-1"
+        "`1`",
+        "`3`",
+        "`0`",
+        "`-1`"
       ]
     },
-    "71e8b3ba1f14": {
-      "domanda": "What does this code print?\n\ngriglia = [[0] * 2] * 2\ngriglia[0][0] = 1\nprint(griglia)",
+    "357f4f2c9d3c": {
+      "domanda": "What does this code print?\n\n```python\ngriglia = [[0] * 2] * 2\ngriglia[0][0] = 1\nprint(griglia)\n```",
       "spiegazione": "[[0] * 2] * 2 creates two references to the same row. Distinct rows: [[0] * 2 for _ in range(2)].",
       "risposte": [
-        "[[1, 1], [0, 0]]",
-        "[[1, 0], [1, 0]]",
-        "[[1, 0], [0, 0]]",
-        "[[1, 0]]"
+        "`[[1, 1], [0, 0]]`",
+        "`[[1, 0], [1, 0]]`",
+        "`[[1, 0], [0, 0]]`",
+        "`[[1, 0]]`"
       ]
     },
     "fb295f16b393": {
@@ -844,24 +844,24 @@
         "To run Python programs on machines where the interpreter is not installed"
       ]
     },
-    "a44014050680": {
-      "domanda": "What does this code print?\n\nimport sqlite3, os\nif os.path.exists(\"prova.db\"):\n    os.remove(\"prova.db\")\nconn = sqlite3.connect(\"prova.db\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.commit()\nconn.execute(\"INSERT INTO t VALUES (1)\")\nconn.close()\nconn = sqlite3.connect(\"prova.db\")\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone()[0])",
+    "9c01de568ab4": {
+      "domanda": "What does this code print?\n\n```python\nimport sqlite3, os\nif os.path.exists(\"prova.db\"):\n    os.remove(\"prova.db\")\nconn = sqlite3.connect(\"prova.db\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.commit()\nconn.execute(\"INSERT INTO t VALUES (1)\")\nconn.close()\nconn = sqlite3.connect(\"prova.db\")\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone()[0])\n```",
       "spiegazione": "The insertion was not committed with commit(): closing the connection rolls back the transaction.",
       "risposte": [
-        "OperationalError",
-        "0",
-        "None",
-        "1"
+        "`OperationalError`",
+        "`0`",
+        "`None`",
+        "`1`"
       ]
     },
-    "73a5037030b3": {
-      "domanda": "module_a and module_b both define processa_dati(). What does this code print?\n\nopen(\"modulo_a.py\", \"w\").write('def processa_dati(): return \"A\"\\n')\nopen(\"modulo_b.py\", \"w\").write('def processa_dati(): return \"B\"\\n')\nfrom modulo_a import *\nfrom modulo_b import *\nprint(processa_dati())",
+    "19506a8089a9": {
+      "domanda": "module_a and module_b both define processa_dati(). What does this code print?\n\n```python\nopen(\"modulo_a.py\", \"w\").write('def processa_dati(): return \"A\"\\n')\nopen(\"modulo_b.py\", \"w\").write('def processa_dati(): return \"B\"\\n')\nfrom modulo_a import *\nfrom modulo_b import *\nprint(processa_dati())\n```",
       "spiegazione": "The last import * silently overwrites the name imported from the first: a good reason to use explicit imports.",
       "risposte": [
         "Asks which one to choose",
-        "B",
-        "NameError",
-        "A"
+        "`B`",
+        "`NameError`",
+        "`A`"
       ]
     },
     "80ce0eb6f9c4": {
@@ -874,14 +874,14 @@
         "Domain"
       ]
     },
-    "83d225f46c17": {
-      "domanda": "What happens when executing this code?\n\ndef f(*args, c):\n    return sum(args) + c\nprint(f(1, 2, 3))",
+    "b034811695f8": {
+      "domanda": "What happens when executing this code?\n\n```python\ndef f(*args, c):\n    return sum(args) + c\nprint(f(1, 2, 3))\n```",
       "spiegazione": "A parameter defined after *args is keyword-only: all positional arguments are collected into args.",
       "risposte": [
-        "Prints 6",
-        "Prints 5",
-        "Prints 3",
-        "Raises TypeError: c must be passed by name"
+        "Prints `6`",
+        "Prints `5`",
+        "Prints `3`",
+        "Raises `TypeError`: c must be passed by name"
       ]
     },
     "719aeec02cf8": {
@@ -904,14 +904,14 @@
         "They do not allow transactions"
       ]
     },
-    "6f633db44c9e": {
-      "domanda": "What does this code print?\n\nclass Studente:\n    def __init__(self, nome):\n        self.nome = nome\n    def __str__(self):\n        return \"Studente \" + self.nome\nprint(Studente(\"Anna\"))",
+    "fdf3a850a2c0": {
+      "domanda": "What does this code print?\n\n```python\nclass Studente:\n    def __init__(self, nome):\n        self.nome = nome\n    def __str__(self):\n        return \"Studente \" + self.nome\nprint(Studente(\"Anna\"))\n```",
       "spiegazione": "print calls the special __str__ method to obtain the readable representation of the object.",
       "risposte": [
-        "<__main__.Studente object>",
-        "Studente Anna",
-        "Anna",
-        "Studente"
+        "`<__main__.Studente object>`",
+        "`Studente Anna`",
+        "`Anna`",
+        "`Studente`"
       ]
     },
     "1d45750db1ec": {
@@ -924,14 +924,14 @@
         "A use case describes the graphical interface, a scenario the database"
       ]
     },
-    "ca4d5458f528": {
-      "domanda": "What does the file contain after this code?\n\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())",
+    "69e8fdd0b769": {
+      "domanda": "What does the file contain after this code?\n\n```python\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())\n```",
       "spiegazione": "A describes the correct output. writelines, like write, does not add newlines: they must be added explicitly.",
       "risposte": [
-        "MarcoGiulia",
-        "['Marco', 'Giulia']",
+        "`MarcoGiulia`",
+        "`['Marco', 'Giulia']`",
         "Marco and Giulia on two lines",
-        "Marco Giulia"
+        "`Marco Giulia`"
       ]
     },
     "3fb5a449a000": {
@@ -944,54 +944,54 @@
         "The total number of rows in the table"
       ]
     },
-    "1c718ebeda13": {
-      "domanda": "What does this code print?\n\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))",
+    "12083c376be0": {
+      "domanda": "What does this code print?\n\n```python\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))\n```",
       "spiegazione": "append adds a single element (the entire list); extend adds elements one by one.",
       "risposte": [
-        "4 3",
-        "3 4",
-        "3 3",
-        "4 4"
+        "`4 3`",
+        "`3 4`",
+        "`3 3`",
+        "`4 4`"
       ]
     },
-    "ef4428b36644": {
-      "domanda": "What does this code print?\n\nprint(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
+    "083e65f68720": {
+      "domanda": "What does this code print?\n\n```python\nprint(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")\n```",
       "spiegazione": "sep is the separator between arguments (default is a space) and end is the closing character (default is a newline).",
       "risposte": [
-        "a-b-c-!",
-        "a b c!",
-        "abc-!",
-        "a-b-c!"
+        "`a-b-c-!`",
+        "`a b c!`",
+        "`abc-!`",
+        "`a-b-c!`"
       ]
     },
-    "fa9313756b6c": {
-      "domanda": "What does this code print?\n\nprint(type(True) == int, isinstance(True, int))",
+    "94ba6103283a": {
+      "domanda": "What does this code print?\n\n```python\nprint(type(True) == int, isinstance(True, int))\n```",
       "spiegazione": "type() returns the exact class (bool); isinstance() also accepts subclasses, and bool is a subclass of int.",
       "risposte": [
-        "True True",
-        "False False",
-        "False True",
-        "True False"
+        "`True True`",
+        "`False False`",
+        "`False True`",
+        "`True False`"
       ]
     },
-    "84a00c07c387": {
-      "domanda": "What does this code print?\n\nconteggio = {}\nfor p in \"il gatto e il cane\".split():\n    conteggio[p] = conteggio.get(p, 0) + 1\nprint(conteggio[\"il\"])",
+    "9b245e1df426": {
+      "domanda": "What does this code print?\n\n```python\nconteggio = {}\nfor p in \"il gatto e il cane\".split():\n    conteggio[p] = conteggio.get(p, 0) + 1\nprint(conteggio[\"il\"])\n```",
       "spiegazione": "get(p, 0) retrieves the current value or 0 if the key is not yet present: this is the classic idiom for counting frequencies.",
       "risposte": [
-        "1",
-        "2",
-        "0",
-        "KeyError"
+        "`1`",
+        "`2`",
+        "`0`",
+        "`KeyError`"
       ]
     },
-    "31e3de6308b7": {
-      "domanda": "What happens when executing this code?\n\ns = \"ciao\"\ns[0] = \"C\"",
+    "af318375b374": {
+      "domanda": "What happens when executing this code?\n\n```python\ns = \"ciao\"\ns[0] = \"C\"\n```",
       "spiegazione": "Strings do not support item assignment. To \"modify\" them, a new string is created, for example s = \"C\" + s[1:].",
       "risposte": [
-        "Raises IndexError",
-        "s becomes Ciao",
-        "A new string Ciao is created and assigned to s",
-        "Raises TypeError: strings are immutable"
+        "Raises `IndexError`",
+        "`s becomes Ciao`",
+        "A new string `Ciao` is created and assigned to `s`",
+        "Raises `TypeError`: strings are immutable"
       ]
     },
     "e2422c01879f": {
@@ -1014,13 +1014,13 @@
         "With text(), using named parameters like :age"
       ]
     },
-    "78d08d4a4c13": {
-      "domanda": "What does this code print?\n\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)",
+    "2877ff0a820c": {
+      "domanda": "What does this code print?\n\n```python\nclass C:\n    n = 0\na = C()\nb = C()\na.n = 1\nprint(a.n, b.n, C.n)\n```",
       "risposte": [
-        "0 0 0",
-        "1 0 0",
-        "1 1 1",
-        "1 0 1"
+        "`0 0 0`",
+        "`1 0 0`",
+        "`1 1 1`",
+        "`1 0 1`"
       ],
       "spiegazione": "a.n = 1 creates an instance attribute on a, which hides the class attribute; b and C still see the class attribute."
     },
@@ -1054,24 +1054,24 @@
         "An attribute"
       ]
     },
-    "730b9519741d": {
-      "domanda": "What do the two print statements output?\n\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)",
+    "9dfbeba7cd3b": {
+      "domanda": "What do the two print statements output?\n\n```python\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)\n```",
       "spiegazione": "A describes the correct behavior: `add()` registers the object but does not write it to the database; the ID is assigned by the database during the INSERT operation, which occurs at commit (or flush).",
       "risposte": [
-        "0 1",
-        "Raises InvalidRequestError",
-        "None 1",
-        "1 1"
+        "`0 1`",
+        "Raises `InvalidRequestError`",
+        "`None 1`",
+        "`1 1`"
       ]
     },
-    "0e59a407407e": {
-      "domanda": "What does this code print?\n\ndef g():\n    try:\n        return \"try\"\n    finally:\n        print(\"finally\", end=\" \")\nprint(g())",
+    "c874c45e5f41": {
+      "domanda": "What does this code print?\n\n```python\ndef g():\n    try:\n        return \"try\"\n    finally:\n        print(\"finally\", end=\" \")\nprint(g())\n```",
       "spiegazione": "The finally block is executed even when the try block exits via a return statement: it prints first, and then the function returns \"try\".",
       "risposte": [
-        "try finally",
-        "finally",
-        "try",
-        "finally try"
+        "`try finally`",
+        "`finally`",
+        "`try`",
+        "`finally try`"
       ]
     },
     "a19ccc9af5a4": {
@@ -1084,14 +1084,14 @@
         "In the bytecode, but it is not accessible"
       ]
     },
-    "068fb42a7d4b": {
-      "domanda": "What does this code print?\n\ndef dividi(a, b):\n    try:\n        r = a / b\n    except ZeroDivisionError:\n        print(\"zero\", end=\" \")\n    else:\n        print(\"ok\", end=\" \")\n    finally:\n        print(\"fine\", end=\" \")\ndividi(1, 0)",
+    "18f0ce57f51e": {
+      "domanda": "What does this code print?\n\n```python\ndef dividi(a, b):\n    try:\n        r = a / b\n    except ZeroDivisionError:\n        print(\"zero\", end=\" \")\n    else:\n        print(\"ok\", end=\" \")\n    finally:\n        print(\"fine\", end=\" \")\ndividi(1, 0)\n```",
       "spiegazione": "The exception triggers the except block; the else block executes only if the try block does not raise an exception; the finally block always executes.",
       "risposte": [
-        "zero",
-        "ok fine",
-        "zero ok fine",
-        "zero fine"
+        "`zero`",
+        "`ok fine`",
+        "`zero ok fine`",
+        "`zero fine`"
       ]
     },
     "8bfa99317b8f": {
@@ -1114,24 +1114,24 @@
         "Go"
       ]
     },
-    "a9d38703756a": {
-      "domanda": "What types do args and kwargs have inside this function?\n\ndef f(*args, **kwargs):\n    print(type(args).__name__, type(kwargs).__name__)\nf(1, 2, nome=\"Luca\")",
+    "aa35b55fcd63": {
+      "domanda": "What types do args and kwargs have inside this function?\n\n```python\ndef f(*args, **kwargs):\n    print(type(args).__name__, type(kwargs).__name__)\nf(1, 2, nome=\"Luca\")\n```",
       "spiegazione": "*args collects positional arguments into a tuple, **kwargs keyword arguments into a dictionary.",
       "risposte": [
-        "tuple list",
-        "tuple dict",
-        "list dict",
-        "dict tuple"
+        "`tuple list`",
+        "`tuple dict`",
+        "`list dict`",
+        "`dict tuple`"
       ]
     },
-    "2deacb1695ee": {
-      "domanda": "Which exception does this code raise?\n\nnumeri = [1, 2]\nprint(numeri[5])",
+    "289072e58b54": {
+      "domanda": "Which exception does this code raise?\n\n```python\nnumeri = [1, 2]\nprint(numeri[5])\n```",
       "spiegazione": "An out-of-bounds index on a sequence raises IndexError.",
       "risposte": [
-        "ValueError",
-        "IndexError",
-        "KeyError",
-        "None: prints None"
+        "`ValueError`",
+        "`IndexError`",
+        "`KeyError`",
+        "None: prints `None`"
       ]
     },
     "98b35132cf13": {
@@ -1144,24 +1144,24 @@
         "dump is for dictionaries, dumps for lists"
       ]
     },
-    "ee36a88056e1": {
-      "domanda": "What happens when compiling this call?\n\ndef f(a, b):\n    pass\nf(a=1, 2)",
+    "08a9f19cb784": {
+      "domanda": "What happens when compiling this call?\n\n```python\ndef f(a, b):\n    pass\nf(a=1, 2)\n```",
       "spiegazione": "In mixed calls, positional arguments must come before keyword arguments.",
       "risposte": [
-        "Raises SyntaxError",
-        "Works: a is 2 and b is 1",
-        "Raises TypeError at runtime",
-        "Works: a is 1 and b is 2"
+        "Raises `SyntaxError`",
+        "Works: `a` is 2 and `b` is 1",
+        "Raises `TypeError` at runtime",
+        "Works: `a` is 1 and `b` is 2"
       ]
     },
-    "c4c84c41abe2": {
-      "domanda": "What does this code print?\n\nclass Car:\n    def __init__(self):\n        self.__km = 120\nprint(Car()._Car__km)",
+    "df445f72eb1b": {
+      "domanda": "What does this code print?\n\n```python\nclass Car:\n    def __init__(self):\n        self.__km = 120\nprint(Car()._Car__km)\n```",
       "spiegazione": "Privacy with __ is a reinforced convention, not a barrier: the actual name after mangling is _Car__km.",
       "risposte": [
-        "None",
-        "0",
-        "AttributeError",
-        "120"
+        "`None`",
+        "`0`",
+        "`AttributeError`",
+        "`120`"
       ]
     },
     "463e006e192a": {
@@ -1174,8 +1174,8 @@
         "To make the module import faster for others"
       ]
     },
-    "b5968d3fcf4c": {
-      "domanda": "What do the two queries return?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE s(nome TEXT)\")\nconn.executemany(\"INSERT INTO s VALUES (?)\", [(\"Anna\",), (\"Luca\",)])\nnome = \"x' OR '1'='1\"\nprint(len(conn.execute(f\"SELECT * FROM s WHERE nome = '{nome}'\").fetchall()),\n      len(conn.execute(\"SELECT * FROM s WHERE nome = ?\", (nome,)).fetchall()))",
+    "68d7d047332f": {
+      "domanda": "What do the two queries return?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE s(nome TEXT)\")\nconn.executemany(\"INSERT INTO s VALUES (?)\", [(\"Anna\",), (\"Luca\",)])\nnome = \"x' OR '1'='1\"\nprint(len(conn.execute(f\"SELECT * FROM s WHERE nome = '{nome}'\").fetchall()),\n      len(conn.execute(\"SELECT * FROM s WHERE nome = ?\", (nome,)).fetchall()))\n```",
       "spiegazione": "The apostrophe closes the SQL string and OR '1'='1' is always true. With the placeholder, the input is treated as a value.",
       "risposte": [
         "All rows: it is a SQL injection, while the parameterized query returns nothing",
@@ -1214,24 +1214,24 @@
         "Better to prevent than to cure"
       ]
     },
-    "71842d09ccfb": {
-      "domanda": "What does this code print?\n\nprimo, *altri = [10, 20, 30]\nprint(primo, altri)",
+    "c42c24a4d0d8": {
+      "domanda": "What does this code print?\n\n```python\nprimo, *altri = [10, 20, 30]\nprint(primo, altri)\n```",
       "spiegazione": "Unpacking with the asterisk collects all remaining elements into a list.",
       "risposte": [
-        "10 20",
-        "10 (20, 30)",
-        "[10] [20, 30]",
-        "10 [20, 30]"
+        "`10 20`",
+        "`10 (20, 30)`",
+        "`[10] [20, 30]`",
+        "`10 [20, 30]`"
       ]
     },
-    "592167535212": {
-      "domanda": "What does this code print?\n\nprint(round(2.5), round(3.5))",
+    "54d38dba0724": {
+      "domanda": "What does this code print?\n\n```python\nprint(round(2.5), round(3.5))\n```",
       "spiegazione": "round() on .5 cases rounds to the nearest even number (banker's rounding): 2.5 becomes 2, 3.5 becomes 4.",
       "risposte": [
-        "2 4",
-        "2 3",
-        "3 4",
-        "3 3"
+        "`2 4`",
+        "`2 3`",
+        "`3 4`",
+        "`3 3`"
       ]
     },
     "7a74173d42f4": {
@@ -1254,54 +1254,54 @@
         "D to eagerly load related objects"
       ]
     },
-    "fbb5e9906d35": {
-      "domanda": "What does this code print?\n\nclass A:\n    def f(self):\n        print(\"A\", end=\" \")\nclass B(A):\n    def f(self):\n        super().f()\n        print(\"B\", end=\" \")\nB().f()",
+    "408ed3bcc037": {
+      "domanda": "What does this code print?\n\n```python\nclass A:\n    def f(self):\n        print(\"A\", end=\" \")\nclass B(A):\n    def f(self):\n        super().f()\n        print(\"B\", end=\" \")\nB().f()\n```",
       "spiegazione": "This is an override that extends: super().f() first executes the parent's code, then the child adds its own.",
       "risposte": [
-        "A",
-        "B",
-        "B A",
-        "A B"
+        "`A`",
+        "`B`",
+        "`B A`",
+        "`A B`"
       ]
     },
-    "504601e58432": {
-      "domanda": "What does this code print?\n\nprint(issubclass(FileNotFoundError, OSError))",
+    "0c092217b47e": {
+      "domanda": "What does this code print?\n\n```python\nprint(issubclass(FileNotFoundError, OSError))\n```",
       "spiegazione": "Exceptions are classes organized in a hierarchy: FileNotFoundError inherits from OSError, which inherits from Exception.",
       "risposte": [
-        "None",
-        "OSError",
-        "False",
-        "True"
+        "`None`",
+        "`OSError`",
+        "`False`",
+        "`True`"
       ]
     },
-    "9d289aa26eb7": {
-      "domanda": "What does this code print?\n\nprint(type((5)).__name__, type((5,)).__name__)",
+    "d1079228dd1b": {
+      "domanda": "What does this code print?\n\n```python\nprint(type((5)).__name__, type((5,)).__name__)\n```",
       "spiegazione": "The comma creates the tuple, not the parentheses: (5) is an integer, (5,) is a single-element tuple.",
       "risposte": [
-        "int tuple",
-        "tuple int",
-        "int int",
-        "tuple tuple"
+        "`int tuple`",
+        "`tuple int`",
+        "`int int`",
+        "`tuple tuple`"
       ]
     },
-    "1731beca55a2": {
-      "domanda": "What does this code print?\n\nclass A:\n    def chi(self): return \"A\"\nclass B:\n    def chi(self): return \"B\"\nclass C(B, A):\n    pass\nprint(C().chi())",
+    "542660ec3a85": {
+      "domanda": "What does this code print?\n\n```python\nclass A:\n    def chi(self): return \"A\"\nclass B:\n    def chi(self): return \"B\"\nclass C(B, A):\n    pass\nprint(C().chi())\n```",
       "spiegazione": "With multiple inheritance, the first class in the MRO that defines the method wins: B, because it is listed first.",
       "risposte": [
-        "TypeError",
-        "A",
-        "B",
-        "AB"
+        "`TypeError`",
+        "`A`",
+        "`B`",
+        "`AB`"
       ]
     },
-    "58f4c105fd70": {
-      "domanda": "What does this code print?\n\ndef area(base, altezza):\n    return base * altezza\nmisure = [3, 5]\nprint(area(*misure))",
+    "4f52238e411d": {
+      "domanda": "What does this code print?\n\n```python\ndef area(base, altezza):\n    return base * altezza\nmisure = [3, 5]\nprint(area(*misure))\n```",
       "spiegazione": "In the call, * unpacks the list into positional arguments: area(3, 5).",
       "risposte": [
-        "15",
-        "TypeError",
-        "[3, 5]",
-        "35"
+        "`15`",
+        "`TypeError`",
+        "`[3, 5]`",
+        "`35`"
       ]
     },
     "e35093311e88": {
@@ -1314,54 +1314,54 @@
         "Call session.rollback() before using the Session again"
       ]
     },
-    "fb30ee941a19": {
-      "domanda": "What does this code print?\n\nprint(\"10\" < \"2\")",
+    "2045a24f748a": {
+      "domanda": "What does this code print?\n\n```python\nprint(\"10\" < \"2\")\n```",
       "spiegazione": "Strings are compared lexicographically, character by character: \"1\" comes before \"2\".",
       "risposte": [
-        "None",
-        "True",
-        "False",
-        "TypeError"
+        "`None`",
+        "`True`",
+        "`False`",
+        "`TypeError`"
       ]
     },
-    "398341018427": {
-      "domanda": "What does this code print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nwith conn:\n    conn.execute(\"INSERT INTO t VALUES (1)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+    "a454356e6ad9": {
+      "domanda": "What does this code print?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nwith conn:\n    conn.execute(\"INSERT INTO t VALUES (1)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())\n```",
       "spiegazione": "The connection used with the `with` statement commits (or rolls back on error) but does not close: it can continue to be used.",
       "risposte": [
-        "ProgrammingError: connection closed",
-        "(1,)",
-        "1",
-        "None"
+        "`ProgrammingError`: connection closed",
+        "`(1,)`",
+        "`1`",
+        "`None`"
       ]
     },
-    "1fb633e92e05": {
-      "domanda": "What does this code print?\n\nprint(int(-3.99))",
+    "2e558efe928b": {
+      "domanda": "What does this code print?\n\n```python\nprint(int(-3.99))\n```",
       "spiegazione": "Applying int() to a float truncates toward zero: it removes the decimal part without rounding.",
       "risposte": [
-        "-3",
-        "3",
-        "-3.99 (unchanged)",
-        "-4"
+        "`-3`",
+        "`3`",
+        "`-3.99 (unchanged)`",
+        "`-4`"
       ]
     },
-    "d9f9bf00ba8e": {
-      "domanda": "What does this code print?\n\nfrom decimal import Decimal\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))",
+    "08a2967bfce6": {
+      "domanda": "What does this code print?\n\n```python\nfrom decimal import Decimal\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))\n```",
       "spiegazione": "The decimal module performs exact decimal arithmetic, provided the values are created from strings. print displays the human-readable form.",
       "risposte": [
-        "0.3",
-        "0.30000000000000004",
-        "0.30",
-        "Decimal('0.3')"
+        "`0.3`",
+        "`0.30000000000000004`",
+        "`0.30`",
+        "`Decimal('0.3')`"
       ]
     },
-    "ce8785041f26": {
-      "domanda": "What does this code print?\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    f.read()\n    print(repr(f.read()))",
+    "58cc435503b2": {
+      "domanda": "What does this code print?\n\n```python\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"uno\\ndue\\n\")\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    f.read()\n    print(repr(f.read()))\n```",
       "spiegazione": "A file has a current position: after the first read() it is at the end, and a second read() returns an empty string.",
       "risposte": [
-        "''",
-        "EOFError",
-        "'uno\\ndue\\n'",
-        "None"
+        "`''`",
+        "`EOFError`",
+        "`'uno\\ndue\\n'`",
+        "`None`"
       ]
     },
     "84e67f6658e1": {
@@ -1374,14 +1374,14 @@
         "Maps classes to tables"
       ]
     },
-    "e04a0f9b1234": {
-      "domanda": "What does this code print?\n\ns = \"Python\"\nprint(s[1:4])",
+    "488854a0f058": {
+      "domanda": "What does this code print?\n\n```python\ns = \"Python\"\nprint(s[1:4])\n```",
       "spiegazione": "Slicing includes the start index (1, 'y') and excludes the end index (4, 'o').",
       "risposte": [
-        "ytho",
-        "Pyt",
-        "pyth",
-        "yth"
+        "`ytho`",
+        "`Pyt`",
+        "`pyth`",
+        "`yth`"
       ]
     },
     "5ac331df8787": {
@@ -1394,14 +1394,14 @@
         "In the teachers table (1 side)"
       ]
     },
-    "a7633ee4bc73": {
-      "domanda": "What does this code print?\n\nprint(len({1, 2, 2, 3, 3, 3}))",
+    "ced91385a023": {
+      "domanda": "What does this code print?\n\n```python\nprint(len({1, 2, 2, 3, 3, 3}))\n```",
       "spiegazione": "A set contains only unique elements: duplicates are removed.",
       "risposte": [
-        "3",
-        "1",
-        "4",
-        "6"
+        "`3`",
+        "`1`",
+        "`4`",
+        "`6`"
       ]
     },
     "adc574c0cbad": {
@@ -1414,14 +1414,14 @@
         "tuple"
       ]
     },
-    "be1d35a1d37a": {
-      "domanda": "What does the last line print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,), (4,)])\ncur = conn.execute(\"SELECT x FROM t ORDER BY x\")\ncur.fetchone()\ncur.fetchmany(2)\nprint(cur.fetchall())",
+    "a9b4c1de6bd1": {
+      "domanda": "What does the last line print?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,), (4,)])\ncur = conn.execute(\"SELECT x FROM t ORDER BY x\")\ncur.fetchone()\ncur.fetchmany(2)\nprint(cur.fetchall())\n```",
       "spiegazione": "The cursor advances: fetchone retrieves 1, fetchmany(2) retrieves 2 and 3, and fetchall returns only the remaining rows.",
       "risposte": [
-        "[(4,)]",
-        "[(3,), (4,)]",
-        "[(1,), (2,), (3,), (4,)]",
-        "[]"
+        "`[(4,)]`",
+        "`[(3,), (4,)]`",
+        "`[(1,), (2,), (3,), (4,)]`",
+        "`[]`"
       ]
     },
     "294c321b17a5": {
@@ -1434,14 +1434,14 @@
         "import.somma(5, 3)"
       ]
     },
-    "e8e416536b5c": {
-      "domanda": "What happens when executing this code?\n\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)",
+    "5aeb8bb0cee2": {
+      "domanda": "What happens when executing this code?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)\n```",
       "spiegazione": "Studente redefines __init__ without calling super().__init__(nome): the nome attribute is never created.",
       "risposte": [
-        "Prints WSA",
-        "Prints Anna",
-        "Raises AttributeError",
-        "Prints None"
+        "Prints `WSA`",
+        "Prints `Anna`",
+        "Raises `AttributeError`",
+        "Prints `None`"
       ]
     },
     "555d784d3e6b": {
@@ -1484,24 +1484,24 @@
         "Local, Enclosing, Global, Built-in"
       ]
     },
-    "a15966ff74e3": {
-      "domanda": "What happens when executing this code?\n\nd = {[1, 2]: \"x\"}",
+    "b666e9bb28f1": {
+      "domanda": "What happens when executing this code?\n\n```python\nd = {[1, 2]: \"x\"}\n```",
       "spiegazione": "Dictionary keys must be immutable (hashable): a tuple is fine, a list is not.",
       "risposte": [
         "Converts the list to a tuple",
-        "Raises KeyError",
-        "Creates a dictionary with key [1, 2]",
-        "Raises TypeError: a list is not hashable"
+        "Raises `KeyError`",
+        "Creates a dictionary with key `[1, 2]`",
+        "Raises `TypeError`: a list is not hashable"
       ]
     },
-    "a85743a1d33d": {
-      "domanda": "What happens when calling c.somma(1, 2)?\n\nclass Calcolatrice:\n    def somma(self, a, b):\n        return a + b\n    def somma(self, a, b, c):\n        return a + b + c\nc = Calcolatrice()\nprint(c.somma(1, 2))",
+    "cb2d499817a1": {
+      "domanda": "What happens when calling c.somma(1, 2)?\n\n```python\nclass Calcolatrice:\n    def somma(self, a, b):\n        return a + b\n    def somma(self, a, b, c):\n        return a + b + c\nc = Calcolatrice()\nprint(c.somma(1, 2))\n```",
       "spiegazione": "Python does not support method overloading: the second definition replaces the first. This can be simulated using default parameters or *args.",
       "risposte": [
-        "Prints 3",
+        "Prints `3`",
         "Python selects the first method",
-        "Raises SyntaxError",
-        "Raises TypeError: missing argument c"
+        "Raises `SyntaxError`",
+        "Raises `TypeError`: missing argument c"
       ]
     },
     "26d65b842ab7": {
@@ -1534,34 +1534,34 @@
         "The module name"
       ]
     },
-    "a637ced5ac43": {
-      "domanda": "What does this code print?\n\nd = {\"a\": 1, \"b\": 2}\nprint(1 in d, \"a\" in d)",
+    "99ffc74e5f7a": {
+      "domanda": "What does this code print?\n\n```python\nd = {\"a\": 1, \"b\": 2}\nprint(1 in d, \"a\" in d)\n```",
       "spiegazione": "The `in` operator on a dictionary checks keys, not values. To check values: 1 in d.values().",
       "risposte": [
-        "False False",
-        "True True",
-        "False True",
-        "True False"
+        "`False False`",
+        "`True True`",
+        "`False True`",
+        "`True False`"
       ]
     },
-    "072bddc6447e": {
-      "domanda": "What does this code print?\n\nprint(True + True)",
+    "970ae82429ef": {
+      "domanda": "What does this code print?\n\n```python\nprint(True + True)\n```",
       "spiegazione": "bool is a subclass of int: True equals 1 and False equals 0.",
       "risposte": [
-        "True",
-        "1",
-        "2",
-        "TrueTrue"
+        "`True`",
+        "`1`",
+        "`2`",
+        "`TrueTrue`"
       ]
     },
-    "289f902a2d53": {
-      "domanda": "What does fetchone() return when there are no more rows?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())",
+    "eb07e4495dc1": {
+      "domanda": "What does fetchone() return when there are no more rows?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nprint(conn.execute(\"SELECT x FROM t\").fetchone())\n```",
       "spiegazione": "fetchone returns None when results are exhausted; fetchall would return an empty list.",
       "risposte": [
-        "Raises IndexError",
-        "An empty tuple ()",
-        "None",
-        "Raises StopIteration"
+        "Raises `IndexError`",
+        "An empty tuple `()`",
+        "`None`",
+        "Raises `StopIteration`"
       ]
     },
     "82004610c147": {
@@ -1574,24 +1574,24 @@
         "npm"
       ]
     },
-    "207b74f30db6": {
-      "domanda": "What does this code print?\n\ndef saluta(nome=\"ospite\"):\n    return \"Ciao \" + nome\nprint(saluta(), saluta(\"Anna\"))",
+    "c5758c0935ef": {
+      "domanda": "What does this code print?\n\n```python\ndef saluta(nome=\"ospite\"):\n    return \"Ciao \" + nome\nprint(saluta(), saluta(\"Anna\"))\n```",
       "spiegazione": "A parameter with a default value can be omitted: in that case, the default value is used.",
       "risposte": [
-        "Ciao  Ciao Anna",
-        "Ciao Anna Ciao Anna",
-        "Ciao ospite Ciao Anna",
-        "TypeError"
+        "`Ciao  Ciao Anna`",
+        "`Ciao Anna Ciao Anna`",
+        "`Ciao ospite Ciao Anna`",
+        "`TypeError`"
       ]
     },
-    "e8b3c6ec7c4d": {
-      "domanda": "What does this code print?\n\ndef quadrato(x):\n    return x * x\nf = quadrato\nprint(f(4), list(map(quadrato, [1, 2])))",
+    "188727a4d3a3": {
+      "domanda": "What does this code print?\n\n```python\ndef quadrato(x):\n    return x * x\nf = quadrato\nprint(f(4), list(map(quadrato, [1, 2])))\n```",
       "spiegazione": "Functions are objects: they can be assigned to variables and passed to other functions, such as map.",
       "risposte": [
-        "quadrato [1, 4]",
-        "TypeError",
-        "16 [1, 4]",
-        "16 [2, 4]"
+        "`quadrato [1, 4]`",
+        "`TypeError`",
+        "`16 [1, 4]`",
+        "`16 [2, 4]`"
       ]
     },
     "b14c8a3720ae": {
@@ -1604,13 +1604,13 @@
         "Only if an unhandled exception was raised"
       ]
     },
-    "8ff9f24dcad3": {
-      "domanda": "What type do the values read with csv.reader have?\n\nimport csv\nwith open(\"v.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    csv.writer(f).writerow([1, 2.5])\nwith open(\"v.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    riga = next(csv.reader(f))\nprint(riga)",
+    "7f8076a81278": {
+      "domanda": "What type do the values read with csv.reader have?\n\n```python\nimport csv\nwith open(\"v.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    csv.writer(f).writerow([1, 2.5])\nwith open(\"v.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    riga = next(csv.reader(f))\nprint(riga)\n```",
       "spiegazione": "The csv module reads everything as str: conversions are the responsibility of the program. Pandas, on the other hand, recognizes the types.",
       "risposte": [
-        "Numbers: [1, 2.5]",
-        "A tuple: (1, 2.5)",
-        "Strings: ['1', '2.5']",
+        "`Numbers: [1, 2.5]`",
+        "A tuple: `(1, 2.5)`",
+        "`Strings: ['1', '2.5']`",
         "A dictionary"
       ]
     },
@@ -1634,14 +1634,14 @@
         "Given <context>, when <event>, then <result>"
       ]
     },
-    "29e5a3e23cd2": {
-      "domanda": "What does this code print?\n\nprint(0 and 20, 0 or 20)",
+    "20cb765117d3": {
+      "domanda": "What does this code print?\n\n```python\nprint(0 and 20, 0 or 20)\n```",
       "spiegazione": "and and or return one of the operands: 0 and 20 returns the first falsy value (0), 0 or 20 returns the first truthy value (20).",
       "risposte": [
-        "False True",
-        "0 20",
-        "0 True",
-        "False 20"
+        "`False True`",
+        "`0 20`",
+        "`0 True`",
+        "`False 20`"
       ]
     },
     "fabfef981892": {
@@ -1654,14 +1654,14 @@
         "Because a module can contain at most one class inside it"
       ]
     },
-    "79f3d3ec9703": {
-      "domanda": "What does this code print?\n\nvoti = [28, 24, 30]\nvoti = voti.sort()\nprint(voti)",
+    "6d303496f3f8": {
+      "domanda": "What does this code print?\n\n```python\nvoti = [28, 24, 30]\nvoti = voti.sort()\nprint(voti)\n```",
       "spiegazione": "sort() sorts in place and returns None: assigning the result loses the list. sorted(voti) returns a new list instead.",
       "risposte": [
-        "[24, 28, 30]",
-        "None",
-        "[30, 28, 24]",
-        "[28, 24, 30]"
+        "`[24, 28, 30]`",
+        "`None`",
+        "`[30, 28, 24]`",
+        "`[28, 24, 30]`"
       ]
     },
     "c7bddb124e89": {
@@ -1694,14 +1694,14 @@
         "def f(a=1, b):"
       ]
     },
-    "b7425851f3f5": {
-      "domanda": "What does this code print?\n\nprint([x * x for x in range(5) if x % 2 == 0])",
+    "2a59f5ec7d5e": {
+      "domanda": "What does this code print?\n\n```python\nprint([x * x for x in range(5) if x % 2 == 0])\n```",
       "spiegazione": "The if at the end of the comprehension filters: only 0, 2, 4 remain, which squared give 0, 4, 16.",
       "risposte": [
-        "[0, 1, 4, 9, 16]",
-        "[0, 4, 16]",
-        "[4, 16]",
-        "[1, 9]"
+        "`[0, 1, 4, 9, 16]`",
+        "`[0, 4, 16]`",
+        "`[4, 16]`",
+        "`[1, 9]`"
       ]
     },
     "8e32e72c5dfa": {
@@ -1744,24 +1744,24 @@
         "Libraries downloaded from PyPI for that project"
       ]
     },
-    "be0c71ac7aec": {
-      "domanda": "What happens when executing this code?\n\nprint(\"Python\"[2:100])",
+    "8413c8b82716": {
+      "domanda": "What happens when executing this code?\n\n```python\nprint(\"Python\"[2:100])\n```",
       "spiegazione": "A slice beyond the limits is truncated without errors; it is a single index beyond the limits (s[100]) that raises an IndexError.",
       "risposte": [
-        "Prints thon",
+        "Prints `thon`",
         "Prints an empty string",
-        "Prints t",
-        "Raises IndexError"
+        "Prints `t`",
+        "Raises `IndexError`"
       ]
     },
-    "7470e4d185b6": {
-      "domanda": "What does this code print?\n\nfor i, nome in enumerate([\"Anna\", \"Luca\"], start=1):\n    print(i, nome, end=\" \")",
+    "cf940f22bdf5": {
+      "domanda": "What does this code print?\n\n```python\nfor i, nome in enumerate([\"Anna\", \"Luca\"], start=1):\n    print(i, nome, end=\" \")\n```",
       "spiegazione": "enumerate yields (index, element) pairs; start=1 makes the counting begin at 1 instead of 0.",
       "risposte": [
-        "0 Anna 1 Luca",
-        "1 Anna 2 Luca",
-        "1 Anna 1 Luca",
-        "Anna 1 Luca 2"
+        "`0 Anna 1 Luca`",
+        "`1 Anna 2 Luca`",
+        "`1 Anna 1 Luca`",
+        "`Anna 1 Luca 2`"
       ]
     },
     "59f68034ff3c": {
@@ -1774,74 +1774,74 @@
         "When the package is imported"
       ]
     },
-    "653548e6f196": {
-      "domanda": "What does this code print?\n\nprint(list(zip([1, 2, 3], \"ab\")))",
+    "ea66581404c1": {
+      "domanda": "What does this code print?\n\n```python\nprint(list(zip([1, 2, 3], \"ab\")))\n```",
       "spiegazione": "zip pairs elements one by one and stops at the shortest sequence.",
       "risposte": [
-        "ValueError",
-        "[(1, 'a'), (2, 'b')]",
-        "[(1, 'a'), (2, 'b'), (3, None)]",
-        "[1, 'a', 2, 'b']"
+        "`ValueError`",
+        "`[(1, 'a'), (2, 'b')]`",
+        "`[(1, 'a'), (2, 'b'), (3, None)]`",
+        "`[1, 'a', 2, 'b']`"
       ]
     },
-    "9068601a1926": {
-      "domanda": "What does this code print?\n\ndef incrementa(n: int) -> int:\n    return n + 1\nprint(incrementa(1.5))",
+    "28fd9605ee5c": {
+      "domanda": "What does this code print?\n\n```python\ndef incrementa(n: int) -> int:\n    return n + 1\nprint(incrementa(1.5))\n```",
       "spiegazione": "Type hints document but are not enforced by the interpreter: 1.5 is accepted without errors.",
       "risposte": [
-        "2",
-        "None",
-        "TypeError",
-        "2.5"
+        "`2`",
+        "`None`",
+        "`TypeError`",
+        "`2.5`"
       ]
     },
-    "a4e7838c3610": {
-      "domanda": "What does this code print?\n\nimport json\nprint(json.loads(json.dumps((1, 2))))",
+    "bf8763a70ce1": {
+      "domanda": "What does this code print?\n\n```python\nimport json\nprint(json.loads(json.dumps((1, 2))))\n```",
       "spiegazione": "JSON does not support tuples: a tuple is converted to an array, which becomes a list in Python.",
       "risposte": [
-        "'[1, 2]'",
-        "{1, 2}",
-        "[1, 2]",
-        "(1, 2)"
+        "`'[1, 2]'`",
+        "`{1, 2}`",
+        "`[1, 2]`",
+        "`(1, 2)`"
       ]
     },
-    "4a843eebba54": {
-      "domanda": "What does this code print?\n\nprint({1, 2, 3} & {2, 3, 4}, {1, 2} ^ {2, 3})",
+    "82b7be812db9": {
+      "domanda": "What does this code print?\n\n```python\nprint({1, 2, 3} & {2, 3, 4}, {1, 2} ^ {2, 3})\n```",
       "spiegazione": "& is the intersection (common elements); ^ is the symmetric difference (elements that are in only one of the two sets).",
       "risposte": [
-        "{1, 2, 3, 4} {1, 2, 3}",
-        "{1, 4} {1, 3}",
-        "{2, 3} {1, 3}",
-        "{2, 3} {2}"
+        "`{1, 2, 3, 4} {1, 2, 3}`",
+        "`{1, 4} {1, 3}`",
+        "`{2, 3} {1, 3}`",
+        "`{2, 3} {2}`"
       ]
     },
-    "772639a5b73d": {
-      "domanda": "What happens when this code is run?\n\nnumeri = [1, 2, 3]\nnumeri.remove(5)",
+    "fed2562fe61a": {
+      "domanda": "What happens when this code is run?\n\n```python\nnumeri = [1, 2, 3]\nnumeri.remove(5)\n```",
       "risposte": [
         "Nothing happens",
-        "Raises IndexError",
-        "Raises KeyError",
-        "Raises ValueError"
+        "Raises `IndexError`",
+        "Raises `KeyError`",
+        "Raises `ValueError`"
       ],
       "spiegazione": "remove() on a value that is not in the list raises ValueError; discard() on sets, by contrast, raises no error."
     },
-    "c0d6bc65823c": {
-      "domanda": "What does this code print?\n\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)",
+    "442b9eaa3f61": {
+      "domanda": "What does this code print?\n\n```python\nfrom sqlalchemy import create_engine, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add(User(name=\"Anna\"))\n    s.commit()\n    a = s.get(User, 1)\n    b = s.scalars(select(User).where(User.name == \"Anna\")).one()\n    print(a is b)\n```",
       "spiegazione": "Identity map: within a Session, a row always corresponds to the same Python object.",
       "risposte": [
-        "False",
-        "MultipleResultsFound",
-        "None",
-        "True"
+        "`False`",
+        "`MultipleResultsFound`",
+        "`None`",
+        "`True`"
       ]
     },
-    "011d98ddb3de": {
-      "domanda": "What does this code print?\n\ndef d(nome, ruolo):\n    return nome + \"-\" + ruolo\nprint(d(ruolo=\"docente\", nome=\"Gallo\"))",
+    "9f7304f963d9": {
+      "domanda": "What does this code print?\n\n```python\ndef d(nome, ruolo):\n    return nome + \"-\" + ruolo\nprint(d(ruolo=\"docente\", nome=\"Gallo\"))\n```",
       "spiegazione": "With keyword arguments, matching occurs by name, so the order in the call does not matter.",
       "risposte": [
-        "docente-Gallo",
-        "TypeError",
-        "nome-ruolo",
-        "Gallo-docente"
+        "`docente-Gallo`",
+        "`TypeError`",
+        "`nome-ruolo`",
+        "`Gallo-docente`"
       ]
     },
     "56554f3ab271": {
@@ -1874,14 +1874,14 @@
         "Because the module handles line endings itself"
       ]
     },
-    "6fdf3556b867": {
-      "domanda": "What does this code print?\n\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,)])\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone())",
+    "ec14e9d11826": {
+      "domanda": "What does this code print?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE t(x INTEGER)\")\nconn.executemany(\"INSERT INTO t VALUES (?)\", [(1,), (2,), (3,)])\nprint(conn.execute(\"SELECT COUNT(*) FROM t\").fetchone())\n```",
       "spiegazione": "Even with a single column, a row is a tuple: to get the number, you need fetchone()[0].",
       "risposte": [
-        "(3,)",
-        "[(3,)]",
-        "3",
-        "[3]"
+        "`(3,)`",
+        "`[(3,)]`",
+        "`3`",
+        "`[3]`"
       ]
     },
     "c13d0d7c43bd": {
@@ -1904,24 +1904,24 @@
         "With for i in range(1): followed by the loop body"
       ]
     },
-    "127de0331565": {
-      "domanda": "What does this code print?\n\nnome = \"\" or \"Anonimo\"\nprint(nome)",
+    "17be395e7aef": {
+      "domanda": "What does this code print?\n\n```python\nnome = \"\" or \"Anonimo\"\nprint(nome)\n```",
       "spiegazione": "\"\" is falsy, so or returns the second operand: it is the idiomatic fallback value pattern.",
       "risposte": [
-        "True",
+        "`True`",
         "(empty string)",
-        "False",
-        "Anonimo"
+        "`False`",
+        "`Anonimo`"
       ]
     },
-    "f283738820b1": {
-      "domanda": "What does this code print?\n\nprint(list(range(1, 10, 3)))",
+    "78681335eb3a": {
+      "domanda": "What does this code print?\n\n```python\nprint(list(range(1, 10, 3)))\n```",
       "spiegazione": "range(start, stop, step): starts at 1, steps by 3, and excludes the stop value (10).",
       "risposte": [
-        "[1, 4, 7, 10]",
-        "[1, 4, 7]",
-        "[1, 3, 6, 9]",
-        "[3, 6, 9]"
+        "`[1, 4, 7, 10]`",
+        "`[1, 4, 7]`",
+        "`[1, 3, 6, 9]`",
+        "`[3, 6, 9]`"
       ]
     },
     "16db1c2672e4": {
@@ -1954,14 +1954,14 @@
         "Initializes the attributes of a newly created object"
       ]
     },
-    "dcce5ecbd08f": {
-      "domanda": "What does this code print?\n\nfor i in range(3):\n    print(i, end=\" \")",
+    "73c9d2eac3db": {
+      "domanda": "What does this code print?\n\n```python\nfor i in range(3):\n    print(i, end=\" \")\n```",
       "spiegazione": "range(3) generates 0, 1, 2: the stop value is exclusive.",
       "risposte": [
-        "0 1 2",
-        "1 2 3",
-        "1 2",
-        "0 1 2 3"
+        "`0 1 2`",
+        "`1 2 3`",
+        "`1 2`",
+        "`0 1 2 3`"
       ]
     },
     "1b011cdcbb22": {
@@ -1974,14 +1974,14 @@
         "Because otherwise the file is opened in binary mode"
       ]
     },
-    "3dd1753117ef": {
-      "domanda": "What does this code print?\n\nprint(10 / 2)",
+    "9c887d85ebcc": {
+      "domanda": "What does this code print?\n\n```python\nprint(10 / 2)\n```",
       "spiegazione": "The / operator performs true division and always returns a float, even when the result is an integer.",
       "risposte": [
-        "2",
-        "5.00",
-        "5",
-        "5.0"
+        "`2`",
+        "`5.00`",
+        "`5`",
+        "`5.0`"
       ]
     },
     "6f1336ddf12e": {
@@ -2004,34 +2004,34 @@
         "To sort the rows"
       ]
     },
-    "7b9d0cc4eab3": {
-      "domanda": "What does this code print?\n\nvoti = {\"Anna\": 28, \"Luca\": 17}\nprint({n: v for n, v in voti.items() if v >= 18})",
+    "40fe1d12b425": {
+      "domanda": "What does this code print?\n\n```python\nvoti = {\"Anna\": 28, \"Luca\": 17}\nprint({n: v for n, v in voti.items() if v >= 18})\n```",
       "spiegazione": "This is a filtered dict comprehension: it keeps only the key-value pairs where the grade is at least 18.",
       "risposte": [
-        "['Anna']",
-        "{'Anna': 28}",
-        "{'Anna': True, 'Luca': False}",
-        "{'Luca': 17}"
+        "`['Anna']`",
+        "`{'Anna': 28}`",
+        "`{'Anna': True, 'Luca': False}`",
+        "`{'Luca': 17}`"
       ]
     },
-    "6591a4d333a8": {
-      "domanda": "What happens when executing this code?\n\nfrom math import sqrt\nprint(math.sqrt(16))",
+    "9f5d37a868fd": {
+      "domanda": "What happens when executing this code?\n\n```python\nfrom math import sqrt\nprint(math.sqrt(16))\n```",
       "spiegazione": "A describes the correct behavior: `from math import sqrt` imports only `sqrt` into the namespace; the name `math` does not exist.",
       "risposte": [
-        "Raises ImportError",
-        "Prints 4.0",
-        "Raises NameError",
-        "Prints 4"
+        "Raises `ImportError`",
+        "Prints `4.0`",
+        "Raises `NameError`",
+        "Prints `4`"
       ]
     },
-    "94dfbe50cda6": {
-      "domanda": "What does this code print?\n\ng = (x for x in range(3))\nprint(list(g), list(g))",
+    "e247300bc4d2": {
+      "domanda": "What does this code print?\n\n```python\ng = (x for x in range(3))\nprint(list(g), list(g))\n```",
       "spiegazione": "Parentheses create a generator, not a tuple: it yields values only once and then is exhausted.",
       "risposte": [
-        "[0, 1, 2] [0, 1, 2]",
-        "(0, 1, 2) (0, 1, 2)",
-        "[0, 1, 2] []",
-        "[] []"
+        "`[0, 1, 2] [0, 1, 2]`",
+        "`(0, 1, 2) (0, 1, 2)`",
+        "`[0, 1, 2] []`",
+        "`[] []`"
       ]
     },
     "6e32b3261556": {
@@ -2044,14 +2044,14 @@
         "setup.cfg"
       ]
     },
-    "6590270eac43": {
-      "domanda": "What happens when executing this code?\n\nfrom abc import ABC, abstractmethod\nclass Vehicle(ABC):\n    @abstractmethod\n    def start(self): pass\nclass Barca(Vehicle):\n    pass\nb = Barca()",
+    "2c89f3c812f6": {
+      "domanda": "What happens when executing this code?\n\n```python\nfrom abc import ABC, abstractmethod\nclass Vehicle(ABC):\n    @abstractmethod\n    def start(self): pass\nclass Barca(Vehicle):\n    pass\nb = Barca()\n```",
       "spiegazione": "A class with unimplemented abstract methods cannot be instantiated: the error occurs at creation, not at method invocation.",
       "risposte": [
-        "Raises NotImplementedError",
-        "Raises TypeError when creating the object",
-        "Works, but b.start() will raise an error",
-        "Works, start() returns None"
+        "Raises `NotImplementedError`",
+        "Raises `TypeError` when creating the object",
+        "Works, but `b.start()` will raise an error",
+        "Works, `start()` returns `None`"
       ]
     },
     "90aea155fa00": {
@@ -2104,14 +2104,14 @@
         "Selects the SQL statements to send and their order"
       ]
     },
-    "516cc29619e1": {
-      "domanda": "What does this code print?\n\ndef f():\n    pass\nprint(f())",
+    "6ff746a668de": {
+      "domanda": "What does this code print?\n\n```python\ndef f():\n    pass\nprint(f())\n```",
       "spiegazione": "A function without a return statement returns None.",
       "risposte": [
-        "pass",
-        "0",
+        "`pass`",
+        "`0`",
         "An empty string",
-        "None"
+        "`None`"
       ]
     },
     "7a03be578641": {
@@ -2124,8 +2124,8 @@
         "Automatically creates the child objects"
       ]
     },
-    "0299daebedc3": {
-      "domanda": "The utilities.py module contains print(\"Modulo caricato\"). How many times does the message appear?\n\nopen(\"utilities.py\", \"w\").write('print(\"Modulo caricato\")\\n')\nimport utilities\nimport utilities",
+    "99b815275454": {
+      "domanda": "The utilities.py module contains print(\"Modulo caricato\"). How many times does the message appear?\n\n```python\nopen(\"utilities.py\", \"w\").write('print(\"Modulo caricato\")\\n')\nimport utilities\nimport utilities\n```",
       "spiegazione": "A module is executed upon its first import and then kept in memory (sys.modules): the second import does not re-execute it.",
       "risposte": [
         "Two",
@@ -2144,14 +2144,14 @@
         "Copies an existing object"
       ]
     },
-    "3f113875d451": {
-      "domanda": "What happens at the print(car.__km) line?\n\nclass Car:\n    def __init__(self):\n        self.__km = 0\ncar = Car()\nprint(car.__km)",
+    "3b7ffa855d77": {
+      "domanda": "What happens at the print(car.__km) line?\n\n```python\nclass Car:\n    def __init__(self):\n        self.__km = 0\ncar = Car()\nprint(car.__km)\n```",
       "spiegazione": "Due to name mangling, inside the class __km becomes _Car__km: from the outside, car.__km does not exist.",
       "risposte": [
-        "Prints 0",
-        "Prints None",
-        "Raises AttributeError",
-        "Raises PermissionError"
+        "Prints `0`",
+        "Prints `None`",
+        "Raises `AttributeError`",
+        "Raises `PermissionError`"
       ]
     },
     "f062a1c6056d": {
@@ -2164,34 +2164,34 @@
         "uv get pandas"
       ]
     },
-    "37fe82fd16ce": {
-      "domanda": "What does this code print?\n\nx = 2147483647\nprint(x + 1)",
+    "6ddf776364c2": {
+      "domanda": "What does this code print?\n\n```python\nx = 2147483647\nprint(x + 1)\n```",
       "spiegazione": "Python integers have arbitrary precision: there is no overflow; they grow as long as there is memory.",
       "risposte": [
-        "-2147483648",
-        "2147483648",
-        "OverflowError",
-        "2.147483648e9"
+        "`-2147483648`",
+        "`2147483648`",
+        "`OverflowError`",
+        "`2.147483648e9`"
       ]
     },
-    "c94989de9504": {
-      "domanda": "What does this code print?\n\ndati = [(\"a\", 3), (\"b\", 1), (\"c\", 2)]\nprint(sorted(dati, key=lambda t: t[1]))",
+    "362bf45d8146": {
+      "domanda": "What does this code print?\n\n```python\ndati = [(\"a\", 3), (\"b\", 1), (\"c\", 2)]\nprint(sorted(dati, key=lambda t: t[1]))\n```",
       "spiegazione": "The key parameter specifies how elements are compared: the lambda function returns the second value of each tuple.",
       "risposte": [
-        "[('a', 3), ('b', 1), ('c', 2)]",
-        "[('b', 1), ('c', 2), ('a', 3)]",
-        "[('a', 3), ('c', 2), ('b', 1)]",
-        "[1, 2, 3]"
+        "`[('a', 3), ('b', 1), ('c', 2)]`",
+        "`[('b', 1), ('c', 2), ('a', 3)]`",
+        "`[('a', 3), ('c', 2), ('b', 1)]`",
+        "`[1, 2, 3]`"
       ]
     },
-    "88d9647c3ad5": {
-      "domanda": "What does this code print?\n\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint(\" \".join(k.__name__ for k in D.__mro__))",
+    "5a9e53c853d2": {
+      "domanda": "What does this code print?\n\n```python\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint(\" \".join(k.__name__ for k in D.__mro__))\n```",
       "spiegazione": "The MRO (C3 linearization) always places a class before its parents: A, which is the parent of both B and C, appears after both of them.",
       "risposte": [
-        "D A B C object",
-        "D B C A object",
-        "D C B A object",
-        "D B A C object"
+        "`D A B C object`",
+        "`D B C A object`",
+        "`D C B A object`",
+        "`D B A C object`"
       ]
     },
     "719435ee1446": {
@@ -2204,14 +2204,14 @@
         "It works only with packages and never with single modules"
       ]
     },
-    "5d63ebb2a546": {
-      "domanda": "What does this code print?\n\nprint(not \"\", not 10)",
+    "42af58f0d983": {
+      "domanda": "What does this code print?\n\n```python\nprint(not \"\", not 10)\n```",
       "spiegazione": "not is the only logical operator that always returns a bool: the empty string is false, 10 is true.",
       "risposte": [
-        "False True",
-        "'' 10",
-        "True False",
-        "True 10"
+        "`False True`",
+        "`'' 10`",
+        "`True False`",
+        "`True 10`"
       ]
     }
   }
