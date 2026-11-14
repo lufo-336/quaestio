@@ -1754,13 +1754,13 @@
         "categoria": "Serverless & Event-driven",
         "domanda": "Quale espressione NCRONTAB fa scattare un timer trigger di Azure Functions ogni 5 minuti?",
         "risposte": [
-            "0 5 * * * * *",
-            "0 */5 * * * *",
-            "0 0 */5 * * *",
-            "*/5 0 * * * *"
+            "`0 5 * * * * *`",
+            "`0 */5 * * * *`",
+            "`0 0 */5 * * *`",
+            "`*/5 0 * * * *`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "NCRONTAB ha sei campi (secondi, minuti, ore, giorno, mese, giorno della settimana): '*/5' nel campo dei minuti significa 'ogni 5 minuti'. La seconda espressione scatta ogni 5 ore; l'ultima ha addirittura sette campi.",
+        "spiegazione": "NCRONTAB usa sei campi (secondi, minuti, ore, giorno del mese, mese, giorno della settimana): `0 */5 * * * *` indica il secondo 0 di ogni 5 minuti. `0 0 */5 * * *` scatta ogni 5 ore, `*/5 0 * * * *` scatta ogni 5 secondi durante il minuto 0 di ogni ora, mentre `0 5 * * * * *` non è valida perché ha sette campi.",
         "tipo": "codice"
     },
     {
@@ -2144,15 +2144,15 @@
     {
         "id": 154,
         "categoria": "Terraform & IaC",
-        "domanda": "Perché per creare un cluster AKS con una subscription Azure for Students può essere preferibile usare Terraform anziché il portale?",
+        "domanda": "Perché per creare un cluster AKS su una subscription con quote o SKU limitati (come Azure for Students, in cui il portale web può filtrare o preimpostare dimensioni di VM non idonee) può essere preferibile usare Terraform anziché il portale?",
         "risposte": [
-            "La UI non mostra tutte le VM size, inclusa l'unica disponibile gratuitamente",
+            "Permette di dichiarare nel codice la VM size esatta consentita dalla subscription, aggirando i filtri della UI e rendendo il provisioning ripetibile",
             "Il portale Azure non consente in alcun caso la creazione di cluster AKS: la piattaforma impone l'uso di strumenti a riga di comando o di Infrastructure as Code",
-            "Il portale non supporta ACR",
-            "Terraform crea i cluster più velocemente"
+            "Il portale web di Azure non supporta il collegamento di un cluster AKS a un registro container privato come Azure Container Registry (ACR)",
+            "Terraform esegue il provisioning dei nodi nel data center Azure in tempi molto più brevi rispetto alle chiamate inviate dal portale web"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "La UI del portale non elenca tutte le VM size — in particolare quella compatibile col piano Students. Con Terraform si specifica esattamente la configurazione voluta, in modo ripetibile e documentato nel codice.",
+        "spiegazione": "Quando l'interfaccia web del portale preimposta o filtra determinate SKU di macchine virtuali non compatibili con i limiti della subscription, usare Infrastructure as Code con Terraform consente di specificare esplicitamente la VM size supportata e di mantenere la configurazione versionata e ripetibile.",
         "tipo": "architettura"
     },
     {
@@ -2186,15 +2186,15 @@
     {
         "id": 157,
         "categoria": "Scenari architetturali",
-        "domanda": "In un'architettura event-driven, un POST che accoda un messaggio risponde 200 prima che il dato sia salvato nel database. Come va interpretata quella risposta?",
+        "domanda": "In un'architettura event-driven, un endpoint `POST` accoda un messaggio per l'elaborazione asincrona e restituisce subito una risposta HTTP di successo (idealmente `202 Accepted`, o `200 OK` in API meno rigorose) prima che il dato sia salvato nel database. Come va interpretata quella risposta?",
         "risposte": [
             "Il messaggio è stato elaborato dal consumer ed eliminato dalla coda con successo",
             "Il dato è già persistito nel database ed è immediatamente visibile in lettura",
-            "La richiesta è stata accettata",
+            "La richiesta è stata presa in carico e accodata, ma l'elaborazione avverrà in modo asincrono",
             "Il database ha confermato la transazione ma l'indice non è ancora aggiornato"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Con una coda in mezzo, il 200 del produttore significa 'ho accettato', non 'ho salvato': la persistenza avviene dopo, quando il consumer processa il messaggio. È il prezzo concettuale del disaccoppiamento asincrono.",
+        "spiegazione": "Con una coda di mezzo, l'esito positivo restituito dal produttore (che nella semantica REST standard corrisponde a `202 Accepted`, benché alcune implementazioni restituiscano `200 OK`) significa che il messaggio è stato preso in carico e accodato, non che il dato sia già stato salvato: la persistenza avviene in seguito, quando il consumer elabora il messaggio.",
         "tipo": "architettura"
     },
     {
@@ -2312,15 +2312,15 @@
     {
         "id": 166,
         "categoria": "Kubernetes",
-        "domanda": "Attraverso quale componente passa il traffico di un `kubectl port-forward`?",
+        "domanda": "Quale componente del control plane di Kubernetes funge da punto d'ingresso e proxy iniziale per il tunnel creato da `kubectl port-forward`?",
         "risposte": [
-            "L'API server",
-            "Il kubelet",
-            "L'Ingress",
-            "Lo scheduler"
+            "L'API server (`kube-apiserver`)",
+            "Il controller manager (`kube-controller-manager`)",
+            "L'Ingress controller del cluster",
+            "Lo scheduler (`kube-scheduler`)"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il tunnel del port-forward transita dall'API server di Kubernetes, non da un ingresso di rete dedicato: un motivo in più per considerarlo uno strumento di sviluppo e non una soluzione di produzione.",
+        "spiegazione": "Il comando `kubectl port-forward` apre una connessione verso il `kube-apiserver` del control plane, che fa da proxy inoltrando lo stream al `kubelet` del nodo su cui gira il Pod, senza passare da un Ingress o da un Service esposto: un motivo in più per usarlo come strumento di debug e non in produzione.",
         "tipo": "architettura"
     },
     {

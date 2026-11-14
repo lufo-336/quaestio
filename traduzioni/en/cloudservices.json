@@ -1263,14 +1263,14 @@
         "Moving all resources to the cheapest region among those available"
       ]
     },
-    "c75e153edfdd": {
+    "091a283fef84": {
       "domanda": "Which NCRONTAB expression triggers an Azure Functions timer trigger every 5 minutes?",
-      "spiegazione": "NCRONTAB has six fields (seconds, minutes, hours, day, month, day of the week): '*/5' in the minutes field means 'every 5 minutes'. The second expression triggers every 5 hours; the last one has seven fields.",
+      "spiegazione": "NCRONTAB uses six fields (seconds, minutes, hours, day of month, month, day of week): `0 */5 * * * *` means second 0 of every 5 minutes. `0 0 */5 * * *` triggers every 5 hours, `*/5 0 * * * *` triggers every 5 seconds during minute 0 of every hour, while `0 5 * * * * *` is invalid because it has seven fields.",
       "risposte": [
-        "0 5 * * * * *",
-        "0 */5 * * * *",
-        "0 0 */5 * * * *",
-        "*/5 0 * * * *"
+        "`0 5 * * * * *`",
+        "`0 */5 * * * *`",
+        "`0 0 */5 * * *`",
+        "`*/5 0 * * * *`"
       ]
     },
     "b5645270cb4c": {
@@ -1543,14 +1543,14 @@
         "Both increase"
       ]
     },
-    "1831557b6d57": {
-      "domanda": "Why might using Terraform be preferred over the Azure portal to create an AKS cluster with an Azure for Students subscription?",
-      "spiegazione": "The portal UI does not list all VM sizes — specifically, the one compatible with the Students plan. With Terraform, you specify the exact desired configuration, making it repeatable and documented in code.",
+    "ce1f9513faea": {
+      "domanda": "Why might using Terraform be preferred over the Azure portal to create an AKS cluster on a subscription with limited quotas or SKUs (such as Azure for Students, where the web portal may filter or preset ineligible VM sizes)?",
+      "spiegazione": "When the portal web UI presets or filters out certain virtual machine SKUs that are incompatible with subscription limits, using Infrastructure as Code with Terraform lets you explicitly specify a supported VM size while keeping the configuration versioned and repeatable.",
       "risposte": [
-        "The UI does not show all VM sizes, including the only one available for free",
+        "It lets you declare in code the exact VM size allowed by the subscription, bypassing UI filters and making provisioning repeatable",
         "The Azure portal does not allow the creation of AKS clusters under any circumstances: the platform requires the use of command-line tools or Infrastructure as Code",
-        "The portal does not support ACR",
-        "Terraform creates clusters faster"
+        "The Azure web portal does not support attaching an AKS cluster to a private container registry such as Azure Container Registry (ACR)",
+        "Terraform provisions nodes in the Azure data center much faster than requests submitted through the web portal"
       ]
     },
     "fe638dcebfc2": {
@@ -1573,13 +1573,13 @@
         "To keep traffic within the private network, improving security and compliance"
       ]
     },
-    "28dabaeccc94": {
-      "domanda": "In an event-driven architecture, a POST that enqueues a message returns 200 before the data is saved in the database. How should that response be interpreted?",
-      "spiegazione": "With a queue in between, the producer's 200 means 'I accepted', not 'I saved': persistence happens later, when the consumer processes the message. It's the conceptual cost of asynchronous decoupling.",
+    "47f7930023fa": {
+      "domanda": "In an event-driven architecture, a `POST` endpoint enqueues a message for asynchronous processing and immediately returns a successful HTTP response (ideally `202 Accepted`, or `200 OK` in less strict APIs) before the data is saved in the database. How should that response be interpreted?",
+      "spiegazione": "With a queue in between, the positive status returned by the producer (which in standard REST semantics is `202 Accepted`, though some implementations return `200 OK`) means the message has been accepted and queued, not that the data is already saved: persistence happens later, when the consumer processes the message.",
       "risposte": [
         "The message was processed by the consumer and successfully removed from the queue",
         "The data is already persisted in the database and is immediately visible in read",
-        "The request has been accepted",
+        "The request has been accepted and queued, while actual processing will happen asynchronously",
         "The database confirmed the transaction but the index is not yet updated"
       ]
     },
@@ -1663,14 +1663,14 @@
         "CloudFormation"
       ]
     },
-    "522c9c92a545": {
-      "domanda": "Through which component does the traffic of a `kubectl port-forward` pass?",
-      "spiegazione": "The port-forward tunnel routes through the Kubernetes API server, not through a dedicated network ingress: another reason to consider it a development tool rather than a production solution.",
+    "aba576ff3848": {
+      "domanda": "Which Kubernetes control plane component acts as the entry point and initial proxy for the tunnel created by `kubectl port-forward`?",
+      "spiegazione": "The `kubectl port-forward` command opens a connection to the control plane's `kube-apiserver`, which proxies the stream to the `kubelet` on the node running the Pod, bypassing any Ingress or exposed Service: another reason to use it as a debugging tool rather than in production.",
       "risposte": [
-        "The API server",
-        "The kubelet",
-        "The Ingress",
-        "The scheduler"
+        "The API server (`kube-apiserver`)",
+        "The controller manager (`kube-controller-manager`)",
+        "The cluster Ingress controller",
+        "The scheduler (`kube-scheduler`)"
       ]
     },
     "ab8bd970b719": {
