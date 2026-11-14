@@ -198,6 +198,44 @@
                     </StackPanel>
                 </Border>
 
+                <!-- ============================== TIPO DI DOMANDE ============================== -->
+                <!-- Tre pulsanti accendi/spegni (variante B del mockup del 14/11):
+                     si sommano a materie e categorie. Accesi = inclusi. -->
+                <Border x:Name="ZonaTipo"
+                        KeyboardNavigation.TabNavigation="Once"
+                        Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="14">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{x:Static r:Strings.Home_TipoTitolo}"
+                                   FontWeight="SemiBold"/>
+                        <ItemsControl ItemsSource="{Binding Tipi}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="state:TipoSelezionabile">
+                                    <ToggleButton Classes="tipo"
+                                                  Content="{Binding Etichetta}"
+                                                  IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                  HorizontalAlignment="Stretch"
+                                                  HorizontalContentAlignment="Center"
+                                                  Padding="6,8"
+                                                  Margin="0,0,6,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="{x:Static r:Strings.Home_TipoSuggerimento}"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
             </Border>
         </ScrollViewer>

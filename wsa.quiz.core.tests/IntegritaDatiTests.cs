@@ -66,6 +66,31 @@ public class IntegritaDatiTests
         Assert.Empty(errati);
     }
 
+    /// <summary>Il riquadro "Tipo di domande" in Home si regge su questo campo.</summary>
+    [Fact]
+    public void OgniDomanda_HaTipoValido()
+    {
+        var errati = Banchi().SelectMany(b => b.Value.Select(d => (b.Key, d)))
+            .Where(x => !TipiDomanda.Tutti.Contains(x.d.Tipo))
+            .Select(x => $"{x.Key}/{x.d.Id} tipo='{x.d.Tipo}'").ToList();
+        Assert.Empty(errati);
+    }
+
+    [Fact]
+    public void FiltraPerTipo_SenzaEsclusioniNonToglieNulla_ConEsclusioniToglieAncheISenzaTipo()
+    {
+        var d = new List<Domanda>
+        {
+            new() { Tipo = TipiDomanda.Codice },
+            new() { Tipo = TipiDomanda.Teoria },
+            new() { Tipo = "" },
+        };
+        Assert.Equal(3, QuizService.FiltraPerTipo(d, new List<string>()).Count);
+        var solo = QuizService.FiltraPerTipo(d, new List<string> { TipiDomanda.Teoria, TipiDomanda.Architettura });
+        Assert.Single(solo);
+        Assert.Equal(TipiDomanda.Codice, solo[0].Tipo);
+    }
+
     [Fact]
     public void Python_CodiceSempreInBlocco()
     {

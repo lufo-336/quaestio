@@ -36,6 +36,20 @@ public static class QuizService
         return sorgente.Where(d => set.Contains(d.MateriaId)).ToList();
     }
 
+    /// <summary>
+    /// Toglie le domande dei tipi esclusi. Senza esclusioni non filtra nulla;
+    /// con almeno un'esclusione passano solo le domande con un tipo ammesso
+    /// (quelle senza tipo restano fuori: non si sa se sono "solo codice").
+    /// </summary>
+    public static List<Domanda> FiltraPerTipo(IEnumerable<Domanda> sorgente, ICollection<string> tipiEsclusi)
+    {
+        if (tipiEsclusi == null || tipiEsclusi.Count == 0) return sorgente.ToList();
+        var esclusi = new HashSet<string>(tipiEsclusi, StringComparer.OrdinalIgnoreCase);
+        return sorgente
+            .Where(d => TipiDomanda.Tutti.Contains(d.Tipo, StringComparer.OrdinalIgnoreCase) && !esclusi.Contains(d.Tipo))
+            .ToList();
+    }
+
     public static List<Domanda> PrendiN(IEnumerable<Domanda> sorgente, int n)
     {
         if (n <= 0) return sorgente.ToList();

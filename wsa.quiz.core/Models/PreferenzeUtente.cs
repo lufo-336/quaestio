@@ -24,4 +24,7 @@ public class PreferenzeUtente
     public int LimiteN { get; set; } = 10;
     public bool ModalitaTempo { get; set; } = false;
     public int MinutiTempo { get; set; } = 10;
+
+    /// <summary>Tipi di domanda spenti nel riquadro "Tipo di domande" della Home. Vuoto = tutti.</summary>
+    public List<string> TipiEsclusi { get; set; } = new();
 }

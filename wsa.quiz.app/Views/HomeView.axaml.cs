@@ -40,6 +40,13 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     public ObservableCollection<MateriaSelezionabile> Materie { get; } = new();
     public ObservableCollection<CategoriaSelezionabile> CategorieVisibili { get; } = new();
 
+    /// <summary>I tre pulsanti del riquadro "Tipo di domande" (codice / teoria / architettura).</summary>
+    public ObservableCollection<TipoSelezionabile> Tipi { get; } =
+        new(TipiDomanda.Tutti.Select(t => new TipoSelezionabile(t)));
+
+    /// <summary>Tipi spenti (chiavi canoniche). Vuoto = tutti accesi. Persistito da MainView.</summary>
+    public List<string> TipiEsclusi => Tipi.Where(t => !t.IsSelected).Select(t => t.Id).ToList();
+
     // ------------------------------------------------------------------ OPZIONI
 
     private bool _randomizzaOrdine = true;
@@ -131,6 +138,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+        foreach (var t in Tipi) t.PropertyChanged += OnTipoPropertyChanged;
         AggiornaRiepilogo();
         if (AppEnv.TouchMode)
         {
@@ -176,7 +184,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         // Trova il Border-zona piu' vicino antenato.
         var zona = focused.GetVisualAncestors()
             .OfType<Border>()
-            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni");
+            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni" or "ZonaTipo");
         if (zona == null) return;
 
         // Raccogli tutti i controlli focusable dentro la zona, in ordine visivo.
@@ -234,6 +242,12 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         LimiteN          = preferenze.LimiteN;
         ModalitaTempo    = preferenze.ModalitaTempo;
         MinutiTempo      = preferenze.MinutiTempo;
+        // Tipi: se le preferenze li escludessero tutti (file modificato a mano)
+        // si riaccendono tutti, altrimenti la Home non potrebbe mai avviare.
+        var esclusi = preferenze.TipiEsclusi ?? new List<string>();
+        bool tuttiEsclusi = Tipi.All(t => esclusi.Contains(t.Id));
+        foreach (var t in Tipi)
+            t.IsSelected = tuttiEsclusi || !esclusi.Contains(t.Id);
 
         // 1. Popolo materie con conteggio domande
         Materie.Clear();
@@ -279,6 +293,21 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         AggiornaRiepilogo();
     }
 
+    private void OnTipoPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(TipoSelezionabile.IsSelected)) return;
+        // Almeno un tipo resta acceso: spegnere l'ultimo darebbe sempre 0 domande.
+        // Riacceso con Post: dentro l'handler il ToggleButton sta ancora
+        // propagando il suo IsChecked e non vedrebbe il ripristino.
+        if (sender is TipoSelezionabile t && !t.IsSelected && Tipi.All(x => !x.IsSelected))
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() => t.IsSelected = true);
+            return;
+        }
+        AggiornaRiepilogo();
+        Raise(nameof(TipiEsclusi));
+    }
+
     private void AggiornaCategorieVisibili()
     {
         CategorieVisibili.Clear();
@@ -303,6 +332,10 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// nomi categoria identici su materie diverse non si confondono.
     /// </summary>
     private List<Domanda> CalcolaPoolCorrente()
+        => QuizService.FiltraPerTipo(CalcolaPoolSenzaTipo(), TipiEsclusi);
+
+    /// <summary>Pool di materie + categorie, prima del filtro per tipo: serve ai conteggi dei pulsanti tipo.</summary>
+    private List<Domanda> CalcolaPoolSenzaTipo()
     {
         var materieSel = Materie.Where(m => m.IsSelected).Select(m => m.Id).ToHashSet();
         if (materieSel.Count == 0) return new List<Domanda>();
@@ -322,7 +355,10 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     {
         int nMaterie = Materie.Count(m => m.IsSelected);
         int nCat     = CategorieVisibili.Count(c => c.IsSelected);
-        var pool = CalcolaPoolCorrente();
+        var poolSenzaTipo = CalcolaPoolSenzaTipo();
+        foreach (var t in Tipi)
+            t.NumDomande = poolSenzaTipo.Count(d => string.Equals(d.Tipo, t.Id, StringComparison.OrdinalIgnoreCase));
+        var pool = QuizService.FiltraPerTipo(poolSenzaTipo, TipiEsclusi);
         int disponibili = pool.Count;
 
         // Quante davvero giocheremo (limite N)
@@ -347,7 +383,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
         RiepilogoSelezione = nMaterie == 0
             ? testoMaterie
-            : $"{testoMaterie}  ·  {testoCat}  ·  {testoDom}{testoTempo}";
+            : $"{testoMaterie}  ·  {testoCat}{TestoTipi("  ·  ")}  ·  {testoDom}{testoTempo}";
 
         if (nMaterie == 0)            AvvisoSelezione = Strings.Home_AvvisoNessunaMateria;
         else if (disponibili == 0)    AvvisoSelezione = Strings.Home_AvvisoNessunaDomanda;
@@ -379,6 +415,8 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         else
             nomeMod = $"{materiaMostrata} — {(quizzone ? Strings.Home_ModCompletoRandomizzato : Strings.Home_ModCompleto)}";
 
+        nomeMod += TestoTipi(" — ");
+
         var opz = new OpzioniQuiz
         {
             NomeModalita            = nomeMod,
@@ -394,6 +432,17 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
         var sessione = new SessioneQuiz(pool, opz);
         QuizAvviato?.Invoke(this, sessione);
+    }
+
+    /// <summary>
+    /// "solo Codice + Teoria" preceduto dal separatore, o stringa vuota se
+    /// nessun tipo e' escluso (caso normale: non serve dirlo).
+    /// </summary>
+    private string TestoTipi(string separatore)
+    {
+        if (Tipi.All(t => t.IsSelected)) return string.Empty;
+        string nomi = string.Join(" + ", Tipi.Where(t => t.IsSelected).Select(t => t.Nome));
+        return separatore + string.Format(Strings.Home_SoloTipi, nomi);
     }
 
     // ------------------------------------------------------------------ INPC helper

@@ -83,6 +83,12 @@
   <data name="Home_MaxMinuti" xml:space="preserve"><value>max {0} min</value></data>
   <data name="Home_AvvisoNessunaMateria" xml:space="preserve"><value>Select at least one subject to start a quiz.</value></data>
   <data name="Home_AvvisoNessunaDomanda" xml:space="preserve"><value>No questions match the chosen filters.</value></data>
+  <data name="Home_TipoTitolo" xml:space="preserve"><value>Question type</value></data>
+  <data name="Home_TipoCodice" xml:space="preserve"><value>Code</value></data>
+  <data name="Home_TipoTeoria" xml:space="preserve"><value>Theory</value></data>
+  <data name="Home_TipoArchitettura" xml:space="preserve"><value>Architecture</value></data>
+  <data name="Home_TipoSuggerimento" xml:space="preserve"><value>Tap to include or exclude a type. At least one stays on.</value></data>
+  <data name="Home_SoloTipi" xml:space="preserve"><value>{0} only</value></data>
   <data name="Home_ModPerCategoria" xml:space="preserve"><value>By category</value></data>
   <data name="Home_ModCompleto" xml:space="preserve"><value>Full</value></data>
   <data name="Home_ModCompletoRandomizzato" xml:space="preserve"><value>Full, shuffled</value></data>

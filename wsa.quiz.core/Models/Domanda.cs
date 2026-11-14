@@ -33,6 +33,15 @@ public class Domanda
     public string Spiegazione { get; set; } = string.Empty;
 
     /// <summary>
+    /// Tipo trasversale della domanda: "codice", "teoria" o "architettura"
+    /// (vedi <see cref="TipiDomanda"/>). Vuoto per le domande che non lo hanno
+    /// (es. importate dall'utente): passano solo quando nessun tipo e' escluso.
+    /// La traduzione non lo tocca: resta quello del JSON italiano.
+    /// </summary>
+    [JsonPropertyName("tipo")]
+    public string Tipo { get; set; } = string.Empty;
+
+    /// <summary>
     /// ID della materia (es. "cpp", "sql"). Non presente nel JSON, viene
     /// assegnato dallo StorageService in fase di caricamento.
     /// </summary>

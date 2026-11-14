@@ -487,7 +487,8 @@ public partial class MainView : UserControl
     private static readonly HashSet<string> _proprietaOpzioniQuiz = new(StringComparer.Ordinal)
     {
         nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.Cronometro),
-        nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo)
+        nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo),
+        nameof(HomeView.TipiEsclusi)
     };
 
     /// <summary>Salva su preferenze.json ad ogni cambio di una delle opzioni
@@ -506,6 +507,7 @@ public partial class MainView : UserControl
         prefs.LimiteN          = (int)_homeView.LimiteN;
         prefs.ModalitaTempo    = _homeView.ModalitaTempo;
         prefs.MinutiTempo      = (int)_homeView.MinutiTempo;
+        prefs.TipiEsclusi      = _homeView.TipiEsclusi;
         _storage.SalvaPreferenze(prefs);
     }
 
