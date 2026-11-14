@@ -1,7 +1,19 @@
 # Revisione domande (roadmap punto 4) — note da Antigravity
 
 Primo passaggio fatto il 2026-11-14 (commit edaa0a7…bb21a86): universalità, accenti/refusi, campo `tipo`.
-Sotto le segnalazioni che Flash NON ha corretto (regola: non toccare i contenuti tecnici).
+## Esito
+
+**Secondo passaggio fatto il 2026-11-14**: le 98 segnalazioni non duplicate sono state riprese da
+Antigravity (Argon low: Flash era senza quota) con l'indice della risposta corretta in sola lettura,
+poi rilette a mano. 81 domande corrette (errori tecnici, domande rese autosufficienti con contesto o
+codice nel testo), le altre lasciate perché già risolte o segnalazioni infondate. Errori notevoli
+trovati: RAID 6 (infra n=15) aveva come corretta la risposta sbagliata; C# n=28 (`"5" + 3`).
+**Restano aperti** solo i quasi-duplicati (righe con "duplicat", "sovrappost", "ridondant"):
+lasciati, eliminarli richiede di estendere `coppie_it_en.py`.
+
+## Segnalazioni originali
+
+Sotto le segnalazioni che Flash NON ha corretto nel primo passaggio (regola: non toccare i contenuti tecnici).
 `n` = posizione della domanda nella materia (ordine di `coppie_it_en.py esporta`).
 
 ## sql
