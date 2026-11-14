@@ -968,7 +968,7 @@
   {
     "id": 570,
     "categoria": "JavaScript OOP",
-    "domanda": "Come si dichiara un campo privato in una classe ES6 moderna?",
+    "domanda": "Come si dichiara un campo privato in una classe JavaScript moderna (ES2022+)?",
     "risposte": [
       "Con il prefisso `private:`",
       "Con il prefisso `_nome` (convenzione)",
@@ -1349,12 +1349,12 @@
     "domanda": "Cosa fa `document.querySelector('ul li:first-child')`?",
     "risposte": [
       "Seleziona tutti i `li` dentro un `ul`",
-      "Seleziona il primo `li` che è figlio diretto di un `ul` nella pagina",
+      "Seleziona il primo elemento della pagina che è un `li` primo figlio del suo genitore dentro un `ul`",
       "Seleziona solo l'`ul` e non i suoi figli",
       "Genera un errore: `querySelector` non supporta selettori combinati"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`querySelector` accetta qualsiasi selettore CSS valido, inclusi combinatori e pseudo-classi. `ul li:first-child` seleziona il primo `<li>` figlio di un `<ul>`. Il punto chiave: `querySelector` restituisce SOLO il primo elemento corrispondente trovato nell'intero documento. Per tutti gli elementi corrispondenti usa `querySelectorAll`. La potenza di `querySelector` sta nel riusare la conoscenza dei selettori CSS già acquisita.",
+    "spiegazione": "`querySelector` accetta qualsiasi selettore CSS valido, inclusi combinatori e pseudo-classi. `ul li:first-child` seleziona un `<li>` discendente di un `<ul>` che sia primo figlio del proprio elemento genitore. Il punto chiave: `querySelector` restituisce SOLO il primo elemento corrispondente trovato nell'intero documento. Per tutti gli elementi corrispondenti usa `querySelectorAll`. La potenza di `querySelector` sta nel riusare la conoscenza dei selettori CSS già acquisita.",
     "tipo": "codice"
   },
   {
@@ -1584,15 +1584,15 @@
   {
     "id": 614,
     "categoria": "React",
-    "domanda": "Quante radici può restituire il `return` di un componente?",
+    "domanda": "Quanti elementi JSX radice può avere un'espressione JSX restituita da un componente React?",
     "risposte": [
-      "Si può restituire un numero qualsiasi di elementi tutti affiancati tra loro",
-      "Si possono restituire esattamente due elementi radice per ogni componente",
-      "Un solo elemento radice (o un frammento)",
-      "Non è possibile restituire alcun elemento dal componente"
+      "Si può restituire un numero qualsiasi di elementi JSX affiancati senza contenitore",
+      "Si possono restituire esattamente due elementi JSX radice affiancati",
+      "Un solo elemento radice (o un frammento `<>...</>`)",
+      "Non è possibile restituire alcun elemento JSX dal componente"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il `return` deve avere un solo elemento radice. Per restituire più elementi affiancati si usa un frammento `<>...</>`, che li raggruppa senza aggiungere un `div` inutile al DOM.",
+    "spiegazione": "Un'espressione JSX restituita da un componente deve avere un solo elemento radice (a meno di restituire un array con `key` o valori primitivi/null). Per restituire più elementi JSX affiancati senza aggiungere un `div` inutile al DOM si usa un frammento `<>...</>`.",
     "tipo": "codice"
   },
   {
@@ -2441,7 +2441,7 @@
     "domanda": "Qual è la differenza tra `null` e `undefined`?",
     "risposte": [
       "Sono perfettamente sinonimi",
-      "`undefined` è l'assenza di valore non assegnata dal sistema; `null` è un valore vuoto assegnato intenzionalmente dal programmatore",
+      "`undefined` indica una variabile non ancora valorizzata (assegnato dal motore JS); `null` è un valore vuoto assegnato intenzionalmente dal programmatore",
       "`null` è un numero, `undefined` è una stringa",
       "`null` causa sempre un errore"
     ],

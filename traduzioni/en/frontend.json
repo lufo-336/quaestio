@@ -150,7 +150,7 @@
     },
     "a59913b1b80c": {
       "domanda": "What is the difference between `<section>` and `<article>`?",
-      "spiegazione": "`<article>` represents self-contained, independent content (a blog post, a newspaper article, a comment): it could be extracted and published elsewhere while retaining its meaning. `<section>` groups thematically related content that is not necessarily autonomous. An `<article>` can contain multiple `<section>` elements; a `<section>` can contain multiple `<article> elements. Both improve semantic structure compared to using only `<div>`.",
+      "spiegazione": "`<article>` represents self-contained, independent content (a blog post, a newspaper article, a comment): it could be extracted and published elsewhere while retaining its meaning. `<section>` groups thematically related content that is not necessarily autonomous. An `<article>` can contain multiple `<section>` elements; a `<section>` can contain multiple `<article>` elements. Both improve semantic structure compared to using only `<div>`.",
       "risposte": [
         "There is no difference between the two: they are simply synonyms",
         "`<article>` must always contain an `h1`, while `<section>` is not required to",
@@ -718,8 +718,8 @@
         "`type='text'` cannot contain special characters"
       ]
     },
-    "ad51e65f9d77": {
-      "domanda": "How do you declare a private field in a modern ES6 class?",
+    "52cefca39a4e": {
+      "domanda": "How do you declare a private field in a modern JavaScript class (ES2022+)?",
       "spiegazione": "Private class fields (ES2022) are declared with a `#` prefix before the name: `class Persona { #nome; constructor(n) { this.#nome = n; } }`. They are truly private: accessing `istanza.#nome` from outside throws a `SyntaxError`. Before private fields, the `_nome` convention (with an underscore) was used, but it does not guarantee true privacy—it is merely a convention among developers. Closures are another way to achieve private variables.",
       "risposte": [
         "With the `private:` prefix",
@@ -988,12 +988,12 @@
         "Applies the style to the first element in the list"
       ]
     },
-    "e0febf5a40c8": {
+    "aa87f0de0e7c": {
       "domanda": "What does `document.querySelector('ul li:first-child')` do?",
-      "spiegazione": "`querySelector` accepts any valid CSS selector, including combinators and pseudo-classes. `ul li:first-child` selects the first `<li>` child of an `<ul>`. The key point: `querySelector` returns ONLY the first matching element found in the entire document. To select all matching elements, use `querySelectorAll`. The power of `querySelector` lies in reusing the CSS selector knowledge already acquired.",
+      "spiegazione": "`querySelector` accepts any valid CSS selector, including combinators and pseudo-classes. `ul li:first-child` selects an `<li>` descendant of a `<ul>` that is the first child of its parent element. The key point: `querySelector` returns ONLY the first matching element found in the entire document. To select all matching elements, use `querySelectorAll`. The power of `querySelector` lies in reusing the CSS selector knowledge already acquired.",
       "risposte": [
         "Selects all `li` elements inside a `ul`",
-        "Selects the first `li` that is a direct child of a `ul` in the page",
+        "Selects the first element in the page that is a `li` first child of its parent inside a `ul`",
         "Selects only the `ul` and not its children",
         "Generates an error: `querySelector` does not support combined selectors"
       ]
@@ -1158,14 +1158,14 @@
         "Set the `visible` property of the JSX element to `true` or `false`"
       ]
     },
-    "901e41d7b33a": {
-      "domanda": "How many roots can a component's `return` statement have?",
-      "spiegazione": "The `return` must have a single root element. To return multiple adjacent elements, a fragment `<>...</>` is used, which groups them without adding an unnecessary `div` to the DOM.",
+    "960b73863935": {
+      "domanda": "How many root JSX elements can a JSX expression returned by a React component have?",
+      "spiegazione": "A JSX expression returned by a component must have a single root element (unless returning an array with `key` props or primitives/null). To return multiple adjacent JSX elements without adding an unnecessary `div` to the DOM, a fragment `<>...</>` is used.",
       "risposte": [
-        "Any number of elements can be returned, all placed side by side",
-        "Exactly two root elements can be returned for each component",
-        "A single root element (or a fragment)",
-        "It is not possible to return any element from the component"
+        "Any number of adjacent JSX elements can be returned without a wrapper",
+        "Exactly two adjacent root JSX elements can be returned",
+        "A single root element (or a `<>...</>` fragment)",
+        "It is not possible to return any JSX element from the component"
       ]
     },
     "fff10541ff93": {
@@ -1768,12 +1768,12 @@
         "Checks if a value is a number"
       ]
     },
-    "cedde1e6e415": {
+    "df216d97b848": {
       "domanda": "What is the difference between `null` and `undefined`?",
       "spiegazione": "`undefined` indicates a declared variable with no value (assigned by the JS engine); `null` is an 'empty' value set voluntarily by the developer. Fun fact: `typeof null` is `'object'`, a historical bug; `null == undefined` is `true`, but `null === undefined` is `false`.",
       "risposte": [
         "They are perfect synonyms",
-        "`undefined` is the absence of a value not assigned by the system; `null` is an empty value intentionally assigned by the programmer",
+        "`undefined` indicates a variable not yet assigned a value (set by the JS engine); `null` is an empty value intentionally assigned by the programmer",
         "`null` is a number, `undefined` is a string",
         "`null` always causes an error"
       ]
