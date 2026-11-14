@@ -604,7 +604,7 @@
         "Injection of malicious instructions into prompts provided to the model"
       ]
     },
-    "fa531e7c7cc5": {
+    "0fc3d24664df": {
       "domanda": "What does a Content Security Policy with the 'nonce' directive allow?",
       "spiegazione": "The nonce directive allows only scripts that have a random value matching the one declared in the CSP header. Option B describes an extremely restrictive CSP without nonce (script-src 'none'), not the use of nonce. Option C is an anti-pattern: it would remove protection. Option D confuses authorization (CSP) with encryption (TLS): CSP does not encrypt anything.",
       "risposte": [
