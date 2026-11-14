@@ -5,8 +5,11 @@
     python3 -I generazione-domande/strumenti/coppie_it_en.py importa <materiaId> <coppie.json>
 
 `esporta` scrive una lista con, per ogni domanda (nell'ordine del banco):
-    {"n": 0, "it": {"domanda", "risposte", "spiegazione"}, "en": {...} | null}
-Si modifica SOLO il testo dentro "it"/"en" (mai "n", mai il numero di risposte).
+    {"n": 0, "tipo": "codice"|"teoria"|"architettura"|null,
+     "it": {"domanda", "risposte", "spiegazione"}, "en": {...} | null}
+Si modifica SOLO il testo dentro "it"/"en" e il "tipo" (mai "n", mai il numero
+di risposte). Se la materia ha più file di banco, l'ordine è quello dei file
+ordinati per nome, e `importa` riscrive ogni domanda nel suo file.
 `importa` riporta le modifiche nel banco italiano e in traduzioni/en/<materiaId>.json
 e ri-chiava le traduzioni (l'ID dipende dal testo: vedi converti_codice.py).
 L'indice della risposta corretta non viene esportato e non cambia.
@@ -19,26 +22,34 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from converti_codice import RADICE, genera_id, leggi, richiava, scrivi  # noqa: E402
 
 CAMPI = ("domanda", "risposte", "spiegazione")
+TIPI = ("codice", "teoria", "architettura")
 
 
 def banco(materia):
     materie = json.loads((RADICE / "materie.json").read_text(encoding="utf-8"))
     cartella = next(m["cartella"] for m in materie if m["id"] == materia)
     file_banco = sorted((RADICE / cartella).glob("*.json"))
-    if len(file_banco) != 1:
-        raise SystemExit(f"{materia}: serve un solo file di banco, trovati {len(file_banco)}")
-    return file_banco[0], RADICE / f"traduzioni/en/{materia}.json"
+    if not file_banco:
+        raise SystemExit(f"{materia}: nessun file di banco in {cartella}")
+    return file_banco, RADICE / f"traduzioni/en/{materia}.json"
+
+
+def leggi_banco(file_banco):
+    """Tutte le domande dei file, in ordine, più i dati per riscriverli."""
+    file_letti = [(p, *leggi(p)) for p in file_banco]
+    return [d for _, dati, _ in file_letti for d in dati], file_letti
 
 
 def esporta(materia, out):
-    p_it, p_en = banco(materia)
-    it, _ = leggi(p_it)
+    file_banco, p_en = banco(materia)
+    it, _ = leggi_banco(file_banco)
     en, _ = leggi(p_en)
     coppie = []
     for n, d in enumerate(it):
         t = en["domande"].get(genera_id(d))
         coppie.append({
             "n": n,
+            "tipo": d.get("tipo"),
             "it": {k: d.get(k, "") for k in CAMPI},
             "en": {k: t[k] for k in CAMPI if k in t} if t else None,
         })
@@ -47,8 +58,8 @@ def esporta(materia, out):
 
 
 def importa(materia, src):
-    p_it, p_en = banco(materia)
-    it, f_it = leggi(p_it)
+    file_banco, p_en = banco(materia)
+    it, file_letti = leggi_banco(file_banco)
     en, f_en = leggi(p_en)
     coppie = json.loads(Path(src).read_text(encoding="utf-8"))
     if [c["n"] for c in coppie] != list(range(len(it))):
@@ -60,6 +71,11 @@ def importa(materia, src):
             raise SystemExit(f"{materia} n={c['n']}: numero di risposte cambiato")
         for k in CAMPI:
             d[k] = c["it"][k]
+        tipo = c.get("tipo")
+        if tipo is not None:
+            if tipo not in TIPI:
+                raise SystemExit(f"{materia} n={c['n']}: tipo {tipo!r} non valido (ammessi: {TIPI})")
+            d["tipo"] = tipo
         t = en["domande"].get(vecchio)
         if t is not None and c["en"] is not None:
             if "risposte" in c["en"] and len(c["en"]["risposte"]) != len(d["risposte"]):
@@ -67,7 +83,8 @@ def importa(materia, src):
             t.update(c["en"])
         ids.append((vecchio, genera_id(d)))
     n = richiava(en, ids, materia)
-    scrivi(p_it, it, f_it)
+    for p, dati, formato in file_letti:
+        scrivi(p, dati, formato)
     scrivi(p_en, en, f_en)
     print(f"{materia}: importato, {n} chiavi di traduzione spostate")
 
