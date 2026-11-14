@@ -1,160 +1,269 @@
 # Quaestio
 
-> Rebrand di *WSA Quiz* (2026-07-18). Il nome mostrato dall'app è ora **Quaestio** (dal latino "questione, indagine"); gli identificatori tecnici — progetti `Wsa.Quiz.*`, `ApplicationId` `it.eduits.wsaquiz`, cartella dati `WsaQuiz` — restano invariati per non rompere dati e build.
+A multi-subject quiz application built with C# / .NET 10 and Avalonia UI for studying and self-assessment, running on desktop (Windows, macOS, Linux), mobile (Android, iOS/iPadOS), and the web (WebAssembly).
 
-App di quiz multi-materia pensata per ripassare il programma del corso **Web & Software Architect (WSA)**. Tre eseguibili condividono lo stesso Core, gli stessi dati e la stessa cronologia:
+- **Try the Web version:** [lufo-336.github.io/quaestio](https://lufo-336.github.io/quaestio/)
+- **Download Android APK:** [Latest Release on GitHub](https://github.com/lufo-336/quaestio/releases/latest)
 
-- **`wsa.quiz.cli`** — versione console. Pratica per ripassare senza distrazioni o da terminale.
-- **`wsa.quiz.desktop`** — versione grafica desktop (Avalonia 12).
-- **`wsa.quiz.android`** — stessa GUI, impacchettata come APK Android (layout touch-friendly, bottom navigation a icone con swipe, safe-area edge-to-edge).
+## Screenshots
 
-La GUI (desktop e Android) ha 5 sezioni: Home (configurazione + Avvia), Cronologia (sessioni passate con drill-down), Sospesi (sessioni in pausa, riprendibili), Statistiche (heatmap per materia/categoria), Gestione contenuti (import di materie/domande da JSON, guida per generarle con un'IA).
+<table>
+  <tr>
+    <td width="72%" valign="top">
+      <img src="docs/images/home-desktop.png" alt="Quaestio Desktop Home" />
+    </td>
+    <td width="28%" valign="top">
+      <img src="docs/images/home-mobile.png" alt="Quaestio Mobile Home" />
+    </td>
+  </tr>
+</table>
 
-Una sessione di quiz può essere **classica** (ogni domanda chiesta una volta) o in **modalità rotazione** (le sbagliate tornano in coda finché non vengono indovinate). Si possono filtrare le domande per materia e categoria, limitare a N domande, randomizzare l'ordine, attivare/disattivare il cronometro. Si può mettere in pausa e riprendere dopo. La cronologia mostra punteggio, durata, % corrette e — al doppio click — il dettaglio domanda per domanda.
+## The Story
 
-## Avvio rapido
+Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web & Software Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
 
-Requisiti: **.NET 10 SDK**.
+Today, the repository includes **11 subjects and 2,383 questions**, with both the application interface and the question banks available in Italian and English.
+
+The project was largely **vibe-coded** in collaboration with AI assistants (Claude Code and Google Antigravity). The git commit history has been kept intact: it genuinely documents the progression, refactorings, mistakes, and lessons learned of an amateur programmer building a cross-platform application from scratch.
+
+## Current Goal
+
+Quaestio has evolved beyond its original coursework focus into a general-purpose study and self-assessment tool. Anyone can take quizzes on existing technical subjects or import custom question sets for their own study routines.
+
+## Features
+
+- **Classic and Rotation Modes:** Take a quiz where each question appears once, or play in rotation mode where incorrectly answered questions cycle back into the queue until answered correctly.
+- **Flexible Filters:** Filter questions by subject, category, or cross-cutting question type (`codice` for code snippets, `teoria` for theoretical concepts, and `architettura` for architectural patterns).
+- **Pause & Resume:** Suspend an ongoing quiz at any point and resume later from where you left off.
+- **Detailed History:** Review past sessions with scores, completion times, and a full drill-down showing user answers versus correct answers.
+- **Visual Statistics Heatmap:** Color-coded performance breakdown across subjects and categories, highlighting areas that need review.
+- **Content Management:** Create custom subjects or add questions to existing ones directly in the app by importing JSON files.
+- **Formatted Code Rendering:** Syntax-formatted code blocks with line numbering and monospace typography (`JetBrains Mono NL`), optimized for both large screens and touch displays.
+- **Multilingual Support:** Switch between English and Italian for both UI labels and question contents.
+- **Customization:** Choose between multiple accent color themes.
+
+![Quiz Question with Code](docs/images/quiz.png)
+
+![Session History Drill-down](docs/images/history.png)
+
+![Statistics Heatmap](docs/images/statistics.png)
+
+## Architecture
+
+Quaestio is organized around a shared core library and platform-specific heads:
+
+- **`Wsa.Quiz.Core`**: Domain models (`Domanda`, `Materia`, `RisultatoQuiz`), state machines, and business services (`QuizService`, `StorageService`, `StatisticheService`).
+- **`Wsa.Quiz.App`**: Shared Avalonia UI containing views, user controls (including `TestoConCodice`), and view state. Built using code-behind and `INotifyPropertyChanged`.
+- **Platform Heads**:
+  - `wsa.quiz.cli`: Terminal / console head.
+  - `wsa.quiz.desktop`: Desktop head for Windows, macOS, and Linux.
+  - `wsa.quiz.android`: Android head (APK, single-view with touch navigation).
+  - `wsa.quiz.ios`: iOS / iPadOS head.
+  - `wsa.quiz.browser`: WebAssembly head deployed as a static bundle.
+- **Storage Layer**: Persistent data (history, paused sessions, user preferences, custom subjects) is written to the platform user data directory (`%APPDATA%\WsaQuiz`, `~/.config/WsaQuiz`, `~/Library/Application Support/WsaQuiz`, or app sandbox) or browser `localStorage` under WebAssembly.
+- **`wsa.quiz.core.tests`**: xUnit tests covering question parsing, integrity, and scoring.
+
+```mermaid
+flowchart TD
+    subgraph Data["Data"]
+        M["materie.json"]
+        D["domande/ (11 subjects)"]
+        T["traduzioni/en/"]
+    end
+
+    subgraph CoreLib["Wsa.Quiz.Core"]
+        Models["Models (Domanda, Materia, RisultatoQuiz, ...)"]
+        Services["Services (QuizService, StorageService, StatisticheService)"]
+    end
+
+    subgraph Tests["wsa.quiz.core.tests"]
+        UnitTest["xUnit Tests"]
+    end
+
+    subgraph UILib["Wsa.Quiz.App (Avalonia UI)"]
+        Views["Views (Home, Quiz, History, Statistics, Manage Content)"]
+        State["State (SessioneQuiz State Machine)"]
+    end
+
+    subgraph Heads["Platform Heads"]
+        CLI["wsa.quiz.cli (Terminal)"]
+        Desktop["wsa.quiz.desktop (Windows, macOS, Linux)"]
+        Android["wsa.quiz.android (APK)"]
+        iOS["wsa.quiz.ios (iOS / iPadOS)"]
+        Browser["wsa.quiz.browser (WebAssembly)"]
+    end
+
+    subgraph Storage["User Storage"]
+        FS["User Directory (%APPDATA%, ~/.config, sandbox)"]
+        LS["Browser localStorage"]
+    end
+
+    Data --> CoreLib
+    CoreLib --> Tests
+    CoreLib --> CLI
+    CoreLib --> UILib
+
+    UILib --> Desktop
+    UILib --> Android
+    UILib --> iOS
+    UILib --> Browser
+
+    CLI --> FS
+    Desktop --> FS
+    Android --> FS
+    iOS --> FS
+    Browser --> LS
+```
+
+## Question Generation
+
+When generating multiple-choice questions with large language models, two common biases arise:
+1. **Length bias:** Correct options tend to be longer and more elaborately phrased than distractors.
+2. **Positional bias:** Correct answers often cluster around specific positions (such as the first or last option).
+
+To solve this, the repository includes a prompt guide ([`generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md`](generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md), written in Italian) and a Node.js generation engine ([`generazione-domande/quiz-engine.js`](generazione-domande/quiz-engine.js)).
+
+The engine balances lengths across four balanced buckets (~25% longest, shortest, intermediate, and similar length), randomizes option order, and validates data integrity.
 
 ```bash
-# Console
+# Check length distribution and validation without writing
+node "generazione-domande/quiz-engine.js" mysubject.data.js out.json
+
+# Generate final JSON file
+node "generazione-domande/quiz-engine.js" mysubject.data.js mysubject_domande.json --write
+
+# Audit an existing question bank
+node "generazione-domande/quiz-engine.js" --audit mysubject_domande.json
+```
+
+Both files can also be downloaded directly from the in-app "Manage content" tab.
+
+## Adding Custom Subjects
+
+You can add subjects in two ways:
+
+1. **In-app via "Manage content":** Import a `.json` file containing questions. The file is validated before import, and contents are saved locally in the user data folder without modifying repository source files.
+2. **In repository source:** Add a subject definition to [`materie.json`](materie.json) and place question files inside `domande/<subject>/`.
+
+### Question JSON Format
+
+Field names are in Italian as they reflect the project's internal data model:
+
+```json
+{
+  "id": 1,
+  "categoria": "Language Basics",
+  "domanda": "Which keyword is used in C# to declare an immutable variable at compile time?",
+  "risposte": [
+    "readonly",
+    "const",
+    "static",
+    "fixed"
+  ],
+  "rispostaCorretta": 1,
+  "spiegazione": "The `const` keyword declares a compile-time constant whose value cannot be modified.",
+  "tipo": "teoria"
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | int / string | Identifier (the app computes a stable SHA-256 hash of the content at load time). |
+| `categoria` | string | Free-form category label used for category filters and statistics. |
+| `domanda` | string | Question text. Supports inline `code` and fenced code blocks (```` ```python ````). The same applies to answers and explanations. |
+| `risposte` | string[] | Array of answer options (typically 4 choices). Shuffled per game. |
+| `rispostaCorretta` | int | Zero-based index (0–3) of the correct answer within `risposte`. |
+| `spiegazione` | string | Explanation displayed after the question is answered. |
+| `tipo` | string | Question type: `"codice"`, `"teoria"`, or `"architettura"`. |
+
+## Build
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/)
+- Optional platform workloads (the browser, Android, and iOS heads are kept outside `Wsa.Quiz.sln` so the core solution builds without extra SDKs):
+  - Android: `dotnet workload install android` plus JDK 17 and Android SDK
+  - iOS: macOS with Xcode, plus `dotnet workload install ios`
+  - WebAssembly: `dotnet workload install wasm-tools`
+
+### Building and Running
+
+```bash
+# Build main solution (Core, Shared App UI, CLI, Desktop, Tests)
+dotnet build Wsa.Quiz.sln
+
+# Run Console head
 dotnet run --project wsa.quiz.cli
 
-# GUI desktop
+# Run Desktop GUI head
 dotnet run --project wsa.quiz.desktop
 ```
 
-`wsa.quiz.app` è la libreria UI condivisa (usata da desktop e Android): non si esegue direttamente. Per Android vedi `dotnet build wsa.quiz.android -c Release` più sotto in Architettura.
+### Desktop Publishing (Standalone Single File)
 
-La cronologia viene salvata in una cartella utente condivisa fra console e GUI:
+```powershell
+# Windows x64
+dotnet publish wsa.quiz.desktop -c Release -r win-x64 --self-contained `
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
 
-- Windows: `%APPDATA%\WsaQuiz`
-- macOS:   `~/Library/Application Support/WsaQuiz`
-- Linux:   `~/.config/WsaQuiz`
+# macOS Apple Silicon
+dotnet publish wsa.quiz.desktop -c Release -r osx-arm64 --self-contained `
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
 
-## Aggiungere materie, categorie e domande
-
-Due modi, complementari:
-
-### 1. Dall'app — "Gestione contenuti" (consigliato)
-
-Nella GUI (desktop o Android), la 5ª tab **"Gestione contenuti"** permette di:
-
-- **Creare una nuova materia**: nome + upload di un file `.json` con le sue domande (schema sotto). Validato prima dell'import: se anche una sola domanda non è conforme, l'intero file viene rifiutato e gli errori sono elencati.
-- **Aggiungere domande a una materia esistente** (built-in o già importata): stesso upload, con anteprima prima di confermare. Le domande già presenti (stesso testo) vengono saltate automaticamente.
-- **Rimuovere** una materia importata (le materie built-in non sono rimovibili da qui).
-
-I contenuti importati restano **locali al dispositivo** (cartella utente, vedi sotto): non modificano i file del repo. Per farli entrare nel repo/APK ufficiale vanno copiati a mano nella cartella `domande/` (metodo 2).
-
-### 2. A mano, editando i JSON nella root del repo
-
-I dati si modificano via file JSON nella root del progetto. A ogni build i file vengono copiati negli output `bin/` (desktop/CLI) o incorporati nell'APK (Android); basta rilanciare l'eseguibile per vedere le modifiche.
-
-#### Materie — `materie.json`
-
-Elenco di oggetti, uno per materia. La `cartella` è relativa alla root e contiene tutti i `.json` con le domande di quella materia.
-
-```json
-[
-  {
-    "id": "cs",
-    "nome": "C#",
-    "cartella": "domande/cs",
-    "formato": "standard"
-  }
-]
+# Linux x64
+dotnet publish wsa.quiz.desktop -c Release -r linux-x64 --self-contained `
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
 ```
 
-| Campo      | Tipo   | Note                                                                 |
-|------------|--------|----------------------------------------------------------------------|
-| `id`       | string | Identificatore breve, usato internamente. Univoco.                   |
-| `nome`     | string | Etichetta mostrata in Home e nella cronologia.                       |
-| `cartella` | string | Path relativo alla root. La cartella deve esistere.                  |
-| `formato`  | string | Per ora sempre `"standard"`. Riservato per formati alternativi.      |
-
-#### Domande — `domande/<materia>/<qualsiasi>.json`
-
-Ogni file è un array di domande. Si possono avere più file per materia (es. `csharp_domande.json`, `csharp_domande_2.json`): il loader li unisce tutti. La **categoria** è un campo libero su ciascuna domanda — non va dichiarata altrove. La Home offre i filtri per materia e categoria automaticamente.
-
-```json
-[
-  {
-    "id": 302,
-    "categoria": "Basi del linguaggio",
-    "domanda": "Quale tipo di dato si usa in C# per rappresentare numeri interi?",
-    "risposte": [
-      "int",
-      "char",
-      "double",
-      "float"
-    ],
-    "rispostaCorretta": 0,
-    "spiegazione": "Il tipo `int` rappresenta numeri interi in C# (es. 42, -10, 0). `double` è per numeri decimali, `float` è un decimale a precisione singola, `char` rappresenta un singolo carattere."
-  }
-]
-```
-
-| Campo              | Tipo     | Note                                                                                  |
-|--------------------|----------|---------------------------------------------------------------------------------------|
-| `id`               | int      | Ignorato: l'app calcola un id stabile a partire dal contenuto della domanda.          |
-| `categoria`        | string   | Etichetta libera. Stessa stringa = stessa categoria nei filtri.                       |
-| `domanda`          | string   | Testo della domanda.                                                                  |
-| `risposte`         | string[] | Esattamente **4** opzioni (l'import da app accetta anche solo 2, ma lo standard è 4). |
-| `rispostaCorretta` | int      | Indice 0..3 della risposta giusta in `risposte`.                                      |
-| `spiegazione`      | string   | Mostrata dopo aver risposto. Markdown leggero (apici, backtick, a-capo) consentito.   |
-
-Internamente le 4 risposte vengono **rimescolate ad ogni partita** (in modo che A/B/C/D non siano sempre nello stesso ordine), e l'indice corretto viene ricalcolato di conseguenza.
-
-## Generare nuove domande con un'IA
-
-Le risposte multiple sono soggette a due bias tipici quando vengono generate da modelli di linguaggio:
-
-1. **Bias della risposta più lunga**: l'IA tende a produrre la risposta corretta più dettagliata e i distrattori più brevi. Chi conosce il trucco indovina senza sapere la materia.
-2. **Bias di posizione**: la risposta corretta finisce statisticamente più spesso in alcuni indici (tipicamente A o l'ultimo).
-
-Il repo include una **guida** (`generazione-domande/GUIDA_GENERAZIONE_DOMANDE.md`) e un **motore** (`generazione-domande/quiz-engine.js`) pensati apposta per evitarli:
-
-- La guida è un prompt riutilizzabile da dare a un'IA (o da seguire a mano): spiega come scrivere le domande, come bilanciare le lunghezze delle risposte in 4 categorie (più lunga / più corta / intermedia / simile, ~25% ciascuna) e gli errori tipici in cui un'IA cade sistematicamente.
-- Il motore (`node`) prende il file dati scritto seguendo la guida, **valida** (campi mancanti, indici fuori range, duplicati), **misura** la distribuzione delle lunghezze e, solo se ok, **scrive** il JSON finale nello schema sopra, mescolando posizione delle risposte e ordine delle domande.
-
-Uso da riga di comando:
+### Mobile & Web Heads
 
 ```bash
-# DRY RUN — controlla le quote senza scrivere
-node "generazione-domande/quiz-engine.js" miamateria.data.js out.json
+# Android APK (Release signed package)
+dotnet build wsa.quiz.android -c Release
 
-# Genera il JSON definitivo
-node "generazione-domande/quiz-engine.js" miamateria.data.js miamateria_domande.json --write
+# iOS Simulator (macOS + Xcode)
+dotnet build wsa.quiz.ios -r iossimulator-arm64 -p:ValidateXcodeVersion=false
+
+# WebAssembly - local dev server
+dotnet run --project wsa.quiz.browser
+
+# WebAssembly - publish static bundle (GitHub Pages / Cloudflare Pages)
+dotnet publish wsa.quiz.browser -c Release
 ```
 
-Entrambi i file sono anche **scaricabili direttamente dall'app**, dalla tab "Gestione contenuti" (vedi sopra) — utile su Android, dove il repo non è raggiungibile. Il JSON generato si importa poi dalla stessa schermata (nuova materia, o aggiunta a una esistente).
+## Note on Naming
 
-## Architettura
+The application is branded as **Quaestio** (from the Latin for inquiry or examination). Internal namespaces (`Wsa.Quiz.*`), project names (`wsa.quiz.*`), package identifiers (`it.eduits.wsaquiz`), and the user data folder (`WsaQuiz`) retain the original naming scheme. Renaming internal identifiers would risk breaking saved user history, application preferences, and build configurations; they remain as part of the project's history.
 
-Cinque progetti .NET 10 nella stessa solution:
+## Translations
 
-```
-Wsa.Quiz.sln
-├── wsa.quiz.core/      Libreria. Modelli (Domanda, Materia, RisultatoQuiz, ...) e servizi
-│                        (QuizService per shuffle/punteggio, StorageService per cronologia/sospesi,
-│                        ContenutiUtenteService per l'import da "Gestione contenuti").
-├── wsa.quiz.cli/       Console. Tutta l'interazione utente in Program.cs e Services/ConsoleUI.cs.
-├── wsa.quiz.app/       Libreria UI condivisa Avalonia. State machine event-driven in
-│                        State/SessioneQuiz.cs, viste in Views/. Usata sia da Desktop che Android.
-├── wsa.quiz.desktop/   Head desktop (Window, ApplicationLifetime classico).
-└── wsa.quiz.android/   Head Android (single-view, APK).
-```
+All 11 built-in subjects and 2,383 questions are available in both Italian and English. English translations were produced with AI assistance and are structured as lightweight overlay files located under `traduzioni/en/`.
 
-Storage condiviso: `StorageService(IFonteDati, cartellaUtente)`. La cartella utente contiene `cronologia.json`, `quiz_in_pausa.json` e — da "Gestione contenuti" — `ContenutiUtente/` (materie e domande importate dall'utente, mai scritte nei file built-in del repo). `IFonteDati` astrae i dati read-only built-in: file system (desktop/CLI) o risorse Avalonia incorporate (Android).
+## Future Goals
 
-L'app GUI usa **code-behind + INotifyPropertyChanged**, no MVVM. Stile Fluent + font Inter.
+- **Question Type Metadata**: Update `GUIDA_GENERAZIONE_DOMANDE.md` and `quiz-engine.js` so newly generated questions automatically include the `tipo` attribute.
+- **Language Learning**: Expand question formats to support vocabulary acquisition and foreign language grammar drills.
+- **Retry Mode**: Add a training option that allows players to retry a question immediately after a mistake.
+- **Study Guides**: Provide introductory theory summaries or companion reference notes alongside pre-installed question banks.
 
-Maggiori dettagli architetturali, decisioni prese, trappole incontrate e roadmap futura sono in [`CLAUDE.md`](./CLAUDE.md).
+## Acknowledgments
 
-## Stato
+Thanks to my classmates from the Web & Software Architect course for testing the app.
 
-Lavoro in corso, sviluppato per step incrementali documentati in `docs/superpowers/`. Funziona end-to-end su desktop Windows e su device Android fisico (vedi `CLAUDE.md` per il dettaglio delle verifiche). La tab "Gestione contenuti" (import da JSON) è verificata su desktop; su Android la build è verde e produce un APK firmato, ma il collaudo pratico su device/emulatore è ancora da fare. macOS/Linux non sono stati provati di recente ma il Core e Avalonia 12 sono cross-platform.
+## License
 
-## Licenza
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-Uso personale didattico. Le domande sono pensate per il corso WSA — alcune categorie potrebbero non essere generalizzabili.
+## How It Was Built & AI Working Notes
+
+Quaestio was developed collaboratively with AI coding agents (Claude Code and Google Antigravity).
+
+Rather than concealing the iterative process, all internal context and planning files are intentionally kept public in this repository:
+
+- [`CLAUDE.md`](CLAUDE.md) provides the primary operational context, coding rules, and conventions used by Claude Code.
+- [`docs/README.md`](docs/README.md) documents the contents of the `docs/` folder.
+- [`docs/claude/trappole.md`](docs/claude/trappole.md) compiles lessons learned and pitfalls encountered throughout development (spanning Avalonia bindings, Android safe-area insets, linker behavior, and WebAssembly serialization).
+- Additional documents in `docs/claude/` cover platform setup, distribution, and architectural decisions.
+- `docs/superpowers/` preserves the design specifications (`specs/`) and implementation plans (`plans/`) created prior to major milestones.
+
+With the exception of `docs/README.md`, internal working notes are written in Italian, reflecting the language in which development took place.
