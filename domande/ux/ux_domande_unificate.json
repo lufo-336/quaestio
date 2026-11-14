@@ -44,7 +44,7 @@
     {
         "id": 4,
         "categoria": "Personas",
-        "domanda": "Di cosa ha soprattutto bisogno Emily, che ha la paralisi cerebrale?",
+        "domanda": "Di cosa ha soprattutto bisogno Emily, un'utente con paralisi cerebrale e uso minimo delle mani?",
         "risposte": [
             "Testo piccolo",
             "Audio alto",
@@ -52,7 +52,7 @@
             "Target grandi e ben spaziati"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Emily ha uso minimo delle mani: target grandi e spaziati, navigazione da tastiera, niente hover o precisione del mouse.",
+        "spiegazione": "Con un uso minimo delle mani servono target grandi e spaziati, navigazione da tastiera e nessuna dipendenza da hover o precisione del mouse.",
         "tipo": "teoria"
     },
     {
@@ -170,15 +170,15 @@
     {
         "id": 13,
         "categoria": "WCAG e POUR",
-        "domanda": "Quale persona illustra meglio il principio 'Comprensibile'?",
+        "domanda": "Quale profilo utente illustra meglio il principio WCAG 'Comprensibile'?",
         "risposte": [
             "Emily, che ha una paralisi cerebrale e poca mobilità",
             "Steven, che è sordo e usa la lingua dei segni",
             "Valerio, che ha una bassa visione causata dal glaucoma",
-            "Francesco"
+            "Francesco, che ha un disturbo dello spettro autistico"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Comprensibile: contenuti e azioni chiari e prevedibili. Francesco (autismo) si orienta con struttura coerente e azioni esplicite.",
+        "spiegazione": "Comprensibile: contenuti e azioni chiari e prevedibili. Un utente nello spettro autistico come Francesco si orienta grazie a una struttura coerente e azioni esplicite.",
         "tipo": "teoria"
     },
     {
@@ -436,29 +436,29 @@
     {
         "id": 32,
         "categoria": "Architettura dell'informazione",
-        "domanda": "Perché le etichette dei menu sono accessibilità?",
+        "domanda": "Perché le etichette dei menu sono un elemento fondamentale di accessibilità per utenti come Luca (cieco, usa lo screen reader) e Francesco (autistico)?",
         "risposte": [
-            "Sono ciò che Luca sente e Francesco legge",
+            "Sono ciò che lo screen reader legge e il primo testo su cui ci si orienta",
             "Occupano spazio",
             "Sono colorate",
             "Perché determinano la velocità di caricamento complessiva delle pagine del sito"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le label sono l'unica cosa che Luca sente e la prima che Francesco legge; se vaghe o ambigue escludono prima di aprire la pagina.",
+        "spiegazione": "Le etichette sono l'unica cosa che chi usa uno screen reader sente e la prima che un utente con autismo legge per orientarsi; se vaghe o ambigue escludono prima ancora di aprire la pagina.",
         "tipo": "teoria"
     },
     {
         "id": 33,
         "categoria": "Screen reader e tastiera",
-        "domanda": "Cosa rischia Francesco (autismo) con link generici come 'clicca qui'?",
+        "domanda": "Cosa rischia un utente nello spettro autistico, come Francesco, di fronte a link generici come 'clicca qui'?",
         "risposte": [
             "Una maggiore facilità nel ritrovare le pagine importanti",
             "Un considerevole risparmio di tempo durante la ricerca",
             "Un netto miglioramento della velocità di navigazione complessiva",
-            "Un blocco"
+            "Un blocco nella navigazione dovuto all'ambiguità della destinazione"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Per Francesco i link generici creano ambiguità che può bloccare completamente la navigazione.",
+        "spiegazione": "Per un utente con autismo i link generici e privi di contesto creano ambiguità su cosa accadrà dopo il clic, fino a bloccare la navigazione.",
         "tipo": "teoria"
     },
     {
@@ -828,15 +828,15 @@
     {
         "id": 60,
         "categoria": "Personas",
-        "domanda": "Qual è la particolarità di Valerio (bassa visione da glaucoma)?",
+        "domanda": "Qual è l'esigenza tipica di un utente ipovedente con glaucoma, come Valerio, che conserva una visione residua?",
         "risposte": [
-            "Non usa screen reader ma serve zoom e contrasto",
+            "Non usa screen reader ma ha bisogno di zoom e alto contrasto",
             "Usa la voce",
             "È cieco",
             "Comunica esclusivamente attraverso la lingua dei segni e gli interpreti"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Valerio non usa screen reader: gli servono ingrandimento, alto contrasto e informazione non trasmessa solo dal colore.",
+        "spiegazione": "Un utente con bassa visione da glaucoma spesso non usa lo screen reader: gli servono ingrandimento, alto contrasto e informazioni non trasmesse solo dal colore.",
         "tipo": "teoria"
     },
     {
@@ -912,15 +912,15 @@
     {
         "id": 66,
         "categoria": "Personas",
-        "domanda": "Quale persona ha l'autismo?",
+        "domanda": "Quale tra queste personas ha un disturbo dello spettro autistico, sapendo che chi ne fa parte necessita soprattutto di siti prevedibili, struttura coerente ed etichette prive di ambiguità?",
         "risposte": [
-            "Francesco",
-            "Emily",
-            "Valerio",
-            "Steven"
+            "Francesco, che si blocca davanti a link vaghi e layout incoerenti",
+            "Emily, che ha una paralisi cerebrale e usa solo la tastiera",
+            "Valerio, che ha bassa visione da glaucoma e usa lo zoom",
+            "Steven, che è sordo dalla nascita e usa la lingua dei segni"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Francesco ha un disturbo dello spettro autistico: predilige siti familiari e prevedibili, label chiare e poche ambiguità.",
+        "spiegazione": "Francesco ha un disturbo dello spettro autistico: predilige siti familiari e prevedibili, label chiare e assenza di ambiguità.",
         "tipo": "teoria"
     },
     {
@@ -1024,15 +1024,15 @@
     {
         "id": 74,
         "categoria": "Personas",
-        "domanda": "Chi è Luca tra le personas?",
+        "domanda": "Quale condizione caratterizza la persona di Luca, un utente che naviga esclusivamente con screen reader, tastiera e display braille?",
         "risposte": [
             "Una persona con paralisi cerebrale e uso minimo delle mani",
             "Una persona sorda che comunica con la lingua dei segni",
             "Una persona ipovedente che usa un ingranditore di schermo",
-            "Cieco dalla nascita"
+            "Una persona cieca dalla nascita che necessita di codice semantico"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Luca è cieco dalla nascita: usa screen reader, tastiera e display braille; ha bisogno di codice semantico e link descrittivi.",
+        "spiegazione": "Chi è cieco dalla nascita come Luca usa screen reader, tastiera e display braille, e ha bisogno di codice HTML semantico e link descrittivi.",
         "tipo": "teoria"
     },
     {
@@ -1192,29 +1192,29 @@
     {
         "id": 86,
         "categoria": "Personas",
-        "domanda": "Il principio 'Stessa disabilità != stesso bisogno' confronta:",
+        "domanda": "Il principio 'Stessa area di disabilità != stesso bisogno' (es. due disabilità visive con esigenze opposte) quale coppia di profili mette a confronto?",
         "risposte": [
-            "Francesco ed Emily",
-            "Emily e Steven",
-            "Luca e Valerio",
-            "Francesco e Steven"
+            "Francesco (autismo) ed Emily (paralisi cerebrale)",
+            "Emily (paralisi cerebrale) e Steven (sordità)",
+            "Luca (cieco, usa screen reader) e Valerio (ipovedente, usa zoom e contrasto)",
+            "Francesco (autismo) e Steven (sordità)"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Luca (cieco) ha bisogno di codice semantico e screen reader; Valerio (ipovedente) di zoom e contrasto: bisogni diversi.",
+        "spiegazione": "Pur avendo entrambi una disabilità visiva, Luca (cieco) ha bisogno di codice semantico per lo screen reader, mentre Valerio (ipovedente) ha bisogno di zoom e alto contrasto.",
         "tipo": "teoria"
     },
     {
         "id": 87,
         "categoria": "WCAG e POUR",
-        "domanda": "Quale persona usa lo screen reader, la tastiera e il braille?",
+        "domanda": "Quale profilo utente utilizza tipicamente screen reader, tastiera e display braille per navigare sul web?",
         "risposte": [
-            "Steven",
-            "Luca",
-            "Emily",
-            "Valerio"
+            "Steven, sordo dalla nascita che usa la lingua dei segni",
+            "Luca, cieco dalla nascita che richiede codice semantico",
+            "Emily, con paralisi cerebrale e mobilità ridotta delle mani",
+            "Valerio, ipovedente per glaucoma che usa ingrandimento e contrasto"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Luca, cieco dalla nascita, usa screen reader (JAWS/NVDA), tastiera e display braille; ha bisogno di codice semantico.",
+        "spiegazione": "Un utente cieco dalla nascita come Luca utilizza screen reader (es. JAWS/NVDA), tastiera e display braille, e necessita di codice HTML semantico.",
         "tipo": "teoria"
     },
     {

@@ -44,9 +44,9 @@
         "The Strategy"
       ]
     },
-    "51262775f59a": {
-      "domanda": "What does Emily, who has cerebral palsy, primarily need?",
-      "spiegazione": "Emily has limited hand use: large and spaced targets, keyboard navigation, no hover or mouse precision required.",
+    "85ba6849cbb9": {
+      "domanda": "What does Emily, a user with cerebral palsy and minimal hand use, primarily need?",
+      "spiegazione": "With minimal hand use, users need large and spaced targets, keyboard navigation, and no reliance on hover or mouse precision.",
       "risposte": [
         "Small text",
         "High volume audio",
@@ -134,14 +134,14 @@
         "The chosen color"
       ]
     },
-    "488dd8904bfb": {
-      "domanda": "Which person best illustrates the 'Understandable' principle?",
-      "spiegazione": "Understandable: content and actions are clear and predictable. Francesco (autism) navigates using a consistent structure and explicit actions.",
+    "8b98649e0b1f": {
+      "domanda": "Which user profile best illustrates the WCAG 'Understandable' principle?",
+      "spiegazione": "Understandable: content and actions are clear and predictable. An autistic user like Francesco navigates best with a consistent structure and explicit actions.",
       "risposte": [
         "Emily, who has cerebral palsy and limited mobility",
         "Steven, who is deaf and uses sign language",
         "Valerio, who has low vision caused by glaucoma",
-        "Francesco"
+        "Francesco, who has an autism spectrum disorder"
       ]
     },
     "a6034a0ded12": {
@@ -324,24 +324,24 @@
         "Choosing the color of the main corporate logo"
       ]
     },
-    "77c1de9553bd": {
-      "domanda": "Why are menu labels considered accessibility features?",
-      "spiegazione": "Labels are the only thing that Luca hears and the first thing Francesco reads; if they are vague or ambiguous, users may exclude the page before even opening it.",
+    "11c9b96b8374": {
+      "domanda": "Why are menu labels a key accessibility feature for users like Luca (blind, screen reader user) and Francesco (autistic)?",
+      "spiegazione": "Labels are the only thing a screen reader user hears and the first thing an autistic user reads to orient themselves; if vague or ambiguous, they exclude users before even opening the page.",
       "risposte": [
-        "They are what Luca hears and Francesco reads",
+        "They are what the screen reader announces and the first text used to orient",
         "They take up space",
         "They are colored",
         "Because they determine the overall page loading speed of the website"
       ]
     },
-    "dd49c172f376": {
-      "domanda": "What risk does Francesco (autism) face with generic links like 'click here'?",
-      "spiegazione": "For Francesco, generic links create ambiguity that can completely block navigation.",
+    "891cab8023fb": {
+      "domanda": "What risk does a user on the autism spectrum, such as Francesco, face with generic links like 'click here'?",
+      "spiegazione": "For an autistic user, generic links without context create ambiguity about where the click leads, which can completely block navigation.",
       "risposte": [
         "Easier to find important pages",
         "Significant time savings during search",
         "A clear improvement in overall browsing speed",
-        "A block"
+        "A navigation block caused by ambiguity about the destination"
       ]
     },
     "73e9a6e6db83": {
@@ -604,11 +604,11 @@
         "An alphabetical order"
       ]
     },
-    "65061e95711b": {
-      "domanda": "What is Valerio's specific condition (low vision due to glaucoma)?",
-      "spiegazione": "Valerio does not use screen readers: he requires magnification, high contrast, and information not conveyed solely through color.",
+    "cee7a709cc9b": {
+      "domanda": "What is the typical need of a low-vision user with glaucoma, such as Valerio, who retains partial sight?",
+      "spiegazione": "A user with low vision from glaucoma often does not use a screen reader: they need magnification, high contrast, and information not conveyed solely through color.",
       "risposte": [
-        "He does not use screen readers but relies on zoom and contrast",
+        "He does not use screen readers but relies on zoom and high contrast",
         "He uses speech",
         "He is blind",
         "He communicates exclusively through sign language and interpreters"
@@ -664,14 +664,14 @@
         "Color is expensive"
       ]
     },
-    "e97e59fc2ad7": {
-      "domanda": "Which person has autism?",
-      "spiegazione": "Francesco has an autism spectrum disorder: he prefers familiar and predictable sites, clear labels, and few ambiguities.",
+    "1eb6f70f46c0": {
+      "domanda": "Which of these personas has an autism spectrum disorder, knowing that such users primarily need predictable sites, a consistent structure, and unambiguous labels?",
+      "spiegazione": "Francesco has an autism spectrum disorder: he prefers familiar and predictable sites, clear labels, and no ambiguity.",
       "risposte": [
-        "Francesco",
-        "Emily",
-        "Valerio",
-        "Steven"
+        "Francesco, who gets stuck when facing vague links and inconsistent layouts",
+        "Emily, who has cerebral palsy and navigates only by keyboard",
+        "Valerio, who has low vision from glaucoma and uses screen zoom",
+        "Steven, who has been deaf since birth and uses sign language"
       ]
     },
     "0eb27ab0d8c0": {
@@ -744,14 +744,14 @@
         "Convert it to a static image to be downloaded separately from the page"
       ]
     },
-    "03651ebc77a5": {
-      "domanda": "Who is Luca among the personas?",
-      "spiegazione": "Luca has been blind since birth: he uses a screen reader, keyboard, and braille display; he needs semantic code and descriptive links.",
+    "3ac0f8a5d667": {
+      "domanda": "Which condition characterizes the persona Luca, a user who navigates exclusively with a screen reader, keyboard, and braille display?",
+      "spiegazione": "A user blind from birth like Luca uses a screen reader, keyboard, and braille display, and needs semantic HTML code and descriptive links.",
       "risposte": [
         "A person with cerebral palsy and minimal use of hands",
         "A deaf person who communicates using sign language",
         "A person with low vision who uses a screen magnifier",
-        "Blind from birth"
+        "A person blind from birth who requires semantic code"
       ]
     },
     "ec95b65d0da7": {
@@ -864,24 +864,24 @@
         "To testing"
       ]
     },
-    "d363811e8be6": {
-      "domanda": "The principle 'Same disability != same need' compares:",
-      "spiegazione": "Luca (blind) needs semantic code and screen readers; Valerio (low vision) needs zoom and contrast: different needs.",
+    "dbc1e8d8ca98": {
+      "domanda": "The principle 'Same disability area != same need' (e.g., two visual impairments with different requirements) compares which pair of profiles?",
+      "spiegazione": "Although both have a visual impairment, Luca (blind) needs semantic code for his screen reader, while Valerio (low vision) needs zoom and high contrast.",
       "risposte": [
-        "Francesco and Emily",
-        "Emily and Steven",
-        "Luca and Valerio",
-        "Francesco and Steven"
+        "Francesco (autism) and Emily (cerebral palsy)",
+        "Emily (cerebral palsy) and Steven (deafness)",
+        "Luca (blind, uses screen reader) and Valerio (low vision, uses zoom and contrast)",
+        "Francesco (autism) and Steven (deafness)"
       ]
     },
-    "155a9eb1443b": {
-      "domanda": "Which person uses a screen reader, a keyboard, and braille?",
-      "spiegazione": "Luca, who has been blind since birth, uses screen readers (JAWS/NVDA), a keyboard, and a braille display; he requires semantic code.",
+    "1946ec0512b0": {
+      "domanda": "Which user profile typically uses a screen reader, a keyboard, and a braille display to browse the web?",
+      "spiegazione": "A user who is blind from birth like Luca uses screen readers (e.g., JAWS/NVDA), a keyboard, and a braille display, and requires semantic HTML code.",
       "risposte": [
-        "Steven",
-        "Luca",
-        "Emily",
-        "Valerio"
+        "Steven, deaf from birth who uses sign language",
+        "Luca, blind from birth who requires semantic code",
+        "Emily, with cerebral palsy and limited hand mobility",
+        "Valerio, with low vision from glaucoma who uses zoom and contrast"
       ]
     },
     "6dc64a6184ed": {
