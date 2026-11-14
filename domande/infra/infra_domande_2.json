@@ -10,7 +10,8 @@
       "Il client è un browser; la comunicazione avviene esclusivamente via HTTP/HTTPS"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Le 5 varianti Client/Server: (1) Standalone: tutto su un PC; (2) File Server: il server espone file, il client esegue la logica; (3) Database Server: il server esegue query SQL; (4) Application Server: il server esegue la logica applicativa, il client è thin; (5) Web-based: il client è un browser, comunicazione HTTP/HTTPS. L'Application Server riduce i requisiti hardware del client e centralizza la logica."
+    "spiegazione": "Le 5 varianti Client/Server: (1) Standalone: tutto su un PC; (2) File Server: il server espone file, il client esegue la logica; (3) Database Server: il server esegue query SQL; (4) Application Server: il server esegue la logica applicativa, il client è thin; (5) Web-based: il client è un browser, comunicazione HTTP/HTTPS. L'Application Server riduce i requisiti hardware del client e centralizza la logica.",
+    "tipo": "architettura"
   },
   {
     "id": 52,
@@ -23,7 +24,8 @@
       "Grid Computing è sinonimo di cloud privato; Cloud indica solo il cloud pubblico"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Il Grid Computing è un paradigma dove computer geograficamente distribuiti ed eterogenei (di organizzazioni diverse) condividono risorse per problemi scientifici. Esempi: CERN (WLCG per LHC), SETI@Home. Middleware: BOINC, Globus Toolkit. Nel cloud un unico provider centralizza le risorse e le offre come servizio commerciale. Differenza chiave: Grid = condivisione tra più organizzazioni; Cloud = un provider unico."
+    "spiegazione": "Il Grid Computing è un paradigma dove computer geograficamente distribuiti ed eterogenei (di organizzazioni diverse) condividono risorse per problemi scientifici. Esempi: CERN (WLCG per LHC), SETI@Home. Middleware: BOINC, Globus Toolkit. Nel cloud un unico provider centralizza le risorse e le offre come servizio commerciale. Differenza chiave: Grid = condivisione tra più organizzazioni; Cloud = un provider unico.",
+    "tipo": "teoria"
   },
   {
     "id": 53,
@@ -36,7 +38,8 @@
       "Sottorete VLAN dedicata esclusivamente al traffico di management dei server"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "La DMZ (zona demilitarizzata) è interposta tra Internet e la LAN. Architettura: Internet → [Firewall esterno] → DMZ → [Firewall interno] → LAN. Nella DMZ stanno i server raggiungibili da Internet (web, mail, DNS pubblico), esposti a potenziali attacchi. Il firewall interno isola la LAN: anche se un server in DMZ viene compromesso, l'attaccante non raggiunge database e PC interni."
+    "spiegazione": "La DMZ (zona demilitarizzata) è interposta tra Internet e la LAN. Architettura: Internet → [Firewall esterno] → DMZ → [Firewall interno] → LAN. Nella DMZ stanno i server raggiungibili da Internet (web, mail, DNS pubblico), esposti a potenziali attacchi. Il firewall interno isola la LAN: anche se un server in DMZ viene compromesso, l'attaccante non raggiunge database e PC interni.",
+    "tipo": "architettura"
   },
   {
     "id": 54,
@@ -49,7 +52,8 @@
       "Packet Filtering = L3-4 (IP/porta, stateless, veloce); Application-level = L7 (payload, sicuro, lento)"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Tre tipi di firewall per livello di ispezione. Packet Filtering (L3-4): solo header IP e TCP/UDP (sorgente/destinazione, porta), no payload. Stateless, veloce ma limitato. Circuit-level Gateway (L5): verifica handshake TCP, no contenuto. Application-level / Proxy (L7): termina la connessione, ispeziona il contenuto applicativo (rileva SQL injection in HTTP, virus negli allegati). Il più sicuro ma anche il più lento."
+    "spiegazione": "Tre tipi di firewall per livello di ispezione. Packet Filtering (L3-4): solo header IP e TCP/UDP (sorgente/destinazione, porta), no payload. Stateless, veloce ma limitato. Circuit-level Gateway (L5): verifica handshake TCP, no contenuto. Application-level / Proxy (L7): termina la connessione, ispeziona il contenuto applicativo (rileva SQL injection in HTTP, virus negli allegati). Il più sicuro ma anche il più lento.",
+    "tipo": "architettura"
   },
   {
     "id": 55,
@@ -62,7 +66,8 @@
       "Formato con cui i firewall registrano nei log le connessioni ai domini risolti"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "FQDN è il nome completo e non ambiguo di un host nella gerarchia DNS. Formato: `hostname.dominio.TLD.` con il punto finale per la root — spesso omesso nelle UI ma tecnicamente sempre presente. Esempio: `www.google.com.` = host 'www', dominio 'google', TLD '.com', root '.'. Si legge da destra (root) a sinistra. Un hostname senza dominio non è FQDN: 'webserver' è relativo, 'webserver.azienda.it.' è completo."
+    "spiegazione": "FQDN è il nome completo e non ambiguo di un host nella gerarchia DNS. Formato: `hostname.dominio.TLD.` con il punto finale per la root — spesso omesso nelle UI ma tecnicamente sempre presente. Esempio: `www.google.com.` = host 'www', dominio 'google', TLD '.com', root '.'. Si legge da destra (root) a sinistra. Un hostname senza dominio non è FQDN: 'webserver' è relativo, 'webserver.azienda.it.' è completo.",
+    "tipo": "teoria"
   },
   {
     "id": 56,
@@ -75,7 +80,8 @@
       "26 root server (uno per lettera dell'alfabeto inglese) gestiti centralmente dall'organizzazione ICANN"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Esistono 13 indirizzi IP logici di root server DNS (a.root-servers.net... m.root-servers.net, lettere A-M). Sono la radice della gerarchia DNS mondiale: conoscono gli indirizzi di tutti i TLD (.com, .it, .org). Dettaglio importante: '13 root server' = indirizzi logici, NON macchine fisiche. Grazie all'anycast routing ogni indirizzo corrisponde a centinaia di istanze fisiche distribuite globalmente, garantendo resilienza e bassa latenza."
+    "spiegazione": "Esistono 13 indirizzi IP logici di root server DNS (a.root-servers.net... m.root-servers.net, lettere A-M). Sono la radice della gerarchia DNS mondiale: conoscono gli indirizzi di tutti i TLD (.com, .it, .org). Dettaglio importante: '13 root server' = indirizzi logici, NON macchine fisiche. Grazie all'anycast routing ogni indirizzo corrisponde a centinaia di istanze fisiche distribuite globalmente, garantendo resilienza e bassa latenza.",
+    "tipo": "teoria"
   },
   {
     "id": 57,
@@ -88,7 +94,8 @@
       "Limite di velocità in bit/s della connessione tra resolver e root server della catena DNS"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il TTL è in secondi per ogni record DNS, indica per quanto tempo i resolver intermedi (es. DNS dell'ISP) possono tenerlo in cache. TTL basso (60s): le modifiche si propagano subito ma più traffico. TTL alto (86400=24h): meno traffico, ma le modifiche (es. cambio IP) impiegano fino al TTL per propagarsi. Quando si pianifica una migrazione si abbassa il TTL giorni prima."
+    "spiegazione": "Il TTL è in secondi per ogni record DNS, indica per quanto tempo i resolver intermedi (es. DNS dell'ISP) possono tenerlo in cache. TTL basso (60s): le modifiche si propagano subito ma più traffico. TTL alto (86400=24h): meno traffico, ma le modifiche (es. cambio IP) impiegano fino al TTL per propagarsi. Quando si pianifica una migrazione si abbassa il TTL giorni prima.",
+    "tipo": "teoria"
   },
   {
     "id": 58,
@@ -101,7 +108,8 @@
       "Application Tier: server che applica le regole di business e media tra UI e Data tier"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Three-Tier separa l'applicazione in tre livelli. Presentation Tier: UI (browser, app), parla via HTTP. Application Tier (Business Logic): web server + application server, elabora richieste, applica regole, valida dati, parla con Data tier via SQL/JDBC. Data Tier: DBMS persistente. Vantaggio: ogni livello scala indipendentemente; si cambia il DB senza toccare la UI."
+    "spiegazione": "Three-Tier separa l'applicazione in tre livelli. Presentation Tier: UI (browser, app), parla via HTTP. Application Tier (Business Logic): web server + application server, elabora richieste, applica regole, valida dati, parla con Data tier via SQL/JDBC. Data Tier: DBMS persistente. Vantaggio: ogni livello scala indipendentemente; si cambia il DB senza toccare la UI.",
+    "tipo": "architettura"
   },
   {
     "id": 59,
@@ -114,7 +122,8 @@
       "Sono tipi di database: Entity Relational Protocol, Cache Routing Model, Structured Cache Manager"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "ERP (Enterprise Resource Planning): software gestionale che integra contabilità, produzione, HR, acquisti. Esempi: SAP, Oracle ERP, Microsoft Dynamics. CRM (Customer Relationship Management): vendite, marketing. Es: Salesforce. SCM (Supply Chain Management): catena di fornitura. Erano on-premise costosi; oggi sempre più SaaS: l'azienda usa via browser senza gestire l'infrastruttura."
+    "spiegazione": "ERP (Enterprise Resource Planning): software gestionale che integra contabilità, produzione, HR, acquisti. Esempi: SAP, Oracle ERP, Microsoft Dynamics. CRM (Customer Relationship Management): vendite, marketing. Es: Salesforce. SCM (Supply Chain Management): catena di fornitura. Erano on-premise costosi; oggi sempre più SaaS: l'azienda usa via browser senza gestire l'infrastruttura.",
+    "tipo": "teoria"
   },
   {
     "id": 60,
@@ -127,7 +136,8 @@
       "Identificata dal nome host del sistema operativo configurato dall'amministratore di rete"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "La NIC è la scheda di rete. Ogni NIC ha un MAC address (48 bit, es. 00:1A:2B:3C:4D:5E) bruciato nel firmware, unico al mondo. I primi 24 bit identificano il produttore (OUI), gli ultimi 24 sono il numero di serie. Lo switch Ethernet opera al livello 2 e usa i MAC per la tabella di forwarding: commuta il frame solo sulla porta dove si trova il MAC di destinazione."
+    "spiegazione": "La NIC è la scheda di rete. Ogni NIC ha un MAC address (48 bit, es. 00:1A:2B:3C:4D:5E) bruciato nel firmware, unico al mondo. I primi 24 bit identificano il produttore (OUI), gli ultimi 24 sono il numero di serie. Lo switch Ethernet opera al livello 2 e usa i MAC per la tabella di forwarding: commuta il frame solo sulla porta dove si trova il MAC di destinazione.",
+    "tipo": "teoria"
   },
   {
     "id": 61,
@@ -140,7 +150,8 @@
       "Front-end, Back-end, Cache, RAID, Fabric: componenti interni di uno storage array"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Il Centro di Calcolo si compone di 5 aree: (1) Application: software applicativo; (2) DBMS: database; (3) Compute: server fisici (CPU, RAM, blade); (4) Storage: HDD, SSD, SAN, NAS; (5) Network: switch, router, cavi. A questi si aggiunge l'infrastruttura fisica: alimentazione (UPS, generatori), raffreddamento (CRAC/CRAH), sicurezza fisica."
+    "spiegazione": "Il Centro di Calcolo si compone di 5 aree: (1) Application: software applicativo; (2) DBMS: database; (3) Compute: server fisici (CPU, RAM, blade); (4) Storage: HDD, SSD, SAN, NAS; (5) Network: switch, router, cavi. A questi si aggiunge l'infrastruttura fisica: alimentazione (UPS, generatori), raffreddamento (CRAC/CRAH), sicurezza fisica.",
+    "tipo": "teoria"
   },
   {
     "id": 62,
@@ -153,7 +164,8 @@
       "Protocolli di sicurezza fisica per il controllo degli accessi alle sale server"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "CRAC (Computer Room Air Conditioning) e CRAH (Computer Room Air Handler) sono sistemi di raffreddamento specifici. Un rack standard dissipa 10-30 kW: senza raffreddamento i componenti si danneggiano in minuti. Estraggono calore dai corridoi caldi (hot aisle) e immettono aria fredda nei corridoi freddi (cold aisle). Operano 24/7 con alta affidabilità. Il loro consumo è una voce principale del PUE."
+    "spiegazione": "CRAC (Computer Room Air Conditioning) e CRAH (Computer Room Air Handler) sono sistemi di raffreddamento specifici. Un rack standard dissipa 10-30 kW: senza raffreddamento i componenti si danneggiano in minuti. Estraggono calore dai corridoi caldi (hot aisle) e immettono aria fredda nei corridoi freddi (cold aisle). Operano 24/7 con alta affidabilità. Il loro consumo è una voce principale del PUE.",
+    "tipo": "teoria"
   },
   {
     "id": 63,
@@ -166,7 +178,8 @@
       "OS → File System → Volume Manager → Hardware → Device Drivers → Applicazioni"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Lo stack si legge dal basso verso l'alto: Hardware fisico (HDD, SSD, NVMe) → Device Drivers (l'OS comunica con l'hardware) → Volume Manager (gestisce volumi logici, aggrega dischi) → File System (ext4, NTFS, XFS: organizza in file/cartelle) → OS (media le richieste applicative) → Applicazioni. Capire questo stack è fondamentale per il troubleshooting."
+    "spiegazione": "Lo stack si legge dal basso verso l'alto: Hardware fisico (HDD, SSD, NVMe) → Device Drivers (l'OS comunica con l'hardware) → Volume Manager (gestisce volumi logici, aggrega dischi) → File System (ext4, NTFS, XFS: organizza in file/cartelle) → OS (media le richieste applicative) → Applicazioni. Capire questo stack è fondamentale per il troubleshooting.",
+    "tipo": "architettura"
   },
   {
     "id": 64,
@@ -179,7 +192,8 @@
       "Il RAID controller: distribuisce i dati su più dischi per ottenere I/O paralleli simultanei"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Architettura ISS: Front-End (porte verso server) ↔ Cache ↔ Back-End (controller dei dischi). La cache è RAM ad alta velocità che fa da buffer. Read cache: i dati letti restano in cache, le letture successive le serve la RAM (100x più veloce). Write cache: le scritture vanno prima in RAM (risposta immediata), poi sui dischi in background. Per protezione la cache è non-volatile (batterie) e/o replicata."
+    "spiegazione": "Architettura ISS: Front-End (porte verso server) ↔ Cache ↔ Back-End (controller dei dischi). La cache è RAM ad alta velocità che fa da buffer. Read cache: i dati letti restano in cache, le letture successive le serve la RAM (100x più veloce). Write cache: le scritture vanno prima in RAM (risposta immediata), poi sui dischi in background. Per protezione la cache è non-volatile (batterie) e/o replicata.",
+    "tipo": "architettura"
   },
   {
     "id": 65,
@@ -192,7 +206,8 @@
       "Comprime i dati di un LUN per aumentare la capacità utile dello storage array senza aggiungere dischi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Senza LUN masking, in una SAN tutti i server vedrebbero tutti i LUN — pericoloso in ambienti multi-tenant. Il LUN masking (configurato sull'array, e/o sullo switch FC con lo zoning) definisce una mappa: quale server (identificato dal WWN dell'HBA) accede a quali LUN. Un server non autorizzato non vede i LUN cui non ha accesso. Lo zoning FC è un livello complementare di sicurezza."
+    "spiegazione": "Senza LUN masking, in una SAN tutti i server vedrebbero tutti i LUN — pericoloso in ambienti multi-tenant. Il LUN masking (configurato sull'array, e/o sullo switch FC con lo zoning) definisce una mappa: quale server (identificato dal WWN dell'HBA) accede a quali LUN. Un server non autorizzato non vede i LUN cui non ha accesso. Lo zoning FC è un livello complementare di sicurezza.",
+    "tipo": "architettura"
   },
   {
     "id": 66,
@@ -205,7 +220,8 @@
       "Storage con accesso via NFS/SMB; il limite è l'elevato costo rispetto alle SAN Fibre Channel dedicate"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "DAS è la forma più semplice: disco/array collegato fisicamente al server (USB, SATA, SAS), accesso block. Vantaggi: semplicità, bassa latenza, basso costo, no rete dedicata. Limite: dedicato a quel server — nessun altro server vi accede senza passare per il primo. Inadatto ad ambienti enterprise multi-server dove condivisione e centralizzazione sono requisiti chiave."
+    "spiegazione": "DAS è la forma più semplice: disco/array collegato fisicamente al server (USB, SATA, SAS), accesso block. Vantaggi: semplicità, bassa latenza, basso costo, no rete dedicata. Limite: dedicato a quel server — nessun altro server vi accede senza passare per il primo. Inadatto ad ambienti enterprise multi-server dove condivisione e centralizzazione sono requisiti chiave.",
+    "tipo": "architettura"
   },
   {
     "id": 67,
@@ -218,7 +234,8 @@
       "Rileva e corregge errori di singolo bit (raggi cosmici, invecchiamento) — critica per server 24/7"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "I chip RAM sono soggetti a bit flip: bit che cambiano stato spontaneamente per raggi cosmici, interferenze, invecchiamento. Nella RAM consumer un bit flip causa crash o corruzione dati. La RAM ECC aggiunge bit extra per ogni word: con codici di Hamming rileva e corregge errori di singolo bit senza interrompere il sistema. Errori di doppio bit vengono rilevati e causano halt controllato. Trade-off: costo leggermente superiore, prestazioni un po' inferiori."
+    "spiegazione": "I chip RAM sono soggetti a bit flip: bit che cambiano stato spontaneamente per raggi cosmici, interferenze, invecchiamento. Nella RAM consumer un bit flip causa crash o corruzione dati. La RAM ECC aggiunge bit extra per ogni word: con codici di Hamming rileva e corregge errori di singolo bit senza interrompere il sistema. Errori di doppio bit vengono rilevati e causano halt controllato. Trade-off: costo leggermente superiore, prestazioni un po' inferiori.",
+    "tipo": "teoria"
   },
   {
     "id": 68,
@@ -231,7 +248,8 @@
       "Standard di connessione di rete ad anello: Ring 0 = Fibre Channel, Ring 3 = Ethernet"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "L'architettura x86 ha 4 livelli di privilegio (ring): Ring 0 = massimo (kernel OS, accesso hardware diretto), Ring 3 = minimo (applicazioni utente). Ring 1 e 2 raramente usati. Nella Full Virtualization senza supporto hardware, il VMM occupa Ring 0 ma anche il guest OS vorrebbe Ring 0. Soluzione: ring deprivileging — il guest va in Ring 1; le sue istruzioni privilegiate fanno trap che il VMM in Ring 0 intercetta e gestisce con Binary Translation."
+    "spiegazione": "L'architettura x86 ha 4 livelli di privilegio (ring): Ring 0 = massimo (kernel OS, accesso hardware diretto), Ring 3 = minimo (applicazioni utente). Ring 1 e 2 raramente usati. Nella Full Virtualization senza supporto hardware, il VMM occupa Ring 0 ma anche il guest OS vorrebbe Ring 0. Soluzione: ring deprivileging — il guest va in Ring 1; le sue istruzioni privilegiate fanno trap che il VMM in Ring 0 intercetta e gestisce con Binary Translation.",
+    "tipo": "teoria"
   },
   {
     "id": 69,
@@ -244,7 +262,8 @@
       "Converte i dati da formato binario a testuale per la trasmissione sulla rete tra VM diverse"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Nella Full Virtualization (prima di VT-x/AMD-V), il VMM gestisce le istruzioni privilegiate che il guest in Ring 1 non può eseguire direttamente. La Binary Translation: il VMM intercetta i blocchi di codice del guest prima dell'esecuzione, identifica le istruzioni privilegiate (richiedenti Ring 0) e le sostituisce al volo con sequenze equivalenti eseguibili in Ring 1, o che chiamano il VMM. Il guest non sa di essere emulato. Overhead → prestazioni inferiori al hardware-assisted."
+    "spiegazione": "Nella Full Virtualization (prima di VT-x/AMD-V), il VMM gestisce le istruzioni privilegiate che il guest in Ring 1 non può eseguire direttamente. La Binary Translation: il VMM intercetta i blocchi di codice del guest prima dell'esecuzione, identifica le istruzioni privilegiate (richiedenti Ring 0) e le sostituisce al volo con sequenze equivalenti eseguibili in Ring 1, o che chiamano il VMM. Il guest non sa di essere emulato. Overhead → prestazioni inferiori all'hardware-assisted.",
+    "tipo": "teoria"
   },
   {
     "id": 70,
@@ -257,7 +276,8 @@
       "Type 2 (hosted): app sopra Win/macOS/Linux; per sviluppo, test e lab sul proprio PC"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Oracle VirtualBox è hypervisor Type 2 (hosted): non gira sull'hardware ma è un'app installata sopra un OS host (Windows, macOS, Linux). Prestazioni inferiori a Type 1 (ESXi, Hyper-V) per l'overhead dell'OS host. È open source e gratuito, ideale per: sviluppo locale, lab didattici, test di software in ambienti isolati. In produzione nei DC si usano solo Type 1."
+    "spiegazione": "Oracle VirtualBox è hypervisor Type 2 (hosted): non gira sull'hardware ma è un'app installata sopra un OS host (Windows, macOS, Linux). Prestazioni inferiori a Type 1 (ESXi, Hyper-V) per l'overhead dell'OS host. È open source e gratuito, ideale per: sviluppo locale, lab didattici, test di software in ambienti isolati. In produzione nei DC si usano solo Type 1.",
+    "tipo": "architettura"
   },
   {
     "id": 71,
@@ -270,7 +290,8 @@
       "Regole di routing che separano il traffico tra container sullo stesso host Docker"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "I Namespace sono un meccanismo del kernel Linux: ogni gruppo di processi vede una propria copia isolata delle risorse. 6 tipi: (1) PID — proprio spazio PID partendo da 1; (2) Network — interfacce, IP, routing separati; (3) Mount — filesystem montati separati; (4) User — UID/GID mappati separatamente (root nel container ≠ root host); (5) UTS — hostname e domainname separati; (6) IPC — memoria condivisa e semafori separati. cgroups limitano quanto si consuma, namespace cosa si vede."
+    "spiegazione": "I Namespace sono un meccanismo del kernel Linux: ogni gruppo di processi vede una propria copia isolata delle risorse. 6 tipi: (1) PID — proprio spazio PID partendo da 1; (2) Network — interfacce, IP, routing separati; (3) Mount — filesystem montati separati; (4) User — UID/GID mappati separatamente (root nel container ≠ root host); (5) UTS — hostname e domainname separati; (6) IPC — memoria condivisa e semafori separati. cgroups limitano quanto si consuma, namespace cosa si vede.",
+    "tipo": "teoria"
   },
   {
     "id": 72,
@@ -283,7 +304,8 @@
       "1976: IBM LPAR; 2013: Docker; 2015: LXC; 2016: Kubernetes raggiunge la versione stabile"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Timeline completa: 1976 IBM LPAR (partizioni mainframe), 2000 FreeBSD Jail, 2004 Solaris Zones, 2005 OpenVZ, 2008 LXC (standard Linux con namespace e cgroups). La svolta è il 2013 con Docker: non per la tecnologia (simile a LXC) ma per l'usabilità — Dockerfile, layer (Union FS), DockerHub, CLI semplice. Docker ha reso i container accessibili a qualsiasi sviluppatore."
+    "spiegazione": "Timeline completa: 1976 IBM LPAR (partizioni mainframe), 2000 FreeBSD Jail, 2004 Solaris Zones, 2005 OpenVZ, 2008 LXC (standard Linux con namespace e cgroups). La svolta è il 2013 con Docker: non per la tecnologia (simile a LXC) ma per l'usabilità — Dockerfile, layer (Union FS), DockerHub, CLI semplice. Docker ha reso i container accessibili a qualsiasi sviluppatore.",
+    "tipo": "teoria"
   },
   {
     "id": 73,
@@ -296,7 +318,8 @@
       "IPsec per creare VPN cifrate end-to-end tra tutti i nodi del cluster Docker Swarm in esecuzione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La rete Overlay permette ai container di comunicare tra nodi diversi come se fossero sulla stessa LAN. La tecnologia è VXLAN (Virtual eXtensible LAN): prende un frame Ethernet e lo incapsula in UDP/IP che attraversa reti IP normali. All'altro nodo viene de-incapsulato e consegnato. I container vedono una rete Ethernet virtuale piatta. VXLAN estende le VLAN da 4096 ID a 16 milioni di ID virtuali."
+    "spiegazione": "La rete Overlay permette ai container di comunicare tra nodi diversi come se fossero sulla stessa LAN. La tecnologia è VXLAN (Virtual eXtensible LAN): prende un frame Ethernet e lo incapsula in UDP/IP che attraversa reti IP normali. All'altro nodo viene de-incapsulato e consegnato. I container vedono una rete Ethernet virtuale piatta. VXLAN estende le VLAN da 4096 ID a 16 milioni di ID virtuali.",
+    "tipo": "architettura"
   },
   {
     "id": 74,
@@ -309,7 +332,8 @@
       "Copia i file di log di 'mycontainer' in una directory bash sul filesystem dell'host fisico"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`docker exec` esegue un comando in un container già in esecuzione — non crea uno nuovo. `-i` (interactive) tiene stdin aperto; `-t` (tty) alloca un pseudo-terminale: insieme abilitano l'interazione. `mycontainer` è il target. `bash` è il comando. Risultato: una shell dentro il container per navigare il filesystem, ispezionare processi, leggere log, modificare configurazioni. Se bash non c'è si usa `sh`. Fondamentale per il troubleshooting."
+    "spiegazione": "`docker exec` esegue un comando in un container già in esecuzione — non crea uno nuovo. `-i` (interactive) tiene stdin aperto; `-t` (tty) alloca un pseudo-terminale: insieme abilitano l'interazione. `mycontainer` è il target. `bash` è il comando. Risultato: una shell dentro il container per navigare il filesystem, ispezionare processi, leggere log, modificare configurazioni. Se bash non c'è si usa `sh`. Fondamentale per il troubleshooting.",
+    "tipo": "codice"
   },
   {
     "id": 75,
@@ -322,7 +346,8 @@
       "Raft — consenso distribuito, tollera (N-1)/2 manager guasti"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Docker Swarm usa Raft per il consenso tra manager. Garantisce che tutti i manager concordino sullo stato del cluster (servizi, repliche, nodi). Tollera (N-1)/2 manager guasti: con 3 manager → 1 guasto, con 5 → 2 guasti. Un Leader gestisce le decisioni; gli altri sono Follower. Se il Leader cade, Raft elegge automaticamente un nuovo Leader. Kubernetes usa etcd (anch'esso Raft) per lo stesso scopo."
+    "spiegazione": "Docker Swarm usa Raft per il consenso tra manager. Garantisce che tutti i manager concordino sullo stato del cluster (servizi, repliche, nodi). Tollera (N-1)/2 manager guasti: con 3 manager → 1 guasto, con 5 → 2 guasti. Un Leader gestisce le decisioni; gli altri sono Follower. Se il Leader cade, Raft elegge automaticamente un nuovo Leader. Kubernetes usa etcd (anch'esso Raft) per lo stesso scopo.",
+    "tipo": "architettura"
   },
   {
     "id": 76,
@@ -335,7 +360,8 @@
       "La configurazione del Docker daemon (dockerd) per il sistema operativo host"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Il `compose.yaml` (ex `docker-compose.yml`) definisce in YAML l'app multi-container. Sezioni: `services` (ogni servizio = container con immagine, porte, env, volumi, dipendenze via `depends_on`), `volumes` (definizione volumi), `networks` (reti virtuali). Con `docker compose up -d` Docker avvia tutti i container. Con `docker compose down` li ferma. Va versionato in Git per riprodurre l'app ovunque."
+    "spiegazione": "Il `compose.yaml` (ex `docker-compose.yml`) definisce in YAML l'app multi-container. Sezioni: `services` (ogni servizio = container con immagine, porte, env, volumi, dipendenze via `depends_on`), `volumes` (definizione volumi), `networks` (reti virtuali). Con `docker compose up -d` Docker avvia tutti i container. Con `docker compose down` li ferma. Va versionato in Git per riprodurre l'app ovunque.",
+    "tipo": "codice"
   },
   {
     "id": 77,
@@ -348,7 +374,8 @@
       "La data di build nel formato YYYYMMDD generata automaticamente da Docker al momento del pull"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Le immagini Docker seguono `[registry/][utente/]nome[:tag]`. Senza tag, Docker usa `:latest`. Esempi: `nginx` = `nginx:latest`; `ubuntu:22.04` specifica la versione. ATTENZIONE: `latest` non significa necessariamente 'la più recente', è solo il tag di default — un maintainer potrebbe non aggiornarlo. In produzione si usa sempre tag specifico (es. `nginx:1.25.3`) per riproducibilità e per prevenire breaking changes."
+    "spiegazione": "Le immagini Docker seguono `[registry/][utente/]nome[:tag]`. Senza tag, Docker usa `:latest`. Esempi: `nginx` = `nginx:latest`; `ubuntu:22.04` specifica la versione. ATTENZIONE: `latest` non significa necessariamente 'la più recente', è solo il tag di default — un maintainer potrebbe non aggiornarlo. In produzione si usa sempre tag specifico (es. `nginx:1.25.3`) per riproducibilità e per prevenire breaking changes.",
+    "tipo": "codice"
   },
   {
     "id": 78,
@@ -361,7 +388,8 @@
       "`stop` è deprecato e non funziona più nelle versioni recenti di Docker Compose"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`stop`: invia SIGTERM e ferma i container — restano stopped, riavviabili con `start`. I container esistono col layer scrivibile. `down`: ferma E rimuove container e reti create da Compose. I dati nei volumi sono mantenuti per default (per eliminarli: `down -v`). Dopo `down` per riavviare serve `up` (ricrea da zero). `stop` = pausa; `down` = pulizia (per aggiornare il compose.yaml)."
+    "spiegazione": "`stop`: invia SIGTERM e ferma i container — restano stopped, riavviabili con `start`. I container esistono col layer scrivibile. `down`: ferma E rimuove container e reti create da Compose. I dati nei volumi sono mantenuti per default (per eliminarli: `down -v`). Dopo `down` per riavviare serve `up` (ricrea da zero). `stop` = pausa; `down` = pulizia (per aggiornare il compose.yaml).",
+    "tipo": "codice"
   },
   {
     "id": 79,
@@ -374,7 +402,8 @@
       "Elenca tutti i comandi eseguiti dall'utente root dentro il container 'mycontainer' attivo"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`docker logs mycontainer` mostra l'output (stdout e stderr) del processo principale del container. Docker cattura automaticamente stdout/stderr. Opzioni: `-f` o `--follow` (live, come tail -f), `--tail N` (ultime N righe), `--since 1h` (filtra per tempo). È il primo strumento di debug: se un container crasha, di solito il motivo è nei log. Non serve entrare con `exec`."
+    "spiegazione": "`docker logs mycontainer` mostra l'output (stdout e stderr) del processo principale del container. Docker cattura automaticamente stdout/stderr. Opzioni: `-f` o `--follow` (live, come tail -f), `--tail N` (ultime N righe), `--since 1h` (filtra per tempo). È il primo strumento di debug: se un container crasha, di solito il motivo è nei log. Non serve entrare con `exec`.",
+    "tipo": "codice"
   },
   {
     "id": 80,
@@ -387,7 +416,8 @@
       "Volume = gestito da Docker in /var/lib/docker/volumes/; bind mount = directory dell'host"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Volume Docker: gestito da Docker in /var/lib/docker/volumes/, ciclo di vita indipendente dal container, sopravvive a `docker rm`, condivisibile tra container, gestibile con `docker volume`. Bind mount: mappa una directory dell'host (es. /home/user/data) nel container. Più diretto e flessibile per sviluppo locale (modifichi il codice sull'host e il container lo vede), ma dipende dal percorso specifico host."
+    "spiegazione": "Volume Docker: gestito da Docker in /var/lib/docker/volumes/, ciclo di vita indipendente dal container, sopravvive a `docker rm`, condivisibile tra container, gestibile con `docker volume`. Bind mount: mappa una directory dell'host (es. /home/user/data) nel container. Più diretto e flessibile per sviluppo locale (modifichi il codice sull'host e il container lo vede), ma dipende dal percorso specifico host.",
+    "tipo": "architettura"
   },
   {
     "id": 81,
@@ -400,7 +430,8 @@
       "main.yaml (risorse), provider.json (provider), Dockerfile (immagine), compose.yaml, .env"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Struttura standard: `main.tf` (risorse: container, VM, reti, storage); `provider.tf` (provider, es. Docker, Azure, con credenziali); `variables.tf` (variabili di input: nome, tipo, default); `outputs.tf` (valori esportati post-apply: IP, URL); `versions.tf` (versioni OpenTofu e provider); `.gitignore` (esclude .terraform/, *.tfstate). Più un `README.md` descrittivo."
+    "spiegazione": "Struttura standard: `main.tf` (risorse: container, VM, reti, storage); `provider.tf` (provider, es. Docker, Azure, con credenziali); `variables.tf` (variabili di input: nome, tipo, default); `outputs.tf` (valori esportati post-apply: IP, URL); `versions.tf` (versioni OpenTofu e provider); `.gitignore` (esclude .terraform/, *.tfstate). Più un `README.md` descrittivo.",
+    "tipo": "codice"
   },
   {
     "id": 82,
@@ -413,7 +444,8 @@
       "Perché non mantiene un file di stato come Terraform e quindi non sa cosa è stato già creato in precedenza"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Ansible usa playbook YAML con task sequenziali: 'Step 1: installa nginx', 'Step 2: copia conf', 'Step 3: avvia servizio'. Procedurale = HOW (come). Terraform/OpenTofu è dichiarativo: 'voglio nginx configurato così', determina autonomamente le operazioni. Ansible non idempotente può causare errori alla seconda esecuzione; Terraform è idempotente per design. In pratica si usano insieme: Terraform per l'infra, Ansible per OS/app."
+    "spiegazione": "Ansible usa playbook YAML con task sequenziali: 'Step 1: installa nginx', 'Step 2: copia conf', 'Step 3: avvia servizio'. Procedurale = HOW (come). Terraform/OpenTofu è dichiarativo: 'voglio nginx configurato così', determina autonomamente le operazioni. Ansible non idempotente può causare errori alla seconda esecuzione; Terraform è idempotente per design. In pratica si usano insieme: Terraform per l'infra, Ansible per OS/app.",
+    "tipo": "architettura"
   },
   {
     "id": 83,
@@ -426,7 +458,8 @@
       "Tool separato che usa un linguaggio diverso da HCL, compatibile solo con Kubernetes nativo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Terraform di HashiCorp era MPL (Mozilla Public License), open source. Nel 2023 HashiCorp è passata a BSL (Business Source License), più restrittiva (vieta uso commerciale ai competitor). La community ha forkato: OpenTofu, adottato dalla Linux Foundation come progetto indipendente e genuinamente open (MPL). Compatibile con Terraform: stesso HCL, stessi provider, stessa sintassi. Comandi: `tofu init/plan/apply/destroy`. Il corso usa OpenTofu."
+    "spiegazione": "Terraform di HashiCorp era MPL (Mozilla Public License), open source. Nel 2023 HashiCorp è passata a BSL (Business Source License), più restrittiva (vieta uso commerciale ai competitor). La community ha forkato: OpenTofu, adottato dalla Linux Foundation come progetto indipendente e genuinamente open (MPL). Compatibile con Terraform: stesso HCL, stessi provider, stessa sintassi. Comandi: `tofu init/plan/apply/destroy`.",
+    "tipo": "teoria"
   },
   {
     "id": 84,
@@ -439,7 +472,8 @@
       "È richiesto dalla specifica del provider azurerm: senza dà errore di configurazione"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Nel provider azurerm di OpenTofu/Terraform il blocco `features {}` è sintatticamente obbligatorio anche se vuoto. La config minima: `provider \"azurerm\" { features {} }`. Senza, `tofu init` o `tofu plan` danno errore di validazione. Serve per configurare comportamenti opzionali (es. cosa fare quando si elimina un resource group), ma anche con default va presente. Dettaglio sintattico specifico che causa molti errori per chi inizia."
+    "spiegazione": "Nel provider azurerm di OpenTofu/Terraform il blocco `features {}` è sintatticamente obbligatorio anche se vuoto. La config minima: `provider \"azurerm\" { features {} }`. Senza, `tofu init` o `tofu plan` danno errore di validazione. Serve per configurare comportamenti opzionali (es. cosa fare quando si elimina un resource group), ma anche con default va presente. Dettaglio sintattico specifico che causa molti errori per chi inizia.",
+    "tipo": "codice"
   },
   {
     "id": 85,
@@ -452,7 +486,8 @@
       "Elimina tutte le risorse reali gestite (VM, container, reti); irreversibile, cautela in prod"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "`tofu destroy` è il comando più pericoloso: legge il tfstate, identifica tutte le risorse gestite e le elimina dall'infrastruttura reale — VM, container, reti, storage, tutto. Mostra il piano e chiede conferma ('yes'). In produzione: cautela estrema, l'eliminazione è irreversibile (dati non backuppati persi). Casi d'uso: cleanup di test/staging, teardown di infrastrutture temporanee, lab didattici (come nel corso)."
+    "spiegazione": "`tofu destroy` è il comando più pericoloso: legge il tfstate, identifica tutte le risorse gestite e le elimina dall'infrastruttura reale — VM, container, reti, storage, tutto. Mostra il piano e chiede conferma ('yes'). In produzione: cautela estrema, l'eliminazione è irreversibile (dati non backuppati persi). Casi d'uso: cleanup di test/staging, teardown di infrastrutture temporanee, ambienti di laboratorio.",
+    "tipo": "codice"
   },
   {
     "id": 86,
@@ -465,7 +500,8 @@
       "Garantisce che ogni AZ sia gestita da un provider di hosting diverso per evitare il vendor lock-in"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In ogni Region ci sono 2-6 AZ. Ogni AZ è uno o più data center fisicamente separati nella stessa area, con alimentazione, raffreddamento e connettività indipendenti. Connesse tra loro con rete ad alta velocità e bassa latenza (<1ms). Isolate dai guasti delle altre: incendio, alluvione o blackout in una AZ non impatta le altre. Distribuendo l'app su più AZ → alta disponibilità."
+    "spiegazione": "In ogni Region ci sono 2-6 AZ. Ogni AZ è uno o più data center fisicamente separati nella stessa area, con alimentazione, raffreddamento e connettività indipendenti. Connesse tra loro con rete ad alta velocità e bassa latenza (<1ms). Isolate dai guasti delle altre: incendio, alluvione o blackout in una AZ non impatta le altre. Distribuendo l'app su più AZ → alta disponibilità.",
+    "tipo": "architettura"
   },
   {
     "id": 87,
@@ -478,7 +514,8 @@
       "Il Security Group è applicato alle subnet della VPC; la Network ACL è applicata alle singole istanze EC2"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "AWS offre due livelli di firewall in VPC. Security Group: a livello di istanza EC2 (o ENI). STATEFUL: se permetti TCP in ingresso sulla 80, la risposta in uscita è automatica. Network ACL: a livello di subnet. STATELESS: regole esplicite sia inbound che outbound. Le regole sono numerate e valutate in ordine. SG = prima linea di difesa; NACL = livello aggiuntivo."
+    "spiegazione": "AWS offre due livelli di firewall in VPC. Security Group: a livello di istanza EC2 (o ENI). STATEFUL: se permetti TCP in ingresso sulla 80, la risposta in uscita è automatica. Network ACL: a livello di subnet. STATELESS: regole esplicite sia inbound che outbound. Le regole sono numerate e valutate in ordine. SG = prima linea di difesa; NACL = livello aggiuntivo.",
+    "tipo": "architettura"
   },
   {
     "id": 88,
@@ -491,7 +528,8 @@
       "Microsoft Azure (#1), AWS (#2), Google Cloud (#3): Azure ha superato AWS nel 2022"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "I tre principali cloud provider secondo il corso: (1) AWS (Amazon Web Services) #1, dal 2006, catalogo più ampio; (2) Microsoft Azure #2, fortissima integrazione con ecosistema Microsoft (Office 365, AD, Windows Server), preferito da enterprise già Microsoft; (3) Google Cloud Platform (GCP) #3, particolarmente forte in AI/ML (TensorFlow, Vertex AI), Big Data (BigQuery), Kubernetes (Google ha creato K8s). Mercato in crescita; AWS leader, Azure e GCP erodono quote."
+    "spiegazione": "I tre principali cloud provider: (1) AWS (Amazon Web Services) #1, dal 2006, catalogo più ampio; (2) Microsoft Azure #2, fortissima integrazione con ecosistema Microsoft (Office 365, AD, Windows Server), preferito da enterprise già Microsoft; (3) Google Cloud Platform (GCP) #3, particolarmente forte in AI/ML (TensorFlow, Vertex AI), Big Data (BigQuery), Kubernetes (Google ha creato K8s). Mercato in crescita; AWS leader, Azure e GCP erodono quote.",
+    "tipo": "teoria"
   },
   {
     "id": 89,
@@ -504,7 +542,8 @@
       "Usando datacenter dedicati al Black Friday che restano spenti il resto dell'anno e si accendono solo a novembre per i picchi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il case study Black Friday dimostra la 'rapid elasticity'. Server fisici: chi regge 50x dovrebbe comprare migliaia di macchine usate poche ore l'anno — spreco enorme. AWS risolve con elasticità: il Nitro Hypervisor avvia una VM in 5-10s. A mezzanotte del Black Friday l'auto-scaling rileva il picco. In secondi si passa da 200 a 600 a 3000 VM, automaticamente. Quando il traffico cala, le VM vengono terminate. Pay-per-use sui secondi effettivi. Risultato: 0 downtime, costi proporzionali."
+    "spiegazione": "Il case study Black Friday dimostra la 'rapid elasticity'. Server fisici: chi regge 50x dovrebbe comprare migliaia di macchine usate poche ore l'anno — spreco enorme. AWS risolve con elasticità: il Nitro Hypervisor avvia una VM in 5-10s. A mezzanotte del Black Friday l'auto-scaling rileva il picco. In secondi si passa da 200 a 600 a 3000 VM, automaticamente. Quando il traffico cala, le VM vengono terminate. Pay-per-use sui secondi effettivi. Risultato: 0 downtime, costi proporzionali.",
+    "tipo": "architettura"
   },
   {
     "id": 90,
@@ -517,7 +556,8 @@
       "Cloud = HA, scaling istantaneo, focus sul prodotto: Netflix serve oltre 300M abbonati su AWS"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Il case Netflix sintetizza la promessa del cloud. Prima (2008): server fisici → DB corruption → 3 giorni offline → 9.39M abbonati. Dopo AWS: ogni server è una VM (rimpiazzabile), picchi serali gestiti con auto-scaling, zero hardware. Nel 2016 Netflix ha spento l'ultimo DC fisico. Oggi serve oltre 300M abbonati su AWS. Lezione: il cloud non è solo costo, è agilità, affidabilità e focus sul core business."
+    "spiegazione": "Il case Netflix sintetizza la promessa del cloud. Prima (2008): server fisici → DB corruption → 3 giorni offline → 9.39M abbonati. Dopo AWS: ogni server è una VM (rimpiazzabile), picchi serali gestiti con auto-scaling, zero hardware. Nel 2016 Netflix ha spento l'ultimo DC fisico. Oggi serve oltre 300M abbonati su AWS. Lezione: il cloud non è solo costo, è agilità, affidabilità e focus sul core business.",
+    "tipo": "architettura"
   },
   {
     "id": 91,
@@ -530,7 +570,8 @@
       "Controlla la connessione con il repository remoto e mostra se il push è possibile in questo momento"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`git status` è il comando di orientamento del workflow Git. Va usato prima di `git add` e `git commit`. Mostra: file in rosso (modificati non staged — working directory), in verde (staged — pronti al commit), untracked (nuovi). Workflow IaC del corso: `git status` (cosa è cambiato?) → `git add .` → `git commit -m '...'` → `git push`."
+    "spiegazione": "`git status` è il comando di orientamento del workflow Git. Va usato prima di `git add` e `git commit`. Mostra: file in rosso (modificati non staged — working directory), in verde (staged — pronti al commit), untracked (nuovi). Workflow IaC: `git status` (cosa è cambiato?) → `git add .` → `git commit -m '...'` → `git push`.",
+    "tipo": "codice"
   },
   {
     "id": 92,
@@ -543,7 +584,8 @@
       "Esporta la storia del repository in un file di testo formattato per la documentazione esterna"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`git log --oneline` mostra la storia in formato compatto: hash abbreviato (7 char, univoco) + messaggio del commit, dal più recente. Esempio: `a3f8c21 Versione B: container CON volume`. Senza `--oneline` mostra hash completo (40 char), autore, data e messaggio esteso. Utile per identificare l'hash di un commit prima di `git checkout <hash>` per tornare a quella versione."
+    "spiegazione": "`git log --oneline` mostra la storia in formato compatto: hash abbreviato (7 char, univoco) + messaggio del commit, dal più recente. Esempio: `a3f8c21 Versione B: container CON volume`. Senza `--oneline` mostra hash completo (40 char), autore, data e messaggio esteso. Utile per identificare l'hash di un commit prima di `git checkout <hash>` per tornare a quella versione.",
+    "tipo": "codice"
   },
   {
     "id": 93,
@@ -556,7 +598,8 @@
       "Unisce (merge) il branch main con il branch corrente e poi lo pubblica su origin"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`git push origin main` pubblica il branch main locale sul repository remoto 'origin'. Il flag `-u` (= `--set-upstream`) imposta il tracking: il branch main locale 'segue' quello remoto. Dopo il primo push con `-u`, i successivi sono semplicemente `git push` senza specificare. Il tracking è salvato nella config locale. Senza `-u` bisogna sempre scrivere `git push origin main`."
+    "spiegazione": "`git push origin main` pubblica il branch main locale sul repository remoto 'origin'. Il flag `-u` (= `--set-upstream`) imposta il tracking: il branch main locale 'segue' quello remoto. Dopo il primo push con `-u`, i successivi sono semplicemente `git push` senza specificare. Il tracking è salvato nella config locale. Senza `-u` bisogna sempre scrivere `git push origin main`.",
+    "tipo": "codice"
   },
   {
     "id": 94,
@@ -569,7 +612,8 @@
       "Elimina tutti i branch tranne quello con asterisco, mantenuto come principale del progetto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`git branch` senza argomenti elenca i branch locali. L'asterisco (*) indica il branch corrente — dove punta HEAD. Esempio: `* main` / `feature-login` / `bugfix-volume`. Comandi correlati: `git branch nuovobranch` (crea), `git branch -d nome` (elimina), `git branch -M main` (rinomina). Nel workflow IaC del corso, dopo `git checkout HEAD~1` l'asterisco mostra 'detached HEAD'."
+    "spiegazione": "`git branch` senza argomenti elenca i branch locali. L'asterisco (*) indica il branch corrente — dove punta HEAD. Esempio: `* main` / `feature-login` / `bugfix-volume`. Comandi correlati: `git branch nuovobranch` (crea), `git branch -d nome` (elimina), `git branch -M main` (rinomina). Nel workflow IaC, dopo `git checkout HEAD~1` l'asterisco mostra 'detached HEAD'.",
+    "tipo": "codice"
   },
   {
     "id": 95,
@@ -582,7 +626,8 @@
       "Packaged = prodotto standard (SAP, Office) per molti clienti; Custom = sviluppato per una singola azienda"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Software Packaged: prodotto standard di un vendor venduto/licenziato a molti clienti. Esempi: SAP ERP, Microsoft Office, Salesforce. Vantaggi: subito disponibile, costo iniziale basso, supporto vendor, aggiornamenti. Svantaggio: l'azienda adatta i propri processi al software. Software Custom: sviluppato per i processi specifici di un'azienda. Vantaggi: aderenza perfetta, vantaggio competitivo. Svantaggi: costo alto, tempi lunghi, manutenzione interna."
+    "spiegazione": "Software Packaged: prodotto standard di un vendor venduto/licenziato a molti clienti. Esempi: SAP ERP, Microsoft Office, Salesforce. Vantaggi: subito disponibile, costo iniziale basso, supporto vendor, aggiornamenti. Svantaggio: l'azienda adatta i propri processi al software. Software Custom: sviluppato per i processi specifici di un'azienda. Vantaggi: aderenza perfetta, vantaggio competitivo. Svantaggi: costo alto, tempi lunghi, manutenzione interna.",
+    "tipo": "teoria"
   },
   {
     "id": 96,
@@ -595,7 +640,8 @@
       "FaaS / Serverless: esegue funzioni in risposta a eventi, pagamento al ms, scaling automatico"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "AWS Lambda è il servizio FaaS più noto, emblema del Serverless. Modello: si scrive una funzione (Python, Node.js, Java...), si carica su Lambda, si configura il trigger (HTTP via API Gateway, upload S3, messaggio SQS, evento CloudWatch). Quando scatta il trigger Lambda esegue, restituisce il risultato e termina. Costo al millisecondo: se non viene chiamata, costo zero. Scaling automatico a migliaia di esecuzioni parallele senza configurazione."
+    "spiegazione": "AWS Lambda è il servizio FaaS più noto, emblema del Serverless. Modello: si scrive una funzione (Python, Node.js, Java...), si carica su Lambda, si configura il trigger (HTTP via API Gateway, upload S3, messaggio SQS, evento CloudWatch). Quando scatta il trigger Lambda esegue, restituisce il risultato e termina. Costo al millisecondo: se non viene chiamata, costo zero. Scaling automatico a migliaia di esecuzioni parallele senza configurazione.",
+    "tipo": "teoria"
   },
   {
     "id": 97,
@@ -608,7 +654,8 @@
       "Eliminazione totale della necessità di backup grazie alle snapshot automatiche delle VM"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Il consolidamento è il beneficio più immediato. Prima: ogni app su un server dedicato per evitare interferenze → utilizzo medio 10-15% (85-90% sprecato). Con virtualizzazione: più VM (ognuna con la sua app) sullo stesso server fisico con risorse garantite. Un server moderno ospita 20-50 VM. Benefici: meno server da comprare, meno spazio rack, meno energia, meno raffreddamento, meno hardware da mantenere. Rapporti tipici 10:1 o superiori."
+    "spiegazione": "Il consolidamento è il beneficio più immediato. Prima: ogni app su un server dedicato per evitare interferenze → utilizzo medio 10-15% (85-90% sprecato). Con virtualizzazione: più VM (ognuna con la sua app) sullo stesso server fisico con risorse garantite. Un server moderno ospita 20-50 VM. Benefici: meno server da comprare, meno spazio rack, meno energia, meno raffreddamento, meno hardware da mantenere. Rapporti tipici 10:1 o superiori.",
+    "tipo": "teoria"
   },
   {
     "id": 98,
@@ -621,7 +668,8 @@
       "Il disco ottico usa flash NAND come gli SSD ma in formato rimovibile; l'HDD usa piatti magnetici"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "I dischi ottici (CD, DVD, Blu-ray) usano un laser per leggere/scrivere su strati riflettenti di policarbonato. Tecnologia diversa dagli HDD (magnetismo) e dagli SSD (flash NAND). Vantaggi ottici: portabilità, durabilità, basso costo unitario. Svantaggi: capacità limitata (Blu-ray fino a 100 GB), accesso lento, fragili. Uso storico: distribuzione software/musica/video, archivio. Oggi sostituiti da download e cloud, ancora usati in alcuni archivi."
+    "spiegazione": "I dischi ottici (CD, DVD, Blu-ray) usano un laser per leggere/scrivere su strati riflettenti di policarbonato. Tecnologia diversa dagli HDD (magnetismo) e dagli SSD (flash NAND). Vantaggi ottici: portabilità, durabilità, basso costo unitario. Svantaggi: capacità limitata (Blu-ray fino a 100 GB), accesso lento, fragili. Uso storico: distribuzione software/musica/video, archivio. Oggi sostituiti da download e cloud, ancora usati in alcuni archivi.",
+    "tipo": "teoria"
   },
   {
     "id": 99,
@@ -634,7 +682,8 @@
       "Insieme di repliche dello stesso container con load balancing, scaling e restart automatici"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "In Swarm un Service è l'unità di deployment scalabile. Definisce: immagine, numero di repliche (es. 5 istanze), policy di update (rolling update senza downtime), load balancing tra repliche, restart in caso di crash. Swarm decide su quali nodi far girare le repliche, rileva crash e riavvia, distribuisce il traffico. Definizione in `compose.yaml` con sezione `deploy`. È l'astrazione per scalare orizzontalmente i microservizi."
+    "spiegazione": "In Swarm un Service è l'unità di deployment scalabile. Definisce: immagine, numero di repliche (es. 5 istanze), policy di update (rolling update senza downtime), load balancing tra repliche, restart in caso di crash. Swarm decide su quali nodi far girare le repliche, rileva crash e riavvia, distribuisce il traffico. Definizione in `compose.yaml` con sezione `deploy`. È l'astrazione per scalare orizzontalmente i microservizi.",
+    "tipo": "teoria"
   },
   {
     "id": 100,
@@ -647,6 +696,7 @@
       "Significa che il codice IaC è identico tra provider cloud diversi (AWS, Azure, GCP) automaticamente"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "L'idempotenza è una proprietà matematica: applicare un'operazione più volte produce lo stesso risultato. In IaC dichiarativa: se esegui `tofu apply` 10 volte senza modifiche al codice, dopo il primo apply (che crea/modifica) i successivi non fanno nulla perché stato desiderato = stato reale. Fondamentale per l'affidabilità: si può rieseguire senza paura di duplicare risorse. Script shell e playbook Ansible non idempotenti tendono a dare errori alla seconda esecuzione."
+    "spiegazione": "L'idempotenza è una proprietà matematica: applicare un'operazione più volte produce lo stesso risultato. In IaC dichiarativa: se esegui `tofu apply` 10 volte senza modifiche al codice, dopo il primo apply (che crea/modifica) i successivi non fanno nulla perché stato desiderato = stato reale. Fondamentale per l'affidabilità: si può rieseguire senza paura di duplicare risorse. Script shell e playbook Ansible non idempotenti tendono a dare errori alla seconda esecuzione.",
+    "tipo": "teoria"
   }
 ]

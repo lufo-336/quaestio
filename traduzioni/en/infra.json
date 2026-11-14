@@ -37,7 +37,7 @@
     },
     "7af8ca86d882": {
       "domanda": "A developer wants to deploy only their Java code with automatic scaling, without managing VMs or containers. Which model do they choose?",
-      "spiegazione": "PaaS (Platform as a Service) is the correct model: the developer brings their own code, and the platform manages the OS, runtime, middleware, and scaling. Examples: Heroku, Google App Engine, Elastic Beanstalk. SaaS is WRONG: with SaaS, the user consumes a ready-made application from the provider, rather than deploying code. IaaS would require managing the VM, contradicting the requirement. Exam trap: confusing PaaS with SaaS when discussing 'deploying code'.",
+      "spiegazione": "PaaS (Platform as a Service) is the correct model: the developer brings their own code, and the platform manages the OS, runtime, middleware, and scaling. Examples: Heroku, Google App Engine, Elastic Beanstalk. SaaS is WRONG: with SaaS, the user consumes a ready-made application from the provider, rather than deploying code. IaaS would require managing the VM, contradicting the requirement. A common mistake is confusing PaaS with SaaS when discussing 'deploying code'.",
       "risposte": [
         "IaaS, because they want full control over the underlying infrastructure for the code",
         "PaaS: you bring the code, the platform manages OS, runtime, and scaling",
@@ -307,7 +307,7 @@
     },
     "7f4af0ee3800": {
       "domanda": "Is KVM a Type 1 or Type 2 hypervisor?",
-      "spiegazione": "KVM (Kernel-based Virtual Machine) is a Linux kernel module. It sparks debate: formally, it requires Linux. The course classifies it as Type 1 because when Linux is loaded with KVM, the kernel ITSELF becomes the hypervisor — it is not an OS host running a hypervisor on top. KVM VMs deliver Type 1 performance. Developed by Red Hat, it serves as the foundation for many cloud providers and OpenStack via libvirt.",
+      "spiegazione": "KVM (Kernel-based Virtual Machine) is a Linux kernel module. It sparks debate: formally, it requires Linux. It is classified as Type 1 because when Linux is loaded with KVM, the kernel ITSELF becomes the hypervisor — it is not an OS host running a hypervisor on top. KVM VMs deliver Type 1 performance. Developed by Red Hat, it serves as the foundation for many cloud providers and OpenStack via libvirt.",
       "risposte": [
         "Type 2: it requires Linux as the host OS, so it is not bare-metal",
         "It is not a hypervisor: it is only a driver for VT-x and AMD-V",
@@ -427,7 +427,7 @@
     },
     "921a828cf83d": {
       "domanda": "Is Terraform/OpenTofu declarative or procedural?",
-      "spiegazione": "OpenTofu/Terraform are declarative: in HCL you describe WHAT you want (desired state), not HOW to create it. OpenTofu compares the HCL code with the current state (terraform.tfstate) and autonomously determines the necessary operations. A procedural approach (Ansible, shell scripts) requires explicitly writing out the steps. Exam trap: HCL = desired state, NOT a sequence of steps.",
+      "spiegazione": "OpenTofu/Terraform are declarative: in HCL you describe WHAT you want (desired state), not HOW to create it. OpenTofu compares the HCL code with the current state (terraform.tfstate) and autonomously determines the necessary operations. A procedural approach (Ansible, shell scripts) requires explicitly writing out the steps. Common trap: HCL = desired state, NOT a sequence of steps.",
       "risposte": [
         "Procedural: you write the exact sequential steps to execute",
         "Declarative: you describe the final state; OpenTofu calculates the actions",
@@ -467,7 +467,7 @@
     },
     "6b90a9b644fa": {
       "domanda": "An application is deployed across 2 AZs of the same AWS Region. Which failure is NOT tolerated?",
-      "spiegazione": "Exam trap cited in the guide. With 2 AZs in the same Region, the following are tolerated: failure of a single VM (trivial); failure of an entire AZ (the other continues). NOT tolerated: failure of the entire Region (both AZs are impacted simultaneously). To tolerate a Region failure, replication across multiple geographic Regions is required.",
+      "spiegazione": "With 2 AZs in the same Region, the following are tolerated: failure of a single VM (trivial); failure of an entire AZ (the other continues). NOT tolerated: failure of the entire Region (both AZs are impacted simultaneously). To tolerate a Region failure, replication across multiple geographic Regions is required.",
       "risposte": [
         "Failure of a single EC2 server in one of the two AZs",
         "Simultaneous failure of an entire Availability Zone of the Region",
@@ -489,7 +489,7 @@
       "domanda": "What is the distinctive feature of Amazon's Nitro Hypervisor?",
       "spiegazione": "The Nitro System is Amazon's proprietary hypervisor for modern EC2 instances. It offloads I/O management (networking, storage) to dedicated hardware chips (Nitro chips), freeing up the physical machine's CPU and RAM for VMs. Result: near bare-metal performance. The 5-10s boot time is central to the Black Friday case study: Amazon scales from 200 to 3000 VMs in seconds, handling 50x spikes.",
       "risposte": [
-        "The only open-source hypervisor used in production by an hyperscale cloud",
+        "The only open-source hypervisor used in production by a hyperscale cloud",
         "VM boot in 5-10s with near bare-metal performance thanks to Nitro chips for I/O",
         "Type 2 hypervisor running on top of Windows Server 2022 with Hyper-V",
         "Virtualizes only NVIDIA GPUs for AI workloads on EC2 P5 instances"
@@ -507,7 +507,7 @@
     },
     "97bf7e430bfa": {
       "domanda": "In an IaC workflow using Git and OpenTofu, how do you revert to a previous version of the infrastructure?",
-      "spiegazione": "The power of versioned IaC is the ability to roll back, just like with code. Workflow: (1) `git checkout HEAD~1` moves HEAD to the previous commit (the prior HCL code); (2) `tofu apply` compares the previous HCL with the current state and applies changes to reach the desired state. To move forward: `git checkout main` + `tofu apply`. In the course lab, this was used to add/remove the Docker volume. There is no `tofu rollback` command.",
+      "spiegazione": "The power of versioned IaC is the ability to roll back, just like with code. Workflow: (1) `git checkout HEAD~1` moves HEAD to the previous commit (the prior HCL code); (2) `tofu apply` compares the previous HCL with the current state and applies changes to reach the desired state. To move forward: `git checkout main` + `tofu apply`. There is no `tofu rollback` command.",
       "risposte": [
         "Run `tofu rollback`, which automatically undoes the last apply",
         "`git checkout HEAD~1`, then `tofu apply` for the previous version",
@@ -837,7 +837,7 @@
     },
     "8dafafd267a3": {
       "domanda": "What is OpenTofu and how did it originate in relation to Terraform?",
-      "spiegazione": "Terraform by HashiCorp was MPL (Mozilla Public License), open source. In 2023, HashiCorp switched to BSL (Business Source License), which is more restrictive (prohibits commercial use by competitors). The community forked it: OpenTofu, adopted by the Linux Foundation as an independent and genuinely open-source project (MPL). Compatible with Terraform: same HCL, same providers, same syntax. Commands: `tofu init/plan/apply/destroy`. The course uses OpenTofu.",
+      "spiegazione": "Terraform by HashiCorp was MPL (Mozilla Public License), open source. In 2023, HashiCorp switched to BSL (Business Source License), which is more restrictive (prohibits commercial use by competitors). The community forked it: OpenTofu, adopted by the Linux Foundation as an independent and genuinely open-source project (MPL). Compatible with Terraform: same HCL, same providers, same syntax. Commands: `tofu init/plan/apply/destroy`.",
       "risposte": [
         "Google project created from scratch to directly compete with HashiCorp's Terraform in the cloud market",
         "Open-source fork of Terraform after HashiCorp's license change; managed by the Linux Foundation",
@@ -857,7 +857,7 @@
     },
     "e9614f598987": {
       "domanda": "What does `tofu destroy` do and when should it be used with caution?",
-      "spiegazione": "`tofu destroy` is the most dangerous command: it reads the tfstate, identifies all managed resources, and deletes them from the real infrastructure — VMs, containers, networks, storage, everything. It shows the plan and asks for confirmation ('yes'). In production: extreme caution is required, as deletion is irreversible (unbacked-up data is lost). Use cases: cleanup of test/staging environments, teardown of temporary infrastructures, and educational labs (as in the course).",
+      "spiegazione": "`tofu destroy` is the most dangerous command: it reads the tfstate, identifies all managed resources, and deletes them from the real infrastructure — VMs, containers, networks, storage, everything. It shows the plan and asks for confirmation ('yes'). In production: extreme caution is required, as deletion is irreversible (unbacked-up data is lost). Use cases: cleanup of test/staging environments, teardown of temporary infrastructures, laboratory environments.",
       "risposte": [
         "Deletes only local HCL configuration files without touching the client's real infrastructure",
         "Shows a destruction plan without executing anything, equivalent to `tofu plan -destroy`",
@@ -887,7 +887,7 @@
     },
     "ee28bf5c4845": {
       "domanda": "What are the three main public cloud providers and how do they position themselves in the market?",
-      "spiegazione": "The three main cloud providers according to the course: (1) AWS (Amazon Web Services) #1, since 2006, with the broadest catalog; (2) Microsoft Azure #2, with strong integration into the Microsoft ecosystem (Office 365, AD, Windows Server), preferred by enterprises already using Microsoft; (3) Google Cloud Platform (GCP) #3, particularly strong in AI/ML (TensorFlow, Vertex AI), Big Data (BigQuery), and Kubernetes (Google created K8s). The market is growing; AWS is the leader, while Azure and GCP are gaining market share.",
+      "spiegazione": "The three main cloud providers: (1) AWS (Amazon Web Services) #1, since 2006, with the broadest catalog; (2) Microsoft Azure #2, with strong integration into the Microsoft ecosystem (Office 365, AD, Windows Server), preferred by enterprises already using Microsoft; (3) Google Cloud Platform (GCP) #3, particularly strong in AI/ML (TensorFlow, Vertex AI), Big Data (BigQuery), and Kubernetes (Google created K8s). The market is growing; AWS is the leader, while Azure and GCP are gaining market share.",
       "risposte": [
         "AWS (#1), Microsoft Azure (#2, Microsoft ecosystem), Google Cloud (#3, AI/ML)",
         "Oracle Cloud, IBM Cloud, Alibaba Cloud — respectively #1, #2 and #3 globally",
@@ -917,7 +917,7 @@
     },
     "d2b9089b77c6": {
       "domanda": "What does `git status` do and when should it be used in the daily workflow?",
-      "spiegazione": "`git status` is the orientation command for the Git workflow. It should be used before `git add` and `git commit`. It shows: files in red (modified but not staged — working directory), in green (staged — ready for commit), and untracked (new). IaC course workflow: `git status` (what has changed?) → `git add .` → `git commit -m '...'` → `git push`.",
+      "spiegazione": "`git status` is the orientation command for the Git workflow. It should be used before `git add` and `git commit`. It shows: files in red (modified but not staged — working directory), in green (staged — ready for commit), and untracked (new). IaC workflow: `git status` (what has changed?) → `git add .` → `git commit -m '...'` → `git push`.",
       "risposte": [
         "Shows the complete history of all repository commits with author, date, and message",
         "Synchronizes the local repository with the remote by downloading all available latest changes",
@@ -953,7 +953,7 @@
         "Creates a new branch with the specified name; the asterisk is a wildcard for multiple names",
         "Deletes all branches except the one with the asterisk, which is kept as the project's main branch"
       ],
-      "spiegazione": "`git branch` without arguments lists the local branches. The asterisk (*) indicates the current branch — where HEAD points. Example: `* main` / `feature-login` / `bugfix-volume`. Related commands: `git branch nuovobranch` (creates), `git branch -d nome` (deletes), `git branch -M main` (renames). In the course's IaC workflow, after `git checkout HEAD~1` the asterisk shows 'detached HEAD'."
+      "spiegazione": "`git branch` without arguments lists the local branches. The asterisk (*) indicates the current branch — where HEAD points. Example: `* main` / `feature-login` / `bugfix-volume`. Related commands: `git branch nuovobranch` (creates), `git branch -d nome` (deletes), `git branch -M main` (renames). In the IaC workflow, after `git checkout HEAD~1` the asterisk shows 'detached HEAD'."
     },
     "c9309b856723": {
       "domanda": "What is 'packaged' software and how does it differ from 'custom' software?",
