@@ -75,9 +75,9 @@
         "app.all()"
       ]
     },
-    "138852f43364": {
-      "domanda": "What status does the `AppError` class use if none is passed to the constructor?",
-      "spiegazione": "The signature is `constructor(message, status = 500)`: the default is 500, i.e., the generic unexpected error.",
+    "2f47d4b32f31": {
+      "domanda": "Given this custom HTTP error class:\n```js\nclass AppError extends Error {\n  constructor(message, status = 500) {\n    super(message);\n    this.status = status;\n  }\n}\n```\nWhat status does `new AppError('Failed')` use if none is passed?",
+      "spiegazione": "The signature is `constructor(message, status = 500)`: the default parameter is 500, i.e., the generic internal server error.",
       "risposte": [
         "500",
         "404",
@@ -125,13 +125,13 @@
         "201"
       ]
     },
-    "a0d3f7dc2ad4": {
+    "ebe64a96a3f0": {
       "domanda": "Why in `GET /tasks` do we filter and sort BEFORE paginating?",
       "spiegazione": "The correct order is filter, sort, paginate. Reversing sorting and pagination produces a subtle incorrect result: it seems to work until you look at page 2.",
       "risposte": [
         "For performance reasons",
         "Because Express requires it",
-        "Because `Array.prototype.sort` is not stable on object arrays, so sorting after `slice` would return a different sequence each time for the same data",
+        "Because in JavaScript `Array.prototype.slice` freezes the extracted array, preventing any subsequent call to the `sort` method",
         "Otherwise, only the few elements already extracted for that page would be sorted, and the \"first page sorted by title\" would contain arbitrary elements"
       ]
     },
@@ -235,14 +235,14 @@
         "Because it reduces the number of headers"
       ]
     },
-    "4e954bcd0164": {
-      "domanda": "What does the payload of the token issued upon login typically contain?",
-      "spiegazione": "Only the minimum necessary and non-secret information. `jwt.sign({ userId, ruolo }, JWT_SECRET, { expiresIn: '1h' })`.",
+    "63bceb25f523": {
+      "domanda": "What does the payload of a JWT token issued upon login typically contain?",
+      "spiegazione": "Only the minimum non-secret data needed to identify and authorize the user belongs in the payload, e.g., `jwt.sign({ userId, role }, JWT_SECRET, { expiresIn: '1h' })`.",
       "risposte": [
-        "The complete list of tasks owned by the user",
+        "The complete list of resources owned by the user",
         "The user's email along with the password in plain text",
         "The bcrypt hash of the password and the date of the last login",
-        "`userId` and `ruolo`"
+        "User identifier and role (e.g., `userId` and `role`)"
       ]
     },
     "069ff0676eba": {
@@ -395,12 +395,12 @@
         "In the Params tab, as key-value pairs"
       ]
     },
-    "4c66f399105b": {
-      "domanda": "How is the ETag of a single task in TaskFlow constructed?",
-      "spiegazione": "`crypto.createHash('md5').update(JSON.stringify(task)).digest('hex')`: it is a content fingerprint, so it changes if and only if the content changes.",
+    "3119e3ab1d80": {
+      "domanda": "Given this code that generates the `ETag` header for a `task` resource:\n```js\nconst etag = crypto\n  .createHash('md5')\n  .update(JSON.stringify(task))\n  .digest('hex');\n```\nHow is the `ETag` of the single task constructed?",
+      "spiegazione": "`crypto.createHash('md5').update(JSON.stringify(task)).digest('hex')` computes an MD5 fingerprint of the JSON content, which changes if and only if the resource data changes.",
       "risposte": [
         "As the last modification date converted to ISO 8601 format",
-        "As an MD5 hash of the content",
+        "As an MD5 hash of the JSON-serialized content",
         "As a sequential number incremented on every task modification",
         "As a random identifier regenerated on every received request"
       ]
@@ -905,12 +905,12 @@
         "`-X`"
       ]
     },
-    "0ba11df941fc": {
+    "03c6023184f8": {
       "domanda": "`POST /login` with an incorrect password responds with `200 OK` and body `{\"success\": false}`. What is the error?",
       "spiegazione": "A client (or a proxy, or a monitor) decides based on the code: a 200 on a failure makes the API impossible to consume correctly.",
       "risposte": [
         "The HTTP status must reflect the outcome of the request: here it should be 401, otherwise every client must read the body to determine if it was successful",
-        "The body should not contain the `success` field, because the uniform error format only includes `error`, `dettaglio`, and `campi`",
+        "The body should not contain the `success` field, because a JSON error response may only contain a message string",
         "The body should be empty",
         "The Location header is missing"
       ]
@@ -1025,9 +1025,9 @@
         "Using it like PATCH, sending only the fields to update, which results in clearing the omitted fields"
       ]
     },
-    "3a38947f2271": {
-      "domanda": "Which factory in `utils/errors.js` constructs an AppError with status 409?",
-      "spiegazione": "`conflict(msg)` creates an AppError with status 409, typically used for duplicates. `badReq`=400, `forbidden`=403, `notFound`=404.",
+    "8d9e4489adb2": {
+      "domanda": "Given this helper module for creating HTTP errors:\n```js\nconst badReq = (m) => new AppError(m, 400);\nconst forbidden = (m) => new AppError(m, 403);\nconst notFound = (m) => new AppError(m, 404);\nconst conflict = (m) => new AppError(m, 409);\n```\nWhich factory function constructs an `AppError` with status 409?",
+      "spiegazione": "`conflict(m)` creates an `AppError` with HTTP status 409 (Conflict), typically used for duplicates. `badReq`=400, `forbidden`=403, `notFound`=404.",
       "risposte": [
         "`forbidden`",
         "`badReq`",
@@ -1405,9 +1405,9 @@
         "Requires server-side sessions"
       ]
     },
-    "ff2b9bdf89fe": {
-      "domanda": "In the AppError class, what is the purpose of the status property?",
-      "spiegazione": "AppError carries the status (404, 400, 409...) via factory methods like notFound()/conflict(); the error handler uses err.status||500 to set the response.",
+    "383748699cdd": {
+      "domanda": "In an Express application with an `AppError extends Error` class and this error handler:\n```js\napp.use((err, req, res, next) => {\n  res.status(err.status || 500).json({\n    error: err.message\n  });\n});\n```\nWhat is the purpose of the `status` property on `AppError` instances?",
+      "spiegazione": "`AppError` carries the specific HTTP status (400, 404, 409...); the error-handling middleware reads `err.status || 500` to set the response status code.",
       "risposte": [
         "To record the date of the error",
         "To count the errors that occurred",
@@ -1415,9 +1415,9 @@
         "To store the HTTP status to use in the response, so the error handler reads it instead of always responding with 500"
       ]
     },
-    "77f32149c37e": {
-      "domanda": "In the standard error response format, what type must the `error` field always be?",
-      "spiegazione": "`error` is a human-readable string: for the numeric code, the HTTP status code is already present; repeating it in the body would be redundant.",
+    "81be76fdc8f2": {
+      "domanda": "In a REST API that adopts the JSON convention `{\"error\": \"Resource not found\", \"fields\": [...]}` for error responses, what type is the `error` field to avoid redundancy with the HTTP status?",
+      "spiegazione": "In this schema `error` is a human-readable string with the main message: the HTTP response status already provides the numeric code, so repeating it in the body is redundant.",
       "risposte": [
         "An integer corresponding to the HTTP status code of the response",
         "An object containing the numeric code and the extended error description",
