@@ -24,7 +24,7 @@ Quaestio started as a simple terminal-based quiz tool to help me review coursewo
 
 Today, the repository includes **11 subjects and 2,383 questions**, with both the application interface and the question banks available in Italian and English.
 
-The project was largely **vibe-coded** in collaboration with AI assistants (Claude Code and Google Antigravity). The git commit history has been kept intact: it genuinely documents the progression, refactorings, mistakes, and lessons learned of an amateur programmer building a cross-platform application from scratch.
+The project was largely **vibe-coded** in collaboration with AI assistants (Claude Code and Google Antigravity). The git commit history genuinely documents the progression, refactorings, mistakes, and lessons learned of an amateur programmer building a cross-platform application from scratch. Note: parts of the history may have been revised, only to remove personal data (local paths, device and signing identifiers) and large build artifacts; the code and the sequence of changes are unchanged.
 
 ## Current Goal
 

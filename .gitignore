@@ -86,3 +86,9 @@ step1_cleanup.sh
 
 # cache degli script Python in generazione-domande/strumenti
 __pycache__/
+
+# ---------- Cartelle locali di strumenti (non vanno nel repo) ----------
+.remember/
+.revisione/
+.superpowers/
+.claude/
