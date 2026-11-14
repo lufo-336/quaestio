@@ -689,7 +689,7 @@
         "A 16-bit signed unicode numeric value"
       ]
     },
-    "852fb38119e1": {
+    "4e6ab8407ba1": {
       "domanda": "What does `int.Parse(\"abc\")` return on an invalid string?",
       "spiegazione": "Parse throws a FormatException on non-numeric strings.",
       "risposte": [
@@ -739,7 +739,7 @@
         "Ranges from 0 to 1023 extended to ten bits"
       ]
     },
-    "4afcf50bad99": {
+    "418ad5d435b6": {
       "domanda": "What is the result of the cast `(int)3.7` in C#?",
       "spiegazione": "Casting from double to int truncates, it does not round.",
       "risposte": [
@@ -769,8 +769,8 @@
         "ExecuteQuery() with advanced search parameters"
       ]
     },
-    "ab5a44d1934f": {
-      "domanda": "Which value is used in the code to indicate that a database field does not apply to a certain type of material?",
+    "15830fc7f50d": {
+      "domanda": "In C#, which value is used to pass a NULL value to a database parameter?",
       "spiegazione": "When a parameter does not apply to the type (e.g., Author for a DVD), `DBNull.Value` is used to pass SQL NULL to the database. Pure C# `null` is incorrect for SqliteCommand parameters in this context. 0 is a numeric value and does not represent absence. string.Empty indicates an empty string, which is different from the concept of NULL.",
       "risposte": [
         "null with a generic string type",
@@ -791,7 +791,7 @@
     },
     "008bde543175": {
       "domanda": "How do you protect an SQL query from the insertion of malicious values (SQL Injection)?",
-      "spiegazione": "Named parameters (`@titolo`) with `AddWithValue` make the driver handle the values, preventing SQL Injection. Manual concatenation is exactly the WRONG practice. SQLite does not use stored procedures here. HTML encoding does not protect against SQL injection.",
+      "spiegazione": "Named parameters (`@titolo`) with `AddWithValue` make the driver handle the values, preventing SQL Injection. Manual concatenation is exactly the WRONG practice. SQLite does not use stored procedures. HTML encoding does not protect against SQL injection.",
       "risposte": [
         "Concatenating strings with the + operator and manually verifying characters",
         "Creating a stored procedure in the .db file and invoking it from C# code",
@@ -1429,7 +1429,7 @@
         "It executes exactly true times as if it were a number"
       ]
     },
-    "9cc21763a6bc": {
+    "1877d61fb553": {
       "domanda": "Difference between `do-while` and `while` in terms of behavior?",
       "spiegazione": "do-while: at least 1 execution is guaranteed.",
       "risposte": [
@@ -2521,7 +2521,7 @@
     },
     "f3def3d3b4dd": {
       "domanda": "In the `Info()` method of the `Studente` class, how is it decided whether to print 'bravo' or 'non bravo'?",
-      "spiegazione": "Since `abilita` is a `bool`, the ternary operator is used directly: `string tipoAbilita = abilita ? \"bravo\" : \"non bravo\"`. This is one of the advantages of having changed `abilita` from string to bool: the code is cleaner and semantically correct. A bool is used directly as a condition without the need for comparisons.",
+      "spiegazione": "Since `abilita` is a `bool`, the ternary operator is used directly: `string tipoAbilita = abilita ? \"bravo\" : \"non bravo\"`. Using a `bool` for `abilita` rather than `string` makes the code cleaner and semantically correct. A `bool` is used directly as a condition without the need for comparisons.",
       "risposte": [
         "By calling the IsAbile() method of the class",
         "if (abilita == \"bravo\")",
@@ -2599,7 +2599,7 @@
         "new Studente s;"
       ]
     },
-    "4187235a10e5": {
+    "cb35cd1807af": {
       "domanda": "If a class `Studente` has no explicit constructor and one with parameters is added, what happens to the parameterless constructor?",
       "spiegazione": "The compiler generates the parameterless constructor only if no other constructor has been defined. As soon as a parameterized constructor is defined, the parameterless constructor disappears. It must be explicitly redefined if you want to keep it.",
       "risposte": [
@@ -2710,7 +2710,7 @@
       ]
     },
     "c870717226c8": {
-      "domanda": "What is the name of the static method `CalcolaMedia` of the `Studente` class?",
+      "domanda": "How do you call the static method `CalcolaMedia` of the `Studente` class?",
       "spiegazione": "Static methods are called using the class name: `Studente.CalcolaMedia()`. There is no need to create an instance. Instance methods, on the other hand, require an object: `s.CalcolaMedia()`.",
       "risposte": [
         "new Studente().CalcolaMedia()",
@@ -3039,8 +3039,8 @@
         "They remain in the list control but are no longer accessible upon restart"
       ]
     },
-    "212e8472bcc8": {
-      "domanda": "Which characteristic distinguishes SQLite from SQL Server or MySQL in the context of the course?",
+    "4e6597122515": {
+      "domanda": "Which characteristic distinguishes SQLite from SQL Server or MySQL?",
       "spiegazione": "SQLite is a serverless relational database that persists data in a single .db file, making it ideal for desktop applications. SQL Server and MySQL require a separate server. SQLite does not store data only in RAM: the .db file is persistent. Primary keys can be simple (such as Id AUTOINCREMENT).",
       "risposte": [
         "Requires the installation of a background Windows service to function",
@@ -3130,7 +3130,7 @@
       ]
     },
     "6b072a779791": {
-      "domanda": "What is the name of the base class constructor called from a derived class?",
+      "domanda": "How is the base class constructor called from a derived class?",
       "spiegazione": "To call the base class constructor, you write `: base(parametri)` after the derived constructor's signature: `public Cane(string nome, string razza) : base(nome) { this.razza = razza; }`. The `super()` syntax is used in Java. Without `: base(...)`, C# automatically calls the base class parameterless constructor.",
       "risposte": [
         "parent()",
@@ -3411,7 +3411,7 @@
     },
     "1a4caccac7e2": {
       "domanda": "Can a `sealed` class inherit from another class?",
-      "spiegazione": "`sealed` only prevents **others from inheriting from you**, not you from inheriting from others. Course example: `public sealed class ChihuahuaSpecifico : Cane { }` — it inherits from `Cane`, but no one will be able to inherit from `ChihuahuaSpecifico`. It's the end of the inheritance chain.",
+      "spiegazione": "`sealed` only prevents **others from inheriting from you**, not you from inheriting from others. For example: `public sealed class ChihuahuaSpecifico : Cane { }` — it inherits from `Cane`, but no one will be able to inherit from `ChihuahuaSpecifico`. It's the end of the inheritance chain.",
       "risposte": [
         "Yes, sealed only blocks outgoing inheritance",
         "No, sealed prevents any form of inheritance",
@@ -3519,7 +3519,7 @@
         "The compiler implicitly calls the parameterless base constructor; if the base class does not have a parameterless constructor, you must explicitly invoke `: base(args)`, otherwise an error occurs"
       ]
     },
-    "73384aa6df0b": {
+    "c233d31c8ab5": {
       "domanda": "What is a pure virtual function?",
       "spiegazione": "In C#, it is called `abstract`. It forces concrete subclasses to provide an override.",
       "risposte": [
@@ -3601,7 +3601,7 @@
     },
     "2cad4382f77a": {
       "domanda": "In the Table Per Hierarchy strategy, how many tables are created in the database for the Book/Magazine/DVD hierarchy?",
-      "spiegazione": "The Table Per Hierarchy (TPH) strategy uses a single table with a Type column to distinguish derived classes. Three distinct tables correspond to the TPT (Table Per Type) strategy. Two tables is not the adopted strategy. No tables contradicts the purpose of persistence in SQLite.",
+      "spiegazione": "The Table Per Hierarchy (TPH) strategy uses a single table with a Type column to distinguish derived classes. Three distinct tables correspond to the TPT (Table Per Type) strategy. Two tables is not a standard strategy. No tables contradicts the purpose of persistence in SQLite.",
       "risposte": [
         "Three distinct tables linked by foreign keys",
         "Two tables: one for common materials and one for specific types",
@@ -3819,7 +3819,7 @@
         "The C# compiler automatically generates empty implementations for each method"
       ]
     },
-    "56841667f857": {
+    "005a71b29214": {
       "domanda": "Can an abstract class have a constructor?",
       "spiegazione": "Yes, an abstract class can have constructors (even with parameters). They are not called directly with `new` (which is impossible for abstract classes) but are invoked by derived classes via `: base(...)`. They serve to initialize the fields of the object's base part.",
       "risposte": [
@@ -3891,7 +3891,7 @@
     },
     "75cb2e3bd15c": {
       "domanda": "Which principle is upheld by declaring a field as `IRepository<T>` (interface) instead of the concrete type?",
-      "spiegazione": "Dependending on the interface rather than the concrete class is the Dependency Inversion Principle (DIP): the implementation can be changed without affecting the caller. Liskov relates to inheritance, open/closed to code modification, and SRP to cohesion.",
+      "spiegazione": "Depending on the interface rather than the concrete class is the Dependency Inversion Principle (DIP): the implementation can be changed without affecting the caller. Liskov relates to inheritance, open/closed to code modification, and SRP to cohesion.",
       "risposte": [
         "The Dependency Inversion Principle: depend on the abstraction, not on the implementation",
         "The Liskov Substitution Principle: every subclass can replace the base class",
@@ -4124,7 +4124,7 @@
       "spiegazione": "`Select` projects each element into a new form. Example: `studenti.Select(s => s.Nome)` returns an IEnumerable<string> with only the names. `numeri.Select(n => n * 2)` doubles each number. It is equivalent to SQL's SELECT: it transforms the output, it does not filter. To filter, use Where.",
       "risposte": [
         "Filters elements that satisfy a given boolean condition",
-        "Sorts the elements of the collection in ascending or descending order",
+        "Sorts the elements of the collection in ascending order or descending order",
         "Transforms each element by applying a function (projection)",
         "Counts the total number of elements in the initial collection"
       ]
@@ -4521,7 +4521,7 @@
     },
     "3fbf4d1b41c7": {
       "domanda": "When is it preferable to use a `record` instead of a `class`?",
-      "spiegazione": "Course rule of thumb: use `record` for **data you describe and pass around** (DTOs, configuration objects, API responses). Use `class` for **objects that do things** (entities with mutable state, behavior, logic). Records provide value-based equality, immutability, and compact syntax out of the box.",
+      "spiegazione": "Rule of thumb: use `record` for **data you describe and pass around** (DTOs, configuration objects, API responses). Use `class` for **objects that do things** (entities with mutable state, behavior, logic). Records provide value-based equality, immutability, and compact syntax out of the box.",
       "risposte": [
         "Always, it's more modern",
         "For pure immutable data like DTOs or objects you describe and pass between layers without real internal state logic",
@@ -4603,7 +4603,7 @@
       "domanda": "A variable declared inside a block delimited by `{ }`:",
       "spiegazione": "The scope of a local variable is the `{ }` block in which it is declared, including any nested blocks. Example: a variable declared inside an `if { ... }` is visible within that branch and in the innermost blocks, but not after the closing brace of the `if`.",
       "risposte": [
-        "It is visible only within that block and all any nested blocks inside it, but not outside",
+        "It is visible only within that block and any nested blocks inside it, but not outside",
         "It is visible throughout the entire source file",
         "It becomes a class field",
         "It is always static by default"
@@ -4709,8 +4709,8 @@
         "`Studente s = new Studente();` (object)"
       ]
     },
-    "0c82a9cdadec": {
-      "domanda": "What does this code print (given the `Studente` model from the course)?\n```csharp\nStudente s1 = new Studente(\"Alice\", \"Rossi\", 20, true, \"F\");\nStudente s2 = s1;\ns2.Nome = \"Bruno\";\nConsole.WriteLine(s1.Nome);\n```",
+    "7c533cc1972c": {
+      "domanda": "What does this code print (assuming the `Studente` class returns the name in uppercase)?\n```csharp\nStudente s1 = new Studente(\"Alice\", \"Rossi\", 20, true, \"F\");\nStudente s2 = s1;\ns2.Nome = \"Bruno\";\nConsole.WriteLine(s1.Nome);\n```",
       "spiegazione": "`Studente` is a reference type: `s2 = s1` does not duplicate the object, it only copies the **address**. `s1` and `s2` point to the same object on the heap. Modifying `s2.Nome` also modifies `s1.Nome`. The `Nome` getter calls `ToUpper()`, so it prints `BRUNO` in uppercase.",
       "risposte": [
         "`ALICE`",
@@ -4889,9 +4889,9 @@
         "Finds students who meet ALL of the criteria"
       ]
     },
-    "fe4282d659b7": {
-      "domanda": "What is the Model-Repository-Form pattern used in the WinFormsApp2 project?",
-      "spiegazione": "The Model-Repository-Form pattern separates responsibilities: the Model (Studente.cs) describes the data, the Repository (StaticRepository.cs) provides the data, and the Form (FormProdotti) manages the interface. The advantage is that changing the data source (from an array to a database) would require changes only in the Repository, without touching the Form or the Model.",
+    "04e171368489": {
+      "domanda": "What is the Model-Repository-Form pattern?",
+      "spiegazione": "The Model-Repository-Form pattern separates responsibilities: the Model describes the data, the Repository provides the data, and the Form manages the interface. The advantage is that changing the data source (from an array to a database) would require changes only in the Repository, without touching the Form or the Model.",
       "risposte": [
         "A system for automatically saving data to a file",
         "A three-layer architecture that separates the data model, the data source, and the user interface",
@@ -4939,8 +4939,8 @@
         "Contains the mouse coordinates at the time of the click"
       ]
     },
-    "a4deb89b83be": {
-      "domanda": "In the WinFormsApp2 project, what does `StaticRepository.Studenti` contain?",
+    "e3f828088c14": {
+      "domanda": "What does `StaticRepository.Studenti` contain?",
       "spiegazione": "`StaticRepository.Studenti` is a static property that returns `studenti.ToList<Studente>()`: it converts the private static array into a List<Studente>. This allows the Form to work with a list without knowing the internal implementation of the repository (which might use a database in the future).",
       "risposte": [
         "A SQL database with the students table",
@@ -5119,9 +5119,9 @@
         "The filtered list is computed with LINQ (`var r = items.Where(x => x.Contains(testo)).ToList();`), listBox.Items is cleared, and AddRange is called on the new list"
       ]
     },
-    "b591f947f790": {
-      "domanda": "Which NuGet provider is used in the course to access SQLite from .NET?",
-      "spiegazione": "The course uses `Microsoft.Data.Sqlite` as the official and lightweight provider for SQLite. `System.Data.SqlClient` is for SQL Server, `MySql.Data` for MySQL, while `EF Core` is a higher-level ORM not used here.",
+    "0dd9d4cf0624": {
+      "domanda": "Which NuGet provider is used to access SQLite from .NET?",
+      "spiegazione": "`Microsoft.Data.Sqlite` is the official and lightweight provider for SQLite. `System.Data.SqlClient` is for SQL Server, `MySql.Data` for MySQL, while `EF Core` is a higher-level ORM.",
       "risposte": [
         "`Microsoft.Data.Sqlite`",
         "`System.Data.SqlClient` suitable for remote SQL Server servers",
@@ -5299,7 +5299,7 @@
       ],
       "spiegazione": "`DELETE FROM tabella WHERE condizione` is the standard SQL syntax for deleting rows. `DROP` removes an entire table or object; `REMOVE` does not exist in SQL; `TRUNCATE` empties the entire table and does not accept `WHERE`."
     },
-    "5bfabbae2250": {
+    "74b2bc084e5b": {
       "domanda": "What does `reader.Read()` return on a `SqliteDataReader`?",
       "risposte": [
         "`true` if there is a row available, `false` at the end of the reader.",
@@ -5324,7 +5324,7 @@
       "spiegazione": "`UNIQUE` ensures that every value in the column is distinct; an INSERT that violates it throws `SqliteException`. `UNIQUE` does not imply `NOT NULL` (except for specific behaviors); `PRIMARY KEY` is used for a primary key; the type is specified separately.",
       "risposte": [
         "Prevents the insertion of rows with the same value in the column.",
-        "Forces the column to be mandatory `NULL`.",
+        "Forces the column to be mandatory non-`NULL`.",
         "Forces the column to be mandatory the primary key.",
         "Forces the column to accept only positive integer values."
       ]
@@ -5669,7 +5669,7 @@
         "`Hashtable<string, int>` as a generic variant of the original non-generic class"
       ]
     },
-    "179df4e41fc5": {
+    "c010a2cbfb6a": {
       "domanda": "Which signature is correct for a generic method `Primo<T>` that returns the first element of a `List<T>`?",
       "risposte": [
         "`public T Primo<T>(List<T> lista) => lista[0];` with the type parameter right after the method name.",
@@ -5729,7 +5729,7 @@
         "A Unix timestamp in milliseconds calculated from the epoch of January 1, 1970"
       ]
     },
-    "d3d2f9c94b4e": {
+    "6c44e77eec6b": {
       "domanda": "What does it mean that the `string` class is immutable in C#?",
       "spiegazione": "Immutable means the content of the string object does not change; every \"modification\" allocates a new string. However, the variable can be reassigned to a new string. Strings are reference types on the heap and support any Unicode character.",
       "risposte": [
@@ -5949,7 +5949,7 @@
         "Handle exceptions."
       ]
     },
-    "6aa2e515be48": {
+    "30b044dc4779": {
       "domanda": "What happens to the variable `i` declared in `for (int i = 0; i < 10; i++) { ... }` after the loop?",
       "spiegazione": "`i` is a local variable to the `for` loop: its scope is limited to the `for` statement and its body. It no longer exists outside the loop. To make it accessible outside, it must be declared before the `for` loop.",
       "risposte": [
@@ -6009,7 +6009,7 @@
       ],
       "spiegazione": "In C# you throw with `throw new TipoEccezione(...)`. `raise` belongs to Python; the `new` in front of the instance is mandatory; there is no static `Exception.Throw` (there is `Exception.Rethrow`, but it is different)."
     },
-    "936104c8e106": {
+    "ea0882dd8c70": {
       "domanda": "How are different exceptions handled differently?",
       "spiegazione": "C# allows multiple `catch` blocks for different types (e.g., `catch (SqliteException) { ... } catch (Exception) { ... }`); the runtime takes the first matching one, so it should be ordered from most specific to most generic. `when` for conditional filters is also valid.",
       "risposte": [
@@ -6049,7 +6049,7 @@
         "The number of people in the list, converted to a string for console output"
       ]
     },
-    "849ed4fc5603": {
+    "25aec1397f4c": {
       "domanda": "On an empty sequence, what is the difference between `First()` and `FirstOrDefault()`?",
       "spiegazione": "On an empty sequence: `First()` throws `InvalidOperationException`, while `FirstOrDefault()` returns `default(T)` (e.g., `null` for references, 0 for `int`). They are not synonyms; performance is equivalent; `Last` returns the last element.",
       "risposte": [
@@ -6089,7 +6089,7 @@
       ],
       "spiegazione": "An interface is a contract: whoever implements it must provide the declared members, so the caller can work through the abstraction (`IPrestabile p`) without knowing the concrete type. It adds no automatic persistence or inheritance."
     },
-    "17b4dbee6015": {
+    "972f5fae3c1b": {
       "domanda": "What is the main difference between an interface and an abstract class in C#?",
       "spiegazione": "Interfaces are contracts without state (fields); abstract classes can have state and partial implementations. C# allows single class inheritance but multiple interface implementation. Both support generics.",
       "risposte": [
@@ -6213,10 +6213,10 @@
       "domanda": "What is the purpose of the `asp-validation-for=\"Prodotto.Nome\"` tag helper?",
       "spiegazione": "`asp-validation-for` displays the validation error message for the property, if any. Mandatory fields are set using `[Required]`; it does not translate or sort fields.",
       "risposte": [
-        "A to display the validation error message for that model property",
-        "B to make the field mandatory",
-        "C to translate the label",
-        "D to sort the fields"
+        "To display the validation error message for that model property",
+        "To make the field mandatory",
+        "To translate the label",
+        "To sort the fields"
       ]
     },
     "d9cc706d5b2d": {
@@ -6329,8 +6329,8 @@
         "Transient creates a single instance, Singleton many"
       ]
     },
-    "4d9d39d4a400": {
-      "domanda": "Why is a `record` (e.g., `record Product(int Id, string Name)`) often used in the web data model for the course?",
+    "44c4a09d4650": {
+      "domanda": "Why is a `record` (e.g., `record Product(int Id, string Name)`) often used in the web data model?",
       "spiegazione": "A `record` declares data in a compact and immutable way, ideal for rows read from the database. Pages also accept normal classes; the record does not generate pages nor replace the database.",
       "risposte": [
         "Because it is concise and immutable, suitable for representing data read from the database",
@@ -6380,7 +6380,7 @@
       ]
     },
     "095dec0cbdf2": {
-      "domanda": "What does an handler typically return when validation fails and it wants to re-display the form with the errors?",
+      "domanda": "What does a handler typically return when validation fails and it wants to re-display the form with the errors?",
       "spiegazione": "`return Page();` re-renders the same page showing the error messages from `ModelState`. `RedirectToPage` is used after a successful save; `View()` is for MVC, not Razor Pages.",
       "risposte": [
         "RedirectToPage()",
