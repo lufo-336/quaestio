@@ -215,12 +215,12 @@
     "domanda": "Quanti dischi devono guastarsi contemporaneamente per perdere dati in un RAID 6?",
     "risposte": [
       "1 disco solo, esattamente come avviene anche in RAID 5",
+      "2 dischi: RAID 6 usa doppia parità e tollera solo 1 guasto",
       "Almeno 3 dischi: RAID 6 calcola la parità con XOR e Reed-Solomon",
-      "2 dischi: RAID 6 usa doppia parità e tollera 2 guasti",
       "Nessuno: RAID 6 è completamente immune ai guasti hardware"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "RAID 6 usa doppia parità (XOR + Reed-Solomon). Tollera fino a 2 guasti contemporanei. Con 1 disco guasto opera normalmente; con 2 guasti i dati ancora recuperabili ma in stato critico; con 3+ guasti dati persi. Richiede almeno 4 dischi; capacità utile (N-2) × dimensione_disco. La risposta 1 confonde 'tre o più' con il limite reale di 'tre'.",
+    "spiegazione": "RAID 6 usa doppia parità (XOR + Reed-Solomon) e tollera fino a 2 guasti contemporanei. Con 1 disco guasto opera normalmente; con 2 guasti i dati sono ancora recuperabili ma l'array è in stato critico; con 3 o più guasti simultanei i dati vanno persi. Richiede almeno 4 dischi e offre una capacità utile pari a (N-2) × dimensione_disco.",
     "tipo": "teoria"
   },
   {

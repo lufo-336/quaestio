@@ -165,13 +165,13 @@
         "RAID 0 is for long-term backup; RAID 1 for read performance"
       ]
     },
-    "8d7cfe77f9da": {
+    "f4b8e9e9d8a0": {
       "domanda": "How many disks must fail simultaneously to lose data in a RAID 6 configuration?",
-      "spiegazione": "RAID 6 uses double parity (XOR + Reed-Solomon). It tolerates up to 2 simultaneous disk failures. With 1 failed disk, it operates normally; with 2 failures, data is still recoverable but in a critical state; with 3 or more failures, data is lost. It requires at least 4 disks; usable capacity is (N-2) × disk_size. Answer A confuses 'three or more' with the actual limit of 'three'.",
+      "spiegazione": "RAID 6 uses double parity (XOR + Reed-Solomon) and tolerates up to 2 simultaneous disk failures. With 1 failed disk, it operates normally; with 2 failures, data is still recoverable but the array is in a critical state; with 3 or more simultaneous failures, data is lost. It requires at least 4 disks and provides a usable capacity of (N-2) × disk_size.",
       "risposte": [
         "Only 1 disk, exactly as it happens in RAID 5",
+        "2 disks: RAID 6 uses double parity and tolerates only 1 failure",
         "At least 3 disks: RAID 6 calculates parity using XOR and Reed-Solomon",
-        "2 disks: RAID 6 uses double parity and tolerates 2 failures",
         "None: RAID 6 is completely immune to hardware failures"
       ]
     },
@@ -515,9 +515,9 @@
         "Run `git revert` and the infrastructure updates via webhook"
       ]
     },
-    "a9a1b63adc6e": {
-      "domanda": "In the 5-variant Client/Server architecture, what characterizes the Application Server?",
-      "spiegazione": "The 5 Client/Server variants: (1) Standalone: everything on one PC; (2) File Server: the server exposes files, the client executes the logic; (3) Database Server: the server executes SQL queries; (4) Application Server: the server executes application logic, the client is thin; (5) Web-based: the client is a browser, communication via HTTP/HTTPS. The Application Server reduces the client's hardware requirements and centralizes the logic.",
+    "edf7ecdb9cf3": {
+      "domanda": "In Client/Server architecture (compared to variants like File Server, Database Server, or Web-based), what characterizes the Application Server model?",
+      "spiegazione": "Main Client/Server architectural models: (1) Standalone: everything on a single PC; (2) File Server: the server exposes files, the client executes the logic; (3) Database Server: the server executes SQL queries; (4) Application Server: the server executes application logic while the client is thin (UI only); (5) Web-based: the client is a browser communicating via HTTP/HTTPS. The Application Server reduces client hardware requirements and centralizes business logic.",
       "risposte": [
         "The server executes application logic; the client is 'thin' (UI only)",
         "The server exposes only files; the client downloads everything and executes the logic locally",
@@ -715,11 +715,11 @@
         "Type 2 (hosted): an app above Win/macOS/Linux; for development, testing, and labs on your own PC"
       ]
     },
-    "430a21edb50d": {
-      "domanda": "What are Linux Namespaces in the context of containers? How many types exist?",
-      "spiegazione": "Namespaces are a Linux kernel mechanism: each group of processes sees its own isolated copy of resources. 6 types: (1) PID — own PID space starting from 1; (2) Network — separate interfaces, IPs, and routing; (3) Mount — separate mounted filesystems; (4) User — UID/GID mapped separately (container root ≠ host root); (5) UTS — separate hostname and domainname; (6) IPC — separate shared memory and semaphores. cgroups limit consumption, namespaces limit visibility.",
+    "2f3edb6e3e28": {
+      "domanda": "What are Linux Namespaces in the context of containers, and what are the main types?",
+      "spiegazione": "Namespaces are a Linux kernel mechanism where each group of processes sees its own isolated copy of resources. There are 8 types (6 classic ones plus Cgroup and Time): (1) PID — isolated PID space; (2) Network — separate interfaces, IPs, and routing; (3) Mount — separate mounted filesystems; (4) User — separately mapped UID/GID; (5) UTS — separate hostname and domainname; (6) IPC — separate shared memory and semaphores; (7) Cgroup — isolated view of the cgroup hierarchy; (8) Time — separate system clocks. cgroups limit consumption, namespaces limit visibility.",
       "risposte": [
-        "6 types (PID, Network, Mount, User, UTS, IPC): isolate kernel resources for each container",
+        "8 types (PID, Net, Mnt, User, UTS, IPC, Cgroup, Time): isolate kernel resources per container",
         "YAML configuration files that describe the network settings of a running Docker container",
         "The read-only layers of a Docker image that form the overlay Union File System",
         "Routing rules that separate traffic between containers on the same Docker host"

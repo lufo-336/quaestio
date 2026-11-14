@@ -2,7 +2,7 @@
   {
     "id": 51,
     "categoria": "Architetture e Reti",
-    "domanda": "Nell'architettura Client/Server a 5 varianti, cosa caratterizza l'Application Server?",
+    "domanda": "Nell'architettura Client/Server (rispetto a varianti come File Server, Database Server o Web-based), cosa caratterizza il modello Application Server?",
     "risposte": [
       "Il server esegue la logica applicativa; il client è 'thin' (solo UI)",
       "Il server espone solo i file; il client scarica tutto ed esegue la logica localmente",
@@ -10,7 +10,7 @@
       "Il client è un browser; la comunicazione avviene esclusivamente via HTTP/HTTPS"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Le 5 varianti Client/Server: (1) Standalone: tutto su un PC; (2) File Server: il server espone file, il client esegue la logica; (3) Database Server: il server esegue query SQL; (4) Application Server: il server esegue la logica applicativa, il client è thin; (5) Web-based: il client è un browser, comunicazione HTTP/HTTPS. L'Application Server riduce i requisiti hardware del client e centralizza la logica.",
+    "spiegazione": "Principali modelli architetturali Client/Server: (1) Standalone: tutto su un unico PC; (2) File Server: il server espone i file, il client esegue la logica; (3) Database Server: il server esegue query SQL; (4) Application Server: il server esegue la logica applicativa mentre il client è thin (solo interfaccia); (5) Web-based: il client è un browser che comunica via HTTP/HTTPS. L'Application Server riduce i requisiti hardware del client e centralizza la logica di business.",
     "tipo": "architettura"
   },
   {
@@ -282,15 +282,15 @@
   {
     "id": 71,
     "categoria": "Container",
-    "domanda": "Cosa sono i Linux Namespaces nel contesto dei container? Quanti tipi esistono?",
+    "domanda": "Cosa sono i Linux Namespaces nel contesto dei container e quali sono i principali?",
     "risposte": [
-      "6 tipi (PID, Network, Mount, User, UTS, IPC): isolano risorse del kernel per ogni container",
+      "8 tipi (PID, Net, Mnt, User, UTS, IPC, Cgroup, Time): isolano risorse del kernel per container",
       "File YAML di configurazione che descrivono le impostazioni di rete di un container Docker in esecuzione",
       "I livelli read-only di un'immagine Docker che formano il Union File System sovrapposto",
       "Regole di routing che separano il traffico tra container sullo stesso host Docker"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "I Namespace sono un meccanismo del kernel Linux: ogni gruppo di processi vede una propria copia isolata delle risorse. 6 tipi: (1) PID — proprio spazio PID partendo da 1; (2) Network — interfacce, IP, routing separati; (3) Mount — filesystem montati separati; (4) User — UID/GID mappati separatamente (root nel container ≠ root host); (5) UTS — hostname e domainname separati; (6) IPC — memoria condivisa e semafori separati. cgroups limitano quanto si consuma, namespace cosa si vede.",
+    "spiegazione": "I Namespace sono un meccanismo del kernel Linux per cui ogni gruppo di processi vede una propria copia isolata delle risorse. Ne esistono 8 tipi (6 storici più Cgroup e Time): (1) PID — spazio PID isolato; (2) Network — interfacce, IP e routing separati; (3) Mount — filesystem montati separati; (4) User — UID/GID mappati separatamente; (5) UTS — hostname e domainname separati; (6) IPC — memoria condivisa e semafori separati; (7) Cgroup — vista isolata della gerarchia cgroup; (8) Time — clock di sistema separati. I cgroups limitano quanto si consuma, i namespace cosa si vede.",
     "tipo": "teoria"
   },
   {
