@@ -1,7 +1,7 @@
 # Traduzione in inglese delle domande — Implementation Plan
 
 > **Per chi esegue:** i Task 1 e 2 sono codice, pensati per il modello locale
-> (`esegui-piano.sh` di `C:\Users\<utente>\dev\llm-locale`). Il Task 3 è
+> (`esegui-piano.sh` di `<cartella llm-locale>`). Il Task 3 è
 > traduzione: lo fa lo script `traduci_domande.py` chiamando direttamente il
 > modello locale, una domanda alla volta, non un agente. I passi usano le
 > caselle (`- [ ]`).
@@ -22,14 +22,14 @@ traduzione llama-server con Qwen3.6-35B-A3B in locale.
 
 **Revisione rispetto al Task 9 originale** (2026-11-05, Opus):
 
-- percorsi Linux (`/home/<utente>/...`) e trucco `XDG_CONFIG_HOME` → l'harness
+- percorsi Linux (`~/...`) e trucco `XDG_CONFIG_HOME` → l'harness
   usa la cartella di lavoro e una cartella utente temporanea, così funziona
   anche su Windows senza toccare `%APPDATA%\WsaQuiz`;
 - l'harness esterno `$H/core` col suo `Verifica.Check` non esiste più: Task 1
   ne crea uno piccolo e autonomo in `_verify/` (non va committato);
 - lo scheletro e la traduzione non li scrive un agente (un JSON di centinaia di
   voci gli riempirebbe il contesto): li fanno due strumenti di
-  `C:\Users\<utente>\dev\llm-locale\scripts` (`scheletro/` e
+  `<cartella llm-locale>\scripts` (`scheletro/` e
   `traduci_domande.py`), con controlli automatici su ogni domanda;
 - da una materia pilota a tutte le 11, Cybersecurity per prima.
 
@@ -211,7 +211,7 @@ Expected: `Errori: 0` (con `traduzioni/` ancora vuota il glob non trova niente, 
 - [ ] **Step 1: Scheletri con gli Id veri**
 
 ```sh
-dotnet run --project C:/Users/<utente>/dev/llm-locale/scripts/scheletro -p:Core=<worktree>/wsa.quiz.core/Wsa.Quiz.Core.csproj -- <worktree> <cartella scheletri>
+dotnet run --project <cartella llm-locale>/scripts/scheletro -p:Core=<worktree>/wsa.quiz.core/Wsa.Quiz.Core.csproj -- <worktree> <cartella scheletri>
 ```
 
 Expected: 11 righe e `totale: 2383`.
@@ -222,7 +222,7 @@ Server llama-server con `-np 3 -c 49152` (tre richieste in parallelo), poi per
 ogni materia:
 
 ```sh
-PARALLELI=3 python -I C:/Users/<utente>/dev/llm-locale/scripts/traduci_domande.py materia <scheletri>/<id>.json <worktree>/traduzioni/en/<id>.json
+PARALLELI=3 python -I <cartella llm-locale>/scripts/traduci_domande.py materia <scheletri>/<id>.json <worktree>/traduzioni/en/<id>.json
 ```
 
 Lo script traduce nome e categorie in una chiamata, poi ogni domanda con lo

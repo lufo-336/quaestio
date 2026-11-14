@@ -78,7 +78,7 @@ cat > core.csproj <<'EOF'
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
-  <ItemGroup><ProjectReference Include="/home/<utente>/dev/quaestio/wsa.quiz.core/Wsa.Quiz.Core.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="<repo>/wsa.quiz.core/Wsa.Quiz.Core.csproj" /></ItemGroup>
 </Project>
 EOF
 cat > Verifica.cs <<'EOF'
@@ -126,7 +126,7 @@ public static class TestLingue
         Verifica.Check("Strings in italiano", Strings.Lingua_Nome == "Lingua");
 
         // Parita' delle chiavi: ogni chiave della base esiste, non vuota, in ogni lingua.
-        string dir = "/home/<utente>/dev/quaestio/wsa.quiz.core/Risorse";
+        string dir = "<repo>/wsa.quiz.core/Risorse";
         var baseKeys = Chiavi(Path.Combine(dir, "Strings.resx"));
         foreach (var l in Lingue.Supportate.Where(l => l.Codice != Lingue.Base))
         {
@@ -273,7 +273,7 @@ In `wsa.quiz.cli/Program.cs`, prima riga di `Main` dopo l'`OutputEncoding`:
 
 Run: `cd $H/core && dotnet run`
 Expected: tutte PASS, `TUTTO OK`.
-Poi: `cd /home/<utente>/dev/quaestio && dotnet build wsa.quiz.cli && dotnet build wsa.quiz.desktop` → verdi.
+Poi: `cd <repo> && dotnet build wsa.quiz.cli && dotnet build wsa.quiz.desktop` → verdi.
 
 - [ ] **Step 9: Commit e push**
 
@@ -750,13 +750,13 @@ cat > app.csproj <<'EOF'
     <Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia.Headless" Version="12.0.2" />
-    <ProjectReference Include="/home/<utente>/dev/quaestio/wsa.quiz.app/Wsa.Quiz.App.csproj" />
+    <ProjectReference Include="<repo>/wsa.quiz.app/Wsa.Quiz.App.csproj" />
   </ItemGroup>
   <!-- Dati read-only nel bin come per il desktop. -->
   <ItemGroup>
-    <None Include="/home/<utente>/dev/quaestio/materie.json" CopyToOutputDirectory="PreserveNewest" />
-    <None Include="/home/<utente>/dev/quaestio/domande/**/*.json" CopyToOutputDirectory="PreserveNewest" Link="domande/%(RecursiveDir)%(Filename)%(Extension)" />
-    <None Include="/home/<utente>/dev/quaestio/traduzioni/**/*.json" CopyToOutputDirectory="PreserveNewest" Link="traduzioni/%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="<repo>/materie.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="<repo>/domande/**/*.json" CopyToOutputDirectory="PreserveNewest" Link="domande/%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="<repo>/traduzioni/**/*.json" CopyToOutputDirectory="PreserveNewest" Link="traduzioni/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>
 EOF
@@ -1282,14 +1282,14 @@ La CLI **non** la include (resta in italiano).
 
 - [ ] **Step 2: Genera lo scheletro**
 
-Script usa-e-getta (non entra nel repo) `$H/scheletro/`: console che referenzia Core, carica la materia `cybersecurity` con `new StorageService("/home/<utente>/dev/quaestio", Path.GetTempPath())` e scrive in `$H/scheletro/cybersecurity.it.json`:
+Script usa-e-getta (non entra nel repo) `$H/scheletro/`: console che referenzia Core, carica la materia `cybersecurity` con `new StorageService("<repo>", Path.GetTempPath())` e scrive in `$H/scheletro/cybersecurity.it.json`:
 
 ```csharp
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using Wsa.Quiz.Core.Services;
 
-var s = new StorageService("/home/<utente>/dev/quaestio", Path.Combine(Path.GetTempPath(), "scheletro-utente"));
+var s = new StorageService("<repo>", Path.Combine(Path.GetTempPath(), "scheletro-utente"));
 var materia = s.CaricaMaterie().Single(m => m.Id == "cybersecurity");
 var domande = s.CaricaDomandeMateria(materia);
 var scheletro = new
@@ -1320,7 +1320,7 @@ public static class TestPilota
 {
     public static void Esegui()
     {
-        string repo = "/home/<utente>/dev/quaestio";
+        string repo = "<repo>";
         string utente = Path.Combine(Path.GetTempPath(), "pilota-utente");
         var it = new StorageService(repo, utente);
         var m = it.CaricaMaterie().Single(x => x.Id == "cybersecurity");
@@ -1376,7 +1376,7 @@ git push
 - [ ] **Step 1: Copertura globale**
 
 ```bash
-cd /home/<utente>/dev/quaestio
+cd <repo>
 grep -rnE '(Text|Content|Header|ToolTip\.Tip|OnContent|OffContent|Title|Watermark|PlaceholderText)="[^"{]*[A-Za-zÀ-ÿ]{2,}[^"]*"' --include=*.axaml wsa.quiz.app | wc -l
 ```
 Expected: `0` (oppure solo eccezioni della regola 4 — es. `Text="Quaestio"` — elencate nel messaggio di commit).

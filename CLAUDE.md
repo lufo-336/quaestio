@@ -55,71 +55,71 @@ Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 wsa.quiz/
 ├── Wsa.Quiz.sln
 ├── materie.json                ← editabile, copiato nei bin a ogni build
-├── domande/                    ← editabile, idem
-│   ├── cpp/, cs/, cybersecurity/, frontend/, infra/, sql/
-├── wsa.quiz.core/              (class library)
+├── domande/                    ← 11 materie (2383 domande)
+│   ├── cloudservices/, cpp/, cs/, cybersecurity/, frontend/, infra/,
+│   │   python/, restfulapi/, sql/, ux/, versioncontrol/
+├── traduzioni/                 ← traduzioni overlay delle domande (en/)
+├── generazione-domande/        ← guida IA, quiz-engine.js e strumenti di supporto
+├── wsa.quiz.core/              (class library di logica)
 │   ├── Wsa.Quiz.Core.csproj
 │   ├── Models/   (RisultatoQuiz, DettaglioRisposta, SessionePausa,
 │   │              Materia, Domanda, DomandaPreparata, OpzioniQuiz,
-│   │              Statistiche/{CategoriaStat, DomandaSbagliata, StatistichePerMateria})
-│   └── Services/ (QuizService, StorageService, StatisticheService)
-├── wsa.quiz.cli/               (console)
-│   ├── Wsa.Quiz.Cli.csproj
+│   │              Statistiche/, PreferenzeUtente, SezioneEsclusa)
+│   ├── Services/ (QuizService, StorageService, StatisticheService,
+│   │              ContenutiUtenteService, TestoConCodice, EsportazioneService)
+│   └── Risorse/  (Strings.resx, Strings.en.resx)
+├── wsa.quiz.core.tests/        (unit test xUnit, parser e integrità dati)
+├── wsa.quiz.app/               (libreria UI condivisa Avalonia)
+│   ├── Wsa.Quiz.App.csproj
+│   ├── App.axaml + App.axaml.cs   ← stili globali, selezione lifetime
+│   ├── QuizColors.cs              ← colori condivisi (verde/ambra/rosso)
+│   ├── AppEnv.cs                  ← flag TouchMode e safe area
+│   ├── Controls/ (TestoConCodice)
+│   ├── State/    (SessioneQuiz state machine, wrapper observable)
+│   ├── Views/    (Home, Quiz, Riepilogo, Cronologia, Sospesi, Statistiche,
+│   │              GestioneContenuti, Impostazioni, overlay dialoghi)
+│   └── Assets/   (Fonts monospazio, icone)
+├── wsa.quiz.desktop/           (head desktop Avalonia, Windows/Mac/Linux)
+│   ├── Wsa.Quiz.Desktop.csproj
+│   └── Program.cs
+├── wsa.quiz.android/           (head Android, APK)
+│   ├── Wsa.Quiz.Android.csproj
+│   ├── MainActivity.cs + MainApplication.cs
+│   └── Properties/AndroidManifest.xml
+├── wsa.quiz.ios/               (head iOS, simulatore Mac / device fisico)
+│   ├── Wsa.Quiz.iOS.csproj
+│   ├── AppDelegate.cs + Main.cs
+│   └── Info.plist
+├── wsa.quiz.browser/           (head WebAssembly, deploy GitHub Pages)
+│   ├── Wsa.Quiz.Browser.csproj
 │   ├── Program.cs
-│   └── Services/ConsoleUI.cs
-└── wsa.quiz.app/               (Avalonia, tre tab popolate)
-    ├── Wsa.Quiz.App.csproj
-    ├── Program.cs (Avalonia bootstrap)
-    ├── App.axaml + App.axaml.cs   ← style Button.accent / Button.danger /
-    │                                Focus adorner globale
-    ├── QuizColors.cs              ← colori condivisi (verde/ambra/rosso)
-    ├── MainWindow.axaml(.cs)      ← shell con TabControl Home/Cronologia/Sospesi
-    ├── State/
-    │   ├── ObservableObject.cs
-    │   ├── MateriaSelezionabile.cs
-    │   ├── CategoriaSelezionabile.cs
-    │   ├── RispostaItem.cs
-    │   ├── SessioneQuiz.cs               ← state machine event-driven
-    │   ├── RisultatoCronologiaItem.cs
-    │   ├── SessioneSospesaItem.cs
-    │   ├── DettaglioRispostaItem.cs
-    │   ├── CategoriaCellaItem.cs         ← cella heatmap statistiche
-    │   └── MateriaRigaItem.cs            ← riga heatmap statistiche
-    └── Views/
-        ├── HomeView.axaml(.cs)
-        ├── QuizView.axaml(.cs)
-        ├── RiepilogoView.axaml(.cs)
-        ├── PlaceholderView.axaml(.cs)    ← ramo "impossibile avviare"
-        ├── PausaDialog.axaml(.cs)        ← modale pausa (estratta da QuizView)
-        ├── ConfermaDialog.axaml(.cs)     ← dialog conferma generico
-        ├── TabellaViewBase.axaml.cs      ← base astratta per Cronologia/Sospesi
-        ├── CronologiaView.axaml(.cs)
-        ├── CronologiaDettaglioView.axaml(.cs)
-        ├── SospesiView.axaml(.cs)
-        ├── StatisticheView.axaml(.cs)         ← step 9: tab Statistiche heatmap
-        └── CategoriaDettaglioView.axaml(.cs)  ← step 9: drill-down domande sbagliate
+│   └── wwwroot/
+└── wsa.quiz.cli/               (head console)
+    ├── Wsa.Quiz.Cli.csproj
+    ├── Program.cs
+    └── Services/ConsoleUI.cs
 ```
 
 ### Naming
 
 - Namespace radice: `Wsa.Quiz.*` (sostituisce il vecchio `QuizFdP.*`)
-- Tre progetti: `Wsa.Quiz.Core` (libreria), `Wsa.Quiz.Cli` (console),
-  `Wsa.Quiz.App` (Avalonia)
+- Librerie: `Wsa.Quiz.Core` (logica), `Wsa.Quiz.App` (UI condivisa Avalonia)
+- Teste per piattaforma: `wsa.quiz.desktop`, `wsa.quiz.android`, `wsa.quiz.ios`, `wsa.quiz.browser`, `wsa.quiz.cli`
+- Test: `wsa.quiz.core.tests`
 - **Importante**: il nome del progetto console NON è `Wsa.Quiz.Console` —
   collide con `System.Console` e rompe la build. (Trappola 1)
+- L'head Android usa namespace `Wsa.Quiz.Droid` (non `Android`, per Trappola 1).
 
 ## Build & run
 
 ```powershell
 dotnet build Wsa.Quiz.sln
 dotnet run --project wsa.quiz.cli
-dotnet run --project wsa.quiz.app
+dotnet run --project wsa.quiz.desktop
 ```
 
 `dotnet run` è il comando del **ciclo di sviluppo**: ricompila e riavvia ogni
-volta, non è ciò che si consegna. Per produrre eseguibili autonomi vedi sotto.
-(`dotnet run --project wsa.quiz.app` è stale: dopo M1 l'head desktop è
-`wsa.quiz.desktop` — `Wsa.Quiz.App` è una libreria e non si avvia.)
+volta, non è ciò che si consegna. Per produrre eseguibili autonomi o pacchetti per le altre piattaforme (Android, iOS, WebAssembly) vedi `docs/claude/piattaforme-e-distribuzione.md`.
 
 ## Dove sono i dettagli (leggere SOLO quando servono)
 

@@ -25,7 +25,7 @@
 
 - Nessun segreto vero (chiavi, token, password, keystore, file di firma) in tutta la storia; nessun blob > 500 KB; `.git` 7,9 MB. Le occorrenze di "password/token/secret" sono contenuto delle domande.
 - Note delle Release: pulite.
-- Nei file attuali, da togliere (Task 2): l'email iCloud e l'identità Apple Development (`CodesignKey="Apple Development: <tuo Apple ID> (<TEAM>)"`) in `docs/claude/piattaforme-e-distribuzione.md:237` → sostituire con un segnaposto (`"Apple Development: <tuo Apple ID> (<TEAM>)"`); percorsi con nomi utente di macchina (`C:\Users\<utente>\…`, `C:\Users\<utente>\…`, `/home/<utente>/…`) in `docs/claude/LEGGIMI-*.md` e in 5 piani di `docs/superpowers/plans/`.
+- Nei file attuali, da togliere (Task 2): l'email iCloud e l'identità Apple Development (identità di firma Apple Development con Apple ID e team ID) in `docs/claude/piattaforme-e-distribuzione.md:237` → sostituire con un segnaposto (`"Apple Development: <tuo Apple ID> (<TEAM>)"`); percorsi con nomi utente di macchina (utenti Windows/Linux delle macchine personali) in `docs/claude/LEGGIMI-*.md` e in 5 piani di `docs/superpowers/plans/`.
 - Nello storico restano (commit `5027f8f` per l'identità Apple): accettato, niente riscrittura. **Da riferire a Luca** nel rapporto finale.
 
 ## Review Focus
@@ -61,7 +61,7 @@
 - Possibile delete: `docs/claude/LEGGIMI-memoria-junction.md`, `docs/claude/LEGGIMI-multimacchina.md`
 
 - [ ] **Step 1:** Lanciare `agy_run.py --role doc --timeout 900s` con prompt: applicare la sezione "Pulizia dei documenti di lavoro" della spec e i punti "da togliere" dell'Esito revisione di questo piano. In `CLAUDE.md`: aggiornare layout repo (11 materie, teste `desktop/android/ios/browser`, `wsa.quiz.core.tests`, `generazione-domande/`, `traduzioni/`), togliere la frase su `dotnet run --project wsa.quiz.app`. I due `LEGGIMI-*`: eliminarli se descrivono solo la configurazione delle macchine di Luca (junction della memoria Claude, sincronizzazione), togliendo anche i rimandi a loro. Contenuto tecnico (trappole, architettura) intatto. Piani in `docs/superpowers/`: sostituire solo i percorsi personali con forme neutre (`<repo>`, `%LOCALAPPDATA%\Android\Sdk`, `~/…`). `docs/README.md`: 10-20 righe in inglese che spiegano `claude/` (contesto che Claude Code legge a ogni sessione), `superpowers/` (spec e piani scritti prima di ogni lavoro), `images/`; tutti in italiano. Niente commit.
-- [ ] **Step 2:** Verifica (Claude): `git grep -n -I -E "<nomi utente>|<TEAM>" -- docs CLAUDE.md` → solo la riga della spec sull'email dei commit. `git grep -n "LEGGIMI-"` → vuoto se eliminati. `git diff --stat` coerente; leggere il diff di `CLAUDE.md` e `docs/claude/trappole.md` (devono restare tecnicamente intatti).
+- [ ] **Step 2:** Verifica (Claude): `git grep -n -I -E "<nomi utente e Apple ID personali>" -- docs CLAUDE.md` → solo la riga della spec sull'email dei commit. `git grep -n "LEGGIMI-"` → vuoto se eliminati. `git diff --stat` coerente; leggere il diff di `CLAUDE.md` e `docs/claude/trappole.md` (devono restare tecnicamente intatti).
 - [ ] **Step 3:** Commit `docs: pulizia dei documenti di lavoro per il repo pubblico` + push.
 
 ### Task 3: README inglese + LICENSE (agy, ruolo doc)

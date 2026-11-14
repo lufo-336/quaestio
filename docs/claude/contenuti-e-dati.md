@@ -25,12 +25,8 @@ intermedio — finisce nei bin e nell'APK e viene enumerato da `ElencaJson` come
 file di domande (schema sbagliato → caricamento rotto). Script e file di
 lavoro vanno nello scratchpad, mai in `domande/`.
 
-Nota: dall'8/09/2026 `docs/` **è nel repo**. Spec, piani e note di lavoro
-viaggiano con git come tutto il resto; la copia su `G:\Il mio Drive\_claude\quaestio\docs`
-è un residuo dell'assetto precedente e va rimossa. Il progetto vive in
-`<home>\dev\quaestio` — fuori da Drive — e l'unica cosa che resta sul Drive è la
-cartella `memory` di Claude, agganciata da una junction. Vedi `_claude\LEGGIMI.md`
-sul Drive per l'assetto completo.
+Nota: dall'8/09/2026 la cartella `docs/` **è nel repo**. Spec, piani e note di
+lavoro viaggiano tracciati con git come tutto il resto del progetto.
 
 ### Convenzione codice nelle domande
 

@@ -17,7 +17,7 @@
 - **Errori di validazione**: un solo campo non valido rifiuta l'intero file importato (nessun import parziale in presenza di errori strutturali).
 - **Duplicati** (append a materia esistente): confronto per testo esatto di `domanda` contro le domande già caricate per quella materia; si saltano silenziosamente, si importa il resto.
 - **Nessun framework di test nel repo** (verificato: nessun progetto xunit/nunit/mstest). Per la logica pura (task 3-4) si usa un harness scratch fuori dal repo (`%TEMP%\wsaquiz-verify\`, stesso pattern già usato per M2/M3 — vedi `docs/superpowers/plans/2026-06-19-m3-touch-friendly-layout.md:37`). Per la UI: build verde + verifica manuale desktop/device (nessun test automatico UI nel repo).
-- **APK installabile** solo con `dotnet build wsa.quiz.android -c Release` (Debug non produce APK). Prima dei build Android: `$env:ANDROID_HOME = "C:\Users\<utente>\AppData\Local\Android\Sdk"` (verificare il percorso corretto sul PC locale attuale, potrebbe differire da quello della VM).
+- **APK installabile** solo con `dotnet build wsa.quiz.android -c Release` (Debug non produce APK). Prima dei build Android: `$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"` (verificare il percorso corretto sul proprio PC se personalizzato).
 - Spec: `docs/superpowers/specs/2026-07-02-import-domande-json-design.md`.
 
 ---
@@ -592,7 +592,7 @@ cp "G:\Il mio Drive\ITS Corso\MODELLO - Generatore Domande Quiz.md" "generazione
 cp "G:\Il mio Drive\ITS Corso\MODELLO - quiz-engine.js" "generazione-domande\quiz-engine.js"
 ```
 
-(Eseguire dalla root del repo, `C:\Users\<utente>\Documents\Quiz\wsa.quiz`. Contenuto invariato: nessuna modifica al testo della guida o al codice del motore.)
+(Eseguire dalla root del repo, `<repo>`. Contenuto invariato: nessuna modifica al testo della guida o al codice del motore.)
 
 - [ ] **Step 2: Aggiungere le risorse al csproj dell'app**
 
@@ -1078,7 +1078,7 @@ Verificare: 5ª tab "Gestione contenuti" in alto, mostra l'elenco di tutte le ma
 - [ ] **Step 12: Build APK + install + verifica device**
 
 ```bash
-$env:ANDROID_HOME = "C:\Users\<utente>\AppData\Local\Android\Sdk"
+$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
 dotnet build wsa.quiz.android -c Release
 adb install -r wsa.quiz.android\bin\Release\net10.0-android\it.eduits.wsaquiz-Signed.apk
 ```
@@ -1674,7 +1674,7 @@ Expected: `Errori: 0` su tutti i progetti (Core, Cli, App, Desktop; Android si b
 - [ ] **Step 3: Build APK + install + verifica device**
 
 ```bash
-$env:ANDROID_HOME = "C:\Users\<utente>\AppData\Local\Android\Sdk"
+$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
 dotnet build wsa.quiz.android -c Release
 adb install -r wsa.quiz.android\bin\Release\net10.0-android\it.eduits.wsaquiz-Signed.apk
 ```

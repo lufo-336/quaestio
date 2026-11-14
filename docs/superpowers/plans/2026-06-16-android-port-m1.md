@@ -355,7 +355,7 @@ Opzione consigliata: installare **Android Studio** (porta SDK, platform-tools,
 emulatore e SDK Manager con GUI) oppure i `commandline-tools` da soli. Servono:
 platform-tools, una platform (es. `android-34`), build-tools, `emulator`, e una
 system image (es. `system-images;android-34;google_apis;x86_64`).
-Impostare `ANDROID_HOME` al path dell'SDK (es. `C:\Users\<utente>\AppData\Local\Android\Sdk`).
+Impostare `ANDROID_HOME` al path dell'SDK (es. `%LOCALAPPDATA%\Android\Sdk`).
 
 Run (verifica): `& "$env:ANDROID_HOME\platform-tools\adb.exe" version`
 Expected: stampa la versione di adb.

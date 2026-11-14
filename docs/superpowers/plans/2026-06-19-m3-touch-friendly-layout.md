@@ -14,7 +14,7 @@
 - **`net10.0`** su tutti i progetti; **Avalonia 12.0.2** (API v12: vedi Trappole 14 nel CLAUDE.md per le differenze con v11).
 - **Compiled bindings**: `x:DataType` resta obbligatorio su ogni `UserControl`/`DataTemplate` (Trappola 5). Non rimuoverlo.
 - **Target primario**: telefono in **portrait**. Non ottimizzare per landscape/tablet.
-- **APK installabile** solo con `dotnet build wsa.quiz.android -c Release` (Debug non produce APK). Prima dei build Android: `$env:ANDROID_HOME = "C:\Users\<utente>\AppData\Local\Android\Sdk"`.
+- **APK installabile** solo con `dotnet build wsa.quiz.android -c Release` (Debug non produce APK). Prima dei build Android: `$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"`.
 - **Verifica visiva Android = solo su device fisico** (questa VM non esegue l'emulatore). Il gate automatico è build verde + smoke headless.
 - **Fasatura**: Fase A (Task 1–7) consegnabile da sola; Fase B (Task 8–11) dopo.
 
