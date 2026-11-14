@@ -10,7 +10,8 @@
             "`Python`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Con passo -1 lo slicing percorre la sequenza all'indietro: la stringa viene rovesciata."
+        "spiegazione": "Con passo -1 lo slicing percorre la sequenza all'indietro: la stringa viene rovesciata.",
+        "tipo": "codice"
     },
     {
         "id": 2,
@@ -23,7 +24,8 @@
             "L'elenco dei moduli che il progetto importa davvero nel codice"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "pip freeze elenca i pacchetti dell'ambiente nel formato nome==versione; con pip install -r requirements.txt li si reinstalla identici."
+        "spiegazione": "pip freeze elenca i pacchetti dell'ambiente nel formato nome==versione; con pip install -r requirements.txt li si reinstalla identici.",
+        "tipo": "codice"
     },
     {
         "id": 3,
@@ -36,7 +38,8 @@
             "`False True`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Un Manager è un Dipendente (isinstance accetta le sottoclassi); il contrario non vale."
+        "spiegazione": "Un Manager è un Dipendente (isinstance accetta le sottoclassi); il contrario non vale.",
+        "tipo": "codice"
     },
     {
         "id": 4,
@@ -49,7 +52,8 @@
             "Parametri"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I parametri sono i nomi nella definizione; gli argomenti sono i valori passati nella chiamata (3 e 5)."
+        "spiegazione": "I parametri sono i nomi nella definizione; gli argomenti sono i valori passati nella chiamata (3 e 5).",
+        "tipo": "codice"
     },
     {
         "id": 5,
@@ -62,7 +66,8 @@
             "Genera i file di migrazione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "È comodo in sviluppo; nelle applicazioni vere lo schema evolve con strumenti di migrazione come Alembic."
+        "spiegazione": "È comodo in sviluppo; nelle applicazioni vere lo schema evolve con strumenti di migrazione come Alembic.",
+        "tipo": "codice"
     },
     {
         "id": 6,
@@ -75,7 +80,8 @@
             "Una cella di memoria con un tipo fissato alla dichiarazione"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Le variabili sono riferimenti a oggetti: il tipo appartiene all'oggetto, non alla variabile, che può puntare a oggetti di tipi diversi."
+        "spiegazione": "Le variabili sono riferimenti a oggetti: il tipo appartiene all'oggetto, non alla variabile, che può puntare a oggetti di tipi diversi.",
+        "tipo": "teoria"
     },
     {
         "id": 7,
@@ -88,7 +94,8 @@
             "Il REPL di Python"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Colab gira nel cloud e ha un assistente AI integrato; Jupyter gira in locale e accede ai file del PC."
+        "spiegazione": "Colab gira nel cloud e ha un assistente AI integrato; Jupyter gira in locale e accede ai file del PC.",
+        "tipo": "teoria"
     },
     {
         "id": 8,
@@ -101,7 +108,8 @@
             "`TypeError`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "@property fa leggere un metodo come un attributo: c.saldo, senza parentesi."
+        "spiegazione": "@property fa leggere un metodo come un attributo: c.saldo, senza parentesi.",
+        "tipo": "codice"
     },
     {
         "id": 9,
@@ -114,7 +122,8 @@
             "Solleva `KeyError`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "get() non solleva eccezioni: restituisce None o il valore di ripiego indicato."
+        "spiegazione": "get() non solleva eccezioni: restituisce None o il valore di ripiego indicato.",
+        "tipo": "codice"
     },
     {
         "id": 10,
@@ -127,7 +136,8 @@
             "sqlite3 usa ?, psycopg2 usa %s"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il segnaposto dipende dal driver. In SQLAlchemy, con text(), si usano parametri con nome (:nome)."
+        "spiegazione": "Il segnaposto dipende dal driver. In SQLAlchemy, con text(), si usano parametri con nome (:nome).",
+        "tipo": "codice"
     },
     {
         "id": 11,
@@ -140,7 +150,8 @@
             "La possibilità di definire più metodi con lo stesso nome ma parametri diversi"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Car e ElectricCar hanno entrambe refuel(), con comportamenti diversi: chi chiama refuel() non deve sapere quale sta usando."
+        "spiegazione": "Car e ElectricCar hanno entrambe refuel(), con comportamenti diversi: chi chiama refuel() non deve sapere quale sta usando.",
+        "tipo": "teoria"
     },
     {
         "id": 12,
@@ -153,7 +164,8 @@
             "`x` e poi `None`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "print stampa ma non restituisce nulla: una funzione senza return restituisce None."
+        "spiegazione": "print stampa ma non restituisce nulla: una funzione senza return restituisce None.",
+        "tipo": "codice"
     },
     {
         "id": 13,
@@ -166,7 +178,8 @@
             "`NameError`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "ValueError: il tipo è giusto (una stringa va bene per int()), ma il valore non rappresenta un numero."
+        "spiegazione": "ValueError: il tipo è giusto (una stringa va bene per int()), ma il valore non rappresenta un numero.",
+        "tipo": "codice"
     },
     {
         "id": 14,
@@ -179,7 +192,8 @@
             "`-4`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "// arrotonda verso il basso (verso meno infinito), quindi -3.5 diventa -4, non -3."
+        "spiegazione": "// arrotonda verso il basso (verso meno infinito), quindi -3.5 diventa -4, non -3.",
+        "tipo": "codice"
     },
     {
         "id": 15,
@@ -192,7 +206,8 @@
             "Perché un blocco try può avere un solo except per volta"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Vince il primo except compatibile: le eccezioni più specifiche vanno prima di quelle più generiche."
+        "spiegazione": "Vince il primo except compatibile: le eccezioni più specifiche vanno prima di quelle più generiche.",
+        "tipo": "codice"
     },
     {
         "id": 16,
@@ -205,7 +220,8 @@
             "`[[9], [2]]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "copy() è una copia superficiale: la lista esterna è nuova, ma le liste interne sono condivise. Per copiarle serve copy.deepcopy."
+        "spiegazione": "copy() è una copia superficiale: la lista esterna è nuova, ma le liste interne sono condivise. Per copiarle serve copy.deepcopy.",
+        "tipo": "codice"
     },
     {
         "id": 17,
@@ -218,7 +234,8 @@
             "[]"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "\"0\" è una stringa non vuota, quindi vera. Sono falsi 0, la stringa vuota e la lista vuota, come None e False."
+        "spiegazione": "\"0\" è una stringa non vuota, quindi vera. Sono falsi 0, la stringa vuota e la lista vuota, come None e False.",
+        "tipo": "codice"
     },
     {
         "id": 18,
@@ -231,7 +248,8 @@
             "`KeyError`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La modalità di default è r, che richiede che il file esista. FileNotFoundError è sottoclasse di OSError."
+        "spiegazione": "La modalità di default è r, che richiede che il file esista. FileNotFoundError è sottoclasse di OSError.",
+        "tipo": "codice"
     },
     {
         "id": 19,
@@ -244,7 +262,8 @@
             "La possibilità di installare pacchetti scaricandoli da PyPI"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "uv sostituisce pip, virtualenv e pip-tools: gestisce .venv, il progetto (pyproject.toml) e genera uv.lock con le versioni esatte."
+        "spiegazione": "uv sostituisce pip, virtualenv e pip-tools: gestisce .venv, il progetto (pyproject.toml) e genera uv.lock con le versioni esatte.",
+        "tipo": "teoria"
     },
     {
         "id": 20,
@@ -257,7 +276,8 @@
             "`['uno\\n', 'due\\n']`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "readline() restituisce una riga compreso il carattere di a capo finale; si toglie con strip()."
+        "spiegazione": "readline() restituisce una riga compreso il carattere di a capo finale; si toglie con strip().",
+        "tipo": "codice"
     },
     {
         "id": 21,
@@ -270,7 +290,8 @@
             "A ignorare un'eccezione già sollevata e proseguire con l'istruzione successiva"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "raise solleva un'eccezione, ad esempio raise ValueError(\"Età non valida\"): si usa per validare i dati e fermarsi con un messaggio chiaro."
+        "spiegazione": "raise solleva un'eccezione, ad esempio raise ValueError(\"Età non valida\"): si usa per validare i dati e fermarsi con un messaggio chiaro.",
+        "tipo": "codice"
     },
     {
         "id": 22,
@@ -283,12 +304,13 @@
             "Kernighan e Ritchie"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "UML nasce nel 1997 unificando i metodi di Grady Booch, James Rumbaugh e Ivar Jacobson; oggi è mantenuto dall'OMG."
+        "spiegazione": "UML nasce nel 1997 unificando i metodi di Grady Booch, James Rumbaugh e Ivar Jacobson; oggi è mantenuto dall'OMG.",
+        "tipo": "teoria"
     },
     {
         "id": 23,
         "categoria": "OOP",
-        "domanda": "Nell'esempio con Gasoline ed Electricity, da che cosa dipende il comportamento diverso di refuel()?",
+        "domanda": "In un modello con classi Gasoline ed Electricity, da che cosa dipende il comportamento diverso di refuel()?",
         "risposte": [
             "Dall'oggetto fuel a cui refuel() delega",
             "Dal nome della classe",
@@ -296,7 +318,8 @@
             "Da un parametro passato a refuel()"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "refuel() è lo stesso, ereditato: cambia l'oggetto fuel creato nel costruttore. È la composizione."
+        "spiegazione": "refuel() è lo stesso, ereditato: cambia l'oggetto fuel creato nel costruttore. È la composizione.",
+        "tipo": "architettura"
     },
     {
         "id": 24,
@@ -309,7 +332,8 @@
             "`True`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Una stringa è falsa solo se vuota. \"False\" non è vuota, quindi è vera: il contenuto non conta."
+        "spiegazione": "Una stringa è falsa solo se vuota. \"False\" non è vuota, quindi è vera: il contenuto non conta.",
+        "tipo": "codice"
     },
     {
         "id": 25,
@@ -322,7 +346,8 @@
             "Il quinto use case del sistema"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le eccezioni (extensions) si agganciano al passo dello scenario principale in cui si verificano."
+        "spiegazione": "Le eccezioni (extensions) si agganciano al passo dello scenario principale in cui si verificano.",
+        "tipo": "teoria"
     },
     {
         "id": 26,
@@ -335,7 +360,8 @@
             "Solleva `ValueError`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Python è a tipizzazione dinamica ma forte: non converte di nascosto un int in str. Serve str(25) o una f-string."
+        "spiegazione": "Python è a tipizzazione dinamica ma forte: non converte di nascosto un int in str. Serve str(25) o una f-string.",
+        "tipo": "codice"
     },
     {
         "id": 27,
@@ -348,12 +374,13 @@
             "Solleva `JSONDecodeError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "JSON vuole le virgolette doppie: con gli apici singoli il testo non è JSON valido."
+        "spiegazione": "JSON vuole le virgolette doppie: con gli apici singoli il testo non è JSON valido.",
+        "tipo": "codice"
     },
     {
         "id": 28,
         "categoria": "Progettazione del software",
-        "domanda": "Nel deployment diagram d'esempio l'API Flask parla col database via JDBC. Che cosa c'è di strano?",
+        "domanda": "In un deployment diagram un'API Flask parla col database via JDBC. Che cosa c'è di strano?",
         "risposte": [
             "JDBC è il driver standard di Java; in Python il ruolo è della DB-API",
             "MySQL non supporta connessioni remote",
@@ -361,7 +388,8 @@
             "Nulla, JDBC è il driver standard di Python"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "In Python si usa un driver conforme alla DB-API (PEP 249), come PyMySQL o mysqlclient."
+        "spiegazione": "In Python si usa un driver conforme alla DB-API (PEP 249), come PyMySQL o mysqlclient.",
+        "tipo": "architettura"
     },
     {
         "id": 29,
@@ -374,7 +402,8 @@
             "Run–Eval–Process Loop"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il REPL è la shell interattiva (prompt >>>): legge una riga, la valuta, ne stampa il risultato e ricomincia."
+        "spiegazione": "Il REPL è la shell interattiva (prompt >>>): legge una riga, la valuta, ne stampa il risultato e ricomincia.",
+        "tipo": "teoria"
     },
     {
         "id": 30,
@@ -387,7 +416,8 @@
             "La classe (cls)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Un classmethod riceve la classe; l'uso tipico è un costruttore alternativo, come Studente.da_riga_csv(\"Anna,28\")."
+        "spiegazione": "Un classmethod riceve la classe; l'uso tipico è un costruttore alternativo, come Studente.da_riga_csv(\"Anna,28\").",
+        "tipo": "codice"
     },
     {
         "id": 31,
@@ -400,7 +430,8 @@
             "`7 12`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "return a + b, a * b restituisce un'unica tupla; con s, p = stats(3, 4) la si spacchetta."
+        "spiegazione": "return a + b, a * b restituisce un'unica tupla; con s, p = stats(3, 4) la si spacchetta.",
+        "tipo": "codice"
     },
     {
         "id": 32,
@@ -413,7 +444,8 @@
             "Ereditarietà"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Rombo pieno: composizione, la parte non esiste senza il tutto. Rombo vuoto: aggregazione, la parte vive anche da sola."
+        "spiegazione": "Rombo pieno: composizione, la parte non esiste senza il tutto. Rombo vuoto: aggregazione, la parte vive anche da sola.",
+        "tipo": "teoria"
     },
     {
         "id": 33,
@@ -426,7 +458,8 @@
             "Solleva `TypeError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Assegnando len = 10 si nasconde (shadowing) la funzione built-in: len diventa un int, e un int non è chiamabile."
+        "spiegazione": "Assegnando len = 10 si nasconde (shadowing) la funzione built-in: len diventa un int, e un int non è chiamabile.",
+        "tipo": "codice"
     },
     {
         "id": 34,
@@ -439,7 +472,8 @@
             "Non serve conoscere la notazione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Gli altri vantaggi della slide: interoperabilità, automazione nella build, validazione automatica, integrazione nella documentazione."
+        "spiegazione": "Altri vantaggi: interoperabilità, automazione nella build, validazione automatica, integrazione nella documentazione.",
+        "tipo": "teoria"
     },
     {
         "id": 35,
@@ -452,7 +486,8 @@
             "`None`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "with usa un context manager che chiude il file all'uscita dal blocco, anche in caso di errore."
+        "spiegazione": "with usa un context manager che chiude il file all'uscita dal blocco, anche in caso di errore.",
+        "tipo": "codice"
     },
     {
         "id": 36,
@@ -465,7 +500,8 @@
             "`list`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "{} è un dizionario vuoto. Il set vuoto si scrive set()."
+        "spiegazione": "{} è un dizionario vuoto. Il set vuoto si scrive set().",
+        "tipo": "codice"
     },
     {
         "id": 37,
@@ -478,7 +514,8 @@
             "PEP 8"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "PEP 249: per questo connect, cursor, execute, fetchall, commit hanno gli stessi nomi in sqlite3, psycopg2 e gli altri driver."
+        "spiegazione": "PEP 249: per questo connect, cursor, execute, fetchall, commit hanno gli stessi nomi in sqlite3, psycopg2 e gli altri driver.",
+        "tipo": "teoria"
     },
     {
         "id": 38,
@@ -491,7 +528,8 @@
             "`['a']`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il valore di default è calcolato una volta sola, quando def viene eseguito: la lista è condivisa fra le chiamate. Rimedio: lista=None e lista = [] dentro."
+        "spiegazione": "Il valore di default è calcolato una volta sola, quando def viene eseguito: la lista è condivisa fra le chiamate. Rimedio: lista=None e lista = [] dentro.",
+        "tipo": "codice"
     },
     {
         "id": 39,
@@ -504,7 +542,8 @@
             "Solleva `FileExistsError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La modalità x crea solo un file nuovo: se il file esiste già solleva FileExistsError."
+        "spiegazione": "La modalità x crea solo un file nuovo: se il file esiste già solleva FileExistsError.",
+        "tipo": "codice"
     },
     {
         "id": 40,
@@ -517,7 +556,8 @@
             "sqlite:///school.db"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Tre barre per un percorso relativo; sqlite:// senza percorso indica un database in memoria."
+        "spiegazione": "Tre barre per un percorso relativo; sqlite:// senza percorso indica un database in memoria.",
+        "tipo": "codice"
     },
     {
         "id": 41,
@@ -530,7 +570,8 @@
             "Con raise seguito da una stringa"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "class SaldoInsufficiente(Exception): pass — così chi chiama può catturare proprio quell'errore."
+        "spiegazione": "class SaldoInsufficiente(Exception): pass — così chi chiama può catturare proprio quell'errore.",
+        "tipo": "codice"
     },
     {
         "id": 42,
@@ -543,7 +584,8 @@
             "`{1: True, 'x': None}`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "In JSON le chiavi sono sempre stringhe, True diventa true e None diventa null; le virgolette sono doppie."
+        "spiegazione": "In JSON le chiavi sono sempre stringhe, True diventa true e None diventa null; le virgolette sono doppie.",
+        "tipo": "codice"
     },
     {
         "id": 43,
@@ -556,7 +598,8 @@
             "`-1`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il resto segue la divisione intera in modo che (a // b) * b + a % b == a: (-4)*2 + 1 = -7."
+        "spiegazione": "Il resto segue la divisione intera in modo che (a // b) * b + a % b == a: (-4)*2 + 1 = -7.",
+        "tipo": "codice"
     },
     {
         "id": 44,
@@ -569,7 +612,8 @@
             "La classe stessa, condivisa fra tutte le istanze"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "anna.media() viene tradotto in Studente.media(anna): self è anna. Il nome self è solo una convenzione."
+        "spiegazione": "anna.media() viene tradotto in Studente.media(anna): self è anna. Il nome self è solo una convenzione.",
+        "tipo": "codice"
     },
     {
         "id": 45,
@@ -582,7 +626,8 @@
             "`UnboundLocalError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "L'assegnazione rende contatore locale alla funzione, e += la legge prima di averle dato un valore. Serve global contatore."
+        "spiegazione": "L'assegnazione rende contatore locale alla funzione, e += la legge prima di averle dato un valore. Serve global contatore.",
+        "tipo": "codice"
     },
     {
         "id": 46,
@@ -595,7 +640,8 @@
             "`abc`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "join è un metodo del separatore: unisce gli elementi della lista mettendo il separatore solo fra l'uno e l'altro."
+        "spiegazione": "join è un metodo del separatore: unisce gli elementi della lista mettendo il separatore solo fra l'uno e l'altro.",
+        "tipo": "codice"
     },
     {
         "id": 47,
@@ -608,7 +654,8 @@
             "`True True`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "== confronta i valori (uguali), is l'identità: sono due liste distinte in memoria."
+        "spiegazione": "== confronta i valori (uguali), is l'identità: sono due liste distinte in memoria.",
+        "tipo": "codice"
     },
     {
         "id": 48,
@@ -621,7 +668,8 @@
             "`False True`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "all() è vero se nessun elemento è falso (vacuamente vero sulla lista vuota); any() è vero se almeno un elemento è vero."
+        "spiegazione": "all() è vero se nessun elemento è falso (vacuamente vero sulla lista vuota); any() è vero se almeno un elemento è vero.",
+        "tipo": "codice"
     },
     {
         "id": 49,
@@ -634,7 +682,8 @@
             "`150.0`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "In una f-string fra graffe va un'espressione qualunque; :.2f la formatta con due decimali."
+        "spiegazione": "In una f-string fra graffe va un'espressione qualunque; :.2f la formatta con due decimali.",
+        "tipo": "codice"
     },
     {
         "id": 50,
@@ -647,7 +696,8 @@
             "`A A`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "f senza parentesi è l'oggetto funzione, sempre vero; f() la esegue e restituisce 0, che è falso."
+        "spiegazione": "f senza parentesi è l'oggetto funzione, sempre vero; f() la esegue e restituisce 0, che è falso.",
+        "tipo": "codice"
     },
     {
         "id": 51,
@@ -660,7 +710,8 @@
             "`<uml>` e `</uml>`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il sorgente sta in un file `.puml`; per trasformarlo in immagine serve un renderer (server PlantUML o Java + Graphviz)."
+        "spiegazione": "Il sorgente sta in un file `.puml`; per trasformarlo in immagine serve un renderer (server PlantUML o Java + Graphviz).",
+        "tipo": "codice"
     },
     {
         "id": 52,
@@ -673,7 +724,8 @@
             "None se l'utente preme solo Invio"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "input() restituisce sempre una str (anche vuota). Per fare calcoli va convertita, ad esempio con int() o float()."
+        "spiegazione": "input() restituisce sempre una str (anche vuota). Per fare calcoli va convertita, ad esempio con int() o float().",
+        "tipo": "codice"
     },
     {
         "id": 53,
@@ -686,12 +738,13 @@
             "Un modulo aggiuntivo che estende il sistema principale"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Nell'esempio della Biblioteca il servizio email è un System_Ext: il sistema lo usa ma non lo realizza."
+        "spiegazione": "Ad esempio, un servizio email è un System_Ext: il sistema lo usa ma non lo realizza.",
+        "tipo": "teoria"
     },
     {
         "id": 54,
         "categoria": "OOP",
-        "domanda": "Che cosa mostra l'esempio Car/Driver della lezione sull'astrazione?",
+        "domanda": "Che cosa mostra l'esempio Car/Driver a proposito dell'astrazione?",
         "risposte": [
             "Che una classe non può avere più di tre attributi",
             "Che i metodi devono restituire sempre una stringa",
@@ -699,7 +752,8 @@
             "Che senza astrazione chi usa la classe deve conoscerne tutti i dettagli interni, e il codice diventa fragile"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Con un metodo start() la classe espone un'interfaccia semplice e gestisce da sé i dettagli: Driver chiama solo car.start()."
+        "spiegazione": "Con un metodo start() la classe espone un'interfaccia semplice e gestisce da sé i dettagli: Driver chiama solo car.start().",
+        "tipo": "teoria"
     },
     {
         "id": 55,
@@ -712,7 +766,8 @@
             "`None`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Python passa per riferimento a oggetto: la funzione riceve la stessa lista, e la modifica (mutabile) si vede fuori."
+        "spiegazione": "Python passa per riferimento a oggetto: la funzione riceve la stessa lista, e la modifica (mutabile) si vede fuori.",
+        "tipo": "codice"
     },
     {
         "id": 56,
@@ -725,7 +780,8 @@
             "Che la riga è un commento e viene ignorata"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le righe che iniziano con ! non sono Python: il notebook le passa alla shell del sistema."
+        "spiegazione": "Le righe che iniziano con ! non sono Python: il notebook le passa alla shell del sistema.",
+        "tipo": "codice"
     },
     {
         "id": 57,
@@ -738,7 +794,8 @@
             "Lo svuota e lo riscrive"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "w crea il file o lo svuota; a aggiunge in coda; x fallisce se il file esiste."
+        "spiegazione": "w crea il file o lo svuota; a aggiunge in coda; x fallisce se il file esiste.",
+        "tipo": "codice"
     },
     {
         "id": 58,
@@ -751,7 +808,8 @@
             "Solleva `ValueError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "int() su una stringa accetta solo un intero: \"3.5\" non lo è. Serve int(float(\"3.5\"))."
+        "spiegazione": "int() su una stringa accetta solo un intero: \"3.5\" non lo è. Serve int(float(\"3.5\")).",
+        "tipo": "codice"
     },
     {
         "id": 59,
@@ -764,7 +822,8 @@
             "`0.30000000000000004`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "0.1 + 0.2 vale 0.30000000000000004: i float IEEE 754 sono approssimati in binario. Si confronta con math.isclose()."
+        "spiegazione": "0.1 + 0.2 vale 0.30000000000000004: i float IEEE 754 sono approssimati in binario. Si confronta con math.isclose().",
+        "tipo": "codice"
     },
     {
         "id": 60,
@@ -777,7 +836,8 @@
             "A rappresentare i messaggi fra processi"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Nell'esempio il pool \"Gestione Polizze\" ha tre lane: Utente, Ufficio Polizze, Dipartimento IT. Le decisioni sono i gateway."
+        "spiegazione": "Ad esempio, un pool \"Gestione Polizze\" può avere tre lane: Utente, Ufficio Polizze, Dipartimento IT. Le decisioni sono i gateway.",
+        "tipo": "teoria"
     },
     {
         "id": 61,
@@ -790,7 +850,8 @@
             "Ad assegnare una variabile del modulo"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Senza global, assegnare un nome dentro una funzione crea una variabile locale che nasconde quella globale."
+        "spiegazione": "Senza global, assegnare un nome dentro una funzione crea una variabile locale che nasconde quella globale.",
+        "tipo": "codice"
     },
     {
         "id": 62,
@@ -803,7 +864,8 @@
             "`None`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Gli int sono immutabili: n += 1 crea un nuovo oggetto legato al solo nome locale n, e x resta 5."
+        "spiegazione": "Gli int sono immutabili: n += 1 crea un nuovo oggetto legato al solo nome locale n, e x resta 5.",
+        "tipo": "codice"
     },
     {
         "id": 63,
@@ -816,7 +878,8 @@
             "`[3, 1, 3, 2, 1]`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "dict.fromkeys toglie i duplicati conservando l'ordine di prima comparsa, perché i dizionari ricordano l'ordine di inserimento."
+        "spiegazione": "dict.fromkeys toglie i duplicati conservando l'ordine di prima comparsa, perché i dizionari ricordano l'ordine di inserimento.",
+        "tipo": "codice"
     },
     {
         "id": 64,
@@ -829,7 +892,8 @@
             "`pari`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'else di un ciclo viene eseguito solo se il ciclo termina senza incontrare break."
+        "spiegazione": "L'else di un ciclo viene eseguito solo se il ciclo termina senza incontrare break.",
+        "tipo": "codice"
     },
     {
         "id": 65,
@@ -842,7 +906,8 @@
             "`a {'b': 20, 'c': 3}`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "update sovrascrive le chiavi esistenti e aggiunge le nuove; pop toglie la chiave e ne restituisce il valore."
+        "spiegazione": "update sovrascrive le chiavi esistenti e aggiunge le nuove; pop toglie la chiave e ne restituisce il valore.",
+        "tipo": "codice"
     },
     {
         "id": 66,
@@ -855,7 +920,8 @@
             "`0 2 4 6`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "continue salta i pari; al primo dispari maggiore di 6 (cioè 7) break esce dal ciclo prima della print."
+        "spiegazione": "continue salta i pari; al primo dispari maggiore di 6 (cioè 7) break esce dal ciclo prima della print.",
+        "tipo": "codice"
     },
     {
         "id": 67,
@@ -868,7 +934,8 @@
             "Un package è scritto in Python, mentre una libreria è sempre scritta in C"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Modulo: un file. Package: una cartella di moduli. Libreria: un insieme di package e moduli (es. Pandas)."
+        "spiegazione": "Modulo: un file. Package: una cartella di moduli. Libreria: un insieme di package e moduli (es. Pandas).",
+        "tipo": "teoria"
     },
     {
         "id": 68,
@@ -881,7 +948,8 @@
             "Una classe che intercetta e gestisce tutte le eccezioni del programma"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Con i file la pulizia è la chiusura; con una connessione sqlite3 è il commit o il rollback."
+        "spiegazione": "Con i file la pulizia è la chiusura; con una connessione sqlite3 è il commit o il rollback.",
+        "tipo": "teoria"
     },
     {
         "id": 69,
@@ -894,7 +962,8 @@
             "`FileNotFoundError`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "OperationalError: tabella inesistente o errore SQL. IntegrityError è invece per un vincolo violato (NOT NULL, UNIQUE, CHECK)."
+        "spiegazione": "OperationalError: tabella inesistente o errore SQL. IntegrityError è invece per un vincolo violato (NOT NULL, UNIQUE, CHECK).",
+        "tipo": "codice"
     },
     {
         "id": 70,
@@ -907,7 +976,8 @@
             "La percentuale"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "% è il modulo, cioè il resto. La parte intera della divisione è //. (Il notebook 02 del corso descrive % come \"parte intera\": è un errore.)"
+        "spiegazione": "% è il modulo, cioè il resto. La parte intera della divisione è //.",
+        "tipo": "codice"
     },
     {
         "id": 71,
@@ -920,7 +990,8 @@
             "No, può mancare, ma resta il modo standard"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Senza __init__.py si ha un namespace package; il file resta molto usato per inizializzare il package e controllarne gli import."
+        "spiegazione": "Senza __init__.py si ha un namespace package; il file resta molto usato per inizializzare il package e controllarne gli import.",
+        "tipo": "teoria"
     },
     {
         "id": 72,
@@ -933,7 +1004,8 @@
             "Con il duck typing o con una ABC che ha solo metodi astratti"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Approccio pythonico: duck typing. Per imporre un contratto: una classe astratta (ABC) con tutti i metodi astratti."
+        "spiegazione": "Approccio pythonico: duck typing. Per imporre un contratto: una classe astratta (ABC) con tutti i metodi astratti.",
+        "tipo": "teoria"
     },
     {
         "id": 73,
@@ -946,7 +1018,8 @@
             "`pari`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "È l'espressione condizionale (il \"ternario\" di Python): valore_se_vero if condizione else valore_se_falso."
+        "spiegazione": "È l'espressione condizionale (il \"ternario\" di Python): valore_se_vero if condizione else valore_se_falso.",
+        "tipo": "codice"
     },
     {
         "id": 74,
@@ -959,7 +1032,8 @@
             "Dall'ordine in cui le celle compaiono nel documento"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Le celle si eseguono una per volta e in qualunque ordine: conta la sequenza di esecuzione, non la posizione nel documento."
+        "spiegazione": "Le celle si eseguono una per volta e in qualunque ordine: conta la sequenza di esecuzione, non la posizione nel documento.",
+        "tipo": "teoria"
     },
     {
         "id": 75,
@@ -972,7 +1046,8 @@
             "La conversione automatica fra tipi compatibili"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "\"Se cammina come un'anatra e starnazza come un'anatra, è un'anatra\": start_vehicle(x) funziona con qualunque x che abbia start()."
+        "spiegazione": "\"Se cammina come un'anatra e starnazza come un'anatra, è un'anatra\": start_vehicle(x) funziona con qualunque x che abbia start().",
+        "tipo": "teoria"
     },
     {
         "id": 76,
@@ -985,7 +1060,8 @@
             "`NameError`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "L'accesso con le quadre a una chiave assente solleva KeyError; d.get(\"b\") restituirebbe None."
+        "spiegazione": "L'accesso con le quadre a una chiave assente solleva KeyError; d.get(\"b\") restituirebbe None.",
+        "tipo": "codice"
     },
     {
         "id": 77,
@@ -998,7 +1074,8 @@
             "`-1`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il ciclo continua finché x > 0: si ferma quando x vale 0, che è il valore stampato dopo il ciclo."
+        "spiegazione": "Il ciclo continua finché x > 0: si ferma quando x vale 0, che è il valore stampato dopo il ciclo.",
+        "tipo": "codice"
     },
     {
         "id": 78,
@@ -1011,7 +1088,8 @@
             "`[[1, 0]]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "[[0] * 2] * 2 crea due riferimenti alla stessa riga. Righe distinte: [[0] * 2 for _ in range(2)]."
+        "spiegazione": "[[0] * 2] * 2 crea due riferimenti alla stessa riga. Righe distinte: [[0] * 2 for _ in range(2)].",
+        "tipo": "codice"
     },
     {
         "id": 79,
@@ -1024,7 +1102,8 @@
             "Sì, ma solo nei database PostgreSQL"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "relationship è un attributo di navigazione fra oggetti: SQLAlchemy esegue la SELECT necessaria quando lo si legge."
+        "spiegazione": "relationship è un attributo di navigazione fra oggetti: SQLAlchemy esegue la SELECT necessaria quando lo si legge.",
+        "tipo": "codice"
     },
     {
         "id": 80,
@@ -1037,7 +1116,8 @@
             "Il Core di SQLAlchemy"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "È sviluppata dall'autore di FastAPI: un solo modello serve sia da tabella sia da formato dei dati dell'API."
+        "spiegazione": "È sviluppata dall'autore di FastAPI: un solo modello serve sia da tabella sia da formato dei dati dell'API.",
+        "tipo": "teoria"
     },
     {
         "id": 81,
@@ -1050,7 +1130,8 @@
             "A prendere 20 risultati saltando i primi 10"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "limit fissa quanti risultati, offset quanti saltarne: è la paginazione tipica delle API REST."
+        "spiegazione": "limit fissa quanti risultati, offset quanti saltarne: è la paginazione tipica delle API REST.",
+        "tipo": "codice"
     },
     {
         "id": 82,
@@ -1063,7 +1144,8 @@
             "Manual task"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "User task: persona con un software. Service task e script task: eseguite dal sistema. Nell'esempio \"Verifica identità utente\" è un manual task."
+        "spiegazione": "User task: persona con un software. Service task e script task: eseguite dal sistema. Ad esempio, \"Verifica identità utente\" è un manual task.",
+        "tipo": "teoria"
     },
     {
         "id": 83,
@@ -1076,7 +1158,8 @@
             "Eseguire programmi Python su macchine dove l'interprete non è installato"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un venv isola le librerie di un progetto: evita conflitti fra versioni, non installa nulla a livello di sistema e rende l'ambiente riproducibile."
+        "spiegazione": "Un venv isola le librerie di un progetto: evita conflitti fra versioni, non installa nulla a livello di sistema e rende l'ambiente riproducibile.",
+        "tipo": "teoria"
     },
     {
         "id": 84,
@@ -1089,7 +1172,8 @@
             "`1`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'inserimento non è stato confermato con commit(): chiudendo la connessione la transazione viene annullata."
+        "spiegazione": "L'inserimento non è stato confermato con commit(): chiudendo la connessione la transazione viene annullata.",
+        "tipo": "codice"
     },
     {
         "id": 85,
@@ -1102,7 +1186,8 @@
             "`A`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'ultimo import * sovrascrive in silenzio il nome importato dal primo: un buon motivo per usare import espliciti."
+        "spiegazione": "L'ultimo import * sovrascrive in silenzio il nome importato dal primo: un buon motivo per usare import espliciti.",
+        "tipo": "codice"
     },
     {
         "id": 86,
@@ -1115,7 +1200,8 @@
             "Di dominio"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Non dice che cosa fa il sistema ma come deve farlo (prestazioni): è non funzionale."
+        "spiegazione": "Non dice che cosa fa il sistema ma come deve farlo (prestazioni): è non funzionale.",
+        "tipo": "teoria"
     },
     {
         "id": 87,
@@ -1128,7 +1214,8 @@
             "Solleva `TypeError`: c va passato per nome"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Un parametro scritto dopo *args si può passare solo per nome (keyword-only): tutti i posizionali finiscono in args."
+        "spiegazione": "Un parametro scritto dopo *args si può passare solo per nome (keyword-only): tutti i posizionali finiscono in args.",
+        "tipo": "codice"
     },
     {
         "id": 88,
@@ -1141,12 +1228,13 @@
             "I casi d'uso del sistema e gli attori che vi partecipano"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Nell'esempio SmartAllianz: browser, web server con l'app VueJS, application server con l'API Flask, database server con MySQL."
+        "spiegazione": "Ad esempio: browser, web server con l'app VueJS, application server con l'API Flask, database server con MySQL.",
+        "tipo": "teoria"
     },
     {
         "id": 89,
         "categoria": "ORM e SQLAlchemy",
-        "domanda": "Qual è uno dei limiti degli ORM indicati dalla lezione?",
+        "domanda": "Qual è uno dei limiti degli ORM?",
         "risposte": [
             "Non eliminano la necessità di conoscere SQL, e le query generate possono non essere ottimali",
             "Non supportano le relazioni fra tabelle",
@@ -1154,7 +1242,8 @@
             "Non permettono transazioni"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "ORM e SQL diretto sono complementari: per reporting e ottimizzazioni spinte si scrive SQL a mano."
+        "spiegazione": "ORM e SQL diretto sono complementari: per reporting e ottimizzazioni spinte si scrive SQL a mano.",
+        "tipo": "architettura"
     },
     {
         "id": 90,
@@ -1167,7 +1256,8 @@
             "`Studente`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "print chiama il metodo speciale __str__ per ottenere la rappresentazione leggibile dell'oggetto."
+        "spiegazione": "print chiama il metodo speciale __str__ per ottenere la rappresentazione leggibile dell'oggetto.",
+        "tipo": "codice"
     },
     {
         "id": 91,
@@ -1180,7 +1270,8 @@
             "Lo use case descrive l'interfaccia grafica, lo scenario il database"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Lo scenario è un'istanza dello use case: quello in cui tutto va bene, o uno in cui qualcosa va storto."
+        "spiegazione": "Lo scenario è un'istanza dello use case: quello in cui tutto va bene, o uno in cui qualcosa va storto.",
+        "tipo": "teoria"
     },
     {
         "id": 92,
@@ -1193,7 +1284,8 @@
             "`Marco Giulia`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "writelines, come write, non aggiunge gli a capo: vanno messi esplicitamente."
+        "spiegazione": "writelines, come write, non aggiunge gli a capo: vanno messi esplicitamente.",
+        "tipo": "codice"
     },
     {
         "id": 93,
@@ -1206,7 +1298,8 @@
             "Il numero totale di righe della tabella"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'id dell'ultima riga inserita è lastrowid. Controllare rowcount dopo UPDATE e DELETE è buona pratica."
+        "spiegazione": "L'id dell'ultima riga inserita è lastrowid. Controllare rowcount dopo UPDATE e DELETE è buona pratica.",
+        "tipo": "codice"
     },
     {
         "id": 94,
@@ -1219,7 +1312,8 @@
             "`4 4`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "append aggiunge un solo elemento (la lista intera); extend aggiunge gli elementi uno per uno."
+        "spiegazione": "append aggiunge un solo elemento (la lista intera); extend aggiunge gli elementi uno per uno.",
+        "tipo": "codice"
     },
     {
         "id": 95,
@@ -1232,7 +1326,8 @@
             "`a-b-c!`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "sep è il separatore fra gli argomenti (default uno spazio) ed end la chiusura (default a capo)."
+        "spiegazione": "sep è il separatore fra gli argomenti (default uno spazio) ed end la chiusura (default a capo).",
+        "tipo": "codice"
     },
     {
         "id": 96,
@@ -1245,7 +1340,8 @@
             "`True False`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "type() restituisce la classe esatta (bool); isinstance() accetta anche le sottoclassi, e bool è sottoclasse di int."
+        "spiegazione": "type() restituisce la classe esatta (bool); isinstance() accetta anche le sottoclassi, e bool è sottoclasse di int.",
+        "tipo": "codice"
     },
     {
         "id": 97,
@@ -1258,7 +1354,8 @@
             "`KeyError`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "get(p, 0) legge il valore attuale o 0 se la chiave non c'è ancora: è l'idioma classico per contare le frequenze."
+        "spiegazione": "get(p, 0) legge il valore attuale o 0 se la chiave non c'è ancora: è l'idioma classico per contare le frequenze.",
+        "tipo": "codice"
     },
     {
         "id": 98,
@@ -1271,7 +1368,8 @@
             "Solleva `TypeError`: le stringhe sono immutabili"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le stringhe non supportano l'assegnazione per indice. Per \"modificarle\" si crea una nuova stringa, ad esempio s = \"C\" + s[1:]."
+        "spiegazione": "Le stringhe non supportano l'assegnazione per indice. Per \"modificarle\" si crea una nuova stringa, ad esempio s = \"C\" + s[1:].",
+        "tipo": "codice"
     },
     {
         "id": 99,
@@ -1284,7 +1382,8 @@
             "Non succede nulla finché non si specifica l'id"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Senza WHERE, UPDATE e DELETE toccano tutte le righe: per questo vanno sempre scritti con una condizione."
+        "spiegazione": "Senza WHERE, UPDATE e DELETE toccano tutte le righe: per questo vanno sempre scritti con una condizione.",
+        "tipo": "codice"
     },
     {
         "id": 100,
@@ -1297,7 +1396,8 @@
             "Con text(), usando parametri con nome come :age"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "session.execute(text(\"SELECT * FROM users WHERE age > :age\"), {\"age\": 18}): i parametri restano protetti dalla SQL injection."
+        "spiegazione": "session.execute(text(\"SELECT * FROM users WHERE age > :age\"), {\"age\": 18}): i parametri restano protetti dalla SQL injection.",
+        "tipo": "codice"
     },
     {
         "id": 101,
@@ -1310,7 +1410,8 @@
             "`1 0 1`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "a.n = 1 crea un attributo di istanza su a, che nasconde quello di classe; b e C vedono ancora l'attributo di classe."
+        "spiegazione": "a.n = 1 crea un attributo di istanza su a, che nasconde quello di classe; b e C vedono ancora l'attributo di classe.",
+        "tipo": "codice"
     },
     {
         "id": 102,
@@ -1323,7 +1424,8 @@
             "Apre la connessione al server"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La Connection gestisce la sessione e le transazioni (commit, rollback, close); il Cursor esegue (execute) e legge (fetchone, fetchall)."
+        "spiegazione": "La Connection gestisce la sessione e le transazioni (commit, rollback, close); il Cursor esegue (execute) e legge (fetchone, fetchall).",
+        "tipo": "codice"
     },
     {
         "id": 103,
@@ -1336,7 +1438,8 @@
             "Non scrive l'intestazione"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Senza index=False il file ha una prima colonna in più (0, 1, 2…), fastidiosa quando lo si passa ad altri strumenti."
+        "spiegazione": "Senza index=False il file ha una prima colonna in più (0, 1, 2…), fastidiosa quando lo si passa ad altri strumenti.",
+        "tipo": "codice"
     },
     {
         "id": 104,
@@ -1349,7 +1452,8 @@
             "A un attributo"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Tabella → classe, riga → istanza, colonna → attributo."
+        "spiegazione": "Tabella → classe, riga → istanza, colonna → attributo.",
+        "tipo": "teoria"
     },
     {
         "id": 105,
@@ -1362,7 +1466,8 @@
             "`1 1`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "add() traccia l'oggetto ma non scrive: l'id lo assegna il database all'INSERT, che avviene al commit (o al flush)."
+        "spiegazione": "add() traccia l'oggetto ma non scrive: l'id lo assegna il database all'INSERT, che avviene al commit (o al flush).",
+        "tipo": "codice"
     },
     {
         "id": 106,
@@ -1375,7 +1480,8 @@
             "`finally try`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "finally viene eseguito anche quando il try esce con un return: prima stampa, poi la funzione restituisce \"try\"."
+        "spiegazione": "finally viene eseguito anche quando il try esce con un return: prima stampa, poi la funzione restituisce \"try\".",
+        "tipo": "codice"
     },
     {
         "id": 107,
@@ -1388,7 +1494,8 @@
             "Nel bytecode, ma non è accessibile"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La stringa fra tripli apici subito dopo def finisce in __doc__: la leggono help() e gli editor."
+        "spiegazione": "La stringa fra tripli apici subito dopo def finisce in __doc__: la leggono help() e gli editor.",
+        "tipo": "codice"
     },
     {
         "id": 108,
@@ -1401,7 +1508,8 @@
             "`zero fine`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "L'eccezione attiva l'except; else gira solo se il try non solleva eccezioni; finally gira sempre."
+        "spiegazione": "L'eccezione attiva l'except; else gira solo se il try non solleva eccezioni; finally gira sempre.",
+        "tipo": "codice"
     },
     {
         "id": 109,
@@ -1414,7 +1522,8 @@
             "type"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "object è la madre di tutte le classi: ogni classe ne eredita, anche senza scriverlo."
+        "spiegazione": "object è la madre di tutte le classi: ogni classe ne eredita, anche senza scriverlo.",
+        "tipo": "codice"
     },
     {
         "id": 110,
@@ -1427,7 +1536,8 @@
             "Go"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "uv è sviluppato da Astral in Rust, ed è per questo molto più veloce di pip nel risolvere e scaricare le dipendenze."
+        "spiegazione": "uv è sviluppato da Astral in Rust, ed è per questo molto più veloce di pip nel risolvere e scaricare le dipendenze.",
+        "tipo": "teoria"
     },
     {
         "id": 111,
@@ -1440,7 +1550,8 @@
             "`dict tuple`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "*args raccoglie gli argomenti posizionali in più in una tupla, **kwargs quelli keyword in un dizionario."
+        "spiegazione": "*args raccoglie gli argomenti posizionali in più in una tupla, **kwargs quelli keyword in un dizionario.",
+        "tipo": "codice"
     },
     {
         "id": 112,
@@ -1453,7 +1564,8 @@
             "Nessuna: stampa `None`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Un indice fuori dai limiti di una sequenza solleva IndexError."
+        "spiegazione": "Un indice fuori dai limiti di una sequenza solleva IndexError.",
+        "tipo": "codice"
     },
     {
         "id": 113,
@@ -1466,7 +1578,8 @@
             "dump è per i dizionari, dumps per le liste"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "La s finale sta per string. Allo stesso modo load legge da file e loads da stringa."
+        "spiegazione": "La s finale sta per string. Allo stesso modo load legge da file e loads da stringa.",
+        "tipo": "codice"
     },
     {
         "id": 114,
@@ -1479,7 +1592,8 @@
             "Funziona: `a` vale 1 e `b` vale 2"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Nelle chiamate miste gli argomenti posizionali vanno prima di quelli keyword."
+        "spiegazione": "Nelle chiamate miste gli argomenti posizionali vanno prima di quelli keyword.",
+        "tipo": "codice"
     },
     {
         "id": 115,
@@ -1492,7 +1606,8 @@
             "`120`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La privacy con __ è una convenzione rafforzata, non una barriera: il nome vero dopo il mangling è _Car__km."
+        "spiegazione": "La privacy con __ è una convenzione rafforzata, non una barriera: il nome vero dopo il mangling è _Car__km.",
+        "tipo": "codice"
     },
     {
         "id": 116,
@@ -1505,7 +1620,8 @@
             "A rendere più veloce l'importazione del modulo da parte di altri"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Così lo stesso file funziona sia come script sia come modulo, senza far partire test o stampe a chi lo importa."
+        "spiegazione": "Così lo stesso file funziona sia come script sia come modulo, senza far partire test o stampe a chi lo importa.",
+        "tipo": "codice"
     },
     {
         "id": 117,
@@ -1518,7 +1634,8 @@
             "Tutte le righe in entrambi i casi"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'apostrofo chiude la stringa SQL e OR '1'='1' è sempre vero. Con il segnaposto l'input è trattato come un valore."
+        "spiegazione": "L'apostrofo chiude la stringa SQL e OR '1'='1' è sempre vero. Con il segnaposto l'input è trattato come un valore.",
+        "tipo": "codice"
     },
     {
         "id": 118,
@@ -1531,7 +1648,8 @@
             "Perché le due operazioni riescono o falliscono insieme"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Una transazione è un'unità logica: commit conferma tutto, rollback annulla tutto, e il database non resta a metà."
+        "spiegazione": "Una transazione è un'unità logica: commit conferma tutto, rollback annulla tutto, e il database non resta a metà.",
+        "tipo": "teoria"
     },
     {
         "id": 119,
@@ -1544,12 +1662,13 @@
             "Che il secondo eredita dal primo"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "\"Attivare nuova polizza\" include sempre \"Attivare account utente\". <<extend>> indica invece un comportamento aggiuntivo condizionato."
+        "spiegazione": "\"Attivare nuova polizza\" include sempre \"Attivare account utente\". <<extend>> indica invece un comportamento aggiuntivo condizionato.",
+        "tipo": "teoria"
     },
     {
         "id": 120,
         "categoria": "OOP",
-        "domanda": "Quale motto riassume la filosofia di Python citata nella lezione sulle interfacce?",
+        "domanda": "Quale motto riassume la filosofia di Python sulle interfacce?",
         "risposte": [
             "Esplicito è meglio di implicito, sempre",
             "È più facile chiedere perdono che permesso",
@@ -1557,7 +1676,8 @@
             "Meglio prevenire che curare"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "EAFP: invece di controllare prima, si prova l'operazione e si gestisce l'eventuale eccezione."
+        "spiegazione": "EAFP: invece di controllare prima, si prova l'operazione e si gestisce l'eventuale eccezione.",
+        "tipo": "teoria"
     },
     {
         "id": 121,
@@ -1570,7 +1690,8 @@
             "`10 [20, 30]`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "L'unpacking con l'asterisco raccoglie in una lista tutti gli elementi rimanenti."
+        "spiegazione": "L'unpacking con l'asterisco raccoglie in una lista tutti gli elementi rimanenti.",
+        "tipo": "codice"
     },
     {
         "id": 122,
@@ -1583,7 +1704,8 @@
             "`3 3`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "round() sui casi .5 arrotonda al pari più vicino (banker's rounding): 2.5 diventa 2, 3.5 diventa 4."
+        "spiegazione": "round() sui casi .5 arrotonda al pari più vicino (banker's rounding): 2.5 diventa 2, 3.5 diventa 4.",
+        "tipo": "codice"
     },
     {
         "id": 123,
@@ -1596,7 +1718,8 @@
             "Che né le variabili né i valori hanno un tipo preciso"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Nessuna dichiarazione: il tipo è quello del valore e la stessa variabile può poi puntare a un valore di altro tipo. Non converte però tipi incompatibili (tipizzazione forte)."
+        "spiegazione": "Nessuna dichiarazione: il tipo è quello del valore e la stessa variabile può poi puntare a un valore di altro tipo. Non converte però tipi incompatibili (tipizzazione forte).",
+        "tipo": "teoria"
     },
     {
         "id": 124,
@@ -1609,7 +1732,8 @@
             "A caricare in anticipo gli oggetti correlati"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Se si imposta corso.teacher = docente, il corso compare da solo in docente.courses. Va dichiarato su entrambi i lati e nomina l'attributo dell'altra classe."
+        "spiegazione": "Se si imposta corso.teacher = docente, il corso compare da solo in docente.courses. Va dichiarato su entrambi i lati e nomina l'attributo dell'altra classe.",
+        "tipo": "codice"
     },
     {
         "id": 125,
@@ -1622,7 +1746,8 @@
             "`A B`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "È un override che estende: super().f() esegue prima il codice del padre, poi la figlia aggiunge il suo."
+        "spiegazione": "È un override che estende: super().f() esegue prima il codice del padre, poi la figlia aggiunge il suo.",
+        "tipo": "codice"
     },
     {
         "id": 126,
@@ -1635,7 +1760,8 @@
             "`True`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le eccezioni sono classi organizzate in gerarchia: FileNotFoundError deriva da OSError, che deriva da Exception."
+        "spiegazione": "Le eccezioni sono classi organizzate in gerarchia: FileNotFoundError deriva da OSError, che deriva da Exception.",
+        "tipo": "codice"
     },
     {
         "id": 127,
@@ -1648,7 +1774,8 @@
             "`tuple tuple`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "A creare la tupla è la virgola, non le parentesi: (5) è un intero, (5,) una tupla di un elemento."
+        "spiegazione": "A creare la tupla è la virgola, non le parentesi: (5) è un intero, (5,) una tupla di un elemento.",
+        "tipo": "codice"
     },
     {
         "id": 128,
@@ -1661,7 +1788,8 @@
             "`AB`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Con l'ereditarietà multipla vince la prima classe dell'MRO che definisce il metodo: B, perché è elencata per prima."
+        "spiegazione": "Con l'ereditarietà multipla vince la prima classe dell'MRO che definisce il metodo: B, perché è elencata per prima.",
+        "tipo": "codice"
     },
     {
         "id": 129,
@@ -1674,7 +1802,8 @@
             "`35`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Nella chiamata, * espande la lista in argomenti posizionali: area(3, 5)."
+        "spiegazione": "Nella chiamata, * espande la lista in argomenti posizionali: area(3, 5).",
+        "tipo": "codice"
     },
     {
         "id": 130,
@@ -1687,7 +1816,8 @@
             "Chiamare session.rollback() prima di usare di nuovo la Session"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Dopo un errore la transazione fallita va annullata: la Session non è utilizzabile finché non si fa rollback."
+        "spiegazione": "Dopo un errore la transazione fallita va annullata: la Session non è utilizzabile finché non si fa rollback.",
+        "tipo": "codice"
     },
     {
         "id": 131,
@@ -1700,7 +1830,8 @@
             "`TypeError`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Le stringhe si confrontano in ordine lessicografico, carattere per carattere: \"1\" viene prima di \"2\"."
+        "spiegazione": "Le stringhe si confrontano in ordine lessicografico, carattere per carattere: \"1\" viene prima di \"2\".",
+        "tipo": "codice"
     },
     {
         "id": 132,
@@ -1713,7 +1844,8 @@
             "`None`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La connessione usata con with fa commit (o rollback in caso di errore) ma non viene chiusa: si può continuare a usarla."
+        "spiegazione": "La connessione usata con with fa commit (o rollback in caso di errore) ma non viene chiusa: si può continuare a usarla.",
+        "tipo": "codice"
     },
     {
         "id": 133,
@@ -1726,7 +1858,8 @@
             "`-4`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "int() applicato a un float tronca verso lo zero: elimina la parte decimale senza arrotondare."
+        "spiegazione": "int() applicato a un float tronca verso lo zero: elimina la parte decimale senza arrotondare.",
+        "tipo": "codice"
     },
     {
         "id": 134,
@@ -1739,7 +1872,8 @@
             "`Decimal('0.3')`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il modulo decimal fa aritmetica decimale esatta, purché i valori siano creati da stringhe. print mostra la forma leggibile."
+        "spiegazione": "Il modulo decimal fa aritmetica decimale esatta, purché i valori siano creati da stringhe. print mostra la forma leggibile.",
+        "tipo": "codice"
     },
     {
         "id": 135,
@@ -1752,7 +1886,8 @@
             "`None`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il file ha una posizione corrente: dopo il primo read() è alla fine, e un secondo read() restituisce la stringa vuota."
+        "spiegazione": "Il file ha una posizione corrente: dopo il primo read() è alla fine, e un secondo read() restituisce la stringa vuota.",
+        "tipo": "codice"
     },
     {
         "id": 136,
@@ -1765,7 +1900,8 @@
             "Mappa le classi sulle tabelle"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "L'Engine è il punto di accesso, il Pool riusa le connessioni, il Dialect gestisce le differenze fra DBMS."
+        "spiegazione": "L'Engine è il punto di accesso, il Pool riusa le connessioni, il Dialect gestisce le differenze fra DBMS.",
+        "tipo": "teoria"
     },
     {
         "id": 137,
@@ -1778,7 +1914,8 @@
             "`yth`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Lo slicing include l'indice di inizio (1, 'y') ed esclude quello di fine (4, 'o')."
+        "spiegazione": "Lo slicing include l'indice di inizio (1, 'y') ed esclude quello di fine (4, 'o').",
+        "tipo": "codice"
     },
     {
         "id": 138,
@@ -1791,7 +1928,8 @@
             "Nella tabella teachers (lato 1)"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "teacher_id esiste solo in courses. La tabella di associazione serve per le relazioni molti-a-molti (secondary)."
+        "spiegazione": "teacher_id esiste solo in courses. La tabella di associazione serve per le relazioni molti-a-molti (secondary).",
+        "tipo": "architettura"
     },
     {
         "id": 139,
@@ -1804,7 +1942,8 @@
             "`6`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Un set contiene solo elementi unici: i duplicati spariscono."
+        "spiegazione": "Un set contiene solo elementi unici: i duplicati spariscono.",
+        "tipo": "codice"
     },
     {
         "id": 140,
@@ -1817,7 +1956,8 @@
             "tuple"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il set serve a togliere i duplicati e a verificare l'appartenenza molto velocemente; il suo ordine non è garantito."
+        "spiegazione": "Il set serve a togliere i duplicati e a verificare l'appartenenza molto velocemente; il suo ordine non è garantito.",
+        "tipo": "teoria"
     },
     {
         "id": 141,
@@ -1830,7 +1970,8 @@
             "`[]`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il cursore avanza: fetchone prende 1, fetchmany(2) prende 2 e 3, fetchall restituisce solo le righe rimanenti."
+        "spiegazione": "Il cursore avanza: fetchone prende 1, fetchmany(2) prende 2 e 3, fetchall restituisce solo le righe rimanenti.",
+        "tipo": "codice"
     },
     {
         "id": 142,
@@ -1843,20 +1984,22 @@
             "import.somma(5, 3)"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Con import modulo i nomi restano nel namespace del modulo e si usano qualificati: modulo.nome."
+        "spiegazione": "Con import modulo i nomi restano nel namespace del modulo e si usano qualificati: modulo.nome.",
+        "tipo": "codice"
     },
     {
         "id": 143,
         "categoria": "OOP",
-        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)\n```",
+        "domanda": "Che cosa succede eseguendo questo codice?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"Python\")\nprint(s.nome)\n```",
         "risposte": [
-            "Stampa `WSA`",
+            "Stampa `Python`",
             "Stampa `Anna`",
             "Solleva `AttributeError`",
             "Stampa `None`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Studente ridefinisce __init__ senza chiamare super().__init__(nome): l'attributo nome non viene mai creato."
+        "spiegazione": "Studente ridefinisce __init__ senza chiamare super().__init__(nome): l'attributo nome non viene mai creato.",
+        "tipo": "codice"
     },
     {
         "id": 144,
@@ -1869,7 +2012,8 @@
             "Chiede conferma"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "SQLite è un database in un file, senza server: connect crea il file se manca."
+        "spiegazione": "SQLite è un database in un file, senza server: connect crea il file se manca.",
+        "tipo": "codice"
     },
     {
         "id": 145,
@@ -1882,7 +2026,8 @@
             "Incapsulamento"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Astrazione: \"che cosa fa?\"; incapsulamento: \"come proteggo dati e metodi?\"; ereditarietà: \"che cosa riutilizzo?\"; polimorfismo: \"come uso oggetti diversi con la stessa interfaccia?\"."
+        "spiegazione": "Astrazione: \"che cosa fa?\"; incapsulamento: \"come proteggo dati e metodi?\"; ereditarietà: \"che cosa riutilizzo?\"; polimorfismo: \"come uso oggetti diversi con la stessa interfaccia?\".",
+        "tipo": "teoria"
     },
     {
         "id": 146,
@@ -1895,7 +2040,8 @@
             "Il percorso completo dell'interprete Python in uso"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "sys.path include la cartella dello script, la libreria standard e i pacchetti installati. I moduli già importati stanno in sys.modules."
+        "spiegazione": "sys.path include la cartella dello script, la libreria standard e i pacchetti installati. I moduli già importati stanno in sys.modules.",
+        "tipo": "codice"
     },
     {
         "id": 147,
@@ -1908,7 +2054,8 @@
             "Local, Enclosing, Global, Built-in"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Prima lo scope locale della funzione, poi le funzioni che la contengono, poi il modulo, infine i nomi predefiniti di Python."
+        "spiegazione": "Prima lo scope locale della funzione, poi le funzioni che la contengono, poi il modulo, infine i nomi predefiniti di Python.",
+        "tipo": "teoria"
     },
     {
         "id": 148,
@@ -1921,7 +2068,8 @@
             "Solleva `TypeError`: una lista non è hashable"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le chiavi di un dizionario devono essere immutabili (hashable): una tupla va bene, una lista no."
+        "spiegazione": "Le chiavi di un dizionario devono essere immutabili (hashable): una tupla va bene, una lista no.",
+        "tipo": "codice"
     },
     {
         "id": 149,
@@ -1934,7 +2082,8 @@
             "Solleva `TypeError`: manca l'argomento c"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Python non ha l'overloading: la seconda definizione sostituisce la prima. Lo si simula con parametri di default o *args."
+        "spiegazione": "Python non ha l'overloading: la seconda definizione sostituisce la prima. Lo si simula con parametri di default o *args.",
+        "tipo": "codice"
     },
     {
         "id": 150,
@@ -1947,7 +2096,8 @@
             "Context, Class, Code, Cluster"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Quattro livelli di zoom crescente; al livello Code si riusano UML ed ERD."
+        "spiegazione": "Quattro livelli di zoom crescente; al livello Code si riusano UML ed ERD.",
+        "tipo": "teoria"
     },
     {
         "id": 151,
@@ -1960,7 +2110,8 @@
             "pop restituisce una lista nuova, remove modifica quella esistente sul posto"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "pop(0) toglie l'elemento in posizione 0 e lo restituisce; remove(30) toglie la prima occorrenza del valore 30."
+        "spiegazione": "pop(0) toglie l'elemento in posizione 0 e lo restituisce; remove(30) toglie la prima occorrenza del valore 30.",
+        "tipo": "codice"
     },
     {
         "id": 152,
@@ -1973,7 +2124,8 @@
             "Il nome del modulo"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Vale \"__main__\" solo quando il file è eseguito direttamente; quando è importato vale il nome del modulo."
+        "spiegazione": "Vale \"__main__\" solo quando il file è eseguito direttamente; quando è importato vale il nome del modulo.",
+        "tipo": "codice"
     },
     {
         "id": 153,
@@ -1986,7 +2138,8 @@
             "`True False`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "in su un dizionario cerca fra le chiavi, non fra i valori. Per i valori: 1 in d.values()."
+        "spiegazione": "in su un dizionario cerca fra le chiavi, non fra i valori. Per i valori: 1 in d.values().",
+        "tipo": "codice"
     },
     {
         "id": 154,
@@ -1999,7 +2152,8 @@
             "`TrueTrue`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "bool è una sottoclasse di int: True vale 1 e False vale 0."
+        "spiegazione": "bool è una sottoclasse di int: True vale 1 e False vale 0.",
+        "tipo": "codice"
     },
     {
         "id": 155,
@@ -2012,7 +2166,8 @@
             "Solleva `StopIteration`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "fetchone restituisce None a risultati finiti; fetchall restituirebbe una lista vuota."
+        "spiegazione": "fetchone restituisce None a risultati finiti; fetchall restituirebbe una lista vuota.",
+        "tipo": "codice"
     },
     {
         "id": 156,
@@ -2025,7 +2180,8 @@
             "npm"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "PyPI, il Python Package Index, è il repository ufficiale dei pacchetti Python. npm è di JavaScript, NuGet di .NET, Maven di Java."
+        "spiegazione": "PyPI, il Python Package Index, è il repository ufficiale dei pacchetti Python. npm è di JavaScript, NuGet di .NET, Maven di Java.",
+        "tipo": "teoria"
     },
     {
         "id": 157,
@@ -2038,7 +2194,8 @@
             "`TypeError`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un parametro con default si può omettere: in quel caso vale il valore predefinito."
+        "spiegazione": "Un parametro con default si può omettere: in quel caso vale il valore predefinito.",
+        "tipo": "codice"
     },
     {
         "id": 158,
@@ -2051,7 +2208,8 @@
             "`16 [2, 4]`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Le funzioni sono oggetti: si assegnano a variabili e si passano ad altre funzioni, come a map."
+        "spiegazione": "Le funzioni sono oggetti: si assegnano a variabili e si passano ad altre funzioni, come a map.",
+        "tipo": "codice"
     },
     {
         "id": 159,
@@ -2064,7 +2222,8 @@
             "Solo se è stata sollevata un'eccezione non gestita"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "else contiene il codice da eseguire se tutto è andato bene; finally invece viene eseguito in ogni caso."
+        "spiegazione": "else contiene il codice da eseguire se tutto è andato bene; finally invece viene eseguito in ogni caso.",
+        "tipo": "codice"
     },
     {
         "id": 160,
@@ -2077,7 +2236,8 @@
             "Un dizionario"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il modulo csv legge tutto come str: le conversioni sono a carico del programma. Pandas invece riconosce i tipi."
+        "spiegazione": "Il modulo csv legge tutto come str: le conversioni sono a carico del programma. Pandas invece riconosce i tipi.",
+        "tipo": "codice"
     },
     {
         "id": 161,
@@ -2090,7 +2250,8 @@
             "Documentale, come MongoDB"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Per gli embedding del machine learning si usa invece un database vettoriale (Qdrant, Weaviate)."
+        "spiegazione": "Per gli embedding del machine learning si usa invece un database vettoriale (Qdrant, Weaviate).",
+        "tipo": "architettura"
     },
     {
         "id": 162,
@@ -2103,7 +2264,8 @@
             "Dato <contesto>, quando <evento>, allora <risultato>"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La user story è la versione agile e leggera del requisito. \"Dato… quando… allora\" è il formato dei criteri di accettazione (Gherkin)."
+        "spiegazione": "La user story è la versione agile e leggera del requisito. \"Dato… quando… allora\" è il formato dei criteri di accettazione (Gherkin).",
+        "tipo": "teoria"
     },
     {
         "id": 163,
@@ -2116,7 +2278,8 @@
             "`False 20`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "and e or restituiscono uno degli operandi: 0 and 20 restituisce il primo falso (0), 0 or 20 il primo vero (20)."
+        "spiegazione": "and e or restituiscono uno degli operandi: 0 and 20 restituisce il primo falso (0), 0 or 20 il primo vero (20).",
+        "tipo": "codice"
     },
     {
         "id": 164,
@@ -2129,7 +2292,8 @@
             "Perché un modulo può contenere al massimo una classe al suo interno"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un oggetto creato al livello principale di config.py è lo stesso per chiunque faccia import config."
+        "spiegazione": "Un oggetto creato al livello principale di config.py è lo stesso per chiunque faccia import config.",
+        "tipo": "architettura"
     },
     {
         "id": 165,
@@ -2142,7 +2306,8 @@
             "`[28, 24, 30]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "sort() ordina sul posto e restituisce None: assegnando il risultato si perde la lista. sorted(voti) restituisce invece una lista nuova."
+        "spiegazione": "sort() ordina sul posto e restituisce None: assegnando il risultato si perde la lista. sorted(voti) restituisce invece una lista nuova.",
+        "tipo": "codice"
     },
     {
         "id": 166,
@@ -2155,7 +2320,8 @@
             "Una query che restituisce sempre una riga in più del previsto"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Con 5 docenti e il lazy loading servono 6 query; con selectinload (eager loading) ne bastano 2."
+        "spiegazione": "Con 5 docenti e il lazy loading servono 6 query; con selectinload (eager loading) ne bastano 2.",
+        "tipo": "teoria"
     },
     {
         "id": 167,
@@ -2168,7 +2334,8 @@
             "Perché la tupla è immutabile e quindi hashable"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le chiavi devono avere un hash stabile, quindi devono essere immutabili."
+        "spiegazione": "Le chiavi devono avere un hash stabile, quindi devono essere immutabili.",
+        "tipo": "codice"
     },
     {
         "id": 168,
@@ -2181,7 +2348,8 @@
             "def f(a=1, b):"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I parametri con default vanno dopo quelli obbligatori: def f(a=1, b) non è valida."
+        "spiegazione": "I parametri con default vanno dopo quelli obbligatori: def f(a=1, b) non è valida.",
+        "tipo": "codice"
     },
     {
         "id": 169,
@@ -2194,7 +2362,8 @@
             "`[1, 9]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'if in fondo alla comprensione filtra: restano 0, 2, 4, che elevati al quadrato danno 0, 4, 16."
+        "spiegazione": "L'if in fondo alla comprensione filtra: restano 0, 2, 4, che elevati al quadrato danno 0, 4, 16.",
+        "tipo": "codice"
     },
     {
         "id": 170,
@@ -2207,7 +2376,8 @@
             "Protetto per convenzione, ma accessibile"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Un trattino: convenzione \"protetto\". Due trattini: name mangling. In nessun caso c'è un divieto vero come private in Java/C#."
+        "spiegazione": "Un trattino: convenzione \"protetto\". Due trattini: name mangling. In nessun caso c'è un divieto vero come private in Java/C#.",
+        "tipo": "codice"
     },
     {
         "id": 171,
@@ -2220,7 +2390,8 @@
             "find restituisce il testo, findall gli elementi"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Per cercare in tutti i discendenti, a qualunque profondità, si usa iter()."
+        "spiegazione": "Per cercare in tutti i discendenti, a qualunque profondità, si usa iter().",
+        "tipo": "codice"
     },
     {
         "id": 172,
@@ -2233,7 +2404,8 @@
             "UPDATE"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Create = INSERT, Read = SELECT, Update = UPDATE, Delete = DELETE."
+        "spiegazione": "Create = INSERT, Read = SELECT, Update = UPDATE, Delete = DELETE.",
+        "tipo": "teoria"
     },
     {
         "id": 173,
@@ -2246,7 +2418,8 @@
             "Le librerie scaricate da PyPI per quel progetto"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Python compila il sorgente in bytecode, eseguito dalla Python Virtual Machine; per i moduli importati lo salva in .pyc così al lancio successivo può saltare la compilazione."
+        "spiegazione": "Python compila il sorgente in bytecode, eseguito dalla Python Virtual Machine; per i moduli importati lo salva in .pyc così al lancio successivo può saltare la compilazione.",
+        "tipo": "teoria"
     },
     {
         "id": 174,
@@ -2259,7 +2432,8 @@
             "Solleva `IndexError`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Uno slice fuori dai limiti viene troncato senza errori; è un indice singolo fuori dai limiti (s[100]) a sollevare IndexError."
+        "spiegazione": "Uno slice fuori dai limiti viene troncato senza errori; è un indice singolo fuori dai limiti (s[100]) a sollevare IndexError.",
+        "tipo": "codice"
     },
     {
         "id": 175,
@@ -2272,7 +2446,8 @@
             "`Anna 1 Luca 2`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "enumerate produce coppie (indice, elemento); start=1 fa partire il conteggio da 1 invece che da 0."
+        "spiegazione": "enumerate produce coppie (indice, elemento); start=1 fa partire il conteggio da 1 invece che da 0.",
+        "tipo": "codice"
     },
     {
         "id": 176,
@@ -2285,7 +2460,8 @@
             "Quando il package viene importato"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Viene eseguito all'import del package, come un modulo: può inizializzarlo o esporre nomi dei moduli interni."
+        "spiegazione": "Viene eseguito all'import del package, come un modulo: può inizializzarlo o esporre nomi dei moduli interni.",
+        "tipo": "codice"
     },
     {
         "id": 177,
@@ -2298,7 +2474,8 @@
             "`[1, 'a', 2, 'b']`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "zip accoppia elemento per elemento e si ferma alla sequenza più corta."
+        "spiegazione": "zip accoppia elemento per elemento e si ferma alla sequenza più corta.",
+        "tipo": "codice"
     },
     {
         "id": 178,
@@ -2311,7 +2488,8 @@
             "`2.5`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I type hint documentano ma non vengono controllati dall'interprete: 1.5 viene accettato senza errori."
+        "spiegazione": "I type hint documentano ma non vengono controllati dall'interprete: 1.5 viene accettato senza errori.",
+        "tipo": "codice"
     },
     {
         "id": 179,
@@ -2324,7 +2502,8 @@
             "`(1, 2)`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "JSON non ha le tuple: una tupla diventa un array, che torna in Python come lista."
+        "spiegazione": "JSON non ha le tuple: una tupla diventa un array, che torna in Python come lista.",
+        "tipo": "codice"
     },
     {
         "id": 180,
@@ -2337,7 +2516,8 @@
             "`{2, 3} {2}`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "& è l'intersezione (elementi comuni); ^ è la differenza simmetrica (elementi che stanno in uno solo dei due)."
+        "spiegazione": "& è l'intersezione (elementi comuni); ^ è la differenza simmetrica (elementi che stanno in uno solo dei due).",
+        "tipo": "codice"
     },
     {
         "id": 181,
@@ -2350,7 +2530,8 @@
             "Solleva `ValueError`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "remove() di un valore assente solleva ValueError; discard() dei set, invece, non dà errore."
+        "spiegazione": "remove() di un valore assente solleva ValueError; discard() dei set, invece, non dà errore.",
+        "tipo": "codice"
     },
     {
         "id": 182,
@@ -2363,7 +2544,8 @@
             "`True`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Identity map: dentro una Session una riga corrisponde sempre allo stesso oggetto Python."
+        "spiegazione": "Identity map: dentro una Session una riga corrisponde sempre allo stesso oggetto Python.",
+        "tipo": "codice"
     },
     {
         "id": 183,
@@ -2376,7 +2558,8 @@
             "`Gallo-docente`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Con gli argomenti keyword l'abbinamento avviene per nome, quindi l'ordine nella chiamata non conta."
+        "spiegazione": "Con gli argomenti keyword l'abbinamento avviene per nome, quindi l'ordine nella chiamata non conta.",
+        "tipo": "codice"
     },
     {
         "id": 184,
@@ -2389,7 +2572,8 @@
             "Optional rende la colonna anche chiave primaria della tabella"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il tipo e la nullabilità della colonna vengono dedotti dall'annotazione."
+        "spiegazione": "Il tipo e la nullabilità della colonna vengono dedotti dall'annotazione.",
+        "tipo": "codice"
     },
     {
         "id": 185,
@@ -2402,7 +2586,8 @@
             "Una funzione asincrona da eseguire con la parola chiave await"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "lambda x: x * 2 equivale a def f(x): return x * 2; si usa soprattutto come argomento, ad esempio key= di sorted."
+        "spiegazione": "lambda x: x * 2 equivale a def f(x): return x * 2; si usa soprattutto come argomento, ad esempio key= di sorted.",
+        "tipo": "teoria"
     },
     {
         "id": 186,
@@ -2415,7 +2600,8 @@
             "Perché il modulo gestisce da sé i fine riga"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Senza newline=\"\", su Windows ogni riga finisce con \\r\\r\\n e compaiono righe vuote: è l'indicazione della documentazione, riportata anche nella slide."
+        "spiegazione": "Senza newline=\"\", su Windows ogni riga finisce con \\r\\r\\n e compaiono righe vuote: è l'indicazione della documentazione.",
+        "tipo": "codice"
     },
     {
         "id": 187,
@@ -2428,7 +2614,8 @@
             "`[3]`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Anche con una sola colonna una riga è una tupla: per il numero serve fetchone()[0]."
+        "spiegazione": "Anche con una sola colonna una riga è una tupla: per il numero serve fetchone()[0].",
+        "tipo": "codice"
     },
     {
         "id": 188,
@@ -2441,7 +2628,8 @@
             "Un utente possiede zero o più polizze, ogni polizza ha un utente"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La molteplicità vicino a Polizza (0..*) dice quante polizze ha un utente; quella vicino a Utente (1) quanti utenti ha una polizza."
+        "spiegazione": "La molteplicità vicino a Polizza (0..*) dice quante polizze ha un utente; quella vicino a Utente (1) quanti utenti ha una polizza.",
+        "tipo": "architettura"
     },
     {
         "id": 189,
@@ -2454,7 +2642,8 @@
             "Con for i in range(1): seguito dal corpo del ciclo"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "while True esegue il corpo almeno una volta; il break all'interno realizza la condizione di uscita."
+        "spiegazione": "while True esegue il corpo almeno una volta; il break all'interno realizza la condizione di uscita.",
+        "tipo": "codice"
     },
     {
         "id": 190,
@@ -2467,7 +2656,8 @@
             "`Anonimo`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "\"\" è falsa, quindi or restituisce il secondo operando: è l'idioma del valore di ripiego."
+        "spiegazione": "\"\" è falsa, quindi or restituisce il secondo operando: è l'idioma del valore di ripiego.",
+        "tipo": "codice"
     },
     {
         "id": 191,
@@ -2480,7 +2670,8 @@
             "`[3, 6, 9]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "range(start, stop, step): parte da 1, avanza di 3 ed esclude lo stop (10)."
+        "spiegazione": "range(start, stop, step): parte da 1, avanza di 3 ed esclude lo stop (10).",
+        "tipo": "codice"
     },
     {
         "id": 192,
@@ -2493,7 +2684,8 @@
             "import pandas as p"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Convenzioni consolidate: pandas as pd, numpy as np, matplotlib.pyplot as plt."
+        "spiegazione": "Convenzioni consolidate: pandas as pd, numpy as np, matplotlib.pyplot as plt.",
+        "tipo": "codice"
     },
     {
         "id": 193,
@@ -2506,7 +2698,8 @@
             "python -m venv .venv"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il modulo venv della libreria standard si lancia con python -m venv <cartella>; poi si attiva con .venv\\Scripts\\activate su Windows."
+        "spiegazione": "Il modulo venv della libreria standard si lancia con python -m venv <cartella>; poi si attiva con .venv\\Scripts\\activate su Windows.",
+        "tipo": "codice"
     },
     {
         "id": 194,
@@ -2519,7 +2712,8 @@
             "Inizializza gli attributi di un oggetto appena creato"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "È il costruttore (inizializzatore): viene chiamato in automatico quando si scrive Classe(...)."
+        "spiegazione": "È il costruttore (inizializzatore): viene chiamato in automatico quando si scrive Classe(...).",
+        "tipo": "codice"
     },
     {
         "id": 195,
@@ -2532,7 +2726,8 @@
             "`0 1 2 3`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "range(3) genera 0, 1, 2: lo stop è escluso."
+        "spiegazione": "range(3) genera 0, 1, 2: lo stop è escluso.",
+        "tipo": "codice"
     },
     {
         "id": 196,
@@ -2545,7 +2740,8 @@
             "Perché altrimenti il file viene aperto in modalità binaria"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Senza encoding si usa quella del sistema: \"perché\" diventa 6 byte in cp1252 e 7 in UTF-8, e su Linux si leggerebbe male."
+        "spiegazione": "Senza encoding si usa quella del sistema: \"perché\" diventa 6 byte in cp1252 e 7 in UTF-8, e su Linux si leggerebbe male.",
+        "tipo": "codice"
     },
     {
         "id": 197,
@@ -2558,12 +2754,13 @@
             "`5.0`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "L'operatore / è la divisione vera e restituisce sempre un float, anche quando il risultato è intero."
+        "spiegazione": "L'operatore / è la divisione vera e restituisce sempre un float, anche quando il risultato è intero.",
+        "tipo": "codice"
     },
     {
         "id": 198,
         "categoria": "OOP",
-        "domanda": "La slide dice che \"senza super() si sovrascrive il metodo (override)\". Qual è la descrizione corretta?",
+        "domanda": "Riguardo all'affermazione \"senza super() si sovrascrive il metodo (override)\", qual è la descrizione corretta?",
         "risposte": [
             "super() serve solo nel costruttore",
             "Sono override entrambi: con super() l'override estende il metodo del padre, senza lo sostituisce",
@@ -2571,7 +2768,8 @@
             "Senza super() il metodo del padre viene comunque eseguito"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Ridefinire un metodo della classe padre è sempre override; super() decide se riusare il codice del padre."
+        "spiegazione": "Ridefinire un metodo della classe padre è sempre override; super() decide se riusare il codice del padre.",
+        "tipo": "teoria"
     },
     {
         "id": 199,
@@ -2584,7 +2782,8 @@
             "A ordinare le righe"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Per default ogni riga è una tupla e si accede per posizione; con sqlite3.Row anche per nome."
+        "spiegazione": "Per default ogni riga è una tupla e si accede per posizione; con sqlite3.Row anche per nome.",
+        "tipo": "codice"
     },
     {
         "id": 200,
@@ -2597,7 +2796,8 @@
             "`{'Luca': 17}`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "È una dict comprehension con filtro: tiene solo le coppie con voto almeno 18."
+        "spiegazione": "È una dict comprehension con filtro: tiene solo le coppie con voto almeno 18.",
+        "tipo": "codice"
     },
     {
         "id": 201,
@@ -2610,7 +2810,8 @@
             "Stampa `4`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "from math import sqrt porta nel namespace solo sqrt: il nome math non esiste."
+        "spiegazione": "from math import sqrt porta nel namespace solo sqrt: il nome math non esiste.",
+        "tipo": "codice"
     },
     {
         "id": 202,
@@ -2623,7 +2824,8 @@
             "`[] []`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Le parentesi tonde creano un generatore, non una tupla: produce i valori una volta sola e poi è esaurito."
+        "spiegazione": "Le parentesi tonde creano un generatore, non una tupla: produce i valori una volta sola e poi è esaurito.",
+        "tipo": "codice"
     },
     {
         "id": 203,
@@ -2636,7 +2838,8 @@
             "setup.cfg"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "uv init crea un progetto con pyproject.toml; package.json è l'equivalente di npm."
+        "spiegazione": "uv init crea un progetto con pyproject.toml; package.json è l'equivalente di npm.",
+        "tipo": "codice"
     },
     {
         "id": 204,
@@ -2649,7 +2852,8 @@
             "Funziona, `start()` restituisce `None`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Una classe con metodi astratti non implementati non può essere istanziata: l'errore arriva alla creazione, non alla chiamata."
+        "spiegazione": "Una classe con metodi astratti non implementati non può essere istanziata: l'errore arriva alla creazione, non alla chiamata.",
+        "tipo": "codice"
     },
     {
         "id": 205,
@@ -2662,7 +2866,8 @@
             "select()"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "session.query() era lo stile precedente. select() si arricchisce con where, order_by, join, limit, offset."
+        "spiegazione": "session.query() era lo stile precedente. select() si arricchisce con where, order_by, join, limit, offset.",
+        "tipo": "codice"
     },
     {
         "id": 206,
@@ -2675,7 +2880,8 @@
             "Il modulo statistiche della libreria standard"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il punto indica il package corrente: è un import relativo."
+        "spiegazione": "Il punto indica il package corrente: è un import relativo.",
+        "tipo": "codice"
     },
     {
         "id": 207,
@@ -2688,7 +2894,8 @@
             "Una classe con soli metodi statici"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Un modulo è un file .py e il suo nome è il nome del file senza estensione. Una cartella di moduli è un package."
+        "spiegazione": "Un modulo è un file .py e il suo nome è il nome del file senza estensione. Una cartella di moduli è un package.",
+        "tipo": "teoria"
     },
     {
         "id": 208,
@@ -2698,10 +2905,11 @@
             "Per indicare che il parametro della query è facoltativo",
             "Perché serve una tupla, e la tupla la fa la virgola",
             "Per separare il valore del parametro dal suo tipo SQL",
-            "È un refuso della slide: la virgola non serve e si può togliere"
+            "È un refuso: la virgola non serve e si può togliere"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La tupla la crea la virgola. In alternativa si può passare una lista: [id_studente]."
+        "spiegazione": "La tupla la crea la virgola. In alternativa si può passare una lista: [id_studente].",
+        "tipo": "codice"
     },
     {
         "id": 209,
@@ -2714,7 +2922,8 @@
             "Sceglie le istruzioni SQL da inviare e il loro ordine"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La Session traccia gli oggetti modificati; la Unit of Work trasforma quelle modifiche nelle istruzioni SQL giuste."
+        "spiegazione": "La Session traccia gli oggetti modificati; la Unit of Work trasforma quelle modifiche nelle istruzioni SQL giuste.",
+        "tipo": "architettura"
     },
     {
         "id": 210,
@@ -2727,7 +2936,8 @@
             "`None`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Una funzione senza return restituisce None."
+        "spiegazione": "Una funzione senza return restituisce None.",
+        "tipo": "codice"
     },
     {
         "id": 211,
@@ -2740,7 +2950,8 @@
             "Crea automaticamente gli oggetti figli"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Senza cascade, SQLAlchemy prova a staccare i figli mettendo la chiave esterna a NULL, che fallisce se la colonna è NOT NULL."
+        "spiegazione": "Senza cascade, SQLAlchemy prova a staccare i figli mettendo la chiave esterna a NULL, che fallisce se la colonna è NOT NULL.",
+        "tipo": "codice"
     },
     {
         "id": 212,
@@ -2753,7 +2964,8 @@
             "Dipende dall'ordine"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un modulo viene eseguito alla prima importazione e poi tenuto in memoria (sys.modules): il secondo import non lo riesegue."
+        "spiegazione": "Un modulo viene eseguito alla prima importazione e poi tenuto in memoria (sys.modules): il secondo import non lo riesegue.",
+        "tipo": "codice"
     },
     {
         "id": 213,
@@ -2766,7 +2978,8 @@
             "Copia un oggetto esistente"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Esempio: crea_lettore(\"dati.csv\") restituisce un LettoreCSV, crea_lettore(\"dati.json\") un LettoreJSON. Una sola istanza è il Singleton."
+        "spiegazione": "Esempio: crea_lettore(\"dati.csv\") restituisce un LettoreCSV, crea_lettore(\"dati.json\") un LettoreJSON. Una sola istanza è il Singleton.",
+        "tipo": "architettura"
     },
     {
         "id": 214,
@@ -2779,7 +2992,8 @@
             "Solleva `PermissionError`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Per il name mangling, dentro la classe __km diventa _Car__km: da fuori car.__km non esiste."
+        "spiegazione": "Per il name mangling, dentro la classe __km diventa _Car__km: da fuori car.__km non esiste.",
+        "tipo": "codice"
     },
     {
         "id": 215,
@@ -2792,7 +3006,8 @@
             "uv get pandas"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "uv add aggiunge la dipendenza a pyproject.toml e la installa, creando .venv se non esiste."
+        "spiegazione": "uv add aggiunge la dipendenza a pyproject.toml e la installa, creando .venv se non esiste.",
+        "tipo": "codice"
     },
     {
         "id": 216,
@@ -2805,7 +3020,8 @@
             "`2.147483648e9`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Gli int di Python hanno precisione arbitraria: non esiste overflow, crescono finché c'è memoria."
+        "spiegazione": "Gli int di Python hanno precisione arbitraria: non esiste overflow, crescono finché c'è memoria.",
+        "tipo": "codice"
     },
     {
         "id": 217,
@@ -2818,7 +3034,8 @@
             "`[1, 2, 3]`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "key indica come confrontare gli elementi: la lambda restituisce il secondo valore di ogni tupla."
+        "spiegazione": "key indica come confrontare gli elementi: la lambda restituisce il secondo valore di ogni tupla.",
+        "tipo": "codice"
     },
     {
         "id": 218,
@@ -2831,12 +3048,13 @@
             "`D B A C object`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'MRO (linearizzazione C3) mette una classe sempre prima dei propri padri: A, padre di B e C, viene dopo entrambe."
+        "spiegazione": "L'MRO (linearizzazione C3) mette una classe sempre prima dei propri padri: A, padre di B e C, viene dopo entrambe.",
+        "tipo": "codice"
     },
     {
         "id": 219,
         "categoria": "Moduli e package",
-        "domanda": "Secondo la lezione, qual è il problema principale di from modulo import *?",
+        "domanda": "Qual è il problema principale di from modulo import *?",
         "risposte": [
             "Riempie il namespace e i nomi uguali si sovrascrivono",
             "Rallenta molto l'esecuzione perché carica il modulo più volte",
@@ -2844,7 +3062,8 @@
             "Funziona soltanto con i package e mai con i singoli moduli"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il problema non è la velocità (il modulo va eseguito comunque), ma la gestione del namespace."
+        "spiegazione": "Il problema non è la velocità (il modulo va eseguito comunque), ma la gestione del namespace.",
+        "tipo": "codice"
     },
     {
         "id": 220,
@@ -2857,6 +3076,7 @@
             "`True 10`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "not è l'unico operatore logico che restituisce sempre un bool: la stringa vuota è falsa, 10 è vero."
+        "spiegazione": "not è l'unico operatore logico che restituisce sempre un bool: la stringa vuota è falsa, 10 è vero.",
+        "tipo": "codice"
     }
 ]

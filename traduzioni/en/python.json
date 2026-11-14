@@ -234,8 +234,8 @@
         "Kernighan and Ritchie"
       ]
     },
-    "849afab3034c": {
-      "domanda": "In the example with Gasoline and Electricity, what determines the different behavior of refuel()?",
+    "c15213e08854": {
+      "domanda": "In a model with Gasoline and Electricity classes, what determines the different behavior of refuel()?",
       "spiegazione": "refuel() is the same, inherited: the fuel object created in the constructor changes. It is composition.",
       "risposte": [
         "The fuel object to which refuel() delegates",
@@ -284,8 +284,8 @@
         "Raises `JSONDecodeError`"
       ]
     },
-    "c830c5dc3d44": {
-      "domanda": "In the example deployment diagram, the Flask API communicates with the database via JDBC. What is strange?",
+    "94bebe3fc81e": {
+      "domanda": "In a deployment diagram, a Flask API communicates with the database via JDBC. What is strange?",
       "spiegazione": "In Python, a driver compliant with DB-API (PEP 249) is used, such as PyMySQL or mysqlclient.",
       "risposte": [
         "JDBC is Java's standard driver; in Python, the role is played by DB-API",
@@ -346,7 +346,7 @@
     },
     "e94a3e1bee91": {
       "domanda": "What advantage of \"diagrams as code\" stems from the diagram being text rather than an image?",
-      "spiegazione": "The other advantages from the slide: interoperability, automation in the build process, automatic validation, and integration into documentation.",
+      "spiegazione": "Other advantages: interoperability, automation in the build process, automatic validation, and integration into documentation.",
       "risposte": [
         "More polished graphics",
         "Versioning with git alongside the software",
@@ -536,7 +536,7 @@
     },
     "8375e9e77d58": {
       "domanda": "In a C4 context diagram, what does System_Ext represent?",
-      "spiegazione": "In the Library example, the email service is a System_Ext: the system uses it but does not build it.",
+      "spiegazione": "For example, an email service is a System_Ext: the system uses it but does not build it.",
       "risposte": [
         "A container of the system",
         "An external system, not developed by us",
@@ -544,8 +544,8 @@
         "An additional module that extends the main system"
       ]
     },
-    "a99f6333c67e": {
-      "domanda": "What does the Car/Driver example from the abstraction lesson demonstrate?",
+    "f82b620871f9": {
+      "domanda": "What does the Car/Driver example demonstrate about abstraction?",
       "spiegazione": "By using a start() method, the class exposes a simple interface and manages its own details: Driver only calls car.start().",
       "risposte": [
         "That a class cannot have more than three attributes",
@@ -606,7 +606,7 @@
     },
     "cd075ba58c03": {
       "domanda": "In BPMN, what are lanes within a pool used for?",
-      "spiegazione": "In the example, the \"Policy Management\" pool has three lanes: User, Policy Office, IT Department. Decisions are represented by gateways.",
+      "spiegazione": "For example, a \"Policy Management\" pool can have three lanes: User, Policy Office, IT Department. Decisions are represented by gateways.",
       "risposte": [
         "To divide the process by participant (who does what)",
         "To number the activities",
@@ -649,7 +649,7 @@
       "spiegazione": "The else block of a loop is executed only if the loop completes without encountering a break.",
       "risposte": [
         "`nessun pari`",
-        "Niente",
+        "Nothing",
         "`pari` and then `nessun pari`",
         "`pari`"
       ]
@@ -706,7 +706,7 @@
     },
     "cab76a2e605a": {
       "domanda": "What does the % operator calculate?",
-      "spiegazione": "% is the modulo, i.e., the remainder. The integer part of the division is //. (Course notebook 02 describes % as the \"integer part\": this is an error.)",
+      "spiegazione": "% is the modulo, i.e., the remainder. The integer part of the division is //.",
       "risposte": [
         "The integer part of the division",
         "The remainder of the division",
@@ -826,7 +826,7 @@
     },
     "252fc4d59108": {
       "domanda": "In BPMN, which type of activity is performed by a person without the assistance of software?",
-      "spiegazione": "A User task is performed by a person using software. Service tasks and script tasks are executed by the system. In the example \"Verify user identity\", it is a Manual task.",
+      "spiegazione": "A User task is performed by a person using software. Service tasks and script tasks are executed by the system. For example, \"Verify user identity\" is a manual task.",
       "risposte": [
         "Service task",
         "User task",
@@ -886,7 +886,7 @@
     },
     "719aeec02cf8": {
       "domanda": "What does a deployment diagram show?",
-      "spiegazione": "In the SmartAllianz example: browser, web server with the VueJS app, application server with the Flask API, database server with MySQL.",
+      "spiegazione": "For example: browser, web server with the VueJS app, application server with the Flask API, database server with MySQL.",
       "risposte": [
         "The system classes with attributes, methods, and relationships",
         "The distribution of artifacts across nodes",
@@ -894,8 +894,8 @@
         "The system's use cases and the actors involved"
       ]
     },
-    "17bbe1ffe501": {
-      "domanda": "What is one of the limitations of ORMs mentioned in the lecture?",
+    "820a3f41645e": {
+      "domanda": "What is one of the limitations of ORMs?",
       "spiegazione": "ORMs and direct SQL are complementary: for reporting and advanced optimizations, SQL is written manually.",
       "risposte": [
         "They do not eliminate the need to know SQL, and the generated queries may not be optimal",
@@ -1204,8 +1204,8 @@
         "That the second inherits from the first"
       ]
     },
-    "8ff75ef0d866": {
-      "domanda": "Which motto summarizes the philosophy of Python cited in the lesson on interfaces?",
+    "33e22d3c72f8": {
+      "domanda": "Which motto summarizes the philosophy of Python on interfaces?",
       "spiegazione": "EAFP: instead of checking first, you attempt the operation and handle any resulting exception.",
       "risposte": [
         "Explicit is better than implicit, always",
@@ -1248,10 +1248,10 @@
       "domanda": "What is the purpose of back_populates in a bidirectional relationship?",
       "spiegazione": "If you set corso.teacher = docente, the course automatically appears in docente.courses. It must be declared on both sides and names the attribute of the other class.",
       "risposte": [
-        "A to keep the two sides of the relationship synchronized in memory",
-        "B to create the foreign key column",
-        "C to cascade delete related objects",
-        "D to eagerly load related objects"
+        "To keep the two sides of the relationship synchronized in memory",
+        "To create the foreign key column",
+        "To cascade delete related objects",
+        "To eagerly load related objects"
       ]
     },
     "408ed3bcc037": {
@@ -1425,7 +1425,7 @@
       ]
     },
     "294c321b17a5": {
-      "domanda": "After importing math_utils, what is the name of the somma function in the module?",
+      "domanda": "After importing math_utils, how is the somma function of the module called?",
       "spiegazione": "When using import modulo, names remain in the module's namespace and are accessed using qualified names: modulo.nome.",
       "risposte": [
         "somma(5, 3)",
@@ -1434,11 +1434,11 @@
         "import.somma(5, 3)"
       ]
     },
-    "5aeb8bb0cee2": {
-      "domanda": "What happens when executing this code?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"WSA\")\nprint(s.nome)\n```",
+    "71181d9fec6f": {
+      "domanda": "What happens when executing this code?\n\n```python\nclass Persona:\n    def __init__(self, nome):\n        self.nome = nome\nclass Studente(Persona):\n    def __init__(self, nome, corso):\n        self.corso = corso\ns = Studente(\"Anna\", \"Python\")\nprint(s.nome)\n```",
       "spiegazione": "Studente redefines __init__ without calling super().__init__(nome): the nome attribute is never created.",
       "risposte": [
-        "Prints `WSA`",
+        "Prints `Python`",
         "Prints `Anna`",
         "Raises `AttributeError`",
         "Prints `None`"
@@ -1866,7 +1866,7 @@
     },
     "9ec9469069c2": {
       "domanda": "Why is the file opened with newline='' when using the csv module?",
-      "spiegazione": "Without newline='', on Windows each line ends with \\r\\r\\n and empty lines appear: this is indicated in the documentation, also mentioned in the slide.",
+      "spiegazione": "Without newline='', on Windows each line ends with \\r\\r\\n and empty lines appear: this is indicated in the documentation.",
       "risposte": [
         "To read the file faster by avoiding character conversion",
         "Because otherwise commas between values would be ignored",
@@ -1984,8 +1984,8 @@
         "`5.0`"
       ]
     },
-    "6f1336ddf12e": {
-      "domanda": "The slide states that \"without super(), the method is overridden\". What is the correct description?",
+    "05c1ce0f94b6": {
+      "domanda": "Regarding the statement \"without super(), the method is overridden\", what is the correct description?",
       "spiegazione": "Redefining a parent class method is always an override; super() determines whether to reuse the parent's code.",
       "risposte": [
         "super() is used only in constructors",
@@ -2016,7 +2016,7 @@
     },
     "9f5d37a868fd": {
       "domanda": "What happens when executing this code?\n\n```python\nfrom math import sqrt\nprint(math.sqrt(16))\n```",
-      "spiegazione": "A describes the correct behavior: `from math import sqrt` imports only `sqrt` into the namespace; the name `math` does not exist.",
+      "spiegazione": "`from math import sqrt` imports only `sqrt` into the namespace; the name `math` does not exist.",
       "risposte": [
         "Raises `ImportError`",
         "Prints `4.0`",
@@ -2084,14 +2084,14 @@
         "A class with only static methods"
       ]
     },
-    "d44801fcca57": {
+    "741cea999a07": {
       "domanda": "Why is there a comma after id_studente in the call cur.execute(\"... WHERE id = ?\", (id_studente,))?",
       "spiegazione": "The comma creates the tuple. Alternatively, a list can be passed: [id_studente].",
       "risposte": [
         "To indicate that the query parameter is optional",
         "Because a tuple is needed, and the comma creates the tuple",
         "To separate the parameter value from its SQL type",
-        "It's a typo in the slide: the comma is not needed and can be removed"
+        "It's a typo: the comma is not needed and can be removed"
       ]
     },
     "369fd81c1f28": {
@@ -2194,8 +2194,8 @@
         "`D B A C object`"
       ]
     },
-    "719435ee1446": {
-      "domanda": "According to the lecture, what is the main issue with from module import *?",
+    "7c22b2503c26": {
+      "domanda": "What is the main issue with from module import *?",
       "spiegazione": "The issue is not speed (the module must be executed anyway), but namespace management.",
       "risposte": [
         "It fills the namespace and equal names overwrite each other",
