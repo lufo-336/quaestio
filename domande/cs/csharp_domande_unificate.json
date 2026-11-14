@@ -30,15 +30,15 @@
   {
     "id": 3,
     "categoria": "Basi del linguaggio",
-    "domanda": "Cosa restituisce sempre Console.ReadLine() in C#?",
+    "domanda": "Cosa restituisce `Console.ReadLine()` in C# quando legge una riga dall'input standard?",
     "risposte": [
       "Un valore int",
       "Un valore bool",
-      "Una stringa (string)",
+      "Una stringa (`string?`)",
       "Un valore double"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Console.ReadLine() restituisce sempre una stringa (string), indipendentemente da cosa l'utente digita. Per ottenere un numero bisogna convertire esplicitamente con int.Parse() o double.Parse(). Questa è una fonte comune di errori per i principianti.",
+    "spiegazione": "`Console.ReadLine()` ha tipo di ritorno `string?`: restituisce la riga letta come stringa (oppure `null` se viene raggiunta la fine dello stream di input), indipendentemente da cosa l'utente digita. Per ottenere un numero bisogna convertire esplicitamente con `int.Parse()` o `double.Parse()`.",
     "tipo": "codice"
   },
   {
@@ -296,15 +296,15 @@
   {
     "id": 23,
     "categoria": "Basi del linguaggio",
-    "domanda": "Quale suffisso si usa per dichiarare un letterale `long` in C#?",
+    "domanda": "Quali suffissi sono sintatticamente validi in C# per dichiarare un letterale intero di tipo `long`?",
     "risposte": [
-      "L",
+      "Solo LL",
       "l oppure L",
       "lg",
       "Nessuno, viene dedotto automaticamente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Per dichiarare un letterale `long` si aggiunge `L` (o `l` minuscola, sconsigliata perché si confonde con `1`). Esempio: `long grande = 9_000_000_000L;`.",
+    "spiegazione": "Per dichiarare un letterale `long` in C# si aggiunge il suffisso `L` oppure `l` minuscola (quest'ultima è sconsigliata e genera il warning CS0078 perché si confonde facilmente con la cifra `1`). Il suffisso `LL` appartiene invece a C/C++ (`long long`). Esempio: `long grande = 9_000_000_000L;`.",
     "tipo": "codice"
   },
   {
@@ -328,11 +328,11 @@
     "risposte": [
       "int",
       "char",
-      "string",
+      "string?",
       "object"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`Console.ReadLine()` restituisce sempre una `string`. Se hai bisogno di un numero devi convertirla con `int.Parse()`, `double.Parse()` o `int.TryParse()`.",
+    "spiegazione": "`Console.ReadLine()` restituisce `string?` (una stringa nullable, che vale `null` solo a fine stream). Se hai bisogno di un numero devi convertire la stringa letta con `int.Parse()`, `double.Parse()` o `int.TryParse()`.",
     "tipo": "codice"
   },
   {
@@ -360,7 +360,7 @@
       ":="
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`==` è l'operatore di uguaglianza. `=` è l'assegnazione. Confonderli è uno degli errori più comuni: `if (x = 5)` assegna 5 a x, `if (x == 5)` confronta x con 5.",
+    "spiegazione": "`==` è l'operatore di uguaglianza, mentre `=` è l'assegnazione. Confonderli è un errore comune: per un intero `x`, scrivere `if (x = 5)` tenta di assegnare `5` a `x` e in C# genera un errore di compilazione (`CS0029`, perché `if` richiede un `bool`), mentre `if (x == 5)` confronta `x` con `5`.",
     "tipo": "codice"
   },
   {
@@ -394,15 +394,15 @@
   {
     "id": 30,
     "categoria": "Basi del linguaggio",
-    "domanda": "Qual è il risultato di `\"5\" + 3` in C# quando la variabile a sinistra è una string?",
+    "domanda": "Qual è il risultato di `\"5\" - 3` in C# quando l'operando a sinistra è una `string`?",
     "risposte": [
-      "8",
+      "2",
       "\"53\"",
       "Errore di compilazione",
-      "53"
+      "5"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "In C# non si può sommare direttamente una `string` e un `int` senza conversione esplicita. Il compilatore genera un errore. Per concatenare si scrive `\"5\" + 3.ToString()` oppure si usa l'interpolazione `$\"{5}{3}\"`.",
+    "spiegazione": "In C# l'operatore `-` non è definito tra `string` e `int` e genera un errore di compilazione (a differenza dell'operatore `+`, che concatena convertendo il secondo operando in stringa e produrrebbe `\"53\"`). Per eseguire la sottrazione occorre prima convertire la stringa con `int.Parse(\"5\") - 3`.",
     "tipo": "codice"
   },
   {
@@ -452,8 +452,8 @@
     "categoria": "Basi del linguaggio",
     "domanda": "Cosa stampa `Console.WriteLine(true && false);`?",
     "risposte": [
-      "true",
-      "false",
+      "True",
+      "False",
       "1",
       "0"
     ],
@@ -2026,7 +2026,7 @@
       "int[] numeri = new int[5];"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "La sintassi corretta è `int[] numeri = new int[5];`. Le parentesi quadre dopo il tipo indicano che è un array, e `new int[5]` alloca spazio per 5 interi (inizializzati a 0). La sintassi `int[5] numeri` è C++, `int numeri[5]` è C, `array<int>` non esiste in C#.",
+    "spiegazione": "La sintassi corretta è `int[] numeri = new int[5];`. Le parentesi quadre dopo il tipo indicano che è un array, e `new int[5]` alloca spazio per 5 interi (inizializzati a 0). La sintassi `int numeri[5];` è tipica di C/C++, mentre `int[5] numeri;` (con la dimensione nel tipo) e `array<int>` non sono sintassi valide in C#.",
     "tipo": "codice"
   },
   {
@@ -2340,7 +2340,7 @@
   {
     "id": 169,
     "categoria": "Collezioni",
-    "domanda": "Quale ciclo NON consente di modificare gli elementi di un array durante l'iterazione?",
+    "domanda": "Quale ciclo NON consente di riassegnare gli elementi di un array tramite la variabile di iterazione?",
     "risposte": [
       "for",
       "while",
@@ -2348,7 +2348,7 @@
       "do-while"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`foreach` fornisce una variabile di sola lettura per ogni elemento: modificarla non cambia l'array originale. Per modificare gli elementi occorre usare il `for` classico con indice.",
+    "spiegazione": "In C# la variabile di iterazione di `foreach` è di sola lettura: tentare di riassegnarla genera un errore di compilazione (`CS1656`). Per sostituire gli elementi di un array occorre accedere per indice, ad esempio con un ciclo `for` (nota: se l'array contiene oggetti, le proprietà degli oggetti referenziati restano comunque modificabili dentro `foreach`).",
     "tipo": "codice"
   },
   {
@@ -2914,15 +2914,15 @@
   {
     "id": 211,
     "categoria": "Metodi",
-    "domanda": "Un metodo che riceve un array come parametro e lo modifica: le modifiche sono visibili anche fuori dal metodo?",
+    "domanda": "Un metodo riceve un array come parametro (senza `ref`) e ne modifica un elemento (`arr[0] = 99`): la modifica è visibile anche fuori dal metodo?",
     "risposte": [
       "No, viene passata una copia dell'array",
-      "Sì, gli array sono passati per riferimento",
+      "Sì, gli array sono tipi riferimento e puntano allo stesso oggetto",
       "Dipende dal tipo di array",
       "Solo se si usa la parola chiave `ref`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Gli array (e le `List<T>`) sono tipi riferimento: il parametro contiene un riferimento allo stesso oggetto in memoria. Le modifiche agli elementi sono visibili al chiamante. I tipi valore (`int`, `double`, ecc.) vengono invece copiati.",
+    "spiegazione": "Gli array (e le `List<T>`) sono tipi riferimento: al metodo viene passata per valore una copia del riferimento, che punta però allo stesso array sull'heap. Le modifiche agli elementi sono quindi visibili al chiamante (`ref` servirebbe solo per riassegnare la variabile del chiamante a un nuovo array).",
     "tipo": "teoria"
   },
   {
@@ -3502,15 +3502,15 @@
   {
     "id": 253,
     "categoria": "OOP - Classi e Incapsulamento",
-    "domanda": "Nel metodo `Info()` della classe Studente, come si decide se stampare 'bravo' o 'non bravo'?",
+    "domanda": "Data una classe `Studente` con un campo booleano `bool abilita;`, quale istruzione nel metodo `Info()` assegna correttamente a `tipoAbilita` la stringa `\"bravo\"` se `abilita` è `true`, oppure `\"non bravo\"` se è `false`?",
     "risposte": [
-      "Chiamando il metodo IsAbile() della classe",
+      "string tipoAbilita = IsAbile(\"bravo\", \"non bravo\");",
       "if (abilita == \"bravo\")",
-      "Confrontando il campo stringa abilita con una stringa",
+      "Confrontando il campo booleano abilita con una stringa",
       "string tipoAbilita = abilita ? \"bravo\" : \"non bravo\";"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Poiché `abilita` è un `bool`, si usa direttamente l'operatore ternario: `string tipoAbilita = abilita ? \"bravo\" : \"non bravo\"`. Usare un `bool` per `abilita` anziché `string` rende il codice più pulito e semanticamente corretto. Un `bool` si usa direttamente come condizione senza bisogno di confronti.",
+    "spiegazione": "Poiché `abilita` è di tipo `bool`, si può usare direttamente come condizione nell'operatore ternario: `string tipoAbilita = abilita ? \"bravo\" : \"non bravo\";`. Confrontare un `bool` con una `string` (`abilita == \"bravo\"`) non compila in C#.",
     "tipo": "codice"
   },
   {
@@ -3964,7 +3964,7 @@
   {
     "id": 286,
     "categoria": "OOP - Classi e Incapsulamento",
-    "domanda": "Cosa significa che le classi sono passate per riferimento?",
+    "domanda": "Cosa succede quando si passa un'istanza di una `class` (tipo riferimento) a un metodo senza usare `ref`?",
     "risposte": [
       "Gli oggetti vengono copiati interamente",
       "Errore di compilazione nei metodi",
@@ -3972,7 +3972,7 @@
       "Quando si passa un'istanza a un metodo si passa il valore del riferimento, quindi entrambe le variabili puntano allo stesso oggetto in memoria: le modifiche ai campi sono visibili al chiamante"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Tipo riferimento: passa il riferimento. Modifiche all'oggetto visibili al chiamante.",
+    "spiegazione": "Le `class` sono tipi riferimento: per impostazione predefinita il riferimento viene passato per valore (copia dell'indirizzo), perciò le modifiche ai campi dell'oggetto sono visibili al chiamante.",
     "tipo": "teoria"
   },
   {
@@ -3997,10 +3997,10 @@
       "Sono identici come tipi",
       "Solo la struct supporta i metodi",
       "Solo la class può avere campi",
-      "class è tipo riferimento (heap, passaggio per riferimento), struct è tipo valore (stack o inline, passaggio per copia); class supporta ereditarietà, struct no"
+      "class è tipo riferimento (heap, passa copia del riferimento), struct è tipo valore (stack o inline, passa copia dei dati); class supporta ereditarietà, struct no"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "class: reference type. struct: value type. Semantica molto diversa su memoria e passaggio.",
+    "spiegazione": "`class` è un reference type (si copia il riferimento allo stesso oggetto sull'heap), mentre `struct` è un value type (si copia l'intero valore). Inoltre `class` supporta l'ereditarietà tra tipi, `struct` no (entrambi possono implementare interfacce).",
     "tipo": "teoria"
   },
   {
@@ -4557,10 +4557,10 @@
       "L'allocazione dinamica della memoria sull'heap durante l'esecuzione del programma",
       "Il legame con un database SQL stabilito dinamicamente al momento della query",
       "Una connessione di rete con riconnessione automatica gestita a livello di runtime",
-      "Il compilatore decide a runtime quale versione del metodo chiamare in base al tipo reale dell'oggetto"
+      "Il runtime (CLR) decide durante l'esecuzione quale versione del metodo chiamare in base al tipo reale dell'oggetto"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Il binding dinamico (o late binding) significa che la versione del metodo da eseguire viene scelta a RUNTIME, non a compile time. Con `virtual/override`, anche se chiami il metodo su una variabile di tipo base, viene eseguita la versione del tipo REALE dell'oggetto. È il cuore del polimorfismo.",
+    "spiegazione": "Il binding dinamico (o late binding) significa che la versione del metodo da eseguire viene scelta a RUNTIME dal CLR (tramite la vtable), non a compile time dal compilatore. Con `virtual`/`override`, anche se chiami il metodo su una variabile di tipo base, viene eseguita la versione del tipo REALE dell'oggetto. È il cuore del polimorfismo.",
     "tipo": "teoria"
   },
   {
@@ -5028,7 +5028,7 @@
   {
     "id": 368,
     "categoria": "Ereditarietà e Polimorfismo",
-    "domanda": "Nella tabella Materiali, quale colonna funge da discriminatore per la gerarchia di classi?",
+    "domanda": "Una gerarchia C# con classe base `Materiale` e sottoclassi `Libro`, `Rivista` e `Dvd` è salvata su un'unica tabella SQL `Materiali(Id, Codice, Tipo, Titolo, Disponibile)` (pattern Single Table Inheritance). Quale colonna funge da discriminatore per istanziare la sottoclasse corretta in fase di lettura?",
     "risposte": [
       "La colonna Id che identifica univocamente ogni record",
       "La colonna Codice con vincolo UNIQUE",
@@ -5036,63 +5036,63 @@
       "La colonna Disponibile che vale 0 o 1"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "La colonna Tipo contiene il nome della classe concreta e permette al metodo `CaricaTutti()` di istanziare il tipo corretto. Id è la chiave primaria auto-incrementale. Codice è un identificativo univoco business. Disponibile è un flag booleano per lo stato del prestito.",
+    "spiegazione": "Nel pattern Single Table Inheritance, la colonna discriminatore (`Tipo`) memorizza il tipo concreto di ogni riga (`'Libro'`, `'Rivista'`, `'Dvd'`) e permette in fase di lettura dal database di istanziare la sottoclasse appropriata. `Id` è la chiave primaria, `Codice` un identificativo univoco di dominio e `Disponibile` un flag booleano per lo stato del prestito.",
     "tipo": "architettura"
   },
   {
     "id": 369,
     "categoria": "Ereditarietà e Polimorfismo",
-    "domanda": "Quali campi della tabella Materiali possono contenere NULL in base al tipo di materiale?",
+    "domanda": "In un database con ereditarietà TPH (Table-Per-Hierarchy) che mappa `Libro` (`Autore`, `NumeroPagine`, `Genere`), `Rivista` e `Dvd` (`Regista`) in un'unica tabella `Materiali` con campi comuni `Id`, `Tipo`, `Titolo`, `Codice` e `Disponibile` (tutti `NOT NULL`), quali campi restano `NULL` in base al tipo?",
     "risposte": [
-      "Autore, NumeroPagine, Genere per Rivista e Dvd; Regista per Libro e Rivista",
-      "Tutti i campi tranne Id e Tipo, perché ogni tipo usa solo le proprie colonne",
-      "Solo Titolo e Codice possono essere NULL; tutti gli altri sono obbligatori",
-      "Id e Disponibile sono NULL; tutti gli altri dipendono dal tipo specifico"
+      "`Autore`, `NumeroPagine`, `Genere` per `Rivista` e `Dvd`; `Regista` per `Libro` e `Rivista`",
+      "Tutti i campi tranne `Id` e `Tipo`, perché ogni tipo usa solo le proprie colonne",
+      "Solo `Titolo` e `Codice` possono essere `NULL`; tutti gli altri sono obbligatori",
+      "`Id` e `Disponibile` sono `NULL`; tutti gli altri dipendono dal tipo specifico"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Nella strategia TPH, i campi non applicabili a un tipo restano NULL: Autore, NumeroPagine e Genere sono NULL per Rivista e Dvd, mentre Regista è NULL per Libro e Rivista. Titolo e Codice sono NOT NULL per tutti. Id è PRIMARY KEY AUTOINCREMENT, mai NULL. Disponibile ha DEFAULT 1, non NULL.",
+    "spiegazione": "Nella strategia TPH, i campi specifici non applicabili a un sottotipo restano `NULL`: `Autore`, `NumeroPagine` e `Genere` sono `NULL` per `Rivista` e `Dvd`, mentre `Regista` è `NULL` per `Libro` e `Rivista`. `Titolo` e `Codice` sono `NOT NULL` per tutti, `Id` è chiave primaria e `Disponibile` ha un valore predefinito.",
     "tipo": "architettura"
   },
   {
     "id": 370,
     "categoria": "Ereditarietà e Polimorfismo",
-    "domanda": "Nel metodo CaricaTutti, come viene determinato il tipo concreto da istanziare per ogni riga letta dal database?",
+    "domanda": "Dato questo metodo che legge una tabella con strategia TPH (Table-Per-Hierarchy), come viene determinato il tipo concreto da istanziare per ogni riga?\n```csharp\nMateriale m = reader[\"Tipo\"].ToString() switch\n{\n    \"Libro\" => new Libro(...),\n    \"Rivista\" => new Rivista(...),\n    \"Dvd\" => new Dvd(...),\n    _ => throw new InvalidOperationException()\n};\n```",
     "risposte": [
-      "Controllando il valore numerico della colonna Id",
-      "Verificando quali colonne specifiche contengono valori diversi da NULL",
-      "Usando uno switch sulla colonna Tipo che restituisce 'Libro', 'Rivista' o 'Dvd'",
-      "Confrontando il Titolo con una lista di titoli noti per ciascuna categoria"
+      "Controllando il valore numerico della colonna `Id`",
+      "Verificando quali colonne specifiche contengono valori diversi da `NULL`",
+      "Usando uno `switch` sulla colonna discriminatore `Tipo` che contiene `'Libro'`, `'Rivista'` o `'Dvd'`",
+      "Confrontando il `Titolo` con una lista di titoli noti per ciascuna categoria"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il codice legge `reader['Tipo'].ToString()` e usa uno switch per istanziare `new Libro(...)`, `new Rivista(...)` o `new Dvd(...)`. Id è solo un numero progressivo. Verificare i NULL sarebbe fragile. Il Titolo non indica il tipo di materiale.",
+    "spiegazione": "Il codice legge il discriminatore `reader[\"Tipo\"].ToString()` e usa un'espressione `switch` per istanziare `new Libro(...)`, `new Rivista(...)` o `new Dvd(...)`. `Id` è solo un identificatore numerico, verificare i `NULL` sarebbe fragile e il `Titolo` non indica la sottoclasse.",
     "tipo": "codice"
   },
   {
     "id": 371,
     "categoria": "Ereditarietà e Polimorfismo",
-    "domanda": "Quale colonna della tabella Materiali è marcata come PRIMARY KEY AUTOINCREMENT?",
+    "domanda": "Data la seguente definizione SQLite per la tabella `Materiali`, quale colonna è marcata come `PRIMARY KEY AUTOINCREMENT`?\n```sql\nCREATE TABLE Materiali (\n  Id INTEGER PRIMARY KEY AUTOINCREMENT,\n  Tipo TEXT NOT NULL,\n  Codice TEXT NOT NULL UNIQUE,\n  Disponibile INTEGER NOT NULL DEFAULT 1\n);\n```",
     "risposte": [
-      "Codice, perché deve essere univoco per ogni materiale inserito",
-      "Id, perché si incrementa automaticamente per ogni nuovo record",
-      "Tipo, perché distingue la gerarchia delle classi derivate",
-      "Disponibile, perché assume valori 0 o 1 in sequenza"
+      "`Codice`, perché deve essere univoco per ogni materiale inserito",
+      "`Id`, perché si incrementa automaticamente per ogni nuovo record",
+      "`Tipo`, perché distingue la gerarchia delle classi derivate",
+      "`Disponibile`, perché assume valori 0 o 1 in sequenza"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Id è PRIMARY KEY AUTOINCREMENT: SQLite lo genera automaticamente. Codice è UNIQUE ma non auto-incrementale. Tipo è un discriminatore testuale. Disponibile è un flag booleano, non una chiave.",
+    "spiegazione": "`Id` è definita come `INTEGER PRIMARY KEY AUTOINCREMENT`: SQLite ne genera il valore automaticamente. `Codice` ha il vincolo `UNIQUE` ma non è auto-incrementale. `Tipo` è un discriminatore testuale e `Disponibile` è un flag intero con default 1.",
     "tipo": "architettura"
   },
   {
     "id": 372,
     "categoria": "Ereditarietà e Polimorfismo",
-    "domanda": "Quale campo della classe Libro viene mappato sulla colonna NumeroPagine della tabella Materiali?",
+    "domanda": "Dato il seguente frammento ADO.NET che inserisce un oggetto `Materiale` nella tabella `Materiali` (dove il parametro `@pagine` popola la colonna `NumeroPagine`), quale membro della sottoclasse `Libro` viene mappato su `NumeroPagine`?\n```csharp\ncmd.Parameters.AddWithValue(\"@codice\", m.Codice);\ncmd.Parameters.AddWithValue(\"@anno\", m.AnnoPubblicazione);\ncmd.Parameters.AddWithValue(\"@pagine\",\n    m is Libro l ? l.NumeroPagine : DBNull.Value);\n```",
     "risposte": [
-      "Il campo Codice, che rappresenta l'ISBN del libro",
-      "La proprietà NumeroPagine, passata come parametro @pagine",
-      "Il campo AnnoPubblicazione, convertito in pagine totali",
-      "La proprietà Genere, che indica la categoria letteraria"
+      "La proprietà `Codice`, che rappresenta l'ISBN del libro",
+      "La proprietà `NumeroPagine`, passata come parametro `@pagine`",
+      "La proprietà `AnnoPubblicazione`, convertita in pagine totali",
+      "La proprietà `Genere`, che indica la categoria letteraria"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Nel metodo Aggiungi, quando `m is Libro l`, si passa `l.NumeroPagine` al parametro `@pagine`. Codice è mappato su @codice. AnnoPubblicazione è @anno. Genere è @genere.",
+    "spiegazione": "Quando `m is Libro l` è vero, l'operatore ternario passa `l.NumeroPagine` al parametro `@pagine` (altrimenti `DBNull.Value`). `Codice` è mappato su `@codice` e `AnnoPubblicazione` su `@anno`.",
     "tipo": "codice"
   },
   {
@@ -5350,15 +5350,15 @@
   {
     "id": 391,
     "categoria": "Astrazione (Interfacce e Astratte)",
-    "domanda": "Cosa fa la parola chiave `default` in un membro di interfaccia (C# 8+)?",
+    "domanda": "A cosa servono i metodi di interfaccia con implementazione predefinita (default interface methods) introdotti in C# 8+?",
     "risposte": [
-      "Non esiste questa keyword",
-      "Si applica solo ai costruttori",
-      "Genera sempre un errore di tipo",
-      "Permette di fornire un'implementazione di DEFAULT direttamente nell'interfaccia, eseguita se la classe implementante non la sovrascrive: utile per estendere interfacce senza rompere le implementazioni esistenti"
+      "Non sono supportati in C# e causano un errore del compilatore",
+      "Possono essere usati solo per definire costruttori nelle interfacce",
+      "Generano sempre un'eccezione a runtime se non vengono sovrascritti",
+      "Permettono di scrivere un corpo predefinito direttamente nell'interfaccia, eseguito se la classe non lo implementa, così da estendere interfacce senza rompere le classi esistenti"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Default interface methods (C# 8): implementazione di default.",
+    "spiegazione": "In C# 8+ un metodo di interfaccia può avere direttamente un corpo (senza keyword aggiuntive, a differenza di Java che usa `default`), fornendo un'implementazione di fallback per le classi che non lo ridefiniscono.",
     "tipo": "codice"
   },
   {
@@ -5644,15 +5644,15 @@
   {
     "id": 416,
     "categoria": "Eccezioni",
-    "domanda": "Perché è necessario racchiudere `_db.Aggiungi()` in un blocco try-catch nel gestore BtnAggiungiLibro_Click?",
+    "domanda": "In un'applicazione che salva un nuovo libro su SQLite (dove la colonna `Codice` ha un vincolo `UNIQUE`), perché è opportuno racchiudere la chiamata di inserimento `_db.Aggiungi(libro)` in un blocco `try-catch` dentro il gestore del pulsante di salvataggio?",
     "risposte": [
       "Per evitare che l'utente possa inserire più di dieci materiali contemporaneamente",
       "Per intercettare errori di sintassi nel codice C# prima della compilazione",
-      "Per gestire violazioni del vincolo UNIQUE sul campo Codice",
+      "Per gestire a runtime errori del database come la violazione del vincolo `UNIQUE` su `Codice`",
       "Per impedire la chiusura accidentale della connessione SQLite durante l'inserimento"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il try-catch cattura eccezioni come la violazione del vincolo UNIQUE sul Codice, mostrando un MessageBox all'utente. Non esiste un limite di dieci materiali. Errori di sintassi C# sono rilevati a compile-time, non a runtime. La chiusura della connessione è gestita automaticamente dal blocco `using`.",
+    "spiegazione": "Il blocco `try-catch` permette di intercettare eccezioni a runtime (come `SqliteException` per violazione del vincolo `UNIQUE` sul campo `Codice`) e mostrare un messaggio comprensibile all'utente anziché far terminare l'applicazione. Gli errori di sintassi sono rilevati a compile-time e la chiusura della connessione è gestita dal blocco `using`.",
     "tipo": "codice"
   },
   {
@@ -5686,15 +5686,15 @@
   {
     "id": 419,
     "categoria": "Eccezioni",
-    "domanda": "Nel blocco catch del metodo BtnAggiungiLibro_Click, cosa viene mostrato all'utente in caso di errore?",
+    "domanda": "Dato il seguente gestore d'evento WinForms, cosa viene mostrato all'utente quando `_db.Aggiungi(libro)` solleva un'eccezione?\n```csharp\ntry\n{\n    _db.Aggiungi(libro);\n}\ncatch (Exception ex)\n{\n    MessageBox.Show(\n        $\"Errore salvataggio:\\n{ex.Message}\",\n        \"Errore DB\");\n}\n```",
     "risposte": [
-      "Il percorso completo del file .db che ha causato il conflitto",
+      "Il percorso completo del file `.db` che ha causato il conflitto",
       "La stack trace completa in una console di debug nascosta",
-      "Un MessageBox con titolo 'Errore DB' e il messaggio dell'eccezione",
+      "Un `MessageBox` con titolo `'Errore DB'` e il messaggio dell'eccezione",
       "Una finestra di dialogo per scegliere un nuovo nome per il database"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il catch mostra `MessageBox.Show($\\\"Errore salvataggio:\\n{ex.Message}\\\", \\\"Errore DB\\\", ...)` con il titolo 'Errore DB'. Non mostra il percorso del file. Non usa una console nascosta. Non chiede di rinominare il database.",
+    "spiegazione": "In `MessageBox.Show(testo, titolo)`, il primo argomento è il testo (`ex.Message`) e il secondo è il titolo della finestra (`\"Errore DB\"`). Non vengono mostrati né il percorso del file, né la stack trace (`ex.StackTrace`), né una finestra di rinomina.",
     "tipo": "codice"
   },
   {
@@ -6022,15 +6022,15 @@
   {
     "id": 443,
     "categoria": "Stringhe e DateTime",
-    "domanda": "Per le stringhe in C#, c'è differenza tra `==` e `.Equals()`?",
+    "domanda": "Per due variabili `string` non `null` in C#, c'è differenza tra l'operatore `==` e il metodo `.Equals()`?",
     "risposte": [
-      "Sì, l'operatore == è significativamente più lento del metodo Equals",
-      "Per le stringhe entrambi confrontano il contenuto e sono praticamente equivalenti",
-      "Sì, == confronta solo i riferimenti in memoria mentre Equals il contenuto",
-      "Equals lancia eccezioni quando una delle due stringhe è null o vuota"
+      "Sì, l'operatore `==` è significativamente più lento del metodo `Equals`",
+      "Entrambi confrontano il contenuto delle stringhe e producono lo stesso risultato",
+      "Sì, `==` confronta solo i riferimenti in memoria mentre `Equals` il contenuto",
+      "`Equals` lancia un'eccezione quando la stringa passata come argomento è vuota"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Per le stringhe in C#, `==` è stato sovraccaricato per confrontare il contenuto, quindi è equivalente a `.Equals()`. Eccezione: `.Equals()` ha overload per case-insensitive: `s1.Equals(s2, StringComparison.OrdinalIgnoreCase)`. Attenzione: per altri tipi riferimento, `==` confronta i riferimenti.",
+    "spiegazione": "Per il tipo `string`, l'operatore `==` è sovraccaricato per confrontare il valore (contenuto) e non i riferimenti. Nota: se la variabile su cui si invoca `s1.Equals(s2)` è `null` viene lanciata una `NullReferenceException`, mentre `s1 == s2` e `string.Equals(s1, s2)` gestiscono `null` in modo sicuro; inoltre `.Equals()` offre overload con `StringComparison`.",
     "tipo": "codice"
   },
   {
@@ -6890,15 +6890,15 @@
   {
     "id": 505,
     "categoria": "WinForms e Ricerche",
-    "domanda": "Cosa contiene `StaticRepository.Studenti`?",
+    "domanda": "Data la seguente classe C#, cosa restituisce la proprietà `StaticRepository.Studenti`?\n```csharp\npublic static class StaticRepository\n{\n    private static Studente[] studenti = [\n        new Studente(\"Alice\", \"Rossi\")\n    ];\n    public static List<Studente> Studenti =>\n        studenti.ToList();\n}\n```",
     "risposte": [
-      "Un database SQL con la tabella studenti",
-      "Una List<Studente> generata dall'array statico di studenti definito nel repository",
-      "Un array di stringhe con i nomi degli studenti",
-      "Un file JSON con i dati degli studenti"
+      "Una connessione attiva a un database SQL con la tabella studenti",
+      "Una `List<Studente>` generata dall'array statico `studenti` definito nel repository",
+      "Un array di stringhe contenente solamente i nomi degli studenti",
+      "Un file JSON serializzato sul disco con i dati degli studenti"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`StaticRepository.Studenti` è una proprietà statica che restituisce `studenti.ToList<Studente>()`: converte l'array statico privato in una List<Studente>. Questo permette al Form di lavorare con una lista senza conoscere l'implementazione interna del repository (che potrebbe in futuro usare un database).",
+    "spiegazione": "`StaticRepository.Studenti` è una proprietà statica con expression body che invoca `studenti.ToList()`, restituendo una nuova `List<Studente>` creata a partire dall'array statico privato `studenti`.",
     "tipo": "codice"
   },
   {
@@ -7058,15 +7058,15 @@
   {
     "id": 517,
     "categoria": "WinForms e Ricerche",
-    "domanda": "Perché conviene cambiare `Abilita` da `string` a `bool` nella classe Studente?",
+    "domanda": "In una classe `Studente`, per rappresentare una proprietà binaria (es. se lo studente è abilitato o meno), perché conviene usare il tipo `bool` invece di `string`?",
     "risposte": [
-      "Le stringhe consumano troppa memoria",
-      "Il `bool` rappresenta nativamente un valore vero/falso, elimina errori di digitazione e semplifica i confronti",
-      "I `bool` sono più veloci da stampare",
-      "Le stringhe non funzionano in WinForms"
+      "Perché le stringhe consumano troppa memoria RAM nei progetti moderni",
+      "Perché `bool` rappresenta nativamente un valore vero/falso, elimina errori di digitazione e semplifica i confronti",
+      "Perché i valori `bool` sono molto più veloci da stampare a video",
+      "Perché le proprietà di tipo `string` non sono supportate in WinForms"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con `string` si rischiano errori come \"bravo\", \"Bravo\", \"BRAVO\" che rendono i confronti inaffidabili. Con `bool` i valori possibili sono solo `true` o `false`: confronti più semplici, nessun typo possibile.",
+    "spiegazione": "Usando `string` per uno stato binario si rischiano incongruenze di battitura o maiuscole/minuscole (es. `\"si\"`, `\"Sì\"`, `\"true\"`) che rendono i confronti fragili. Con `bool` il dominio è ristretto a `true` e `false` dal compilatore.",
     "tipo": "teoria"
   },
   {
