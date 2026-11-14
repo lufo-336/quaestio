@@ -37,7 +37,7 @@
     },
     "e22fa6bdcdbe": {
       "domanda": "The value of `If-None-Match` matches the ETag calculated by the server. What does the server respond?",
-      "spiegazione": "`304 Not Modified`, without body: the client can reuse the copy it already has. In the TaskFlow verification, 153 bytes are saved on a small resource.",
+      "spiegazione": "`304 Not Modified`, without body: the client can reuse the copy it already has. In a practical test, 153 bytes are saved on a small resource.",
       "risposte": [
         "200",
         "304",
@@ -45,9 +45,9 @@
         "204"
       ]
     },
-    "888ebb0264bd": {
+    "25a7dc782ba1": {
       "domanda": "Why should sensitive data not be included in a JWT payload?",
-      "spiegazione": "Non-falsifiable does not mean unreadable: the signature protects against tampering, not against reading. In TaskFlow, the payload only contains `userId` and `ruolo`.",
+      "spiegazione": "Non-falsifiable does not mean unreadable: the signature protects against tampering, not against reading. For example, the payload only contains `userId` and `ruolo`.",
       "risposte": [
         "Because it slows down the signature",
         "Because the payload is only Base64Url-encoded, not encrypted: anyone with the token can read it, for example by pasting it into jwt.io",
@@ -125,7 +125,7 @@
         "201"
       ]
     },
-    "c3db1ab3dd75": {
+    "a0d3f7dc2ad4": {
       "domanda": "Why in `GET /tasks` do we filter and sort BEFORE paginating?",
       "spiegazione": "The correct order is filter, sort, paginate. Reversing sorting and pagination produces a subtle incorrect result: it seems to work until you look at page 2.",
       "risposte": [
@@ -155,8 +155,8 @@
         "Before a cross-origin request with non-safe methods or custom headers"
       ]
     },
-    "fb08fd6dc07d": {
-      "domanda": "Which status code does the validateBody middleware use when required fields are missing?",
+    "34f895fca80e": {
+      "domanda": "Which status code does a validation middleware use when required fields are missing?",
       "spiegazione": "Missing required fields = client error → 400 Bad Request, with the list of missing fields. It is not 403 (permissions) nor 500 (server).",
       "risposte": [
         "500, as it is an unexpected server-side error",
@@ -235,8 +235,8 @@
         "Because it reduces the number of headers"
       ]
     },
-    "2bd4607cdfc0": {
-      "domanda": "What does the payload of the token issued by TaskFlow upon login contain?",
+    "4e954bcd0164": {
+      "domanda": "What does the payload of the token issued upon login typically contain?",
       "spiegazione": "Only the minimum necessary and non-secret information. `jwt.sign({ userId, ruolo }, JWT_SECRET, { expiresIn: '1h' })`.",
       "risposte": [
         "The complete list of tasks owned by the user",
@@ -265,7 +265,7 @@
         "Sources"
       ]
     },
-    "7e28821c28ea": {
+    "42d386d4c7bd": {
       "domanda": "Why do controllers write `return next(notFound(...))` instead of simply `next(notFound(...))`?",
       "spiegazione": "`next()` does not stop the function: without `return`, the code below continues to run and may call `res.json()` after the error handler has already responded.",
       "risposte": [
@@ -275,7 +275,7 @@
         "Because Express executes middleware in reverse order of registration, and without `return` the chain would be traversed twice"
       ]
     },
-    "25bbdc11652c": {
+    "c5dd39f710b8": {
       "domanda": "What are the three parts of a JSON Web Token?",
       "spiegazione": "The header and payload are Base64Url-encoded, and the signature is calculated using the server's secret, which makes the token tamper-proof.",
       "risposte": [
@@ -285,7 +285,7 @@
         "Method, URL, and body"
       ]
     },
-    "93dc89d77684": {
+    "95c24fc5b416": {
       "domanda": "Is hiding the \"Delete\" button from non-admins with `${ruolo === 'admin' ? ... : ''}` a security measure?",
       "spiegazione": "Client-side control serves to avoid proposing an action that would be rejected; real security always lies solely on the server.",
       "risposte": [
@@ -305,7 +305,7 @@
         "To be able to register the route"
       ]
     },
-    "a3083725aad6": {
+    "7ad34e426221": {
       "domanda": "Which header does the client send to ask the server whether the resource has changed compared to the cached copy?",
       "spiegazione": "The client sends back the previously received ETag in `If-None-Match`; the date-based alternative is `If-Modified-Since`.",
       "risposte": [
@@ -325,7 +325,7 @@
         "`express.json()`"
       ]
     },
-    "686079858115": {
+    "d723cb6c8816": {
       "domanda": "An object with a `Date` field is serialized with `JSON.stringify` and then read back with `JSON.parse`: what is obtained?",
       "spiegazione": "To retrieve a `Date`, a reviver is needed, i.e., the second parameter of `JSON.parse`. It is a classic source of silent bugs.",
       "risposte": [
@@ -345,7 +345,7 @@
         "Because HTTP is more recent than REST"
       ]
     },
-    "075e97e53c52": {
+    "bece27ea14a9": {
       "domanda": "In a PUT request, what happens to a field of the resource that is not included in the body?",
       "spiegazione": "PUT replaces the entire resource: omitted fields are removed or reset to their default values. This is the most common error, i.e., using PUT as if it were PATCH.",
       "risposte": [
@@ -405,7 +405,7 @@
         "As a random identifier regenerated on every received request"
       ]
     },
-    "8ee3f765fba8": {
+    "91f930a257b1": {
       "domanda": "In `router.delete('/:id', autentica, autorizza('admin'), ctrl.remove)`, why is the order of the two middleware not interchangeable?",
       "spiegazione": "Reversing them would cause a runtime error on `req.user` being undefined. You must first establish who you are, then what you are allowed to do.",
       "risposte": [
@@ -455,8 +455,8 @@
         "The agreement on the representation format via the Accept and Content-Type headers"
       ]
     },
-    "dc92e1ca8610": {
-      "domanda": "Which public API used in the course provides real, free weather data without requiring registration?",
+    "d1495deb6c9b": {
+      "domanda": "Which public API provides real, free weather data without requiring registration?",
       "spiegazione": "Open-Meteo exposes real forecasts with parameters in the query string. GitHub API has a rate limit of 60 requests/hour, JSONPlaceholder is fake.",
       "risposte": [
         "JSON Server, which turns a JSON file into a REST API",
@@ -465,7 +465,7 @@
         "GitHub API"
       ]
     },
-    "85599ab6b702": {
+    "d391f50092cd": {
       "domanda": "You send with curl `-d '{\"nome\":\"Mario\"}'` forgetting `-H \"Content-Type: application/json\"`. What does the Express server see?",
       "spiegazione": "`express.json()` only acts if the Content-Type declares JSON. It's the most common cause of the \"body arrives empty\" bug.",
       "risposte": [
@@ -475,7 +475,7 @@
         "The server goes into 500 error"
       ]
     },
-    "ae57bcbc346b": {
+    "1446253be6ea": {
       "domanda": "Why doesn't `fetch` reject the Promise when the server responds with 404?",
       "risposte": [
         "Because from `fetch`'s point of view the request succeeded: a 404 is a regular HTTP response, correctly delivered",
@@ -535,7 +535,7 @@
         "POST, PUT, PATCH and DELETE, as they operate on resources"
       ]
     },
-    "2f88e8bd7cce": {
+    "c67d43105972": {
       "domanda": "How many distinct defenses are contained in `Math.min(100, Math.max(1, parseInt(req.query.limit) || 10))`?",
       "spiegazione": "`|| 10` covers the absence, `Math.max(1, ...)` prevents zero and negative values, `Math.min(100, ...)` prevents a client from downloading the entire dataset in a single request.",
       "risposte": [
@@ -565,7 +565,7 @@
         "To encrypt the application's routes"
       ]
     },
-    "e12c18a31766": {
+    "314e873fa493": {
       "domanda": "Why does the TaskFlow frontend contain the line `if (risposta.status === 204) return null;`?",
       "spiegazione": "`204 No Content` does not have an empty body: it has no body at all. It is the typical response for a successful DELETE operation.",
       "risposte": [
@@ -585,7 +585,7 @@
         "The division of code into MVC layers"
       ]
     },
-    "109176ba7994": {
+    "94858f3c6c3c": {
       "domanda": "For which family of status codes does it make sense for a client to automatically retry the request after an interval?",
       "spiegazione": "The 5xx family indicates a server-side issue, which may have been resolved. Retrying an identical 4xx request will always result in the same error.",
       "risposte": [
@@ -617,7 +617,7 @@
     },
     "70dc18ef2146": {
       "domanda": "What three things does Express provide (and nothing else)?",
-      "spiegazione": "Express provides routing, middleware, and convenience methods on req/res. It is opinionated: ORMs, auth, validation, and databases are added via external libraries.",
+      "spiegazione": "Express provides routing, middleware, and convenience methods on req/res. It is unopinionated: ORMs, auth, validation, and databases are added via external libraries.",
       "risposte": [
         "A TypeScript compiler and a frontend bundler",
         "A full ORM, an authentication system, and a built-in schema validator",
@@ -635,8 +635,8 @@
         "gRPC"
       ]
     },
-    "062403cbd9af": {
-      "domanda": "Which status does the `autentica` middleware return when the Authorization header is completely missing?",
+    "6c38b49b73db": {
+      "domanda": "Which status does an authentication middleware return when the `Authorization` header is completely missing?",
       "spiegazione": "401 = \"I don't know who you are\". The client can react by redirecting to login, which would be useless in the case of a 403.",
       "risposte": [
         "404",
@@ -645,8 +645,8 @@
         "401"
       ]
     },
-    "3d150b2c32bd": {
-      "domanda": "In the recommended folder structure, what is the role of 'controllers'?",
+    "f380aa5a06ed": {
+      "domanda": "In a typical folder structure, what is the role of 'controllers'?",
       "spiegazione": "Controllers contain the logic: they read req, process it, and write res. Routes only map URL+method→controller; index.js starts the server.",
       "risposte": [
         "Map URL+method pairs to functions",
@@ -665,7 +665,7 @@
         "To validate the JSON body format of all POST and PUT requests arriving at the server"
       ]
     },
-    "5ef9766681ec": {
+    "8ef13843b434": {
       "domanda": "What does setting `additionalProperties: false` in a JSON Schema entail?",
       "spiegazione": "It immediately catches typos (`priorita`/`priorità`) and prevents a client from injecting fields the server does not expect.",
       "risposte": [
@@ -695,7 +695,7 @@
         "The path"
       ]
     },
-    "c14f56f717bd": {
+    "8828a0c19b09": {
       "domanda": "Why must the pagination `totale` field be computed after the filters are applied?",
       "risposte": [
         "Because otherwise the client would compute a wrong number of pages and show empty pages",
@@ -755,7 +755,7 @@
         "Preview, which displays the formatted tree-like JSON response"
       ]
     },
-    "52edbb41f56e": {
+    "51412697cf6c": {
       "domanda": "What is the difference between `app.use('/api', x)` and `app.get('/api', x)`?",
       "spiegazione": "This is why routers are mounted with `app.use('/api/v1', routes)` and global middleware with `app.use(express.json())`.",
       "risposte": [
@@ -795,7 +795,7 @@
         "Because they reveal code structure, file paths, and library versions: information valuable to an attacker"
       ]
     },
-    "285dcc1eb112": {
+    "f25ed14474ce": {
       "domanda": "Why does login respond with `Credenziali non valide` both when the email does not exist and when the password is wrong?",
       "risposte": [
         "Because bcrypt does not distinguish the two cases",
@@ -825,7 +825,7 @@
         "200, because send always implies a body in the response"
       ]
     },
-    "9fb6a6fb7d80": {
+    "32d29cfb3b32": {
       "domanda": "A client sends a malformed JSON body to a POST route: who generates the error and how should it be translated?",
       "spiegazione": "`express.json()` internally uses `JSON.parse()`, which throws on invalid JSON; the error ends up in the error handler, where it should be mapped to 400 because the fault lies with the client.",
       "risposte": [
@@ -845,7 +845,7 @@
         "Sends the server the list of CORS capabilities supported by the browser during the cross-origin preflight phase"
       ]
     },
-    "402145d57eaf": {
+    "c24028757d5a": {
       "domanda": "With `app.use(cors())` active, the page's JavaScript reads `Content-Type` but gets `null` from `Location` and `ETag`. Why?",
       "spiegazione": "With curl, both headers are clearly visible: this is a browser policy, and it would be the first obstacle when trying to implement client-side conditional caching.",
       "risposte": [
@@ -875,7 +875,7 @@
         "Five"
       ]
     },
-    "36ba8863c07c": {
+    "a147ce20a2a3": {
       "domanda": "Why does adding an optional field to a response NOT require a new API version?",
       "spiegazione": "A breaking change is what breaks existing clients in production: removing or renaming a field is one, adding one is not.",
       "risposte": [
@@ -885,7 +885,7 @@
         "Because fields don't count"
       ]
     },
-    "aff4b35f8889": {
+    "408e7a2dd1b0": {
       "domanda": "Why is `GET /users/admin` a poorly designed URL?",
       "risposte": [
         "Because it is unclear whether `admin` is a user's id or a filter on the role",
@@ -905,12 +905,12 @@
         "`-X`"
       ]
     },
-    "76777c3eaa8d": {
+    "0ba11df941fc": {
       "domanda": "`POST /login` with an incorrect password responds with `200 OK` and body `{\"success\": false}`. What is the error?",
       "spiegazione": "A client (or a proxy, or a monitor) decides based on the code: a 200 on a failure makes the API impossible to consume correctly.",
       "risposte": [
         "The HTTP status must reflect the outcome of the request: here it should be 401, otherwise every client must read the body to determine if it was successful",
-        "The body should not contain the `success` field, because the uniform error format of the course only includes `error`, `dettaglio`, and `campi`",
+        "The body should not contain the `success` field, because the uniform error format only includes `error`, `dettaglio`, and `campi`",
         "The body should be empty",
         "The Location header is missing"
       ]
@@ -945,7 +945,7 @@
         "Because they are actually identical"
       ]
     },
-    "16cb3bda1f39": {
+    "81dad56b3c93": {
       "domanda": "What does the `fetch(url)` call immediately return?",
       "spiegazione": "The Promise resolves to a `Response` object that contains the status and headers but not yet the data: the body must be read separately using `.json()`, which is itself asynchronous.",
       "risposte": [
@@ -1005,7 +1005,7 @@
         "Because POST has no headers"
       ]
     },
-    "815b38b52d60": {
+    "98b27c50b666": {
       "domanda": "Why is the `sort` parameter compared against a whitelist of allowed fields?",
       "spiegazione": "The general rule is that anything coming from the query string must be validated against a whitelist of allowed values, not filtered by exclusion.",
       "risposte": [
@@ -1045,7 +1045,7 @@
         "A free-form string decided case by case by the developer"
       ]
     },
-    "7ade3aa5b3d2": {
+    "db4f9252d89f": {
       "domanda": "What does Express do when it receives a HEAD request on a URL for which only a GET route is defined?",
       "spiegazione": "Express automatically handles HEAD for every defined GET route: there is no need to declare it, and it is the method curl uses with `-I`.",
       "risposte": [
@@ -1055,7 +1055,7 @@
         "Throws an error"
       ]
     },
-    "c09ddc353a69": {
+    "531524d8d5ca": {
       "domanda": "What does the 'cacheable' constraint actually require?",
       "spiegazione": "It does not mandate caching; it requires declaring it: headers (`Cache-Control`, `ETag`) make caching secure and predictable.",
       "risposte": [
@@ -1135,7 +1135,7 @@
         "Version in the path (e.g., /v1/users)"
       ]
     },
-    "bdbb2f0b83dd": {
+    "7d9a88c64615": {
       "domanda": "Why should a `405 Method Not Allowed` response include the `Allow` header?",
       "spiegazione": "The 405 status indicates that the resource exists but the method is not supported; without `Allow`, the client would have to guess which methods to try.",
       "risposte": [
@@ -1167,7 +1167,7 @@
     },
     "b150d28b81a1": {
       "domanda": "What happens if a middleware does not call next() and does not send a response?",
-      "spiegazione": "Each middleware must either send a response or call next(); otherwise, the request hangs and the client times out. This is a classic verification question.",
+      "spiegazione": "Each middleware must either send a response or call next(); otherwise, the request hangs and the client times out.",
       "risposte": [
         "Express automatically skips it",
         "The next middleware still runs",
@@ -1385,7 +1385,7 @@
         "In an external text file to be manually reimported each time"
       ]
     },
-    "8ac093eeec79": {
+    "1c2a97f6ae88": {
       "domanda": "Why are headers with the `X-` prefix formally deprecated despite being widely used?",
       "spiegazione": "RFC 6648 discourages the prefix: a header originally created as custom, if later standardized, would carry a misleading `X-` prefix. `X-RateLimit-Remaining` from GitHub is the most well-known example of continued usage.",
       "risposte": [
@@ -1395,7 +1395,7 @@
         "Because they are not secure"
       ]
     },
-    "d8323a72b34e": {
+    "4b2d9fd00480": {
       "domanda": "What is the downside of a stateless authentication based on JWT?",
       "spiegazione": "This is the reason for `expiresIn: '1h'`: since it cannot be revoked, the damage window is limited. The advantage remains that any instance can serve any request.",
       "risposte": [
@@ -1405,14 +1405,14 @@
         "Requires server-side sessions"
       ]
     },
-    "4e5c6df72a5e": {
-      "domanda": "In the AppError class from the course, what is the purpose of the status property?",
+    "ff2b9bdf89fe": {
+      "domanda": "In the AppError class, what is the purpose of the status property?",
       "spiegazione": "AppError carries the status (404, 400, 409...) via factory methods like notFound()/conflict(); the error handler uses err.status||500 to set the response.",
       "risposte": [
-        "A to record the date of the error",
-        "B to count the errors that occurred",
-        "C to save the error stack trace",
-        "D to store the HTTP status to use in the response, so the error handler reads it instead of always responding with 500"
+        "To record the date of the error",
+        "To count the errors that occurred",
+        "To save the error stack trace",
+        "To store the HTTP status to use in the response, so the error handler reads it instead of always responding with 500"
       ]
     },
     "77f32149c37e": {
@@ -1435,7 +1435,7 @@
         "They are synonyms"
       ]
     },
-    "580544b09d38": {
+    "9dde19346cda": {
       "domanda": "Why is PATCH not formally idempotent according to RFC 5789?",
       "spiegazione": "For JSON APIs that replace values (`{\"stato\":\"completata\"}`), it is practically idempotent, but this is not a protocol guarantee to rely on.",
       "risposte": [
@@ -1445,7 +1445,7 @@
         "Because the specification considers only methods that completely replace the resource as idempotent, and PATCH by definition modifies only a part of it"
       ]
     },
-    "431e991e0386": {
+    "96ca149787c9": {
       "domanda": "In Express 4, what happens if an `async` route throws an error and there is no try/catch?",
       "spiegazione": "Express 4 does not catch rejected Promises: you need try/catch with `next(err)`, or `express-async-errors`. Express 5, on the other hand, catches them automatically.",
       "risposte": [
