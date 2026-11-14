@@ -198,15 +198,15 @@
   {
     "id": 15,
     "categoria": "Crittografia e HTTPS",
-    "domanda": "Cosa avviene durante la fase di ServerHello del TLS handshake?",
+    "domanda": "Cosa avviene durante la risposta iniziale del server (ServerHello e messaggi correlati) nel TLS handshake?",
     "risposte": [
       "Il client trasmette al server una richiesta esplicita di credenziali utente",
       "Vengono cifrati i dati di sessione con l'algoritmo AES-256-GCM in uso",
-      "Il server risponde con versione TLS scelta, certificato X.509 e chiave pubblica",
+      "Il server negozia versione TLS e cipher suite e invia il certificato X.509",
       "Il client trasmette tutte le sue credenziali utente al server remoto"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Nel ServerHello il server seleziona la versione TLS e cipher suite, e invia il proprio certificato X.509 con la chiave pubblica. La A è errata: il TLS handshake non riguarda credenziali di login. La B descrive l'ultima fase (Dati cifrati), dopo il completamento dell'handshake. La D mescola autenticazione applicativa col layer TLS, che non scambia credenziali utente.",
+    "spiegazione": "Con il messaggio ServerHello il server seleziona la versione TLS e la cipher suite, e nei messaggi successivi dello stesso flight (Certificate) invia il proprio certificato X.509 con la chiave pubblica. Il TLS handshake non riguarda le credenziali applicative di login dell'utente, mentre la cifratura dei dati applicativi avviene solo dopo il completamento dell'intero handshake.",
     "tipo": "teoria"
   },
   {
@@ -287,10 +287,10 @@
       "Persistenza e capacità operative molto elevate",
       "Si limita a defacciare siti web di partiti politici avversari",
       "Agisce esclusivamente per ottenere notorietà personale e fama",
-      "Lancia attacchi automatici di massa contro chiunque ne abbia"
+      "Lancia attacchi automatici di massa contro bersagli casuali"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Gli APT sono attori state-sponsored con skill molto alte, motivati da spionaggio o sabotaggio, che mantengono accesso per mesi o anni. La B descrive gli hacktivisti, non gli APT. La C identifica gli script kiddie. La D è tipica dei cybercriminali generici, non degli APT che invece selezionano target di alto valore.",
+    "spiegazione": "Gli APT sono attori spesso state-sponsored con competenze molto elevate, motivati da spionaggio o sabotaggio, che mantengono l'accesso ai sistemi bersaglio per mesi o anni. Il defacement politico descrive gli hacktivisti, la ricerca di notorietà personale è tipica degli script kiddie, mentre gli attacchi automatici e indiscriminati di massa sono propri dei cybercriminali generici, non degli APT che selezionano obiettivi di alto valore.",
     "tipo": "teoria"
   },
   {
@@ -318,7 +318,7 @@
       "La presenza di lettere maiuscole e minuscole alternate"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "La formula H = log₂(N^l) mostra che la lunghezza (l) ha effetto esponenziale, mentre l'aumento del charset (N) ha solo effetto lineare nei bit. La A è meno efficace della lunghezza: il NIST stesso preferisce passphrase lunghe. La B aggiunge entropia solo se i numeri sono davvero casuali e non in posizioni prevedibili. La D aggiunge appena 1 bit per ogni lettera, contributo irrisorio rispetto al raddoppio di lunghezza.",
+    "spiegazione": "Dalla formula H = log₂(N^l) = l · log₂(N) si vede che lo spazio delle combinazioni (N^l) cresce esponenzialmente con la lunghezza (l): l'entropia in bit cresce linearmente con l, mentre l'aumento del set di caratteri (N) ha solo un effetto logaritmico nei bit. Per questo linee guida come quelle del NIST privilegiano passphrase lunghe rispetto all'aggiunta forzata di simboli, numeri in posizioni prevedibili o alternanza di maiuscole e minuscole.",
     "tipo": "teoria"
   },
   {
@@ -338,7 +338,7 @@
   {
     "id": 25,
     "categoria": "VPN e Privacy",
-    "domanda": "Cosa rivela il SNI (Server Name Indication) durante una connessione HTTPS, anche se sotto VPN?",
+    "domanda": "Cosa rivela agli osservatori sulla rete il campo SNI (Server Name Indication) durante una connessione HTTPS?",
     "risposte": [
       "Il dominio del sito web a cui ci si connette",
       "Il contenuto completo della richiesta HTTP al server",
@@ -346,7 +346,7 @@
       "Il numero di carta di credito digitato in pagamento"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Il SNI nell'handshake TLS rivela in chiaro l'hostname richiesto (a meno di ECH), motivo per cui HTTPS non nasconde a chi ti connetti. La B è falsa: il contenuto è cifrato da TLS. La C è cifrata dentro TLS dopo l'handshake e non viaggia nel SNI. La D è cifrata anch'essa nel canale TLS già stabilito, mai esposta come metadata.",
+    "spiegazione": "L'estensione SNI nell'handshake TLS invia in chiaro l'hostname richiesto (a meno che non si usi ECH), motivo per cui HTTPS da solo non nasconde agli osservatori lungo il percorso il dominio a cui ci si connette. Il contenuto completo della richiesta HTTP, le password e i dati di pagamento viaggiano invece cifrati all'interno del canale TLS una volta completato l'handshake.",
     "tipo": "teoria"
   },
   {
@@ -761,12 +761,12 @@
     "domanda": "Cos'è la forward secrecy garantita da TLS 1.3?",
     "risposte": [
       "Un meccanismo che cifra i certificati X.509 prima dell'handshake",
-      "L'uso di chiavi effimere che proteggono sessioni passate compromesse",
+      "L'uso di chiavi effimere che protegge le sessioni passate se la chiave privata del server viene compromessa",
       "Una funzione che permette di decifrare velocemente il traffico HTTP",
       "Un protocollo che invia in anticipo la chiave pubblica al client per verifica"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La forward secrecy usa scambi ephemeral (ECDHE) per sessione: anche compromettendo poi la chiave privata del server, le sessioni passate restano protette. La A è inventata: i certificati nell'handshake TLS sono trasmessi non cifrati prima dell'inizio del canale. La C è opposto: la PFS non facilita affatto la decifratura. La D inverte la logica: la chiave pubblica è nel certificato del server, non c'è 'anticipo' speciale.",
+    "spiegazione": "La forward secrecy utilizza scambi di chiavi effimere (come ECDHE) per ogni sessione: anche se la chiave privata a lungo termine del server dovesse essere compromessa in futuro, le sessioni passate registrate da un attaccante restano protette. Non è una funzione per velocizzare la decifratura HTTP né un invio anticipato della chiave pubblica fuori dall'handshake; inoltre in TLS 1.3 il certificato del server viaggia già cifrato dopo lo scambio iniziale delle chiavi effimere.",
     "tipo": "teoria"
   },
   {
