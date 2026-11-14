@@ -701,3 +701,23 @@ Da verificare prima di pianificare:
 - UI touch (`AppEnv.TouchMode`) e safe area su Safari iOS;
 - import di contenuti (Gestione contenuti) senza accesso al file system.
 L'iOS nativo (spec `2026-11-06-ios-simulatore-design.md`) resta, per studio.
+
+### ✔️ Codice leggibile nelle domande + guida/motore (roadmap 11/11, punto 3) — 2026-11-14
+
+Spec `docs/superpowers/specs/2026-11-12-codice-leggibile-design.md`, piano
+`docs/superpowers/plans/2026-11-12-codice-leggibile.md`, branch `feature/codice-leggibile`.
+- Parser condiviso `Wsa.Quiz.Core.Services.TestoConCodice` (console + GUI), primo
+  progetto di test `wsa.quiz.core.tests` (parser + integrità dati).
+- Controllo `Wsa.Quiz.App.Controls.TestoConCodice` in Quiz/Riepilogo/Cronologia/
+  Statistiche; font JetBrains Mono NL incluso; colori del codice per tema.
+- Dati: Python e C# a blocchi ```lang, backtick in SQL/Frontend/Version Control/REST,
+  traduzioni ri-chiavate (`generazione-domande/strumenti/`).
+- Motore: `--audit`, controlli sul codice, avvisi "riferimento al corso"; guida riscritta.
+- **Verificato**: test automatici (15 .NET + 11 node); controllo disegnato headless
+  (Avalonia.Headless + Skia, 400 px) in tema chiaro/scuro e con cambio tema a schermo;
+  app iOS avviata nel simulatore (Home ok).
+- **Da verificare a mano**: una partita Python su telefono (scroll verticale che parte
+  sopra un blocco, scroll orizzontale della riga lunga), domande convertite in inglese,
+  Riepilogo/Cronologia/Statistiche con codice. Su questo Mac l'head desktop non parte
+  (Avalonia.Native RenderTimer -6661, anche su main) e la build iOS con l'SDK attuale
+  chiede `-p:ValidateSceneManifest=false` (MT7199, scene manifest iOS 27).
