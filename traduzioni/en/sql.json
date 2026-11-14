@@ -1829,7 +1829,7 @@
     },
     "c8a59e2bdbfb": {
       "domanda": "What does `SET TRANSACTION ISOLATION LEVEL REPEATABLE READ` do?",
-      "spiegazione": "`SET TRANSACTION ISOLATION LEVEL` sets the isolation level for the current transaction (it must be executed after `BEGIN` and before the first data access statement). `REPEATABLE READ` ensures that the values read do not change during the transaction, but it does not prevent phantom reads.",
+      "spiegazione": "`SET TRANSACTION ISOLATION LEVEL` sets the isolation level for the current transaction (it must be executed after `BEGIN` and before the first data access statement). `REPEATABLE READ` ensures that the values read do not change during the transaction; in the ANSI SQL standard it does not prevent phantom reads (although some DBMSs like PostgreSQL prevent them via Snapshot Isolation).",
       "risposte": [
         "Restarts the current transaction with a higher isolation level",
         "It is an alias of `BEGIN TRANSACTION` with `SNAPSHOT`",

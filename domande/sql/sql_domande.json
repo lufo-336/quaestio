@@ -2530,7 +2530,7 @@
       "Imposta il livello di isolamento per tutte le future transazioni nel database"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`SET TRANSACTION ISOLATION LEVEL` imposta il livello per la transazione corrente (deve essere eseguito dopo `BEGIN` e prima della prima istruzione di accesso ai dati). `REPEATABLE READ` garantisce che i valori letti non cambino durante la transazione, ma non previene le phantom read.",
+    "spiegazione": "`SET TRANSACTION ISOLATION LEVEL` imposta il livello per la transazione corrente (deve essere eseguito dopo `BEGIN` e prima della prima istruzione di accesso ai dati). `REPEATABLE READ` garantisce che i valori letti non cambino durante la transazione; nello standard ANSI SQL non previene le phantom read (anche se alcuni DBMS come PostgreSQL le prevengono tramite Snapshot Isolation).",
     "tipo": "codice"
   },
   {
@@ -2558,7 +2558,7 @@
       "Sempre: il Sequential Scan è sempre più veloce degli indici"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il query planner sceglie il Sequential Scan quando stima che il costo di leggere la tabella sequenzialmente sia inferiore all'uso dell'indice. Questo accade tipicamente quando la query seleziona molte righe (alta selettività), su tabelle piccole, o quando le statistiche indicano che l'indice non aiuta.",
+    "spiegazione": "Il query planner sceglie il Sequential Scan quando stima che il costo di leggere la tabella sequenzialmente sia inferiore all'uso dell'indice. Questo accade tipicamente quando la query seleziona molte righe (bassa selettività), su tabelle piccole, o quando le statistiche indicano che l'indice non aiuta.",
     "tipo": "teoria"
   },
   {
