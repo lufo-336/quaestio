@@ -415,9 +415,9 @@
         "Parallelogram with two incoming arrows",
         "Rectangle with one outgoing arrow",
         "Oval with one initial outgoing arrow",
-        "Diamond with two outgoing arrows SI/NO"
+        "Diamond with two outgoing arrows YES/NO"
       ],
-      "spiegazione": "In standard flowcharts, the **diamond** (or rhombus) represents a decision: it contains a condition and two outgoing arrows labeled `SI` (true) and `NO` (false). Main symbols: oval for start/end, rectangle for a generic instruction, parallelogram for input/output, rectangle with rounded corners for a subroutine. A simple IF/THEN selection has the NO branch bypassing the block; a double IF/THEN/ELSE selection has two blocks that converge again after the diamond."
+      "spiegazione": "In standard flowcharts, the **diamond** (or rhombus) represents a decision: it contains a condition and two outgoing arrows labeled `YES` (true) and `NO` (false). Main symbols: oval for start/end, rectangle for a generic instruction, parallelogram for input/output, rectangle with rounded corners for a subroutine. A simple IF/THEN selection has the NO branch bypassing the block; a double IF/THEN/ELSE selection has two blocks that converge again after the diamond."
     },
     "93cc743399ae": {
       "domanda": "The three fundamental properties of an algorithm are:",
@@ -441,7 +441,7 @@
     },
     "d9404e9c040c": {
       "domanda": "Which keyword declares a template in C++?",
-      "spiegazione": "Syntax: `template <typename T>` (or equivalently `template <class T>`, synonyms in this context) before the function or class declaration. Example: `template <typename T> T somma(T a, T b) { return a + b; }`. Multiple parameters are allowed: `template <typename K, typename V> class Map { ... };`. Non-type parameters are also supported (e.g., integers): `template <int N> class Array { int dati[N]; };`. Java uses `<T>` with the `generic` keyword, while C# and Rust use only `<T>`: similar concepts, different syntax.",
+      "spiegazione": "Syntax: `template <typename T>` (or equivalently `template <class T>`, synonyms in this context) before the function or class declaration. Example: `template <typename T> T somma(T a, T b) { return a + b; }`. Multiple parameters are allowed: `template <typename K, typename V> class Map { ... };`. Non-type parameters are also supported (e.g., integers): `template <int N> class Array { int dati[N]; };`. Java, C#, and Rust use `<T>` directly without a dedicated keyword: similar concepts, different syntax.",
       "risposte": [
         "`type`",
         "`generic`",
@@ -919,8 +919,8 @@
         "Local variables of each individual function"
       ]
     },
-    "3dd9f72ff7bd": {
-      "domanda": "Why is heap access slower than stack access?",
+    "e9a5356edf03": {
+      "domanda": "Why is heap allocation slower than stack allocation?",
       "spiegazione": "Stack: allocation/deallocation is a simple pointer increment/decrement: O(1) cost, a single CPU instruction, extremely fast. Heap: the allocator must search for a free block of sufficient size (first-fit, best-fit, buddy algorithms, etc.), potentially update metadata structures, manage fragmentation — non-deterministic cost, typically dozens of CPU cycles at least. Additionally, stack data is spatially contiguous and thus more cache-friendly (fewer cache misses); scattered mallocs in the heap cause more misses. Physical RAM is identical for both. Practical consequence: prefer the stack when possible, especially in hot paths.",
       "risposte": [
         "Heap RAM is physically farther from the CPU",
@@ -1209,9 +1209,9 @@
         "Returns the ASCII code of the first char"
       ]
     },
-    "9ef14a0c920b": {
-      "domanda": "What is needed to use `pow()` and `sqrt()` in C?",
-      "spiegazione": "C math functions (pow, sqrt, sin, cos, log, exp) are declared in `<math.h>` but implemented in `libm`, a separate library from libc. On Linux/macOS, you must link with `-lm`: `gcc programma.c -o programma -lm`. Without the flag, compilation succeeds but the linker throws an 'undefined reference to pow' error. On Windows (MSVC) and many modern systems, libm is integrated into libc: no separate flag needed. In C++, `<cmath>` is used (with `std` namespace).",
+    "959a628149cf": {
+      "domanda": "What is needed to use `pow()` and `sqrt()` in C with GCC on Linux?",
+      "spiegazione": "C math functions (pow, sqrt, sin, cos, log, exp) are declared in `<math.h>` but historically implemented in `libm`, a separate library from `libc`. On Linux (glibc) with non-constant arguments, you must link with `-lm`: `gcc programma.c -o programma -lm`. Without the flag, compilation succeeds but the linker throws an 'undefined reference to pow' error. On macOS (`libSystem`) and Windows (MSVC), math functions are already integrated into the system library and no separate flag is needed. In C++, `<cmath>` is used (with `std` namespace).",
       "risposte": [
         "`#include <math.h>` plus the `-lm` flag at link time",
         "`#include <math.h>` without extra flags",
@@ -1279,9 +1279,9 @@
         "The bytes are stored in random order"
       ]
     },
-    "5ea3f491cd63": {
-      "domanda": "Why does `0.1 + 0.2 == 0.3` return FALSE in C?",
-      "spiegazione": "Floating-point numbers use IEEE 754 in base 2. 0.1 in binary is an infinite repeating fraction (like 1/3 in decimal), so it is represented approximately. The same applies to 0.2. `0.1 + 0.2` yields `0.30000000000000004...` — very close to 0.3 but not bitwise equal. Consequence: exact equality between floats is almost always incorrect; a tolerant comparison is used: `fabs(a - b) < EPSILON`. Similar issues: summation of many floats (error accumulates), catastrophic cancellation. For monetary calculations, use integers in cents or arbitrary-precision decimals, never floats.",
+    "7e1b664bc852": {
+      "domanda": "Why does `0.1 + 0.2 == 0.3` evaluate to false (`0`) in C?",
+      "spiegazione": "Floating-point numbers use IEEE 754 in base 2. 0.1 in binary is an infinite repeating fraction (like 1/3 in decimal), so it is represented approximately. The same applies to 0.2. `0.1 + 0.2` yields `0.30000000000000004...` — very close to 0.3 but not bitwise equal, so `==` returns `0` (false in C). Consequence: exact equality between floats is almost always incorrect; a tolerant comparison is used: `fabs(a - b) < EPSILON`. Similar issues: summation of many floats (error accumulates), catastrophic cancellation. For monetary calculations, use integers in cents or arbitrary-precision decimals, never floats.",
       "risposte": [
         "Due to a known bug in the C compiler",
         "0.1 and 0.2 are not exact in binary",
@@ -1741,7 +1741,7 @@
     },
     "e4eeeab415b2": {
       "domanda": "What is the purpose of the `void*` type in C?",
-      "spiegazione": "`void*` is a generic pointer: it can hold the address of any type (int, double, struct, function). It cannot be dereferenced directly (`*p` does not compile because the type is unknown): a cast to the correct type is required. Use case: generic programming in C before the advent of templates. Examples: `malloc` returns `void*` which is automatically convertible to any T* in C (in C++ an explicit cast is required). `qsort(void *base, size_t n, size_t size, int (*cmp)(const void*, const void*))` uses void* to sort arrays of any type. `memcpy(void *dest, const void *src, size_t n)` copies raw bytes regardless of type. In C++, safer alternatives exist: templates, std::any, polymorphism.",
+      "spiegazione": "`void*` is a generic object pointer: it can hold the address of any data type (`int`, `double`, `struct`, though not function pointers in strict standard C). It cannot be dereferenced directly (`*p` does not compile because the type is unknown): a cast to the correct type is required. Use case: generic programming in C before the advent of templates. Examples: `malloc` returns `void*` which is automatically convertible to any `T*` in C (in C++ an explicit cast is required). `qsort(void *base, size_t n, size_t size, int (*cmp)(const void*, const void*))` uses `void*` to sort arrays of any type. `memcpy(void *dest, const void *src, size_t n)` copies raw bytes regardless of type. In C++, safer alternatives exist: templates, `std::any`, polymorphism.",
       "risposte": [
         "Generic pointer without a specific type",
         "Pointer that points to nothing (synonym for NULL)",

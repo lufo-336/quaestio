@@ -472,7 +472,7 @@
       "`template`"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Sintassi: `template <typename T>` (o equivalentemente `template <class T>`, sinonimi in questo contesto) prima della dichiarazione di funzione o classe. Esempio: `template <typename T> T somma(T a, T b) { return a + b; }`. Si possono avere più parametri: `template <typename K, typename V> class Map { ... };`. Anche parametri non-tipo (es. interi): `template <int N> class Array { int dati[N]; };`. Java usa `<T>` con keyword `generic`, C# e Rust usano solo `<T>`: concetti simili, sintassi diverse.",
+    "spiegazione": "Sintassi: `template <typename T>` (o equivalentemente `template <class T>`, sinonimi in questo contesto) prima della dichiarazione di funzione o classe. Esempio: `template <typename T> T somma(T a, T b) { return a + b; }`. Si possono avere più parametri: `template <typename K, typename V> class Map { ... };`. Anche parametri non-tipo (es. interi): `template <int N> class Array { int dati[N]; };`. Java, C# e Rust usano direttamente `<T>` senza una keyword dedicata: concetti simili, sintassi diverse.",
     "tipo": "codice"
   },
   {
@@ -1018,7 +1018,7 @@
       "`scanf` non legge stringhe in C standard"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il nome di un array in C decade automaticamente a puntatore al primo elemento nel contesto di un'espressione. Scrivere `&s` crea un puntatore al puntatore (`char(*)[50]`), tipo diverso da `char*` che scanf si aspetta per `%s`. Può funzionare per caso perché il valore numerico dell'indirizzo è lo stesso — ma è formalmente undefined behavior e i compilatori avvertono con `-Wall`. La forma corretta: `scanf(\"%s\", s);`. Altra questione parallela: `%s` in scanf è pericoloso perché non limita la lunghezza — usare `%49s` per lasciare spazio al `\\0`, o meglio `fgets(s, sizeof(s), stdin)`.",
+    "spiegazione": "Il nome di un array in C decade automaticamente a puntatore al primo elemento nel contesto di un'espressione. Scrivere `&s` crea un puntatore all'array (`char(*)[50]`), tipo diverso da `char*` che `scanf` si aspetta per `%s`. Può funzionare per caso perché il valore numerico dell'indirizzo è lo stesso — ma è formalmente undefined behavior e i compilatori avvertono con `-Wall`. La forma corretta: `scanf(\"%s\", s);`. Altra questione parallela: `%s` in `scanf` è pericoloso perché non limita la lunghezza — usare `%49s` per lasciare spazio al `\\0`, o meglio `fgets(s, sizeof(s), stdin)`.",
     "tipo": "codice"
   },
   {
@@ -1136,7 +1136,7 @@
   {
     "id": 182,
     "categoria": "Gestione Memoria",
-    "domanda": "Perché l'accesso all'heap è più lento dello stack?",
+    "domanda": "Perché l'allocazione sull'heap è più lenta di quella sullo stack?",
     "risposte": [
       "La RAM dell'heap è fisicamente più lontana dalla CPU",
       "Non c'è differenza di velocità percepibile",
@@ -1542,7 +1542,7 @@
   {
     "id": 211,
     "categoria": "Libreria math.h",
-    "domanda": "Cosa serve per usare `pow()` e `sqrt()` in C?",
+    "domanda": "Cosa serve per usare `pow()` e `sqrt()` in C con GCC su Linux?",
     "risposte": [
       "`#include <math.h>` più il flag `-lm` al link",
       "`#include <math.h>` senza flag extra",
@@ -1550,7 +1550,7 @@
       "`#include <stdlib.h>` senza flag speciali"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Le funzioni matematiche di C (pow, sqrt, sin, cos, log, exp) sono dichiarate in `<math.h>` ma implementate in `libm`, libreria separata da libc. Su Linux/macOS si deve linkare con `-lm`: `gcc programma.c -o programma -lm`. Senza il flag, la compilazione passa ma il linker dà errore 'undefined reference to pow'. Su Windows (MSVC) e molti sistemi moderni libm è integrata in libc: niente flag separato. In C++ si usa `<cmath>` (namespace `std`).",
+    "spiegazione": "Le funzioni matematiche di C (pow, sqrt, sin, cos, log, exp) sono dichiarate in `<math.h>` ma storicamente implementate in `libm`, libreria separata da `libc`. Su Linux (glibc) con argomenti non costanti si deve linkare con `-lm`: `gcc programma.c -o programma -lm`. Senza il flag, la compilazione passa ma il linker dà errore 'undefined reference to pow'. Su macOS (`libSystem`) e Windows (MSVC) le funzioni matematiche sono già integrate nella libreria di sistema e non serve un flag separato. In C++ si usa `<cmath>` (namespace `std`).",
     "tipo": "codice"
   },
   {
@@ -1640,7 +1640,7 @@
   {
     "id": 218,
     "categoria": "Floating Point",
-    "domanda": "Perché in C `0.1 + 0.2 == 0.3` restituisce FALSE?",
+    "domanda": "Perché in C `0.1 + 0.2 == 0.3` valuta a falso (`0`)?",
     "risposte": [
       "Per un bug noto del compilatore C",
       "0.1 e 0.2 non sono esatti in binario",
@@ -1648,7 +1648,7 @@
       "I float hanno solo 2 decimali di precisione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "I numeri in virgola mobile usano IEEE 754 in base 2. 0.1 in binario è frazione periodica infinita (come 1/3 in decimale), quindi rappresentata approssimata. Stesso per 0.2. `0.1 + 0.2` produce `0.30000000000000004...` — molto vicino a 0.3 ma non uguale bit per bit. Conseguenza: l'uguaglianza esatta tra float è quasi sempre sbagliata; si usa confronto tollerante: `fabs(a - b) < EPSILON`. Problemi analoghi: somme di molti float (errore si accumula), cancellazione catastrofica. Per conti monetari usare interi in centesimi o decimali arbitrari, mai float.",
+    "spiegazione": "I numeri in virgola mobile usano IEEE 754 in base 2. 0.1 in binario è frazione periodica infinita (come 1/3 in decimale), quindi rappresentata approssimata. Stesso per 0.2. `0.1 + 0.2` produce `0.30000000000000004...` — molto vicino a 0.3 ma non uguale bit per bit, perciò `==` restituisce `0` (falso in C). Conseguenza: l'uguaglianza esatta tra float è quasi sempre sbagliata; si usa confronto tollerante: `fabs(a - b) < EPSILON`. Problemi analoghi: somme di molti float (errore si accumula), cancellazione catastrofica. Per conti monetari usare interi in centesimi o decimali arbitrari, mai float.",
     "tipo": "codice"
   },
   {
@@ -2292,7 +2292,7 @@
       "Puntatore a funzione che non ritorna nulla"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`void*` è un puntatore generico: può contenere l'indirizzo di qualsiasi tipo (int, double, struct, funzione). Non si può dereferenziare direttamente (`*p` non compila perché non si conosce il tipo): serve un cast al tipo corretto. Uso: generic programming in C prima dei template. Esempi: `malloc` ritorna `void*` convertibile automaticamente a qualsiasi T* in C (in C++ serve cast esplicito). `qsort(void *base, size_t n, size_t size, int (*cmp)(const void*, const void*))` usa void* per ordinare array di qualsiasi tipo. `memcpy(void *dest, const void *src, size_t n)` copia byte grezzi indipendenti dal tipo. In C++ esistono alternative più sicure: template, std::any, polimorfismo.",
+    "spiegazione": "`void*` è un puntatore generico a oggetto: può contenere l'indirizzo di qualsiasi dato (`int`, `double`, `struct`, ma non puntatori a funzione nello standard C puro). Non si può dereferenziare direttamente (`*p` non compila perché non si conosce il tipo): serve un cast al tipo corretto. Uso: generic programming in C prima dei template. Esempi: `malloc` ritorna `void*` convertibile automaticamente a qualsiasi `T*` in C (in C++ serve cast esplicito). `qsort(void *base, size_t n, size_t size, int (*cmp)(const void*, const void*))` usa `void*` per ordinare array di qualsiasi tipo. `memcpy(void *dest, const void *src, size_t n)` copia byte grezzi indipendenti dal tipo. In C++ esistono alternative più sicure: template, `std::any`, polimorfismo.",
     "tipo": "codice"
   },
   {
