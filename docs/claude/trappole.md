@@ -309,3 +309,19 @@
       e runtime falliscono con errore HTTP 404. **Soluzione**: includere un file
       vuoto `.nojekyll` in `wsa.quiz.browser/wwwroot/.nojekyll` e assicurarsi che
       venga mantenuto nell'output pubblicato (`touch release/wwwroot/.nojekyll` nel workflow CI).
+
+28. **Deploy web: il runner GitHub ha anche .NET 11 → sito nero (SkiaSharp non ricollegato)**
+    *(scoperta 2026-11-14)*. Da metà novembre 2026 `ubuntu-latest` ha preinstallato l'SDK
+    .NET 11: `actions/setup-dotnet` con `10.0.x` installa il 10, ma senza `global.json`
+    il comando `dotnet` usa il più recente. `dotnet workload install wasm-tools` installa
+    allora il workload set **11.0.100**, il publish di un progetto `net10.0-browser` non
+    attiva il relink nativo (warning `@(NativeFileReference) is not empty, but the native
+    references won't be linked in, because neither $(WasmBuildNative), nor
+    $(RunAOTCompilation) are 'true'`) e nel browser l'app resta nera con
+    `TypeInitialization_Type, SkiaSharp.SKImageInfo` in console. Indizio rapido:
+    `dotnet.native.*.wasm` di ~3 MB (con SkiaSharp ricollegato è molto più grande).
+    **Non funziona** fissare il workload (`--version 10.0.404`): va in conflitto con i
+    manifest dell'SDK 11. **Soluzione**: nel workflow, prima del workload, creare un
+    `global.json` solo in CI (`dotnet new globaljson --sdk-version 10.0.100
+    --roll-forward latestFeature --force`). Dopo il fix il browser può tenere in cache
+    il vecchio `dotnet.js`: ricaricare con Cmd+Shift+R.

@@ -721,3 +721,21 @@ Spec `docs/superpowers/specs/2026-11-12-codice-leggibile-design.md`, piano
   Riepilogo/Cronologia/Statistiche con codice. Su questo Mac l'head desktop non parte
   (Avalonia.Native RenderTimer -6661, anche su main) e la build iOS con l'SDK attuale
   chiede `-p:ValidateSceneManifest=false` (MT7199, scene manifest iOS 27).
+
+### ✔️ Repo pubblico ordinato (roadmap 11/11, punto 6) — 2026-11-14/15
+
+Spec `docs/superpowers/specs/2026-11-14-repo-pubblico-design.md`, piano
+`docs/superpowers/plans/2026-11-14-repo-pubblico.md`.
+- README riscritto in inglese (storia, vibe-coding dichiarato, architettura con
+  diagramma Mermaid, generazione domande, materie proprie, build, obiettivi futuri),
+  licenza MIT, screenshot in `docs/images/` (web a 1280 px + simulatore iPhone),
+  descrizione/topics/homepage su GitHub.
+- Documenti di lavoro con l'IA **restano pubblici** (scelta di Luca): ripuliti da
+  percorsi personali e identità di firma, rimossi i due LEGGIMI sulle macchine,
+  `docs/README.md` in inglese. Storico git non riscritto: lì restano email edu,
+  percorsi e l'identità Apple (commit `5027f8f`), accettato.
+- Trovato e corretto il **sito web rotto** dal 14/11 (trappola 28).
+- **Resta (solo su ok di Luca)**: `.gitignore` per `.remember/ .revisione/
+  .superpowers/ .claude/` e `gh repo edit --visibility public`.
+- Annotato: con UI in inglese il nome della modalità multi-materia resta
+  "Quizzone" (Home/Cronologia/Riepilogo) — da tradurre.

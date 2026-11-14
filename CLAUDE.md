@@ -155,3 +155,4 @@ volta, non è ciò che si consegna. Per produrre eseguibili autonomi o pacchetti
 25. `Focus()` senza `NavigationMethod` = focus invisibile
 26. Il `Padding` di uno `ScrollViewer` NON entra nell'altezza scorrevole
 27. WebAssembly: JsonSerializerIsReflectionDisabled, assembly satellite .resx (loadAllSatelliteResources) e cartella _framework su GitHub Pages (.nojekyll)
+28. Deploy web: runner GitHub con .NET 11 → serve `global.json` in CI, altrimenti SkiaSharp non viene ricollegato (sito nero)
