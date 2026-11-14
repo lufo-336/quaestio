@@ -179,7 +179,7 @@
         "They prevent multiple inclusions that would cause redefinitions"
       ]
     },
-    "dd1b7ed6062c": {
+    "3d2fe4b7ce43": {
       "domanda": "Difference between `#include <stdio.h>` and `#include \"mio_header.h\"`?",
       "spiegazione": "`#include <nome>` instructs the compiler to search for the file only in the system header paths (e.g., `/usr/include`, configurable with `-I`). `#include \"nome\"` first searches in the current source directory (useful for your headers), and if not found, proceeds to the system paths. Convention: `< >` for standard and system libraries, `\" \"` for your project files. Making a mistake is not fatal but is stylistically incorrect.",
       "risposte": [
@@ -351,7 +351,7 @@
     },
     "8b42542f6862": {
       "domanda": "Why call `fclose()` after using a file?",
-      "spiegazione": "Writes via `fprintf`, `fwrite`, `fputs` first go into an internal memory buffer (for efficiency) and reach the disk only when the buffer is full or on explicit flush. `fclose` forces the final flush and releases OS resources: the file descriptor in the kernel, buffer memory, and any locks. Forgetting to do so can cause: loss of unwritten data, exhaustion of file descriptors (typically 1024/process on Linux), files with persistent locks. At the end of the program, the OS closes everything automatically, but relying on it is bad practice.",
+      "spiegazione": "Writes via `fprintf`, `fwrite`, `fputs` first go into an internal memory buffer (for efficiency) and reach the disk only when the buffer is full or on explicit flush. `fclose` forces the final flush and releases OS resources: the file descriptor in the kernel, the buffer memory, and any locks. Forgetting to do so can cause: loss of unwritten data, exhaustion of file descriptors (typically 1024/process on Linux), files with persistent locks. At the end of the program, the OS closes everything automatically, but relying on it is bad practice.",
       "risposte": [
         "To flush the buffer and free resources",
         "To reopen the same file with a different mode",
@@ -821,7 +821,7 @@
     },
     "4943a64e748f": {
       "domanda": "What is wrong with `if (x = 5) { printf(\"uguale\"); }`?",
-      "spiegazione": "Classic bug: `=` assigns 5 to x and returns 5 (not 0 = false), so the block is ALWAYS executed (and x is altered as a side effect). The intent was `if (x == 5)`. C allows assignment in a conditional expression by design: it is deliberate, e.g., `while ((c = getchar()) != EOF)`. A stylistic safeguard called the Yoda condition: writing the constant on the left `if (5 == x)` causes a compilation error in case of accidental `=` (you cannot assign to a constant). Modern compilers with `-Wall` warn: 'suggest parentheses around assignment used as truth value'.",
+      "spiegazione": "Classic bug: `=` assigns 5 to x and returns 5 (not 0 = true), so the block is ALWAYS executed (and x is altered as a side effect). The intent was `if (x == 5)`. C allows assignment in a conditional expression by design: it is deliberate, e.g., `while ((c = getchar()) != EOF)`. A stylistic safeguard called the Yoda condition: writing the constant on the left `if (5 == x)` causes a compilation error in case of accidental `=` (you cannot assign to a constant). Modern compilers with `-Wall` warn: 'suggest parentheses around assignment used as truth value'.",
       "risposte": [
         "`=` is assignment, not comparison: always true",
         "The code should be in a `while` loop",
@@ -1029,7 +1029,7 @@
         "`%f`"
       ]
     },
-    "71ac157c35e3": {
+    "c850bf53914b": {
       "domanda": "What happens if an exception is not caught by any `catch`?",
       "spiegazione": "If an exception propagates through the entire stack without being caught, the runtime calls `std::terminate()`, which by default calls `abort()` (immediate termination without cleanup, typically generating a core dump). During propagation, 'stack unwinding' occurs: destructors for local variables in the traversed frames are called in reverse order — a fundamental guarantee of RAII and resource safety. If during unwinding a destructor throws another exception, `std::terminate()` is triggered immediately. For this reason, destructors should be `noexcept`. Defensive pattern: a `catch(...)` at the highest level (main) for logging before termination.",
       "risposte": [
@@ -1659,7 +1659,7 @@
         "Automatically create a struct on the fly"
       ]
     },
-    "7e7aa879db49": {
+    "645cb43b65cb": {
       "domanda": "When is `const char*` preferable to `std::string`?",
       "risposte": [
         "`const char*` is always preferable in C++",
