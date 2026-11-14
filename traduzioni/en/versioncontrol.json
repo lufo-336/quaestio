@@ -26,7 +26,7 @@
         "A blank line"
       ]
     },
-    "6591c1ee1f04": {
+    "1856c405c147": {
       "domanda": "What does the warning `LF will be replaced by CRLF` mean on Windows?",
       "spiegazione": "It is not an error: it simply confirms that Git converts line endings (LF<->CRLF) on Windows and can be ignored; files and commits remain intact.",
       "risposte": [
@@ -36,7 +36,7 @@
         "It is a serious error that prevents completing the current commit"
       ]
     },
-    "dc4d45a9acef": {
+    "508c71f4909e": {
       "domanda": "When granting 'Write' access to a collaborator on GitHub, what can they do?",
       "spiegazione": "With Write access, the collaborator can push code and also delete or modify the history; to prevent damage, protected branches are used.",
       "risposte": [
@@ -56,7 +56,7 @@
         "You open it, lock it, then unlock it, and finally close it"
       ]
     },
-    "cc39309e476b": {
+    "8d20f1fc1da7": {
       "domanda": "Why doesn't Git track empty directories, and how can this be resolved?",
       "spiegazione": "Git tracks file contents, not directories: to force tracking of an empty directory, a conventional `.gitkeep` file is placed inside it.",
       "risposte": [
@@ -86,7 +86,7 @@
         "Using the double slash //"
       ]
     },
-    "04269529e2fb": {
+    "a5841bdebf21": {
       "domanda": "Why is the `rm -rf` command considered one of the most dangerous?",
       "spiegazione": "`rm -rf` deletes recursively and forcefully: `-f` suppresses warnings, and since Unix has no trash/recycle bin, files are gone immediately and cannot be recovered.",
       "risposte": [
@@ -96,7 +96,7 @@
         "Because `-f` suppresses warnings and in Unix there is no trash: files disappear immediately and cannot be recovered"
       ]
     },
-    "242ad41d1c4d": {
+    "aae6568bdab6": {
       "domanda": "Why is `git revert` used to undo a commit that has already been pushed, instead of `git reset`?",
       "spiegazione": "On a shared branch, reset is not used (as it rewrites others' history): `git revert` adds a commit that undoes the effect, preserving the history.",
       "risposte": [
@@ -106,8 +106,8 @@
         "Because `git revert` creates a new commit that undoes the effect of the previous one, preserving the shared history"
       ]
     },
-    "3d2eeda19840": {
-      "domanda": "What is a commit compared to in the section on atomic commits?",
+    "7a384523fdb5": {
+      "domanda": "What can an atomic commit be compared to?",
       "spiegazione": "A commit is like a save point in a video game: if the code breaks, you revert to the last commit where it was working.",
       "risposte": [
         "A photograph",
@@ -146,7 +146,7 @@
         "Branches where you commit"
       ]
     },
-    "c3fb9bd392e3": {
+    "ac1f290f7cae": {
       "domanda": "What is needed to copy a directory along with all its contents?",
       "spiegazione": "`cp` alone copies files; for a directory and all its contents, `cp -r` (recursive) is required.",
       "risposte": [
@@ -166,7 +166,7 @@
         "40"
       ]
     },
-    "74d3616f1ba4": {
+    "95a524412024": {
       "domanda": "What is the difference between Git and GitHub?",
       "spiegazione": "Git is the local version control tool; GitHub is a service that hosts Git repositories and adds collaboration features.",
       "risposte": [
@@ -176,7 +176,7 @@
         "They are the same thing"
       ]
     },
-    "af726fe2665b": {
+    "65fb5855e419": {
       "domanda": "In Unix, how are move and rename operations treated?",
       "spiegazione": "In Unix, moving and renaming are the same operation: mv changes the name/position in the file system index without copying data.",
       "risposte": [
@@ -186,7 +186,7 @@
         "Only possible as root"
       ]
     },
-    "3218e1d748f5": {
+    "f42eb2e598b5": {
       "domanda": "What is the risk of a detached `HEAD`?",
       "spiegazione": "In a detached `HEAD` state, commits do not belong to any branch: switching branches makes them unreachable and Git will eventually garbage-collect them.",
       "risposte": [
@@ -216,7 +216,7 @@
         "Ctrl+C"
       ]
     },
-    "911dcd5299a5": {
+    "c608e6fd9303": {
       "domanda": "What does the `refactor` type indicate in Conventional Commits?",
       "spiegazione": "`refactor` is a code change that does not add features or fix bugs; `chore` refers to maintenance and configuration.",
       "risposte": [
@@ -236,8 +236,8 @@
         "Sends your local commits to the shared remote repository"
       ]
     },
-    "c41609d55c00": {
-      "domanda": "What are two typical examples of centralized VCS mentioned in the notes?",
+    "dce7041545f9": {
+      "domanda": "What are two typical examples of centralized VCS?",
       "spiegazione": "SVN (Subversion) and CVS are the main examples of centralized systems; Git and Mercurial are distributed.",
       "risposte": [
         "Git and Mercurial",
@@ -246,7 +246,7 @@
         "Docker and Podman"
       ]
     },
-    "2852b9a9e5fd": {
+    "a9eb7e5fd8d7": {
       "domanda": "Why do pull requests exist?",
       "spiegazione": "PRs prevent changes from being merged into `main` without oversight: at least one reviewer examines them, and a permanent record with comments is kept.",
       "risposte": [
@@ -256,7 +256,7 @@
         "To deliberately slow down the work of other team members"
       ]
     },
-    "dfd993db3e52": {
+    "6ae58219b46b": {
       "domanda": "What characterizes a detached `HEAD`?",
       "spiegazione": "A detached `HEAD` occurs when `HEAD` points directly to a commit (e.g., checkout of a hash or tag) rather than to a branch.",
       "risposte": [
@@ -276,7 +276,7 @@
         "`git reset --soft HEAD~1`"
       ]
     },
-    "5bc20a9ebcd6": {
+    "395506af1da6": {
       "domanda": "What does it mean that the commit graph is 'acyclic'?",
       "spiegazione": "'Acyclic' means no cycles: a commit cannot be its own ancestor, which makes the history consistent and predictable.",
       "risposte": [
@@ -296,7 +296,7 @@
         "Contains the editor"
       ]
     },
-    "beaf4d39127b": {
+    "bd591a055b1a": {
       "domanda": "What is the simplest test to determine if a commit is not atomic?",
       "spiegazione": "If describing the commit requires the word 'and' (e.g., 'fix login and update readme'), it is not atomic: they should be split.",
       "risposte": [
@@ -306,7 +306,7 @@
         "If it has no branch"
       ]
     },
-    "e5e2c2bdd9fd": {
+    "a24d0f83d43a": {
       "domanda": "How do you apply `.gitignore` rules to many files that were already committed by mistake?",
       "spiegazione": "The index is cleared with `git rm -r --cached .` (files remain on disk), everything is re-added with `git add .` (ignored files are excluded), and then a new commit is made.",
       "risposte": [
@@ -346,8 +346,8 @@
         "To create branches"
       ]
     },
-    "b0e7b81c4773": {
-      "domanda": "What are the 'three levels of Git' described in the remote repository notes?",
+    "dcea8ee7aeb1": {
+      "domanda": "What are the 'three levels of Git' related to remotes?",
       "spiegazione": "The three levels: Remote (source of truth on GitHub), Remote-Tracking (`origin/main`, a local mirror updated only by fetch), and Local (your `main`).",
       "risposte": [
         "Remote, Remote-Tracking (`origin/main`), and Local",
@@ -356,7 +356,7 @@
         "`init`, `add`, `commit`"
       ]
     },
-    "03dfd7c8d775": {
+    "d7151ee5ac15": {
       "domanda": "What is the difference between > and >> in redirection?",
       "spiegazione": "> redirects output by overwriting the file (content is lost), >> appends to the end while keeping the existing content.",
       "risposte": [
@@ -366,7 +366,7 @@
         "> appends, >> overwrites"
       ]
     },
-    "89d207d46c4e": {
+    "9a0ebc2281aa": {
       "domanda": "In a file with conflicts, what does the section under `<<<<<<< HEAD` represent?",
       "spiegazione": "The section between `<<<<<<< HEAD` and `=======` is the version of the current branch; under `=======` is the incoming version.",
       "risposte": [
@@ -376,7 +376,7 @@
         "A simple comment line that Git automatically inserts"
       ]
     },
-    "4b897dc41c0e": {
+    "fde9a0179555": {
       "domanda": "What matters more than the choice between bracket style and Conventional Commits?",
       "spiegazione": "No style is objectively better: what matters is consistency, using the same style throughout the project.",
       "risposte": [
@@ -396,7 +396,7 @@
         "By simply running the exact same `git reset` command again"
       ]
     },
-    "a509e4930c4d": {
+    "1352a4cba7e7": {
       "domanda": "What is the correct order of the 'forward flow' to save changes?",
       "spiegazione": "Forward flow: you edit the file (working dir), `git add` (staging), `git commit` (local repo), `git push` (remote).",
       "risposte": [
@@ -416,7 +416,7 @@
         "Searches recursively"
       ]
     },
-    "cb1be0890bcf": {
+    "6c1af07d8ff4": {
       "domanda": "What is a `README` file?",
       "spiegazione": "The `README` is the project's 'front door': it explains what it does, why it exists, and how to use it.",
       "risposte": [
@@ -426,7 +426,7 @@
         "A Git config file"
       ]
     },
-    "d18de21a5138": {
+    "ab13fe79f490": {
       "domanda": "Where does GitHub look for the `README` first?",
       "spiegazione": "GitHub looks for the `README` in this order: `.github` folder, then the root (most common location), and finally the `docs` folder.",
       "risposte": [
@@ -436,7 +436,7 @@
         "In the temp folder"
       ]
     },
-    "cc4105ab731e": {
+    "4c3516ca5098": {
       "domanda": "What is technically a branch in Git?",
       "spiegazione": "A branch is a lightweight, movable pointer to a commit: it does not duplicate files.",
       "risposte": [
@@ -496,7 +496,7 @@
         "Directly inside the `.gitignore` file shared with the team"
       ]
     },
-    "4c9fe14d55d0": {
+    "944a1a0dd3f2": {
       "domanda": "What does the `**/debug/` pattern indicate in a `.gitignore` file?",
       "spiegazione": "The recursive `**` pattern matches directories at any depth: `**/debug/` ignores every directory named `debug`, regardless of its location.",
       "risposte": [
@@ -506,7 +506,7 @@
         "A single text file named exactly debug"
       ]
     },
-    "5482e6a66922": {
+    "7b0c3e24d194": {
       "domanda": "After rebasing a branch that has already been pushed, what is needed to update the remote?",
       "spiegazione": "After a rebase, the histories diverge (different hashes): a force push is required. This is why it is dangerous on team branches.",
       "risposte": [
@@ -536,8 +536,8 @@
         "`git clone`"
       ]
     },
-    "107cd4d094ff": {
-      "domanda": "Which branch naming convention does the handout indicate?",
+    "bf146fa9b1be": {
+      "domanda": "Which branch naming convention is recommended?",
       "spiegazione": "Use short, lowercase names (e.g., `feature/user-login`), with words separated by '-' or '/', and no spaces or uppercase letters.",
       "risposte": [
         "Short, lowercase names, with words separated by a hyphen or slash",
@@ -546,7 +546,7 @@
         "Always the author's name"
       ]
     },
-    "496fa61cbf80": {
+    "625522d96bf1": {
       "domanda": "What is the key difference between merge and rebase when updating a branch?",
       "spiegazione": "Merge adds a merge commit (non-linear history, safe for shared branches); rebase replays commits onto `main` (linear history) but rewrites the hashes.",
       "risposte": [
@@ -566,7 +566,7 @@
         "Ctrl+Z"
       ]
     },
-    "b8b0c76e22a3": {
+    "52bba355fcf8": {
       "domanda": "Which of these is a correct naming format for a feature branch?",
       "spiegazione": "Common formats: `feature/user-login`, `bugfix/missing-header`, `docs/update-readme`: lowercase, no spaces, with / or -.",
       "risposte": [
@@ -576,7 +576,7 @@
         "login branch 1"
       ]
     },
-    "5af39ad4d176": {
+    "b2ea1e381126": {
       "domanda": "What is a remote repository?",
       "spiegazione": "A remote is a copy of the repo on another computer/server: it allows sharing and synchronization and serves as a backup of the history.",
       "risposte": [
@@ -596,7 +596,7 @@
         "`git pull --all`"
       ]
     },
-    "e640642579c2": {
+    "1ea3d5415a05": {
       "domanda": "What does `git branch -vv` show in addition to `git branch`?",
       "spiegazione": "`git branch -vv` shows for each local branch the commit details and the upstream status (the linked tracking branch).",
       "risposte": [
@@ -606,9 +606,9 @@
         "Exclusively the branches located on the shared remote server"
       ]
     },
-    "e4be8f976819": {
-      "domanda": "During the installation of Git for Windows, what value should be set for the default branch?",
-      "spiegazione": "The installation guide indicates to set `main` as the default branch name.",
+    "ec9a95fb2477": {
+      "domanda": "During the installation of Git for Windows, what value is recommended for the default branch?",
+      "spiegazione": "The modern standard used by GitHub and the community is to set `main` as the default branch name.",
       "risposte": [
         "`master`",
         "`trunk`",
@@ -636,7 +636,7 @@
         "The current branch"
       ]
     },
-    "ab0ac2b5882b": {
+    "e7038bbb4afb": {
       "domanda": "What is the difference between 'Restore this version' and 'Create a copy'?",
       "spiegazione": "Restore replaces the current document with the selected version; Create a copy extracts that version into a new independent document, without affecting the original.",
       "risposte": [
@@ -646,7 +646,7 @@
         "Restore works only offline"
       ]
     },
-    "d0adb652cde0": {
+    "92fbf26b1aad": {
       "domanda": "On GitHub, what is the name of the default branch for new repositories?",
       "spiegazione": "GitHub uses `main` as the default branch; if `git init` creates `master`, it should be renamed to `main` (`git branch -M main`).",
       "risposte": [
@@ -666,7 +666,7 @@
         "To describe the image: screen readers use it for people who cannot see it"
       ]
     },
-    "4299673ad474": {
+    "db7445e5adcc": {
       "domanda": "Where are GitHub issues stored?",
       "spiegazione": "Issues are a GitHub feature: they are not in the local repository nor do they appear in the commit history; their number is displayed with the # symbol.",
       "risposte": [
@@ -676,7 +676,7 @@
         "Only on GitHub: they are not in the local repo nor in the commit history"
       ]
     },
-    "83e3611374e2": {
+    "bd6d78802cfc": {
       "domanda": "According to the convention, what does a good commit message look like?",
       "spiegazione": "Widespread convention: a summary line of <= 50 characters, a blank line, followed by a more detailed description if necessary.",
       "risposte": [
@@ -686,7 +686,7 @@
         "Summary line <= 50 characters, blank line, then explanation"
       ]
     },
-    "c33d48346e2f": {
+    "a7458e985f5e": {
       "domanda": "What does the command `git log --author=\"Maria\"` filter?",
       "spiegazione": "`git log --author=\"Maria\"` shows only the commits made by the specified author.",
       "risposte": [
@@ -696,8 +696,8 @@
         "The largest files"
       ]
     },
-    "3a7d3cfaa9c1": {
-      "domanda": "How should the file be named and what is the most common location?",
+    "97d80cc58a79": {
+      "domanda": "How should the README file be named and what is the most common location?",
       "spiegazione": "It should be named `README.md` in all uppercase; the most common location is the root of the repository, where GitHub automatically detects and displays it.",
       "risposte": [
         "`README.md` in all uppercase in the repo root",
@@ -726,7 +726,7 @@
         "The `.git` directory"
       ]
     },
-    "61f547bc6a4c": {
+    "36bc9c939e7c": {
       "domanda": "What is the difference between `git branch -d` and `git branch -D`?",
       "spiegazione": "`-d` is safe delete (fails if there are unmerged commits); `-D` forces deletion even of an unmerged branch.",
       "risposte": [
@@ -736,7 +736,7 @@
         "`-d` only works online"
       ]
     },
-    "2936516b6bf7": {
+    "931e08075321": {
       "domanda": "How many parents does a merge commit have?",
       "spiegazione": "A merge commit has two parents, which are the last commits of the two merged branches; Git considers the first one as the official path.",
       "risposte": [
@@ -776,9 +776,9 @@
         "Sets the upstream"
       ]
     },
-    "5c22b82d80d9": {
-      "domanda": "Which default editors does the guide recommend choosing during Git installation?",
-      "spiegazione": "The guide recommends choosing nano or VS Code as the default editor during Git for Windows installation.",
+    "075aa87602f9": {
+      "domanda": "Which default editors are recommended to choose during Git installation?",
+      "spiegazione": "It is recommended to choose nano or VS Code as the default editor during Git for Windows installation.",
       "risposte": [
         "nano or VS Code",
         "Excel",
@@ -786,7 +786,7 @@
         "Any word processing program such as a spreadsheet"
       ]
     },
-    "ed01e6438226": {
+    "697fabc7cc1f": {
       "domanda": "What is an issue on GitHub?",
       "spiegazione": "An issue is a note in the repository (a GitHub feature, not a Git feature) for bugs, requests, or tasks, identified by a number like #42.",
       "risposte": [
@@ -806,7 +806,7 @@
         "`git commit -i`"
       ]
     },
-    "c652cfe12e73": {
+    "8d1936a25574": {
       "domanda": "What is the correct syntax for a link in Markdown?",
       "spiegazione": "A link uses [display text](URL); an image uses the same syntax with a ! prefix: ![alt](path).",
       "risposte": [
@@ -826,7 +826,7 @@
         "Live Server"
       ]
     },
-    "5b466b0846dd": {
+    "329a07344d77": {
       "domanda": "Within what size limit does GitHub continue to render a README?",
       "spiegazione": "GitHub stops rendering a README beyond 500 KiB: for larger documentation, the `README` is used as an entry point and links to files in the `docs` folder.",
       "risposte": [
@@ -856,14 +856,14 @@
         "Open, Close, Lock"
       ]
     },
-    "3400ffcbba85": {
+    "8bb884e1370b": {
       "domanda": "At how many characters should the body of a commit message be line-wrapped?",
       "spiegazione": "The body should be wrapped at 72 characters per line: a standard inherited from 80-column terminals, since Git indents the body by 4 spaces on each side.",
       "risposte": [
-        "A 72 characters per line",
+        "At 72 characters per line",
         "There is no limit",
-        "A 50 characters",
-        "A 100 characters for each line of the body"
+        "At 50 characters",
+        "At 100 characters for each line of the body"
       ]
     },
     "a08a27c961c8": {
@@ -876,7 +876,7 @@
         "Goes to the home directory"
       ]
     },
-    "8be7f2808ece": {
+    "30b297cac3cf": {
       "domanda": "What is the sequence to connect a local repository to a new empty remote?",
       "spiegazione": "Sequence: add the remote (`git remote add origin <url>`), rename the branch to `main` (`git branch -M main`), then `git push -u origin main`.",
       "risposte": [
@@ -886,7 +886,7 @@
         "fetch, merge, commit"
       ]
     },
-    "50deeea88eff": {
+    "1ef178743a64": {
       "domanda": "What is a code review?",
       "spiegazione": "A code review is a conversation, not a pass/fail test: the reviewer looks for bugs, unclear code, and violations of team standards.",
       "risposte": [
@@ -896,8 +896,8 @@
         "The permanent deletion of a branch after it has been merged into `main`"
       ]
     },
-    "83d5154a57af": {
-      "domanda": "According to the lecture notes, when should a commit be split into two?",
+    "ecfb82973470": {
+      "domanda": "When should a commit be split into two?",
       "spiegazione": "Each commit should represent a single logical unit: if the commit message requires the word 'and', it is advisable to split it into two commits.",
       "risposte": [
         "Always",
@@ -906,8 +906,8 @@
         "Every Friday"
       ]
     },
-    "645e70d5adef": {
-      "domanda": "According to the lecture notes, in what mood should a good commit message be written?",
+    "c58e1e73b813": {
+      "domanda": "In what mood should a good commit message be written?",
       "spiegazione": "It is written in the imperative mood: 'Add login form', not 'Added login form'; the first line should be under 50 characters, and the body under 72.",
       "risposte": [
         "Expressed as a question addressed to other team members",
@@ -926,7 +926,7 @@
         "Read it carefully to understand which parts are in conflict"
       ]
     },
-    "70b283bd05d3": {
+    "923eb0fa24a4": {
       "domanda": "Why should you not manually modify the `.git` folder?",
       "spiegazione": "The `.git` folder is entirely managed by Git via its commands: it should never be modified manually.",
       "risposte": [
@@ -988,7 +988,7 @@
     },
     "4f90c4991cc4": {
       "domanda": "Which `git reset` option permanently discards changes?",
-      "spiegazione": "A describes keeping staged changes, B discards them permanently, C moves them to the working directory (default), D keeps them unstaged.",
+      "spiegazione": "`--soft` keeps changes staged, `--mixed` puts them back in the working directory (default), `--hard` discards them permanently.",
       "risposte": [
         "`--keep`",
         "`--hard`",
@@ -1006,7 +1006,7 @@
         "A simple list"
       ]
     },
-    "9c7145142ba3": {
+    "fe26e2b9bdb4": {
       "domanda": "What is the characteristic of an absolute path?",
       "spiegazione": "An absolute path starts from the root of the file system (with /) and works from any location; a relative path starts from the current directory.",
       "risposte": [
@@ -1026,7 +1026,7 @@
         "To delete the history"
       ]
     },
-    "785f1682c50d": {
+    "4a8fd44ff64d": {
       "domanda": "Where must the `.gitignore` file be located to be recognized by Git?",
       "spiegazione": "The `.gitignore` file should be placed in the project root, in the same location as the `.git` directory, to be recognized.",
       "risposte": [
@@ -1036,7 +1036,7 @@
         "In `node_modules`"
       ]
     },
-    "578265a24421": {
+    "e5df73cc2073": {
       "domanda": "When is it advisable to use squash & merge instead of a regular merge?",
       "spiegazione": "Squash & merge condenses the feature into a single commit: useful for a linear mainline history without noise, at the cost of losing atomic history.",
       "risposte": [
@@ -1046,7 +1046,7 @@
         "Never, it is deprecated"
       ]
     },
-    "2dd7ee22e217": {
+    "30dbdecbd11b": {
       "domanda": "In the most common workflow, how are rebase and merge combined?",
       "spiegazione": "Common practice: use rebase to keep the feature branch up to date during development, then use `merge --no-ff` to record the integration point in `main`.",
       "risposte": [
@@ -1076,7 +1076,7 @@
       ],
       "spiegazione": "*testo* produces italic; **testo** bold, ~~testo~~ strikethrough and `testo` inline code."
     },
-    "d91a3b6a28d0": {
+    "314fcd8e8598": {
       "domanda": "What are badges used for in a README?",
       "spiegazione": "Badges (usually from Shields.io) are small images at the top of the README that display information such as build status, license, or version.",
       "risposte": [
@@ -1126,7 +1126,7 @@
         "pwd"
       ]
     },
-    "2a2480910b21": {
+    "99fd28aa513f": {
       "domanda": "What is the recommended length for a commit subject line?",
       "spiegazione": "The subject line should be kept to <= 50 characters (absolute maximum 72; beyond that, GitHub truncates with ellipsis).",
       "risposte": [
@@ -1136,7 +1136,7 @@
         "It must consist of exactly ten words, no more and no less"
       ]
     },
-    "ec3a8b3a5984": {
+    "00d88694b1b0": {
       "domanda": "Why is a trailing space after a `.gitignore` rule a problem?",
       "spiegazione": "A trailing space silently breaks the rule: Git looks for a file whose name includes that space, and the rule never matches anything.",
       "risposte": [
@@ -1156,7 +1156,7 @@
         "Opens it immediately in the default text editor"
       ]
     },
-    "80400d0ba239": {
+    "9a222cb3d609": {
       "domanda": "What is the most important category of files to ignore?",
       "spiegazione": "The most important rule: always ignore secrets and credentials (`.env`, API keys, passwords, tokens).",
       "risposte": [
@@ -1176,7 +1176,7 @@
         "fix"
       ]
     },
-    "47a29fe9230b": {
+    "f0512458e6f9": {
       "domanda": "What does the Ctrl+R shortcut do in the terminal?",
       "spiegazione": "Ctrl+R starts a reverse search through the command history; the Tab key is used for autocompletion.",
       "risposte": [
@@ -1196,7 +1196,7 @@
         "Deletes all files contained within the `src` folder"
       ]
     },
-    "1baddb4678b9": {
+    "6cad11aab838": {
       "domanda": "In a merge commit, which parent does Git consider the 'official' path?",
       "spiegazione": "Git treats the first parent as the official path (the branch you were on); the tilde (`~`) follows the first parent.",
       "risposte": [
@@ -1216,7 +1216,7 @@
         "`git stash`"
       ]
     },
-    "b91e67eb7abe": {
+    "7d3e480c71fe": {
       "domanda": "What is `origin` in Git?",
       "spiegazione": "`origin` is not a special keyword: it is simply the conventional alias for the remote URL, so you don't have to type it in full.",
       "risposte": [
@@ -1248,7 +1248,7 @@
     },
     "e3bad2817cc4": {
       "domanda": "How should the Cmder (Full version) file be handled after downloading?",
-      "spiegazione": "Cmder (Full version) is used by extracting the zip into a folder; the handout recommends never opening .zip files directly.",
+      "spiegazione": "Cmder (Full version) is used by extracting the zip into a folder, without opening the .zip file directly.",
       "risposte": [
         "It must be uploaded to GitHub before use",
         "It must be opened directly from within the compressed zip file",
@@ -1256,7 +1256,7 @@
         "It simply needs to be extracted (unzipped) into a new folder"
       ]
     },
-    "c662d21d548d": {
+    "e6ea755995a3": {
       "domanda": "What does it mean that 'review comments are on the code, not on the person'?",
       "spiegazione": "A review is a conversation: comments are about the code. They should not be taken personally, and the reviewer must explain what to change and why.",
       "risposte": [
@@ -1276,7 +1276,7 @@
         "To develop new features"
       ]
     },
-    "3eeae7169374": {
+    "6226f58eae03": {
       "domanda": "Which filename is valid because Git recognizes it?",
       "spiegazione": "The name must be exactly `.gitignore`: `.Gitignore` or `.gitignore.txt` are not recognized (note the `.txt` added by some editors).",
       "risposte": [
@@ -1296,7 +1296,7 @@
         "`tail -n 5`"
       ]
     },
-    "0dccc42c91ee": {
+    "65a2342936d9": {
       "domanda": "What is commit squashing before a merge?",
       "spiegazione": "Squash combines small/confused commits into a single clean one, usually with `git rebase -i`, changing `pick` to `squash`.",
       "risposte": [
@@ -1306,7 +1306,7 @@
         "Duplicate all commits from the current branch onto another branch"
       ]
     },
-    "6b52c70858ff": {
+    "393453d32fe2": {
       "domanda": "How does a VCS help prevent accidental overwrites?",
       "spiegazione": "Without versioning, saving replaces what was there; a VCS makes every saved state recoverable, so no action is permanent.",
       "risposte": [
@@ -1316,7 +1316,7 @@
         "Locks the editor"
       ]
     },
-    "bc39fd342640": {
+    "8d713c26f2a8": {
       "domanda": "What do three dashes --- on a line by themselves create?",
       "spiegazione": "Three dashes --- on their own line create a horizontal rule.",
       "risposte": [
@@ -1346,9 +1346,9 @@
         "Open on disk, closed in the editor, and then permanently saved"
       ]
     },
-    "1800ef7f4e2a": {
-      "domanda": "In the 'simple team workflow', what is the rule regarding the main branch?",
-      "spiegazione": "In the simple team workflow, `main` is long-lived, always contains working code, and you never commit directly to it: you work on feature branches via PRs.",
+    "de58cdc41c90": {
+      "domanda": "In the feature-branch team workflow, what is the rule regarding the main branch?",
+      "spiegazione": "In the feature-branch team workflow, `main` is long-lived, always contains working code, and you never commit directly to it: you work on feature branches via PRs.",
       "risposte": [
         "The `main` branch should be deleted immediately after every version release",
         "You commit directly to `main` multiple times a day during work",
@@ -1366,9 +1366,9 @@
         "To list all authors who contributed to the project"
       ]
     },
-    "4c5ff31b1428": {
-      "domanda": "What are the four GitHub tabs mentioned as the ones to know?",
-      "spiegazione": "The tabs to know are Code (files and commits), Pull requests, Issues, and Settings (access, default branch, protections).",
+    "a1e1c11f3a09": {
+      "domanda": "What are four main tabs of a repository on GitHub?",
+      "spiegazione": "The main tabs are Code (files and commits), Pull requests, Issues, and Settings (access, default branch, protections).",
       "risposte": [
         "Code, Pull requests, Issues, Settings",
         "Only the two main tabs, i.e., the Code tab and the Settings tab of the project",
@@ -1396,7 +1396,7 @@
         "Stages changes"
       ]
     },
-    "f9589319ba53": {
+    "0dffa847e0f9": {
       "domanda": "What is the version history of a document?",
       "spiegazione": "Version history automatically records every change, like a photo album of the document, allowing you to revert to previous states.",
       "risposte": [
@@ -1436,7 +1436,7 @@
         "The detailed message of every commit in the entire project history"
       ]
     },
-    "5f76c7abaa26": {
+    "c9ab62d2f2fb": {
       "domanda": "What is a fast-forward merge?",
       "spiegazione": "If `main` has no new commits since the branch was created, the merge is fast-forward: the `main` pointer advances without creating a new commit.",
       "risposte": [
@@ -1446,7 +1446,7 @@
         "When `main` hasn't changed since the branch was created, Git moves the pointer forward without a new commit"
       ]
     },
-    "2a8cea2a88e0": {
+    "54cb9eac3a03": {
       "domanda": "Which of these is a commit message to avoid because it is vague?",
       "spiegazione": "Messages like 'fix stuff', 'updates', 'wip', or 'saved' are valid but useless as documentation: months later, no one understands their meaning.",
       "risposte": [
@@ -1456,7 +1456,7 @@
         "fix stuff"
       ]
     },
-    "e4bc6c43234b": {
+    "12109187c831": {
       "domanda": "What are the three main benefits of atomic commits?",
       "spiegazione": "Advantages: safe rollbacks (targeted revert), faster debugging (small snapshots), and more readable reviews.",
       "risposte": [
@@ -1466,7 +1466,7 @@
         "Reverts, debugging, and reviews"
       ]
     },
-    "04981a596c2d": {
+    "53653ff38d9a": {
       "domanda": "What three basic questions does a version control system answer?",
       "spiegazione": "A VCS records changes over time by answering: what changed, who changed it, and when.",
       "risposte": [
@@ -1476,7 +1476,7 @@
         "Who pays for the work, who approves it, and who handles the release"
       ]
     },
-    "b08a92281b0e": {
+    "9064b7237aa4": {
       "domanda": "What is a repository in Git?",
       "spiegazione": "The repository contains the project and its entire history: every file, every version, commit messages, branches, and tags.",
       "risposte": [
@@ -1486,7 +1486,7 @@
         "A paid server"
       ]
     },
-    "836c7b488568": {
+    "3d31397b86ac": {
       "domanda": "Why run `git pull origin main` before creating a new feature branch?",
       "spiegazione": "If the local `main` is outdated, the created branch lacks recent commits, which increases the likelihood of future conflicts. Always pull `main` first.",
       "risposte": [
@@ -1496,7 +1496,7 @@
         "Because this operation significantly speeds up the subsequent push"
       ]
     },
-    "f2e55fb5998b": {
+    "561589b3a2ba": {
       "domanda": "Why are Conventional Commits designed to be machine-readable?",
       "spiegazione": "The structured format of Conventional Commits allows automated tools to generate release notes and determine whether a new version number is required.",
       "risposte": [
@@ -1566,7 +1566,7 @@
         "Indicates a comment: the line is ignored by Git"
       ]
     },
-    "c2f15023f61a": {
+    "c690f80546ef": {
       "domanda": "Why is it beneficial to name a version in Google Docs?",
       "spiegazione": "Docs can merge older versions to save space; naming a version preserves it, because named versions are never merged.",
       "risposte": [
@@ -1586,7 +1586,7 @@
         "Creates two commits"
       ]
     },
-    "af00f0793ba4": {
+    "ebb14d0e67d0": {
       "domanda": "How do you exit the `less` command while scrolling through a file?",
       "spiegazione": "You exit `less` by pressing the `q` key (quit).",
       "risposte": [
@@ -1596,7 +1596,7 @@
         "By pressing `q`"
       ]
     },
-    "b1ab78c917e3": {
+    "967386644951": {
       "domanda": "What is the difference between `git init` and `git clone`?",
       "spiegazione": "`git init` starts with an empty repository without history; `git clone` downloads an existing repository complete with history and configures the `origin` remote.",
       "risposte": [
@@ -1616,7 +1616,7 @@
         "Deletes the second file specified in the command"
       ]
     },
-    "a9fa7a25655d": {
+    "bac65182af85": {
       "domanda": "What does an audit trail guarantee in a VCS?",
       "spiegazione": "In professional or regulated environments, it is necessary to know who changed what and why: the VCS creates a permanent and attributed record.",
       "risposte": [
@@ -1626,7 +1626,7 @@
         "Sending commits to a second remote backup server"
       ]
     },
-    "5dc02f6912f9": {
+    "8bacecfee3bb": {
       "domanda": "Why should you not rebase a branch used by other people?",
       "spiegazione": "Rebase rewrites history: on a shared branch, it breaks others' copies. It should only be done on local, unpublished commits.",
       "risposte": [
@@ -1636,7 +1636,7 @@
         "Because it physically deletes all files present in the branch"
       ]
     },
-    "8766c9b1db2b": {
+    "fcfb01d19694": {
       "domanda": "What does `git diff` show without any additional arguments?",
       "spiegazione": "`git diff` compares the working directory with the staging area: it shows changes that are not yet staged.",
       "risposte": [
@@ -1656,7 +1656,7 @@
         "buffer"
       ]
     },
-    "1561f1c6d1b1": {
+    "b5135cfa10af": {
       "domanda": "Why in many teams is it not the person who opens the PR who clicks 'Merge pull request'?",
       "spiegazione": "In most teams, it is the reviewer or a senior member who performs the merge, after the PR has been approved and agreed upon.",
       "risposte": [
@@ -1666,7 +1666,7 @@
         "The reviewer does it"
       ]
     },
-    "de61024c9406": {
+    "af4574a7311d": {
       "domanda": "Why is it better to use relative links instead of absolute URLs in the `README`?",
       "spiegazione": "Relative links (e.g., `./docs/setup.md`) remain valid after cloning the repo and do not break if branch names change.",
       "risposte": [
@@ -1676,7 +1676,7 @@
         "GitHub blocks absolute URLs"
       ]
     },
-    "a83c00628fdd": {
+    "36c206712367": {
       "domanda": "In the commit subject line, what should you not do?",
       "spiegazione": "The subject line is a title: it should not end with a period, and vague words like 'fix stuff' or 'wip' should be avoided.",
       "risposte": [
@@ -1736,8 +1736,8 @@
         "*"
       ]
     },
-    "62fb1095df35": {
-      "domanda": "What is a common mistake in code review described in the lecture notes?",
+    "702101a303b7": {
+      "domanda": "What is a common mistake in code review?",
       "spiegazione": "Typical errors: reviewing too quickly and skipping lines, saying 'it's wrong' without explaining, approving code that hasn't been understood, and taking comments personally.",
       "risposte": [
         "Reviewing too quickly",
@@ -1746,7 +1746,7 @@
         "Honestly admitting not having understood a certain part of the code"
       ]
     },
-    "023439d87326": {
+    "5d98838b777d": {
       "domanda": "Why is Git valuable even for a solo developer?",
       "spiegazione": "Even when working alone: you can experiment without risks (every state is recoverable), you have a project journal, use `git bisect` for bugs, and have an offsite backup with push.",
       "risposte": [
@@ -1756,8 +1756,8 @@
         "Has no value at all"
       ]
     },
-    "9cb051722179": {
-      "domanda": "Why does the appendix suggest using `git commit` without `-m`?",
+    "59bc779b56b3": {
+      "domanda": "Why is it convenient to use `git commit` without `-m`?",
       "spiegazione": "Without `-m`, `git commit` opens the editor (e.g., VS Code): it is easy to write multi-line messages and see the character count.",
       "risposte": [
         "Because `-m` is deprecated",
@@ -1776,8 +1776,8 @@
         "`-h`"
       ]
     },
-    "3e69100c59cc": {
-      "domanda": "What does the alias `git config --global alias.lg ...` suggested by the guide allow you to do?",
+    "b03c79fef66b": {
+      "domanda": "What does the alias `git config --global alias.lg \"log --graph --oneline --decorate --all\"` allow you to do?",
       "spiegazione": "The `lg` alias is set to `log --graph --oneline --decorate --all`, so you only need to type `git lg` to view a tree log of the repository.",
       "risposte": [
         "Deletes the history",
@@ -1796,7 +1796,7 @@
         "Ignores the entire folder named log"
       ]
     },
-    "5edd82c365b9": {
+    "7e57266de28d": {
       "domanda": "Which two commands is `git pull` a shortcut for?",
       "spiegazione": "`git pull` = `git fetch` (downloads) + `git merge` (merges) of the remote branch into the current local branch.",
       "risposte": [
@@ -1806,7 +1806,7 @@
         "The `git status` command followed by the `git log` command"
       ]
     },
-    "d833f8d362fc": {
+    "26f20d772a31": {
       "domanda": "Comparing where the history is stored, how are Google Docs and Git described?",
       "spiegazione": "Google Docs is centralized on Google's servers; Git is distributed: everyone has the full history locally and can work offline.",
       "risposte": [
@@ -1816,7 +1816,7 @@
         "Docs is centralized, Git is distributed"
       ]
     },
-    "2929ff7401d8": {
+    "629b79b28ec9": {
       "domanda": "What is a pull request (PR)?",
       "spiegazione": "A PR is a GitHub feature (not a Git command) used to request merging your branch into another, enabling comments and reviews.",
       "risposte": [
@@ -1836,7 +1836,7 @@
         "Physically duplicated folders inside the project's working directory"
       ]
     },
-    "f985ce0bb90c": {
+    "1f559d398c47": {
       "domanda": "When is the version history not accessible in Google Docs?",
       "spiegazione": "Version history is only available with edit permissions; it cannot be accessed with view-only or comment-only permissions.",
       "risposte": [
@@ -1846,7 +1846,7 @@
         "When the document is too long and contains many pages of text"
       ]
     },
-    "c1788be185da": {
+    "d0525169ce8a": {
       "domanda": "How many H1 headings should a Markdown document have?",
       "spiegazione": "Only one H1 is used per document (it serves as the title); main sections use H2, without skipping levels (e.g., do not go from H2 to H4).",
       "risposte": [
@@ -1858,7 +1858,7 @@
     },
     "259bb65c4981": {
       "domanda": "Which scope should be selected when creating a PAT for normal repository work?",
-      "spiegazione": "For basic git work, the `repo` scope should be selected; the lecture notes also suggest setting an expiration (e.g., 90 days) instead of 'No expiration'.",
+      "spiegazione": "For basic git work, the `repo` scope should be selected; it is also good practice to set an expiration (e.g., 90 days) instead of 'No expiration'.",
       "risposte": [
         "`admin:org`",
         "`gist`",
@@ -1866,8 +1866,8 @@
         "`repo`, which covers basic repository work"
       ]
     },
-    "e949f03862d6": {
-      "domanda": "What is the suggested commit message format in Git Fundamentals?",
+    "fe9aead00385": {
+      "domanda": "What is the commit message format according to the Conventional Commits convention?",
       "spiegazione": "The format is `type(scope): short description`, with type being `feat`, `fix`, `docs`, `style`, `refactor`, `chore`.",
       "risposte": [
         "An initial hashtag followed by a brief textual description",
@@ -1886,7 +1886,7 @@
         "`git tag feature/login`"
       ]
     },
-    "915aeb525eb3": {
+    "7598fe9de68e": {
       "domanda": "Which command sets `main` as the default branch for new repositories?",
       "spiegazione": "`git config --global init.defaultBranch main` sets `main` as the global default for new repositories.",
       "risposte": [
@@ -1936,7 +1936,7 @@
         "The phone number linked to the personal GitHub account"
       ]
     },
-    "332db99a9c69": {
+    "711ff6a38195": {
       "domanda": "What should the body of a commit message explain?",
       "spiegazione": "The diff already shows the 'how'; the body should explain the 'why': the problem solved or the decision made.",
       "risposte": [
@@ -1986,7 +1986,7 @@
         "Docs only"
       ]
     },
-    "03c55b38dd9a": {
+    "cc01a82e5c92": {
       "domanda": "Why is it advisable to create an empty repository on GitHub if you already have a local project?",
       "spiegazione": "By initializing the remote with files, its history differs from the local one, and the first push fails ('unrelated histories'): it is better to start empty.",
       "risposte": [
@@ -1996,7 +1996,7 @@
         "Otherwise the first push fails"
       ]
     },
-    "b6884a9e64fc": {
+    "d3eb9f1ac303": {
       "domanda": "What does a reviewer typically look for during a code review?",
       "spiegazione": "The reviewer checks that the code does what the PR claims, that it has no obvious bugs, that it is clear, and that it respects the team's naming and formatting conventions.",
       "risposte": [
@@ -2006,7 +2006,7 @@
         "The number of lines"
       ]
     },
-    "8da67da5bade": {
+    "92dfb593b929": {
       "domanda": "What are the three main reasons to use a `.gitignore`?",
       "spiegazione": "A `.gitignore` keeps the repository clean (no temporary/build files), protects secrets (API keys, `.env`), and reduces conflicts on machine-specific files.",
       "risposte": [
@@ -2016,7 +2016,7 @@
         "To allow compiling code, running tests, and deploying"
       ]
     },
-    "8892f2fb9e53": {
+    "977e460eb39b": {
       "domanda": "What is the purpose of the `--no-ff` option in `git merge --no-ff`?",
       "spiegazione": "`--no-ff` forces the creation of a merge commit even when a fast-forward would be possible, to keep track of the branch's existence.",
       "risposte": [
@@ -2026,7 +2026,7 @@
         "To skip conflicts"
       ]
     },
-    "1c92e79f8ff5": {
+    "a13bda7e76c3": {
       "domanda": "How do you correctly NOT ignore a file inside a folder that is otherwise ignored?",
       "spiegazione": "If you ignore the entire folder (`logs/`), Git no longer looks inside, and negation does not work: you ignore the contents (`logs/*`) and then make the exception.",
       "risposte": [
@@ -2066,8 +2066,8 @@
         "Same lines, same file"
       ]
     },
-    "ce353f7867cd": {
-      "domanda": "What is Git Bash, as mentioned among the tools?",
+    "db1a3cce08d5": {
+      "domanda": "What is Git Bash?",
       "spiegazione": "Git Bash is a terminal for Windows that includes Git and a Unix shell, with utilities not available in Command Prompt: the easiest way to use Git on Windows.",
       "risposte": [
         "A browser extension",
@@ -2076,7 +2076,7 @@
         "A Windows terminal that includes Git and a Unix shell with utilities not present in Command Prompt"
       ]
     },
-    "c69a005e9755": {
+    "19443e3712bf": {
       "domanda": "What is the final step in the lifecycle of a pull request?",
       "spiegazione": "Lifecycle: branch push, PR opening, review, any modifications, approval, merge, and finally deletion of the feature branch.",
       "risposte": [
@@ -2086,7 +2086,7 @@
         "After approval and merge, the feature branch is deleted"
       ]
     },
-    "7a58d9f36f4b": {
+    "8ad2b2a88012": {
       "domanda": "What is the daily workflow cycle with a remote?",
       "spiegazione": "Each session: Pull (you download updates), Work (you modify and commit locally), Push (you send commits to the remote).",
       "risposte": [
@@ -2096,7 +2096,7 @@
         "Pull, work, push"
       ]
     },
-    "c715c3790b6a": {
+    "b0222113fd44": {
       "domanda": "When is the blank line between the subject and body of a commit mandatory?",
       "spiegazione": "If there is a body, the blank line between the subject and body is mandatory: without it, some tools treat everything as a single subject line.",
       "risposte": [
@@ -2106,7 +2106,7 @@
         "Only when the commit message exceeds seventy-two characters"
       ]
     },
-    "0ff50b8ba201": {
+    "007e06ca1ea5": {
       "domanda": "Comparing Google Docs and Git, how does snapshot saving work?",
       "spiegazione": "Google Docs takes automatic snapshots; Git requires a manual and deliberate commit with a message explaining the change.",
       "risposte": [
@@ -2136,7 +2136,7 @@
         "To separate options from filenames (protects names starting with `-`)"
       ]
     },
-    "44190a0133b9": {
+    "cb87c6057c5b": {
       "domanda": "What is the correct way to close multiple issues from a PR description?",
       "spiegazione": "The keyword must be repeated for each issue: `Closes #42, Closes #67`. The form `Closes #42, #67` closes only issue #42.",
       "risposte": [
@@ -2146,7 +2146,7 @@
         "Simply write `Closes #42, #67`"
       ]
     },
-    "b2e0cfe622c7": {
+    "73febc87d39d": {
       "domanda": "What uniquely identifies each commit?",
       "spiegazione": "Each commit has a unique SHA hash (fingerprint), along with a timestamp, author, and message.",
       "risposte": [
@@ -2166,7 +2166,7 @@
         "The version history is deleted"
       ]
     },
-    "61b1f1335c76": {
+    "946b6fb17209": {
       "domanda": "What is Markdown?",
       "spiegazione": "Markdown is a lightweight formatting language: it is written in plain text using keyboard symbols and rendered as a formatted page.",
       "risposte": [
@@ -2216,7 +2216,7 @@
         "To compress and reduce the size of the project history"
       ]
     },
-    "b8b3899dfdc2": {
+    "778e155c4441": {
       "domanda": "Why does adding an already committed file to `.gitignore` have no effect?",
       "spiegazione": "`.gitignore` only ignores files that have never been tracked. For a file that is already committed, you must remove it from the index using `git rm --cached` (the file remains on disk).",
       "risposte": [
@@ -2236,7 +2236,7 @@
         "Forces the file to be committed"
       ]
     },
-    "237662bffb3b": {
+    "83b81c695b1b": {
       "domanda": "What should you do if you accidentally push commits to `main` in a shared repository?",
       "spiegazione": "In a shared repository, `reset --hard` or `push --force` rewrite history and break other people's copies: in that case, contact the team lead immediately.",
       "risposte": [
@@ -2246,7 +2246,7 @@
         "Create a new clone"
       ]
     },
-    "7e81b5375afc": {
+    "f7b5474b26be": {
       "domanda": "What is the difference between a VCS and a simple backup?",
       "spiegazione": "A backup saves copies at intervals; a VCS saves deliberate and described checkpoints (a fix, a feature), and the description is as important as the snapshot.",
       "risposte": [
@@ -2256,7 +2256,7 @@
         "The VCS is slower"
       ]
     },
-    "76174d0a3daf": {
+    "10b54c9d3249": {
       "domanda": "What is the difference between `git add \"*.txt\"` and `git add *.txt`?",
       "spiegazione": "`git add \"*.txt\"` lets Git handle the pattern (safe and recursive); `git add *.txt` expands the pattern in the shell, which is less portable on Windows and not recursive.",
       "risposte": [
@@ -2266,8 +2266,8 @@
         "With quotes, Git handles the pattern (recursive and cross-platform); without, the terminal expands it"
       ]
     },
-    "cb14d445e4fd": {
-      "domanda": "Why does the lecture advise against running `git add .` blindly?",
+    "16f605ea5343": {
+      "domanda": "Why is it inadvisable to run `git add .` blindly?",
       "spiegazione": "You should run `git status` first, to know exactly which files will end up in staging.",
       "risposte": [
         "Because that command is now deprecated in recent versions of Git",
@@ -2286,8 +2286,8 @@
         "Compresses commits"
       ]
     },
-    "f9530c90419a": {
-      "domanda": "In the analogy, what does the 'published' `main` branch correspond to?",
+    "5da598a57b94": {
+      "domanda": "In a publishing analogy, what does the 'published' `main` branch correspond to?",
       "spiegazione": "Main is like a published book; a branch is like a private draft: you publish (merge) only when the draft is ready.",
       "risposte": [
         "A rough draft that is thrown away at the end of the work",
@@ -2306,7 +2306,7 @@
         "`git init --user`"
       ]
     },
-    "83b13e9eda74": {
+    "897dfb60aff7": {
       "domanda": "What is the 'Bracket Style' for commit messages?",
       "spiegazione": "The bracket style places key information at the beginning: [area][type] imperative description, for quickly scanning the commit list.",
       "risposte": [
@@ -2316,7 +2316,7 @@
         "An initial hashtag immediately followed by the linked issue number"
       ]
     },
-    "db8bd4be5dac": {
+    "195a141fbdaa": {
       "domanda": "What is the legacy syntax, still valid, for discarding changes to a file?",
       "spiegazione": "`git checkout -- <file>` is the legacy syntax for discarding changes; today `git restore` is preferred as it is clearer.",
       "risposte": [
@@ -2326,7 +2326,7 @@
         "`git erase file`"
       ]
     },
-    "02d2765a1a69": {
+    "7502c8bc2789": {
       "domanda": "What is an atomic commit?",
       "spiegazione": "An atomic commit performs exactly one logical task: the concept of the atom as an indivisible unit applied to Git.",
       "risposte": [
@@ -2336,8 +2336,8 @@
         "A giant commit"
       ]
     },
-    "300bf169c1cb": {
-      "domanda": "In the four-zone analogy, what does placing items on the bed correspond to?",
+    "20cdf20922b4": {
+      "domanda": "In the suitcase analogy for Git's four zones, what does placing items on the bed correspond to?",
       "spiegazione": "The wardrobe represents the working directory, the items on the bed represent the staging area (selected but not yet 'packed'), and the closed suitcase represents the commit.",
       "risposte": [
         "The push to the remote",
@@ -2346,7 +2346,7 @@
         "The final commit"
       ]
     },
-    "6c290bb81f04": {
+    "f911e7132d92": {
       "domanda": "What does `git remote add origin <url>` do?",
       "spiegazione": "`git remote add origin <url>` associates a new remote named `origin` with the local repository; `remote remove` deletes it, and `set-url` changes its URL.",
       "risposte": [
@@ -2356,14 +2356,14 @@
         "Adds a new remote named `origin` pointing to the specified URL"
       ]
     },
-    "f08bfe6feec4": {
-      "domanda": "In the pantry analogy, why is centralized like a public library?",
+    "251b39f6958e": {
+      "domanda": "Why is a centralized VCS comparable to a public library?",
       "spiegazione": "Centralized = one single library: if it burns down (server lost), the books disappear; if it's closed (server down), no one can work.",
       "risposte": [
-        "A opens only at night",
-        "B members have copies",
-        "C you pay for entry",
-        "D there is only one building with all the books: if it burns down or is closed, no one can work"
+        "Opens only at night",
+        "Members have copies",
+        "You pay for entry",
+        "There is only one building with all the books: if it burns down or is closed, no one can work"
       ]
     },
     "13ea6e2a2154": {
