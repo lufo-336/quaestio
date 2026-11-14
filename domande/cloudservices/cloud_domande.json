@@ -10,7 +10,8 @@
             "Memorizzare lo stato reale delle risorse gestite da Terraform"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Terraform utilizza il file di stato per sapere quali risorse esistono e quali modifiche devono essere applicate."
+        "spiegazione": "Terraform utilizza il file di stato per sapere quali risorse esistono e quali modifiche devono essere applicate.",
+        "tipo": "teoria"
     },
     {
         "id": 2,
@@ -23,7 +24,8 @@
             "Permette di descrivere l'infrastruttura come codice e renderla riproducibile"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Terraform implementa il paradigma Infrastructure as Code (IaC), consentendo di creare e gestire infrastrutture tramite file di configurazione."
+        "spiegazione": "Terraform implementa il paradigma Infrastructure as Code (IaC), consentendo di creare e gestire infrastrutture tramite file di configurazione.",
+        "tipo": "teoria"
     },
     {
         "id": 3,
@@ -36,7 +38,8 @@
             "Per il timeout massimo di esecuzione"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le function a consumo hanno un limite di esecuzione (10 minuti su Azure Consumption, 15 su Lambda): un job di sei ore va su container o VM. Gli altri motivi sono falsi: le function accedono a storage esterni e supportano molti linguaggi."
+        "spiegazione": "Le function a consumo hanno un limite di esecuzione (10 minuti su Azure Consumption, 15 su Lambda): un job di sei ore va su container o VM. Gli altri motivi sono falsi: le function accedono a storage esterni e supportano molti linguaggi.",
+        "tipo": "architettura"
     },
     {
         "id": 4,
@@ -49,7 +52,8 @@
             "2018"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Lambda è nata nel 2014 ed è stato il primo servizio FaaS a rendere popolare il serverless. Il 2006 è l'anno di nascita di AWS (con EC2 e S3)."
+        "spiegazione": "Lambda è nata nel 2014 ed è stato il primo servizio FaaS a rendere popolare il serverless. Il 2006 è l'anno di nascita di AWS (con EC2 e S3).",
+        "tipo": "teoria"
     },
     {
         "id": 5,
@@ -62,7 +66,8 @@
             "Un server FTP sempre acceso"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I trigger di Azure Functions o AWS Lambda permettono di elaborare automaticamente i file senza mantenere server attivi."
+        "spiegazione": "I trigger di Azure Functions o AWS Lambda permettono di elaborare automaticamente i file senza mantenere server attivi.",
+        "tipo": "architettura"
     },
     {
         "id": 6,
@@ -75,7 +80,8 @@
             "Gestire gli utenti Azure AD"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il Resource Group è un contenitore logico che facilita la gestione e l'eliminazione coordinata delle risorse."
+        "spiegazione": "Il Resource Group è un contenitore logico che facilita la gestione e l'eliminazione coordinata delle risorse.",
+        "tipo": "teoria"
     },
     {
         "id": 7,
@@ -88,7 +94,8 @@
             "Vendor lock-in"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il cloud bursting è il caso classico di hybrid cloud: l'infrastruttura privata regge il carico base e il public cloud assorbe i picchi. Multi-cloud è usare più provider public; lift-and-shift è migrare senza riprogettare."
+        "spiegazione": "Il cloud bursting è il caso classico di hybrid cloud: l'infrastruttura privata regge il carico base e il public cloud assorbe i picchi. Multi-cloud è usare più provider public; lift-and-shift è migrare senza riprogettare.",
+        "tipo": "architettura"
     },
     {
         "id": 8,
@@ -101,7 +108,8 @@
             "Il Pod viene ripristinato solo dopo il riavvio del nodo"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il Deployment confronta continuamente lo stato reale con quello desiderato e ricrea automaticamente i Pod mancanti."
+        "spiegazione": "Il Deployment confronta continuamente lo stato reale con quello desiderato e ricrea automaticamente i Pod mancanti.",
+        "tipo": "teoria"
     },
     {
         "id": 9,
@@ -114,7 +122,8 @@
             "Gestire le Virtual Network"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il ReplicaSet mantiene costante il numero di repliche richiesto dal Deployment."
+        "spiegazione": "Il ReplicaSet mantiene costante il numero di repliche richiesto dal Deployment.",
+        "tipo": "teoria"
     },
     {
         "id": 10,
@@ -127,7 +136,8 @@
             "Deve essere univoco soltanto all'interno dell'account AWS che lo sta creando"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il nome del bucket è univoco a livello globale, tra tutti gli account AWS del mondo: se 'its-demo-bucket' esiste già da qualche parte, va scelto un altro nome."
+        "spiegazione": "Il nome del bucket è univoco a livello globale, tra tutti gli account AWS del mondo: se 'demo-bucket' esiste già da qualche parte, va scelto un altro nome.",
+        "tipo": "teoria"
     },
     {
         "id": 11,
@@ -140,7 +150,8 @@
             "Namespaces"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I namespace forniscono l'isolamento delle risorse di sistema tra i vari container."
+        "spiegazione": "I namespace forniscono l'isolamento delle risorse di sistema tra i vari container.",
+        "tipo": "teoria"
     },
     {
         "id": 12,
@@ -153,7 +164,8 @@
             "Apre la porta 8080 sul nodo"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il port-forward è un tunnel di sviluppo dal PC al pod: utile per testare senza esporre un LoadBalancer, ma temporaneo e non adatto alla produzione. Non modifica né il pod né i Service del cluster."
+        "spiegazione": "Il port-forward è un tunnel di sviluppo dal PC al pod: utile per testare senza esporre un LoadBalancer, ma temporaneo e non adatto alla produzione. Non modifica né il pod né i Service del cluster.",
+        "tipo": "codice"
     },
     {
         "id": 13,
@@ -166,7 +178,8 @@
             "Public Cloud"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "L'Hybrid Cloud integra risorse on-premises/private con servizi di cloud pubblico."
+        "spiegazione": "L'Hybrid Cloud integra risorse on-premises/private con servizi di cloud pubblico.",
+        "tipo": "teoria"
     },
     {
         "id": 14,
@@ -179,7 +192,8 @@
             "LoadBalancer Service"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un Service di tipo ClusterIP è accessibile esclusivamente dai Pod interni al cluster ed è il tipo predefinito."
+        "spiegazione": "Un Service di tipo ClusterIP è accessibile esclusivamente dai Pod interni al cluster ed è il tipo predefinito.",
+        "tipo": "teoria"
     },
     {
         "id": 15,
@@ -192,7 +206,8 @@
             "L'endpoint del servizio ma non la chiave, che viene richiesta all'utente finale"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il codice referenzia solo il nome (es. Connection = \"CosmosDbConnection\"); il valore vive negli app settings. Così ruotare una chiave o cambiare database non richiede una nuova build — si aggiorna la configurazione e si riavvia."
+        "spiegazione": "Il codice referenzia solo il nome (es. Connection = \"CosmosDbConnection\"); il valore vive negli app settings. Così ruotare una chiave o cambiare database non richiede una nuova build — si aggiorna la configurazione e si riavvia.",
+        "tipo": "teoria"
     },
     {
         "id": 16,
@@ -205,7 +220,8 @@
             "Una piattaforma Serverless come Azure Functions o AWS Lambda"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Per carichi di lavoro sporadici il serverless riduce i costi perché il pagamento è legato alle invocazioni della funzione."
+        "spiegazione": "Per carichi di lavoro sporadici il serverless riduce i costi perché il pagamento è legato alle invocazioni della funzione.",
+        "tipo": "architettura"
     },
     {
         "id": 17,
@@ -218,7 +234,8 @@
             "Il container viene eseguito più velocemente"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "I Docker Volume consentono la persistenza dei dati indipendentemente dal ciclo di vita del container."
+        "spiegazione": "I Docker Volume consentono la persistenza dei dati indipendentemente dal ciclo di vita del container.",
+        "tipo": "teoria"
     },
     {
         "id": 18,
@@ -231,7 +248,8 @@
             "Azure Front Door e CloudFront, con origini private e caching disattivato"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "ExpressRoute (Azure) e Direct Connect (AWS) sono circuiti privati dedicati che non transitano da Internet: banda garantita e latenza prevedibile. Le VPN passano comunque da Internet; Front Door/CloudFront sono CDN."
+        "spiegazione": "ExpressRoute (Azure) e Direct Connect (AWS) sono circuiti privati dedicati che non transitano da Internet: banda garantita e latenza prevedibile. Le VPN passano comunque da Internet; Front Door/CloudFront sono CDN.",
+        "tipo": "architettura"
     },
     {
         "id": 19,
@@ -244,7 +262,8 @@
             "Vengono restituiti al client con un errore che chiede di reinviare tutti i dati"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La coda fa da buffer: se il sistema a valle è giù, i messaggi restano lì e vengono processati al ripristino. È la tolleranza ai guasti che il disaccoppiamento compra: il dato non si perde per un'indisponibilità temporanea."
+        "spiegazione": "La coda fa da buffer: se il sistema a valle è giù, i messaggi restano lì e vengono processati al ripristino. È la tolleranza ai guasti che il disaccoppiamento compra: il dato non si perde per un'indisponibilità temporanea.",
+        "tipo": "architettura"
     },
     {
         "id": 20,
@@ -257,7 +276,8 @@
             "In un layer dell'immagine Docker, così viaggiano insieme all'applicazione ovunque"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Gli app settings sono variabili d'ambiente gestite dalla piattaforma: il codice conosce solo il nome del setting, mai il valore. Codice, HTML pubblico e immagini Docker sono tutti posti dove un segreto è leggibile da chiunque."
+        "spiegazione": "Gli app settings sono variabili d'ambiente gestite dalla piattaforma: il codice conosce solo il nome del setting, mai il valore. Codice, HTML pubblico e immagini Docker sono tutti posti dove un segreto è leggibile da chiunque.",
+        "tipo": "architettura"
     },
     {
         "id": 21,
@@ -270,7 +290,8 @@
             "ECS è l'orchestratore proprietario di AWS, mentre EKS è basato su Kubernetes"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "ECS è il servizio container proprietario di AWS, mentre EKS offre un cluster Kubernetes completamente gestito."
+        "spiegazione": "ECS è il servizio container proprietario di AWS, mentre EKS offre un cluster Kubernetes completamente gestito.",
+        "tipo": "teoria"
     },
     {
         "id": 22,
@@ -283,7 +304,8 @@
             "Eliminare il resource group"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il resource group è l'unità di distruzione: eliminandolo spariscono in cascata tutte le risorse contenute (e le eventuali chiavi trapelate diventano inerti). Spegnere o rimpicciolire lascia risorse 'a tassametro'; togliere gli alert nasconde il problema."
+        "spiegazione": "Il resource group è l'unità di distruzione: eliminandolo spariscono in cascata tutte le risorse contenute (e le eventuali chiavi trapelate diventano inerti). Spegnere o rimpicciolire lascia risorse 'a tassametro'; togliere gli alert nasconde il problema.",
+        "tipo": "teoria"
     },
     {
         "id": 23,
@@ -296,7 +318,8 @@
             "Lo stesso artefatto viene testato e distribuito in tutti gli ambienti riducendo le differenze tra sviluppo e produzione"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Le immagini Docker garantiscono che il software venga eseguito nello stesso ambiente in ogni fase della pipeline."
+        "spiegazione": "Le immagini Docker garantiscono che il software venga eseguito nello stesso ambiente in ogni fase della pipeline.",
+        "tipo": "teoria"
     },
     {
         "id": 24,
@@ -309,7 +332,8 @@
             "Event Hubs, che è pensato per la telemetria ad altissimo volume di dati"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Service Bus è la messaggistica 'enterprise' di Azure: ordering, transazioni, dead-letter avanzato e topic pub/sub. Queue Storage è più semplice ed economico ma non offre queste garanzie; Event Hubs serve per l'ingestione di telemetria."
+        "spiegazione": "Service Bus è la messaggistica 'enterprise' di Azure: ordering, transazioni, dead-letter avanzato e topic pub/sub. Queue Storage è più semplice ed economico ma non offre queste garanzie; Event Hubs serve per l'ingestione di telemetria.",
+        "tipo": "architettura"
     },
     {
         "id": 25,
@@ -322,7 +346,8 @@
             "Non esiste il 'cancello il gruppo e sparisce tutto': le risorse vanno eliminate singolarmente"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Su Azure il Resource Group è un contenitore obbligatorio: eliminandolo sparisce tutto il contenuto. Su AWS il raggruppamento è per tag, quindi la pulizia richiede di individuare ed eliminare le risorse una per una o via automazione."
+        "spiegazione": "Su Azure il Resource Group è un contenitore obbligatorio: eliminandolo sparisce tutto il contenuto. Su AWS il raggruppamento è per tag, quindi la pulizia richiede di individuare ed eliminare le risorse una per una o via automazione.",
+        "tipo": "teoria"
     },
     {
         "id": 26,
@@ -335,7 +360,8 @@
             "Load Balancer interno e una route table con la rotta predefinita verso Internet"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il Private Endpoint dà allo storage un indirizzo privato dentro la VNet; la Private DNS Zone fa risolvere il nome del servizio su quell'indirizzo. Su AWS il ruolo equivalente è di VPC Endpoint + Route 53 Private Hosted Zone."
+        "spiegazione": "Il Private Endpoint dà allo storage un indirizzo privato dentro la VNet; la Private DNS Zone fa risolvere il nome del servizio su quell'indirizzo. Su AWS il ruolo equivalente è di VPC Endpoint + Route 53 Private Hosted Zone.",
+        "tipo": "architettura"
     },
     {
         "id": 27,
@@ -348,7 +374,8 @@
             "Non esiste alcuna differenza"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I container condividono il kernel del sistema operativo host, mentre ogni VM esegue un proprio sistema operativo completo."
+        "spiegazione": "I container condividono il kernel del sistema operativo host, mentre ogni VM esegue un proprio sistema operativo completo.",
+        "tipo": "teoria"
     },
     {
         "id": 28,
@@ -361,7 +388,8 @@
             "L'IP pubblico del backend"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "`*` va bene in laboratorio; in produzione si elenca l'origine esatta del frontend: riduce la superficie di abuso e permette, se serve, l'uso di credenziali (vietato dallo standard con `*`). L'header parla di origini, non di IP o risorse."
+        "spiegazione": "`*` va bene in laboratorio; in produzione si elenca l'origine esatta del frontend: riduce la superficie di abuso e permette, se serve, l'uso di credenziali (vietato dallo standard con `*`). L'header parla di origini, non di IP o risorse.",
+        "tipo": "architettura"
     },
     {
         "id": 29,
@@ -374,7 +402,8 @@
             "Elastic Container Registry (ECR)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Amazon ECR è il registro di immagini container utilizzato con ECS ed EKS."
+        "spiegazione": "Amazon ECR è il registro di immagini container utilizzato con ECS ed EKS.",
+        "tipo": "teoria"
     },
     {
         "id": 30,
@@ -387,7 +416,8 @@
             "Salvare i dati esclusivamente nel filesystem del container"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le applicazioni stateful devono utilizzare volumi persistenti o servizi di storage esterni."
+        "spiegazione": "Le applicazioni stateful devono utilizzare volumi persistenti o servizi di storage esterni.",
+        "tipo": "architettura"
     },
     {
         "id": 31,
@@ -400,7 +430,8 @@
             "Aumenta automaticamente la memoria dei container"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "I Private Endpoint consentono comunicazioni private tra la VNet e i servizi Azure (o AWS tramite PrivateLink)."
+        "spiegazione": "I Private Endpoint consentono comunicazioni private tra la VNet e i servizi Azure (o AWS tramite PrivateLink).",
+        "tipo": "teoria"
     },
     {
         "id": 32,
@@ -413,7 +444,8 @@
             "Persistenza"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un consumer idempotente produce lo stesso risultato anche se elabora lo stesso messaggio più volte (es. derivando l'id dal contenuto): è la contromisura standard alla consegna at-least-once."
+        "spiegazione": "Un consumer idempotente produce lo stesso risultato anche se elabora lo stesso messaggio più volte (es. derivando l'id dal contenuto): è la contromisura standard alla consegna at-least-once.",
+        "tipo": "teoria"
     },
     {
         "id": 33,
@@ -426,7 +458,8 @@
             "Installare Docker"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I cgroups controllano l'utilizzo di CPU, memoria, I/O e altre risorse da parte dei container."
+        "spiegazione": "I cgroups controllano l'utilizzo di CPU, memoria, I/O e altre risorse da parte dei container.",
+        "tipo": "teoria"
     },
     {
         "id": 34,
@@ -439,7 +472,8 @@
             "Database e container insieme, poi l'account che li federa a livello di region"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La gerarchia è account → database → container e va costruita in quest'ordine: il container vive dentro un database che deve già esistere (saltare un livello produce un errore NotFound)."
+        "spiegazione": "La gerarchia è account → database → container e va costruita in quest'ordine: il container vive dentro un database che deve già esistere (saltare un livello produce un errore NotFound).",
+        "tipo": "teoria"
     },
     {
         "id": 35,
@@ -452,7 +486,8 @@
             "EKS non supporta i Pod"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "AKS ed EKS sono servizi Kubernetes gestiti che differiscono principalmente per il cloud provider."
+        "spiegazione": "AKS ed EKS sono servizi Kubernetes gestiti che differiscono principalmente per il cloud provider.",
+        "tipo": "teoria"
     },
     {
         "id": 36,
@@ -465,7 +500,8 @@
             "Site-to-Site, con tunnel ridondati tra le sedi e il Virtual Network Gateway"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La Point-to-Site collega un singolo client alla rete privata cloud. La Site-to-Site collega un'intera rete aziendale; ExpressRoute è un circuito dedicato per esigenze ben più grandi; il Private Endpoint vive dentro la VNet, non a casa dell'utente."
+        "spiegazione": "La Point-to-Site collega un singolo client alla rete privata cloud. La Site-to-Site collega un'intera rete aziendale; ExpressRoute è un circuito dedicato per esigenze ben più grandi; il Private Endpoint vive dentro la VNet, non a casa dell'utente.",
+        "tipo": "architettura"
     },
     {
         "id": 37,
@@ -478,7 +514,8 @@
             "Broad Network Access"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La Rapid Elasticity consente al cloud di scalare rapidamente le risorse secondo le necessità dell'applicazione."
+        "spiegazione": "La Rapid Elasticity consente al cloud di scalare rapidamente le risorse secondo le necessità dell'applicazione.",
+        "tipo": "teoria"
     },
     {
         "id": 38,
@@ -491,7 +528,8 @@
             "Per sostituire il Control Plane"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "AKS recupera normalmente le immagini dei container da ACR durante il deployment."
+        "spiegazione": "AKS recupera normalmente le immagini dei container da ACR durante il deployment.",
+        "tipo": "teoria"
     },
     {
         "id": 39,
@@ -504,7 +542,8 @@
             "apply → plan → init"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Prima `init` (scarica provider e inizializza la cartella), poi `plan` (mostra cosa verrebbe creato o modificato), infine `apply` (esegue davvero). Il plan prima dell'apply è ciò che rende l'IaC controllabile."
+        "spiegazione": "Prima `init` (scarica provider e inizializza la cartella), poi `plan` (mostra cosa verrebbe creato o modificato), infine `apply` (esegue davvero). Il plan prima dell'apply è ciò che rende l'IaC controllabile.",
+        "tipo": "codice"
     },
     {
         "id": 40,
@@ -517,7 +556,8 @@
             "Event Hubs"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Event Grid distribuisce eventi-notifica a più sottoscrittori (fan-out) con modello push. Event Hubs è per flussi di telemetria ad alto volume, Service Bus per messaggistica con garanzie forti, Data Factory per pipeline di dati."
+        "spiegazione": "Event Grid distribuisce eventi-notifica a più sottoscrittori (fan-out) con modello push. Event Hubs è per flussi di telemetria ad alto volume, Service Bus per messaggistica con garanzie forti, Data Factory per pipeline di dati.",
+        "tipo": "architettura"
     },
     {
         "id": 41,
@@ -530,7 +570,8 @@
             "Container Instances (ACI)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "ACI è il 'docker run nel cloud': esegue un singolo container fatturato al secondo, con IP pubblico e DNS, senza cluster. AKS è sovradimensionato per un container singolo, la VM reintroduce la gestione dell'OS, App Service è pensato per web app con piano sempre attivo."
+        "spiegazione": "ACI è il 'docker run nel cloud': esegue un singolo container fatturato al secondo, con IP pubblico e DNS, senza cluster. AKS è sovradimensionato per un container singolo, la VM reintroduce la gestione dell'OS, App Service è pensato per web app con piano sempre attivo.",
+        "tipo": "architettura"
     },
     {
         "id": 42,
@@ -543,7 +584,8 @@
             "Azure Container Registry"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Azure Virtual Machines è il servizio IaaS dedicato all'esecuzione di macchine virtuali."
+        "spiegazione": "Azure Virtual Machines è il servizio IaaS dedicato all'esecuzione di macchine virtuali.",
+        "tipo": "teoria"
     },
     {
         "id": 43,
@@ -556,7 +598,8 @@
             "Usare la data di creazione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Le query dentro una singola partizione costano meno delle cross-partition: la chiave giusta raggruppa i dati letti insieme (es. per autore). Una chiave sempre-diversa va bene solo per scritture puntuali; la partition key influisce eccome sui costi."
+        "spiegazione": "Le query dentro una singola partizione costano meno delle cross-partition: la chiave giusta raggruppa i dati letti insieme (es. per autore). Una chiave sempre-diversa va bene solo per scritture puntuali; la partition key influisce eccome sui costi.",
+        "tipo": "architettura"
     },
     {
         "id": 44,
@@ -569,7 +612,8 @@
             "docker volume ls"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il comando 'docker images' restituisce tutte le immagini presenti sul computer."
+        "spiegazione": "Il comando 'docker images' restituisce tutte le immagini presenti sul computer.",
+        "tipo": "codice"
     },
     {
         "id": 45,
@@ -582,7 +626,8 @@
             "Archiviare le immagini Docker"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Ingress permette di pubblicare servizi HTTP/HTTPS con regole di routing basate su host e percorsi."
+        "spiegazione": "Ingress permette di pubblicare servizi HTTP/HTTPS con regole di routing basate su host e percorsi.",
+        "tipo": "teoria"
     },
     {
         "id": 46,
@@ -595,7 +640,8 @@
             "Aumentare la RAM del database in modo che il picco venga assorbito in memoria"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "È il load leveling: le richieste diventano messaggi in coda e il consumer li smaltisce al proprio ritmo, così il database non riceve mai più carico di quanto regga. Le altre opzioni perdono richieste o scalano il problema invece di assorbirlo."
+        "spiegazione": "È il load leveling: le richieste diventano messaggi in coda e il consumer li smaltisce al proprio ritmo, così il database non riceve mai più carico di quanto regga. Le altre opzioni perdono richieste o scalano il problema invece di assorbirlo.",
+        "tipo": "architettura"
     },
     {
         "id": 47,
@@ -608,7 +654,8 @@
             "Creare immagini Docker"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Una VPN Site-to-Site collega reti aziendali e cloud mantenendo il traffico protetto."
+        "spiegazione": "Una VPN Site-to-Site collega reti aziendali e cloud mantenendo il traffico protetto.",
+        "tipo": "teoria"
     },
     {
         "id": 48,
@@ -621,7 +668,8 @@
             "Un server fisico dedicato"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Le piattaforme serverless scalano automaticamente e fanno pagare principalmente il tempo di esecuzione del codice."
+        "spiegazione": "Le piattaforme serverless scalano automaticamente e fanno pagare principalmente il tempo di esecuzione del codice.",
+        "tipo": "architettura"
     },
     {
         "id": 49,
@@ -634,7 +682,8 @@
             "Perché condividono il kernel del sistema operativo host"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I container condividono il kernel dell'host e isolano solo le risorse necessarie tramite namespace e cgroups."
+        "spiegazione": "I container condividono il kernel dell'host e isolano solo le risorse necessarie tramite namespace e cgroups.",
+        "tipo": "teoria"
     },
     {
         "id": 50,
@@ -647,7 +696,8 @@
             "Measured service, perché il canone mensile è calcolato sul consumo effettivo delle risorse usate"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Se per ogni upgrade serve un ticket manca il self-service, e se lo spazio è fisso manca l'elasticità: senza le 5 caratteristiche NIST non è cloud — è 'il computer di qualcun altro affittato male'."
+        "spiegazione": "Se per ogni upgrade serve un ticket manca il self-service, e se lo spazio è fisso manca l'elasticità: senza le 5 caratteristiche NIST non è cloud — è 'il computer di qualcun altro affittato male'.",
+        "tipo": "teoria"
     },
     {
         "id": 51,
@@ -660,7 +710,8 @@
             "terraform remove --recursive"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "`terraform destroy` rimuove tutte le risorse tracciate nello stato (nel lab: resource group, AKS, ACR, role assignment e budget). Gli altri comandi non esistono."
+        "spiegazione": "`terraform destroy` rimuove tutte le risorse tracciate nello stato (es. resource group, AKS, ACR, role assignment e budget). Gli altri comandi non esistono.",
+        "tipo": "codice"
     },
     {
         "id": 52,
@@ -673,7 +724,8 @@
             "Il Volume è gestito da Docker, mentre il Bind Mount utilizza una directory specifica dell'host"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I Volume sono gestiti direttamente da Docker, mentre i Bind Mount collegano una cartella esistente del sistema host."
+        "spiegazione": "I Volume sono gestiti direttamente da Docker, mentre i Bind Mount collegano una cartella esistente del sistema host.",
+        "tipo": "teoria"
     },
     {
         "id": 53,
@@ -686,7 +738,8 @@
             "Sostituisce Kubernetes"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'Infrastructure as Code rende l'infrastruttura ripetibile, documentata e facilmente automatizzabile."
+        "spiegazione": "L'Infrastructure as Code rende l'infrastruttura ripetibile, documentata e facilmente automatizzabile.",
+        "tipo": "teoria"
     },
     {
         "id": 54,
@@ -699,7 +752,8 @@
             "Applica uno sconto sulle risorse"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il budget è uno strumento di monitoraggio: notifica al superamento delle soglie, ma non spegne né blocca nulla — la responsabilità di intervenire resta a chi riceve l'alert. Non c'entra con le quote di risorse."
+        "spiegazione": "Il budget è uno strumento di monitoraggio: notifica al superamento delle soglie, ma non spegne né blocca nulla — la responsabilità di intervenire resta a chi riceve l'alert. Non c'entra con le quote di risorse.",
+        "tipo": "teoria"
     },
     {
         "id": 55,
@@ -712,7 +766,8 @@
             "L'immagine può essere modificata durante l'esecuzione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'immagine rappresenta il template dell'applicazione, mentre il container è un'istanza avviata da quell'immagine."
+        "spiegazione": "L'immagine rappresenta il template dell'applicazione, mentre il container è un'istanza avviata da quell'immagine.",
+        "tipo": "teoria"
     },
     {
         "id": 56,
@@ -725,7 +780,8 @@
             "Con istanze sempre pronte (Premium plan o provisioned concurrency)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il cold start si elimina pagando istanze pre-riscaldate: Premium plan su Azure Functions, provisioned concurrency su Lambda. Timeout, memoria e region non impediscono la deallocazione delle istanze inattive."
+        "spiegazione": "Il cold start si elimina pagando istanze pre-riscaldate: Premium plan su Azure Functions, provisioned concurrency su Lambda. Timeout, memoria e region non impediscono la deallocazione delle istanze inattive.",
+        "tipo": "architettura"
     },
     {
         "id": 57,
@@ -738,7 +794,8 @@
             "Un piano gratuito"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il serverless vince sui carichi variabili (paghi zero a riposo), ma su un carico costante 24/7 pagare ogni singola esecuzione costa più di un server dedicato dimensionato sul carico. È uno dei casi in cui 'serverless NON è adatto'."
+        "spiegazione": "Il serverless vince sui carichi variabili (paghi zero a riposo), ma su un carico costante 24/7 pagare ogni singola esecuzione costa più di un server dedicato dimensionato sul carico. È uno dei casi in cui 'serverless NON è adatto'.",
+        "tipo": "architettura"
     },
     {
         "id": 58,
@@ -751,7 +808,8 @@
             "Azure SQL Database"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Azure Container Registry è il registro privato di immagini container integrato con AKS."
+        "spiegazione": "Azure Container Registry è il registro privato di immagini container integrato con AKS.",
+        "tipo": "teoria"
     },
     {
         "id": 59,
@@ -764,7 +822,8 @@
             "EXPOSE"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "CMD specifica il comando predefinito eseguito quando viene avviato un container."
+        "spiegazione": "CMD specifica il comando predefinito eseguito quando viene avviato un container.",
+        "tipo": "codice"
     },
     {
         "id": 60,
@@ -777,7 +836,8 @@
             "Usa un tunnel cifrato più robusto sulla rete Internet pubblica, con banda garantita dal provider tramite prioritizzazione del traffico"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La VPN Site-to-Site crea un tunnel cifrato ma sempre sopra Internet; ExpressRoute/Direct Connect sono collegamenti fisici dedicati che Internet non lo attraversano proprio: banda garantita, latenza prevedibile, costi e complessità maggiori."
+        "spiegazione": "La VPN Site-to-Site crea un tunnel cifrato ma sempre sopra Internet; ExpressRoute/Direct Connect sono collegamenti fisici dedicati che Internet non lo attraversano proprio: banda garantita, latenza prevedibile, costi e complessità maggiori.",
+        "tipo": "teoria"
     },
     {
         "id": 61,
@@ -790,7 +850,8 @@
             "Blob, File, Queue, Table"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Uno Storage Account espone Blob (oggetti/file), File (share SMB), Queue (code di messaggi) e Table (key-value), sotto le stesse chiavi e lo stesso endpoint DNS di base."
+        "spiegazione": "Uno Storage Account espone Blob (oggetti/file), File (share SMB), Queue (code di messaggi) e Table (key-value), sotto le stesse chiavi e lo stesso endpoint DNS di base.",
+        "tipo": "teoria"
     },
     {
         "id": 62,
@@ -803,12 +864,13 @@
             "Amazon S3"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Amazon EC2 (Elastic Compute Cloud) fornisce istanze virtuali nel cloud AWS."
+        "spiegazione": "Amazon EC2 (Elastic Compute Cloud) fornisce istanze virtuali nel cloud AWS.",
+        "tipo": "teoria"
     },
     {
         "id": 63,
         "categoria": "Cloud Fundamentals",
-        "domanda": "Secondo la dispensa, quale affermazione descrive meglio l'evoluzione da VM a Container fino al Serverless?",
+        "domanda": "Quale affermazione descrive meglio l'evoluzione da VM a Container fino al Serverless?",
         "risposte": [
             "Serverless richiede più gestione rispetto alle VM",
             "Più si sale nello stack, meno infrastruttura deve essere gestita direttamente dallo sviluppatore",
@@ -816,7 +878,8 @@
             "Le VM sono sempre più economiche del serverless"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il concetto chiave del corso è che, passando da VM a Container e Serverless, diminuisce la gestione dell'infrastruttura."
+        "spiegazione": "Passando da VM a Container e Serverless, diminuisce la gestione dell'infrastruttura.",
+        "tipo": "teoria"
     },
     {
         "id": 64,
@@ -829,7 +892,8 @@
             "Azure SQL Database in tier Business Critical con repliche in lettura"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Table Storage è il NoSQL minimale di Azure: entità identificate da PartitionKey+RowKey, niente join né indici secondari, costo bassissimo. Cosmos o SQL in tier alto sarebbero sovradimensionati; Redis è una cache in-memory, non lo storage primario economico."
+        "spiegazione": "Table Storage è il NoSQL minimale di Azure: entità identificate da PartitionKey+RowKey, niente join né indici secondari, costo bassissimo. Cosmos o SQL in tier alto sarebbero sovradimensionati; Redis è una cache in-memory, non lo storage primario economico.",
+        "tipo": "architettura"
     },
     {
         "id": 65,
@@ -842,7 +906,8 @@
             "Su Azure l'accesso avviene esclusivamente tramite Bastion gestito, mentre AWS impone l'uso della console seriale per il primo collegamento alla macchina"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il wizard EC2 genera una key pair e fa scaricare il file .pem (che serve anche per recuperare la password RDP su Windows); il wizard Azure chiede username e password (o chiave SSH). Bastion e console seriale sono opzioni, non obblighi."
+        "spiegazione": "Il wizard EC2 genera una key pair e fa scaricare il file .pem (che serve anche per recuperare la password RDP su Windows); il wizard Azure chiede username e password (o chiave SSH). Bastion e console seriale sono opzioni, non obblighi.",
+        "tipo": "teoria"
     },
     {
         "id": 66,
@@ -855,7 +920,8 @@
             "Quando il servizio deve essere raggiungibile solo dai Pod"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il Service di tipo LoadBalancer crea automaticamente un bilanciatore di carico nel provider cloud."
+        "spiegazione": "Il Service di tipo LoadBalancer crea automaticamente un bilanciatore di carico nel provider cloud.",
+        "tipo": "architettura"
     },
     {
         "id": 67,
@@ -868,7 +934,8 @@
             "ECR per le immagini, ECS o EKS per l'orchestrazione e Fargate per l'esecuzione serverless"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Questa è l'architettura standard proposta da AWS per i workload containerizzati."
+        "spiegazione": "Questa è l'architettura standard proposta da AWS per i workload containerizzati.",
+        "tipo": "architettura"
     },
     {
         "id": 68,
@@ -881,7 +948,8 @@
             "Resta invisibile per il visibility timeout"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Durante l'elaborazione il messaggio è protetto dal visibility timeout: se il consumer fallisce, allo scadere ricompare in coda e viene riconsegnato (retry 'gratuito'). Nella poison queue finisce solo dopo troppi tentativi falliti."
+        "spiegazione": "Durante l'elaborazione il messaggio è protetto dal visibility timeout: se il consumer fallisce, allo scadere ricompare in coda e viene riconsegnato (retry 'gratuito'). Nella poison queue finisce solo dopo troppi tentativi falliti.",
+        "tipo": "teoria"
     },
     {
         "id": 69,
@@ -894,7 +962,8 @@
             "Sostituire il container runtime"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I nodi sono le macchine fisiche o virtuali che ospitano ed eseguono i Pod."
+        "spiegazione": "I nodi sono le macchine fisiche o virtuali che ospitano ed eseguono i Pod.",
+        "tipo": "teoria"
     },
     {
         "id": 70,
@@ -907,7 +976,8 @@
             "Che l'ultimo backup di etcd risalga a meno di ventiquattro ore prima del comando"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il kubeconfig può contenere più contesti (cluster+utente+namespace): un delete lanciato sul contesto sbagliato — produzione invece di sviluppo — non si annulla. `kubectl config current-context` prima dei comandi distruttivi è la buona abitudine."
+        "spiegazione": "Il kubeconfig può contenere più contesti (cluster+utente+namespace): un delete lanciato sul contesto sbagliato — produzione invece di sviluppo — non si annulla. `kubectl config current-context` prima dei comandi distruttivi è la buona abitudine.",
+        "tipo": "teoria"
     },
     {
         "id": 71,
@@ -920,7 +990,8 @@
             "aws eks get-credentials"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Entrambi i comandi aggiungono il contesto del cluster gestito al kubeconfig locale, così kubectl può parlarci. Gli altri sottocomandi non esistono nella CLI AWS."
+        "spiegazione": "Entrambi i comandi aggiungono il contesto del cluster gestito al kubeconfig locale, così kubectl può parlarci. Gli altri sottocomandi non esistono nella CLI AWS.",
+        "tipo": "codice"
     },
     {
         "id": 72,
@@ -933,7 +1004,8 @@
             "Route 53"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "AWS Fargate permette di eseguire container in modalità serverless senza amministrare l'infrastruttura."
+        "spiegazione": "AWS Fargate permette di eseguire container in modalità serverless senza amministrare l'infrastruttura.",
+        "tipo": "teoria"
     },
     {
         "id": 73,
@@ -946,7 +1018,8 @@
             "Measured service"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'on-demand self-service consente agli utenti di creare e configurare risorse autonomamente senza intervento umano del provider."
+        "spiegazione": "L'on-demand self-service consente agli utenti di creare e configurare risorse autonomamente senza intervento umano del provider.",
+        "tipo": "teoria"
     },
     {
         "id": 74,
@@ -959,7 +1032,8 @@
             "Creare nuove immagini Docker"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Un Deployment mantiene il numero desiderato di Pod e gestisce aggiornamenti e rollback."
+        "spiegazione": "Un Deployment mantiene il numero desiderato di Pod e gestisce aggiornamenti e rollback.",
+        "tipo": "teoria"
     },
     {
         "id": 75,
@@ -972,7 +1046,8 @@
             "Il container ACI"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "ACI fattura vCPU e memoria al secondo finché il container esiste, anche senza traffico. Functions Consumption e Cosmos serverless a riposo non fatturano nulla; le code di storage costano centesimi al GB."
+        "spiegazione": "ACI fattura vCPU e memoria al secondo finché il container esiste, anche senza traffico. Functions Consumption e Cosmos serverless a riposo non fatturano nulla; le code di storage costano centesimi al GB.",
+        "tipo": "architettura"
     },
     {
         "id": 76,
@@ -985,7 +1060,8 @@
             "Serve un tag diverso per pushare"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le immagini sono pile di layer: se il registry possiede già un layer identico (es. i layer di nginx mai cambiati), non viene ricaricato. È il motivo per cui il secondo push è quasi istantaneo."
+        "spiegazione": "Le immagini sono pile di layer: se il registry possiede già un layer identico (es. i layer di nginx mai cambiati), non viene ricaricato. È il motivo per cui il secondo push è quasi istantaneo.",
+        "tipo": "teoria"
     },
     {
         "id": 77,
@@ -998,7 +1074,8 @@
             "Il backend rifiuta le richieste GET"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La Same-Origin Policy vieta a una pagina di leggere risposte di un'altra origine (schema+host+porta) se il server non lo autorizza con gli header CORS. La richiesta parte comunque: è la lettura della risposta a essere bloccata, per proteggere l'utente."
+        "spiegazione": "La Same-Origin Policy vieta a una pagina di leggere risposte di un'altra origine (schema+host+porta) se il server non lo autorizza con gli header CORS. La richiesta parte comunque: è la lettura della risposta a essere bloccata, per proteggere l'utente.",
+        "tipo": "teoria"
     },
     {
         "id": 78,
@@ -1011,7 +1088,8 @@
             "Resource Tagging"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "La Rapid Elasticity permette di aumentare o ridurre automaticamente le risorse in base al carico."
+        "spiegazione": "La Rapid Elasticity permette di aumentare o ridurre automaticamente le risorse in base al carico.",
+        "tipo": "teoria"
     },
     {
         "id": 79,
@@ -1024,7 +1102,8 @@
             "Un canone fisso mensile proporzionale alla memoria allocata per la funzione"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il piano a consumo scala a zero: nessun evento, nessuna istanza in esecuzione, nessun costo. È il tratto distintivo del FaaS rispetto a un server sempre acceso — e la ragione del cold start alla prima invocazione successiva."
+        "spiegazione": "Il piano a consumo scala a zero: nessun evento, nessuna istanza in esecuzione, nessun costo. È il tratto distintivo del FaaS rispetto a un server sempre acceso — e la ragione del cold start alla prima invocazione successiva.",
+        "tipo": "teoria"
     },
     {
         "id": 80,
@@ -1037,7 +1116,8 @@
             "Possono funzionare senza sistema operativo"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I container condividono il kernel dell'host e risultano molto più leggeri rispetto alle VM."
+        "spiegazione": "I container condividono il kernel dell'host e risultano molto più leggeri rispetto alle VM.",
+        "tipo": "teoria"
     },
     {
         "id": 81,
@@ -1050,7 +1130,8 @@
             "Il TargetFramework del progetto"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La versione dichiarata con --runtime-version deve combaciare col TargetFramework del .csproj: se divergono, il deploy fallisce o le function non partono. Nel modello isolated il codice gira in un processo separato dall'host, ma le versioni vanno allineate."
+        "spiegazione": "La versione dichiarata con --runtime-version deve combaciare col TargetFramework del .csproj: se divergono, il deploy fallisce o le function non partono. Nel modello isolated il codice gira in un processo separato dall'host, ma le versioni vanno allineate.",
+        "tipo": "teoria"
     },
     {
         "id": 82,
@@ -1063,7 +1144,8 @@
             "Blob Storage ↔ SQS"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Queue Storage e SQS sono le code di messaggi semplici dei due provider. SES è il servizio email di AWS, SNS il pub/sub di notifiche, Blob e Table sono storage, non code."
+        "spiegazione": "Queue Storage e SQS sono le code di messaggi semplici dei due provider. SES è il servizio email di AWS, SNS il pub/sub di notifiche, Blob e Table sono storage, non code.",
+        "tipo": "teoria"
     },
     {
         "id": 83,
@@ -1076,7 +1158,8 @@
             "Sono due termini equivalenti"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Scale Up significa potenziare una singola macchina, Scale Out significa distribuire il carico su più istanze."
+        "spiegazione": "Scale Up significa potenziare una singola macchina, Scale Out significa distribuire il carico su più istanze.",
+        "tipo": "teoria"
     },
     {
         "id": 84,
@@ -1089,7 +1172,8 @@
             "Amazon Route 53"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "PrivateLink consente di raggiungere servizi AWS tramite la rete privata senza transitare su Internet, analogamente ai Private Endpoint di Azure."
+        "spiegazione": "PrivateLink consente di raggiungere servizi AWS tramite la rete privata senza transitare su Internet, analogamente ai Private Endpoint di Azure.",
+        "tipo": "teoria"
     },
     {
         "id": 85,
@@ -1102,7 +1186,8 @@
             "Logic Apps e S3"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Durable Functions (Azure) e Step Functions (AWS) permettono di comporre funzioni in workflow con stato. Event Grid/EventBridge distribuiscono eventi; Application Insights/CloudWatch fanno telemetria, non orchestrazione."
+        "spiegazione": "Durable Functions (Azure) e Step Functions (AWS) permettono di comporre funzioni in workflow con stato. Event Grid/EventBridge distribuiscono eventi; Application Insights/CloudWatch fanno telemetria, non orchestrazione.",
+        "tipo": "teoria"
     },
     {
         "id": 86,
@@ -1115,7 +1200,8 @@
             "Assicurare che i Pod assegnati al nodo vengano eseguiti correttamente"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il kubelet comunica con il Control Plane e controlla l'esecuzione dei Pod sul nodo locale."
+        "spiegazione": "Il kubelet comunica con il Control Plane e controlla l'esecuzione dei Pod sul nodo locale.",
+        "tipo": "teoria"
     },
     {
         "id": 87,
@@ -1128,7 +1214,8 @@
             "docker push"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il comando 'docker pull' scarica un'immagine da Docker Hub o da un registry privato."
+        "spiegazione": "Il comando 'docker pull' scarica un'immagine da Docker Hub o da un registry privato.",
+        "tipo": "codice"
     },
     {
         "id": 88,
@@ -1141,7 +1228,8 @@
             "CloudShell"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I log delle Lambda vanno su CloudWatch, l'equivalente AWS di Application Insights. CloudTrail traccia le chiamate API, CloudFront è la CDN, CloudShell il terminale nel browser."
+        "spiegazione": "I log delle Lambda vanno su CloudWatch, l'equivalente AWS di Application Insights. CloudTrail traccia le chiamate API, CloudFront è la CDN, CloudShell il terminale nel browser.",
+        "tipo": "teoria"
     },
     {
         "id": 89,
@@ -1154,7 +1242,8 @@
             "Billing Unit"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Ogni operazione su Cosmos DB consuma Request Unit (RU) proporzionali alla sua complessità: è l'unità con cui si dimensiona il throughput provisionato o si paga il consumo in modalità serverless."
+        "spiegazione": "Ogni operazione su Cosmos DB consuma Request Unit (RU) proporzionali alla sua complessità: è l'unità con cui si dimensiona il throughput provisionato o si paga il consumo in modalità serverless.",
+        "tipo": "teoria"
     },
     {
         "id": 90,
@@ -1167,7 +1256,8 @@
             "AKS - EKS"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "AKS (Azure Kubernetes Service) ed EKS (Elastic Kubernetes Service) sono i servizi Kubernetes gestiti dei rispettivi provider."
+        "spiegazione": "AKS (Azure Kubernetes Service) ed EKS (Elastic Kubernetes Service) sono i servizi Kubernetes gestiti dei rispettivi provider.",
+        "tipo": "teoria"
     },
     {
         "id": 91,
@@ -1180,7 +1270,8 @@
             "terraform plan"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "terraform plan confronta lo stato corrente con quello desiderato e mostra le modifiche previste."
+        "spiegazione": "terraform plan confronta lo stato corrente con quello desiderato e mostra le modifiche previste.",
+        "tipo": "codice"
     },
     {
         "id": 92,
@@ -1193,7 +1284,8 @@
             "Elastic Beanstalk"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Amazon ECS è il servizio di orchestrazione proprietario di AWS dedicato ai container."
+        "spiegazione": "Amazon ECS è il servizio di orchestrazione proprietario di AWS dedicato ai container.",
+        "tipo": "teoria"
     },
     {
         "id": 93,
@@ -1206,7 +1298,8 @@
             "Per ospitare il database predefinito che ogni Function App espone alle proprie API"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Quello storage non è per i dati dell'applicazione: il runtime Functions lo usa per chiavi, lease, coordinamento dello scaling e contenuto dell'app. I dati applicativi vivono in risorse separate, con ciclo di vita proprio."
+        "spiegazione": "Quello storage non è per i dati dell'applicazione: il runtime Functions lo usa per chiavi, lease, coordinamento dello scaling e contenuto dell'app. I dati applicativi vivono in risorse separate, con ciclo di vita proprio.",
+        "tipo": "teoria"
     },
     {
         "id": 94,
@@ -1219,7 +1312,8 @@
             "terraform init"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "terraform init inizializza il progetto, scarica i provider e prepara l'ambiente di lavoro."
+        "spiegazione": "terraform init inizializza il progetto, scarica i provider e prepara l'ambiente di lavoro.",
+        "tipo": "codice"
     },
     {
         "id": 95,
@@ -1232,7 +1326,8 @@
             "A convalidare i parametri della richiesta HTTP prima dell'esecuzione del codice"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'output binding è una connessione dichiarativa: 'ciò che la function restituisce va scritto là' (es. [QueueOutput] verso una coda, [CosmosDBOutput] verso il database), senza istanziare client SDK né gestire connessioni."
+        "spiegazione": "L'output binding è una connessione dichiarativa: 'ciò che la function restituisce va scritto là' (es. [QueueOutput] verso una coda, [CosmosDBOutput] verso il database), senza istanziare client SDK né gestire connessioni.",
+        "tipo": "teoria"
     },
     {
         "id": 96,
@@ -1245,7 +1340,8 @@
             "Controllare il consumo energetico del cluster"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il reconciliation loop mantiene il cluster nello stato dichiarato dall'utente intervenendo automaticamente quando necessario."
+        "spiegazione": "Il reconciliation loop mantiene il cluster nello stato dichiarato dall'utente intervenendo automaticamente quando necessario.",
+        "tipo": "teoria"
     },
     {
         "id": 97,
@@ -1258,7 +1354,8 @@
             "kubectl top nodes"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "`describe` spiega lo stato della risorsa e gli eventi recenti (es. immagine non scaricabile), `logs` mostra l'output del container che crasha. Ricreare senza capire è tentare la fortuna; top e get namespaces non c'entrano."
+        "spiegazione": "`describe` spiega lo stato della risorsa e gli eventi recenti (es. immagine non scaricabile), `logs` mostra l'output del container che crasha. Ricreare senza capire è tentare la fortuna; top e get namespaces non c'entrano.",
+        "tipo": "codice"
     },
     {
         "id": 98,
@@ -1271,7 +1368,8 @@
             "Best-effort"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La consegna è at-least-once: in caso di retry lo stesso messaggio può arrivare più volte, mai zero. Per questo il consumer dovrebbe essere idempotente; l'exactly-once puro non è garantito."
+        "spiegazione": "La consegna è at-least-once: in caso di retry lo stesso messaggio può arrivare più volte, mai zero. Per questo il consumer dovrebbe essere idempotente; l'exactly-once puro non è garantito.",
+        "tipo": "teoria"
     },
     {
         "id": 99,
@@ -1284,7 +1382,8 @@
             "Software as a Service (SaaS)"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Nel modello IaaS il cliente gestisce sistemi operativi, middleware e applicazioni."
+        "spiegazione": "Nel modello IaaS il cliente gestisce sistemi operativi, middleware e applicazioni.",
+        "tipo": "teoria"
     },
     {
         "id": 100,
@@ -1297,7 +1396,8 @@
             "kubectl create pod"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il comando 'kubectl get pods' mostra tutti i Pod presenti nel namespace selezionato."
+        "spiegazione": "Il comando 'kubectl get pods' mostra tutti i Pod presenti nel namespace selezionato.",
+        "tipo": "codice"
     },
     {
         "id": 101,
@@ -1310,7 +1410,8 @@
             "Scheduler"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il kube-apiserver espone le API di Kubernetes ed è il componente con cui comunicano utenti, kubectl e controller."
+        "spiegazione": "Il kube-apiserver espone le API di Kubernetes ed è il componente con cui comunicano utenti, kubectl e controller.",
+        "tipo": "teoria"
     },
     {
         "id": 102,
@@ -1323,7 +1424,8 @@
             "Bilanciare il traffico tra i Pod"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "etcd è il database key-value altamente disponibile che contiene la configurazione e lo stato del cluster."
+        "spiegazione": "etcd è il database key-value altamente disponibile che contiene la configurazione e lo stato del cluster.",
+        "tipo": "teoria"
     },
     {
         "id": 103,
@@ -1336,7 +1438,8 @@
             "terraform plan --offline"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "`terraform validate` controlla sintassi e coerenza interna della configurazione senza contattare il provider né toccare risorse. Gli altri comandi (con quei flag) non esistono; il `plan` reale interroga comunque lo stato."
+        "spiegazione": "`terraform validate` controlla sintassi e coerenza interna della configurazione senza contattare il provider né toccare risorse. Gli altri comandi (con quei flag) non esistono; il `plan` reale interroga comunque lo stato.",
+        "tipo": "codice"
     },
     {
         "id": 104,
@@ -1349,7 +1452,8 @@
             "Perché rende inutili i Docker Volume"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Immagini più piccole velocizzano build e deploy e riducono il numero di dipendenze installate."
+        "spiegazione": "Immagini più piccole velocizzano build e deploy e riducono il numero di dipendenze installate.",
+        "tipo": "teoria"
     },
     {
         "id": 105,
@@ -1362,7 +1466,8 @@
             "HTTP Trigger"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I trigger di tipo Blob (Azure) o Storage/S3 (AWS) eseguono automaticamente la funzione al caricamento di un file."
+        "spiegazione": "I trigger di tipo Blob (Azure) o Storage/S3 (AWS) eseguono automaticamente la funzione al caricamento di un file.",
+        "tipo": "teoria"
     },
     {
         "id": 106,
@@ -1375,7 +1480,8 @@
             "iptables"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I cgroup (Control Groups) permettono di limitare e monitorare le risorse utilizzate dai container."
+        "spiegazione": "I cgroup (Control Groups) permettono di limitare e monitorare le risorse utilizzate dai container.",
+        "tipo": "teoria"
     },
     {
         "id": 107,
@@ -1388,7 +1494,8 @@
             "Per creare automaticamente nuove immagini Docker"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Kubernetes confronta continuamente lo stato reale con quello desiderato e interviene automaticamente quando rileva differenze."
+        "spiegazione": "Kubernetes confronta continuamente lo stato reale con quello desiderato e interviene automaticamente quando rileva differenze.",
+        "tipo": "teoria"
     },
     {
         "id": 108,
@@ -1401,7 +1508,8 @@
             "Un server fisico con installazione diretta dell'applicazione"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "La combinazione Docker, Kubernetes, Registry e Terraform rappresenta oggi uno degli approcci più diffusi per applicazioni cloud-native e multi-cloud."
+        "spiegazione": "La combinazione Docker, Kubernetes, Registry e Terraform rappresenta oggi uno degli approcci più diffusi per applicazioni cloud-native e multi-cloud.",
+        "tipo": "architettura"
     },
     {
         "id": 109,
@@ -1414,7 +1522,8 @@
             "Aprendo la porta 443 nel Security Group associato alla funzione dalla console"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "La Function URL è un trigger che assegna alla Lambda un URL pubblico immediato — l'equivalente concettuale dell'endpoint HTTP di una Azure Function. Le Lambda non hanno un'istanza con IP da esporre, e l'ARN non è un indirizzo web."
+        "spiegazione": "La Function URL è un trigger che assegna alla Lambda un URL pubblico immediato — l'equivalente concettuale dell'endpoint HTTP di una Azure Function. Le Lambda non hanno un'istanza con IP da esporre, e l'ARN non è un indirizzo web.",
+        "tipo": "architettura"
     },
     {
         "id": 110,
@@ -1427,7 +1536,8 @@
             "Definire le istruzioni per costruire un'immagine Docker"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il Dockerfile contiene le istruzioni necessarie per creare un'immagine Docker in modo riproducibile."
+        "spiegazione": "Il Dockerfile contiene le istruzioni necessarie per creare un'immagine Docker in modo riproducibile.",
+        "tipo": "teoria"
     },
     {
         "id": 111,
@@ -1440,7 +1550,8 @@
             "Nodo"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Kubernetes gestisce direttamente i Pod, che possono contenere uno o più container."
+        "spiegazione": "Kubernetes gestisce direttamente i Pod, che possono contenere uno o più container.",
+        "tipo": "teoria"
     },
     {
         "id": 112,
@@ -1453,7 +1564,8 @@
             "Macchine virtuali"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Nel modello FaaS lo sviluppatore distribuisce solamente il codice, mentre tutta l'infrastruttura è gestita dal provider."
+        "spiegazione": "Nel modello FaaS lo sviluppatore distribuisce solamente il codice, mentre tutta l'infrastruttura è gestita dal provider.",
+        "tipo": "teoria"
     },
     {
         "id": 113,
@@ -1466,7 +1578,8 @@
             "Virtual Private Cloud (VPC)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "AWS VPC è il servizio che permette di creare reti virtuali isolate, equivalente alle VNet di Azure."
+        "spiegazione": "AWS VPC è il servizio che permette di creare reti virtuali isolate, equivalente alle VNet di Azure.",
+        "tipo": "teoria"
     },
     {
         "id": 114,
@@ -1479,7 +1592,8 @@
             "Per eliminare la necessità di Kubernetes"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le immagini immutabili garantiscono deploy ripetibili e riducono problemi dovuti a modifiche manuali."
+        "spiegazione": "Le immagini immutabili garantiscono deploy ripetibili e riducono problemi dovuti a modifiche manuali.",
+        "tipo": "teoria"
     },
     {
         "id": 115,
@@ -1492,7 +1606,8 @@
             "Consistenza eventuale"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Tra l'accodamento e la persistenza c'è una finestra in cui la lettura non vede ancora il dato: è la consistenza eventuale, tipica delle architetture asincrone. Il cold start riguarda la latenza di avvio, non la visibilità dei dati."
+        "spiegazione": "Tra l'accodamento e la persistenza c'è una finestra in cui la lettura non vede ancora il dato: è la consistenza eventuale, tipica delle architetture asincrone. Il cold start riguarda la latenza di avvio, non la visibilità dei dati.",
+        "tipo": "teoria"
     },
     {
         "id": 116,
@@ -1505,7 +1620,8 @@
             "Su EKS è gratuito, mentre su AKS è incluso nel costo maggiorato dei nodi worker"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Su AKS paghi solo i nodi (il control plane lo regala Azure); su EKS il control plane si paga a ore, oltre ai nodi EC2. Per più cluster sempre accesi la differenza diventa una voce di costo concreta."
+        "spiegazione": "Su AKS paghi solo i nodi (il control plane lo regala Azure); su EKS il control plane si paga a ore, oltre ai nodi EC2. Per più cluster sempre accesi la differenza diventa una voce di costo concreta.",
+        "tipo": "teoria"
     },
     {
         "id": 117,
@@ -1518,7 +1634,8 @@
             "Queue Storage con un consumer dedicato che materializza le viste di reporting"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Join, transazioni multi-entità e reporting sono il territorio del relazionale: Azure SQL Database. Cosmos e Table sono NoSQL (niente join nativi), Queue Storage non è nemmeno un database."
+        "spiegazione": "Join, transazioni multi-entità e reporting sono il territorio del relazionale: Azure SQL Database. Cosmos e Table sono NoSQL (niente join nativi), Queue Storage non è nemmeno un database.",
+        "tipo": "architettura"
     },
     {
         "id": 118,
@@ -1531,7 +1648,8 @@
             "EKS"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Amazon Elastic Kubernetes Service (EKS) è il servizio Kubernetes gestito di AWS."
+        "spiegazione": "Amazon Elastic Kubernetes Service (EKS) è il servizio Kubernetes gestito di AWS.",
+        "tipo": "teoria"
     },
     {
         "id": 119,
@@ -1544,7 +1662,8 @@
             "Il numero di richieste HTTP servite dal container nel periodo di fatturazione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "ACI fattura le risorse dichiarate (vCPU + RAM) al secondo, finché il container esiste: si paga esattamente ciò che si dichiara — un motivo in più per dichiarare richieste realistiche e distruggere ciò che non serve."
+        "spiegazione": "ACI fattura le risorse dichiarate (vCPU + RAM) al secondo, finché il container esiste: si paga esattamente ciò che si dichiara — un motivo in più per dichiarare richieste realistiche e distruggere ciò che non serve.",
+        "tipo": "teoria"
     },
     {
         "id": 120,
@@ -1557,7 +1676,8 @@
             "Un service principal con password a lunga scadenza salvata nei secret del repository e ruotata manualmente a ogni rilascio"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Con OIDC la pipeline si autentica scambiando un token firmato da GitHub con Azure (federated credentials): nessun segreto statico da conservare né ruotare. È l'evoluzione del service principal con password."
+        "spiegazione": "Con OIDC la pipeline si autentica scambiando un token firmato da GitHub con Azure (federated credentials): nessun segreto statico da conservare né ruotare. È l'evoluzione del service principal con password.",
+        "tipo": "architettura"
     },
     {
         "id": 121,
@@ -1570,7 +1690,8 @@
             "docker network ls"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il comando 'docker ps' elenca i container attivi."
+        "spiegazione": "Il comando 'docker ps' elenca i container attivi.",
+        "tipo": "codice"
     },
     {
         "id": 122,
@@ -1583,7 +1704,8 @@
             "Il prefisso del tag dell'immagine"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "È il prefisso del tag (es. `myreg.azurecr.io/mia-app:v1`) a dire a Docker dove pushare: anche un solo carattere sbagliato manda il push verso un registry inesistente o sbagliato. Il Dockerfile non c'entra con la destinazione."
+        "spiegazione": "È il prefisso del tag (es. `myreg.azurecr.io/mia-app:v1`) a dire a Docker dove pushare: anche un solo carattere sbagliato manda il push verso un registry inesistente o sbagliato. Il Dockerfile non c'entra con la destinazione.",
+        "tipo": "codice"
     },
     {
         "id": 123,
@@ -1596,7 +1718,8 @@
             "Perché il provider elimina automaticamente le risorse"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Le modifiche manuali possono causare 'configuration drift', rendendo incoerente il file di stato."
+        "spiegazione": "Le modifiche manuali possono causare 'configuration drift', rendendo incoerente il file di stato.",
+        "tipo": "teoria"
     },
     {
         "id": 124,
@@ -1609,7 +1732,8 @@
             "Riducono automaticamente il numero di richieste HTTP"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I container favoriscono l'indipendenza dei microservizi, facilitando deploy e scalabilità."
+        "spiegazione": "I container favoriscono l'indipendenza dei microservizi, facilitando deploy e scalabilità.",
+        "tipo": "architettura"
     },
     {
         "id": 125,
@@ -1622,7 +1746,8 @@
             "Lo spostamento di tutte le risorse nella region più economica tra quelle disponibili"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il budget alert (es. a 5 €) manda una notifica quando la spesa supera la soglia: è il secondo passo obbligato dopo 'spegni ciò che non usi'. Le altre opzioni non c'entrano con il controllo della spesa."
+        "spiegazione": "Il budget alert (es. a 5 €) manda una notifica quando la spesa supera la soglia: è il secondo passo obbligato dopo 'spegni ciò che non usi'. Le altre opzioni non c'entrano con il controllo della spesa.",
+        "tipo": "teoria"
     },
     {
         "id": 126,
@@ -1635,7 +1760,8 @@
             "*/5 0 * * * *"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "NCRONTAB ha sei campi (secondi, minuti, ore, giorno, mese, giorno della settimana): '*/5' nel campo dei minuti significa 'ogni 5 minuti'. La seconda espressione scatta ogni 5 ore; l'ultima ha addirittura sette campi."
+        "spiegazione": "NCRONTAB ha sei campi (secondi, minuti, ore, giorno, mese, giorno della settimana): '*/5' nel campo dei minuti significa 'ogni 5 minuti'. La seconda espressione scatta ogni 5 ore; l'ultima ha addirittura sette campi.",
+        "tipo": "codice"
     },
     {
         "id": 127,
@@ -1648,7 +1774,8 @@
             "Aggiungendo nel DNS un record TXT che elenca le origini autorizzate del frontend"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Su Azure Functions il CORS è una configurazione di piattaforma (es. `az functionapp cors add --allowed-origins ...`): si dichiara quali origini possono leggere le risposte, senza modificare il codice."
+        "spiegazione": "Su Azure Functions il CORS è una configurazione di piattaforma (es. `az functionapp cors add --allowed-origins ...`): si dichiara quali origini possono leggere le risposte, senza modificare il codice.",
+        "tipo": "teoria"
     },
     {
         "id": 128,
@@ -1661,7 +1788,8 @@
             "Amazon EC2"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I container Docker garantiscono portabilità dell'applicazione tra ambienti differenti."
+        "spiegazione": "I container Docker garantiscono portabilità dell'applicazione tra ambienti differenti.",
+        "tipo": "architettura"
     },
     {
         "id": 129,
@@ -1674,7 +1802,8 @@
             "Il disaccoppiamento dato dalla coda"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Produttore e consumer non si conoscono: comunicano solo attraverso la coda. Aggiungere un passo (o un consumer) a valle non richiede alcuna modifica a monte — è esattamente l'evolvibilità che il disaccoppiamento compra."
+        "spiegazione": "Produttore e consumer non si conoscono: comunicano solo attraverso la coda. Aggiungere un passo (o un consumer) a valle non richiede alcuna modifica a monte — è esattamente l'evolvibilità che il disaccoppiamento compra.",
+        "tipo": "architettura"
     },
     {
         "id": 130,
@@ -1687,7 +1816,8 @@
             "Il riavvio di una macchina virtuale"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il cold start è il ritardo dovuto all'avvio dell'ambiente di esecuzione quando una funzione viene invocata dopo essere rimasta inattiva."
+        "spiegazione": "Il cold start è il ritardo dovuto all'avvio dell'ambiente di esecuzione quando una funzione viene invocata dopo essere rimasta inattiva.",
+        "tipo": "teoria"
     },
     {
         "id": 131,
@@ -1700,7 +1830,8 @@
             "Azure Virtual Network"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Azure Functions permette di eseguire codice in risposta a eventi senza gestire server."
+        "spiegazione": "Azure Functions permette di eseguire codice in risposta a eventi senza gestire server.",
+        "tipo": "teoria"
     },
     {
         "id": 132,
@@ -1713,7 +1844,8 @@
             "Duplicando il kubeconfig e cambiando l'indirizzo dell'API server di destinazione"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il namespace è un raggruppamento logico dentro il cluster: separa risorse, team o ambienti senza i costi di un cluster nuovo. Il kubeconfig gestisce a quali cluster ti connetti, non la separazione interna."
+        "spiegazione": "Il namespace è un raggruppamento logico dentro il cluster: separa risorse, team o ambienti senza i costi di un cluster nuovo. Il kubeconfig gestisce a quali cluster ti connetti, non la separazione interna.",
+        "tipo": "architettura"
     },
     {
         "id": 133,
@@ -1726,7 +1858,8 @@
             "HPA"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "KEDA (Kubernetes Event-Driven Autoscaling) estende l'autoscaling con scaler basati su eventi (es. lunghezza di una coda) e supporta lo scale-to-zero. L'HPA standard scala su metriche come la CPU ma non scende a zero repliche."
+        "spiegazione": "KEDA (Kubernetes Event-Driven Autoscaling) estende l'autoscaling con scaler basati su eventi (es. lunghezza di una coda) e supporta lo scale-to-zero. L'HPA standard scala su metriche come la CPU ma non scende a zero repliche.",
+        "tipo": "architettura"
     },
     {
         "id": 134,
@@ -1739,7 +1872,8 @@
             "Eliminazione completa dei Pod prima del deploy"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "I Deployment supportano i Rolling Update, sostituendo progressivamente i Pod senza interrompere il servizio."
+        "spiegazione": "I Deployment supportano i Rolling Update, sostituendo progressivamente i Pod senza interrompere il servizio.",
+        "tipo": "architettura"
     },
     {
         "id": 135,
@@ -1752,7 +1886,8 @@
             "Si paga principalmente per il tempo effettivo di esecuzione del codice"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Nel serverless il costo è generalmente legato alle invocazioni e al tempo di esecuzione della funzione."
+        "spiegazione": "Nel serverless il costo è generalmente legato alle invocazioni e al tempo di esecuzione della funzione.",
+        "tipo": "teoria"
     },
     {
         "id": 136,
@@ -1765,7 +1900,8 @@
             "Possono contenere un solo processo"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "In Kubernetes un Pod può essere sostituito in qualsiasi momento; lo stato persistente deve essere conservato altrove."
+        "spiegazione": "In Kubernetes un Pod può essere sostituito in qualsiasi momento; lo stato persistente deve essere conservato altrove.",
+        "tipo": "teoria"
     },
     {
         "id": 137,
@@ -1778,7 +1914,8 @@
             "Perché Kubernetes non è compatibile con i container OCI"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il Pod è l'unità minima di deployment di Kubernetes e permette a più container correlati di condividere rete e volumi."
+        "spiegazione": "Il Pod è l'unità minima di deployment di Kubernetes e permette a più container correlati di condividere rete e volumi.",
+        "tipo": "architettura"
     },
     {
         "id": 138,
@@ -1791,7 +1928,8 @@
             "Scheduler"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il Kubernetes Scheduler assegna i Pod ai nodi più adatti in base alle risorse disponibili e ai vincoli."
+        "spiegazione": "Il Kubernetes Scheduler assegna i Pod ai nodi più adatti in base alle risorse disponibili e ai vincoli.",
+        "tipo": "teoria"
     },
     {
         "id": 139,
@@ -1804,7 +1942,8 @@
             "AKS collegato ad Azure Container Registry (oppure EKS collegato ad Amazon ECR)"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Un registry privato è la soluzione standard per distribuire immagini ai cluster Kubernetes."
+        "spiegazione": "Un registry privato è la soluzione standard per distribuire immagini ai cluster Kubernetes.",
+        "tipo": "architettura"
     },
     {
         "id": 140,
@@ -1817,7 +1956,8 @@
             "L'hypervisor del provider"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "In IaaS il provider gestisce l'infrastruttura fisica, mentre il cliente gestisce sistema operativo, runtime e applicazioni."
+        "spiegazione": "In IaaS il provider gestisce l'infrastruttura fisica, mentre il cliente gestisce sistema operativo, runtime e applicazioni.",
+        "tipo": "teoria"
     },
     {
         "id": 141,
@@ -1830,7 +1970,8 @@
             "localhost:8080"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La sintassi è porta-host:porta-container — a sinistra la porta da cui entri sul tuo PC (8080), a destra quella su cui l'app ascolta nel container (80). Il browser entra sempre dalla porta host; invertirle è l'errore più comune."
+        "spiegazione": "La sintassi è porta-host:porta-container — a sinistra la porta da cui entri sul tuo PC (8080), a destra quella su cui l'app ascolta nel container (80). Il browser entra sempre dalla porta host; invertirle è l'errore più comune.",
+        "tipo": "codice"
     },
     {
         "id": 142,
@@ -1843,7 +1984,8 @@
             "Table Storage ↔ RDS"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Cosmos DB e DynamoDB sono i database NoSQL distribuiti dei due provider. Azure SQL e RDS/Aurora sono relazionali: le altre coppie mescolano modelli diversi."
+        "spiegazione": "Cosmos DB e DynamoDB sono i database NoSQL distribuiti dei due provider. Azure SQL e RDS/Aurora sono relazionali: le altre coppie mescolano modelli diversi.",
+        "tipo": "teoria"
     },
     {
         "id": 143,
@@ -1856,7 +1998,8 @@
             "Ogni container deve essere persistente"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Le applicazioni cloud-native vengono progettate assumendo che le istanze possano essere sostituite in qualsiasi momento."
+        "spiegazione": "Le applicazioni cloud-native vengono progettate assumendo che le istanze possano essere sostituite in qualsiasi momento.",
+        "tipo": "architettura"
     },
     {
         "id": 144,
@@ -1869,7 +2012,8 @@
             "In una tabella di audit creata automaticamente dal runtime Functions nello Storage Account"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Superato il numero massimo di tentativi, il runtime sposta il messaggio in una coda '<nome>-poison' per l'analisi manuale: così si evitano loop infiniti di retry senza perdere il messaggio."
+        "spiegazione": "Superato il numero massimo di tentativi, il runtime sposta il messaggio in una coda '<nome>-poison' per l'analisi manuale: così si evitano loop infiniti di retry senza perdere il messaggio.",
+        "tipo": "teoria"
     },
     {
         "id": 145,
@@ -1882,7 +2026,8 @@
             "A cifrare le query DNS dei client della VNet verso i resolver pubblici esterni"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il DNS privato fa sì che il nome di un servizio risolva sull'indirizzo privato (es. quello del Private Endpoint) per chi sta dentro la rete: nome e percorso di accesso non coincidono per forza."
+        "spiegazione": "Il DNS privato fa sì che il nome di un servizio risolva sull'indirizzo privato (es. quello del Private Endpoint) per chi sta dentro la rete: nome e percorso di accesso non coincidono per forza.",
+        "tipo": "teoria"
     },
     {
         "id": 146,
@@ -1895,7 +2040,8 @@
             "EFS"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Amazon S3 è il principale servizio di object storage di AWS ed è equivalente a Blob Storage."
+        "spiegazione": "Amazon S3 è il principale servizio di object storage di AWS ed è equivalente a Blob Storage.",
+        "tipo": "teoria"
     },
     {
         "id": 147,
@@ -1908,7 +2054,8 @@
             "Perché il browser usa la cache"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il frontend conosce solo il contratto dell'API (endpoint e JSON): tutto ciò che sta dietro — database, pattern di scrittura, code — può cambiare senza che se ne accorga. È il disaccoppiamento che rende evolvibile il sistema."
+        "spiegazione": "Il frontend conosce solo il contratto dell'API (endpoint e JSON): tutto ciò che sta dietro — database, pattern di scrittura, code — può cambiare senza che se ne accorga. È il disaccoppiamento che rende evolvibile il sistema.",
+        "tipo": "architettura"
     },
     {
         "id": 148,
@@ -1921,7 +2068,8 @@
             "Distribuire automaticamente i Pod di Kubernetes"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le Route Table stabiliscono come il traffico viene instradato all'interno della rete virtuale."
+        "spiegazione": "Le Route Table stabiliscono come il traffico viene instradato all'interno della rete virtuale.",
+        "tipo": "teoria"
     },
     {
         "id": 149,
@@ -1934,7 +2082,8 @@
             "Funzionare senza connessione di rete"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Le applicazioni cloud native sono progettate per sfruttare le caratteristiche del cloud come resilienza e scalabilità."
+        "spiegazione": "Le applicazioni cloud native sono progettate per sfruttare le caratteristiche del cloud come resilienza e scalabilità.",
+        "tipo": "teoria"
     },
     {
         "id": 150,
@@ -1947,7 +2096,8 @@
             "Perché rallentano la build invalidando la cache dei layer a ogni modifica del file"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il Dockerfile viene versionato e ogni istruzione diventa un layer ispezionabile (docker history): un segreto scritto lì è visibile a chiunque abbia l'immagine o il repository. I segreti si passano dall'esterno: env, app settings, secret manager."
+        "spiegazione": "Il Dockerfile viene versionato e ogni istruzione diventa un layer ispezionabile (docker history): un segreto scritto lì è visibile a chiunque abbia l'immagine o il repository. I segreti si passano dall'esterno: env, app settings, secret manager.",
+        "tipo": "teoria"
     },
     {
         "id": 151,
@@ -1960,7 +2110,8 @@
             "BIOS"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I namespace isolano processi, rete, utenti e filesystem tra container diversi."
+        "spiegazione": "I namespace isolano processi, rete, utenti e filesystem tra container diversi.",
+        "tipo": "teoria"
     },
     {
         "id": 152,
@@ -1973,7 +2124,8 @@
             "IaaS, PaaS e SaaS"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "ACI è Container-as-a-Service (gestisci solo container e immagine), Functions è FaaS (solo le funzioni), Cosmos è un servizio dati completamente gestito. Un'architettura reale pesca deliberatamente da livelli diversi della scala di responsabilità."
+        "spiegazione": "ACI è Container-as-a-Service (gestisci solo container e immagine), Functions è FaaS (solo le funzioni), Cosmos è un servizio dati completamente gestito. Un'architettura reale pesca deliberatamente da livelli diversi della scala di responsabilità.",
+        "tipo": "architettura"
     },
     {
         "id": 153,
@@ -1986,12 +2138,13 @@
             "Aumentano entrambi"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "È il filo conduttore del modulo: più si sale nello stack, meno infrastruttura gestisci e meno controllo fine hai — in cambio guadagni velocità di deploy e costi legati all'uso."
+        "spiegazione": "Più si sale nello stack, meno infrastruttura gestisci e meno controllo fine hai — in cambio guadagni velocità di deploy e costi legati all'uso.",
+        "tipo": "architettura"
     },
     {
         "id": 154,
         "categoria": "Terraform & IaC",
-        "domanda": "Perché per il laboratorio AKS con subscription Azure for Students è stato preferito Terraform al portale?",
+        "domanda": "Perché per creare un cluster AKS con una subscription Azure for Students può essere preferibile usare Terraform anziché il portale?",
         "risposte": [
             "La UI non mostra tutte le VM size, inclusa l'unica disponibile gratuitamente",
             "Il portale Azure non consente in alcun caso la creazione di cluster AKS: la piattaforma impone l'uso di strumenti a riga di comando o di Infrastructure as Code",
@@ -1999,7 +2152,8 @@
             "Terraform crea i cluster più velocemente"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "La UI del portale non elenca tutte le VM size — in particolare quella compatibile col piano Students. Con Terraform si specifica esattamente la configurazione voluta, in modo ripetibile e documentato nel codice."
+        "spiegazione": "La UI del portale non elenca tutte le VM size — in particolare quella compatibile col piano Students. Con Terraform si specifica esattamente la configurazione voluta, in modo ripetibile e documentato nel codice.",
+        "tipo": "architettura"
     },
     {
         "id": 155,
@@ -2012,7 +2166,8 @@
             "Un datacenter fisicamente separato all'interno di una region"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "La region è l'area geografica; dentro la region ci sono tipicamente 3 Availability Zone, cioè datacenter separati fisicamente: se uno va giù, gli altri reggono. La terza opzione descrive la region, non la AZ."
+        "spiegazione": "La region è l'area geografica; dentro la region ci sono tipicamente 3 Availability Zone, cioè datacenter separati fisicamente: se uno va giù, gli altri reggono. La terza opzione descrive la region, non la AZ.",
+        "tipo": "teoria"
     },
     {
         "id": 156,
@@ -2025,7 +2180,8 @@
             "Per mantenere il traffico all'interno della rete privata migliorando sicurezza e conformità"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "I Private Endpoint evitano l'esposizione dei servizi su Internet, riducendo la superficie di attacco."
+        "spiegazione": "I Private Endpoint evitano l'esposizione dei servizi su Internet, riducendo la superficie di attacco.",
+        "tipo": "architettura"
     },
     {
         "id": 157,
@@ -2038,7 +2194,8 @@
             "Il database ha confermato la transazione ma l'indice non è ancora aggiornato"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Con una coda in mezzo, il 200 del produttore significa 'ho accettato', non 'ho salvato': la persistenza avviene dopo, quando il consumer processa il messaggio. È il prezzo concettuale del disaccoppiamento asincrono."
+        "spiegazione": "Con una coda in mezzo, il 200 del produttore significa 'ho accettato', non 'ho salvato': la persistenza avviene dopo, quando il consumer processa il messaggio. È il prezzo concettuale del disaccoppiamento asincrono.",
+        "tipo": "architettura"
     },
     {
         "id": 158,
@@ -2051,7 +2208,8 @@
             "Tutto il traffico, sia in entrata sia in uscita, alla stessa tariffa per gigabyte"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "La regola generale (Azure e AWS): traffico in ingresso gratuito, traffico in uscita (egress) a pagamento. È una voce di costo da considerare quando l'architettura sposta molti dati verso l'esterno."
+        "spiegazione": "La regola generale (Azure e AWS): traffico in ingresso gratuito, traffico in uscita (egress) a pagamento. È una voce di costo da considerare quando l'architettura sposta molti dati verso l'esterno.",
+        "tipo": "teoria"
     },
     {
         "id": 159,
@@ -2064,7 +2222,8 @@
             "Perché è certificato come standard ISO"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "L'API S3 è uno standard de facto: MinIO, Ceph (RadosGW), SeaweedFS e vari cloud la implementano. Scrivi il codice una volta (SDK S3) e giri su AWS, on-premise o altri provider — come Docker/OCI per le immagini container."
+        "spiegazione": "L'API S3 è uno standard de facto: MinIO, Ceph (RadosGW), SeaweedFS e vari cloud la implementano. Scrivi il codice una volta (SDK S3) e giri su AWS, on-premise o altri provider — come Docker/OCI per le immagini container.",
+        "tipo": "teoria"
     },
     {
         "id": 160,
@@ -2077,7 +2236,8 @@
             "Un container nginx su ACI con immagine custom pubblicata su un registry privato"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Per un sito statico 'normale' i servizi PaaS dedicati (Static Web Apps, App Service) offrono TLS, domini e CI/CD integrati senza gestire container o server. Le altre opzioni funzionano ma aggiungono complessità ingiustificata dal requisito."
+        "spiegazione": "Per un sito statico 'normale' i servizi PaaS dedicati (Static Web Apps, App Service) offrono TLS, domini e CI/CD integrati senza gestire container o server. Le altre opzioni funzionano ma aggiungono complessità ingiustificata dal requisito.",
+        "tipo": "architettura"
     },
     {
         "id": 161,
@@ -2090,7 +2250,8 @@
             "Dedicated"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "In modalità serverless non c'è capacità pre-allocata da pagare 24/7: si pagano solo le Request Unit consumate. Per carichi costanti e prevedibili converrebbe invece il throughput provisionato."
+        "spiegazione": "In modalità serverless non c'è capacità pre-allocata da pagare 24/7: si pagano solo le Request Unit consumate. Per carichi costanti e prevedibili converrebbe invece il throughput provisionato.",
+        "tipo": "architettura"
     },
     {
         "id": 162,
@@ -2103,7 +2264,8 @@
             "Dura 30 giorni"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Azure for Students dà 100 USD rinnovabili ogni anno con la sola mail scolastica, senza carta di credito. Restano però limiti e capacità disabilitate (es. ACR Tasks): non è un accesso illimitato."
+        "spiegazione": "Azure for Students dà 100 USD rinnovabili ogni anno con la sola mail scolastica, senza carta di credito. Restano però limiti e capacità disabilitate (es. ACR Tasks): non è un accesso illimitato.",
+        "tipo": "teoria"
     },
     {
         "id": 163,
@@ -2116,7 +2278,8 @@
             "Distribuire i container nei Pod"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Gli NSG definiscono le regole di sicurezza che consentono o bloccano il traffico di rete verso le risorse Azure."
+        "spiegazione": "Gli NSG definiscono le regole di sicurezza che consentono o bloccano il traffico di rete verso le risorse Azure.",
+        "tipo": "teoria"
     },
     {
         "id": 164,
@@ -2129,7 +2292,8 @@
             "Azure DevOps"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Azure Container Instances consente di avviare singoli container senza amministrare un cluster."
+        "spiegazione": "Azure Container Instances consente di avviare singoli container senza amministrare un cluster.",
+        "tipo": "teoria"
     },
     {
         "id": 165,
@@ -2142,7 +2306,8 @@
             "CloudFormation"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "I Security Group di AWS controllano il traffico in ingresso e in uscita delle risorse, come gli NSG di Azure."
+        "spiegazione": "I Security Group di AWS controllano il traffico in ingresso e in uscita delle risorse, come gli NSG di Azure.",
+        "tipo": "teoria"
     },
     {
         "id": 166,
@@ -2155,7 +2320,8 @@
             "Lo scheduler"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il tunnel del port-forward transita dall'API server di Kubernetes, non da un ingresso di rete dedicato: un motivo in più per considerarlo uno strumento di sviluppo e non una soluzione di produzione."
+        "spiegazione": "Il tunnel del port-forward transita dall'API server di Kubernetes, non da un ingresso di rete dedicato: un motivo in più per considerarlo uno strumento di sviluppo e non una soluzione di produzione.",
+        "tipo": "architettura"
     },
     {
         "id": 167,
@@ -2168,7 +2334,8 @@
             "Diventano macchine virtuali"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Kubernetes rileva il guasto e tenta di ricreare i Pod su altri nodi disponibili per mantenere lo stato desiderato."
+        "spiegazione": "Kubernetes rileva il guasto e tenta di ricreare i Pod su altri nodi disponibili per mantenere lo stato desiderato.",
+        "tipo": "teoria"
     },
     {
         "id": 168,
@@ -2181,7 +2348,8 @@
             "Apache"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Docker utilizza containerd come runtime per la gestione dei container, che a sua volta sfrutta runc per la loro esecuzione."
+        "spiegazione": "Docker utilizza containerd come runtime per la gestione dei container, che a sua volta sfrutta runc per la loro esecuzione.",
+        "tipo": "teoria"
     },
     {
         "id": 169,
@@ -2194,7 +2362,8 @@
             "Terraform elimina completamente i costi del cloud"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Terraform permette di definire l'infrastruttura come codice, migliorando automazione, controllo delle versioni e riproducibilità."
+        "spiegazione": "Terraform permette di definire l'infrastruttura come codice, migliorando automazione, controllo delle versioni e riproducibilità.",
+        "tipo": "teoria"
     },
     {
         "id": 170,
@@ -2207,7 +2376,8 @@
             "Creare ogni risorsa esclusivamente dal portale web"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Infrastructure as Code e containerizzazione permettono deploy rapidi, riproducibili e facilmente automatizzabili."
+        "spiegazione": "Infrastructure as Code e containerizzazione permettono deploy rapidi, riproducibili e facilmente automatizzabili.",
+        "tipo": "architettura"
     },
     {
         "id": 171,
@@ -2220,7 +2390,8 @@
             "Resource Group → Subscription → Management Group → Resource"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il Management Group raggruppa più subscription; la subscription è il contratto di fatturazione; il resource group contiene le risorse. Ogni risorsa Azure vive obbligatoriamente in un resource group."
+        "spiegazione": "Il Management Group raggruppa più subscription; la subscription è il contratto di fatturazione; il resource group contiene le risorse. Ogni risorsa Azure vive obbligatoriamente in un resource group.",
+        "tipo": "teoria"
     },
     {
         "id": 172,
@@ -2233,7 +2404,8 @@
             "La piattaforma, che osserva la coda"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Nessuno 'chiama' una function a queue trigger: è il runtime che monitora la coda e attiva la function quando compare un messaggio. È l'essenza del modello event-driven — il codice reagisce agli eventi."
+        "spiegazione": "Nessuno 'chiama' una function a queue trigger: è il runtime che monitora la coda e attiva la function quando compare un messaggio. È l'essenza del modello event-driven — il codice reagisce agli eventi.",
+        "tipo": "architettura"
     },
     {
         "id": 173,
@@ -2246,7 +2418,8 @@
             "30 minuti"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Lambda ha un timeout massimo di 15 minuti per invocazione (Azure Functions Consumption si ferma a 10). Per task più lunghi servono container, VM o orchestrazioni a passi."
+        "spiegazione": "Lambda ha un timeout massimo di 15 minuti per invocazione (Azure Functions Consumption si ferma a 10). Per task più lunghi servono container, VM o orchestrazioni a passi.",
+        "tipo": "teoria"
     },
     {
         "id": 174,
@@ -2259,7 +2432,8 @@
             "Il servizio è monitorato h24"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Measured service = consumo misurato e fatturato per quello che usi (compute a tempo, storage a GB/mese), come la bolletta elettrica. Non è un canone fisso né una clausola di SLA."
+        "spiegazione": "Measured service = consumo misurato e fatturato per quello che usi (compute a tempo, storage a GB/mese), come la bolletta elettrica. Non è un canone fisso né una clausola di SLA.",
+        "tipo": "teoria"
     },
     {
         "id": 175,
@@ -2272,7 +2446,8 @@
             "Scarica kubectl e lo configura"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "eksctl orchestra la creazione dell'intero ambiente (VPC, subnet, ruoli IAM, control plane EKS e nodi) tramite CloudFormation: per questo servono ~15-20 minuti — è il control plane EKS a essere lento, non il comando."
+        "spiegazione": "eksctl orchestra la creazione dell'intero ambiente (VPC, subnet, ruoli IAM, control plane EKS e nodi) tramite CloudFormation: per questo servono ~15-20 minuti — è il control plane EKS a essere lento, non il comando.",
+        "tipo": "codice"
     },
     {
         "id": 176,
@@ -2285,7 +2460,8 @@
             "docker build"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Il comando 'docker build' legge il Dockerfile e genera una nuova immagine."
+        "spiegazione": "Il comando 'docker build' legge il Dockerfile e genera una nuova immagine.",
+        "tipo": "codice"
     },
     {
         "id": 177,
@@ -2298,7 +2474,8 @@
             "Creare manualmente un cluster Kubernetes on-premises"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Servizi come Azure Container Apps e AWS Fargate permettono di eseguire container senza gestire direttamente i nodi del cluster."
+        "spiegazione": "Servizi come Azure Container Apps e AWS Fargate permettono di eseguire container senza gestire direttamente i nodi del cluster.",
+        "tipo": "architettura"
     },
     {
         "id": 178,
@@ -2311,7 +2488,8 @@
             "500 mila"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Entrambi i provider regalano il primo milione di esecuzioni/richieste al mese: per prototipi e carichi leggeri il costo del compute serverless è di fatto zero."
+        "spiegazione": "Entrambi i provider regalano il primo milione di esecuzioni/richieste al mese: per prototipi e carichi leggeri il costo del compute serverless è di fatto zero.",
+        "tipo": "teoria"
     },
     {
         "id": 179,
@@ -2324,7 +2502,8 @@
             "Perché un Pod non può contenere container"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il Deployment aggiunge funzionalità di gestione del ciclo di vita che un Pod creato manualmente non possiede."
+        "spiegazione": "Il Deployment aggiunge funzionalità di gestione del ciclo di vita che un Pod creato manualmente non possiede.",
+        "tipo": "architettura"
     },
     {
         "id": 180,
@@ -2337,7 +2516,8 @@
             "Valida lo schema dei documenti letti"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "L'input binding porta i dati 'già pronti': il runtime esegue la query dichiarata e la function riceve il risultato come parametro, senza codice di accesso. Per logiche più sofisticate (upsert, transazioni) si torna all'SDK esplicito."
+        "spiegazione": "L'input binding porta i dati 'già pronti': il runtime esegue la query dichiarata e la function riceve il risultato come parametro, senza codice di accesso. Per logiche più sofisticate (upsert, transazioni) si torna all'SDK esplicito.",
+        "tipo": "codice"
     },
     {
         "id": 181,
@@ -2350,7 +2530,8 @@
             "Managed identity con RBAC"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Con la managed identity la Function App si autentica 'come sé stessa' presso i servizi Azure: niente segreti da distribuire, permessi minimi via RBAC, revoca centralizzata. Le chiavi nel codice o nel repository sono l'anti-pattern da evitare."
+        "spiegazione": "Con la managed identity la Function App si autentica 'come sé stessa' presso i servizi Azure: niente segreti da distribuire, permessi minimi via RBAC, revoca centralizzata. Le chiavi nel codice o nel repository sono l'anti-pattern da evitare.",
+        "tipo": "architettura"
     },
     {
         "id": 182,
@@ -2363,7 +2544,8 @@
             "kubectl attach -it web -- /bin/sh"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "`kubectl exec -it <pod> -- /bin/sh` è l'equivalente di `docker exec` per Kubernetes: -it attiva l'interattività, -- separa il comando. `kubectl shell` e `kubectl login` non esistono; `attach` si aggancia al processo principale, non apre una nuova shell."
+        "spiegazione": "`kubectl exec -it <pod> -- /bin/sh` è l'equivalente di `docker exec` per Kubernetes: -it attiva l'interattività, -- separa il comando. `kubectl shell` e `kubectl login` non esistono; `attach` si aggancia al processo principale, non apre una nuova shell.",
+        "tipo": "codice"
     },
     {
         "id": 183,
@@ -2376,7 +2558,8 @@
             "Azure AKS - Amazon S3"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Azure Virtual Network e Amazon VPC sono entrambi servizi che permettono di creare reti virtuali isolate nel cloud."
+        "spiegazione": "Azure Virtual Network e Amazon VPC sono entrambi servizi che permettono di creare reti virtuali isolate nel cloud.",
+        "tipo": "teoria"
     },
     {
         "id": 184,
@@ -2389,7 +2572,8 @@
             "EKS"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "AWS Lambda è il servizio FaaS (Function as a Service) di Amazon."
+        "spiegazione": "AWS Lambda è il servizio FaaS (Function as a Service) di Amazon.",
+        "tipo": "teoria"
     },
     {
         "id": 185,
@@ -2402,7 +2586,8 @@
             "On-demand Self-Service"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il Resource Pooling permette al provider di condividere le risorse fisiche tra più clienti garantendone l'isolamento."
+        "spiegazione": "Il Resource Pooling permette al provider di condividere le risorse fisiche tra più clienti garantendone l'isolamento.",
+        "tipo": "teoria"
     },
     {
         "id": 186,
@@ -2415,7 +2600,8 @@
             "main.tf"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il file di stato registra gli attributi reali delle risorse, incluse chiavi e connection string in chiaro: va tenuto fuori dai repository (o in un backend remoto protetto). Il lock file e i .tf descrivono la configurazione, non i segreti."
+        "spiegazione": "Il file di stato registra gli attributi reali delle risorse, incluse chiavi e connection string in chiaro: va tenuto fuori dai repository (o in un backend remoto protetto). Il lock file e i .tf descrivono la configurazione, non i segreti.",
+        "tipo": "teoria"
     },
     {
         "id": 187,
@@ -2428,7 +2614,8 @@
             "Permette di eseguire container senza gestire direttamente i server"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Fargate gestisce automaticamente l'infrastruttura necessaria all'esecuzione dei container."
+        "spiegazione": "Fargate gestisce automaticamente l'infrastruttura necessaria all'esecuzione dei container.",
+        "tipo": "teoria"
     },
     {
         "id": 188,
@@ -2441,7 +2628,8 @@
             "App Service Plan dedicato, VM spot e dischi gestiti ad accesso sporadico"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il serverless va oltre il FaaS: database (Cosmos serverless, DynamoDB on-demand), container serverless (Container Apps, Fargate), code ed eventi. L'idea comune: zero gestione server, si paga l'uso effettivo, scaling automatico."
+        "spiegazione": "Il serverless va oltre il FaaS: database (Cosmos serverless, DynamoDB on-demand), container serverless (Container Apps, Fargate), code ed eventi. L'idea comune: zero gestione server, si paga l'uso effettivo, scaling automatico.",
+        "tipo": "teoria"
     },
     {
         "id": 189,
@@ -2454,7 +2642,8 @@
             "Azure Functions - Amazon EC2"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "ACR ed ECR sono registry privati utilizzati per archiviare immagini OCI/Docker."
+        "spiegazione": "ACR ed ECR sono registry privati utilizzati per archiviare immagini OCI/Docker.",
+        "tipo": "teoria"
     },
     {
         "id": 190,
@@ -2467,6 +2656,7 @@
             "AcrPush, che include la delega alla scrittura dei layer sul registry privato"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Il role assignment AcrPull sull'identità gestita del cluster è ciò che autorizza AKS a leggere dall'ACR: senza, il pull dell'immagine privata fallisce e il pod resta in ImagePullBackOff. Contributor/Owner sarebbero permessi enormemente eccessivi."
+        "spiegazione": "Il role assignment AcrPull sull'identità gestita del cluster è ciò che autorizza AKS a leggere dall'ACR: senza, il pull dell'immagine privata fallisce e il pod resta in ImagePullBackOff. Contributor/Owner sarebbero permessi enormemente eccessivi.",
+        "tipo": "architettura"
     }
 ]

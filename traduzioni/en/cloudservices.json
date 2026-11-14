@@ -105,7 +105,7 @@
     },
     "3bf97fafcb68": {
       "domanda": "What constraint applies to an S3 bucket name?",
-      "spiegazione": "The bucket name must be globally unique across all AWS accounts worldwide: if 'its-demo-bucket' already exists somewhere, you must choose a different name.",
+      "spiegazione": "The bucket name must be globally unique across all AWS accounts worldwide: if 'demo-bucket' already exists somewhere, you must choose a different name.",
       "risposte": [
         "It must be globally unique",
         "It must contain the region name where the bucket is actually created",
@@ -504,7 +504,7 @@
       ]
     },
     "1a21d93ffae7": {
-      "domanda": "An hosting offers 10 GB of fixed storage, and every upgrade requires submitting a ticket to the provider. Which NIST characteristics are missing for it to be considered true cloud?",
+      "domanda": "A hosting offers 10 GB of fixed storage, and every upgrade requires submitting a ticket to the provider. Which NIST characteristics are missing for it to be considered true cloud?",
       "spiegazione": "If every upgrade requires a ticket, on-demand self-service is missing; if the storage is fixed, rapid elasticity is missing. Without all five NIST characteristics, it is not cloud—it is 'someone else's computer rented poorly.'",
       "risposte": [
         "None: it is fully cloud, because the servers are remote and entirely managed by the provider",
@@ -515,7 +515,7 @@
     },
     "3ea016ed3b80": {
       "domanda": "Which Terraform command removes all resources described in the configuration?",
-      "spiegazione": "`terraform destroy` removes all resources tracked in the state (in the lab: resource group, AKS, ACR, role assignment, and budget). The other commands do not exist.",
+      "spiegazione": "`terraform destroy` removes all resources tracked in the state (e.g., resource group, AKS, ACR, role assignment, and budget). The other commands do not exist.",
       "risposte": [
         "terraform destroy",
         "terraform delete --all --force",
@@ -567,10 +567,10 @@
       "domanda": "How can you mitigate the cold start of a function with constant latency requirements?",
       "spiegazione": "Cold starts are eliminated by paying for pre-warmed instances: Premium plan on Azure Functions, provisioned concurrency on Lambda. Timeout, memory, and region do not prevent the deallocation of idle instances.",
       "risposte": [
-        "A. Increasing the maximum execution timeout of the function, so the runtime stays loaded in memory longer",
-        "B. Changing the deployment region",
-        "C. Reducing the memory allocated to the function",
-        "D. With always-ready instances (Premium plan or provisioned concurrency)"
+        "Increasing the maximum execution timeout of the function, so the runtime stays loaded in memory longer",
+        "Changing the deployment region",
+        "Reducing the memory allocated to the function",
+        "With always-ready instances (Premium plan or provisioned concurrency)"
       ]
     },
     "94401fe89852": {
@@ -633,9 +633,9 @@
         "Amazon S3"
       ]
     },
-    "f69220900d5a": {
-      "domanda": "According to the lecture notes, which statement best describes the evolution from VMs to Containers to Serverless?",
-      "spiegazione": "The key concept of the course is that, moving from VMs to Containers and Serverless, the infrastructure management burden decreases.",
+    "3275e56c6df0": {
+      "domanda": "Which statement best describes the evolution from VMs to Containers to Serverless?",
+      "spiegazione": "Moving from VMs to Containers and Serverless, the infrastructure management burden decreases.",
       "risposte": [
         "Serverless requires more management than VMs",
         "The higher you go in the stack, the less infrastructure the developer has to manage directly",
@@ -795,7 +795,7 @@
     },
     "f8703baa5315": {
       "domanda": "In a consumption-based FaaS model, what is the cost of a function when it receives no events?",
-      "spiegazione": "The consumption plan scales to zero: no events, no running instances, no cost. This is the distinguishing feature of FaaS compared to a always-on server — and the reason for the cold start on the next invocation.",
+      "spiegazione": "The consumption plan scales to zero: no events, no running instances, no cost. This is the distinguishing feature of FaaS compared to an always-on server — and the reason for the cold start on the next invocation.",
       "risposte": [
         "The cost of a small always-on VM hosting the runtime in standby",
         "A reduced hourly rate applied to the instance kept ready to start",
@@ -984,7 +984,7 @@
       ]
     },
     "dd5d683560ac": {
-      "domanda": "Which delivery guarantee does Azure Storage provide?",
+      "domanda": "Which delivery guarantee does an Azure Storage queue provide?",
       "spiegazione": "The delivery is at-least-once: in case of retry, the same message may arrive more than once, never zero. For this reason, the consumer should be idempotent; pure exactly-once is not guaranteed.",
       "risposte": [
         "At-most-once",
@@ -1089,7 +1089,7 @@
       "risposte": [
         "Docker + Kubernetes + Private Registry (ACR/ECR) + Terraform",
         "A manually configured virtual machine",
-        "A always-on remote desktop with Docker Desktop",
+        "An always-on remote desktop with Docker Desktop",
         "A physical server with direct application installation"
       ]
     },
@@ -1535,7 +1535,7 @@
     },
     "59ec5ef62096": {
       "domanda": "As you move up the stack from VMs to containers to serverless, what happens to infrastructure management and control?",
-      "spiegazione": "This is the key theme of the module: as you move up the stack, you manage less infrastructure and have less fine-grained control — in exchange, you gain faster deployment times and pay only for what you use.",
+      "spiegazione": "As you move up the stack, you manage less infrastructure and have less fine-grained control — in exchange, you gain faster deployment times and pay only for what you use.",
       "risposte": [
         "Only management decreases",
         "Both decrease",
@@ -1543,8 +1543,8 @@
         "Both increase"
       ]
     },
-    "acf6122606bf": {
-      "domanda": "Why was Terraform preferred over the Azure portal for the AKS lab with the Azure for Students subscription?",
+    "1831557b6d57": {
+      "domanda": "Why might using Terraform be preferred over the Azure portal to create an AKS cluster with an Azure for Students subscription?",
       "spiegazione": "The portal UI does not list all VM sizes — specifically, the one compatible with the Students plan. With Terraform, you specify the exact desired configuration, making it repeatable and documented in code.",
       "risposte": [
         "The UI does not show all VM sizes, including the only one available for free",
