@@ -37,7 +37,7 @@
         "Dynamic Block Memory Storage"
       ]
     },
-    "8a10daa0e7ac": {
+    "4a9b74ba2314": {
       "domanda": "Which of the following is NOT a fundamental requirement of a database?",
       "spiegazione": "The three fundamental requirements are: minimal data redundancy, concurrent access, and persistence/durability. Maximum insertion speed is not a defining requirement: it is balanced with integrity and security.",
       "risposte": [
@@ -67,7 +67,7 @@
         "Queries saved as VIEWs in the database"
       ]
     },
-    "43a47b3e8c96": {
+    "4bbf00b4daac": {
       "domanda": "What is the main advantage of data independence in a DBMS?",
       "spiegazione": "Data independence means that applications are unaware of the physical structure. You can add a column or move data to another disk without rewriting the programs that use it.",
       "risposte": [
@@ -77,7 +77,7 @@
         "You can change the physical structure of the data without having to rewrite the applications"
       ]
     },
-    "763a77ff9f0f": {
+    "15ca08b8a1c9": {
       "domanda": "Which of these is an example of a NoSQL database?",
       "spiegazione": "MongoDB is a document-based NoSQL database. PostgreSQL, MySQL, and Oracle are relational databases that use SQL. NoSQL databases emerged in the 2000s to manage large volumes of unstructured data.",
       "risposte": [
@@ -87,7 +87,7 @@
         "MongoDB"
       ]
     },
-    "8769b651aee4": {
+    "440c2f6639b9": {
       "domanda": "In the relational model, what does a 'row' (row/tuple) represent?",
       "spiegazione": "A row (also called a tuple or record) represents a specific instance of the entity: a concrete customer, a real product, a specific order. Columns describe its properties.",
       "risposte": [
@@ -97,7 +97,7 @@
         "The set of all possible values for a column"
       ]
     },
-    "d3ec4979b5b4": {
+    "d9a2bc53ae8d": {
       "domanda": "What is the 'domain' of a column in the relational model?",
       "spiegazione": "The domain is the set of permissible values for a column. It is defined by the data type (`INT`, `VARCHAR`, `DATE`...) combined with any `CHECK` constraints. E.g., an `age` column with type `INT` and `CHECK (age >= 0 AND age <= 130)`.",
       "risposte": [
@@ -107,7 +107,7 @@
         "The maximum number of characters for text-type columns"
       ]
     },
-    "f0097e2e0249": {
+    "2380630e2b5c": {
       "domanda": "What is a natural key?",
       "spiegazione": "A natural key is an attribute that is already meaningful in the real-world domain and identifies the entity (e.g., tax code for a person, ISBN for a book). An artificial key (surrogate key), on the other hand, is added specifically without real-world meaning, such as a `SERIAL` sequential number.",
       "risposte": [
@@ -117,7 +117,7 @@
         "A key composed of two or more columns"
       ]
     },
-    "fb68848720d7": {
+    "ce8cc86b286f": {
       "domanda": "What differentiates the 'schema' from the 'instance' of a table?",
       "spiegazione": "The schema defines the table structure (columns, types, constraints) and is stable over time. The instance is the current content (the rows present) and changes continuously with DML operations.",
       "risposte": [
@@ -127,7 +127,7 @@
         "The schema changes with every `INSERT`; the instance remains unchanged"
       ]
     },
-    "cd5150d3d81f": {
+    "8d6b9fb09ba2": {
       "domanda": "In which type of relationship between entities can a row in table A be associated with multiple rows in B and vice versa?",
       "spiegazione": "The N:N (many-to-many) relationship is the one where entity A can be associated with multiple entities B and vice versa. Example: a student can enroll in multiple courses, and a course can have multiple students. It is implemented using a junction table.",
       "risposte": [
@@ -137,7 +137,7 @@
         "N:N (many-to-many)"
       ]
     },
-    "1478ce18724d": {
+    "7fdf27aeed1d": {
       "domanda": "Why is a surrogate key often preferred over a natural key?",
       "spiegazione": "Natural keys can change (e.g., a tax code may be corrected) or cause issues (reassigned acronyms, duplicates across different systems). A surrogate key (`SERIAL`, `UUID`) is stable, has no meaning in the real-world domain, and does not depend on external rules.",
       "risposte": [
@@ -147,7 +147,7 @@
         "Because natural keys are in no way supported by the SQL standard or by the main DBMS in use"
       ]
     },
-    "042d412121d0": {
+    "26388f5afa2f": {
       "domanda": "What happens by default (without `CASCADE` options) if you attempt to delete a parent record that has child rows linked via a `FOREIGN KEY`?",
       "spiegazione": "The default behavior is `RESTRICT`: the DBMS prevents the deletion of the parent if there are child rows referencing it, returning an error. To achieve different behaviors, you specify `ON DELETE CASCADE`, `ON DELETE SET NULL`, etc.",
       "risposte": [
@@ -157,7 +157,7 @@
         "The parent is deleted and the child rows remain unchanged (dangling references)"
       ]
     },
-    "0a492e66b349": {
+    "fe3e31780dff": {
       "domanda": "Why can't duplicate rows exist in the relational model?",
       "spiegazione": "From a mathematical perspective, a relation (table) is a set of tuples. Sets, by definition, do not contain duplicate elements. The `PRIMARY KEY` is the practical mechanism that implements this mathematical property.",
       "risposte": [
@@ -167,7 +167,7 @@
         "Because the `PRIMARY KEY` is always mandatory by SQL standard law"
       ]
     },
-    "d93b0e2efa4a": {
+    "8145944b3479": {
       "domanda": "What is First Normal Form (1NF)?",
       "spiegazione": "1NF requires that each cell contains an atomic value (not divisible into smaller parts with independent meaning) and that there are no repeating groups. For example, a `phones` column containing multiple numbers in a single string violates 1NF.",
       "risposte": [
@@ -177,7 +177,7 @@
         "The table has exactly one column defined as `NOT NULL`"
       ]
     },
-    "e397947923dc": {
+    "09d7a8c270c9": {
       "domanda": "What is the Second Normal Form (2NF)?",
       "spiegazione": "2NF requires that the table is in 1NF and that every non-key attribute is functionally dependent on the entire primary key. If the PK is composite and an attribute depends only on part of it (partial dependency), 2NF is violated.",
       "risposte": [
@@ -187,7 +187,7 @@
         "The table has at least three columns that form the composite primary key"
       ]
     },
-    "c2518cd04fb3": {
+    "698fd5917c8f": {
       "domanda": "What is Third Normal Form (3NF)?",
       "risposte": [
         "The table is in 1NF and there are no repeated attributes in any column",
@@ -207,8 +207,8 @@
         "Projection anomaly"
       ]
     },
-    "3473b2bc3eeb": {
-      "domanda": "A table with a `phones` column containing '333-111, 333-222, 333-333' in a single purple cell violates which normal form?",
+    "ab86b604330a": {
+      "domanda": "A table with a `phones` column containing '333-111, 333-222, 333-333' in a single cell violates which normal form?",
       "spiegazione": "First Normal Form (1NF) requires atomic values: each cell must contain a single indivisible value. A cell containing multiple phone numbers separated by commas violates 1NF. The solution is to create a separate `phones` table with one row for each number.",
       "risposte": [
         "2NF — partial dependency on the key",
@@ -217,14 +217,14 @@
         "Does not violate any normal form"
       ]
     },
-    "d6cf5fbeb5a0": {
+    "50cbdb1a92e9": {
       "domanda": "What is the primary purpose of database normalization?",
       "spiegazione": "Normalization aims to eliminate redundancy and design a relational schema that avoids anomalies. Note: normalization can reduce query performance (more JOINs required); in some cases, denormalization is intentionally applied to optimize.",
       "risposte": [
-        "A. Increase the read speed of `SELECT` queries",
-        "B. Reduce redundancy and prevent insertion, update, and deletion anomalies",
-        "C. Increase the number of tables to distribute the server load",
-        "D. Make the database accessible exclusively to users with specific, properly granted permissions"
+        "Increase the read speed of `SELECT` queries",
+        "Reduce redundancy and prevent insertion, update, and deletion anomalies",
+        "Increase the number of tables to distribute the server load",
+        "Make the database accessible exclusively to users with specific, properly granted permissions"
       ]
     },
     "590716a7c18c": {
@@ -247,7 +247,7 @@
         "`CHANGE TABLE`"
       ]
     },
-    "cf38109ed699": {
+    "97b5e39228e1": {
       "domanda": "What does `DROP TABLE name CASCADE` do?",
       "spiegazione": "`DROP TABLE name CASCADE` drops the table and, cascadingly, all dependent objects: the `VIEWS` that use it, and the `FOREIGN KEY`s from other tables that reference it. Without `CASCADE`, if dependencies exist, the command returns an error (`RESTRICT` behavior).",
       "risposte": [
@@ -257,7 +257,7 @@
         "Deletes the table only if it has no incoming foreign key constraints"
       ]
     },
-    "fe0447618421": {
+    "ea0c4adf8079": {
       "domanda": "What is the main difference between `DELETE FROM table` (without `WHERE`) and `TRUNCATE TABLE table`?",
       "spiegazione": "`TRUNCATE` empties the table without logging each individual deleted row in the transaction log, making it much faster on large tables. Both preserve the table structure. `TRUNCATE` with `RESTART IDENTITY` also resets `SERIAL` counters.",
       "risposte": [
@@ -267,7 +267,7 @@
         "There is no practical difference between the two: they produce exactly the same result with the same performance"
       ]
     },
-    "3cd711dc5fa8": {
+    "726bdeff4ae7": {
       "domanda": "What does `ALTER TABLE libri ADD genere VARCHAR(50)` do?",
       "spiegazione": "`ALTER TABLE ... ADD` adds a new column to the table. The new column will be populated with `NULL` for all existing rows, unless a `DEFAULT` is specified.",
       "risposte": [
@@ -277,7 +277,7 @@
         "Changes the data type of the existing `genere` column to `VARCHAR(50)`"
       ]
     },
-    "d6591e8fe967": {
+    "9a5d4f5c6d7a": {
       "domanda": "What does an `INDEX` do in SQL?",
       "spiegazione": "An index speeds up search operations (`SELECT` with `WHERE`, `ORDER BY`, `JOIN`) by allowing the DBMS to locate rows without scanning the entire table. The trade-off is that `INSERT`, `UPDATE`, and `DELETE` operations become slightly slower because the index must be updated.",
       "risposte": [
@@ -297,7 +297,7 @@
         "`AUTO_INCREMENT`"
       ]
     },
-    "3cfea7963e18": {
+    "8a0fe45d7b3e": {
       "domanda": "What does `DROP TABLE IF EXISTS name` do?",
       "spiegazione": "`IF EXISTS` is a safety modifier: if the table does not exist, the command terminates without error instead of raising an exception. Useful in setup scripts where it is not certain whether the table exists.",
       "risposte": [
@@ -307,7 +307,7 @@
         "Checks for the existence of the table without deleting it"
       ]
     },
-    "3e58ae96daf7": {
+    "6b29c126bcbe": {
       "domanda": "What is a `SCHEMA` in PostgreSQL?",
       "spiegazione": "A schema is a logical namespace within a database that groups tables, `VIEWS`, and other objects. It allows organizing objects and managing permissions in a granular manner. The default schema in PostgreSQL is called `public`.",
       "risposte": [
@@ -327,7 +327,7 @@
         "`RENAME COLUMN old TO new`"
       ]
     },
-    "9aa0357aed4f": {
+    "a8cbd60c65eb": {
       "domanda": "How does a `UNIQUE INDEX` created on a column differ from a regular `INDEX`?",
       "spiegazione": "`CREATE UNIQUE INDEX` creates an index that, in addition to speeding up searches, ensures that all values in the indexed column (or combination of columns) are unique. It is an alternative to the `UNIQUE` constraint defined on the table.",
       "risposte": [
@@ -357,7 +357,7 @@
         "`APPEND INTO table (columns) VALUES (values);`"
       ]
     },
-    "265d1ba8a8bc": {
+    "59ea6d69955b": {
       "domanda": "What happens if you execute `UPDATE libri SET prezzo = 0` without the `WHERE` clause?",
       "spiegazione": "Without `WHERE`, `UPDATE` modifies ALL rows in the table. There is no syntax error, but the effect can be disastrous. Best practice: run a `SELECT` with the same condition first to verify which rows will be modified.",
       "risposte": [
@@ -377,7 +377,7 @@
         "`RETURNING`"
       ]
     },
-    "1a07de4dd9ff": {
+    "c1d183c82b67": {
       "domanda": "What is the correct syntax to insert multiple rows with a single `INSERT`?",
       "spiegazione": "Multiple `INSERT` uses a comma-separated list of values: `INSERT INTO t (col1, col2) VALUES (1,'A'), (2,'B'), (3,'C');` It is much more efficient than separate `INSERT`s because it reduces the number of round-trips with the database.",
       "risposte": [
@@ -397,7 +397,7 @@
         "`UPDATE t MODIFY col1=v1, col2=v2 WHERE cond;`"
       ]
     },
-    "1f3eafca655a": {
+    "c4140dca01d1": {
       "domanda": "What does the `INSERT INTO ... SELECT ...` statement allow you to do?",
       "spiegazione": "`INSERT INTO destination_table (col1, col2) SELECT col1, col2 FROM source_table WHERE condition;` allows you to copy data from one table to another in a single operation. Useful for archiving or migrating data.",
       "risposte": [
@@ -407,7 +407,7 @@
         "Create a permanent `VIEW` based on a `SELECT` query, assigning it a reusable name"
       ]
     },
-    "5bd68daeac6a": {
+    "7211a603bf78": {
       "domanda": "Why is it recommended to explicitly specify columns in an `INSERT` statement?",
       "spiegazione": "`INSERT INTO t VALUES (...)` without a column list requires that the values match the exact and complete order of the table definition. If a column is added to the table, all such `INSERT` statements will break. Specifying the columns makes the code resilient to schema changes.",
       "risposte": [
@@ -417,7 +417,7 @@
         "Because it significantly speeds up the insertion operation"
       ]
     },
-    "7c3e3e33a18b": {
+    "1e40ab0aea54": {
       "domanda": "What does `DELETE FROM libri WHERE anno < 1900` do?",
       "spiegazione": "`DELETE FROM table WHERE condition` physically removes from the database all rows that satisfy the condition. The operation is irreversible (unless `ROLLBACK` is performed within a transaction). It does not select or update: it deletes.",
       "risposte": [
@@ -437,7 +437,7 @@
         "`REQUIRED`"
       ]
     },
-    "85944eb786f9": {
+    "31499055d548": {
       "domanda": "What does a `CHECK` constraint on a column do?",
       "spiegazione": "`CHECK` allows defining an arbitrary validation rule. E.g., `CHECK (age >= 0 AND age <= 130)`, `CHECK (price >= 0)`, `CHECK (status IN ('active','inactive'))`. The DBMS rejects any `INSERT` or `UPDATE` that violates the condition.",
       "risposte": [
@@ -457,7 +457,7 @@
         "Sets the FK of child rows to the `DEFAULT` value when the parent is deleted"
       ]
     },
-    "325f3f8a3184": {
+    "5c8053a346a7": {
       "domanda": "How many `PRIMARY KEY`s can a single table have?",
       "spiegazione": "Each table can have exactly one `PRIMARY KEY`. However, it can be composed of multiple columns (a composite primary key). `PRIMARY KEY` implies `NOT NULL` + `UNIQUE` on all columns that make it up.",
       "risposte": [
@@ -467,7 +467,7 @@
         "At most three primary keys, as specified by the most recent SQL standard"
       ]
     },
-    "d7eb7047d59d": {
+    "512766c0b1f3": {
       "domanda": "What is the difference between `PRIMARY KEY` and `UNIQUE` as constraints?",
       "spiegazione": "`PRIMARY KEY` implies `NOT NULL` + `UNIQUE`. `UNIQUE` guarantees uniqueness but allows `NULL` (in PostgreSQL, multiple rows can have `NULL` in a `UNIQUE` column, because `NULL` is not equal to `NULL`). A table can have only one PK but multiple `UNIQUE` constraints.",
       "risposte": [
@@ -487,7 +487,7 @@
         "Sets the value as the primary key of the table"
       ]
     },
-    "2e0cd1b3de2d": {
+    "290de9ba7a07": {
       "domanda": "How do you add a `FOREIGN KEY` constraint to an existing table?",
       "spiegazione": "`ALTER TABLE` with `ADD CONSTRAINT` is used to add any constraint to an existing table: `PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `CHECK`. Named constraints (`CONSTRAINT nome ...`) can later be removed with `ALTER TABLE t DROP CONSTRAINT nome`.",
       "risposte": [
@@ -547,7 +547,7 @@
         "Calculates the offset (distance) between column values"
       ]
     },
-    "aa3db9b3ecc9": {
+    "68b464d9fe34": {
       "domanda": "What is the difference between projection and selection in relational algebra applied to SQL?",
       "spiegazione": "From Codd's relational algebra: projection reduces columns (implemented with the column list in `SELECT`), selection/restriction reduces rows (implemented with `WHERE`). A typical query applies both operations.",
       "risposte": [
@@ -557,7 +557,7 @@
         "Projection groups rows; selection sorts them"
       ]
     },
-    "0315b3b752a7": {
+    "3657aa1281e9": {
       "domanda": "Can the `HAVING` clause be used without `GROUP BY`?",
       "spiegazione": "`HAVING` without `GROUP BY` is valid: the entire table is treated as a single group. For example, `HAVING COUNT(*) > 100` checks if the table has more than 100 rows in total. In practice, this is rare: `HAVING` is usually used together with `GROUP BY`.",
       "risposte": [
@@ -567,7 +567,7 @@
         "Yes, but in that case `HAVING` is identical to `WHERE`"
       ]
     },
-    "2c420f1329d5": {
+    "7f29607e4441": {
       "domanda": "What does the query `SELECT DISTINCT nazionalita FROM autori` display?",
       "spiegazione": "`SELECT DISTINCT` returns the list of unique `nazionalita` values present in the `autori` table, removing duplicates. If there are 50 Italian authors, 'Italiana' appears only once in the result.",
       "risposte": [
@@ -577,7 +577,7 @@
         "The `nazionalita` values sorted alphabetically with their count"
       ]
     },
-    "1ef9438e9256": {
+    "d3e7ee6bfd93": {
       "domanda": "What is the correct logical execution order of clauses in a `SELECT` query?",
       "spiegazione": "The logical execution order is: `FROM` (source) -> `JOIN` -> `WHERE` (row filter) -> `GROUP BY` -> `HAVING` (group filter) -> `SELECT` (projection) -> `ORDER BY` -> `LIMIT`. This explains why `WHERE` cannot use aliases defined in `SELECT` (as they come later).",
       "risposte": [
@@ -587,7 +587,7 @@
         "`FROM` -> `SELECT` -> `WHERE` -> `JOIN` -> `GROUP BY` -> `ORDER BY` -> `HAVING` -> `LIMIT` -> `OFFSET`"
       ]
     },
-    "bd0b5a95c097": {
+    "08b450512aef": {
       "domanda": "What does the `AS` clause do in a `SELECT` statement?",
       "spiegazione": "`AS` assigns a readable alias: `SELECT prezzo * 1.22 AS prezzo_con_iva`. The alias does not modify the data in the table; it exists only in the query output. It is essential for calculated expressions that would otherwise have names like '?column?'.",
       "risposte": [
@@ -597,7 +597,7 @@
         "Filters rows where the value is 'as' (equal to the string)"
       ]
     },
-    "af5dbc613b47": {
+    "85564dea3520": {
       "domanda": "Does the `BETWEEN 10 AND 20` operator include or exclude the boundary values?",
       "spiegazione": "`BETWEEN val1 AND val2` is equivalent to `col >= val1 AND col <= val2`: the boundaries are always inclusive. It works on numbers, dates, and strings (using lexicographical order). The order is important: `BETWEEN 20 AND 10` will never return any rows.",
       "risposte": [
@@ -607,7 +607,7 @@
         "The behavior depends entirely on the data type defined for the affected column"
       ]
     },
-    "11351c86b546": {
+    "5a779bffe7a7": {
       "domanda": "The operator `IN ('Roma', 'Milano', 'Torino')` is equivalent to which condition?",
       "spiegazione": "`IN (v1, v2, v3)` is syntactic sugar for `col = v1 OR col = v2 OR col = v3`. It is more readable and scalable: if the list becomes long, `IN` remains clean. `IN` can also accept a subquery: `WHERE id IN (SELECT id FROM another_table)`.",
       "risposte": [
@@ -627,7 +627,7 @@
         "Strings consisting of exactly 5 characters total that contain 'one' in the middle"
       ]
     },
-    "cc5c905994b9": {
+    "eac103b98125": {
       "domanda": "The underscore wildcard `_` in `LIKE` represents:",
       "spiegazione": "The underscore `_` in `LIKE` matches exactly one single character. For example, `'198_'` matches '1980', '1984', '1989', but not '19800'. `'___'` matches strings of exactly 3 characters. The `%` wildcard, on the other hand, matches sequences of any length, including empty ones.",
       "risposte": [
@@ -637,8 +637,8 @@
         "The beginning or end of the string"
       ]
     },
-    "957a0dce0f4f": {
-      "domanda": "`LIKE` and case-sensitivity in PostgreSQL. Which case-insensitive alternative does PostgreSQL offer?",
+    "327238445b19": {
+      "domanda": "`LIKE` is case-sensitive in PostgreSQL. Which case-insensitive alternative does PostgreSQL offer?",
       "spiegazione": "`ILIKE` is the case-insensitive variant of `LIKE` specific to PostgreSQL. With `ILIKE`, 'Italia', 'ITALIA', and 'italia' are considered equal. In MySQL, `LIKE` is case-insensitive by default for standard collations.",
       "risposte": [
         "`LIKE*` (with asterisk)",
@@ -647,7 +647,7 @@
         "`SLIKE`"
       ]
     },
-    "70ff4be62d12": {
+    "2d2e7dedd530": {
       "domanda": "Given the condition `WHERE eta > 18 AND citta = 'Roma' OR professione = 'Medico'`, how is it evaluated regarding operator precedence?",
       "spiegazione": "The precedence of logical operators in SQL is: `NOT` > `AND` > `OR`. `AND` binds more tightly than `OR`. Therefore, the condition is evaluated as `(eta > 18 AND citta = 'Roma') OR professione = 'Medico'`. To change the logic, explicit parentheses are required.",
       "risposte": [
@@ -657,7 +657,7 @@
         "All conditions have equal priority and are evaluated from left to right"
       ]
     },
-    "c452c3c32878": {
+    "ccc78a01d2ab": {
       "domanda": "What happens if you use `WHERE col NOT IN (1, 2, NULL)`?",
       "spiegazione": "In three-valued logic, `col <> NULL` is always `UNKNOWN`. If the `NOT IN` list contains `NULL`, for every row the condition becomes `UNKNOWN` (not `TRUE`), so no rows are returned. Solution: use `NOT EXISTS` instead of `NOT IN` when the subquery might produce `NULL`.",
       "risposte": [
@@ -677,7 +677,7 @@
         "`WHERE nome LIKE '[MG]%'`"
       ]
     },
-    "ee4707937f01": {
+    "cff1e87416dc": {
       "domanda": "Does the condition `BETWEEN '2020-01-01' AND '2020-12-31'` on a `DATE` column include December 31, 2020?",
       "spiegazione": "`BETWEEN` always includes both endpoints, regardless of the data type (numbers, dates, strings). '2020-12-31' is included in the result. Note: if the column is `TIMESTAMP`, `BETWEEN '2020-12-31'` excludes hours after midnight on 12/31/2020.",
       "risposte": [
@@ -717,7 +717,7 @@
         "Converts the `LEFT JOIN` into an `INNER JOIN`"
       ]
     },
-    "380def7be095": {
+    "aeb830f3fa52": {
       "domanda": "What is the result of a `CROSS JOIN` between a table with 6 rows and one with 7 rows?",
       "spiegazione": "A `CROSS JOIN` produces the Cartesian product: every row from the first table is combined with every row from the second. No `ON` condition is applied. 6 x 7 = 42 rows. Useful for generating all possible combinations (e.g., sizes x colors x models).",
       "risposte": [
@@ -737,7 +737,7 @@
         "All rows from both tables, with `NULL` where there is no match in either direction"
       ]
     },
-    "3a932a8aab47": {
+    "fcc58d01a88e": {
       "domanda": "In a query with multiple `JOIN`s, does the order of tables affect the logical result?",
       "spiegazione": "For `INNER JOIN`, `A JOIN B` and `B JOIN A` produce the same result (logically commutative). For `LEFT JOIN`, the order is crucial: `A LEFT JOIN B` returns all rows from A; `B LEFT JOIN A` returns all rows from B — different results.",
       "risposte": [
@@ -747,7 +747,7 @@
         "Yes, but only when using more than three tables simultaneously"
       ]
     },
-    "84976170edce": {
+    "15674e186a51": {
       "domanda": "What is the correct `ON` condition in a `SELF JOIN` of the `employees` table to link each employee to their manager (the table has columns: `id`, `name`, `manager_id`)?",
       "spiegazione": "In a `SELF JOIN` (`FROM employees d JOIN employees m ...`), `d` is the alias for employees, and `m` is the alias for managers. The correct condition is `ON d.manager_id = m.id`: the employee's `manager_id` must match the manager's `id` in the same table.",
       "risposte": [
@@ -757,7 +757,7 @@
         "`ON d.id = m.manager_id`"
       ]
     },
-    "94c4b4798890": {
+    "60254721670a": {
       "domanda": "What is a `NATURAL JOIN`?",
       "spiegazione": "A `NATURAL JOIN` automatically identifies columns with the same name in both tables and uses them as the join condition. It is generally discouraged in production: if a column with the same name is added to one of the tables, the join behavior changes silently.",
       "risposte": [
@@ -767,7 +767,7 @@
         "It is a `JOIN` that automatically includes rows without a match, behaving like a `FULL OUTER JOIN`"
       ]
     },
-    "88d474947e53": {
+    "4fc2b021eefc": {
       "domanda": "A `RIGHT JOIN` between A and B is equivalent to which other type of `JOIN`?",
       "spiegazione": "`RIGHT JOIN` and `LEFT JOIN` are equivalent when the order of the tables is reversed. `A RIGHT JOIN B = B LEFT JOIN A`. For this reason, `RIGHT JOIN` is rarely used: it is preferred to rewrite everything as a `LEFT JOIN` for consistency and readability.",
       "risposte": [
@@ -777,7 +777,7 @@
         "A `CROSS JOIN` between B and A"
       ]
     },
-    "445cdd938618": {
+    "2e98976414f1": {
       "domanda": "What does the `USING` clause do in a `JOIN`?",
       "spiegazione": "`USING (column)` is a shorthand for `ON t1.column = t2.column` when the column has the same name in both tables. E.g., `JOIN orders USING (customer_id)`. The advantage is that the column appears only once in the result, not duplicated.",
       "risposte": [
@@ -807,7 +807,7 @@
         "Sums all values present in the column, including `NULL` values"
       ]
     },
-    "f273cdc025bb": {
+    "3e0243322854": {
       "domanda": "Which aggregate function returns the largest value in a column?",
       "spiegazione": "`MAX(column)` returns the maximum value among all non-`NULL` values in the column. It works on numbers, strings (lexicographical order), and dates. `GREATEST()` is a different function: it compares multiple values row by row, not aggregating multiple rows.",
       "risposte": [
@@ -817,7 +817,7 @@
         "`MAX()`"
       ]
     },
-    "ab50f56197e1": {
+    "6f73a116d716": {
       "domanda": "If a column contains `[10, 20, NULL, 30]`, what does `AVG(column)` return?",
       "spiegazione": "`AVG` ignores `NULL` values: it calculates the sum of non-`NULL` values (10+20+30=60) divided by their count (3), resulting in 20. If you want to treat `NULL` as 0, you can use `AVG(COALESCE(column, 0))`, but this is semantically different.",
       "risposte": [
@@ -827,7 +827,7 @@
         "Error: `AVG` cannot operate on columns with `NULL` values"
       ]
     },
-    "0e8a867cc4e8": {
+    "dd3243be5f0a": {
       "domanda": "Which query counts the number of authors for each nationality, showing only nationalities with more than 3 authors?",
       "spiegazione": "`WHERE` cannot use aggregate functions (it is executed before grouping). The filter on groups goes in `HAVING`. The correct structure is: `GROUP BY nationality HAVING COUNT(*) > 3`. `WHERE nationality IS NOT NULL` (without aggregates) would be valid instead.",
       "risposte": [
@@ -847,7 +847,7 @@
         "0"
       ]
     },
-    "4625c0416cfe": {
+    "ce1251740e8c": {
       "domanda": "Do `MIN` and `MAX` also work on text (`VARCHAR`) columns?",
       "spiegazione": "`MIN` and `MAX` work on numbers, dates, AND text. For text, they use lexicographical order (collation): `MIN(last_name)` returns the alphabetically 'smallest' last name; `MAX(last_name)` returns the 'largest'. `NULL`s are ignored, as with all aggregate functions.",
       "risposte": [
@@ -857,7 +857,7 @@
         "No, for text values you must use the `FIRST()` and `LAST()` functions"
       ]
     },
-    "6c4eb7ad601c": {
+    "14a3543abe33": {
       "domanda": "Which statement about `SUM(column)` is correct when the column contains `NULL` values?",
       "spiegazione": "`SUM`, like all aggregate functions (except `COUNT(*)`), ignores `NULL`s. `SUM([10, NULL, 30, NULL]) = 40`. If you want to treat `NULL` as 0, use `SUM(COALESCE(column, 0))`. Only if ALL rows are `NULL` does `SUM` return `NULL`.",
       "risposte": [
@@ -867,7 +867,7 @@
         "`SUM` ignores `NULL`s and sums only non-`NULL` values"
       ]
     },
-    "812a501d8f17": {
+    "27c824bc4c72": {
       "domanda": "What does a scalar subquery do?",
       "spiegazione": "A scalar subquery returns exactly one value. E.g., `WHERE price = (SELECT MAX(price) FROM books)`. If the subquery returns more than one row, the DBMS generates an error. If it returns no rows, the result is `NULL`.",
       "risposte": [
@@ -877,7 +877,7 @@
         "Returns exactly a single value (one row, one column) usable with comparison operators"
       ]
     },
-    "7aef9f482e9a": {
+    "f9ca1ababffc": {
       "domanda": "Which type of subquery references a column from the outer query and is re-executed for each row?",
       "spiegazione": "A correlated subquery references columns from the outer query (correlation) and is re-executed for each row of the outer query. It is typically used with `EXISTS` or `NOT EXISTS`. It can be more efficient than `IN` on large tables due to short-circuit evaluation.",
       "risposte": [
@@ -887,7 +887,7 @@
         "Correlated subquery (used with `EXISTS`/`NOT EXISTS`)"
       ]
     },
-    "c3f93290632e": {
+    "da6aff8cac94": {
       "domanda": "When using a subquery in the `FROM` clause, what is mandatory to specify?",
       "spiegazione": "When using a subquery in the `FROM` clause (derived table), it is mandatory to assign it an alias: `SELECT * FROM (SELECT id, name FROM authors WHERE active = TRUE) AS active_authors`. Without an alias, the DBMS returns a syntax error.",
       "risposte": [
@@ -897,7 +897,7 @@
         "The subquery cannot contain JOINs"
       ]
     },
-    "bee5ccfe49eb": {
+    "76bb44e89cdd": {
       "domanda": "What is the main difference between `IN` and `EXISTS` for correlated subqueries on large tables?",
       "spiegazione": "`IN` executes the subquery once, collects all values, and then compares. `EXISTS` executes the subquery for each row but uses short-circuit evaluation: it stops as soon as it finds the first match. On large tables, `EXISTS` can be much more efficient.",
       "risposte": [
@@ -907,7 +907,7 @@
         "There is no performance difference: the DBMS always optimizes them in the same way"
       ]
     },
-    "414bbdf190d0": {
+    "896690e74111": {
       "domanda": "Why is `WHERE prezzo > AVG(prezzo)` not valid in SQL?",
       "spiegazione": "`WHERE` operates on individual rows before any aggregation takes place. `AVG(prezzo)` is a function that operates on all rows: it cannot be calculated at the time `WHERE` works on a single row. The solution is to use a subquery: `WHERE prezzo > (SELECT AVG(prezzo) FROM tabella)`.",
       "risposte": [
@@ -927,7 +927,7 @@
         "`SELECT * FROM libri HAVING prezzo = MAX(prezzo) GROUP BY id ORDER BY id ASC;`"
       ]
     },
-    "a3377ab34d1f": {
+    "9da9838f69a7": {
       "domanda": "Does a `VIEW` physically store data?",
       "spiegazione": "A standard `VIEW` does not physically store data. It is merely a saved query with a name. Each query on the `VIEW` executes the underlying query in real time. `MATERIALIZED VIEW`s (available in PostgreSQL), on the other hand, physically store the result and update it only upon explicit request.",
       "risposte": [
@@ -947,17 +947,17 @@
         "`MODIFY VIEW nome AS SELECT ...;`"
       ]
     },
-    "3c3de92b3515": {
+    "3cb800ebe051": {
       "domanda": "Which of the following is an advantage of using `VIEW`s for security?",
       "spiegazione": "A `VIEW` can expose only specific columns or rows of a table. The user is granted `SELECT` permission on the `VIEW` (not on the underlying table), allowing them to see only authorized data. For example, a salary `VIEW` that shows only their own salary, not others'.",
       "risposte": [
-        "A significantly increases query speed through physical storage and ordered data on disk",
+        "They significantly increase query speed through physical storage and ordered data on disk",
         "They allow granting access to filtered or partial data without exposing the underlying tables",
         "They completely replace the need to use indexes",
         "They automatically eliminate the need to write JOINs in queries"
       ]
     },
-    "82ba9f6590b8": {
+    "f460d2365f8b": {
       "domanda": "What happens to the data in the underlying tables when you execute `DROP VIEW name`?",
       "spiegazione": "`DROP VIEW` only removes the definition of the `VIEW` (the saved query), not the data. The underlying tables remain intact with all their data. The `VIEW` is just a 'window' onto the data: deleting it does not affect the actual data.",
       "risposte": [
@@ -967,7 +967,7 @@
         "An error is returned: `VIEW`s cannot be deleted as long as there are active queries on them"
       ]
     },
-    "cbd89e09dd5b": {
+    "181c77b7210b": {
       "domanda": "What does the `NULL` value mean in SQL?",
       "spiegazione": "`NULL` is not zero, not an empty string, and not `FALSE`. `NULL` means that the value is unknown or not applicable. This distinction is fundamental: `NULL` and 0 are conceptually very different (e.g., a null salary vs. an unknown salary).",
       "risposte": [
@@ -977,7 +977,7 @@
         "The absence of a value: the data is unknown or not applicable"
       ]
     },
-    "c7d8ccf97438": {
+    "9ff8cd7278aa": {
       "domanda": "What is the result of the expression `5 + NULL` in SQL?",
       "spiegazione": "Any arithmetic operation involving `NULL` returns `NULL`. `5 + NULL = NULL`, `NULL * 100 = NULL`, `'testo' || NULL = NULL`. `NULL` 'propagates' through all operations.",
       "risposte": [
@@ -997,7 +997,7 @@
         "`NVL()`"
       ]
     },
-    "427522dd6f3e": {
+    "5aae23f57176": {
       "domanda": "What does the SQL function `NULLIF(a, b)` do?",
       "spiegazione": "`NULLIF(a, b)` returns `NULL` if `a = b`, otherwise it returns `a`. Classic use case: avoiding division by zero. Example: `SUM(value) / NULLIF(COUNT(*), 0)` — if `COUNT(*)` is 0, `NULLIF` returns `NULL` and the division results in `NULL` instead of an error.",
       "risposte": [
@@ -1017,7 +1017,7 @@
         "`UNKNOWN`"
       ]
     },
-    "dd2b64e02958": {
+    "1afa0bd5e210": {
       "domanda": "What does property A represent in the ACID properties?",
       "spiegazione": "Atomicity: a transaction is an indivisible unit. There is no such thing as a 'partial commit': either all operations succeed (`COMMIT`) or no changes are applied (`ROLLBACK`). Example: a bank transfer requiring two operations — either both succeed or neither is applied.",
       "risposte": [
@@ -1027,7 +1027,7 @@
         "Aggregation: all involved data is grouped and summarized immediately before the final `COMMIT`"
       ]
     },
-    "7d5f6106783d": {
+    "0d3d364fbdb4": {
       "domanda": "What does the D (Durability) property of ACID guarantee?",
       "spiegazione": "Durability: once committed, the transaction is permanent. No system crash, power failure, or hardware fault can cause data loss. The DBMS uses techniques such as write-ahead logging (WAL) to ensure this property.",
       "risposte": [
@@ -1057,7 +1057,7 @@
         "Special indexes automatically created on primary key columns"
       ]
     },
-    "d5652ed4fd13": {
+    "ca7e9f35fbda": {
       "domanda": "What does the I (Isolation) property of ACID mean?",
       "spiegazione": "Isolation ensures that concurrent transactions do not interfere with each other: a transaction does not see uncommitted changes from other concurrent transactions. The isolation level is configurable (`READ COMMITTED`, `REPEATABLE READ`, `SERIALIZABLE`) with a trade-off between correctness and performance.",
       "risposte": [
@@ -1067,7 +1067,7 @@
         "That each table is isolated from others: no `JOIN`s are allowed between different tables"
       ]
     },
-    "5b388a8d271b": {
+    "2dfa4f073a43": {
       "domanda": "What is the correct sequence of commands for an explicit transaction in PostgreSQL?",
       "spiegazione": "The standard sequence is: `BEGIN` (starts the transaction), execute SQL statements (`INSERT`, `UPDATE`, `DELETE`), then `COMMIT` to make changes permanent or `ROLLBACK` to undo them all. Without an explicit `BEGIN`, each statement is an autonomous transaction in auto-commit mode.",
       "risposte": [
@@ -1087,7 +1087,7 @@
         "`UNION ALL`"
       ]
     },
-    "f511f541b5d3": {
+    "5187ca23f7be": {
       "domanda": "What is the difference between `UNION` and `UNION ALL`?",
       "spiegazione": "`UNION` removes duplicate rows by performing an internal sort (similar to `DISTINCT`), which makes it slower. `UNION ALL` retains all rows, including duplicates, and is preferred when duplicates are not an issue or when it is already known that there are none.",
       "risposte": [
@@ -1117,7 +1117,7 @@
         "Completely excludes the second `SELECT` from execution if the first one is empty"
       ]
     },
-    "c351cca4e046": {
+    "0dc7dc192163": {
       "domanda": "Where can the `ORDER BY` clause be placed in a query that uses `UNION`?",
       "spiegazione": "With set operators (`UNION`, `INTERSECT`, `EXCEPT`), `ORDER BY` can only be placed at the end of the entire expression and applies to the final combined result. Placing `ORDER BY` inside one of the intermediate `SELECT` statements results in a syntax error.",
       "risposte": [
@@ -1127,7 +1127,7 @@
         "It must be placed before each individual `SELECT` to sort each block completely separately"
       ]
     },
-    "4f8b48ec0858": {
+    "6987341dd4f6": {
       "domanda": "How many columns must the two `SELECT` statements have in a UNION operation?",
       "spiegazione": "The SELECT statements in a UNION (or INTERSECT, EXCEPT) must have the same number of columns, and the data types must be compatible (not necessarily identical: e.g., INT and BIGINT are compatible). The column names in the result come from the first SELECT.",
       "risposte": [
@@ -1147,7 +1147,7 @@
         "From both: they are concatenated with a hyphen"
       ]
     },
-    "253e3246d387": {
+    "7c17a17e5431": {
       "domanda": "In which clauses of an SQL query can the `CASE WHEN` expression be used?",
       "spiegazione": "`CASE WHEN` is a generic SQL expression that can be used wherever a value is expected: in `SELECT` to compute columns, in `WHERE` as a condition, in `ORDER BY` for custom sorting, in `GROUP BY`, and in `UPDATE` for conditional updates.",
       "risposte": [
@@ -1157,7 +1157,7 @@
         "Only in `GROUP BY` and `HAVING`"
       ]
     },
-    "73d40a464135": {
+    "a96ae3c1da72": {
       "domanda": "What does CASE WHEN return if no condition is true and the ELSE clause is missing?",
       "spiegazione": "If no WHEN condition is met and there is no ELSE clause, CASE WHEN returns NULL. The ELSE clause is optional, but it is good practice to always include it with a default value to avoid unexpected NULLs in the result.",
       "risposte": [
@@ -1167,7 +1167,7 @@
         "The value 0 for numeric columns"
       ]
     },
-    "175edaca8e03": {
+    "4466e532d108": {
       "domanda": "What is the difference between searched CASE and simple CASE?",
       "spiegazione": "The searched CASE (searched): CASE WHEN price < 10 THEN ... allows arbitrary boolean conditions. The simple CASE: CASE status WHEN 'active' THEN ... compares an expression with fixed values. The simple CASE is more concise but less flexible.",
       "risposte": [
@@ -1187,7 +1187,7 @@
         "`COUNT(IF(condition, 1, 0))`"
       ]
     },
-    "10270073deb4": {
+    "046711aa719e": {
       "domanda": "What will be the result of this expression for a book with a price of 12.50? CASE WHEN prezzo < 10 THEN 'economico' WHEN prezzo < 15 THEN 'medio' ELSE 'premium' END",
       "spiegazione": "The WHEN conditions are evaluated in order. The first (prezzo < 10: 12.50 < 10 = FALSE) is skipped. The second (prezzo < 15: 12.50 < 15 = TRUE) is true: the result is 'medio'. Subsequent conditions are not evaluated.",
       "risposte": [
@@ -1257,7 +1257,7 @@
         "Returns 'Ciao Mondo SQL'"
       ]
     },
-    "a994f1c1a94c": {
+    "7ac1d33ea386": {
       "domanda": "What is the difference between the || operator and the CONCAT() function for string concatenation?",
       "spiegazione": "The || operator propagates NULL: if an operand is NULL, the result is NULL. CONCAT() ignores NULLs: CONCAT('Ciao', NULL, ' Mondo') = 'Ciao Mondo'. CONCAT_WS(separator, ...) uses an automatic separator and also ignores NULLs.",
       "risposte": [
@@ -1277,7 +1277,7 @@
         "3"
       ]
     },
-    "6c57c331eafd": {
+    "99db82dc6cd2": {
       "domanda": "What does the function `LPAD('42', 5, '0')` do in PostgreSQL?",
       "spiegazione": "`LPAD(string, total_length, fill_character)` adds the specified character to the left until the desired length is reached. `LPAD('42', 5, '0') = '00042'`. `RPAD` adds to the right. Useful for formatting codes and numbers with leading zeros.",
       "risposte": [
@@ -1297,7 +1297,7 @@
         "14.56"
       ]
     },
-    "530d5730686e": {
+    "1958273a3e51": {
       "domanda": "What is the difference between `FLOOR()` and `CEIL()` (or `CEILING()`)?",
       "spiegazione": "`FLOOR(14.9) = 14` (always rounds down). `CEIL(14.1) = 15` (always rounds up). Both return an integer. `ROUND`, on the other hand, rounds to the nearest value: `ROUND(14.5) = 15`, `ROUND(14.4) = 14`.",
       "risposte": [
@@ -1317,7 +1317,7 @@
         "Returns the result of the decimal division: 3.4"
       ]
     },
-    "7195bd920990": {
+    "8ada0d99ad1d": {
       "domanda": "What does `SELECT 7 / 2` return in PostgreSQL (without explicit decimals)?",
       "spiegazione": "In SQL (as in many programming languages), division between two integers results in an integer: `7 / 2 = 3`. To obtain 3.5, you must force at least one operand to be a decimal: `7.0 / 2`, or `7::DECIMAL / 2`, or `7 / 2.0`. This is a common mistake in manual average calculations.",
       "risposte": [
@@ -1327,7 +1327,7 @@
         "Error: integer division is not supported in PostgreSQL"
       ]
     },
-    "fb88b974cce9": {
+    "4aab0a1e7568": {
       "domanda": "What is the PostgreSQL syntax to convert an integer to text using the cast operator?",
       "spiegazione": "In PostgreSQL, the `::` operator is the dialect-specific cast syntax: `anno::TEXT` converts the `anno` column from `INT` to `TEXT`. The equivalent standard SQL syntax is `CAST(anno AS TEXT)`. Both are valid in PostgreSQL.",
       "risposte": [
@@ -1417,7 +1417,7 @@
         "`DATE`"
       ]
     },
-    "e8b85c5179d3": {
+    "62e802704481": {
       "domanda": "What does `TO_CHAR(NOW(), 'DD/MM/YYYY')` return in PostgreSQL?",
       "spiegazione": "`TO_CHAR(timestamp, format)` converts a timestamp into a string with the specified format. `'DD/MM/YYYY'` produces the date in European format: e.g., `'17/03/2024'`. Other useful formats: `'YYYY-MM-DD'`, `'DD Month YYYY'`, `'HH24:MI:SS'`. It is the opposite function of `TO_DATE()`.",
       "risposte": [
@@ -1427,7 +1427,7 @@
         "The total number of days elapsed since the Unix reference epoch"
       ]
     },
-    "c41d194a0240": {
+    "e494602b5f00": {
       "domanda": "What is a CTE (Common Table Expression) in SQL?",
       "spiegazione": "A CTE is defined using `WITH name AS (SELECT ...)` and is used as if it were a table in the subsequent query. It exists only during the execution of the query (it is not permanent like a `VIEW`). It improves readability compared to nested subqueries.",
       "risposte": [
@@ -1437,7 +1437,7 @@
         "A special type of index that accelerates complex queries"
       ]
     },
-    "dd1e7e4a9df5": {
+    "1c30d9b27673": {
       "domanda": "What is the correct syntax to define a CTE named 'autori_attivi'?",
       "spiegazione": "The CTE syntax is: `WITH cte_name AS (query)` followed by the main query. Multiple CTEs can be defined in sequence: `WITH cte1 AS (...), cte2 AS (...) SELECT ...` In a subsequent CTE, you can refer to previous CTEs.",
       "risposte": [
@@ -1447,7 +1447,7 @@
         "`CTE autori_attivi AS SELECT * FROM autori WHERE attivo = TRUE;`"
       ]
     },
-    "2c185add167b": {
+    "02b7a6581d90": {
       "domanda": "What is the main advantage of CTEs over nested subqueries in the `FROM` clause?",
       "spiegazione": "The main advantage of CTEs is readability and reusability: you give a meaningful name to a complex intermediate query, use that name multiple times in the main query, and avoid nesting subqueries within subqueries, which becomes hard to read.",
       "risposte": [
@@ -1457,7 +1457,7 @@
         "CTEs can use `UPDATE` and `DELETE`; subqueries in the `FROM` only support `SELECT`"
       ]
     },
-    "0ede2e65f0c3": {
+    "551304e1c691": {
       "domanda": "What does a recursive CTE (`WITH RECURSIVE`) allow you to do?",
       "spiegazione": "`WITH RECURSIVE` allows a CTE to reference itself, which is essential for traversing tree or graph structures. Example: listing all employees of a manager (and their subordinates, recursively) in a table with a parent-child relationship.",
       "risposte": [
@@ -1467,7 +1467,7 @@
         "Create recursive `VIEW`s that update automatically"
       ]
     },
-    "95623e7eb40c": {
+    "9b348665b55d": {
       "domanda": "Can a CTE be referenced multiple times in the same main query?",
       "spiegazione": "One of the advantages of CTEs is the ability to reference the same result multiple times within the query: e.g., using `autori_attivi` in a `JOIN` and then again in a subquery. With subqueries in the `FROM` clause, the subquery would need to be rewritten each time.",
       "risposte": [
@@ -1477,7 +1477,7 @@
         "No, each CTE can be used only once"
       ]
     },
-    "9c250b311c75": {
+    "facb9a2c3f26": {
       "domanda": "How are multiple CTEs defined in a single `WITH` statement?",
       "spiegazione": "Multiple CTEs are separated by commas within a single `WITH` clause: `WITH cte1 AS (query1), cte2 AS (query2) SELECT ...` A CTE can reference those defined before it in the same `WITH` clause (but not those defined after it).",
       "risposte": [
@@ -1487,7 +1487,7 @@
         "`WITH cte1 AS (...), cte2 AS (...) SELECT ...` (comma between CTEs)"
       ]
     },
-    "3bf186e9fa27": {
+    "b6fa7eee39fc": {
       "domanda": "In PostgreSQL, are CTEs always materialized (executed once with the result stored)?",
       "spiegazione": "Up to PostgreSQL 11, CTEs were always materialized (acting as an optimization fence). Starting from PostgreSQL 12, the planner can choose to inline them for better optimization. You can force the behavior: `WITH name AS MATERIALIZED (...)` or `WITH name AS NOT MATERIALIZED (...)`.",
       "risposte": [
@@ -1507,7 +1507,7 @@
         "Functions that operate only on the first N rows of the table"
       ]
     },
-    "76410b9a992c": {
+    "cb0b7527af5a": {
       "domanda": "What does `ROW_NUMBER() OVER (ORDER BY prezzo DESC)` do?",
       "spiegazione": "`ROW_NUMBER()` assigns a unique sequential integer (1, 2, 3...) to each row in the order specified by the `ORDER BY` clause within the `OVER` clause. It never produces duplicate numbers, even in case of ties (unlike `RANK` and `DENSE_RANK`).",
       "risposte": [
@@ -1517,7 +1517,7 @@
         "Removes duplicate prices"
       ]
     },
-    "74c09f46c0e6": {
+    "7d766e5f0cdb": {
       "domanda": "What is the difference between `RANK()` and `DENSE_RANK()`?",
       "spiegazione": "With two rows tied for 2nd place: `RANK()` assigns 1, 2, 2, 4 (skips 3). `DENSE_RANK()` assigns 1, 2, 2, 3 (does not skip). `ROW_NUMBER()` always assigns 1, 2, 3, 4 (no ties). The choice depends on how you want to handle ties.",
       "risposte": [
@@ -1527,7 +1527,7 @@
         "`DENSE_RANK()` is the one that skips numbers in case of a tie, while `RANK()` never skips them"
       ]
     },
-    "ab4a391f8ee9": {
+    "2f15c3730884": {
       "domanda": "What does the `PARTITION BY` clause inside `OVER()` do?",
       "spiegazione": "`PARTITION BY` is the equivalent of `GROUP BY` for window functions: it divides rows into independent partitions. For example, `ROW_NUMBER() OVER (PARTITION BY category ORDER BY price)` numbers rows from 1 separately for each category, rather than globally.",
       "risposte": [
@@ -1557,7 +1557,7 @@
         "Introduces a forced delay of 1 second in the overall query execution"
       ]
     },
-    "d3af5b550ab0": {
+    "755fb44c1a83": {
       "domanda": "Can window functions be used directly in the `WHERE` clause?",
       "spiegazione": "Window functions are evaluated after `FROM`, `JOIN`, `WHERE`, and `GROUP BY` (similar to `SELECT`), so they cannot be used in the `WHERE` clause. The correct pattern is: `SELECT *, RANK() OVER (...) AS rk FROM t`, which produces 'rk', and then an outer query `WHERE rk <= 3` filters the results.",
       "risposte": [
@@ -1587,7 +1587,7 @@
         "DDL — Data Definition Language"
       ]
     },
-    "5257fff71c1a": {
+    "9555c825eac3": {
       "domanda": "What does the command `GRANT SELECT ON libri TO mario` do?",
       "spiegazione": "`GRANT` permission `ON` object `TO` user grants the specified permission to the user. `GRANT SELECT ON libri TO mario` allows mario to execute `SELECT` on the libri table, but not `INSERT`, `UPDATE`, or `DELETE` (unless granted separately).",
       "risposte": [
@@ -1597,7 +1597,7 @@
         "Grants the user mario the permission to read (`SELECT`) the libri table"
       ]
     },
-    "c38d7fada605": {
+    "ace8550daf47": {
       "domanda": "What does `REVOKE INSERT ON ordini FROM anna` do?",
       "spiegazione": "`REVOKE` is the opposite of `GRANT`: it removes a previously granted permission. `REVOKE INSERT ON ordini FROM anna` removes anna's `INSERT` permission on the ordini table. Anna can still perform `SELECT` (if granted), but can no longer insert new rows.",
       "risposte": [
@@ -1627,7 +1627,7 @@
         "Allows the recipient to grant the same permission to other users"
       ]
     },
-    "40d7347b2393": {
+    "e8b0f14045ef": {
       "domanda": "How do you create a role in PostgreSQL and what is it used for?",
       "spiegazione": "`CREATE ROLE nome` creates a role that can group multiple permissions. Permissions are assigned to the role (`GRANT SELECT ON ... TO role`), and then the role is assigned to users (`GRANT role TO user`). This simplifies management: changing the role's permissions updates them for all users who have it.",
       "risposte": [
@@ -1647,7 +1647,7 @@
         "`DECIMAL`"
       ]
     },
-    "497ff67fdcf8": {
+    "bddcbc2d78c5": {
       "domanda": "What is the difference between `VARCHAR(n)` and `TEXT` in PostgreSQL?",
       "spiegazione": "In PostgreSQL, `VARCHAR(n)` limits the string to n characters (error if exceeded), `TEXT` is unlimited. Performance is practically identical — both use the same storage mechanism. In other DBMS (e.g., MySQL) `TEXT` is slower. If there is no reason for a limit, `TEXT` is often preferred.",
       "risposte": [
@@ -1677,7 +1677,7 @@
         "For logical values; accepts `TRUE`, `FALSE`, and `NULL`"
       ]
     },
-    "46d074f5cdfd": {
+    "3a1e93ff2042": {
       "domanda": "What is a `UUID` and when is it preferred over `SERIAL` as a primary key?",
       "spiegazione": "A `UUID` (Universally Unique Identifier) is a 128-bit number that guarantees global uniqueness (e.g., `'550e8400-e29b-41d4-a716-446655440000'`). It is preferred over `SERIAL` when: multiple databases are being synchronized, IDs are generated on the client side (e.g., mobile app), or one wants to avoid exposing the insertion sequence.",
       "risposte": [
@@ -1687,7 +1687,7 @@
         "`UUID` = User Unique Identifier: a string containing the user's first and last name"
       ]
     },
-    "0e3f3c773a31": {
+    "7949989f5652": {
       "domanda": "What is the difference between `JSON` and `JSONB` in PostgreSQL?",
       "spiegazione": "`JSON` stores the JSON text exactly as inserted (including spaces, key order). `JSONB` converts it to an internal binary format: slower on write, but much faster on query and supports GIN indexes. For most use cases, `JSONB` is preferred.",
       "risposte": [
@@ -1697,7 +1697,7 @@
         "`JSON` stores the exact original text; `JSONB` decomposes it into an indexable binary format (faster for queries but slower for writes)"
       ]
     },
-    "a3adc120e56c": {
+    "17f6e6e0868b": {
       "domanda": "What does `CHAR(n)` do differently from `VARCHAR(n)`?",
       "spiegazione": "`CHAR(n)` has a fixed length: `'Eco'` in `CHAR(10)` is stored as `'Eco       '` (with 7 padding spaces). `VARCHAR(n)` is variable: `'Eco'` occupies only 3 characters. `CHAR` can be marginally faster for strings of constant length (codes, acronyms). In PostgreSQL, performance differences are minimal.",
       "risposte": [
@@ -1717,7 +1717,7 @@
         "`INTEGER[]`"
       ]
     },
-    "5fba9ddd8b03": {
+    "72d940495bbd": {
       "domanda": "What does `INSERT ... ON CONFLICT DO NOTHING` do in PostgreSQL?",
       "spiegazione": "`INSERT ... ON CONFLICT DO NOTHING` is the simplest form of UPSERT: it attempts the insertion; if a constraint conflict occurs (e.g., duplicate PK, `UNIQUE` violation), it simply does nothing and does not raise an error. Useful for idempotent inserts.",
       "risposte": [
@@ -1727,7 +1727,7 @@
         "Attempts the insertion: if there is a conflict (e.g., duplicate PK), it silently ignores it without error"
       ]
     },
-    "267ebf74710c": {
+    "53d79f347d76": {
       "domanda": "What does `INSERT ... ON CONFLICT (id) DO UPDATE SET nome = EXCLUDED.nome` do?",
       "spiegazione": "This is PostgreSQL's UPSERT (Insert or Update) pattern. `EXCLUDED` is a pseudo-table containing the values that were being attempted to insert. `ON CONFLICT ... DO UPDATE` allows specifying exactly which columns to update in case of a conflict.",
       "risposte": [
@@ -1737,7 +1737,7 @@
         "Creates a new row with a different `id` if the original `id` is already present"
       ]
     },
-    "d894bc776e6a": {
+    "81d318d50bab": {
       "domanda": "What does `UPDATE FROM` do in PostgreSQL?",
       "spiegazione": "PostgreSQL supports `UPDATE table SET col = source.col FROM other_table WHERE table.id = other_table.id`. It allows updating a table using values from another. Alternative standard SQL: `UPDATE ... SET col = (SELECT ... WHERE ...)`.",
       "risposte": [
@@ -1747,7 +1747,7 @@
         "It does not exist: in PostgreSQL you can only use `UPDATE ... SET ... WHERE`"
       ]
     },
-    "1ca3e6a5db0e": {
+    "a77967ff0fda": {
       "domanda": "What does `DELETE USING` do in PostgreSQL?",
       "spiegazione": "PostgreSQL supports `DELETE FROM table USING other_table WHERE table.fk = other_table.pk AND other_table.condition`. It allows deleting rows from a table based on conditions involving other tables, in a more readable way than an `IN` subquery.",
       "risposte": [
@@ -1757,7 +1757,7 @@
         "It deletes rows from a table using a condition that involves another table, similar to a `JOIN` in deletion"
       ]
     },
-    "5dba37097881": {
+    "0672f7377af7": {
       "domanda": "What is the advantage of multi-row `INSERT` over single-row `INSERT`?",
       "spiegazione": "A single `INSERT` with N rows (`VALUES (r1), (r2), ..., (rN)`) is much more efficient than N separate `INSERT`s because: 1) only one network/application communication, 2) only one implicit transaction, 3) only one query parse/plan. Performance differences can be 10-100x on large volumes.",
       "risposte": [
@@ -1767,7 +1767,7 @@
         "Multi-row `INSERT`s automatically ignore duplicates"
       ]
     },
-    "ff7dd824fd29": {
+    "90b4a8777a9d": {
       "domanda": "What does the `COPY` command do in PostgreSQL?",
       "spiegazione": "`COPY` is PostgreSQL's bulk load/export mechanism. `COPY table FROM '/path/to/file.csv' CSV HEADER` imports from a CSV file. `COPY table TO '/path/to/file.csv' CSV HEADER` exports. It is orders of magnitude faster than `INSERT` for loading millions of rows.",
       "risposte": [
@@ -1777,7 +1777,7 @@
         "Copies a `VIEW` and converts it into a physical table"
       ]
     },
-    "ae61443ae207": {
+    "8f53a642431f": {
       "domanda": "What is a 'dirty read' in concurrent transactions?",
       "spiegazione": "A dirty read occurs when a transaction reads data modified but not yet committed by another transaction. If that other transaction performs a `ROLLBACK`, the first transaction has read data that will never exist in the database. It is prevented by the `READ COMMITTED` isolation level and higher.",
       "risposte": [
@@ -1787,7 +1787,7 @@
         "A read of data with special characters not supported by the charset"
       ]
     },
-    "27b4b8c54e6d": {
+    "1513245b4199": {
       "domanda": "What is the default isolation level in PostgreSQL?",
       "spiegazione": "`READ COMMITTED` is the default isolation level in PostgreSQL. In this level, each statement within a transaction sees only the data committed up to the start of that statement (not the start of the entire transaction). It prevents dirty reads but not non-repeatable reads.",
       "risposte": [
@@ -1797,7 +1797,7 @@
         "`SERIALIZABLE`"
       ]
     },
-    "ddb6efdd2349": {
+    "96c9a325fd7e": {
       "domanda": "What is a 'non-repeatable read'?",
       "spiegazione": "A non-repeatable read occurs when a transaction reads the same row twice and gets different values because another transaction committed a modification between the two reads. It is prevented by the `REPEATABLE READ` and `SERIALIZABLE` isolation levels.",
       "risposte": [
@@ -1807,7 +1807,7 @@
         "A read where the same row read twice within the same transaction returns different values because another transaction modified it in the meantime"
       ]
     },
-    "d7a76691edfe": {
+    "35d2394602c0": {
       "domanda": "What is a 'phantom read'?",
       "spiegazione": "Phantom reads occur when a transaction executes the same query twice and gets different sets of rows (not the values of a row, but the rows themselves), because another transaction has inserted or deleted rows in the meantime. They are prevented only by `SERIALIZABLE` isolation.",
       "risposte": [
@@ -1827,7 +1827,7 @@
         "`READ UNCOMMITTED`"
       ]
     },
-    "eb1255fc6171": {
+    "c8a59e2bdbfb": {
       "domanda": "What does `SET TRANSACTION ISOLATION LEVEL REPEATABLE READ` do?",
       "spiegazione": "`SET TRANSACTION ISOLATION LEVEL` sets the isolation level for the current transaction (it must be executed after `BEGIN` and before the first data access statement). `REPEATABLE READ` ensures that the values read do not change during the transaction, but it does not prevent phantom reads.",
       "risposte": [
@@ -1847,7 +1847,7 @@
         "Actually executes the query and returns the complete result enriched with detailed debug information"
       ]
     },
-    "bba0eac904fe": {
+    "4155a40d74dc": {
       "domanda": "When does the query planner choose a 'Sequential Scan' instead of an 'Index Scan'?",
       "spiegazione": "The query planner chooses a Sequential Scan when it estimates that the cost of reading the table sequentially is lower than using the index. This typically happens when the query selects many rows (low selectivity), on small tables, or when statistics indicate that the index would not provide a benefit.",
       "risposte": [
@@ -1857,7 +1857,7 @@
         "Always: Sequential Scan is always faster than indexes"
       ]
     },
-    "e7f3806bbf23": {
+    "c22351cd6d64": {
       "domanda": "What does `EXPLAIN ANALYZE` do compared to `EXPLAIN`?",
       "spiegazione": "`EXPLAIN ANALYZE` actually executes the query and compares the planner's estimates with the actual execution times. It displays `cost=... rows=... width=...` (estimate) and `(actual time=... rows=... loops=...)` (actual). If the estimates differ significantly from the actuals, the statistics might be outdated (run `ANALYZE`).",
       "risposte": [
@@ -1867,7 +1867,7 @@
         "There is no difference: `ANALYZE` is a decorative parameter"
       ]
     },
-    "01dd7416eafb": {
+    "3daed8c47068": {
       "domanda": "When is it advisable to create an index on a column?",
       "spiegazione": "An index is useful when: the column has high cardinality (many distinct values), it is frequently used in `WHERE`/`JOIN` clauses, and the table is large. Indexes on columns with few distinct values (e.g., a `BOOLEAN`) are of little use. Too many indexes slow down `INSERT`/`UPDATE`/`DELETE` operations because each index must be updated.",
       "risposte": [
@@ -1877,7 +1877,7 @@
         "Only on `PRIMARY KEY` columns: others do not benefit from indexes"
       ]
     },
-    "2b27074716f0": {
+    "6081b36ec7d2": {
       "domanda": "What does the `ANALYZE` (or `VACUUM ANALYZE`) command do in PostgreSQL?",
       "spiegazione": "`ANALYZE` collects statistics on data distribution (cardinality, most frequent values, histograms) and stores them in the system catalog. The query planner uses these statistics to choose the most efficient execution plan. If statistics are stale, the planner may make suboptimal choices. `VACUUM` reclaims physical space; `VACUUM ANALYZE` performs both operations.",
       "risposte": [
@@ -1887,7 +1887,7 @@
         "Updates statistics on table data, which the query planner uses to select the optimal execution plan"
       ]
     },
-    "4d2696147dd5": {
+    "f6d620a513d8": {
       "domanda": "What is a partial index and when is it useful?",
       "spiegazione": "`CREATE INDEX nome ON tabella(colonna) WHERE condizione` creates an index only on rows that satisfy the condition. Example: `CREATE INDEX idx_ordini_aperti ON ordini(data) WHERE stato = 'aperto'`. The index is smaller and faster because it covers only a portion of the data, but it only helps queries that include that condition.",
       "risposte": [
@@ -1897,7 +1897,7 @@
         "An index that uses only the first N characters of a `VARCHAR` column"
       ]
     },
-    "113dee85112c": {
+    "bd520cc08d53": {
       "domanda": "What is a trigger in SQL?",
       "spiegazione": "A trigger is a function that is automatically executed by the DBMS when a specified event occurs on a table. It is used for: automatic change logging, complex validation, data propagation between tables, and audit trails.",
       "risposte": [
@@ -1907,7 +1907,7 @@
         "An advanced `CHECK` condition that blocks non-compliant transactions"
       ]
     },
-    "6019ee75a05d": {
+    "f58b0e94e188": {
       "domanda": "What is the difference between a `BEFORE` trigger and an `AFTER` trigger?",
       "spiegazione": "A `BEFORE` trigger is executed before the DML operation: it can modify the `NEW` values, cancel the operation (by returning `NULL` in PostgreSQL), or validate data before writing. An `AFTER` trigger is executed after the data has been written: useful for notifications, logging, or updating related tables.",
       "risposte": [
@@ -1917,7 +1917,7 @@
         "`BEFORE` executes before the operation (it can modify data or block it); `AFTER` executes after (the data has already been written)"
       ]
     },
-    "48f8ce2e06ec": {
+    "ac2eac83f875": {
       "domanda": "In a PostgreSQL `FOR EACH ROW` trigger, what do `NEW` and `OLD` represent?",
       "spiegazione": "In a `FOR EACH ROW` trigger: `NEW` contains the new values (available in `INSERT` and `UPDATE`), `OLD` contains the previous values (available in `UPDATE` and `DELETE`). E.g., to log price changes, compare `OLD.price` with `NEW.price`. In a `BEFORE` trigger, you can modify `NEW.column` before the row is written.",
       "risposte": [
@@ -1927,7 +1927,7 @@
         "`NEW` contains the row values AFTER the change (for `INSERT`/`UPDATE`); `OLD` contains the values BEFORE the change (for `UPDATE`/`DELETE`)"
       ]
     },
-    "1f268a3ac341": {
+    "5023fd8f3fbe": {
       "domanda": "What is the difference between `FOR EACH ROW` and `FOR EACH STATEMENT` in a trigger?",
       "spiegazione": "`FOR EACH ROW` executes the trigger function for every row affected by the operation (and has access to `NEW` and `OLD`). `FOR EACH STATEMENT` executes the function only once for the entire statement (even if 1000 rows are modified) and does not have access to individual rows.",
       "risposte": [
@@ -1947,7 +1947,7 @@
         "`MAKE FUNCTION name(param type) RETURN type AS BEGIN ... END; LANGUAGE plpgsql STRICT;`"
       ]
     },
-    "80d54c760cb8": {
+    "a46839e56d18": {
       "domanda": "What is the difference between a `FUNCTION` and a `PROCEDURE` in PostgreSQL?",
       "spiegazione": "`FUNCTION`s return a value and can be used in queries (`SELECT function_name(parameters)`). `PROCEDURE`s (introduced in PostgreSQL 11) do not have a direct return value, are invoked with `CALL procedure_name(parameters)`, and can manage transactions internally (`COMMIT`/`ROLLBACK`).",
       "risposte": [
@@ -1957,7 +1957,7 @@
         "There is no difference: they are interchangeable synonyms in PostgreSQL"
       ]
     },
-    "02358bcd9cab": {
+    "33058f5d70df": {
       "domanda": "What is BCNF (Boyce-Codd Normal Form) and how does it differ from 3NF?",
       "spiegazione": "BCNF (or 3.5NF) is stricter than 3NF. A table is in BCNF if for every functional dependency X -> Y, X is a superkey. There are rare cases where a table is in 3NF but not in BCNF (when there are overlapping candidate keys). BCNF eliminates these residual anomalies.",
       "risposte": [
@@ -1967,7 +1967,7 @@
         "BCNF is stricter than 3NF: it requires that every functional determinant is a superkey, eliminating residual anomalies possible in 3NF"
       ]
     },
-    "585142fe6a5c": {
+    "e8961335d333": {
       "domanda": "What does a transitive dependency in a table indicate?",
       "spiegazione": "A transitive dependency occurs when A -> B -> C: attribute C depends on B, and B depends on A (the key). A classic example is `id_order` -> `id_customer` -> `customer_city`. The city does not depend directly on the order but on the customer. 3NF eliminates these dependencies by separating the customer and city into distinct tables.",
       "risposte": [
@@ -1977,7 +1977,7 @@
         "It is a foreign key that points to another foreign key rather than to a primary key"
       ]
     },
-    "7c8dbd6348b2": {
+    "9a53188b07e1": {
       "domanda": "What is the typical insertion anomaly in a non-normalized table?",
       "spiegazione": "An insertion anomaly occurs when you cannot record a piece of information without also having other related information. For example, in an `orders_customers` table that combines customer and order data, you cannot register a new customer until they place at least one order. Normalization eliminates this dependency by separating the entities.",
       "risposte": [
@@ -1987,7 +1987,7 @@
         "You cannot insert a partial fact: e.g., you cannot add a new customer without associating it with an order, if customer and order are in the same table"
       ]
     },
-    "649b2794678a": {
+    "a42f425dc49a": {
       "domanda": "What is meant by 'denormalization' and when is it justified?",
       "spiegazione": "Denormalization is a conscious design choice: controlled redundancy is introduced to reduce the number of JOINs in frequent queries and improve read performance. It is justified in systems with very high read volumes (data warehouses, reporting), where the cost of JOINs outweighs the cost of redundancy.",
       "risposte": [
@@ -1997,7 +1997,7 @@
         "The elimination of all indexes to reduce disk space"
       ]
     },
-    "06291c763903": {
+    "5e8e6a6bd198": {
       "domanda": "What is MVCC (Multi-Version Concurrency Control) in PostgreSQL?",
       "spiegazione": "MVCC maintains multiple versions of each row. When a transaction modifies a row, PostgreSQL does not overwrite the original but creates a new version. Concurrent transactions see the appropriate version based on their snapshot. This allows non-blocking reads: a `SELECT` does not have to wait for a concurrent `UPDATE`.",
       "risposte": [
@@ -2007,7 +2007,7 @@
         "A versioning system that maintains the history of all changes to tables"
       ]
     },
-    "dd8242be0a0f": {
+    "b988713cc7c6": {
       "domanda": "What does `VACUUM` do in PostgreSQL and why is it necessary?",
       "spiegazione": "Due to MVCC, deleted or updated rows are not physically removed immediately: they remain as 'dead tuples'. `VACUUM` removes them and reclaims the space. `AUTOVACUUM` performs this process automatically in the background. Without periodic `VACUUM`, the database grows indefinitely and performance degrades (table bloat).",
       "risposte": [
@@ -2017,7 +2017,7 @@
         "Rebuilds all database indexes to improve performance"
       ]
     },
-    "b05ed3b20828": {
+    "581e2bbd15b7": {
       "domanda": "What does `DISTINCT ON (col)` do in PostgreSQL? (e.g., `SELECT DISTINCT ON (author_id) * FROM books ORDER BY author_id, year DESC`)",
       "spiegazione": "`DISTINCT ON (col)` is a PostgreSQL-specific feature: for each distinct value of the specified column, it returns only the first row according to the `ORDER BY`. The `ORDER BY` must start with the same columns as `DISTINCT ON`. Example: the most recently published book for each author, the latest price for each product.",
       "risposte": [
@@ -2027,7 +2027,7 @@
         "It returns the first row for each distinct value of `col` according to `ORDER BY`: it allows you to get 'the latest book for each author'"
       ]
     },
-    "343c55e9aa61": {
+    "addcce36c900": {
       "domanda": "What is a `MATERIALIZED VIEW` and how does it differ from a regular `VIEW`?",
       "spiegazione": "A `MATERIALIZED VIEW` physically stores the result on disk as a table. Queries on it are extremely fast (no recalculation), but the data may become stale. It is updated using `REFRESH MATERIALIZED VIEW name` (blocking) or `REFRESH MATERIALIZED VIEW CONCURRENTLY name` (non-blocking, requires a unique index).",
       "risposte": [
@@ -2047,7 +2047,7 @@
         "Deletes a key from the `JSONB` document"
       ]
     },
-    "cab1ddc5f4fb": {
+    "6d51b605c55a": {
       "domanda": "What is `pg_dump` and what is it used for?",
       "spiegazione": "`pg_dump` is the PostgreSQL backup tool: it exports the structure and/or data of a database into a file. `pg_dump -Fc db > backup.dump` (custom format, compressed) or `pg_dump db > backup.sql` (plain SQL format). `pg_restore` restores from the custom format; `psql < backup.sql` from the SQL format.",
       "risposte": [
@@ -2087,7 +2087,7 @@
         "The application level, managed entirely by external client programs"
       ]
     },
-    "b89d26445557": {
+    "1b924d171da4": {
       "domanda": "What is meant by the 'cardinality' of a relation (table) in the relational model?",
       "spiegazione": "The cardinality of a relation is the number of tuples (rows) it contains. Do not confuse it with the 'degree', which is the number of attributes (columns). Cardinality changes with DML operations, while degree remains stable.",
       "risposte": [
@@ -2097,7 +2097,7 @@
         "The maximum number of distinct values allowed in the table's primary key"
       ]
     },
-    "584017c7b923": {
+    "2779cf1c45f0": {
       "domanda": "What is a candidate key?",
       "spiegazione": "A candidate key is a minimal set of attributes that uniquely identifies rows. A table can have multiple candidate keys; one of them is chosen as the `PRIMARY KEY`, while the others remain alternative keys (usually constrained with `UNIQUE`).",
       "risposte": [
@@ -2107,7 +2107,7 @@
         "A temporary key valid only during a transaction"
       ]
     },
-    "e45620ece1ad": {
+    "da80e1d0bb3f": {
       "domanda": "What distinguishes Boyce-Codd Normal Form (BCNF) from the Third Normal Form (3NF)?",
       "spiegazione": "BCNF is a stricter version of 3NF: it requires that in every functional dependency, the determinant (left-hand side) must be a superkey. It resolves anomalous cases with overlapping candidate keys that 3NF allows to pass.",
       "risposte": [
@@ -2117,17 +2117,17 @@
         "There is no difference: BCNF and 3NF are two names for the same normal form"
       ]
     },
-    "a9392077cdb2": {
+    "14c3bbf80c91": {
       "domanda": "In which situation is denormalization a legitimate design choice?",
       "spiegazione": "Denormalization deliberately introduces redundancy (e.g., duplicating a value or precomputing a total) to reduce the number of JOINs and speed up intensive reads. It is a trade-off: it improves read performance but reintroduces the risk of update anomalies.",
       "risposte": [
-        "When the goal is to adhere completely and orthodoxy to the relational theory originally formulated by Edgar Codd",
+        "When the goal is to adhere completely and orthodoxly to the relational theory originally formulated by Edgar Codd",
         "When controlled redundancy is introduced to reduce JOINs and speed up very frequent reads",
         "When it is necessary to add new `CHECK` constraints to columns",
         "When every form of redundancy is eliminated from the data"
       ]
     },
-    "5f1f10d07274": {
+    "c175dfd0cd97": {
       "domanda": "In PostgreSQL, which command removes all rows from a table while also resetting the associated identity counters?",
       "spiegazione": "`TRUNCATE TABLE tabella RESTART IDENTITY` empties the table and restarts the associated `SERIAL`/`IDENTITY` sequences, resetting the counters to their initial value. `DELETE`, on the other hand, does not affect the sequences.",
       "risposte": [
@@ -2147,7 +2147,7 @@
         "Compress data on disk"
       ]
     },
-    "69ba3be69ea5": {
+    "1793521ee2bb": {
       "domanda": "What does the `RETURNING` clause return in `UPDATE prodotti SET prezzo = prezzo * 1.1 RETURNING id, prezzo`?",
       "spiegazione": "`RETURNING` in an `UPDATE` statement returns the specified columns with their values after the update, row by row. It also works with `INSERT` and `DELETE` and avoids the need for a subsequent `SELECT` to read the produced values.",
       "risposte": [
@@ -2157,7 +2157,7 @@
         "Nothing, because the `RETURNING` clause is allowed only at the end of an `INSERT` command"
       ]
     },
-    "c33ae0dbea7e": {
+    "855a8466dd45": {
       "domanda": "Why can a `CHECK` constraint not, on its own, guarantee referential integrity between two tables?",
       "spiegazione": "A `CHECK` evaluates an expression on the values of the current row and cannot verify the existence of a value in another table. Referential integrity between tables is ensured with a `FOREIGN KEY`, designed specifically for this purpose.",
       "risposte": [
@@ -2167,7 +2167,7 @@
         "Because the `CHECK` constraint allows at most a single comparison per each table defined in the database"
       ]
     },
-    "8b17f262662e": {
+    "093fc89c8a64": {
       "domanda": "In a query, why can't a column alias defined in the `SELECT` clause be used in the `WHERE` clause?",
       "spiegazione": "In the logical order of execution (`FROM`, `WHERE`, `GROUP BY`, `HAVING`, `SELECT`, `ORDER BY`), `WHERE` is processed before `SELECT`, where aliases are created. Therefore, `WHERE` does not recognize them, whereas `ORDER BY`, which is executed later, can use them.",
       "risposte": [
@@ -2177,7 +2177,7 @@
         "Because this is a limitation exclusive to the PostgreSQL dialect, completely absent in any other database"
       ]
     },
-    "78ee8a16cc18": {
+    "cf81d4fcaaa1": {
       "domanda": "What is the difference between the `LIKE` and `ILIKE` operators in PostgreSQL?",
       "spiegazione": "`ILIKE` is a PostgreSQL extension of `LIKE` that performs a case-insensitive comparison. `'mario' ILIKE 'MARIO'` evaluates to true, whereas with `LIKE` it would be false. The wildcard characters `%` and `_` work in both operators.",
       "risposte": [
@@ -2187,7 +2187,7 @@
         "They are synonyms and behave identically"
       ]
     },
-    "5fab6b2cedb0": {
+    "bf5ca974bfdc": {
       "domanda": "What does the condition `WHERE stato IN ('attivo','sospeso') AND credito > 0` select?",
       "spiegazione": "The `IN` operator checks for membership in a set of values (stato 'attivo' or 'sospeso'); the `AND` operator requires that `credito > 0` also holds true. A row is selected only if both conditions are met.",
       "risposte": [
@@ -2207,7 +2207,7 @@
         "The complete Cartesian product that pairs each row from A with every single row from B, without applying any join condition"
       ]
     },
-    "6e8b3715f3e3": {
+    "10a96acac012": {
       "domanda": "What is a SELF JOIN?",
       "spiegazione": "A SELF JOIN relates a table to itself by assigning it two different aliases. It is typical for hierarchical structures: an employees table joined with itself to associate each employee with their manager.",
       "risposte": [
@@ -2217,7 +2217,7 @@
         "A join that does not require any `ON` condition"
       ]
     },
-    "e1ddcb2e885b": {
+    "e2add8b94a69": {
       "domanda": "What is the difference between `COUNT(*)` and `COUNT(column)` in the presence of `NULL` values?",
       "spiegazione": "`COUNT(*)` counts all rows regardless of `NULL` values. `COUNT(column)`, on the other hand, ignores rows where that column is `NULL`. Therefore, on a column with missing values, the two counts differ.",
       "risposte": [
@@ -2237,7 +2237,7 @@
         "In the `ORDER BY` clause"
       ]
     },
-    "208ebee6c299": {
+    "52a3474c98ee": {
       "domanda": "What characterizes a correlated subquery compared to a simple subquery?",
       "spiegazione": "A correlated subquery depends on the values of the outer query and is re-executed for each row of the latter. A simple (non-correlated) subquery is independent and is evaluated only once.",
       "risposte": [
@@ -2247,7 +2247,7 @@
         "It always returns exactly one row and one column, thus behaving like a scalar value"
       ]
     },
-    "80b254ad2133": {
+    "ef9f772355b9": {
       "domanda": "What is the advantage of `EXISTS` over `IN` when checking for the presence of correlated rows?",
       "spiegazione": "`EXISTS` evaluates only the presence of at least one row and can stop as soon as it finds one; it also avoids the issues that `NOT IN` has when the list contains `NULL`s. It is often more efficient and predictable for existence checks.",
       "risposte": [
@@ -2257,7 +2257,7 @@
         "`EXISTS` can be used only on tables that are completely devoid of a defined primary key"
       ]
     },
-    "3031ab372927": {
+    "76be5c80245a": {
       "domanda": "What is a `MATERIALIZED VIEW` in PostgreSQL?",
       "spiegazione": "A `MATERIALIZED VIEW` stores the query result on disk: reads are fast because nothing is recalculated, but the data remains static until `REFRESH MATERIALIZED VIEW` is executed. A regular `VIEW` always recalculates on the fly.",
       "risposte": [
@@ -2267,17 +2267,17 @@
         "A view that cannot be queried with `SELECT`"
       ]
     },
-    "578b9dd932f7": {
+    "50b80d029ce0": {
       "domanda": "What is the purpose of the `RECURSIVE` keyword in a CTE (Common Table Expression)?",
       "spiegazione": "A `WITH RECURSIVE` defines a CTE that references itself: a base case combined (`UNION`) with a recursive part. It is used to navigate hierarchies and graphs, such as an organizational tree or a bill of materials.",
       "risposte": [
-        "A to automatically execute the CTE in parallel, distributing its calculation across multiple processors of the database server",
-        "A to allow the CTE to call itself to traverse hierarchical structures or graphs",
-        "A to make the CTE visible in other sessions",
-        "A to prohibit the use of JOINs within it"
+        "To automatically execute the CTE in parallel, distributing its calculation across multiple processors of the database server",
+        "To allow the CTE to call itself to traverse hierarchical structures or graphs",
+        "To make the CTE visible in other sessions",
+        "To prohibit the use of JOINs within it"
       ]
     },
-    "e710c98b0670": {
+    "b81808df75f1": {
       "domanda": "What does the expression `COALESCE(NULL, NULL, 'x', 'y')` return?",
       "spiegazione": "`COALESCE` returns the first non-`NULL` argument from the list, scanning from left to right. Here, the first two arguments are `NULL`, so the result is 'x'. It accepts any number of arguments.",
       "risposte": [
@@ -2287,7 +2287,7 @@
         "An error, because `COALESCE` does not accept more than two arguments"
       ]
     },
-    "36961f996094": {
+    "5b86390fd977": {
       "domanda": "Why does the condition `WHERE bonus = NULL` never return rows with a missing bonus?",
       "spiegazione": "In SQL's three-valued logic, any comparison with `NULL` using `=` yields `UNKNOWN`, never `TRUE`. To identify missing values, the dedicated operator `IS NULL` is used (or `IS NOT NULL` for the opposite).",
       "risposte": [
@@ -2307,7 +2307,7 @@
         "Lost update"
       ]
     },
-    "21fe54d01099": {
+    "b92b482ac2bc": {
       "domanda": "What is the most stringent isolation level defined by the SQL standard?",
       "spiegazione": "`SERIALIZABLE` is the most stringent level: it ensures that the concurrent outcome of transactions is equivalent to their sequential execution, preventing dirty read, non-repeatable read, and phantom read, at the cost of increased contention.",
       "risposte": [
@@ -2317,7 +2317,7 @@
         "`SERIALIZABLE`"
       ]
     },
-    "c80d68dfc8f6": {
+    "7a97499e2b7a": {
       "domanda": "What is the difference between `UNION` and `UNION ALL`?",
       "spiegazione": "Both combine the results of two queries with compatible columns. `UNION` removes duplicates (an operation that involves sorting or hashing), while `UNION ALL` keeps them and is faster because it does not deduplicate.",
       "risposte": [
@@ -2337,7 +2337,7 @@
         "The Cartesian product of the two queries"
       ]
     },
-    "b914a163ab99": {
+    "005585bb5ff3": {
       "domanda": "What does the expression `'SQL' || ' ' || 'avanzato'` return in PostgreSQL?",
       "spiegazione": "In PostgreSQL, the `||` operator concatenates strings. Combining 'SQL', a space, and 'avanzato' results in 'SQL avanzato'. In other dialects, concatenation is written with `CONCAT()` or `+`.",
       "risposte": [
@@ -2347,7 +2347,7 @@
         "The string 'SQLavanzato' without a space"
       ]
     },
-    "50ceb4e7ccbd": {
+    "22ea14dae2fa": {
       "domanda": "What does the expression `MOD(17, 5)`, equivalent to `17 % 5`, calculate?",
       "spiegazione": "`MOD(a, b)` returns the remainder of the integer division of a by b. 17 divided by 5 gives a quotient of 3 with a remainder of 2, so `MOD(17,5)` equals 2. Useful, for example, to distinguish even and odd values.",
       "risposte": [
@@ -2357,7 +2357,7 @@
         "The rounded value 3.4"
       ]
     },
-    "959cd9675904": {
+    "cd61c5479618": {
       "domanda": "What is the difference between the `ROUND` and `TRUNC` functions applied to 9.87 with one decimal place?",
       "spiegazione": "`ROUND` rounds to the nearest value based on the next digit (9.87 -> 9.9), while `TRUNC` simply truncates digits beyond the specified position without rounding (9.87 -> 9.8).",
       "risposte": [
@@ -2377,7 +2377,7 @@
         "The corresponding day of the week"
       ]
     },
-    "590ceaf712a7": {
+    "2cf1c96b6c5b": {
       "domanda": "What is the difference between the `DATE` and `TIMESTAMP` types in PostgreSQL?",
       "spiegazione": "`DATE` stores only the calendar part (year-month-day). `TIMESTAMP` adds the time component (hours, minutes, seconds, and fractions). There is also `TIMESTAMPTZ`, which takes the time zone into account.",
       "risposte": [
@@ -2387,7 +2387,7 @@
         "`TIMESTAMP` stores only the year"
       ]
     },
-    "8833035089e3": {
+    "fc8f42c2291c": {
       "domanda": "What is the difference between `ROW_NUMBER()` and `RANK()` as window functions?",
       "spiegazione": "`ROW_NUMBER()` numbers rows in a strictly distinct manner (1, 2, 3, 4). `RANK()` assigns the same rank to ties and then skips subsequent values (1, 2, 2, 4). `DENSE_RANK()`, on the other hand, does not leave gaps (1, 2, 2, 3).",
       "risposte": [
@@ -2397,14 +2397,14 @@
         "`ROW_NUMBER` can be used only with `GROUP BY`"
       ]
     },
-    "ca79df00ef6d": {
+    "78efb44acb53": {
       "domanda": "What is the purpose of the `PARTITION BY` clause within a window function (`OVER`)?",
       "spiegazione": "`PARTITION BY` divides the set of rows into partitions: the window function (`SUM`, `AVG`, `ROW_NUMBER`, etc.) restarts from the beginning in each partition. Unlike `GROUP BY`, it does not reduce the number of returned rows.",
       "risposte": [
-        "A to remove duplicate rows before the calculation",
-        "A to divide rows into independent groups within which the window function is calculated separately",
-        "A to definitively and stably sort the entire final result returned as a whole by the query to the user",
-        "A to limit the number of rows returned"
+        "To remove duplicate rows before the calculation",
+        "To divide rows into independent groups within which the window function is calculated separately",
+        "To definitively and stably sort the entire final result returned as a whole by the query to the user",
+        "To limit the number of rows returned"
       ]
     },
     "aa2386d7bee8": {
@@ -2417,7 +2417,7 @@
         "`ENABLE SELECT ON table TO user;`"
       ]
     },
-    "d7400bc4c6a6": {
+    "a6373ca69819": {
       "domanda": "In PostgreSQL, what is a `ROLE`?",
       "spiegazione": "In PostgreSQL, a `ROLE` unifies the concepts of user and group: it can own objects, receive privileges (`GRANT`), and be a member of other roles. A role with `LOGIN` behaves like a user account.",
       "risposte": [
@@ -2427,7 +2427,7 @@
         "A synonym for `SCHEMA` used for views"
       ]
     },
-    "83e372698c71": {
+    "17f8c74c2f74": {
       "domanda": "What is the fundamental difference between the `CHAR(n)` and `VARCHAR(n)` types?",
       "spiegazione": "`CHAR(n)` has a fixed length: shorter values are padded with spaces up to n. `VARCHAR(n)` uses only the necessary space, with n as the maximum limit. In PostgreSQL, the `text` type is often preferred for strings.",
       "risposte": [
@@ -2437,13 +2437,13 @@
         "They are identical and differ only in name"
       ]
     },
-    "3c1bb472175e": {
+    "f0dad04a2b1b": {
       "domanda": "Which data type is most suitable for storing monetary amounts to avoid rounding errors associated with floating-point numbers?",
       "spiegazione": "`NUMERIC` (synonym `DECIMAL`) represents numbers with exact precision and controlled decimal places, making it ideal for monetary amounts. Floating-point types (`REAL`, `FLOAT`, `DOUBLE PRECISION`) are approximate and can introduce rounding errors.",
       "risposte": [
         "`REAL`",
         "`FLOAT`",
-        "`NUMERIC` (o `DECIMAL`)",
+        "`NUMERIC` (or `DECIMAL`)",
         "`DOUBLE PRECISION`"
       ]
     },
@@ -2457,7 +2457,7 @@
         "Locks the table until manual resolution of the conflict"
       ]
     },
-    "7d5c295e1c49": {
+    "1c5321970124": {
       "domanda": "What is the difference between `EXPLAIN` and `EXPLAIN ANALYZE` in PostgreSQL?",
       "spiegazione": "`EXPLAIN` shows the estimated execution plan from the optimizer without executing the query. `EXPLAIN ANALYZE` actually executes it and compares estimates with actual values (times, rows), which is useful for diagnosing slow queries.",
       "risposte": [
@@ -2467,7 +2467,7 @@
         "`EXPLAIN` can only be used on `SELECT` statements, while the `ANALYZE` variant is only allowed on `INSERT` statements"
       ]
     },
-    "cbeade828542": {
+    "b2dbfd806ad3": {
       "domanda": "What is the purpose of the `pg_dump` utility in PostgreSQL?",
       "spiegazione": "`pg_dump` produces a logical backup of a single database (schema and/or data) in a file that can be restored using `psql` or `pg_restore`. To back up the entire database cluster, `pg_dumpall` is used instead.",
       "risposte": [
@@ -2487,7 +2487,7 @@
         "None: the database restores itself upon the next server restart"
       ]
     },
-    "15e924b3ddf5": {
+    "431a8a1464ad": {
       "domanda": "What is the difference between a logical backup (`pg_dump`) and a physical cluster backup?",
       "spiegazione": "A logical backup (`pg_dump`) generates SQL statements that recreate the schema and data, and is portable across versions. A physical backup copies the actual cluster files (e.g., using `pg_basebackup`), is faster to restore, but is tied to the same server version.",
       "risposte": [
@@ -2497,7 +2497,7 @@
         "The physical backup works only on empty databases"
       ]
     },
-    "f387a549decc": {
+    "e7272cf91f99": {
       "domanda": "Which utility creates a backup of the entire PostgreSQL cluster, including roles and global permissions?",
       "spiegazione": "`pg_dumpall` dumps the entire cluster: all databases plus global objects (roles, permissions, tablespaces) that `pg_dump` alone does not include. It is the typical choice for a complete logical backup of the server.",
       "risposte": [
