@@ -323,7 +323,7 @@
       "spiegazione": "`let` declares a variable that can be reassigned: `let x = 5; x = 10` is valid. `const` declares a constant reference: `const x = 5; x = 10` throws a `TypeError`. Note: `const` on an object or array does not make the contents immutable — you can add/modify properties. Only the reference is constant. Use `const` by default; use `let` only when you know you need to reassign.",
       "risposte": [
         "`let` is for numbers; `const` is for strings",
-        "`let` can be reassigned; `const` cannot be reassassigned (but a `const` object can be modified internally)",
+        "`let` can be reassigned; `const` cannot be reassigned (but a `const` object can be modified internally)",
         "`const` is faster than `let` at runtime",
         "They are identical: the distinction is purely stylistic"
       ]
@@ -460,7 +460,7 @@
     },
     "95b86047fc6a": {
       "domanda": "What is the syntax of an arrow function that multiplies a number by 2?",
-      "spiegazione": "Arrow functions have the syntax `(parameters) => expression`. With a single parameter, parentheses are optional. With a single expression, the `return` is implicit. `n => n * 2` is equivalent to `function(n) { return n * 2; }`. With multiple parameters: `(a, b) => a + b`. With multiple statements, `{}` and an explicit `return` are required: `(n) => { const double = n * 2; return double; }`. A describes the correct syntax. B is incorrect because it lacks the `function` keyword and braces, which are not needed here but the syntax shown is actually correct for a single expression, however, the question asks for the syntax of an arrow function, and B is the correct arrow function syntax. Wait, let's re-evaluate. A is not valid JS. B is valid arrow function syntax. C is not valid JS. D is not valid JS. So B is the correct answer. The explanation should point out that B is the correct arrow function syntax.",
+      "spiegazione": "Arrow functions have the syntax `(parameters) => expression`. With a single parameter, parentheses are optional. With a single expression, the `return` is implicit. `n => n * 2` is equivalent to `function(n) { return n * 2; }`. With multiple parameters: `(a, b) => a + b`. With multiple statements, `{}` and an explicit `return` are required: `(n) => { const double = n * 2; return double; }`.",
       "risposte": [
         "`function(n) => { n * 2 }`",
         "`n => n * 2`",
@@ -550,7 +550,7 @@
     },
     "ccd15bbb318b": {
       "domanda": "What is the difference between `innerHTML` and `textContent`?",
-      "spiegazione": "`innerHTML` renderses markup: `element.innerHTML = '<b>Hello</b>'` displays bold text. Danger: if the content comes from the user, a malicious actor can inject `<script>` or tags with events (XSS). `textContent` inserts everything as plain text: `element.textContent = '<b>Hello</b>'` literally displays `<b>Hello</b>`. Always use `textContent` for output of user-provided data. Use `innerHTML` only for markup that you control.",
+      "spiegazione": "`innerHTML` renders markup: `element.innerHTML = '<b>Hello</b>'` displays bold text. Danger: if the content comes from the user, a malicious actor can inject `<script>` or tags with events (XSS). `textContent` inserts everything as plain text: `element.textContent = '<b>Hello</b>'` literally displays `<b>Hello</b>`. Always use `textContent` for output of user-provided data. Use `innerHTML` only for markup that you control.",
       "risposte": [
         "`innerHTML` is significantly slower, while `textContent` is faster",
         "`innerHTML` interprets HTML; `textContent` inserts only text",
@@ -1092,10 +1092,10 @@
       "domanda": "What is the purpose of the `key` attribute in a list rendered with `map`?",
       "spiegazione": "`key` is a unique and stable identifier that React uses to recognize each element in a list between renders. The data's id should be used, not the index if the list can change. It is required for elements generated with `map`.",
       "risposte": [
-        "A to automatically sort the list elements in ascending order",
-        "A to uniquely identify each element",
-        "A to apply a different style to each element in the rendered list",
-        "A to link each element to a key in `localStorage`"
+        "To automatically sort the list elements in ascending order",
+        "To uniquely identify each element",
+        "To apply a different style to each element in the rendered list",
+        "To link each element to a key in `localStorage`"
       ]
     },
     "9be21ee815a4": {
@@ -1178,8 +1178,8 @@
         "They are perfectly equivalent; it's just a matter of preference"
       ]
     },
-    "8366e67e1970": {
-      "domanda": "What is Vite in the context of the course's React projects?",
+    "d6a2a7e34e7f": {
+      "domanda": "What is Vite in the context of React projects?",
       "spiegazione": "Vite is the tool used to scaffold the project (using `npm create vite@latest`) and start the local dev server (`npm run dev`). It is also what makes JSX work.",
       "risposte": [
         "A library for managing the global state of a React application",
@@ -1500,7 +1500,7 @@
     },
     "d174b1724452": {
       "domanda": "What does the `@include` directive do?",
-      "spiegazione": "`@include` inserts, at the point where it is written, the declarations defined in a mixin (passing any parameters). E.g.: `@include flex-center(column);`",
+      "spiegazione": "`@include` inserts, at the point where it is written, the declarations defined in a mixin (passing any parameters). E.g.: `@include flex-center(column);`.",
       "risposte": [
         "Loads a background image into the element",
         "Inserts the rules of a mixin",
@@ -1530,7 +1530,7 @@
     },
     "2ca0a612de5e": {
       "domanda": "What is the difference between a class selector and an ID selector?",
-      "spiegazione": "A class (`.name`) can be applied to multiple elements, and an element can have more than one; an ID (`#name`) identifies a single element and has higher specificity. Course rule of thumb: CSS with classes, IDs for JavaScript and anchors.",
+      "spiegazione": "A class (`.name`) can be applied to multiple elements, and an element can have more than one; an ID (`#name`) identifies a single element and has higher specificity. Rule of thumb: CSS with classes, IDs for JavaScript and anchors.",
       "risposte": [
         "The class is always applied faster by the browser",
         "The class is reusable; the ID is unique",
@@ -1642,10 +1642,10 @@
       "domanda": "What is the purpose of the `viewport` meta tag?",
       "spiegazione": "`<meta name='viewport' content='width=device-width, initial-scale=1.0'>` instructs the mobile browser to use the actual device width instead of simulating a desktop view. Without it, media queries do not behave as expected on smartphones.",
       "risposte": [
-        "A to set the tab title",
-        "A to improve search engine ranking",
-        "A to tell the browser to adapt the page width to the device width: without it, responsive design does not work correctly on mobile",
-        "A to load images faster"
+        "To set the tab title",
+        "To improve search engine ranking",
+        "To tell the browser to adapt the page width to the device width: without it, responsive design does not work correctly on mobile",
+        "To load images faster"
       ]
     },
     "49b8d12adb6e": {
@@ -1770,7 +1770,7 @@
     },
     "cedde1e6e415": {
       "domanda": "What is the difference between `null` and `undefined`?",
-      "spiegazione": "`undefined` indicates a declared variable with no value (assigned by the JS engine); `null` is a 'empty' value set voluntarily by the developer. Fun fact: `typeof null` is `'object'`, a historical bug; `null == undefined` is `true`, but `null === undefined` is `false`.",
+      "spiegazione": "`undefined` indicates a declared variable with no value (assigned by the JS engine); `null` is an 'empty' value set voluntarily by the developer. Fun fact: `typeof null` is `'object'`, a historical bug; `null == undefined` is `true`, but `null === undefined` is `false`.",
       "risposte": [
         "They are perfect synonyms",
         "`undefined` is the absence of a value not assigned by the system; `null` is an empty value intentionally assigned by the programmer",
@@ -1982,10 +1982,10 @@
       "domanda": "What are the `<figure>` and `<figcaption>` tags used for?",
       "spiegazione": "`<figure>` groups self-contained content such as an image, chart, or code block, and `<figcaption>` provides its caption. Together, they create a semantic association between the content and its description.",
       "risposte": [
-        "A to create a contact form",
-        "B to draw geometric shapes on the page",
-        "C to semantically associate self-contained content (typically an image) with its caption",
-        "D to define the structure of a data table"
+        "To create a contact form",
+        "To draw geometric shapes on the page",
+        "To semantically associate self-contained content (typically an image) with its caption",
+        "To define the structure of a data table"
       ]
     },
     "b3cb12314fa3": {
@@ -1998,13 +1998,13 @@
         "To change the character set used"
       ]
     },
-    "8c549417d4d4": {
-      "domanda": "What is the difference between `<em>` and `<i>`?",
-      "spiegazione": "`<em>` provides semantic emphasis (screen readers may emphasize its reading), while `<i>` applies only stylistic italics, without added meaning. It is the same relationship that exists between `<strong>` (semantic) and `<b>` (visual).",
+    "b6b2062e922b": {
+      "domanda": "What is the difference between `em` and `i`?",
+      "spiegazione": "`em` provides semantic emphasis (screen readers may emphasize its reading), while `<i>` applies only stylistic italics, without added meaning. It is the same relationship that exists between `<strong>` (semantic) and `<b>` (visual).",
       "risposte": [
-        "`<em>` is obsolete",
+        "`em` is obsolete",
         "They are identical for the browser",
-        "`<em>` indicates emphasis with semantic value; `<i>` applies only italics without added meaning",
+        "`em` indicates emphasis with semantic value; `<i>` applies only italics without added meaning",
         "`<i>` works only in headings"
       ]
     },
@@ -2012,10 +2012,10 @@
       "domanda": "What is the purpose of the `controls` attribute in the `<video>` tag?",
       "spiegazione": "`controls` displays the native player controls (play/pause, seek bar, volume). Other attributes of the `<video>` tag are `autoplay` (automatic start), `loop` (repetition), and `muted` (no audio).",
       "risposte": [
-        "A to set the maximum quality of the video to play",
-        "A to display playback controls (play, pause, volume)",
-        "A to start the video automatically on load",
-        "A to block the download of the video file by users"
+        "To set the maximum quality of the video to play",
+        "To display playback controls (play, pause, volume)",
+        "To start the video automatically on load",
+        "To block the download of the video file by users"
       ]
     },
     "99207c82896b": {
@@ -2030,7 +2030,7 @@
     },
     "f2ad83c8f364": {
       "domanda": "What is the recommended way to change the visual state of an element from JavaScript?",
-      "spiegazione": "The course pattern is: JS declares the state by adding/removing classes with classList (add, remove, toggle), while the appearance remains defined in CSS. This way, presentation remains the responsibility of CSS, not JavaScript.",
+      "spiegazione": "The recommended pattern is: JS declares the state by adding/removing classes with classList (add, remove, toggle), while the appearance remains defined in CSS. This way, presentation remains the responsibility of CSS, not JavaScript.",
       "risposte": [
         "Writing inline styles with element.style for each property",
         "Adding or removing CSS classes with classList (e.g., toggle), leaving the appearance defined in CSS",

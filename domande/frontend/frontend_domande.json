@@ -10,7 +10,8 @@
       "`<?html version='5'?>`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<!DOCTYPE html>` è la dichiarazione obbligatoria che deve apparire come prima riga di ogni pagina HTML5. Dice al browser che il documento usa lo standard HTML5. Nelle versioni precedenti (HTML4, XHTML) la dichiarazione era molto più lunga e complicata. Senza `DOCTYPE` il browser entra in 'quirks mode' e potrebbe renderizzare la pagina in modo imprevedibile."
+    "spiegazione": "`<!DOCTYPE html>` è la dichiarazione obbligatoria che deve apparire come prima riga di ogni pagina HTML5. Dice al browser che il documento usa lo standard HTML5. Nelle versioni precedenti (HTML4, XHTML) la dichiarazione era molto più lunga e complicata. Senza `DOCTYPE` il browser entra in 'quirks mode' e potrebbe renderizzare la pagina in modo imprevedibile.",
+    "tipo": "codice"
   },
   {
     "id": 502,
@@ -23,7 +24,8 @@
       "Nel tag `<html>`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il tag `<head>` contiene tutti i metadati della pagina: charset, titolo scheda (`<title>`), link a CSS, script, e descrizioni per i motori di ricerca. Nulla nel `<head>` viene visualizzato direttamente nella pagina. Il tag `<body>` invece contiene tutto il contenuto visibile. Il tag `<meta>` è un elemento figlio del `<head>`, non il contenitore."
+    "spiegazione": "Il tag `<head>` contiene tutti i metadati della pagina: charset, titolo scheda (`<title>`), link a CSS, script, e descrizioni per i motori di ricerca. Nulla nel `<head>` viene visualizzato direttamente nella pagina. Il tag `<body>` invece contiene tutto il contenuto visibile. Il tag `<meta>` è un elemento figlio del `<head>`, non il contenitore.",
+    "tipo": "codice"
   },
   {
     "id": 503,
@@ -36,7 +38,8 @@
       "Cambia il colore di sfondo predefinito"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "UTF-8 è una codifica dei caratteri che copre praticamente tutte le lingue del mondo. Senza `charset='UTF-8'`, caratteri accentati come à, è, ò potrebbero non visualizzarsi correttamente. Va inserito nel `<head>`: `<meta charset='UTF-8'>`. È una delle prime cose da mettere in ogni pagina HTML per evitare problemi di visualizzazione."
+    "spiegazione": "UTF-8 è una codifica dei caratteri che copre praticamente tutte le lingue del mondo. Senza `charset='UTF-8'`, caratteri accentati come à, è, ò potrebbero non visualizzarsi correttamente. Va inserito nel `<head>`: `<meta charset='UTF-8'>`. È una delle prime cose da mettere in ogni pagina HTML per evitare problemi di visualizzazione.",
+    "tipo": "codice"
   },
   {
     "id": 504,
@@ -49,7 +52,8 @@
       "Nella pratica quotidiana non esiste alcuna differenza concreta tra i due tipi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "I tag di blocco (`div`, `p`, `h1-h6`, `section`, `article`...) occupano l'intera larghezza del contenitore e vanno a capo prima e dopo. I tag inline (`span`, `a`, `strong`, `em`, `img`...) si inseriscono nel flusso del testo senza andare a capo. Questa distinzione influenza il layout: non si dovrebbe mettere un elemento di blocco dentro un elemento inline."
+    "spiegazione": "I tag di blocco (`div`, `p`, `h1-h6`, `section`, `article`...) occupano l'intera larghezza del contenitore e vanno a capo prima e dopo. I tag inline (`span`, `a`, `strong`, `em`, `img`...) si inseriscono nel flusso del testo senza andare a capo. Questa distinzione influenza il layout: non si dovrebbe mettere un elemento di blocco dentro un elemento inline.",
+    "tipo": "teoria"
   },
   {
     "id": 505,
@@ -62,7 +66,8 @@
       "Aggiungendo all'elemento `<a>` l'attributo `open` impostato al valore `true`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "L'attributo `target='_blank'` dice al browser di aprire il link in una nuova scheda o finestra. Per sicurezza, quando si usa `target='_blank'` è buona pratica aggiungere anche `rel='noopener noreferrer'`, che impedisce alla pagina aperta di accedere alla pagina originale tramite `window.opener`, prevenendo possibili attacchi."
+    "spiegazione": "L'attributo `target='_blank'` dice al browser di aprire il link in una nuova scheda o finestra. Per sicurezza, quando si usa `target='_blank'` è buona pratica aggiungere anche `rel='noopener noreferrer'`, che impedisce alla pagina aperta di accedere alla pagina originale tramite `window.opener`, prevenendo possibili attacchi.",
+    "tipo": "codice"
   },
   {
     "id": 506,
@@ -75,7 +80,8 @@
       "`<ul><dt>A</dt><dt>B</dt><dt>C</dt></ul>`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<ul>` (unordered list) crea una lista con punti elenco. I figli devono essere tag `<li>` (list item). `<ol>` (ordered list) crea invece una lista numerata. `<dt>` appartiene alle liste di definizione (`<dl>`). Il tag `<list>` non esiste in HTML. La combinazione corretta è sempre: contenitore `<ul>` o `<ol>` con figli `<li>`."
+    "spiegazione": "`<ul>` (unordered list) crea una lista con punti elenco. I figli devono essere tag `<li>` (list item). `<ol>` (ordered list) crea invece una lista numerata. `<dt>` appartiene alle liste di definizione (`<dl>`). Il tag `<list>` non esiste in HTML. La combinazione corretta è sempre: contenitore `<ul>` o `<ol>` con figli `<li>`.",
+    "tipo": "codice"
   },
   {
     "id": 507,
@@ -88,7 +94,8 @@
       "`<thead>`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`<th>` (table header) è la cella di intestazione: di default è in grassetto e centrata. `<td>` (table data) è la cella normale. `<tr>` (table row) è la riga che contiene le celle. `<thead>` è la sezione di intestazione che raggruppa le righe di intestazione. La struttura corretta è: `<table><thead><tr><th>Nome</th></tr></thead><tbody><tr><td>Mario</td></tr></tbody></table>`."
+    "spiegazione": "`<th>` (table header) è la cella di intestazione: di default è in grassetto e centrata. `<td>` (table data) è la cella normale. `<tr>` (table row) è la riga che contiene le celle. `<thead>` è la sezione di intestazione che raggruppa le righe di intestazione. La struttura corretta è: `<table><thead><tr><th>Nome</th></tr></thead><tbody><tr><td>Mario</td></tr></tbody></table>`.",
+    "tipo": "codice"
   },
   {
     "id": 508,
@@ -101,7 +108,8 @@
       "Collega la cella a un foglio di stile esterno"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`colspan='N'` fa sì che una cella occupi N colonne orizzontali. Analogamente, `rowspan='N'` fa occupare N righe verticali. Esempio: `<td colspan='2'>Titolo</td>` fa sì che quella cella occupi due colonne. È utile per intestazioni che coprono più colonne, come in tabelle complesse. Da non confondere con il CSS `width`: `colspan` agisce sulla struttura HTML, non sullo stile."
+    "spiegazione": "`colspan='N'` fa sì che una cella occupi N colonne orizzontali. Analogamente, `rowspan='N'` fa occupare N righe verticali. Esempio: `<td colspan='2'>Titolo</td>` fa sì che quella cella occupi due colonne. È utile per intestazioni che coprono più colonne, come in tabelle complesse. Da non confondere con il CSS `width`: `colspan` agisce sulla struttura HTML, non sullo stile.",
+    "tipo": "codice"
   },
   {
     "id": 509,
@@ -114,7 +122,8 @@
       "Imposta il testo che appare come predefinito all'interno del campo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "L'attributo `for` della `<label>` deve corrispondere all'`id` dell'input associato. Questo crea un collegamento semantico: cliccando la label, il focus va sull'input. Migliora l'accessibilità per i lettori di schermo e aumenta l'area cliccabile (utile su mobile). Esempio: `<label for='email'>Email</label><input id='email' type='email'>`."
+    "spiegazione": "L'attributo `for` della `<label>` deve corrispondere all'`id` dell'input associato. Questo crea un collegamento semantico: cliccando la label, il focus va sull'input. Migliora l'accessibilità per i lettori di schermo e aumenta l'area cliccabile (utile su mobile). Esempio: `<label for='email'>Email</label><input id='email' type='email'>`.",
+    "tipo": "codice"
   },
   {
     "id": 510,
@@ -127,7 +136,8 @@
       "Imposta un valore predefinito"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "L'attributo `required` abilita la validazione nativa del browser: se l'utente tenta di inviare il form con il campo vuoto, il browser mostra un messaggio di errore e blocca l'invio. Non serve JavaScript per questa validazione di base. Altri attributi di validazione HTML nativi sono: `type='email'`, `type='number'`, `min`, `max`, `maxlength`, `pattern`."
+    "spiegazione": "L'attributo `required` abilita la validazione nativa del browser: se l'utente tenta di inviare il form con il campo vuoto, il browser mostra un messaggio di errore e blocca l'invio. Non serve JavaScript per questa validazione di base. Altri attributi di validazione HTML nativi sono: `type='email'`, `type='number'`, `min`, `max`, `maxlength`, `pattern`.",
+    "tipo": "codice"
   },
   {
     "id": 511,
@@ -140,7 +150,8 @@
       "Il `submit` ricarica la pagina, mentre il `button` apre una nuova scheda"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`type='submit'` è il comportamento predefinito di un `<button>` dentro un form: invia i dati al server (o alla URL indicata in `action`). `type='button'` non ha comportamento predefinito: è utile per bottoni che devono solo eseguire JavaScript senza inviare il form. Se ometti `type`, il default è `submit`, il che può causare invii accidentali del form."
+    "spiegazione": "`type='submit'` è il comportamento predefinito di un `<button>` dentro un form: invia i dati al server (o alla URL indicata in `action`). `type='button'` non ha comportamento predefinito: è utile per bottoni che devono solo eseguire JavaScript senza inviare il form. Se ometti `type`, il default è `submit`, il che può causare invii accidentali del form.",
+    "tipo": "codice"
   },
   {
     "id": 512,
@@ -153,7 +164,8 @@
       "`<aside>`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<nav>` è il tag semantico per la navigazione principale. I lettori di schermo lo riconoscono come zona di navigazione e possono saltarla direttamente. `<div>` funzionerebbe visivamente ma non ha significato semantico. `<header>` contiene l'intestazione della pagina o di una sezione. `<aside>` è per contenuti laterali correlati ma non principali. Usare i tag semantici corretti migliora accessibilità e SEO."
+    "spiegazione": "`<nav>` è il tag semantico per la navigazione principale. I lettori di schermo lo riconoscono come zona di navigazione e possono saltarla direttamente. `<div>` funzionerebbe visivamente ma non ha significato semantico. `<header>` contiene l'intestazione della pagina o di una sezione. `<aside>` è per contenuti laterali correlati ma non principali. Usare i tag semantici corretti migliora accessibilità e SEO.",
+    "tipo": "codice"
   },
   {
     "id": 513,
@@ -166,7 +178,8 @@
       "La `section` serve per il CSS, mentre l'`article` viene usato per JavaScript"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`<article>` rappresenta un contenuto autocontenuto e indipendente (un post del blog, un articolo di giornale, un commento): potrebbe essere estratto e pubblicato altrove mantenendo senso. `<section>` raggruppa contenuti correlati tematicamente ma non necessariamente autonomi. Un `<article>` può contenere più `<section>`; una `<section>` può contenere più `<article>`. Entrambi migliorano la struttura semantica rispetto al solo `<div>`."
+    "spiegazione": "`<article>` rappresenta un contenuto autocontenuto e indipendente (un post del blog, un articolo di giornale, un commento): potrebbe essere estratto e pubblicato altrove mantenendo senso. `<section>` raggruppa contenuti correlati tematicamente ma non necessariamente autonomi. Un `<article>` può contenere più `<section>`; una `<section>` può contenere più `<article>`. Entrambi migliorano la struttura semantica rispetto al solo `<div>`.",
+    "tipo": "teoria"
   },
   {
     "id": 514,
@@ -179,7 +192,8 @@
       "Imposta il titolo che compare al passaggio del mouse"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "L'attributo `alt` svolge due funzioni fondamentali: (1) Accessibilità — i lettori di schermo leggono il testo alt agli utenti non vedenti; (2) SEO — i motori di ricerca usano `alt` per capire il contenuto dell'immagine. Alt vuoto (`alt=''`) va usato per immagini decorative che i lettori di schermo devono ignorare. L'attributo `title` invece mostra un tooltip al passaggio del mouse, ma non sostituisce `alt`."
+    "spiegazione": "L'attributo `alt` svolge due funzioni fondamentali: (1) Accessibilità — i lettori di schermo leggono il testo alt agli utenti non vedenti; (2) SEO — i motori di ricerca usano `alt` per capire il contenuto dell'immagine. Alt vuoto (`alt=''`) va usato per immagini decorative che i lettori di schermo devono ignorare. L'attributo `title` invece mostra un tooltip al passaggio del mouse, ma non sostituisce `alt`.",
+    "tipo": "teoria"
   },
   {
     "id": 515,
@@ -192,7 +206,8 @@
       "`<script type='css' src='style.css'>`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il tag `<link rel='stylesheet' href='style.css'>` va inserito nel `<head>` dell'HTML. `rel='stylesheet'` indica la relazione tra il documento e il file collegato. Separare HTML e CSS in file distinti è una best practice: struttura e presentazione restano indipendenti, il CSS può essere condiviso tra più pagine, e il browser lo mette in cache per le visite successive."
+    "spiegazione": "Il tag `<link rel='stylesheet' href='style.css'>` va inserito nel `<head>` dell'HTML. `rel='stylesheet'` indica la relazione tra il documento e il file collegato. Separare HTML e CSS in file distinti è una best practice: struttura e presentazione restano indipendenti, il CSS può essere condiviso tra più pagine, e il browser lo mette in cache per le visite successive.",
+    "tipo": "codice"
   },
   {
     "id": 516,
@@ -205,7 +220,8 @@
       "Stabilisce l'ordine alfabetico con cui vengono valutati i selettori"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "La specificità determina quale regola CSS vince quando più regole si applicano allo stesso elemento. Ordine di priorità: `!important` > stile inline > ID (`#id`, peso 100) > classe/attributo/pseudo-classe (`.class`, `[attr]`, `:hover`, peso 10) > tag/pseudo-elemento (`p`, `::before`, peso 1). A parità di specificità, vince la regola dichiarata per ultima nel file CSS. Capire la specificità è essenziale per evitare comportamenti inattesi."
+    "spiegazione": "La specificità determina quale regola CSS vince quando più regole si applicano allo stesso elemento. Ordine di priorità: `!important` > stile inline > ID (`#id`, peso 100) > classe/attributo/pseudo-classe (`.class`, `[attr]`, `:hover`, peso 10) > tag/pseudo-elemento (`p`, `::before`, peso 1). A parità di specificità, vince la regola dichiarata per ultima nel file CSS. Capire la specificità è essenziale per evitare comportamenti inattesi.",
+    "tipo": "teoria"
   },
   {
     "id": 517,
@@ -218,7 +234,8 @@
       "`rem` funziona soltanto su Firefox, mentre `em` è supportato da tutti i browser"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`rem` (root em) è sempre relativo al `font-size` dell'elemento `<html>` (di default `16px`): `1rem` = `16px`. È prevedibile perché non si 'accumula'. `em` è relativo al `font-size` del genitore diretto, il che può causare effetti a cascata: se un genitore ha `font-size` `1.5em` e il figlio ha `font-size` `1.5em`, il figlio risulta 2.25x. Per layout e spaziatura `rem` è più gestibile; `em` è utile per componenti scalabili."
+    "spiegazione": "`rem` (root em) è sempre relativo al `font-size` dell'elemento `<html>` (di default `16px`): `1rem` = `16px`. È prevedibile perché non si 'accumula'. `em` è relativo al `font-size` del genitore diretto, il che può causare effetti a cascata: se un genitore ha `font-size` `1.5em` e il figlio ha `font-size` `1.5em`, il figlio risulta 2.25x. Per layout e spaziatura `rem` è più gestibile; `em` è utile per componenti scalabili.",
+    "tipo": "teoria"
   },
   {
     "id": 518,
@@ -231,7 +248,8 @@
       "`content` → `padding` → `border` → `margin`"
     ],
     "rispostaCorretta": 3,
-    "spiegazione": "Il box model CSS è: `content` (il contenuto vero), `padding` (spazio interno tra contenuto e bordo), `border` (il bordo), `margin` (spazio esterno tra il bordo e gli altri elementi). Con `box-sizing: border-box`, `padding` e `border` sono inclusi nella `width` dichiarata — il comportamento più intuitivo. Con `box-sizing: content-box` (default), `width` si riferisce solo al `content` e `padding`+`border` si aggiungono."
+    "spiegazione": "Il box model CSS è: `content` (il contenuto vero), `padding` (spazio interno tra contenuto e bordo), `border` (il bordo), `margin` (spazio esterno tra il bordo e gli altri elementi). Con `box-sizing: border-box`, `padding` e `border` sono inclusi nella `width` dichiarata — il comportamento più intuitivo. Con `box-sizing: content-box` (default), `width` si riferisce solo al `content` e `padding`+`border` si aggiungono.",
+    "tipo": "teoria"
   },
   {
     "id": 519,
@@ -244,7 +262,8 @@
       "Si applica all'elemento la proprietà `position` impostata al valore `center`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`margin: auto` sui lati sinistro e destro centra orizzontalmente un elemento di blocco, ma solo se ha una `width` (o `max-width`) definita. Senza `width`, l'elemento occupa tutta la larghezza disponibile e non c'è spazio da distribuire. `text-align: center` centra il contenuto inline (testo, immagini) all'interno del contenitore, non l'elemento stesso. `margin: 40px auto` è una shorthand: `40px` sopra/sotto, `auto` sinistra/destra."
+    "spiegazione": "`margin: auto` sui lati sinistro e destro centra orizzontalmente un elemento di blocco, ma solo se ha una `width` (o `max-width`) definita. Senza `width`, l'elemento occupa tutta la larghezza disponibile e non c'è spazio da distribuire. `text-align: center` centra il contenuto inline (testo, immagini) all'interno del contenitore, non l'elemento stesso. `margin: 40px auto` è una shorthand: `40px` sopra/sotto, `auto` sinistra/destra.",
+    "tipo": "codice"
   },
   {
     "id": 520,
@@ -257,7 +276,8 @@
       "Rende il bordo invisibile"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con il valore default `content-box`, se dichiari `width: 300px` e aggiungi `padding: 20px`, l'elemento risulta largo `340px`. Con `border-box`, `padding` e `border` sono già compresi nel `300px`: il contenuto si restringe ma l'elemento rimane `300px`. `border-box` è il comportamento più intuitivo ed è spesso applicato globalmente con `* { box-sizing: border-box; }` nei reset CSS moderni."
+    "spiegazione": "Con il valore default `content-box`, se dichiari `width: 300px` e aggiungi `padding: 20px`, l'elemento risulta largo `340px`. Con `border-box`, `padding` e `border` sono già compresi nel `300px`: il contenuto si restringe ma l'elemento rimane `300px`. `border-box` è il comportamento più intuitivo ed è spesso applicato globalmente con `* { box-sizing: border-box; }` nei reset CSS moderni.",
+    "tipo": "codice"
   },
   {
     "id": 521,
@@ -270,7 +290,8 @@
       "`layout: flex`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`display: flex` applicato a un elemento lo rende un 'flex container' e i suoi figli diretti diventano automaticamente 'flex items'. Non serve nient'altro per attivare Flexbox. Una volta attivato, si possono usare proprietà come `justify-content`, `align-items`, `flex-direction`, `gap` per controllare il layout. `display: inline-flex` crea un flex container che si comporta come elemento inline verso l'esterno."
+    "spiegazione": "`display: flex` applicato a un elemento lo rende un 'flex container' e i suoi figli diretti diventano automaticamente 'flex items'. Non serve nient'altro per attivare Flexbox. Una volta attivato, si possono usare proprietà come `justify-content`, `align-items`, `flex-direction`, `gap` per controllare il layout. `display: inline-flex` crea un flex container che si comporta come elemento inline verso l'esterno.",
+    "tipo": "codice"
   },
   {
     "id": 522,
@@ -283,7 +304,8 @@
       "Allinea gli elementi lungo l'asse verticale del contenitore flex"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`justify-content` gestisce la distribuzione sull'asse principale (orizzontale di default). `space-between`: spazio uguale tra gli elementi, nessun spazio ai bordi. `space-around`: spazio uguale attorno a ogni elemento (i bordi hanno metà spazio). `space-evenly`: spazio identico tra tutti i gap, inclusi i bordi. `center`: elementi raggruppati al centro. `flex-start` (default): elementi all'inizio. `flex-end`: elementi alla fine."
+    "spiegazione": "`justify-content` gestisce la distribuzione sull'asse principale (orizzontale di default). `space-between`: spazio uguale tra gli elementi, nessun spazio ai bordi. `space-around`: spazio uguale attorno a ogni elemento (i bordi hanno metà spazio). `space-evenly`: spazio identico tra tutti i gap, inclusi i bordi. `center`: elementi raggruppati al centro. `flex-start` (default): elementi all'inizio. `flex-end`: elementi alla fine.",
+    "tipo": "codice"
   },
   {
     "id": 523,
@@ -296,7 +318,8 @@
       "Imposta la dimensione minima che ciascun elemento può assumere"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`align-items` controlla come i flex item si allineano sull'asse trasversale (verticale se `flex-direction` è `row`). Valori: `stretch` (default — si estendono per riempire il container), `center` (centrati), `flex-start` (in alto), `flex-end` (in basso), `baseline` (allineati sulla linea di base del testo). Da non confondere con `justify-content` che agisce sull'asse principale (orizzontale)."
+    "spiegazione": "`align-items` controlla come i flex item si allineano sull'asse trasversale (verticale se `flex-direction` è `row`). Valori: `stretch` (default — si estendono per riempire il container), `center` (centrati), `flex-start` (in alto), `flex-end` (in basso), `baseline` (allineati sulla linea di base del testo). Da non confondere con `justify-content` che agisce sull'asse principale (orizzontale).",
+    "tipo": "codice"
   },
   {
     "id": 524,
@@ -309,7 +332,8 @@
       "Crea automaticamente più colonne di testo affiancate come nei giornali cartacei"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con `flex-direction: column` gli elementi si dispongono dall'alto verso il basso invece che da sinistra a destra. Questo inverte anche il ruolo delle proprietà: `justify-content` controlla ora l'asse verticale e `align-items` l'asse orizzontale. `column-reverse` dispone gli elementi dal basso verso l'alto. È utile per layout verticali come sidebar o stack di card."
+    "spiegazione": "Con `flex-direction: column` gli elementi si dispongono dall'alto verso il basso invece che da sinistra a destra. Questo inverte anche il ruolo delle proprietà: `justify-content` controlla ora l'asse verticale e `align-items` l'asse orizzontale. `column-reverse` dispone gli elementi dal basso verso l'alto. È utile per layout verticali come sidebar o stack di card.",
+    "tipo": "codice"
   },
   {
     "id": 525,
@@ -322,7 +346,8 @@
       "`position: sticky`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`position: absolute` rimuove l'elemento dal flusso: gli altri elementi lo ignorano e lo 'scavalcano'. L'elemento si posiziona rispetto al primo antenato con `position` non `static`. `position: relative` mantiene l'elemento nel flusso ma permette di spostarlo rispetto alla sua posizione originale. `position: fixed` è simile ad `absolute` ma rispetto alla viewport. `position: sticky` è un ibrido: segue lo scroll fino a un certo punto."
+    "spiegazione": "`position: absolute` rimuove l'elemento dal flusso: gli altri elementi lo ignorano e lo 'scavalcano'. L'elemento si posiziona rispetto al primo antenato con `position` non `static`. `position: relative` mantiene l'elemento nel flusso ma permette di spostarlo rispetto alla sua posizione originale. `position: fixed` è simile ad `absolute` ma rispetto alla viewport. `position: sticky` è un ibrido: segue lo scroll fino a un certo punto.",
+    "tipo": "codice"
   },
   {
     "id": 526,
@@ -335,7 +360,8 @@
       "Imposta semplicemente delle dimensioni fisse e immutabili all'elemento"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`position: fixed` rimuove l'elemento dal flusso e lo ancora alla viewport (la finestra del browser). L'elemento rimane sempre nella stessa posizione sullo schermo indipendentemente dallo scroll. È usato tipicamente per header fissi, pulsanti 'torna su', chatbot, banner di cookie. Le coordinate `top`, `right`, `bottom`, `left` si riferiscono ai bordi della viewport."
+    "spiegazione": "`position: fixed` rimuove l'elemento dal flusso e lo ancora alla viewport (la finestra del browser). L'elemento rimane sempre nella stessa posizione sullo schermo indipendentemente dallo scroll. È usato tipicamente per header fissi, pulsanti 'torna su', chatbot, banner di cookie. Le coordinate `top`, `right`, `bottom`, `left` si riferiscono ai bordi della viewport.",
+    "tipo": "codice"
   },
   {
     "id": 527,
@@ -348,7 +374,8 @@
       "depth"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "z-index controlla l'ordine di sovrapposizione: valori più alti appaiono sopra quelli più bassi. Funziona solo su elementi con position diversa da static. Se due elementi hanno lo stesso z-index, vince quello dichiarato dopo nel CSS. z-index: -1 mette l'elemento sotto il suo contenitore. I valori possono essere qualsiasi numero intero, positivo o negativo."
+    "spiegazione": "z-index controlla l'ordine di sovrapposizione: valori più alti appaiono sopra quelli più bassi. Funziona solo su elementi con position diversa da static. Se due elementi hanno lo stesso z-index, vince quello dichiarato dopo nel CSS. z-index: -1 mette l'elemento sotto il suo contenitore. I valori possono essere qualsiasi numero intero, positivo o negativo.",
+    "tipo": "codice"
   },
   {
     "id": 528,
@@ -361,7 +388,8 @@
       "Imposta la larghezza massima del `body` a `768px`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`max-width: 768px` significa 'schermo largo al massimo 768px': le regole si attivano su mobile e tablet con schermi stretti. L'approccio Desktop-First usa `max-width`. L'approccio Mobile-First (consigliato) usa invece `min-width`: si scrivono prima gli stili per mobile, poi si aggiungono regole con `min-width` per schermi più grandi. Punti di rottura comuni: `480px` (mobile), `768px` (tablet), `1024px` (desktop piccolo)."
+    "spiegazione": "`max-width: 768px` significa 'schermo largo al massimo 768px': le regole si attivano su mobile e tablet con schermi stretti. L'approccio Desktop-First usa `max-width`. L'approccio Mobile-First (consigliato) usa invece `min-width`: si scrivono prima gli stili per mobile, poi si aggiungono regole con `min-width` per schermi più grandi. Punti di rottura comuni: `480px` (mobile), `768px` (tablet), `1024px` (desktop piccolo).",
+    "tipo": "codice"
   },
   {
     "id": 529,
@@ -374,7 +402,8 @@
       "Con `position: relative` e `left`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La proprietà `order` su un flex item ne controlla l'ordine visuale rispetto agli altri. Il valore default è `0`: valori più bassi appaiono prima, valori più alti dopo. Esempio: se un elemento ha `order: -1` appare prima di tutti gli altri con `order: 0`. Questo non cambia l'ordine nel DOM (e quindi nell'HTML), il che può creare problemi di accessibilità se usato in modo non intuitivo."
+    "spiegazione": "La proprietà `order` su un flex item ne controlla l'ordine visuale rispetto agli altri. Il valore default è `0`: valori più bassi appaiono prima, valori più alti dopo. Esempio: se un elemento ha `order: -1` appare prima di tutti gli altri con `order: 0`. Questo non cambia l'ordine nel DOM (e quindi nell'HTML), il che può creare problemi di accessibilità se usato in modo non intuitivo.",
+    "tipo": "codice"
   },
   {
     "id": 530,
@@ -387,7 +416,8 @@
       "Sono identici: la distinzione è solo stilistica"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`let` dichiara una variabile che può essere riassegnata: `let x = 5; x = 10` è valido. `const` dichiara un riferimento costante: `const x = 5; x = 10` lancia un `TypeError`. Attenzione: `const` su un oggetto o array non rende immutabile il contenuto — si possono aggiungere/modificare proprietà. Solo il riferimento è costante. Usa `const` di default; usa `let` solo quando sai che devi riassegnare."
+    "spiegazione": "`let` dichiara una variabile che può essere riassegnata: `let x = 5; x = 10` è valido. `const` dichiara un riferimento costante: `const x = 5; x = 10` lancia un `TypeError`. Attenzione: `const` su un oggetto o array non rende immutabile il contenuto — si possono aggiungere/modificare proprietà. Solo il riferimento è costante. Usa `const` di default; usa `let` solo quando sai che devi riassegnare.",
+    "tipo": "codice"
   },
   {
     "id": 531,
@@ -400,7 +430,8 @@
       "`true`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`typeof` restituisce sempre una stringa con il nome del tipo. `typeof 42` → `'number'`. `typeof 'ciao'` → `'string'`. `typeof true` → `'boolean'`. `typeof undefined` → `'undefined'`. `typeof null` → `'object'` (bug storico di JS!). `typeof []` → `'object'`. `typeof function(){}` → `'function'`. Per distinguere array da oggetti usa `Array.isArray(valore)`."
+    "spiegazione": "`typeof` restituisce sempre una stringa con il nome del tipo. `typeof 42` → `'number'`. `typeof 'ciao'` → `'string'`. `typeof true` → `'boolean'`. `typeof undefined` → `'undefined'`. `typeof null` → `'object'` (bug storico di JS!). `typeof []` → `'object'`. `typeof function(){}` → `'function'`. Per distinguere array da oggetti usa `Array.isArray(valore)`.",
+    "tipo": "codice"
   },
   {
     "id": 532,
@@ -413,7 +444,8 @@
       "Calcola la potenza di un numero"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "% è l'operatore modulo: restituisce il resto della divisione intera. 17 % 5 = 2 (perché 17 = 5*3 + 2). È utilissimo per: verificare se un numero è pari (n % 2 === 0), ciclare su un indice (i % array.length), suddividere in gruppi. L'operatore di potenza in JS è ** (introdotto in ES2016): 2 ** 10 = 1024. La divisione normale è / e restituisce numeri decimali."
+    "spiegazione": "% è l'operatore modulo: restituisce il resto della divisione intera. 17 % 5 = 2 (perché 17 = 5*3 + 2). È utilissimo per: verificare se un numero è pari (n % 2 === 0), ciclare su un indice (i % array.length), suddividere in gruppi. L'operatore di potenza in JS è ** (introdotto in ES2016): 2 ** 10 = 1024. La divisione normale è / e restituisce numeri decimali.",
+    "tipo": "codice"
   },
   {
     "id": 533,
@@ -426,7 +458,8 @@
       "`==` confronta sia il valore sia il tipo; `===` confronta solo il valore"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Con `==`: `5 == '5'` → `true` (JS converte `'5'` in `5`). Con `===`: `5 === '5'` → `false` (tipi diversi). Le conversioni implicite di `==` causano risultati inattesi: `'' == false` → `true`, `null == undefined` → `true`. Per questo si raccomanda di usare sempre `===`, che non effettua conversioni. Stessa logica per `!=` vs `!==`."
+    "spiegazione": "Con `==`: `5 == '5'` → `true` (JS converte `'5'` in `5`). Con `===`: `5 === '5'` → `false` (tipi diversi). Le conversioni implicite di `==` causano risultati inattesi: `'' == false` → `true`, `null == undefined` → `true`. Per questo si raccomanda di usare sempre `===`, che non effettua conversioni. Stessa logica per `!=` vs `!==`.",
+    "tipo": "codice"
   },
   {
     "id": 534,
@@ -439,7 +472,8 @@
       "Sono dei commenti speciali che servono a documentare il codice sorgente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "I template literals (backtick) permettono: (1) interpolazione con `${espressione}` — es. `Ciao, ${nome}!`; (2) stringhe su più righe senza `\\n`; (3) espressioni arbitrarie dentro `${}`: `Il doppio è ${x * 2}`. Prima dei template literals si usava la concatenazione con `+`: `'Ciao, ' + nome + '!'` — meno leggibile. I backtick non vanno confusi con gli apici singoli o doppi."
+    "spiegazione": "I template literals (backtick) permettono: (1) interpolazione con `${espressione}` — es. `Ciao, ${nome}!`; (2) stringhe su più righe senza `\\n`; (3) espressioni arbitrarie dentro `${}`: `Il doppio è ${x * 2}`. Prima dei template literals si usava la concatenazione con `+`: `'Ciao, ' + nome + '!'` — meno leggibile. I backtick non vanno confusi con gli apici singoli o doppi.",
+    "tipo": "codice"
   },
   {
     "id": 535,
@@ -452,7 +486,8 @@
       "Lo `switch` si interrompe automaticamente"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Senza `break`, dopo l'esecuzione del blocco del `case` corrispondente, JavaScript continua ed esegue anche il blocco del `case` successivo, e poi quello dopo ancora, fino a trovare un `break` o alla fine dello `switch`. Questo comportamento si chiama 'fall-through'. Può essere intenzionale (per raggruppare case con la stessa azione) ma è spesso un bug. Usa sempre `break` dopo ogni `case`, a meno che il fall-through sia deliberato e commentato."
+    "spiegazione": "Senza `break`, dopo l'esecuzione del blocco del `case` corrispondente, JavaScript continua ed esegue anche il blocco del `case` successivo, e poi quello dopo ancora, fino a trovare un `break` o alla fine dello `switch`. Questo comportamento si chiama 'fall-through'. Può essere intenzionale (per raggruppare case con la stessa azione) ma è spesso un bug. Usa sempre `break` dopo ogni `case`, a meno che il fall-through sia deliberato e commentato.",
+    "tipo": "codice"
   },
   {
     "id": 536,
@@ -465,7 +500,8 @@
       "Tutti i valori negativi e le stringhe vuote"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "I valori falsy (trattati come `false` in un `if`) sono esattamente: `false`, `0`, `-0`, `0n` (BigInt zero), `''` (stringa vuota), `null`, `undefined`, `NaN`. Tutto il resto è truthy — inclusi `'0'` (stringa con zero), `[]` (array vuoto), `{}` (oggetto vuoto), `'false'` (stringa 'false'). Sapere i falsy è essenziale: `if (myArray.length)` è un pattern comune per verificare se un array non è vuoto."
+    "spiegazione": "I valori falsy (trattati come `false` in un `if`) sono esattamente: `false`, `0`, `-0`, `0n` (BigInt zero), `''` (stringa vuota), `null`, `undefined`, `NaN`. Tutto il resto è truthy — inclusi `'0'` (stringa con zero), `[]` (array vuoto), `{}` (oggetto vuoto), `'false'` (stringa 'false'). Sapere i falsy è essenziale: `if (myArray.length)` è un pattern comune per verificare se un array non è vuoto.",
+    "tipo": "codice"
   },
   {
     "id": 537,
@@ -478,7 +514,8 @@
       "`array.insert(elemento)`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`push()` aggiunge uno o più elementi alla fine dell'array e restituisce la nuova lunghezza. `pop()` rimuove e restituisce l'ultimo elemento. `unshift()` aggiunge in testa, `shift()` rimuove dalla testa. Questi quattro metodi modificano l'array originale. Esempi: `[1,2].push(3)` → `[1,2,3]`. `[1,2,3].pop()` → restituisce `3`, array diventa `[1,2]`. Ricorda la mnemonica: `push`/`pop` lavorano in fondo, `shift`/`unshift` in testa."
+    "spiegazione": "`push()` aggiunge uno o più elementi alla fine dell'array e restituisce la nuova lunghezza. `pop()` rimuove e restituisce l'ultimo elemento. `unshift()` aggiunge in testa, `shift()` rimuove dalla testa. Questi quattro metodi modificano l'array originale. Esempi: `[1,2].push(3)` → `[1,2,3]`. `[1,2,3].pop()` → restituisce `3`, array diventa `[1,2]`. Ricorda la mnemonica: `push`/`pop` lavorano in fondo, `shift`/`unshift` in testa.",
+    "tipo": "codice"
   },
   {
     "id": 538,
@@ -491,7 +528,8 @@
       "Sono due metodi del tutto identici tra loro, solo con nomi diversi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`forEach` esegue una callback per ogni elemento ma restituisce `undefined`: si usa per effetti collaterali (log, DOM updates). `map` esegue una callback per ogni elemento e raccoglie i risultati in un NUOVO array: si usa per trasformare dati. Esempio: `[1,2,3].map(x => x*2)` → `[2,4,6]`. `[1,2,3].forEach(x => console.log(x))` → stampa 1,2,3 ma restituisce `undefined`. Né `forEach` né `map` modificano l'array originale."
+    "spiegazione": "`forEach` esegue una callback per ogni elemento ma restituisce `undefined`: si usa per effetti collaterali (log, DOM updates). `map` esegue una callback per ogni elemento e raccoglie i risultati in un NUOVO array: si usa per trasformare dati. Esempio: `[1,2,3].map(x => x*2)` → `[2,4,6]`. `[1,2,3].forEach(x => console.log(x))` → stampa 1,2,3 ma restituisce `undefined`. Né `forEach` né `map` modificano l'array originale.",
+    "tipo": "codice"
   },
   {
     "id": 539,
@@ -504,7 +542,8 @@
       "Restituisce il numero totale di elementi che soddisfano la condizione"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`filter` prende una callback che restituisce `true` o `false` per ogni elemento e crea un NUOVO array con solo gli elementi per cui la callback ha restituito `true`. Esempio: `[1,2,3,4,5].filter(n => n > 3)` → `[4,5]`. L'array originale non viene modificato. `find` invece restituisce solo il PRIMO elemento che soddisfa la condizione (non un array). `findIndex` restituisce l'indice del primo elemento."
+    "spiegazione": "`filter` prende una callback che restituisce `true` o `false` per ogni elemento e crea un NUOVO array con solo gli elementi per cui la callback ha restituito `true`. Esempio: `[1,2,3,4,5].filter(n => n > 3)` → `[4,5]`. L'array originale non viene modificato. `find` invece restituisce solo il PRIMO elemento che soddisfa la condizione (non un array). `findIndex` restituisce l'indice del primo elemento.",
+    "tipo": "codice"
   },
   {
     "id": 540,
@@ -517,7 +556,8 @@
       "Cerca una sottostringa all'interno di ciascuno degli elementi dell'array"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`find` restituisce il PRIMO elemento dell'array per cui la callback restituisce `true`, oppure `undefined` se nessun elemento soddisfa la condizione. `[3,7,1,9].find(n => n > 5)` → `7` (non 9, che è maggiore di 5 ma non è il PRIMO). `findIndex` è simile ma restituisce l'indice invece del valore. `find` non modifica l'array originale. Da non confondere con `filter` che restituisce tutti gli elementi corrispondenti in un array."
+    "spiegazione": "`find` restituisce il PRIMO elemento dell'array per cui la callback restituisce `true`, oppure `undefined` se nessun elemento soddisfa la condizione. `[3,7,1,9].find(n => n > 5)` → `7` (non 9, che è maggiore di 5 ma non è il PRIMO). `findIndex` è simile ma restituisce l'indice invece del valore. `find` non modifica l'array originale. Da non confondere con `filter` che restituisce tutti gli elementi corrispondenti in un array.",
+    "tipo": "codice"
   },
   {
     "id": 541,
@@ -530,7 +570,8 @@
       "La velocità di esecuzione di una funzione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Scope è la zona del codice in cui una variabile è accessibile. `let` e `const` hanno scope di blocco `{}`: esistono solo dentro le `{}` in cui sono dichiarate. Le variabili globali (dichiarate fuori da qualsiasi funzione o blocco) sono accessibili ovunque. Le variabili locali di una funzione non sono accessibili dall'esterno. Capire lo scope evita bug come accedere a variabili `undefined` o sovrascrivere accidentalmente variabili globali."
+    "spiegazione": "Scope è la zona del codice in cui una variabile è accessibile. `let` e `const` hanno scope di blocco `{}`: esistono solo dentro le `{}` in cui sono dichiarate. Le variabili globali (dichiarate fuori da qualsiasi funzione o blocco) sono accessibili ovunque. Le variabili locali di una funzione non sono accessibili dall'esterno. Capire lo scope evita bug come accedere a variabili `undefined` o sovrascrivere accidentalmente variabili globali.",
+    "tipo": "teoria"
   },
   {
     "id": 542,
@@ -543,7 +584,8 @@
       "Dichiara una nuova variabile locale interna alla funzione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`return` fa due cose: interrompe immediatamente l'esecuzione della funzione e restituisce il valore specificato alla chiamante. Una funzione senza `return` (o con `return;` senza valore) restituisce implicitamente `undefined`. La separazione tra calcolo (funzione con `return`) e visualizzazione (chi usa il risultato) è una best practice fondamentale per codice riusabile e testabile."
+    "spiegazione": "`return` fa due cose: interrompe immediatamente l'esecuzione della funzione e restituisce il valore specificato alla chiamante. Una funzione senza `return` (o con `return;` senza valore) restituisce implicitamente `undefined`. La separazione tra calcolo (funzione con `return`) e visualizzazione (chi usa il risultato) è una best practice fondamentale per codice riusabile e testabile.",
+    "tipo": "codice"
   },
   {
     "id": 543,
@@ -556,7 +598,8 @@
       "Una funzione il cui scopo è restituire a sua volta un'altra funzione"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Una callback è una funzione passata come parametro a un'altra funzione, che la chiamerà al momento opportuno. Esempio: `array.forEach(callback)` chiama la callback per ogni elemento. `setTimeout(callback, 1000)` chiama la callback dopo 1 secondo. `btn.addEventListener('click', callback)` chiama la callback al click. Le callback sono il meccanismo base della programmazione asincrona e event-driven in JavaScript."
+    "spiegazione": "Una callback è una funzione passata come parametro a un'altra funzione, che la chiamerà al momento opportuno. Esempio: `array.forEach(callback)` chiama la callback per ogni elemento. `setTimeout(callback, 1000)` chiama la callback dopo 1 secondo. `btn.addEventListener('click', callback)` chiama la callback al click. Le callback sono il meccanismo base della programmazione asincrona e event-driven in JavaScript.",
+    "tipo": "teoria"
   },
   {
     "id": 544,
@@ -569,7 +612,8 @@
       "`arrow(n) { n * 2 }`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Le arrow function hanno la sintassi `(parametri) => espressione`. Con un solo parametro le parentesi sono opzionali. Con una sola espressione il `return` è implicito. `n => n * 2` è equivalente a `function(n) { return n * 2; }`. Con più parametri: `(a, b) => a + b`. Con più istruzioni servono le `{}` e il `return` esplicito: `(n) => { const doppio = n * 2; return doppio; }`."
+    "spiegazione": "Le arrow function hanno la sintassi `(parametri) => espressione`. Con un solo parametro le parentesi sono opzionali. Con una sola espressione il `return` è implicito. `n => n * 2` è equivalente a `function(n) { return n * 2; }`. Con più parametri: `(a, b) => a + b`. Con più istruzioni servono le `{}` e il `return` esplicito: `(n) => { const doppio = n * 2; return doppio; }`.",
+    "tipo": "codice"
   },
   {
     "id": 545,
@@ -582,7 +626,8 @@
       "Un errore che si verifica quando una funzione non ha `return`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Una closure si crea quando una funzione interna 'ricorda' le variabili della funzione esterna che la contiene. Esempio: `function crea() { let count = 0; return () => count++; }` La funzione restituita ha ancora accesso a `count` anche dopo che `crea()` ha terminato. Questo permette di creare variabili private (non accessibili dall'esterno). Ogni chiamata a `crea()` crea una closure indipendente con la propria copia di `count`."
+    "spiegazione": "Una closure si crea quando una funzione interna 'ricorda' le variabili della funzione esterna che la contiene. Esempio: `function crea() { let count = 0; return () => count++; }` La funzione restituita ha ancora accesso a `count` anche dopo che `crea()` ha terminato. Questo permette di creare variabili private (non accessibili dall'esterno). Ogni chiamata a `crea()` crea una closure indipendente con la propria copia di `count`.",
+    "tipo": "teoria"
   },
   {
     "id": 546,
@@ -595,7 +640,8 @@
       "La parola chiave `this` non è valida dentro gli oggetti letterali"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Dentro un metodo di un oggetto letterale, `this` si riferisce all'oggetto proprietario del metodo. Esempio: `const studente = { nome: 'Mario', saluta() { return 'Ciao, sono ' + this.nome; } }`. `studente.saluta()` → `'Ciao, sono Mario'`. Attenzione: nelle arrow function `this` non è legato dinamicamente — mantiene il `this` del contesto circostante. Per i metodi degli oggetti, usa `function() {}` o la shorthand `metodo() {}`."
+    "spiegazione": "Dentro un metodo di un oggetto letterale, `this` si riferisce all'oggetto proprietario del metodo. Esempio: `const studente = { nome: 'Mario', saluta() { return 'Ciao, sono ' + this.nome; } }`. `studente.saluta()` → `'Ciao, sono Mario'`. Attenzione: nelle arrow function `this` non è legato dinamicamente — mantiene il `this` del contesto circostante. Per i metodi degli oggetti, usa `function() {}` o la shorthand `metodo() {}`.",
+    "tipo": "codice"
   },
   {
     "id": 547,
@@ -608,7 +654,8 @@
       "Dichiara il costruttore come privato e non accessibile dall'esterno"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`new` fa tre operazioni automatiche: (1) crea un nuovo oggetto vuoto `{}`; (2) assegna questo oggetto a `this` dentro la funzione costruttore; (3) restituisce implicitamente `this`. Esempio: `function Persona(nome) { this.nome = nome; }` — `let p = new Persona('Mario')` crea un oggetto `{ nome: 'Mario' }`. Senza `new`, `this` in una funzione normale in strict mode è `undefined`; fuori da strict mode punta a `window` (globale)."
+    "spiegazione": "`new` fa tre operazioni automatiche: (1) crea un nuovo oggetto vuoto `{}`; (2) assegna questo oggetto a `this` dentro la funzione costruttore; (3) restituisce implicitamente `this`. Esempio: `function Persona(nome) { this.nome = nome; }` — `let p = new Persona('Mario')` crea un oggetto `{ nome: 'Mario' }`. Senza `new`, `this` in una funzione normale in strict mode è `undefined`; fuori da strict mode punta a `window` (globale).",
+    "tipo": "codice"
   },
   {
     "id": 548,
@@ -621,7 +668,8 @@
       "Non esiste alcuna differenza pratica tra i due tipi di metodo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Un metodo normale si chiama su un'istanza: `let p = new Prodotto(); p.descrizione()`. Un metodo static si chiama sulla classe: `Prodotto.confronta(p1, p2)`. I metodi static non hanno accesso a `this` dell'istanza (non hanno 'stato di istanza'). Si usano per funzioni di utilità legate alla classe ma non a un'istanza specifica, come factory methods, comparatori o validatori."
+    "spiegazione": "Un metodo normale si chiama su un'istanza: `let p = new Prodotto(); p.descrizione()`. Un metodo static si chiama sulla classe: `Prodotto.confronta(p1, p2)`. I metodi static non hanno accesso a `this` dell'istanza (non hanno 'stato di istanza'). Si usano per funzioni di utilità legate alla classe ma non a un'istanza specifica, come factory methods, comparatori o validatori.",
+    "tipo": "codice"
   },
   {
     "id": 549,
@@ -634,7 +682,8 @@
       "Stampa l'oggetto in console in formato leggibile"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`JSON.stringify(obj)` serializza un oggetto JavaScript in una stringa in formato JSON. Esempio: `JSON.stringify({nome: 'Mario', eta: 30})` → `'{\"nome\":\"Mario\",\"eta\":30}'`. È necessario per salvare oggetti in `localStorage` (che accetta solo stringhe) o inviarli a un server via `fetch`. L'operazione inversa è `JSON.parse(stringa)` che converte una stringa JSON in un oggetto JavaScript."
+    "spiegazione": "`JSON.stringify(obj)` serializza un oggetto JavaScript in una stringa in formato JSON. Esempio: `JSON.stringify({nome: 'Mario', eta: 30})` → `'{\"nome\":\"Mario\",\"eta\":30}'`. È necessario per salvare oggetti in `localStorage` (che accetta solo stringhe) o inviarli a un server via `fetch`. L'operazione inversa è `JSON.parse(stringa)` che converte una stringa JSON in un oggetto JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 550,
@@ -647,7 +696,8 @@
       "`getMonth()` restituisce da 1 a 12, non da 0 a 11"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`getMonth()` restituisce 0 per gennaio, 1 per febbraio, ..., 11 per dicembre. È una scelta di design degli anni '90 ispirata agli array zero-indexed. Per ottenere il numero del mese 'umano' aggiungi sempre +1: `let mese = data.getMonth() + 1`. `getDate()` restituisce il giorno del mese (1-31, qui parte da 1). `getFullYear()` restituisce l'anno a 4 cifre. `getDay()` restituisce il giorno della settimana (0=domenica, 6=sabato)."
+    "spiegazione": "`getMonth()` restituisce 0 per gennaio, 1 per febbraio, ..., 11 per dicembre. È una scelta di design degli anni '90 ispirata agli array zero-indexed. Per ottenere il numero del mese 'umano' aggiungi sempre +1: `let mese = data.getMonth() + 1`. `getDate()` restituisce il giorno del mese (1-31, qui parte da 1). `getFullYear()` restituisce l'anno a 4 cifre. `getDay()` restituisce il giorno della settimana (0=domenica, 6=sabato).",
+    "tipo": "codice"
   },
   {
     "id": 551,
@@ -660,7 +710,8 @@
       "Un array di tutti gli elementi con quell'id"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`getElementById` restituisce un riferimento all'elemento DOM reale — modificarlo in JavaScript modifica immediatamente la pagina. Se non trova nessun elemento con quell'id, restituisce `null`. Gli id devono essere univoci in una pagina: se ce ne sono due uguali, il browser restituisce il primo. Per selezionare tramite classe, attributo o selettore CSS complesso si usa `querySelector` o `querySelectorAll`."
+    "spiegazione": "`getElementById` restituisce un riferimento all'elemento DOM reale — modificarlo in JavaScript modifica immediatamente la pagina. Se non trova nessun elemento con quell'id, restituisce `null`. Gli id devono essere univoci in una pagina: se ce ne sono due uguali, il browser restituisce il primo. Per selezionare tramite classe, attributo o selettore CSS complesso si usa `querySelector` o `querySelectorAll`.",
+    "tipo": "codice"
   },
   {
     "id": 552,
@@ -673,7 +724,8 @@
       "`.innerText`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`.value` legge e scrive il contenuto corrente di elementi di `input`, `textarea` e `select`. Restituisce SEMPRE una stringa, anche per input di tipo `number`. Quindi `Number(input.value)` è necessario prima di operazioni matematiche. `.innerHTML` e `.textContent` sono per elementi non-input (`div`, `p`, `span`) e leggono/scrivono il contenuto HTML o testo dell'elemento. Per pulire un input dopo l'uso: `input.value = ''`."
+    "spiegazione": "`.value` legge e scrive il contenuto corrente di elementi di `input`, `textarea` e `select`. Restituisce SEMPRE una stringa, anche per input di tipo `number`. Quindi `Number(input.value)` è necessario prima di operazioni matematiche. `.innerHTML` e `.textContent` sono per elementi non-input (`div`, `p`, `span`) e leggono/scrivono il contenuto HTML o testo dell'elemento. Per pulire un input dopo l'uso: `input.value = ''`.",
+    "tipo": "codice"
   },
   {
     "id": 553,
@@ -686,7 +738,8 @@
       "Sono del tutto equivalenti dal punto di vista del browser che li renderizza"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`innerHTML` renderizza il markup: `elemento.innerHTML = '<b>Ciao</b>'` mostra testo in grassetto. Pericolo: se il contenuto viene dall'utente, un malintenzionato può iniettare `<script>` o tag con eventi (XSS). `textContent` inserisce tutto come testo puro: `elemento.textContent = '<b>Ciao</b>'` mostra letteralmente `<b>Ciao</b>`. Usa sempre `textContent` per output di dati forniti dall'utente. Usa `innerHTML` solo per markup che controlli tu."
+    "spiegazione": "`innerHTML` renderizza il markup: `elemento.innerHTML = '<b>Ciao</b>'` mostra testo in grassetto. Pericolo: se il contenuto viene dall'utente, un malintenzionato può iniettare `<script>` o tag con eventi (XSS). `textContent` inserisce tutto come testo puro: `elemento.textContent = '<b>Ciao</b>'` mostra letteralmente `<b>Ciao</b>`. Usa sempre `textContent` per output di dati forniti dall'utente. Usa `innerHTML` solo per markup che controlli tu.",
+    "tipo": "codice"
   },
   {
     "id": 554,
@@ -699,7 +752,8 @@
       "Non esiste in realtà alcuna differenza funzionale concreta tra i due"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`element.onclick = fn` sovrascrive qualsiasi handler precedente. `element.addEventListener('click', fn)` aggiunge un nuovo listener senza rimuovere gli altri. Puoi aggiungere più `addEventListener` sullo stesso elemento e sullo stesso evento: si sommano. `addEventListener` supporta anche un terzo parametro per opzioni avanzate (`once`, `capture`, `passive`). La buona pratica moderna è usare sempre `addEventListener`."
+    "spiegazione": "`element.onclick = fn` sovrascrive qualsiasi handler precedente. `element.addEventListener('click', fn)` aggiunge un nuovo listener senza rimuovere gli altri. Puoi aggiungere più `addEventListener` sullo stesso elemento e sullo stesso evento: si sommano. `addEventListener` supporta anche un terzo parametro per opzioni avanzate (`once`, `capture`, `passive`). La buona pratica moderna è usare sempre `addEventListener`.",
+    "tipo": "codice"
   },
   {
     "id": 555,
@@ -712,7 +766,8 @@
       "Verifica se la classe è presente e restituisce `true` o `false`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`classList.toggle('classe')` è un interruttore: se la classe manca la aggiunge, se c'è la rimuove. Perfetto per implementare effetti on/off. Gli altri metodi di `classList`: `add('classe')` — aggiunge sempre; `remove('classe')` — rimuove sempre; `contains('classe')` — restituisce `true`/`false`; `replace('vecchia', 'nuova')` — sostituisce. `classList` opera senza sovrascrivere altre classi dell'elemento, a differenza di `element.className = '...'`."
+    "spiegazione": "`classList.toggle('classe')` è un interruttore: se la classe manca la aggiunge, se c'è la rimuove. Perfetto per implementare effetti on/off. Gli altri metodi di `classList`: `add('classe')` — aggiunge sempre; `remove('classe')` — rimuove sempre; `contains('classe')` — restituisce `true`/`false`; `replace('vecchia', 'nuova')` — sostituisce. `classList` opera senza sovrascrivere altre classi dell'elemento, a differenza di `element.className = '...'`.",
+    "tipo": "codice"
   },
   {
     "id": 556,
@@ -725,7 +780,8 @@
       "`querySelectorAll` seleziona solo le classi, `querySelector` anche gli id"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`querySelector('#id')` restituisce il primo elemento che corrisponde al selettore CSS, o `null` se non trovato. `querySelectorAll('.classe')` restituisce una `NodeList` con tutti gli elementi corrispondenti (vuota se nessuno trovato). La `NodeList` ha `forEach` nativo ma non `map`/`filter` — usa `[...nodeList]` o `Array.from(nodeList)` per convertirla in array completo. Entrambi accettano qualsiasi selettore CSS valido."
+    "spiegazione": "`querySelector('#id')` restituisce il primo elemento che corrisponde al selettore CSS, o `null` se non trovato. `querySelectorAll('.classe')` restituisce una `NodeList` con tutti gli elementi corrispondenti (vuota se nessuno trovato). La `NodeList` ha `forEach` nativo ma non `map`/`filter` — usa `[...nodeList]` o `Array.from(nodeList)` per convertirla in array completo. Entrambi accettano qualsiasi selettore CSS valido.",
+    "tipo": "codice"
   },
   {
     "id": 557,
@@ -738,7 +794,8 @@
       "Si attiva ogni volta che si clicca nella pagina"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`document.addEventListener('DOMContentLoaded', fn)` esegue la funzione quando il DOM è pronto per essere manipolato, senza aspettare immagini o altri file. È diverso dall'evento `load` (`window.addEventListener('load', fn)`) che aspetta tutto. Avvolgere il codice in `DOMContentLoaded` evita errori quando lo script è nel `<head>` e cerca elementi che non esistono ancora. Alternativa moderna: mettere `<script>` prima di `</body>`."
+    "spiegazione": "`document.addEventListener('DOMContentLoaded', fn)` esegue la funzione quando il DOM è pronto per essere manipolato, senza aspettare immagini o altri file. È diverso dall'evento `load` (`window.addEventListener('load', fn)`) che aspetta tutto. Avvolgere il codice in `DOMContentLoaded` evita errori quando lo script è nel `<head>` e cerca elementi che non esistono ancora. Alternativa moderna: mettere `<script>` prima di `</body>`.",
+    "tipo": "codice"
   },
   {
     "id": 558,
@@ -751,7 +808,8 @@
       "Perché è più lento di `textContent`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Ogni `innerHTML +=` legge l'HTML corrente, aggiunge il nuovo pezzo e riscrive tutto il DOM. In un ciclo su 100 elementi questo ricostruisce il DOM 100 volte, distrugge e ricrea tutti i listener esistenti ed è molto lento. La soluzione corretta: accumula tutto in una stringa e assegna una sola volta. Esempio: `let html = ''; arr.forEach(el => html += '<li>' + el + '</li>'); ulElement.innerHTML = html;`"
+    "spiegazione": "Ogni `innerHTML +=` legge l'HTML corrente, aggiunge il nuovo pezzo e riscrive tutto il DOM. In un ciclo su 100 elementi questo ricostruisce il DOM 100 volte, distrugge e ricrea tutti i listener esistenti ed è molto lento. La soluzione corretta: accumula tutto in una stringa e assegna una sola volta. Esempio: `let html = ''; arr.forEach(el => html += '<li>' + el + '</li>'); ulElement.innerHTML = html;`",
+    "tipo": "codice"
   },
   {
     "id": 559,
@@ -764,7 +822,8 @@
       "`.children('first')`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`firstElementChild` restituisce il primo figlio che è un elemento HTML, ignorando i nodi testo (spazi, a capo) e commenti. `firstChild` restituisce il primo figlio di qualsiasi tipo, inclusi i nodi testo — spesso è un nodo testo con solo spazi bianchi, il che causa confusione. `children` restituisce la `HTMLCollection` dei figli elemento. `childNodes` restituisce tutti i nodi figli inclusi i nodi testo."
+    "spiegazione": "`firstElementChild` restituisce il primo figlio che è un elemento HTML, ignorando i nodi testo (spazi, a capo) e commenti. `firstChild` restituisce il primo figlio di qualsiasi tipo, inclusi i nodi testo — spesso è un nodo testo con solo spazi bianchi, il che causa confusione. `children` restituisce la `HTMLCollection` dei figli elemento. `childNodes` restituisce tutti i nodi figli inclusi i nodi testo.",
+    "tipo": "codice"
   },
   {
     "id": 560,
@@ -777,7 +836,8 @@
       "Restituisce `true`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`Number()` converte il suo argomento in numero. `Number('42')` → `42`. `Number('3.14')` → `3.14`. `Number('')` → `0`. `Number('ciao')` → `NaN`. `Number(true)` → `1`. `Number(false)` → `0`. `Number(null)` → `0`. È necessario perché `.value` di un input restituisce sempre una stringa. `parseFloat('3.14px')` → `3.14` (più permissivo: ignora il testo dopo). `parseInt('3.14')` → `3` (tronca i decimali)."
+    "spiegazione": "`Number()` converte il suo argomento in numero. `Number('42')` → `42`. `Number('3.14')` → `3.14`. `Number('')` → `0`. `Number('ciao')` → `NaN`. `Number(true)` → `1`. `Number(false)` → `0`. `Number(null)` → `0`. È necessario perché `.value` di un input restituisce sempre una stringa. `parseFloat('3.14px')` → `3.14` (più permissivo: ignora il testo dopo). `parseInt('3.14')` → `3` (tronca i decimali).",
+    "tipo": "codice"
   },
   {
     "id": 561,
@@ -790,7 +850,8 @@
       "forEach"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "while (condizione) { } continua finché la condizione è vera, senza sapere quante iterazioni serviranno. È ideale per: aspettare input, elaborare dati fino a una condizione, giochi con cicli infiniti. Il for classico è preferito quando si conosce il numero di iterazioni in anticipo. do...while è come while ma esegue il blocco almeno una volta prima di controllare la condizione. Attenzione: un while con condizione sempre vera crea un ciclo infinito."
+    "spiegazione": "while (condizione) { } continua finché la condizione è vera, senza sapere quante iterazioni serviranno. È ideale per: aspettare input, elaborare dati fino a una condizione, giochi con cicli infiniti. Il for classico è preferito quando si conosce il numero di iterazioni in anticipo. do...while è come while ma esegue il blocco almeno una volta prima di controllare la condizione. Attenzione: un while con condizione sempre vera crea un ciclo infinito.",
+    "tipo": "codice"
   },
   {
     "id": 562,
@@ -803,7 +864,8 @@
       "Mette in pausa il ciclo per un intervallo di circa un secondo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`continue` salta il codice rimanente nell'iterazione corrente e passa direttamente alla prossima. Esempio: `for (let i=0; i<5; i++) { if (i===2) continue; console.log(i); }` stampa 0,1,3,4 (salta 2). `break` invece termina completamente il ciclo. `return` dentro un ciclo-funzione esce dalla funzione intera. `continue` è utile per saltare casi speciali senza nidificare il codice in `if...else`."
+    "spiegazione": "`continue` salta il codice rimanente nell'iterazione corrente e passa direttamente alla prossima. Esempio: `for (let i=0; i<5; i++) { if (i===2) continue; console.log(i); }` stampa 0,1,3,4 (salta 2). `break` invece termina completamente il ciclo. `return` dentro un ciclo-funzione esce dalla funzione intera. `continue` è utile per saltare casi speciali senza nidificare il codice in `if...else`.",
+    "tipo": "codice"
   },
   {
     "id": 563,
@@ -816,7 +878,8 @@
       "Sono esattamente la stessa identica cosa, solo con una sintassi diversa"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`for...of` itera sui valori: `for (const val of [1,2,3])` → `val` è 1, poi 2, poi 3. Funziona su qualsiasi iterabile (array, string, `Set`, `Map`, `NodeList`). `for...in` itera sui nomi delle proprietà: `for (const chiave in oggetto)` → `chiave` è il nome della proprietà. Su array è sconsigliato perché itera anche su proprietà ereditate. Usa `for...of` per array e iterabili, `for...in` per le proprietà degli oggetti."
+    "spiegazione": "`for...of` itera sui valori: `for (const val of [1,2,3])` → `val` è 1, poi 2, poi 3. Funziona su qualsiasi iterabile (array, string, `Set`, `Map`, `NodeList`). `for...in` itera sui nomi delle proprietà: `for (const chiave in oggetto)` → `chiave` è il nome della proprietà. Su array è sconsigliato perché itera anche su proprietà ereditate. Usa `for...of` per array e iterabili, `for...in` per le proprietà degli oggetti.",
+    "tipo": "codice"
   },
   {
     "id": 564,
@@ -829,7 +892,8 @@
       "Ordina gli elementi dell'array in ordine crescente di valore"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`reduce(callback, valoreIniziale)` itera sull'array accumulando un risultato. La callback riceve `(accumulatore, elementoCorrente)`. Esempio: `[1,2,3,4].reduce((acc, n) => acc + n, 0)` → `10` (somma). Si può trovare il massimo: `arr.reduce((max, n) => n > max ? n : max)`. È il metodo più potente e flessibile: tutto ciò che si può fare con `filter`/`map` si può fare con `reduce`, ma non viceversa."
+    "spiegazione": "`reduce(callback, valoreIniziale)` itera sull'array accumulando un risultato. La callback riceve `(accumulatore, elementoCorrente)`. Esempio: `[1,2,3,4].reduce((acc, n) => acc + n, 0)` → `10` (somma). Si può trovare il massimo: `arr.reduce((max, n) => n > max ? n : max)`. È il metodo più potente e flessibile: tutto ciò che si può fare con `filter`/`map` si può fare con `reduce`, ma non viceversa.",
+    "tipo": "codice"
   },
   {
     "id": 565,
@@ -842,7 +906,8 @@
       "`let` e `const` sono soggette a hoisting come le funzioni"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il motore JavaScript, prima di eseguire il codice, sposta le dichiarazioni `function` in cima allo scope corrente. Questo significa che puoi chiamare una function declaration prima che appaia nel codice. Esempio: `saluta(); function saluta() { console.log('Ciao'); }` — funziona. Le function expression (`let fn = function(){}`) e le arrow function NON sono soggette a hoisting allo stesso modo: chiamarle prima della dichiarazione dà `ReferenceError`."
+    "spiegazione": "Il motore JavaScript, prima di eseguire il codice, sposta le dichiarazioni `function` in cima allo scope corrente. Questo significa che puoi chiamare una function declaration prima che appaia nel codice. Esempio: `saluta(); function saluta() { console.log('Ciao'); }` — funziona. Le function expression (`let fn = function(){}`) e le arrow function NON sono soggette a hoisting allo stesso modo: chiamarle prima della dichiarazione dà `ReferenceError`.",
+    "tipo": "teoria"
   },
   {
     "id": 566,
@@ -855,7 +920,8 @@
       "8"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "JavaScript ha 7 tipi primitivi: `string`, `number`, `boolean`, `null`, `undefined`, `symbol` (ES6), `bigint` (ES2020). I primitivi sono immutabili e vengono copiati per valore. Tutto il resto è un oggetto (`Object`), inclusi array, funzioni e date. Curiosità: `typeof null` → `'object'` è un bug storico di JS. `typeof function(){}` → `'function'` anche se le funzioni sono tecnicamente oggetti. `BigInt` serve per interi oltre `Number.MAX_SAFE_INTEGER`."
+    "spiegazione": "JavaScript ha 7 tipi primitivi: `string`, `number`, `boolean`, `null`, `undefined`, `symbol` (ES6), `bigint` (ES2020). I primitivi sono immutabili e vengono copiati per valore. Tutto il resto è un oggetto (`Object`), inclusi array, funzioni e date. Curiosità: `typeof null` → `'object'` è un bug storico di JS. `typeof function(){}` → `'function'` anche se le funzioni sono tecnicamente oggetti. `BigInt` serve per interi oltre `Number.MAX_SAFE_INTEGER`.",
+    "tipo": "teoria"
   },
   {
     "id": 567,
@@ -868,7 +934,8 @@
       "Aggiunge dello spazio a sinistra"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "float: left rimuove parzialmente l'elemento dal flusso: si sposta a sinistra e gli elementi successivi (incluso il testo) scorrono attorno al lato destro. Era molto usato per layout multi-colonna prima di Flexbox e Grid. Problema noto: il contenitore del floated element collassa (altezza 0) se non si usa clearfix. Oggi float è usato principalmente per far scorrere testo attorno alle immagini."
+    "spiegazione": "float: left rimuove parzialmente l'elemento dal flusso: si sposta a sinistra e gli elementi successivi (incluso il testo) scorrono attorno al lato destro. Era molto usato per layout multi-colonna prima di Flexbox e Grid. Problema noto: il contenitore del floated element collassa (altezza 0) se non si usa clearfix. Oggi float è usato principalmente per far scorrere testo attorno alle immagini.",
+    "tipo": "codice"
   },
   {
     "id": 568,
@@ -881,7 +948,8 @@
       "Mostra l'elemento esclusivamente ai motori di ricerca, restando invisibile agli utenti"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "display: none nasconde l'elemento e lo rimuove dal flusso: non occupa spazio e gli altri elementi si comportano come se non esistesse. L'elemento rimane nel DOM e può essere ripristinato via JavaScript. Diverso da visibility: hidden che nasconde l'elemento ma mantiene lo spazio occupato. Diverso da opacity: 0 che rende trasparente ma mantiene spazio e interattività. Per animazioni è meglio evitare display: none perché non si può animare."
+    "spiegazione": "display: none nasconde l'elemento e lo rimuove dal flusso: non occupa spazio e gli altri elementi si comportano come se non esistesse. L'elemento rimane nel DOM e può essere ripristinato via JavaScript. Diverso da visibility: hidden che nasconde l'elemento ma mantiene lo spazio occupato. Diverso da opacity: 0 che rende trasparente ma mantiene spazio e interattività. Per animazioni è meglio evitare display: none perché non si può animare.",
+    "tipo": "codice"
   },
   {
     "id": 569,
@@ -894,7 +962,8 @@
       "`type='text'` non può contenere caratteri speciali"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`type='email'` aggiunge due vantaggi: (1) validazione nativa — il browser verifica che il formato contenga `@` e un dominio prima dell'invio del form; (2) su dispositivi mobili mostra una tastiera ottimizzata per email (con il tasto `@`). Non garantisce che l'email esista, solo che il formato sia corretto. Altri `type` utili: `'number'` per numeri, `'tel'` per telefoni (tastiera numerica), `'url'` per URL, `'date'` per date."
+    "spiegazione": "`type='email'` aggiunge due vantaggi: (1) validazione nativa — il browser verifica che il formato contenga `@` e un dominio prima dell'invio del form; (2) su dispositivi mobili mostra una tastiera ottimizzata per email (con il tasto `@`). Non garantisce che l'email esista, solo che il formato sia corretto. Altri `type` utili: `'number'` per numeri, `'tel'` per telefoni (tastiera numerica), `'url'` per URL, `'date'` per date.",
+    "tipo": "codice"
   },
   {
     "id": 570,
@@ -907,7 +976,8 @@
       "I campi privati non esistono in JavaScript"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "I private class fields (ES2022) si dichiarano con `#` davanti al nome: `class Persona { #nome; constructor(n) { this.#nome = n; } }`. Sono realmente privati: accedere a `istanza.#nome` dall'esterno lancia un `SyntaxError`. Prima dei private fields si usava la convenzione `_nome` (con underscore) che però non garantisce vera privatezza — è solo una convenzione tra sviluppatori. Le closure sono un altro modo per ottenere variabili private."
+    "spiegazione": "I private class fields (ES2022) si dichiarano con `#` davanti al nome: `class Persona { #nome; constructor(n) { this.#nome = n; } }`. Sono realmente privati: accedere a `istanza.#nome` dall'esterno lancia un `SyntaxError`. Prima dei private fields si usava la convenzione `_nome` (con underscore) che però non garantisce vera privatezza — è solo una convenzione tra sviluppatori. Le closure sono un altro modo per ottenere variabili private.",
+    "tipo": "codice"
   },
   {
     "id": 571,
@@ -920,7 +990,8 @@
       "`addEventListener` ignora le `()`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`btn.addEventListener('click', saluta())` — le `()` eseguono la funzione immediatamente e passano il suo valore di ritorno (spesso `undefined`) come listener. La funzione NON viene chiamata al click. Corretto: `btn.addEventListener('click', saluta)` — si passa il riferimento alla funzione, non il suo risultato. Se devi passare argomenti: `btn.addEventListener('click', () => saluta('Mario'))` — una arrow function che chiama `saluta` con parametri."
+    "spiegazione": "`btn.addEventListener('click', saluta())` — le `()` eseguono la funzione immediatamente e passano il suo valore di ritorno (spesso `undefined`) come listener. La funzione NON viene chiamata al click. Corretto: `btn.addEventListener('click', saluta)` — si passa il riferimento alla funzione, non il suo risultato. Se devi passare argomenti: `btn.addEventListener('click', () => saluta('Mario'))` — una arrow function che chiama `saluta` con parametri.",
+    "tipo": "codice"
   },
   {
     "id": 572,
@@ -933,7 +1004,8 @@
       "`<strong>` funziona solo in HTML5; `<b>` funziona in tutte le versioni"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<strong>` indica importanza semantica: i lettori di schermo possono enfatizzare la voce leggendo il contenuto. `<b>` applica il grassetto visivo senza aggiungere significato semantico — come un `div` con `font-weight: bold`. Analogia: `<em>` vs `<i>` — `em` ha significato (enfasi), `i` è solo corsivo stilistico. Per accessibilità e SEO, preferisci i tag semantici. Usa `<b>` e `<i>` solo per convenzioni tipografiche senza significato (es. titoli di libri in corsivo)."
+    "spiegazione": "`<strong>` indica importanza semantica: i lettori di schermo possono enfatizzare la voce leggendo il contenuto. `<b>` applica il grassetto visivo senza aggiungere significato semantico — come un `div` con `font-weight: bold`. Analogia: `<em>` vs `<i>` — `em` ha significato (enfasi), `i` è solo corsivo stilistico. Per accessibilità e SEO, preferisci i tag semantici. Usa `<b>` e `<i>` solo per convenzioni tipografiche senza significato (es. titoli di libri in corsivo).",
+    "tipo": "teoria"
   },
   {
     "id": 573,
@@ -946,7 +1018,8 @@
       "Rende l'elemento il primo tra tutti i figli del contenitore flex"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`flex: 1` è shorthand per tre proprietà: `flex-grow: 1` (l'elemento può crescere per riempire spazio), `flex-shrink: 1` (può ridursi se necessario), `flex-basis: 0` (parte da dimensione 0 prima di distribuire lo spazio). Con `flex: 1` su tutti i figli, lo spazio si divide equamente. Con `flex: 2` su uno e `flex: 1` sugli altri, quell'elemento prende il doppio. Equivale a dire 'occupa tutto lo spazio disponibile in proporzione'."
+    "spiegazione": "`flex: 1` è shorthand per tre proprietà: `flex-grow: 1` (l'elemento può crescere per riempire spazio), `flex-shrink: 1` (può ridursi se necessario), `flex-basis: 0` (parte da dimensione 0 prima di distribuire lo spazio). Con `flex: 1` su tutti i figli, lo spazio si divide equamente. Con `flex: 2` su uno e `flex: 1` sugli altri, quell'elemento prende il doppio. Equivale a dire 'occupa tutto lo spazio disponibile in proporzione'.",
+    "tipo": "codice"
   },
   {
     "id": 574,
@@ -959,7 +1032,8 @@
       "`undefined`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Si valuta dall'interno: `typeof 42` → `'number'` (una stringa). Poi `typeof 'number'` → `'string'` (`typeof` su una stringa restituisce `'string'`). Quindi il risultato è `'string'`. Questo illustra due concetti: (1) `typeof` restituisce SEMPRE una stringa; (2) le espressioni vengono valutate dall'interno verso l'esterno. È un tipico esercizio tranello nei quiz JavaScript."
+    "spiegazione": "Si valuta dall'interno: `typeof 42` → `'number'` (una stringa). Poi `typeof 'number'` → `'string'` (`typeof` su una stringa restituisce `'string'`). Quindi il risultato è `'string'`. Questo illustra due concetti: (1) `typeof` restituisce SEMPRE una stringa; (2) le espressioni vengono valutate dall'interno verso l'esterno. È un tipico esercizio tranello nei quiz JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 575,
@@ -972,7 +1046,8 @@
       "4"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`length` restituisce il numero di elementi dell'array (sempre indice massimo + 1). Un array con elementi agli indici 0, 1, 2 ha `length` 3. L'ultimo indice valido è sempre `length - 1`. Attenzione: `length` si può impostare manualmente — ridurlo tronca l'array. Esempio: `let a = [1,2,3]; a.length = 2;` → `a` è ora `[1,2]`. Usare `length` nelle condizioni dei cicli `for` è essenziale: `for (let i=0; i < arr.length; i++)`."
+    "spiegazione": "`length` restituisce il numero di elementi dell'array (sempre indice massimo + 1). Un array con elementi agli indici 0, 1, 2 ha `length` 3. L'ultimo indice valido è sempre `length - 1`. Attenzione: `length` si può impostare manualmente — ridurlo tronca l'array. Esempio: `let a = [1,2,3]; a.length = 2;` → `a` è ora `[1,2]`. Usare `length` nelle condizioni dei cicli `for` è essenziale: `for (let i=0; i < arr.length; i++)`.",
+    "tipo": "codice"
   },
   {
     "id": 576,
@@ -985,7 +1060,8 @@
       "Sono la stessa cosa con nomi diversi"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`margin` è lo spazio fuori dall'elemento (tra il suo bordo e gli altri elementi). `padding` è lo spazio dentro l'elemento (tra il contenuto e il bordo). Il `background-color` riempie il `padding` ma non il `margin`. I margin di elementi adiacenti verticalmente possono 'collassare' (margin collapsing): il margin effettivo è il massimo tra i due, non la somma. I padding non collassano mai."
+    "spiegazione": "`margin` è lo spazio fuori dall'elemento (tra il suo bordo e gli altri elementi). `padding` è lo spazio dentro l'elemento (tra il contenuto e il bordo). Il `background-color` riempie il `padding` ma non il `margin`. I margin di elementi adiacenti verticalmente possono 'collassare' (margin collapsing): il margin effettivo è il massimo tra i due, non la somma. I padding non collassano mai.",
+    "tipo": "teoria"
   },
   {
     "id": 577,
@@ -998,7 +1074,8 @@
       "I parametri default sono obbligatori"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "I parametri default (ES6) si dichiarano con `= valore`: `function saluta(nome = 'Utente') { return 'Ciao ' + nome; }`. `saluta('Mario')` → `'Ciao Mario'`. `saluta()` → `'Ciao Utente'`. Il default si usa solo se l'argomento è `undefined` (non passato o esplicitamente `undefined`). I parametri default devono stare dopo i parametri obbligatori."
+    "spiegazione": "I parametri default (ES6) si dichiarano con `= valore`: `function saluta(nome = 'Utente') { return 'Ciao ' + nome; }`. `saluta('Mario')` → `'Ciao Mario'`. `saluta()` → `'Ciao Utente'`. Il default si usa solo se l'argomento è `undefined` (non passato o esplicitamente `undefined`). I parametri default devono stare dopo i parametri obbligatori.",
+    "tipo": "teoria"
   },
   {
     "id": 578,
@@ -1011,7 +1088,8 @@
       "Sono alias per i parametri default"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "I rest parameters (`...nomeArray`) raccolgono tutti gli argomenti rimanenti in un array. `function somma(...numeri) { return numeri.reduce((a,b) => a+b, 0); }` — `somma(1,2,3,4)` → `10`. Devono essere l'ultimo parametro. Esempio con parametro normale: `function log(prefisso, ...messaggi)` raccoglie tutti i messaggi dopo il prefisso. Da non confondere con lo spread operator (`...`) che fa il contrario: espande un array in argomenti."
+    "spiegazione": "I rest parameters (`...nomeArray`) raccolgono tutti gli argomenti rimanenti in un array. `function somma(...numeri) { return numeri.reduce((a,b) => a+b, 0); }` — `somma(1,2,3,4)` → `10`. Devono essere l'ultimo parametro. Esempio con parametro normale: `function log(prefisso, ...messaggi)` raccoglie tutti i messaggi dopo il prefisso. Da non confondere con lo spread operator (`...`) che fa il contrario: espande un array in argomenti.",
+    "tipo": "codice"
   },
   {
     "id": 579,
@@ -1024,7 +1102,8 @@
       "I setter aumentano automaticamente il valore di una proprietà"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`get` permette di definire una proprietà calcolata: accedendo a `oggetto.proprieta` si esegue una funzione. `set` permette di intercettare l'assegnazione e aggiungere logica (validazione, side effects). Esempio: `set eta(v) { if (v < 0) throw new Error('Età negativa'); this.#eta = v; }`. La chiamata `oggetto.eta = -1` esegue il setter. La sintassi è la stessa delle proprietà normali per chi usa la classe."
+    "spiegazione": "`get` permette di definire una proprietà calcolata: accedendo a `oggetto.proprieta` si esegue una funzione. `set` permette di intercettare l'assegnazione e aggiungere logica (validazione, side effects). Esempio: `set eta(v) { if (v < 0) throw new Error('Età negativa'); this.#eta = v; }`. La chiamata `oggetto.eta = -1` esegue il setter. La sintassi è la stessa delle proprietà normali per chi usa la classe.",
+    "tipo": "teoria"
   },
   {
     "id": 580,
@@ -1037,7 +1116,8 @@
       "L'oggetto `window`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "L'oggetto `event` (spesso chiamato `e` o `evt`) è passato automaticamente alla callback: `btn.addEventListener('click', (e) => { console.log(e.target); })`. Proprietà comuni: `e.target` (elemento che ha generato l'evento), `e.type` (tipo di evento), `e.clientX/clientY` (coordinate mouse), `e.key` (tasto premuto), `e.preventDefault()` (blocca comportamento default come invio form). `e.target` è diverso da `e.currentTarget`: `target` è l'elemento cliccato, `currentTarget` è l'elemento con il listener."
+    "spiegazione": "L'oggetto `event` (spesso chiamato `e` o `evt`) è passato automaticamente alla callback: `btn.addEventListener('click', (e) => { console.log(e.target); })`. Proprietà comuni: `e.target` (elemento che ha generato l'evento), `e.type` (tipo di evento), `e.clientX/clientY` (coordinate mouse), `e.key` (tasto premuto), `e.preventDefault()` (blocca comportamento default come invio form). `e.target` è diverso da `e.currentTarget`: `target` è l'elemento cliccato, `currentTarget` è l'elemento con il listener.",
+    "tipo": "codice"
   },
   {
     "id": 581,
@@ -1050,7 +1130,8 @@
       "Imposta il raggio del cerchio di testo attorno all'elemento"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "border-radius arrotonda gli angoli di un elemento. border-radius: 8px arrotonda tutti e 4 gli angoli di 8px. border-radius: 50% su un elemento quadrato crea un cerchio perfetto. Si può controllare ogni angolo separatamente: border-top-left-radius, ecc. o con la shorthand a 4 valori. Non serve che il bordo sia visibile: border-radius arrotonda anche il background dell'elemento."
+    "spiegazione": "border-radius arrotonda gli angoli di un elemento. border-radius: 8px arrotonda tutti e 4 gli angoli di 8px. border-radius: 50% su un elemento quadrato crea un cerchio perfetto. Si può controllare ogni angolo separatamente: border-top-left-radius, ecc. o con la shorthand a 4 valori. Non serve che il bordo sia visibile: border-radius arrotonda anche il background dell'elemento.",
+    "tipo": "codice"
   },
   {
     "id": 582,
@@ -1063,7 +1144,8 @@
       "Non c'è differenza pratica"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "GET: i dati del form vengono aggiunti all'URL come query string (?nome=Mario&eta=25). Visibili nell'URL, in cache, bookmarkabili. Usato per ricerche e filtri. POST: i dati viaggiano nel corpo della richiesta HTTP, non nell'URL. Non visibili nella barra degli indirizzi, non in cache. Usato per login, invio dati sensibili, caricamento file. I form per dati sensibili devono sempre usare POST (e HTTPS)."
+    "spiegazione": "GET: i dati del form vengono aggiunti all'URL come query string (?nome=Mario&eta=25). Visibili nell'URL, in cache, bookmarkabili. Usato per ricerche e filtri. POST: i dati viaggiano nel corpo della richiesta HTTP, non nell'URL. Non visibili nella barra degli indirizzi, non in cache. Usato per login, invio dati sensibili, caricamento file. I form per dati sensibili devono sempre usare POST (e HTTPS).",
+    "tipo": "teoria"
   },
   {
     "id": 583,
@@ -1076,7 +1158,8 @@
       "Restituisce `NaN`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`isNaN(valore)` restituisce `true` se il valore è `NaN` o non può essere convertito in numero. `isNaN('ciao')` → `true`. `isNaN(42)` → `false`. `isNaN('42')` → `false` (perché `'42'` si converte in `42`). `NaN` (Not a Number) è il risultato di operazioni matematiche non valide come `parseInt('ciao')` o `0/0`. `NaN === NaN` è `false` (unico valore non uguale a se stesso) — usa `isNaN()` per controllarlo."
+    "spiegazione": "`isNaN(valore)` restituisce `true` se il valore è `NaN` o non può essere convertito in numero. `isNaN('ciao')` → `true`. `isNaN(42)` → `false`. `isNaN('42')` → `false` (perché `'42'` si converte in `42`). `NaN` (Not a Number) è il risultato di operazioni matematiche non valide come `parseInt('ciao')` o `0/0`. `NaN === NaN` è `false` (unico valore non uguale a se stesso) — usa `isNaN()` per controllarlo.",
+    "tipo": "codice"
   },
   {
     "id": 584,
@@ -1089,7 +1172,8 @@
       "Il piè di pagina della sezione corrente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<aside>` rappresenta contenuto tangenzialmente correlato al contenuto principale: sidebar, box di approfondimento, biografie dell'autore, link correlati, pubblicità. Va posizionato vicino al contenuto a cui è correlato. I lettori di schermo possono identificarlo e permettere agli utenti di saltarlo. Da non confondere con `<footer>` (piè di pagina) o `<section>` (sezione tematica)."
+    "spiegazione": "`<aside>` rappresenta contenuto tangenzialmente correlato al contenuto principale: sidebar, box di approfondimento, biografie dell'autore, link correlati, pubblicità. Va posizionato vicino al contenuto a cui è correlato. I lettori di schermo possono identificarlo e permettere agli utenti di saltarlo. Da non confondere con `<footer>` (piè di pagina) o `<section>` (sezione tematica).",
+    "tipo": "teoria"
   },
   {
     "id": 585,
@@ -1102,7 +1186,8 @@
       "Ordina l'array in ordine crescente"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Lo spread operator (`...`) espande un iterabile. Copia di array: `[...arr1]` crea una copia superficiale. Unione: `[...arr1, ...arr2]`. Passaggio come argomenti: `Math.max(...numeri)`. Copia con aggiunta: `[...arr, nuovoElemento]`. Da non confondere con il rest parameter che fa il contrario (raccoglie argomenti in un array). Funziona anche con oggetti (ES2018): `{...obj1, ...obj2}` unisce le proprietà."
+    "spiegazione": "Lo spread operator (`...`) espande un iterabile. Copia di array: `[...arr1]` crea una copia superficiale. Unione: `[...arr1, ...arr2]`. Passaggio come argomenti: `Math.max(...numeri)`. Copia con aggiunta: `[...arr, nuovoElemento]`. Da non confondere con il rest parameter che fa il contrario (raccoglie argomenti in un array). Funziona anche con oggetti (ES2018): `{...obj1, ...obj2}` unisce le proprietà.",
+    "tipo": "codice"
   },
   {
     "id": 586,
@@ -1115,7 +1200,8 @@
       "block è obsoleto: usa sempre inline-block"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "block: occupa tutta la larghezza disponibile, va a capo prima e dopo, accetta width/height/margin/padding. inline: si inserisce nel flusso del testo, non accetta width e height, i margin verticali non funzionano. inline-block: si comporta come inline rispetto agli elementi vicini (non va a capo) ma accetta width/height come un blocco. Utile per bottoni, badge, elementi in riga con dimensioni controllate."
+    "spiegazione": "block: occupa tutta la larghezza disponibile, va a capo prima e dopo, accetta width/height/margin/padding. inline: si inserisce nel flusso del testo, non accetta width e height, i margin verticali non funzionano. inline-block: si comporta come inline rispetto agli elementi vicini (non va a capo) ma accetta width/height come un blocco. Utile per bottoni, badge, elementi in riga con dimensioni controllate.",
+    "tipo": "teoria"
   },
   {
     "id": 587,
@@ -1128,7 +1214,8 @@
       "Gli oggetti letterali non supportano in alcun modo la definizione di metodi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Un oggetto letterale `{}` crea un singolo oggetto specifico. Un costruttore o una classe permettono di creare molte istanze con la stessa struttura ma valori diversi: `let p1 = new Persona('Mario'); let p2 = new Persona('Luigi')`. Quando serve solo un oggetto usa il letterale; quando ne servono molti della stessa forma usa classi o costruttori. I metodi nelle classi sono sul prototipo (non duplicati per ogni istanza)."
+    "spiegazione": "Un oggetto letterale `{}` crea un singolo oggetto specifico. Un costruttore o una classe permettono di creare molte istanze con la stessa struttura ma valori diversi: `let p1 = new Persona('Mario'); let p2 = new Persona('Luigi')`. Quando serve solo un oggetto usa il letterale; quando ne servono molti della stessa forma usa classi o costruttori. I metodi nelle classi sono sul prototipo (non duplicati per ogni istanza).",
+    "tipo": "teoria"
   },
   {
     "id": 588,
@@ -1141,7 +1228,8 @@
       "`gap` non esiste in CSS: si usa `margin`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`gap` (shorthand di `row-gap` e `column-gap`) imposta lo spazio tra i flex item o grid item senza aggiungere spazio ai bordi del container. Prima di `gap`, si usava `margin` sui singoli elementi con hack per rimuovere il margine sul primo o ultimo. `gap: 24px` imposta `24px` tra tutti gli elementi. `gap: 16px 24px` imposta `16px` tra le righe e `24px` tra le colonne. Molto più pulito e intuitivo di `margin`."
+    "spiegazione": "`gap` (shorthand di `row-gap` e `column-gap`) imposta lo spazio tra i flex item o grid item senza aggiungere spazio ai bordi del container. Prima di `gap`, si usava `margin` sui singoli elementi con hack per rimuovere il margine sul primo o ultimo. `gap: 24px` imposta `24px` tra tutti gli elementi. `gap: 16px 24px` imposta `16px` tra le righe e `24px` tra le colonne. Molto più pulito e intuitivo di `margin`.",
+    "tipo": "codice"
   },
   {
     "id": 589,
@@ -1154,7 +1242,8 @@
       "Sostituisce tutte le classi dell'elemento con `miaClasse`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`classList.contains('classe')` restituisce `true` o `false` e permette controlli condizionali. Esempio: `if (elemento.classList.contains('attivo')) { /* fai qualcosa */ }`. È essenziale quando si vuole eseguire logica diversa in base allo stato corrente dell'elemento. Gli altri metodi: `add` aggiunge, `remove` rimuove, `toggle` alterna, `replace(vecchia, nuova)` sostituisce."
+    "spiegazione": "`classList.contains('classe')` restituisce `true` o `false` e permette controlli condizionali. Esempio: `if (elemento.classList.contains('attivo')) { /* fai qualcosa */ }`. È essenziale quando si vuole eseguire logica diversa in base allo stato corrente dell'elemento. Gli altri metodi: `add` aggiunge, `remove` rimuove, `toggle` alterna, `replace(vecchia, nuova)` sostituisce.",
+    "tipo": "codice"
   },
   {
     "id": 590,
@@ -1167,7 +1256,8 @@
       "Contiene solo il logo e la navigazione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il tag `<head>` contiene informazioni sulla pagina che il browser usa ma non mostra direttamente: `<title>` (titolo della scheda), `<meta charset>` (codifica), `<link>` (CSS esterni), `<script>` (JavaScript), `<meta name='description'>` (SEO), `<meta name='viewport'>` (responsive). Tutto ciò che vuoi mostrare all'utente va nel `<body>`. Un `<head>` ben strutturato migliora SEO, performance e accessibilità."
+    "spiegazione": "Il tag `<head>` contiene informazioni sulla pagina che il browser usa ma non mostra direttamente: `<title>` (titolo della scheda), `<meta charset>` (codifica), `<link>` (CSS esterni), `<script>` (JavaScript), `<meta name='description'>` (SEO), `<meta name='viewport'>` (responsive). Tutto ciò che vuoi mostrare all'utente va nel `<body>`. Un `<head>` ben strutturato migliora SEO, performance e accessibilità.",
+    "tipo": "teoria"
   },
   {
     "id": 591,
@@ -1180,7 +1270,8 @@
       "`NaN`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`0.1 + 0.2` in JavaScript non è esattamente `0.3` ma `0.30000000000000004`, a causa del modo in cui i numeri in virgola mobile IEEE 754 sono rappresentati in binario. Quindi `0.1 + 0.2 === 0.3` → `false`. Soluzione: arrotonda prima del confronto, es. `Math.round((0.1 + 0.2) * 10) / 10 === 0.3`, oppure confronta la differenza: `Math.abs(a - b) < 0.0001`. Questo vale in quasi tutti i linguaggi, non solo JavaScript."
+    "spiegazione": "`0.1 + 0.2` in JavaScript non è esattamente `0.3` ma `0.30000000000000004`, a causa del modo in cui i numeri in virgola mobile IEEE 754 sono rappresentati in binario. Quindi `0.1 + 0.2 === 0.3` → `false`. Soluzione: arrotonda prima del confronto, es. `Math.round((0.1 + 0.2) * 10) / 10 === 0.3`, oppure confronta la differenza: `Math.abs(a - b) < 0.0001`. Questo vale in quasi tutti i linguaggi, non solo JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 592,
@@ -1193,7 +1284,8 @@
       "Posiziona l'elemento rispetto al genitore"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "position: sticky è un ibrido: l'elemento segue il normale flusso del documento finché non raggiunge la posizione specificata (es. top: 0), poi si comporta come fixed e rimane lì durante lo scroll — finché il suo contenitore è visibile. Usato per header di tabelle, barre di navigazione, sidebar. Richiede che almeno uno tra top, bottom, left, right sia specificato. Il genitore non deve avere overflow: hidden."
+    "spiegazione": "position: sticky è un ibrido: l'elemento segue il normale flusso del documento finché non raggiunge la posizione specificata (es. top: 0), poi si comporta come fixed e rimane lì durante lo scroll — finché il suo contenitore è visibile. Usato per header di tabelle, barre di navigazione, sidebar. Richiede che almeno uno tra top, bottom, left, right sia specificato. Il genitore non deve avere overflow: hidden.",
+    "tipo": "codice"
   },
   {
     "id": 593,
@@ -1206,7 +1298,8 @@
       "`while` può essere infinito; `do...while` no"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`while` controlla la condizione prima di eseguire il blocco: se la condizione è falsa dall'inizio, il blocco non viene mai eseguito. `do...while` esegue il blocco almeno una volta, poi controlla la condizione. È utile per menu interattivi, validazione di input (chiedi finché non ottieni un valore valido). Esempio: `do { input = chiedi(); } while (!valido(input))`. Entrambi possono diventare infiniti se la condizione non cambia mai."
+    "spiegazione": "`while` controlla la condizione prima di eseguire il blocco: se la condizione è falsa dall'inizio, il blocco non viene mai eseguito. `do...while` esegue il blocco almeno una volta, poi controlla la condizione. È utile per menu interattivi, validazione di input (chiedi finché non ottieni un valore valido). Esempio: `do { input = chiedi(); } while (!valido(input))`. Entrambi possono diventare infiniti se la condizione non cambia mai.",
+    "tipo": "codice"
   },
   {
     "id": 594,
@@ -1219,7 +1312,8 @@
       "Imposta la lunghezza massima del testo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`placeholder` mostra un testo grigio di suggerimento nel campo vuoto, che scompare non appena l'utente inizia a digitare. Non è il valore del campo: se il form viene inviato con il campo vuoto, non viene inviato il `placeholder`. Non sostituisce la `<label>`: il `placeholder` scompare durante la digitazione e può causare problemi di accessibilità se usato come unica istruzione. Usa sempre `label` + `placeholder` insieme."
+    "spiegazione": "`placeholder` mostra un testo grigio di suggerimento nel campo vuoto, che scompare non appena l'utente inizia a digitare. Non è il valore del campo: se il form viene inviato con il campo vuoto, non viene inviato il `placeholder`. Non sostituisce la `<label>`: il `placeholder` scompare durante la digitazione e può causare problemi di accessibilità se usato come unica istruzione. Usa sempre `label` + `placeholder` insieme.",
+    "tipo": "codice"
   },
   {
     "id": 595,
@@ -1232,7 +1326,8 @@
       "Elimina le proprietà dell'oggetto una per una"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`for (const chiave in oggetto)` itera sui nomi delle proprietà enumerabili. Per ottenere il valore usa `oggetto[chiave]`. Esempio: `for (const k in studente) { console.log(k + ': ' + studente[k]); }`. Attenzione: itera anche sulle proprietà ereditate dal prototipo — usa `hasOwnProperty()` per filtrare solo le proprietà proprie. Su array è sconsigliato perché itera anche indici numerici come stringhe."
+    "spiegazione": "`for (const chiave in oggetto)` itera sui nomi delle proprietà enumerabili. Per ottenere il valore usa `oggetto[chiave]`. Esempio: `for (const k in studente) { console.log(k + ': ' + studente[k]); }`. Attenzione: itera anche sulle proprietà ereditate dal prototipo — usa `hasOwnProperty()` per filtrare solo le proprietà proprie. Su array è sconsigliato perché itera anche indici numerici come stringhe.",
+    "tipo": "codice"
   },
   {
     "id": 596,
@@ -1245,7 +1340,8 @@
       "Applica lo stile al primo elemento della lista"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": ":hover si attiva quando il cursore del mouse è sopra l'elemento. Usato per feedback visivo: cambiare colore, aggiungere ombra, mostrare sottomenu. Non funziona sui touch screen (no mouse). Pseudo-classi simili: :focus (elemento focalizzato da tastiera o click), :active (durante il click), :visited (link visitato), :first-child, :last-child, :nth-child(n). Le pseudo-classi non aggiungono specificità extra rispetto alle classi normali."
+    "spiegazione": ":hover si attiva quando il cursore del mouse è sopra l'elemento. Usato per feedback visivo: cambiare colore, aggiungere ombra, mostrare sottomenu. Non funziona sui touch screen (no mouse). Pseudo-classi simili: :focus (elemento focalizzato da tastiera o click), :active (durante il click), :visited (link visitato), :first-child, :last-child, :nth-child(n). Le pseudo-classi non aggiungono specificità extra rispetto alle classi normali.",
+    "tipo": "codice"
   },
   {
     "id": 597,
@@ -1258,7 +1354,8 @@
       "Genera un errore: `querySelector` non supporta selettori combinati"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`querySelector` accetta qualsiasi selettore CSS valido, inclusi combinatori e pseudo-classi. `ul li:first-child` seleziona il primo `<li>` figlio di un `<ul>`. Il punto chiave: `querySelector` restituisce SOLO il primo elemento corrispondente trovato nell'intero documento. Per tutti gli elementi corrispondenti usa `querySelectorAll`. La potenza di `querySelector` sta nel riusare la conoscenza dei selettori CSS già acquisita."
+    "spiegazione": "`querySelector` accetta qualsiasi selettore CSS valido, inclusi combinatori e pseudo-classi. `ul li:first-child` seleziona il primo `<li>` figlio di un `<ul>`. Il punto chiave: `querySelector` restituisce SOLO il primo elemento corrispondente trovato nell'intero documento. Per tutti gli elementi corrispondenti usa `querySelectorAll`. La potenza di `querySelector` sta nel riusare la conoscenza dei selettori CSS già acquisita.",
+    "tipo": "codice"
   },
   {
     "id": 598,
@@ -1271,7 +1368,8 @@
       "Genera un errore"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Gli array (e tutti gli oggetti) in JavaScript sono assegnati per riferimento: `let b = a` non crea una copia — sia `a` che `b` puntano allo stesso array in memoria. Modificare `b` modifica anche `a`. Output: `[1,2,3,4]`. Per creare una copia indipendente usa lo spread: `let b = [...a]`. Questa è una distinzione fondamentale: i primitivi (`number`, `string`, `boolean`) sono copiati per valore; gli oggetti e array sono copiati per riferimento."
+    "spiegazione": "Gli array (e tutti gli oggetti) in JavaScript sono assegnati per riferimento: `let b = a` non crea una copia — sia `a` che `b` puntano allo stesso array in memoria. Modificare `b` modifica anche `a`. Output: `[1,2,3,4]`. Per creare una copia indipendente usa lo spread: `let b = [...a]`. Questa è una distinzione fondamentale: i primitivi (`number`, `string`, `boolean`) sono copiati per valore; gli oggetti e array sono copiati per riferimento.",
+    "tipo": "codice"
   },
   {
     "id": 599,
@@ -1284,7 +1382,8 @@
       "`reduce`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Una `NodeList` (restituita da `querySelectorAll`) ha `forEach` nativo. Non ha `map`, `filter`, `reduce` o altri metodi degli array. Per usare tutti i metodi array, converti la `NodeList`: `[...nodeList]` con spread operator oppure `Array.from(nodeList)`. Una `HTMLCollection` (restituita da `getElementsByClassName` o `getElementsByTagName`) non ha neanche `forEach`: devi usare `[...HTMLCollection].forEach()`. Usa `querySelectorAll` per avere `forEach` direttamente."
+    "spiegazione": "Una `NodeList` (restituita da `querySelectorAll`) ha `forEach` nativo. Non ha `map`, `filter`, `reduce` o altri metodi degli array. Per usare tutti i metodi array, converti la `NodeList`: `[...nodeList]` con spread operator oppure `Array.from(nodeList)`. Una `HTMLCollection` (restituita da `getElementsByClassName` o `getElementsByTagName`) non ha neanche `forEach`: devi usare `[...HTMLCollection].forEach()`. Usa `querySelectorAll` per avere `forEach` direttamente.",
+    "tipo": "codice"
   },
   {
     "id": 600,
@@ -1297,7 +1396,8 @@
       "`empty`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`typeof null` restituisce `object` — questo è un famoso bug di JavaScript presente fin dalla prima versione (1995) e mai corretto per compatibilità con il codice esistente. `null` rappresenta l'assenza intenzionale di un valore e non è un oggetto. Per verificare se un valore è `null`, usa il confronto `=== null` (non `typeof`). `null === null` → `true`. `null == undefined` → `true` (con doppio uguale). `null === undefined` → `false` (con triplo uguale)."
+    "spiegazione": "`typeof null` restituisce `object` — questo è un famoso bug di JavaScript presente fin dalla prima versione (1995) e mai corretto per compatibilità con il codice esistente. `null` rappresenta l'assenza intenzionale di un valore e non è un oggetto. Per verificare se un valore è `null`, usa il confronto `=== null` (non `typeof`). `null === null` → `true`. `null == undefined` → `true` (con doppio uguale). `null === undefined` → `false` (con triplo uguale).",
+    "tipo": "codice"
   },
   {
     "id": 601,
@@ -1310,7 +1410,8 @@
       "Un foglio di stile evoluto che sostituisce completamente CSS e SCSS"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "React è una libreria JavaScript (sviluppata da Meta/Facebook) per costruire interfacce utente componendo 'componenti' riutilizzabili. Non è un linguaggio né un framework backend: si occupa solo del livello di presentazione lato client."
+    "spiegazione": "React è una libreria JavaScript (sviluppata da Meta/Facebook) per costruire interfacce utente componendo 'componenti' riutilizzabili. Non è un linguaggio né un framework backend: si occupa solo del livello di presentazione lato client.",
+    "tipo": "teoria"
   },
   {
     "id": 602,
@@ -1323,7 +1424,8 @@
       "Una libreria specializzata nella creazione di animazioni complesse e transizioni per le interfacce React"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "JSX è un'estensione della sintassi di JavaScript che consente di scrivere markup simile all'HTML dentro i componenti. Viene poi trasformato (da Vite/Babel) in normali chiamate JavaScript. Richiede un solo elemento radice e usa `className` al posto di `class`."
+    "spiegazione": "JSX è un'estensione della sintassi di JavaScript che consente di scrivere markup simile all'HTML dentro i componenti. Viene poi trasformato (da Vite/Babel) in normali chiamate JavaScript. Richiede un solo elemento radice e usa `className` al posto di `class`.",
+    "tipo": "teoria"
   },
   {
     "id": 603,
@@ -1336,7 +1438,8 @@
       "Una variabile globale dell'app"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Un componente è una funzione JavaScript che restituisce JSX. È il mattoncino riutilizzabile con cui si costruisce l'interfaccia; si nomina con l'iniziale maiuscola e può ricevere dati tramite le props."
+    "spiegazione": "Un componente è una funzione JavaScript che restituisce JSX. È il mattoncino riutilizzabile con cui si costruisce l'interfaccia; si nomina con l'iniziale maiuscola e può ricevere dati tramite le props.",
+    "tipo": "teoria"
   },
   {
     "id": 604,
@@ -1349,7 +1452,8 @@
       "Salvandoli nel `localStorage` e poi rileggendoli dentro il figlio"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "I dati si passano dal genitore al figlio tramite le props, come attributi: `<Card nome='Mario' />`. Nel figlio si leggono dai parametri (spesso destrutturati). Il flusso è unidirezionale, dall'alto verso il basso."
+    "spiegazione": "I dati si passano dal genitore al figlio tramite le props, come attributi: `<Card nome='Mario' />`. Nel figlio si leggono dai parametri (spesso destrutturati). Il flusso è unidirezionale, dall'alto verso il basso.",
+    "tipo": "teoria"
   },
   {
     "id": 605,
@@ -1362,7 +1466,8 @@
       "Sono esattamente la stessa identica cosa dello stato interno (state)"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Le props ('properties') sono dati che un componente riceve dal genitore. Sono di sola lettura: il figlio non può modificarle. Servono a rendere i componenti dinamici e riutilizzabili."
+    "spiegazione": "Le props ('properties') sono dati che un componente riceve dal genitore. Sono di sola lettura: il figlio non può modificarle. Servono a rendere i componenti dinamici e riutilizzabili.",
+    "tipo": "teoria"
   },
   {
     "id": 606,
@@ -1375,7 +1480,8 @@
       "Un hook per lo stato"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`children` è la prop che contiene il contenuto inserito tra i tag di un componente: `<Card>questo testo</Card>`. Il componente la usa con `{children}` per mostrare quel contenuto al suo interno."
+    "spiegazione": "`children` è la prop che contiene il contenuto inserito tra i tag di un componente: `<Card>questo testo</Card>`. Il componente la usa con `{children}` per mostrare quel contenuto al suo interno.",
+    "tipo": "teoria"
   },
   {
     "id": 607,
@@ -1388,7 +1494,8 @@
       "A collegare ogni elemento a una chiave del `localStorage`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`key` è un identificatore univoco e stabile che React usa per riconoscere ogni elemento di una lista tra un render e l'altro. Va usato l'id del dato, non l'indice se la lista può cambiare. È obbligatoria negli elementi generati con `map`."
+    "spiegazione": "`key` è un identificatore univoco e stabile che React usa per riconoscere ogni elemento di una lista tra un render e l'altro. Va usato l'id del dato, non l'indice se la lista può cambiare. È obbligatoria negli elementi generati con `map`.",
+    "tipo": "teoria"
   },
   {
     "id": 608,
@@ -1401,7 +1508,8 @@
       "Con un'apposita funzione `renderList()` che React mette a disposizione per disegnare gli elenchi"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Si usa `map` sull'array: produce un nuovo array di elementi JSX, uno per voce. `forEach` non va bene perché non restituisce nulla. Ogni elemento generato deve avere una `key` univoca."
+    "spiegazione": "Si usa `map` sull'array: produce un nuovo array di elementi JSX, uno per voce. `forEach` non va bene perché non restituisce nulla. Ogni elemento generato deve avere una `key` univoca.",
+    "tipo": "codice"
   },
   {
     "id": 609,
@@ -1414,7 +1522,8 @@
       "A definire le props"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`useState` crea una variabile di stato: `const [valore, setValore] = useState(iniziale)`. A differenza di una variabile normale, quando lo stato cambia (tramite il setter) React ri-renderizza il componente aggiornando l'interfaccia."
+    "spiegazione": "`useState` crea una variabile di stato: `const [valore, setValore] = useState(iniziale)`. A differenza di una variabile normale, quando lo stato cambia (tramite il setter) React ri-renderizza il componente aggiornando l'interfaccia.",
+    "tipo": "teoria"
   },
   {
     "id": 610,
@@ -1427,7 +1536,8 @@
       "Ricaricando l'intera pagina con `location.reload()`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Lo stato si aggiorna solo chiamando il setter restituito da `useState` (es. `setConosciuto(true)`). Riassegnare la variabile a mano non funziona: React non se ne accorge e non aggiorna l'interfaccia."
+    "spiegazione": "Lo stato si aggiorna solo chiamando il setter restituito da `useState` (es. `setConosciuto(true)`). Riassegnare la variabile a mano non funziona: React non se ne accorge e non aggiorna l'interfaccia.",
+    "tipo": "codice"
   },
   {
     "id": 611,
@@ -1440,7 +1550,8 @@
       "Perché modificare la variabile a mano rallenta sensibilmente l'esecuzione dell'intero browser"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "React decide quando ri-renderizzare in base alle chiamate al setter. Modificando la variabile di stato a mano, React non se ne accorge e la UI resta vecchia. Per questo si usa sempre il setter di `useState`."
+    "spiegazione": "React decide quando ri-renderizzare in base alle chiamate al setter. Modificando la variabile di stato a mano, React non se ne accorge e la UI resta vecchia. Per questo si usa sempre il setter di `useState`.",
+    "tipo": "codice"
   },
   {
     "id": 612,
@@ -1453,7 +1564,8 @@
       "Con la prop `handleClick`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In React gli eventi si scrivono in camelCase (`onClick`, `onChange`, `onSubmit`) e si passa il riferimento alla funzione senza parentesi: `onClick={miaFunzione}`. Mettere le parentesi la eseguirebbe subito al render."
+    "spiegazione": "In React gli eventi si scrivono in camelCase (`onClick`, `onChange`, `onSubmit`) e si passa il riferimento alla funzione senza parentesi: `onClick={miaFunzione}`. Mettere le parentesi la eseguirebbe subito al render.",
+    "tipo": "codice"
   },
   {
     "id": 613,
@@ -1466,7 +1578,8 @@
       "Si imposta la proprietà `visible` dell'elemento JSX a `true` oppure a `false`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con `{condizione && elemento}`, se la condizione è vera viene renderizzato l'elemento, altrimenti niente. È il modo più usato per mostrare qualcosa solo a certe condizioni; in alternativa si usa il ternario."
+    "spiegazione": "Con `{condizione && elemento}`, se la condizione è vera viene renderizzato l'elemento, altrimenti niente. È il modo più usato per mostrare qualcosa solo a certe condizioni; in alternativa si usa il ternario.",
+    "tipo": "codice"
   },
   {
     "id": 614,
@@ -1479,7 +1592,8 @@
       "Non è possibile restituire alcun elemento dal componente"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il `return` deve avere un solo elemento radice. Per restituire più elementi affiancati si usa un frammento `<>...</>`, che li raggruppa senza aggiungere un `div` inutile al DOM."
+    "spiegazione": "Il `return` deve avere un solo elemento radice. Per restituire più elementi affiancati si usa un frammento `<>...</>`, che li raggruppa senza aggiungere un `div` inutile al DOM.",
+    "tipo": "codice"
   },
   {
     "id": 615,
@@ -1492,12 +1606,13 @@
       "Sono perfettamente equivalenti, è solo questione di gusto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In JSX si scrive il codice in JavaScript, dove `class` è una parola riservata (per le classi ES6). Per assegnare una classe CSS si usa quindi `className`."
+    "spiegazione": "In JSX si scrive il codice in JavaScript, dove `class` è una parola riservata (per le classi ES6). Per assegnare una classe CSS si usa quindi `className`.",
+    "tipo": "codice"
   },
   {
     "id": 616,
     "categoria": "React",
-    "domanda": "Cos'è Vite nel contesto dei progetti React del corso?",
+    "domanda": "Cos'è Vite nel contesto dei progetti React?",
     "risposte": [
       "Una libreria per gestire lo stato globale dell'applicazione React",
       "Uno strumento di scaffolding e dev server",
@@ -1505,7 +1620,8 @@
       "Un linguaggio di template alternativo al JSX"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Vite è lo strumento usato per creare il progetto (scaffolding con npm create vite@latest) e avviare il dev server locale (npm run dev). È anche ciò che fa funzionare il JSX."
+    "spiegazione": "Vite è lo strumento usato per creare il progetto (scaffolding con npm create vite@latest) e avviare il dev server locale (npm run dev). È anche ciò che fa funzionare il JSX.",
+    "tipo": "teoria"
   },
   {
     "id": 617,
@@ -1518,7 +1634,8 @@
       "Una struttura che esegue automaticamente più operazioni di rete in parallelo sincronizzandone i risultati"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Una Promise rappresenta un valore che sarà disponibile in futuro (es. la risposta di una richiesta di rete). Si consuma con then/catch oppure con async/await. Parte in stato pending e diventa fulfilled o rejected."
+    "spiegazione": "Una Promise rappresenta un valore che sarà disponibile in futuro (es. la risposta di una richiesta di rete). Si consuma con then/catch oppure con async/await. Parte in stato pending e diventa fulfilled o rejected.",
+    "tipo": "teoria"
   },
   {
     "id": 618,
@@ -1531,7 +1648,8 @@
       "Aperto e chiuso"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Una Promise è pending finché l'operazione è in corso, poi diventa fulfilled (con un valore) se riesce o rejected (con un errore) se fallisce. Una volta risolta o rifiutata non cambia più stato."
+    "spiegazione": "Una Promise è pending finché l'operazione è in corso, poi diventa fulfilled (con un valore) se riesce o rejected (con un errore) se fallisce. Una volta risolta o rifiutata non cambia più stato.",
+    "tipo": "teoria"
   },
   {
     "id": 619,
@@ -1544,7 +1662,8 @@
       "Il codice di stato HTTP della risposta come numero intero"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`fetch()` restituisce una `Promise` che si risolve in un oggetto `Response`. Per ottenere i dati si attende prima la risposta, poi si chiama `response.json()` (anch'esso una `Promise`) per leggerne il corpo."
+    "spiegazione": "`fetch()` restituisce una `Promise` che si risolve in un oggetto `Response`. Per ottenere i dati si attende prima la risposta, poi si chiama `response.json()` (anch'esso una `Promise`) per leggerne il corpo.",
+    "tipo": "codice"
   },
   {
     "id": 620,
@@ -1557,7 +1676,8 @@
       "Si converte sempre con il metodo `response.text()` della risposta"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Si chiama `response.json()`: restituisce una `Promise` che si risolve nell'oggetto JavaScript corrispondente. Tipicamente: `const res = await fetch(url); const dati = await res.json();`"
+    "spiegazione": "Si chiama `response.json()`: restituisce una `Promise` che si risolve nell'oggetto JavaScript corrispondente. Tipicamente: `const res = await fetch(url); const dati = await res.json();`",
+    "tipo": "codice"
   },
   {
     "id": 621,
@@ -1570,7 +1690,8 @@
       "A creare una nuova Promise"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "await sospende l'esecuzione della funzione async finché la Promise non si risolve, restituendone il valore. Rende il codice asincrono leggibile come se fosse sincrono. Si può usare solo dentro funzioni async."
+    "spiegazione": "await sospende l'esecuzione della funzione async finché la Promise non si risolve, restituendone il valore. Rende il codice asincrono leggibile come se fosse sincrono. Si può usare solo dentro funzioni async.",
+    "tipo": "codice"
   },
   {
     "id": 622,
@@ -1583,7 +1704,8 @@
       "Che la funzione viene eseguita in un thread separato dal browser"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "async trasforma una funzione in modo che restituisca sempre una Promise e permette di usare await al suo interno. È il presupposto per scrivere codice asincrono in stile sincrono."
+    "spiegazione": "async trasforma una funzione in modo che restituisca sempre una Promise e permette di usare await al suo interno. È il presupposto per scrivere codice asincrono in stile sincrono.",
+    "tipo": "codice"
   },
   {
     "id": 623,
@@ -1596,7 +1718,8 @@
       "Registrando un gestore globale che intercetta in automatico ogni eccezione lanciata nell'applicazione"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Con `async/await` gli errori (Promise rejected o eccezioni) si gestiscono con `try/catch`: il codice 'a rischio' va nel `try`, la gestione dell'errore nel `catch`. Con `then()` invece si usa `.catch()`."
+    "spiegazione": "Con `async/await` gli errori (Promise rejected o eccezioni) si gestiscono con `try/catch`: il codice 'a rischio' va nel `try`, la gestione dell'errore nel `catch`. Con `then()` invece si usa `.catch()`.",
+    "tipo": "codice"
   },
   {
     "id": 624,
@@ -1609,7 +1732,8 @@
       "Un metodo degli array"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "AJAX (Asynchronous JavaScript And XML) è la tecnica che permette di richiedere dati al server in background, senza ricaricare la pagina. Oggi si realizza con fetch e dati in formato JSON (non più XML)."
+    "spiegazione": "AJAX (Asynchronous JavaScript And XML) è la tecnica che permette di richiedere dati al server in background, senza ricaricare la pagina. Oggi si realizza con fetch e dati in formato JSON (non più XML).",
+    "tipo": "teoria"
   },
   {
     "id": 625,
@@ -1622,7 +1746,8 @@
       "L'indirizzo URL completo verso cui è stata inviata la richiesta"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`response.ok` è `true` se il codice di stato HTTP è nell'intervallo di successo 200–299. Va controllato perché `fetch` NON rifiuta la `Promise` sugli errori HTTP come `404` o `500`: bisogna verificarlo a mano."
+    "spiegazione": "`response.ok` è `true` se il codice di stato HTTP è nell'intervallo di successo 200–299. Va controllato perché `fetch` NON rifiuta la `Promise` sugli errori HTTP come `404` o `500`: bisogna verificarlo a mano.",
+    "tipo": "codice"
   },
   {
     "id": 626,
@@ -1635,7 +1760,8 @@
       "Perché viene eseguito dal CSS"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Una richiesta di rete può richiedere tempo. Se fosse bloccante, l'intera pagina si freezerebbe. Per questo fetch è asincrono: restituisce subito una Promise e l'esecuzione continua; il risultato viene gestito quando arriva."
+    "spiegazione": "Una richiesta di rete può richiedere tempo. Se fosse bloccante, l'intera pagina si freezerebbe. Per questo fetch è asincrono: restituisce subito una Promise e l'esecuzione continua; il risultato viene gestito quando arriva.",
+    "tipo": "teoria"
   },
   {
     "id": 627,
@@ -1648,7 +1774,8 @@
       "Un browser ottimizzato per i siti responsive"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Bootstrap è un framework CSS (con anche una parte JavaScript) che offre una griglia responsive, componenti pronti (navbar, card, modali) e classi di utilità, per costruire interfacce senza scrivere tutto il CSS da zero."
+    "spiegazione": "Bootstrap è un framework CSS (con anche una parte JavaScript) che offre una griglia responsive, componenti pronti (navbar, card, modali) e classi di utilità, per costruire interfacce senza scrivere tutto il CSS da zero.",
+    "tipo": "teoria"
   },
   {
     "id": 628,
@@ -1661,7 +1788,8 @@
       "Si aggiunge l'attributo `bootstrap='true'` direttamente al tag `<html>`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Via CDN si collega il CSS di Bootstrap con un `<link>` nel `<head>` e, se servono i componenti interattivi, il bundle JavaScript con uno `<script>` in fondo al `body`. Non richiede installazione."
+    "spiegazione": "Via CDN si collega il CSS di Bootstrap con un `<link>` nel `<head>` e, se servono i componenti interattivi, il bundle JavaScript con uno `<script>` in fondo al `body`. Non richiede installazione.",
+    "tipo": "codice"
   },
   {
     "id": 629,
@@ -1674,7 +1802,8 @@
       "In 10 colonne ridimensionabili manualmente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La griglia di Bootstrap divide ogni riga in 12 colonne. Sommando le colonne assegnate (es. col-6 + col-6) si arriva a 12; se si supera 12, gli elementi vanno a capo."
+    "spiegazione": "La griglia di Bootstrap divide ogni riga in 12 colonne. Sommando le colonne assegnate (es. col-6 + col-6) si arriva a 12; se si supera 12, gli elementi vanno a capo.",
+    "tipo": "teoria"
   },
   {
     "id": 630,
@@ -1687,7 +1816,8 @@
       "A colorare lo sfondo della sezione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "container dà al contenuto una larghezza massima (che cambia per breakpoint) e lo centra orizzontalmente. container-fluid invece occupa sempre il 100% della larghezza. È il primo livello della griglia (container > row > col)."
+    "spiegazione": "container dà al contenuto una larghezza massima (che cambia per breakpoint) e lo centra orizzontalmente. container-fluid invece occupa sempre il 100% della larghezza. È il primo livello della griglia (container > row > col).",
+    "tipo": "codice"
   },
   {
     "id": 631,
@@ -1700,7 +1830,8 @@
       "È una colonna che resta visibile soltanto sugli schermi di dimensione media"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "col-md-6 significa: da md (>=768px) in su l'elemento occupa 6/12 colonne (metà riga); sotto quel breakpoint si comporta come col-12, cioè a piena larghezza impilata. È ciò che rende il layout mobile-friendly."
+    "spiegazione": "col-md-6 significa: da md (>=768px) in su l'elemento occupa 6/12 colonne (metà riga); sotto quel breakpoint si comporta come col-12, cioè a piena larghezza impilata. È ciò che rende il layout mobile-friendly.",
+    "tipo": "codice"
   },
   {
     "id": 632,
@@ -1713,7 +1844,8 @@
       "A partire da 576 pixel, come il breakpoint piccolo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In Bootstrap 5 i breakpoint sono: sm >=576px, md >=768px, lg >=992px, xl >=1200px, xxl >=1400px. md (medium) parte quindi da 768px, tipicamente i tablet."
+    "spiegazione": "In Bootstrap 5 i breakpoint sono: sm >=576px, md >=768px, lg >=992px, xl >=1200px, xxl >=1400px. md (medium) parte quindi da 768px, tipicamente i tablet.",
+    "tipo": "teoria"
   },
   {
     "id": 633,
@@ -1726,7 +1858,8 @@
       "Trasforma la riga in un menu di navigazione orizzontale completo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "row è il contenitore delle colonne (col): si mette dentro un container e raggruppa le colonne di una stessa riga, gestendone i gutter (spazi tra colonne) con classi come g-*, gx-*, gy-*."
+    "spiegazione": "row è il contenitore delle colonne (col): si mette dentro un container e raggruppa le colonne di una stessa riga, gestendone i gutter (spazi tra colonne) con classi come g-*, gx-*, gy-*.",
+    "tipo": "codice"
   },
   {
     "id": 634,
@@ -1739,7 +1872,8 @@
       "Blocca completamente lo scorrimento dell'intera pagina ogni volta che il menu viene aperto dall'utente"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Con navbar-expand-* il menu è esteso sopra il breakpoint indicato e diventa un'icona hamburger (navbar-toggler) sotto. Gli attributi data-bs-toggle e data-bs-target collegano il pulsante alla sezione da aprire/chiudere, gestita dal JS di Bootstrap."
+    "spiegazione": "Con navbar-expand-* il menu è esteso sopra il breakpoint indicato e diventa un'icona hamburger (navbar-toggler) sotto. Gli attributi data-bs-toggle e data-bs-target collegano il pulsante alla sezione da aprire/chiudere, gestita dal JS di Bootstrap.",
+    "tipo": "codice"
   },
   {
     "id": 635,
@@ -1752,7 +1886,8 @@
       "Applica all'elemento il terzo tema di colore tra quelli predefiniti"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`m-3` imposta il margine su tutti i lati al livello 3 della scala di spaziatura (0–5) di Bootstrap. Esistono varianti per lato e asse: `mt-`, `mb-`, `ms-`, `me-`, `mx-`, `my-`; e l'analogo `p-` per il padding."
+    "spiegazione": "`m-3` imposta il margine su tutti i lati al livello 3 della scala di spaziatura (0–5) di Bootstrap. Esistono varianti per lato e asse: `mt-`, `mb-`, `ms-`, `me-`, `mx-`, `my-`; e l'analogo `p-` per il padding.",
+    "tipo": "codice"
   },
   {
     "id": 636,
@@ -1765,7 +1900,8 @@
       "Rende il testo dell'elemento in grassetto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`d-flex` applica `display: flex`, trasformando l'elemento in un flex container. Si combina con altre utility come `justify-content-center`, `align-items-center`, `flex-column` per gestire il layout senza scrivere CSS."
+    "spiegazione": "`d-flex` applica `display: flex`, trasformando l'elemento in un flex container. Si combina con altre utility come `justify-content-center`, `align-items-center`, `flex-column` per gestire il layout senza scrivere CSS.",
+    "tipo": "codice"
   },
   {
     "id": 637,
@@ -1778,7 +1914,8 @@
       "Dentro un tag `<style>` obbligatoriamente nel `body`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il proprio CSS va collegato dopo Bootstrap: a parità di specificità vince l'ultima regola caricata, quindi le personalizzazioni sovrascrivono il framework. Collegarlo prima farebbe vincere Bootstrap."
+    "spiegazione": "Il proprio CSS va collegato dopo Bootstrap: a parità di specificità vince l'ultima regola caricata, quindi le personalizzazioni sovrascrivono il framework. Collegarlo prima farebbe vincere Bootstrap.",
+    "tipo": "teoria"
   },
   {
     "id": 638,
@@ -1791,7 +1928,8 @@
       "Un tipo speciale di pulsante con bordi arrotondati"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La card è un contenitore flessibile (classe `card`) per raggruppare contenuti correlati: immagine (`card-img-top`), corpo (`card-body`) con titolo (`card-title`), testo (`card-text`) e pulsanti. È uno dei componenti più usati."
+    "spiegazione": "La card è un contenitore flessibile (classe `card`) per raggruppare contenuti correlati: immagine (`card-img-top`), corpo (`card-body`) con titolo (`card-title`), testo (`card-text`) e pulsanti. È uno dei componenti più usati.",
+    "tipo": "teoria"
   },
   {
     "id": 639,
@@ -1804,7 +1942,8 @@
       "Un framework CSS simile a Bootstrap"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "SCSS è la sintassi più diffusa di Sass, un preprocessore CSS: si scrive in un linguaggio più potente (variabili, nesting, mixin, partials) e un compilatore produce CSS standard. Ogni CSS valido è anche SCSS valido."
+    "spiegazione": "SCSS è la sintassi più diffusa di Sass, un preprocessore CSS: si scrive in un linguaggio più potente (variabili, nesting, mixin, partials) e un compilatore produce CSS standard. Ogni CSS valido è anche SCSS valido.",
+    "tipo": "teoria"
   },
   {
     "id": 640,
@@ -1817,7 +1956,8 @@
       "Sì, a patto di collegarlo con un tag speciale `<scss>`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il browser non capisce SCSS: legge solo CSS. Per questo l'SCSS va compilato in CSS (es. con `sass --watch`), e nell'HTML si collega il file `.css` risultante, non quello `.scss`."
+    "spiegazione": "Il browser non capisce SCSS: legge solo CSS. Per questo l'SCSS va compilato in CSS (es. con `sass --watch`), e nell'HTML si collega il file `.css` risultante, non quello `.scss`.",
+    "tipo": "teoria"
   },
   {
     "id": 641,
@@ -1830,7 +1970,8 @@
       "Carica automaticamente il sito su un server remoto"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il compilatore Sass legge i file `.scss` e produce i corrispondenti file `.css`. Si lancia ad esempio con `sass --watch scss:css`, che ricompila automaticamente a ogni salvataggio."
+    "spiegazione": "Il compilatore Sass legge i file `.scss` e produce i corrispondenti file `.css`. Si lancia ad esempio con `sass --watch scss:css`, che ricompila automaticamente a ogni salvataggio.",
+    "tipo": "teoria"
   },
   {
     "id": 642,
@@ -1843,7 +1984,8 @@
       "Con le parentesi graffe attorno al nome scelto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In SCSS le variabili si dichiarano con `$`: `$color-primary: #2563eb;`. Sono risolte in fase di compilazione, quindi nel CSS finale compare il valore, non la variabile. (Le variabili CSS native usano invece `--nome`.)"
+    "spiegazione": "In SCSS le variabili si dichiarano con `$`: `$color-primary: #2563eb;`. Sono risolte in fase di compilazione, quindi nel CSS finale compare il valore, non la variabile. (Le variabili CSS native usano invece `--nome`.)",
+    "tipo": "codice"
   },
   {
     "id": 643,
@@ -1856,7 +1998,8 @@
       "Un tipo speciale di commento multilinea"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il nesting permette di annidare i selettori uno dentro l'altro, rispecchiando la gerarchia dell'HTML e rendendo il codice più leggibile. Conviene non superare 2–3 livelli per non generare selettori troppo specifici."
+    "spiegazione": "Il nesting permette di annidare i selettori uno dentro l'altro, rispecchiando la gerarchia dell'HTML e rendendo il codice più leggibile. Conviene non superare 2–3 livelli per non generare selettori troppo specifici.",
+    "tipo": "teoria"
   },
   {
     "id": 644,
@@ -1869,7 +2012,8 @@
       "Un carattere jolly che seleziona qualunque elemento della pagina"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "& è il riferimento al selettore genitore. Dentro .card, &:hover compila in .card:hover, e &_title compila in .card_title. È utile per pseudo-classi e per il pattern di naming in stile BEM."
+    "spiegazione": "& è il riferimento al selettore genitore. Dentro .card, &:hover compila in .card:hover, e &_title compila in .card_title. È utile per pseudo-classi e per il pattern di naming in stile BEM.",
+    "tipo": "codice"
   },
   {
     "id": 645,
@@ -1882,7 +2026,8 @@
       "Una porzione di pagina"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Un partial è un file il cui nome inizia con underscore (es. _variables.scss): il compilatore non lo trasforma in un CSS a sé, esiste solo per essere importato in un file aggregatore tramite @use."
+    "spiegazione": "Un partial è un file il cui nome inizia con underscore (es. _variables.scss): il compilatore non lo trasforma in un CSS a sé, esiste solo per essere importato in un file aggregatore tramite @use.",
+    "tipo": "teoria"
   },
   {
     "id": 646,
@@ -1895,7 +2040,8 @@
       "Crea una nuova variabile globale valida in tutti i file"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`@use` carica un altro file SCSS (tipicamente un partial), rendendone disponibili variabili e mixin. È il sostituto moderno di `@import` (deprecato) e supporta i namespace (es. `@use 'variables' as vars`)."
+    "spiegazione": "`@use` carica un altro file SCSS (tipicamente un partial), rendendone disponibili variabili e mixin. È il sostituto moderno di `@import` (deprecato) e supporta i namespace (es. `@use 'variables' as vars`).",
+    "tipo": "codice"
   },
   {
     "id": 647,
@@ -1908,7 +2054,8 @@
       "Un file di configurazione del compilatore"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Un mixin (@mixin) è un blocco di regole riutilizzabile, che può accettare parametri e, con @content, avvolgere regole arbitrarie (es. dentro una media query). Si inserisce dove serve con @include."
+    "spiegazione": "Un mixin (@mixin) è un blocco di regole riutilizzabile, che può accettare parametri e, con @content, avvolgere regole arbitrarie (es. dentro una media query). Si inserisce dove serve con @include.",
+    "tipo": "teoria"
   },
   {
     "id": 648,
@@ -1921,7 +2068,8 @@
       "Importa un foglio di stile esterno tramite un URL"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`@include` inserisce, nel punto in cui viene scritto, le dichiarazioni definite in un mixin (passando eventuali parametri). Es: `@include flex-center(column);`."
+    "spiegazione": "`@include` inserisce, nel punto in cui viene scritto, le dichiarazioni definite in un mixin (passando eventuali parametri). Es: `@include flex-center(column);`.",
+    "tipo": "codice"
   },
   {
     "id": 649,
@@ -1934,7 +2082,8 @@
       "A definire i breakpoint del progetto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Un placeholder %nome definisce regole che non producono CSS da sole; con @extend più selettori le ereditano e vengono raggruppati su un'unica regola nel CSS finale. A differenza dei mixin, non duplica il codice e non accetta parametri."
+    "spiegazione": "Un placeholder %nome definisce regole che non producono CSS da sole; con @extend più selettori le ereditano e vengono raggruppati su un'unica regola nel CSS finale. A differenza dei mixin, non duplica il codice e non accetta parametri.",
+    "tipo": "codice"
   },
   {
     "id": 650,
@@ -1947,7 +2096,8 @@
       "La variabile CSS funziona solo dentro i mixin"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "La variabile SCSS ($) viene sostituita col suo valore durante la compilazione: nel CSS finale non esiste più. La variabile CSS (--nome) invece resta nel browser, è dinamica e modificabile a runtime via JavaScript."
+    "spiegazione": "La variabile SCSS ($) viene sostituita col suo valore durante la compilazione: nel CSS finale non esiste più. La variabile CSS (--nome) invece resta nel browser, è dinamica e modificabile a runtime via JavaScript.",
+    "tipo": "teoria"
   },
   {
     "id": 651,
@@ -1960,7 +2110,8 @@
       "La classe funziona soltanto se applicata agli elementi `div`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La classe (`.nome`) può essere applicata a molti elementi e un elemento può averne più d'una; l'id (`#nome`) identifica un singolo elemento e ha specificità maggiore. Regola pratica del corso: CSS con le classi, id per JavaScript e ancore."
+    "spiegazione": "La classe (`.nome`) può essere applicata a molti elementi e un elemento può averne più d'una; l'id (`#nome`) identifica un singolo elemento e ha specificità maggiore. Regola pratica: CSS con le classi, id per JavaScript e ancore.",
+    "tipo": "teoria"
   },
   {
     "id": 652,
@@ -1973,7 +2124,8 @@
       "Gli elementi che sono sia `nav` sia `a` contemporaneamente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Lo spazio è il combinatore discendente: `nav a` seleziona tutti gli `<a>` contenuti dentro un `<nav>`, a qualsiasi profondità. Per i soli figli diretti si usa invece `nav > a`."
+    "spiegazione": "Lo spazio è il combinatore discendente: `nav a` seleziona tutti gli `<a>` contenuti dentro un `<nav>`, a qualsiasi profondità. Per i soli figli diretti si usa invece `nav > a`.",
+    "tipo": "codice"
   },
   {
     "id": 653,
@@ -1986,7 +2138,8 @@
       "Due varianti dei pixel ottimizzate per la stampa"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`1vw` è l'1% della larghezza della viewport, `1vh` l'1% dell'altezza. Sono utili per sezioni a tutto schermo (es. `height: 100vh`) o dimensioni che scalano con la finestra."
+    "spiegazione": "`1vw` è l'1% della larghezza della viewport, `1vh` l'1% dell'altezza. Sono utili per sezioni a tutto schermo (es. `height: 100vh`) o dimensioni che scalano con la finestra.",
+    "tipo": "codice"
   },
   {
     "id": 654,
@@ -1999,7 +2152,8 @@
       "Nasconde l'elemento con una dissolvenza al caricamento della pagina"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`transition` rende graduale il cambio di una proprietà tra due stati (es. `transition: all 0.3s ease`). Tipicamente si usa per animare i cambiamenti su `:hover`, come colore, dimensione o ombra."
+    "spiegazione": "`transition` rende graduale il cambio di una proprietà tra due stati (es. `transition: all 0.3s ease`). Tipicamente si usa per animare i cambiamenti su `:hover`, come colore, dimensione o ombra.",
+    "tipo": "codice"
   },
   {
     "id": 655,
@@ -2012,7 +2166,8 @@
       "Disegna un riquadro attorno al testo interno"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`box-shadow` aggiunge un'ombra: i valori indicano spostamento orizzontale, verticale, raggio di sfocatura e colore, es. `box-shadow: 0 4px 12px rgba(0,0,0,0.3)`. Si usa per dare profondità a card e pulsanti."
+    "spiegazione": "`box-shadow` aggiunge un'ombra: i valori indicano spostamento orizzontale, verticale, raggio di sfocatura e colore, es. `box-shadow: 0 4px 12px rgba(0,0,0,0.3)`. Si usa per dare profondità a card e pulsanti.",
+    "tipo": "codice"
   },
   {
     "id": 656,
@@ -2025,7 +2180,8 @@
       "Una sintassi speciale che permette di importare interi fogli di stile esterni in modo dinamico"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Le custom properties si dichiarano con `--nome` (di solito in `:root` per renderle globali) e si usano con `var(--nome)`. A differenza delle variabili SCSS, sono native, dinamiche e leggibili/modificabili via JavaScript."
+    "spiegazione": "Le custom properties si dichiarano con `--nome` (di solito in `:root` per renderle globali) e si usano con `var(--nome)`. A differenza delle variabili SCSS, sono native, dinamiche e leggibili/modificabili via JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 657,
@@ -2038,7 +2194,8 @@
       "Il secondo elemento a partire dalla fine"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`:nth-child(2n)` seleziona i figli in posizione pari (2, 4, 6...), utile per l'effetto 'zebra' nelle tabelle. Si possono usare formule come `2n+1` (dispari), `3n`, o parole chiave come `odd`/`even`."
+    "spiegazione": "`:nth-child(2n)` seleziona i figli in posizione pari (2, 4, 6...), utile per l'effetto 'zebra' nelle tabelle. Si possono usare formule come `2n+1` (dispari), `3n`, o parole chiave come `odd`/`even`.",
+    "tipo": "codice"
   },
   {
     "id": 658,
@@ -2051,7 +2208,8 @@
       "Sposta l'elemento verso l'alto rispetto alla sua posizione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`::before` crea un contenuto generato all'inizio dell'elemento; richiede sempre la proprietà `content` (anche vuota). `::after` fa lo stesso ma dopo il contenuto. Si usano per icone, decorazioni e dettagli grafici."
+    "spiegazione": "`::before` crea un contenuto generato all'inizio dell'elemento; richiede sempre la proprietà `content` (anche vuota). `::after` fa lo stesso ma dopo il contenuto. Si usano per icone, decorazioni e dettagli grafici.",
+    "tipo": "codice"
   },
   {
     "id": 659,
@@ -2064,7 +2222,8 @@
       "Nasconde il cursore del mouse"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "cursor: pointer cambia il cursore nella classica manina, segnalando che l'elemento è cliccabile. Si applica spesso ai pulsanti e agli elementi resi interattivi via JavaScript."
+    "spiegazione": "cursor: pointer cambia il cursore nella classica manina, segnalando che l'elemento è cliccabile. Si applica spesso ai pulsanti e agli elementi resi interattivi via JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 660,
@@ -2077,7 +2236,8 @@
       "Funziona soltanto all'interno dei contenitori flex"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`z-index` controlla l'ordine di sovrapposizione (valori più alti sopra) ma ha effetto solo su elementi posizionati, cioè con `position` diversa da `static`. Su un elemento `static` viene ignorato."
+    "spiegazione": "`z-index` controlla l'ordine di sovrapposizione (valori più alti sopra) ma ha effetto solo su elementi posizionati, cioè con `position` diversa da `static`. Su un elemento `static` viene ignorato.",
+    "tipo": "codice"
   },
   {
     "id": 661,
@@ -2090,7 +2250,8 @@
       "Un framework alternativo a Bootstrap"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il RWD è l'approccio che fa adattare il layout a ogni dimensione di schermo. I tre ingredienti sono: il meta `viewport`, dimensioni fluide (`%`, `rem`, `vw`, `max-width`) e le media query."
+    "spiegazione": "Il RWD è l'approccio che fa adattare il layout a ogni dimensione di schermo. I tre ingredienti sono: il meta `viewport`, dimensioni fluide (`%`, `rem`, `vw`, `max-width`) e le media query.",
+    "tipo": "teoria"
   },
   {
     "id": 662,
@@ -2103,7 +2264,8 @@
       "A caricare più velocemente le immagini"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`<meta name='viewport' content='width=device-width, initial-scale=1.0'>` dice al browser mobile di usare la larghezza reale del dispositivo invece di simulare un desktop. Senza, le media query non si comportano come previsto su smartphone."
+    "spiegazione": "`<meta name='viewport' content='width=device-width, initial-scale=1.0'>` dice al browser mobile di usare la larghezza reale del dispositivo invece di simulare un desktop. Senza, le media query non si comportano come previsto su smartphone.",
+    "tipo": "codice"
   },
   {
     "id": 663,
@@ -2116,7 +2278,8 @@
       "max-width funziona solo in stampa"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "@media (min-width: 768px) applica le regole da 768px in su (approccio mobile-first); @media (max-width: 768px) le applica fino a 768px (approccio desktop-first). La scelta determina la strategia di sviluppo."
+    "spiegazione": "@media (min-width: 768px) applica le regole da 768px in su (approccio mobile-first); @media (max-width: 768px) le applica fino a 768px (approccio desktop-first). La scelta determina la strategia di sviluppo.",
+    "tipo": "codice"
   },
   {
     "id": 664,
@@ -2129,7 +2292,8 @@
       "Caricare l'immagine in formato SVG obbligatoriamente"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con `img { max-width: 100%; height: auto; }` l'immagine non supera mai la larghezza del contenitore e mantiene le proporzioni, riducendosi sui dispositivi piccoli. È un pattern base del responsive."
+    "spiegazione": "Con `img { max-width: 100%; height: auto; }` l'immagine non supera mai la larghezza del contenitore e mantiene le proporzioni, riducendosi sui dispositivi piccoli. È un pattern base del responsive.",
+    "tipo": "codice"
   },
   {
     "id": 665,
@@ -2142,7 +2306,8 @@
       "Perché impediscono lo scroll orizzontale in ogni caso"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Una larghezza in % è relativa al contenitore: width: 50% occupa sempre metà dello spazio disponibile, qualunque sia la dimensione dello schermo. È alla base dei layout fluidi, spesso combinata con max-width."
+    "spiegazione": "Una larghezza in % è relativa al contenitore: width: 50% occupa sempre metà dello spazio disponibile, qualunque sia la dimensione dello schermo. È alla base dei layout fluidi, spesso combinata con max-width.",
+    "tipo": "teoria"
   },
   {
     "id": 666,
@@ -2155,7 +2320,8 @@
       "`border-box` rimuove sempre i margini"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Con `content-box` (predefinito) padding e bordo si sommano alla `width` dichiarata; con `border-box` sono inclusi nella `width`, il comportamento più intuitivo. Per questo si imposta spesso `* { box-sizing: border-box; }`."
+    "spiegazione": "Con `content-box` (predefinito) padding e bordo si sommano alla `width` dichiarata; con `border-box` sono inclusi nella `width`, il comportamento più intuitivo. Per questo si imposta spesso `* { box-sizing: border-box; }`.",
+    "tipo": "codice"
   },
   {
     "id": 667,
@@ -2168,7 +2334,8 @@
       "Gli applica un margine di 100 pixel"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "margin: 0 auto significa margine verticale 0 e margini laterali automatici: questi distribuiscono equamente lo spazio a sinistra e a destra, centrando orizzontalmente un elemento di blocco che ha una width definita."
+    "spiegazione": "margin: 0 auto significa margine verticale 0 e margini laterali automatici: questi distribuiscono equamente lo spazio a sinistra e a destra, centrando orizzontalmente un elemento di blocco che ha una width definita.",
+    "tipo": "codice"
   },
   {
     "id": 668,
@@ -2181,7 +2348,8 @@
       "Aumenta automaticamente l'altezza per mostrare tutto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "overflow: hidden taglia (nasconde) la parte di contenuto che eccede le dimensioni del box, senza mostrare scrollbar. overflow: scroll o auto mostrano invece le barre di scorrimento."
+    "spiegazione": "overflow: hidden taglia (nasconde) la parte di contenuto che eccede le dimensioni del box, senza mostrare scrollbar. overflow: scroll o auto mostrano invece le barre di scorrimento.",
+    "tipo": "codice"
   },
   {
     "id": 669,
@@ -2194,7 +2362,8 @@
       "Crea una copia profonda e indipendente dell'array originale"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il destructuring di array assegna gli elementi a variabili in base alla loro posizione: `const [a, b] = [1, 2]` dà `a=1` e `b=2`. Si possono saltare elementi con virgole e usare il rest: `const [primo, ...resto] = arr`."
+    "spiegazione": "Il destructuring di array assegna gli elementi a variabili in base alla loro posizione: `const [a, b] = [1, 2]` dà `a=1` e `b=2`. Si possono saltare elementi con virgole e usare il rest: `const [primo, ...resto] = arr`.",
+    "tipo": "codice"
   },
   {
     "id": 670,
@@ -2207,7 +2376,8 @@
       "Trasforma l'intero oggetto in un array ordinato delle sue proprietà e dei relativi valori"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Il destructuring di oggetti crea variabili a partire dalle proprietà: `const { nome, email } = utente`. Si può rinominare (`const { nome: n } = ...`) e dare default. È il modo tipico per ricevere le props nei componenti React."
+    "spiegazione": "Il destructuring di oggetti crea variabili a partire dalle proprietà: `const { nome, email } = utente`. Si può rinominare (`const { nome: n } = ...`) e dare default. È il modo tipico per ricevere le props nei componenti React.",
+    "tipo": "codice"
   },
   {
     "id": 671,
@@ -2220,7 +2390,8 @@
       "rest è più veloce di spread in esecuzione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Stesso simbolo (`...`), uso opposto: lo spread espande un iterabile (es. `[...arr]`, `Math.max(...n)`); il rest raccoglie più valori in un array (es. parametri di funzione `function f(...args)`)."
+    "spiegazione": "Stesso simbolo (`...`), uso opposto: lo spread espande un iterabile (es. `[...arr]`, `Math.max(...n)`); il rest raccoglie più valori in un array (es. parametri di funzione `function f(...args)`).",
+    "tipo": "codice"
   },
   {
     "id": 672,
@@ -2233,7 +2404,8 @@
       "Un ciclo che si ripete esattamente tre volte"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "L'operatore ternario è una scrittura compatta di un `if/else` come espressione: `condizione ? valoreSeVero : valoreSeFalso`. È molto usato, ad esempio, nel rendering condizionale in JSX e per assegnazioni rapide."
+    "spiegazione": "L'operatore ternario è una scrittura compatta di un `if/else` come espressione: `condizione ? valoreSeVero : valoreSeFalso`. È molto usato, ad esempio, nel rendering condizionale in JSX e per assegnazioni rapide.",
+    "tipo": "codice"
   },
   {
     "id": 673,
@@ -2246,7 +2418,8 @@
       "Confronta due oggetti per uguaglianza"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`utente?.indirizzo?.citta` restituisce `undefined` (senza errore) se `utente` o `indirizzo` sono `null`/`undefined`, invece di lanciare un `TypeError`. È utile per accedere in sicurezza a dati annidati che potrebbero mancare."
+    "spiegazione": "`utente?.indirizzo?.citta` restituisce `undefined` (senza errore) se `utente` o `indirizzo` sono `null`/`undefined`, invece di lanciare un `TypeError`. È utile per accedere in sicurezza a dati annidati che potrebbero mancare.",
+    "tipo": "codice"
   },
   {
     "id": 674,
@@ -2259,7 +2432,8 @@
       "Verifica se un valore è un numero"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`a ?? b` restituisce `a` se `a` non è `null`/`undefined`, altrimenti `b`. Differisce da `||` perché non considera falsy `0`, `''` o `false`: `nome ?? 'Anonimo'` mantiene `0` e `''` come valori validi, mentre `||` li scarterebbe."
+    "spiegazione": "`a ?? b` restituisce `a` se `a` non è `null`/`undefined`, altrimenti `b`. Differisce da `||` perché non considera falsy `0`, `''` o `false`: `nome ?? 'Anonimo'` mantiene `0` e `''` come valori validi, mentre `||` li scarterebbe.",
+    "tipo": "codice"
   },
   {
     "id": 675,
@@ -2272,7 +2446,8 @@
       "`null` causa sempre un errore"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`undefined` indica una variabile dichiarata ma senza valore (assegnato dal motore JS); `null` è un valore 'vuoto' impostato volontariamente dal programmatore. Curiosità: `typeof null` è `'object'`, un bug storico; `null == undefined` è `true`, ma `null === undefined` è `false`."
+    "spiegazione": "`undefined` indica una variabile dichiarata ma senza valore (assegnato dal motore JS); `null` è un valore 'vuoto' impostato volontariamente dal programmatore. Curiosità: `typeof null` è `'object'`, un bug storico; `null == undefined` è `true`, ma `null === undefined` è `false`.",
+    "tipo": "codice"
   },
   {
     "id": 676,
@@ -2285,7 +2460,8 @@
       "Il valore `NaN`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con il `+` tra stringa e numero, JavaScript converte il numero in stringa e concatena: `'5' + 2` è `'52'`. Gli altri operatori invece convertono in numero: `'5' - 2` dà `3`. È un classico effetto della conversione implicita di tipo."
+    "spiegazione": "Con il `+` tra stringa e numero, JavaScript converte il numero in stringa e concatena: `'5' + 2` è `'52'`. Gli altri operatori invece convertono in numero: `'5' - 2` dà `3`. È un classico effetto della conversione implicita di tipo.",
+    "tipo": "codice"
   },
   {
     "id": 677,
@@ -2298,7 +2474,8 @@
       "Formatta e indenta una stringa JSON per renderla leggibile"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`JSON.parse` trasforma una stringa in formato JSON in un oggetto JavaScript utilizzabile. È l'operazione inversa di `JSON.stringify`. Lancia un errore se la stringa non è JSON valido, quindi spesso si usa dentro un `try/catch`."
+    "spiegazione": "`JSON.parse` trasforma una stringa in formato JSON in un oggetto JavaScript utilizzabile. È l'operazione inversa di `JSON.stringify`. Lancia un errore se la stringa non è JSON valido, quindi spesso si usa dentro un `try/catch`.",
+    "tipo": "codice"
   },
   {
     "id": 678,
@@ -2311,7 +2488,8 @@
       "Servono entrambe a convertire le stringhe di testo in numeri"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`JSON.stringify(oggetto)` produce una stringa JSON (per salvarla o inviarla); `JSON.parse(stringa)` ricostruisce l'oggetto a partire dalla stringa. Sono le due operazioni inverse usate, ad esempio, con `localStorage` e `fetch`."
+    "spiegazione": "`JSON.stringify(oggetto)` produce una stringa JSON (per salvarla o inviarla); `JSON.parse(stringa)` ricostruisce l'oggetto a partire dalla stringa. Sono le due operazioni inverse usate, ad esempio, con `localStorage` e `fetch`.",
+    "tipo": "codice"
   },
   {
     "id": 679,
@@ -2324,7 +2502,8 @@
       "Salvando ogni proprietà dell'oggetto in una chiave separata, una per una"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`localStorage` memorizza solo stringhe: per salvare un oggetto si usa `localStorage.setItem('chiave', JSON.stringify(oggetto))` e per rileggerlo `JSON.parse(localStorage.getItem('chiave'))`."
+    "spiegazione": "`localStorage` memorizza solo stringhe: per salvare un oggetto si usa `localStorage.setItem('chiave', JSON.stringify(oggetto))` e per rileggerlo `JSON.parse(localStorage.getItem('chiave'))`.",
+    "tipo": "codice"
   },
   {
     "id": 680,
@@ -2337,7 +2516,8 @@
       "Solo il localStorage permette di salvare oggetti, mentre il sessionStorage accetta unicamente stringhe"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Entrambi salvano coppie chiave-valore (stringhe) nel browser. localStorage è permanente finché non viene cancellato; sessionStorage si svuota alla chiusura della scheda. La sintassi (setItem/getItem/removeItem) è identica."
+    "spiegazione": "Entrambi salvano coppie chiave-valore (stringhe) nel browser. localStorage è permanente finché non viene cancellato; sessionStorage si svuota alla chiusura della scheda. La sintassi (setItem/getItem/removeItem) è identica.",
+    "tipo": "teoria"
   },
   {
     "id": 681,
@@ -2350,7 +2530,8 @@
       "Un numero casuale tra -1 e 1"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`Math.random()` restituisce un decimale casuale in [0, 1). Per un intero in un intervallo si combina con `Math.floor`: `Math.floor(Math.random() * 90) + 1` dà un intero casuale da 1 a 90."
+    "spiegazione": "`Math.random()` restituisce un decimale casuale in [0, 1). Per un intero in un intervallo si combina con `Math.floor`: `Math.floor(Math.random() * 90) + 1` dà un intero casuale da 1 a 90.",
+    "tipo": "codice"
   },
   {
     "id": 682,
@@ -2363,7 +2544,8 @@
       "`round` arrotonda sempre per eccesso senza eccezioni"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`Math.floor` arrotonda sempre per difetto (`Math.floor(4.9)` è `4`); `Math.round` arrotonda all'intero più vicino (`Math.round(4.5)` è `5`). `Math.ceil` invece arrotonda sempre per eccesso."
+    "spiegazione": "`Math.floor` arrotonda sempre per difetto (`Math.floor(4.9)` è `4`); `Math.round` arrotonda all'intero più vicino (`Math.round(4.5)` è `5`). `Math.ceil` invece arrotonda sempre per eccesso.",
+    "tipo": "codice"
   },
   {
     "id": 683,
@@ -2376,7 +2558,8 @@
       "Divide la stringa in un array delle singole parole"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`'ciao mondo'.includes('mondo')` restituisce `true`. È utile per ricerche semplici. Altri metodi comuni delle stringhe: `toUpperCase`/`toLowerCase`, `trim`, `split`, `slice`, `replace`, `indexOf`."
+    "spiegazione": "`'ciao mondo'.includes('mondo')` restituisce `true`. È utile per ricerche semplici. Altri metodi comuni delle stringhe: `toUpperCase`/`toLowerCase`, `trim`, `split`, `slice`, `replace`, `indexOf`.",
+    "tipo": "codice"
   },
   {
     "id": 684,
@@ -2389,7 +2572,8 @@
       "Un metodo per convertire stringhe in numeri"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Una regex è un pattern che descrive un formato di testo, usato per cercare, validare o sostituire stringhe. Ad esempio `/^\\d{10}$/.test(tel)` verifica che `tel` sia composto esattamente da 10 cifre."
+    "spiegazione": "Una regex è un pattern che descrive un formato di testo, usato per cercare, validare o sostituire stringhe. Ad esempio `/^\\d{10}$/.test(tel)` verifica che `tel` sia composto esattamente da 10 cifre.",
+    "tipo": "teoria"
   },
   {
     "id": 685,
@@ -2402,7 +2586,8 @@
       "`addEventListener(elemento, 'tipoEvento', callback)`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "La sintassi è `elemento.addEventListener('click', funzione)`: il primo argomento è il tipo di evento (senza `on`), il secondo la callback. Si può aggiungere un terzo parametro di opzioni (`once`, `capture`, `passive`)."
+    "spiegazione": "La sintassi è `elemento.addEventListener('click', funzione)`: il primo argomento è il tipo di evento (senza `on`), il secondo la callback. Si può aggiungere un terzo parametro di opzioni (`once`, `capture`, `passive`).",
+    "tipo": "codice"
   },
   {
     "id": 686,
@@ -2415,7 +2600,8 @@
       "Riavvia la pagina corrente da capo"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`preventDefault()` impedisce l'azione predefinita del browser per quell'evento: ad esempio, su un submit di form evita il ricaricamento della pagina. È fondamentale nelle SPA per gestire i form via JavaScript."
+    "spiegazione": "`preventDefault()` impedisce l'azione predefinita del browser per quell'evento: ad esempio, su un submit di form evita il ricaricamento della pagina. È fondamentale nelle SPA per gestire i form via JavaScript.",
+    "tipo": "codice"
   },
   {
     "id": 687,
@@ -2428,7 +2614,8 @@
       "La funzione di callback che è stata associata a quell'evento tramite `addEventListener`"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`event.target` è l'elemento che ha originato l'evento (ad es. l'input digitato o il pulsante cliccato). Da esso si legge spesso il valore con `event.target.value`. Va distinto da `event.currentTarget`, che è l'elemento su cui è registrato il listener."
+    "spiegazione": "`event.target` è l'elemento che ha originato l'evento (ad es. l'input digitato o il pulsante cliccato). Da esso si legge spesso il valore con `event.target.value`. Va distinto da `event.currentTarget`, che è l'elemento su cui è registrato il listener.",
+    "tipo": "codice"
   },
   {
     "id": 688,
@@ -2441,7 +2628,8 @@
       "`target` funziona solo con il click"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In presenza di bubbling, `target` è l'elemento più interno che ha scatenato l'evento, mentre `currentTarget` è l'elemento a cui è stato attaccato il listener (e che lo sta gestendo in quel momento)."
+    "spiegazione": "In presenza di bubbling, `target` è l'elemento più interno che ha scatenato l'evento, mentre `currentTarget` è l'elemento a cui è stato attaccato il listener (e che lo sta gestendo in quel momento).",
+    "tipo": "codice"
   },
   {
     "id": 689,
@@ -2454,7 +2642,8 @@
       "Un meccanismo che permette di creare e lanciare manualmente eventi personalizzati su qualunque elemento"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Con il bubbling un evento, dopo essere scattato sull'elemento colpito, 'risale' verso i suoi contenitori (genitori). Questo permette l'event delegation: un solo listener su un contenitore gestisce gli eventi di molti figli."
+    "spiegazione": "Con il bubbling un evento, dopo essere scattato sull'elemento colpito, 'risale' verso i suoi contenitori (genitori). Questo permette l'event delegation: un solo listener su un contenitore gestisce gli eventi di molti figli.",
+    "tipo": "teoria"
   },
   {
     "id": 690,
@@ -2467,7 +2656,8 @@
       "Aggiungendo la parola `await` prima della funzione"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Si passa il riferimento alla funzione senza parentesi: `addEventListener('click', saluta)`. Mettendo le parentesi (`saluta()`) la funzione verrebbe eseguita subito e al listener arriverebbe il suo valore di ritorno. Per passare argomenti si usa una arrow function: `() => saluta('Mario')`."
+    "spiegazione": "Si passa il riferimento alla funzione senza parentesi: `addEventListener('click', saluta)`. Mettendo le parentesi (`saluta()`) la funzione verrebbe eseguita subito e al listener arriverebbe il suo valore di ritorno. Per passare argomenti si usa una arrow function: `() => saluta('Mario')`.",
+    "tipo": "codice"
   },
   {
     "id": 691,
@@ -2480,7 +2670,8 @@
       "Solo il primo elemento"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "`for...of` scorre direttamente i valori di un iterabile (array, stringa, `NodeList`...): `for (const v of [10,20])` dà `v=10` poi `v=20`. Per le chiavi/proprietà di un oggetto si usa invece `for...in`."
+    "spiegazione": "`for...of` scorre direttamente i valori di un iterabile (array, stringa, `NodeList`...): `for (const v of [10,20])` dà `v=10` poi `v=20`. Per le chiavi/proprietà di un oggetto si usa invece `for...in`.",
+    "tipo": "codice"
   },
   {
     "id": 692,
@@ -2493,7 +2684,8 @@
       "Quando si deve fare una sola verifica booleana"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "switch è utile quando si confronta una stessa espressione con diversi valori specifici (case): è più leggibile di una lunga catena di if/else if. Ricorda il break dopo ogni case per evitare il fall-through."
+    "spiegazione": "switch è utile quando si confronta una stessa espressione con diversi valori specifici (case): è più leggibile di una lunga catena di if/else if. Ricorda il break dopo ogni case per evitare il fall-through.",
+    "tipo": "teoria"
   },
   {
     "id": 693,
@@ -2506,7 +2698,8 @@
       "Riavvia il ciclo dall'inizio"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "break interrompe del tutto il ciclo e l'esecuzione prosegue dopo di esso. È diverso da continue, che salta solo il resto dell'iterazione corrente e passa alla successiva."
+    "spiegazione": "break interrompe del tutto il ciclo e l'esecuzione prosegue dopo di esso. È diverso da continue, che salta solo il resto dell'iterazione corrente e passa alla successiva.",
+    "tipo": "codice"
   },
   {
     "id": 694,
@@ -2519,7 +2712,8 @@
       "Inverte il valore logico del primo operando"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "In a && b, se a è falsy JavaScript restituisce subito a senza valutare b (corto circuito); se a è truthy restituisce b. È sfruttato nel rendering condizionale in React: condizione && elemento."
+    "spiegazione": "In a && b, se a è falsy JavaScript restituisce subito a senza valutare b (corto circuito); se a è truthy restituisce b. È sfruttato nel rendering condizionale in React: condizione && elemento.",
+    "tipo": "codice"
   },
   {
     "id": 695,
@@ -2532,7 +2726,8 @@
       "Inserisce una barra laterale con contenuti di approfondimento"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`<main>` racchiude il contenuto centrale e specifico della pagina e deve essere unico per pagina. Aiuta accessibilità e SEO permettendo agli screen reader di saltare direttamente al contenuto principale."
+    "spiegazione": "`<main>` racchiude il contenuto centrale e specifico della pagina e deve essere unico per pagina. Aiuta accessibilità e SEO permettendo agli screen reader di saltare direttamente al contenuto principale.",
+    "tipo": "codice"
   },
   {
     "id": 696,
@@ -2545,7 +2740,8 @@
       "A definire la struttura di una tabella di dati"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`<figure>` raggruppa un contenuto autonomo come un'immagine, un grafico o un blocco di codice, e `<figcaption>` ne fornisce la didascalia. Insieme creano un'associazione semantica tra il contenuto e la sua descrizione."
+    "spiegazione": "`<figure>` raggruppa un contenuto autonomo come un'immagine, un grafico o un blocco di codice, e `<figcaption>` ne fornisce la didascalia. Insieme creano un'associazione semantica tra il contenuto e la sua descrizione.",
+    "tipo": "codice"
   },
   {
     "id": 697,
@@ -2558,20 +2754,22 @@
       "A cambiare il set di caratteri usato"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`lang` (es. `<html lang='it'>`) dichiara la lingua principale del documento. Migliora l'accessibilità (gli screen reader usano la pronuncia corretta) e la SEO, e aiuta i browser con la traduzione automatica."
+    "spiegazione": "`lang` (es. `<html lang='it'>`) dichiara la lingua principale del documento. Migliora l'accessibilità (gli screen reader usano la pronuncia corretta) e la SEO, e aiuta i browser con la traduzione automatica.",
+    "tipo": "codice"
   },
   {
     "id": 698,
     "categoria": "HTML Base",
-    "domanda": "Qual è la differenza tra `<em>` e `<i>`?",
+    "domanda": "Qual è la differenza tra `em` e `i`?",
     "risposte": [
-      "`<em>` è obsoleto",
+      "`em` è obsoleto",
       "Sono identici per il browser",
-      "`<em>` indica enfasi con valore semantico; `<i>` applica solo il corsivo senza significato aggiunto",
+      "`em` indica enfasi con valore semantico; `<i>` applica solo il corsivo senza significato aggiunto",
       "`<i>` funziona solo nei titoli"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`<em>` dà enfasi semantica (gli screen reader possono enfatizzarne la lettura), mentre `<i>` applica solo il corsivo stilistico, senza significato. È lo stesso rapporto che c'è tra `<strong>` (semantico) e `<b>` (visivo)."
+    "spiegazione": "`em` dà enfasi semantica (gli screen reader possono enfatizzarne la lettura), mentre `<i>` applica solo il corsivo stilistico, senza significato. È lo stesso rapporto che c'è tra `<strong>` (semantico) e `<b>` (visivo).",
+    "tipo": "codice"
   },
   {
     "id": 699,
@@ -2584,7 +2782,8 @@
       "A bloccare il download del file video da parte degli utenti"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`controls` mostra i comandi nativi del player (play/pausa, barra di avanzamento, volume). Altri attributi del tag `<video>` sono `autoplay` (avvio automatico), `loop` (ripetizione) e `muted` (senza audio)."
+    "spiegazione": "`controls` mostra i comandi nativi del player (play/pausa, barra di avanzamento, volume). Altri attributi del tag `<video>` sono `autoplay` (avvio automatico), `loop` (ripetizione) e `muted` (senza audio).",
+    "tipo": "codice"
   },
   {
     "id": 700,
@@ -2597,7 +2796,8 @@
       "Un indirizzo assoluto che punta a una risorsa ospitata su un altro server remoto"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "`../` significa 'sali di una cartella'. Ad esempio `../imgs/foto.jpg` risale di un livello e poi entra in `imgs`. `./` indica la cartella corrente, mentre `/` parte dalla radice del sito."
+    "spiegazione": "`../` significa 'sali di una cartella'. Ad esempio `../imgs/foto.jpg` risale di un livello e poi entra in `imgs`. `./` indica la cartella corrente, mentre `/` parte dalla radice del sito.",
+    "tipo": "codice"
   },
   {
     "id": 701,
@@ -2610,7 +2810,8 @@
       "Modificando direttamente il file CSS sul disco"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Il pattern del corso è: JS dichiara lo stato aggiungendo/togliendo classi con classList (add, remove, toggle), mentre l'aspetto resta definito nel CSS. Così la presentazione rimane responsabilità del CSS, non del JavaScript."
+    "spiegazione": "Il pattern consigliato è: JS dichiara lo stato aggiungendo/togliendo classi con classList (add, remove, toggle), mentre l'aspetto resta definito nel CSS. Così la presentazione rimane responsabilità del CSS, non del JavaScript.",
+    "tipo": "architettura"
   },
   {
     "id": 702,
@@ -2623,7 +2824,8 @@
       "Perché nel `<head>` il JavaScript non funziona affatto"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Lo script in fondo al body viene eseguito dopo che il DOM è stato costruito, così `document.getElementById` e simili trovano gli elementi. In alternativa si usa l'attributo `defer` o l'evento `DOMContentLoaded`."
+    "spiegazione": "Lo script in fondo al body viene eseguito dopo che il DOM è stato costruito, così `document.getElementById` e simili trovano gli elementi. In alternativa si usa l'attributo `defer` o l'evento `DOMContentLoaded`.",
+    "tipo": "teoria"
   },
   {
     "id": 703,
@@ -2636,7 +2838,8 @@
       "Con `document.getVariable('--nome')`"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Le variabili CSS (custom properties) vivono nel browser: si leggono con `getComputedStyle(elemento).getPropertyValue('--nome')` e si modificano con `elemento.style.setProperty('--nome', valore)`. Le variabili SCSS, invece, non esistono più a runtime."
+    "spiegazione": "Le variabili CSS (custom properties) vivono nel browser: si leggono con `getComputedStyle(elemento).getPropertyValue('--nome')` e si modificano con `elemento.style.setProperty('--nome', valore)`. Le variabili SCSS, invece, non esistono più a runtime.",
+    "tipo": "codice"
   },
   {
     "id": 704,
@@ -2649,7 +2852,8 @@
       "Servono tutti e tre solo a colorare la pagina"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "HTML definisce la struttura e il contenuto, CSS si occupa della presentazione (colori, layout, font), JavaScript gestisce il comportamento e l'interattività. La separazione dei tre ruoli rende il codice più ordinato e manutenibile."
+    "spiegazione": "HTML definisce la struttura e il contenuto, CSS si occupa della presentazione (colori, layout, font), JavaScript gestisce il comportamento e l'interattività. La separazione dei tre ruoli rende il codice più ordinato e manutenibile.",
+    "tipo": "teoria"
   },
   {
     "id": 705,
@@ -2662,7 +2866,8 @@
       "L'aggiunta di nuovi metodi a un array che è già esistente"
     ],
     "rispostaCorretta": 0,
-    "spiegazione": "Una closure permette di avere variabili private: la funzione esterna definisce una variabile non accessibile dall'esterno, e la funzione interna è l'unica che può leggerla o modificarla. È il modo classico per incapsulare lo stato in JavaScript."
+    "spiegazione": "Una closure permette di avere variabili private: la funzione esterna definisce una variabile non accessibile dall'esterno, e la funzione interna è l'unica che può leggerla o modificarla. È il modo classico per incapsulare lo stato in JavaScript.",
+    "tipo": "teoria"
   },
   {
     "id": 706,
@@ -2675,7 +2880,8 @@
       "Non la ricorda affatto"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Quando una funzione interna viene restituita o passata altrove, conserva un riferimento allo scope in cui è nata: continua quindi ad accedere alle variabili della funzione esterna anche dopo che questa è terminata. Questo legame è la closure."
+    "spiegazione": "Quando una funzione interna viene restituita o passata altrove, conserva un riferimento allo scope in cui è nata: continua quindi ad accedere alle variabili della funzione esterna anche dopo che questa è terminata. Questo legame è la closure.",
+    "tipo": "teoria"
   },
   {
     "id": 707,
@@ -2688,7 +2894,8 @@
       "Convertire una stringa in numero"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Un esempio classico è la funzione contatore: `function crea(){ let n=0; return ()=>++n; }`. Ogni chiamata a `crea()` produce una closure indipendente con la propria variabile `n` privata, incrementata a ogni invocazione e non accessibile dall'esterno."
+    "spiegazione": "Un esempio classico è la funzione contatore: `function crea(){ let n=0; return ()=>++n; }`. Ogni chiamata a `crea()` produce una closure indipendente con la propria variabile `n` privata, incrementata a ogni invocazione e non accessibile dall'esterno.",
+    "tipo": "teoria"
   },
   {
     "id": 708,
@@ -2701,7 +2908,8 @@
       "Restituisce sempre il valore numerico zero come impostazione predefinita"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "Con `var` la dichiarazione viene 'sollevata' (hoisted) in cima allo scope, ma non l'assegnazione: usandola prima della riga di assegnazione si ottiene `undefined`, non un errore. È uno dei motivi per cui si preferiscono `let` e `const`."
+    "spiegazione": "Con `var` la dichiarazione viene 'sollevata' (hoisted) in cima allo scope, ma non l'assegnazione: usandola prima della riga di assegnazione si ottiene `undefined`, non un errore. È uno dei motivi per cui si preferiscono `let` e `const`.",
+    "tipo": "codice"
   },
   {
     "id": 709,
@@ -2714,7 +2922,8 @@
       "Funzionano normalmente senza alcun problema"
     ],
     "rispostaCorretta": 1,
-    "spiegazione": "`let` e `const` sono soggette all'hoisting ma restano nella 'temporal dead zone' dalla cima dello scope fino alla loro dichiarazione: accedervi prima lancia un `ReferenceError`. A differenza di `var`, quindi, non valgono `undefined` ma danno errore."
+    "spiegazione": "`let` e `const` sono soggette all'hoisting ma restano nella 'temporal dead zone' dalla cima dello scope fino alla loro dichiarazione: accedervi prima lancia un `ReferenceError`. A differenza di `var`, quindi, non valgono `undefined` ma danno errore.",
+    "tipo": "codice"
   },
   {
     "id": 710,
@@ -2727,6 +2936,7 @@
       "Solo le arrow function vengono sollevate"
     ],
     "rispostaCorretta": 2,
-    "spiegazione": "Le function declaration (`function nome(){}`) sono sollevate per intero: si possono invocare prima della loro definizione. Le function expression (`const fn=function(){}`) e le arrow function seguono le regole di `var`/`let`/`const`: chiamarle prima della dichiarazione dà errore."
+    "spiegazione": "Le function declaration (`function nome(){}`) sono sollevate per intero: si possono invocare prima della loro definizione. Le function expression (`const fn=function(){}`) e le arrow function seguono le regole di `var`/`let`/`const`: chiamarle prima della dichiarazione dà errore.",
+    "tipo": "codice"
   }
 ]
