@@ -235,6 +235,10 @@ dotnet publish wsa.quiz.browser -c Release
 
 The application is branded as **Quaestio** (from the Latin for inquiry or examination). Internal namespaces (`Wsa.Quiz.*`), project names (`wsa.quiz.*`), package identifiers (`it.eduits.wsaquiz`), and the user data folder (`WsaQuiz`) retain the original naming scheme. Renaming internal identifiers would risk breaking saved user history, application preferences, and build configurations; they remain as part of the project's history.
 
+## About the Questions
+
+The built-in questions were generated with AI from course study material. I have not always verified that every question, answer, and explanation is actually correct, so treat them as a study aid, not as a reference: some may contain mistakes.
+
 ## Translations
 
 All 11 built-in subjects and 2,383 questions are available in both Italian and English. English translations were produced with AI assistance and are structured as lightweight overlay files located under `traduzioni/en/`.
