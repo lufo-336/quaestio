@@ -732,10 +732,12 @@ Spec `docs/superpowers/specs/2026-11-14-repo-pubblico-design.md`, piano
   descrizione/topics/homepage su GitHub.
 - Documenti di lavoro con l'IA **restano pubblici** (scelta di Luca): ripuliti da
   percorsi personali e identità di firma, rimossi i due LEGGIMI sulle macchine,
-  `docs/README.md` in inglese. Storico git non riscritto: lì restano email edu,
-  percorsi e l'identità Apple (commit `5027f8f`), accettato.
+  `docs/README.md` in inglese. Storico riscritto il 15/11 con `git filter-repo
+  --replace-text` (percorsi con nomi utente, identità Apple, UDID/nome iPad); resta
+  l'email edu dei commit (scelta di Luca). Il README lo dichiara. Copie su altre
+  macchine da riclonare.
 - Trovato e corretto il **sito web rotto** dal 14/11 (trappola 28).
-- **Resta (solo su ok di Luca)**: `.gitignore` per `.remember/ .revisione/
-  .superpowers/ .claude/` e `gh repo edit --visibility public`.
+- `.gitignore` per `.remember/ .revisione/ .superpowers/ .claude/` fatto.
+- **Resta (solo su ok di Luca)**: `gh repo edit --visibility public`.
 - Annotato: con UI in inglese il nome della modalità multi-materia resta
   "Quizzone" (Home/Cronologia/Riepilogo) — da tradurre.
