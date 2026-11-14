@@ -106,14 +106,14 @@
         "Because `git revert` creates a new commit that undoes the effect of the previous one, preserving the shared history"
       ]
     },
-    "7a384523fdb5": {
-      "domanda": "What can an atomic commit be compared to?",
-      "spiegazione": "A commit is like a save point in a video game: if the code breaks, you revert to the last commit where it was working.",
+    "8c20f4229252": {
+      "domanda": "What is the main advantage of splitting work into atomic commits in Git?",
+      "spiegazione": "An atomic commit encapsulates a single coherent logical change: like a targeted save point, it makes it easy to pinpoint an issue and revert to a working state.",
       "risposte": [
-        "A photograph",
-        "An email message",
-        "A save point in a video game, which you can return to if something goes wrong",
-        "A nightly backup"
+        "It reduces the overall size of binary files saved on disk",
+        "It automatically sends an email notification to all collaborators",
+        "It allows isolating each logical change and easily reverting or restoring it if something goes wrong",
+        "It performs an automatic nightly backup of the entire operating system"
       ]
     },
     "cfaf6ee62cab": {
@@ -606,9 +606,9 @@
         "Exclusively the branches located on the shared remote server"
       ]
     },
-    "ec9a95fb2477": {
-      "domanda": "During the installation of Git for Windows, what value is recommended for the default branch?",
-      "spiegazione": "The modern standard used by GitHub and the community is to set `main` as the default branch name.",
+    "a3cbb8e40189": {
+      "domanda": "When configuring Git (or installing Git for Windows), which default branch name is today's standard adopted by GitHub and the community?",
+      "spiegazione": "The modern standard used by GitHub and the community is to set `main` as the default branch name (`init.defaultBranch`).",
       "risposte": [
         "`master`",
         "`trunk`",
@@ -636,8 +636,8 @@
         "The current branch"
       ]
     },
-    "e7038bbb4afb": {
-      "domanda": "What is the difference between 'Restore this version' and 'Create a copy'?",
+    "38853f6cfd41": {
+      "domanda": "In the version history of a cloud editor (such as Google Docs), what is the difference between 'Restore this version' and 'Create a copy'?",
       "spiegazione": "Restore replaces the current document with the selected version; Create a copy extracts that version into a new independent document, without affecting the original.",
       "risposte": [
         "Restore replaces the current document, Create a copy generates a new independent file",
@@ -776,14 +776,14 @@
         "Sets the upstream"
       ]
     },
-    "075aa87602f9": {
-      "domanda": "Which default editors are recommended to choose during Git installation?",
-      "spiegazione": "It is recommended to choose nano or VS Code as the default editor during Git for Windows installation.",
+    "c144440f0364": {
+      "domanda": "Among the following options, which are actual text editors suitable to be configured as the default editor in Git for writing commit messages?",
+      "spiegazione": "Git requires a plain text editor (terminal-based like `nano` or graphical like VS Code with `--wait`) to compose commit messages and handle interactive rebases.",
       "risposte": [
         "nano or VS Code",
         "Excel",
-        "The classic Notepad included in the Windows operating system",
-        "Any word processing program such as a spreadsheet"
+        "A proprietary spreadsheet manager designed for financial analysis",
+        "Any software application used to create accounting tables and charts"
       ]
     },
     "697fabc7cc1f": {
@@ -1026,12 +1026,12 @@
         "To delete the history"
       ]
     },
-    "4a8fd44ff64d": {
-      "domanda": "Where must the `.gitignore` file be located to be recognized by Git?",
-      "spiegazione": "The `.gitignore` file should be placed in the project root, in the same location as the `.git` directory, to be recognized.",
+    "98f0cb26faf8": {
+      "domanda": "Where is the main `.gitignore` file typically placed so that its rules apply to the entire Git repository?",
+      "spiegazione": "The main `.gitignore` file is placed in the root directory of the repository (next to the `.git` folder) so that its rules apply to the entire project.",
       "risposte": [
         "Inside the `.git` folder",
-        "In the project root directory, where `.git` is located",
+        "In the project root directory, where the `.git` folder is located",
         "In the user's home directory of the operating system",
         "In `node_modules`"
       ]
@@ -1136,13 +1136,13 @@
         "It must consist of exactly ten words, no more and no less"
       ]
     },
-    "00d88694b1b0": {
-      "domanda": "Why is a trailing space after a `.gitignore` rule a problem?",
-      "spiegazione": "A trailing space silently breaks the rule: Git looks for a file whose name includes that space, and the rule never matches anything.",
+    "3b5de41e3d35": {
+      "domanda": "In a `.gitignore` file, what happens if you put a trailing space escaped with a backslash (`\\ `) at the end of a rule?",
+      "spiegazione": "In `.gitignore`, unescaped trailing spaces are ignored, but if escaped with a backslash (`\\ `) they become part of the pattern: Git will look for a file whose name includes that trailing space.",
       "risposte": [
         "It creates a comment",
         "It changes the color",
-        "It silently breaks the rule: Git looks for a file name that includes that space and finds nothing",
+        "The space is included in the pattern: Git looks for a file name ending with that space and the rule fails to match the normal file",
         "It makes the file larger"
       ]
     },
@@ -1246,14 +1246,14 @@
         "Go back by 2 commits from the current point"
       ]
     },
-    "e3bad2817cc4": {
-      "domanda": "How should the Cmder (Full version) file be handled after downloading?",
-      "spiegazione": "Cmder (Full version) is used by extracting the zip into a folder, without opening the .zip file directly.",
+    "999a1736d33c": {
+      "domanda": "How do you use the portable terminal emulator Cmder (Full version), which is distributed as a `.zip` archive bundling Git for Windows?",
+      "spiegazione": "Being a portable application distributed as a `.zip` archive, Cmder must be extracted into a folder before launching the executable, rather than run directly from inside the compressed archive.",
       "risposte": [
         "It must be uploaded to GitHub before use",
         "It must be opened directly from within the compressed zip file",
-        "It must be executed as an installer",
-        "It simply needs to be extracted (unzipped) into a new folder"
+        "It must be run as a system installer requiring a mandatory reboot",
+        "It simply needs to be extracted (unzipped) into a folder and run from there"
       ]
     },
     "e6ea755995a3": {
@@ -1316,9 +1316,9 @@
         "Locks the editor"
       ]
     },
-    "8d713c26f2a8": {
-      "domanda": "What do three dashes --- on a line by themselves create?",
-      "spiegazione": "Three dashes --- on their own line create a horizontal rule.",
+    "107edc803ef9": {
+      "domanda": "In Markdown, what do three dashes `---` written on a line by themselves (preceded by a blank line) create?",
+      "spiegazione": "In Markdown, three dashes `---` on their own line (not immediately below a line of text) create a horizontal rule (thematic break).",
       "risposte": [
         "A code block",
         "A main heading",
@@ -2286,14 +2286,14 @@
         "Compresses commits"
       ]
     },
-    "5da598a57b94": {
-      "domanda": "In a publishing analogy, what does the 'published' `main` branch correspond to?",
-      "spiegazione": "Main is like a published book; a branch is like a private draft: you publish (merge) only when the draft is ready.",
+    "b6f9f2125a2e": {
+      "domanda": "If we compare the Git workflow to book publishing, where feature branches are working drafts, what does the stable `main` branch correspond to?",
+      "spiegazione": "The `main` branch represents the official, stable version of the project (like a published book), while feature branches are private drafts that get merged only when ready.",
       "risposte": [
         "A rough draft that is thrown away at the end of the work",
         "A temporary folder created by the operating system for files",
         "A private draft on which all modifications and experiments are made",
-        "A published book"
+        "A published book, containing only ready and approved versions"
       ]
     },
     "3a43cc12c410": {
@@ -2336,13 +2336,13 @@
         "A giant commit"
       ]
     },
-    "20cdf20922b4": {
-      "domanda": "In the suitcase analogy for Git's four zones, what does placing items on the bed correspond to?",
-      "spiegazione": "The wardrobe represents the working directory, the items on the bed represent the staging area (selected but not yet 'packed'), and the closed suitcase represents the commit.",
+    "34bb3896ad49": {
+      "domanda": "If we compare the Git workflow to packing for a trip (wardrobe = working directory, bed = selecting clothes, closed suitcase = commit, shipping = push), what does placing items on the bed correspond to?",
+      "spiegazione": "The wardrobe represents the working directory, the items placed on the bed represent the staging area (selected with `git add` but not yet committed), and the closed suitcase represents the commit.",
       "risposte": [
         "The push to the remote",
         "The working directory",
-        "The staging area: you've chosen what to bring, but you haven't closed the suitcase yet",
+        "The staging area: you've chosen what to include, but you haven't closed the suitcase (commit) yet",
         "The final commit"
       ]
     },

@@ -128,15 +128,15 @@
     {
         "id": 10,
         "categoria": "Appendice: commit atomici",
-        "domanda": "A cosa si può paragonare un commit atomico?",
+        "domanda": "Qual è il vantaggio principale di suddividere il lavoro in commit atomici in Git?",
         "risposte": [
-            "A una fotografia",
-            "A un messaggio email",
-            "A un punto di salvataggio in un videogioco, a cui puoi tornare se qualcosa va storto",
-            "A un backup notturno"
+            "Riduce le dimensioni complessive dei file binari salvati su disco",
+            "Invia automaticamente una notifica email a tutti i collaboratori",
+            "Permette di isolare ogni modifica logica e di annullarla o ripristinarla facilmente se qualcosa va storto",
+            "Esegue un backup notturno automatico dell'intero sistema operativo"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Un commit è come un save point di un videogioco: se il codice si rompe, torni all'ultimo commit in cui funzionava.",
+        "spiegazione": "Un commit atomico racchiude una singola modifica logica coerente: come un punto di salvataggio mirato, permette di individuare subito un problema e tornare a uno stato funzionante.",
         "tipo": "teoria"
     },
     {
@@ -828,7 +828,7 @@
     {
         "id": 60,
         "categoria": "Appendice: installazione",
-        "domanda": "Durante l'installazione di Git for Windows, quale valore è consigliato impostare per il default branch?",
+        "domanda": "Durante la configurazione di Git (o l'installazione di Git for Windows), quale nome per il default branch è oggi lo standard adottato da GitHub e dalla comunità?",
         "risposte": [
             "`master`",
             "`trunk`",
@@ -836,7 +836,7 @@
             "`dev`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Lo standard moderno utilizzato da GitHub e dalla comunità è impostare `main` come nome del branch di default.",
+        "spiegazione": "Lo standard moderno utilizzato da GitHub e dalla comunità è impostare `main` come nome del branch di default (`init.defaultBranch`).",
         "tipo": "teoria"
     },
     {
@@ -870,7 +870,7 @@
     {
         "id": 63,
         "categoria": "Appendice: version history",
-        "domanda": "Qual è la differenza tra 'Ripristina questa versione' e 'Crea una copia'?",
+        "domanda": "Nella cronologia delle versioni di un editor cloud (come Google Docs), qual è la differenza tra 'Ripristina questa versione' e 'Crea una copia'?",
         "risposte": [
             "Ripristina sostituisce il documento corrente, Crea una copia genera un nuovo file indipendente",
             "Sono identiche",
@@ -1066,15 +1066,15 @@
     {
         "id": 77,
         "categoria": "Appendice: installazione",
-        "domanda": "Quali editor di default si consiglia di scegliere durante l'installazione di Git?",
+        "domanda": "Tra le seguenti opzioni, quali sono veri editor di testo adatti a essere configurati come editor di default in Git per scrivere i messaggi di commit?",
         "risposte": [
             "nano o VS Code",
             "Excel",
-            "Il blocco note classico incluso nel sistema operativo Windows",
-            "Un qualsiasi programma di videoscrittura come un foglio di calcolo"
+            "Un gestore di fogli di calcolo proprietario per l'analisi finanziaria",
+            "Un qualsiasi programma per la creazione di tabelle e grafici contabili"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "Si consiglia di scegliere come editor di default nano oppure VS Code durante l'installazione di Git for Windows.",
+        "spiegazione": "Git richiede un editor di testo puro (da terminale come `nano` o grafico come VS Code con `--wait`) per comporre i messaggi di commit e gestire i rebase interattivi.",
         "tipo": "teoria"
     },
     {
@@ -1416,15 +1416,15 @@
     {
         "id": 102,
         "categoria": "Appendice: .gitignore",
-        "domanda": "Dove deve trovarsi il file `.gitignore` per essere riconosciuto da Git?",
+        "domanda": "Dove si posiziona tipicamente il file `.gitignore` principale affinché le sue regole valgano per l'intero repository Git?",
         "risposte": [
             "Dentro la cartella `.git`",
-            "Nella directory radice del progetto, dove c'è `.git`",
+            "Nella directory radice del progetto, dove si trova la cartella `.git`",
             "Nella cartella home personale dell'utente del sistema operativo",
             "In `node_modules`"
         ],
         "rispostaCorretta": 1,
-        "spiegazione": "Il `.gitignore` va nella root del progetto, la stessa posizione della cartella `.git`, per essere riconosciuto.",
+        "spiegazione": "Il file `.gitignore` principale si posiziona nella directory radice del repository (accanto alla cartella `.git`) così che le sue regole si applichino a tutto il progetto.",
         "tipo": "teoria"
     },
     {
@@ -1570,15 +1570,15 @@
     {
         "id": 113,
         "categoria": "Appendice: .gitignore",
-        "domanda": "Perché uno spazio finale dopo una regola di `.gitignore` è un problema?",
+        "domanda": "In un file `.gitignore`, cosa succede se si inserisce uno spazio finale preceduto da backslash (`\\ `) al termine di una regola?",
         "risposte": [
             "Crea un commento",
             "Cambia il colore",
-            "Rompe la regola in modo silenzioso: Git cerca un nome di file che include quello spazio e non trova nulla",
+            "Lo spazio viene incluso nel pattern: Git cerca un nome di file che termina con quello spazio e la regola non corrisponde al file normale",
             "Rende il file più grande"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Uno spazio finale rompe la regola senza errori: Git cerca un file il cui nome contiene quello spazio, e la regola non corrisponde mai a nulla.",
+        "spiegazione": "In `.gitignore` gli spazi finali semplici vengono ignorati, ma se sono preceduti da backslash (`\\ `) fanno parte del pattern: Git cercherà un file il cui nome contiene quello spazio finale.",
         "tipo": "codice"
     },
     {
@@ -1724,15 +1724,15 @@
     {
         "id": 124,
         "categoria": "Appendice: installazione",
-        "domanda": "Come va trattato il file Cmder (Full version) dopo il download?",
+        "domanda": "Come si utilizza l'emulatore di terminale portabile Cmder (Full version), distribuito come archivio `.zip` che include già Git for Windows?",
         "risposte": [
             "Va caricato su GitHub prima dell'uso",
             "Va aperto direttamente dall'interno del file zip compresso",
-            "Va eseguito come installer",
-            "Va semplicemente decompresso (unzip) in una nuova cartella"
+            "Va eseguito come installer di sistema con riavvio obbligatorio",
+            "Va semplicemente decompresso (unzip) in una cartella ed eseguito da lì"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Cmder (Full version) si usa decomprimendo lo zip in una cartella, senza aprire direttamente il file .zip.",
+        "spiegazione": "Essendo un'applicazione portabile distribuita in formato `.zip`, Cmder va estratto in una cartella prima di avviare l'eseguibile, senza eseguirlo dall'interno dell'archivio compresso.",
         "tipo": "teoria"
     },
     {
@@ -1822,7 +1822,7 @@
     {
         "id": 131,
         "categoria": "Appendice: README e Markdown",
-        "domanda": "Cosa creano tre trattini --- su una riga a sé stante?",
+        "domanda": "In Markdown, cosa creano tre trattini `---` scritti su una riga a sé stante (preceduta da una riga vuota)?",
         "risposte": [
             "Un blocco di codice",
             "Un titolo principale",
@@ -1830,7 +1830,7 @@
             "Un elenco numerato"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Tre trattini --- su una riga propria creano una linea orizzontale di separazione (horizontal rule).",
+        "spiegazione": "In Markdown, tre trattini `---` su una riga propria (non immediatamente sotto del testo) creano una linea orizzontale di separazione (thematic break / horizontal rule).",
         "tipo": "codice"
     },
     {
@@ -3180,15 +3180,15 @@
     {
         "id": 228,
         "categoria": "Branching e merging",
-        "domanda": "In un'analogia editoriale, a cosa corrisponde il branch `main` 'pubblicato'?",
+        "domanda": "Se paragoniamo il flusso di lavoro in Git alla pubblicazione editoriale, dove i branch secondari sono bozze di lavoro, a cosa corrisponde il branch `main` stabile?",
         "risposte": [
             "Un foglio di brutta copia che viene buttato via alla fine del lavoro",
             "Una cartella temporanea creata dal sistema operativo per i file",
             "Una bozza privata su cui si fanno tutte le modifiche e gli esperimenti",
-            "Un libro pubblicato"
+            "Un libro pubblicato, contenente solo le versioni pronte e approvate"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Main è come un libro pubblicato; un branch è come una bozza privata: pubblichi (merge) solo quando la bozza è pronta.",
+        "spiegazione": "Il branch `main` rappresenta la versione ufficiale e stabile del progetto (come un libro pubblicato), mentre i branch di sviluppo sono bozze private che vengono unite (merge) solo quando sono pronte.",
         "tipo": "teoria"
     },
     {
@@ -3250,15 +3250,15 @@
     {
         "id": 233,
         "categoria": "Git: architettura e zone",
-        "domanda": "Nell'analogia della valigia per le quattro zone di Git, a cosa corrisponde mettere gli oggetti sul letto?",
+        "domanda": "Se paragoniamo il flusso di Git alla preparazione di un viaggio (armadio = working directory, letto = scelta degli abiti, valigia chiusa = commit, spedizione = push), a cosa corrisponde appoggiare gli oggetti sul letto?",
         "risposte": [
             "Al push verso il remoto",
             "Al working directory",
-            "Alla staging area: hai scelto cosa portare, ma non hai ancora chiuso la valigia",
+            "Alla staging area: hai scelto cosa includere, ma non hai ancora chiuso la valigia (commit)",
             "Al commit finale"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "Il guardaroba è il working directory, gli oggetti sul letto sono la staging area (scelti ma non 'impacchettati'), la valigia chiusa è il commit.",
+        "spiegazione": "L'armadio rappresenta il working directory, gli oggetti appoggiati sul letto rappresentano la staging area (selezionati con `git add` ma non ancora confermati) e la valigia chiusa rappresenta il commit.",
         "tipo": "teoria"
     },
     {
