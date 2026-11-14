@@ -310,16 +310,16 @@
     {
         "id": 23,
         "categoria": "OOP",
-        "domanda": "In un modello con classi Gasoline ed Electricity, da che cosa dipende il comportamento diverso di refuel()?",
+        "domanda": "Dato questo modello basato su composizione, da che cosa dipende il comportamento diverso di `refuel()`?\n\n```python\nclass Car:\n    def __init__(self, fuel):\n        self.fuel = fuel\n    def refuel(self):\n        return self.fuel.supply()\n\nclass GasolineCar(Car):\n    def __init__(self):\n        super().__init__(Gasoline())\n\nclass ElectricCar(Car):\n    def __init__(self):\n        super().__init__(Electricity())\n```",
         "risposte": [
-            "Dall'oggetto fuel a cui refuel() delega",
+            "Dall'oggetto `fuel` a cui `refuel()` delega",
             "Dal nome della classe",
-            "Dall'override di refuel() fatto nella classe figlia",
-            "Da un parametro passato a refuel()"
+            "Dall'override di `refuel()` fatto nella classe figlia",
+            "Da un parametro passato a `refuel()`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "refuel() è lo stesso, ereditato: cambia l'oggetto fuel creato nel costruttore. È la composizione.",
-        "tipo": "architettura"
+        "spiegazione": "`refuel()` è lo stesso, ereditato: cambia l'oggetto `fuel` creato nel costruttore. È la composizione.",
+        "tipo": "codice"
     },
     {
         "id": 24,
@@ -996,15 +996,15 @@
     {
         "id": 72,
         "categoria": "OOP",
-        "domanda": "Come si ottiene un'interfaccia in Python, che non ha il costrutto interface?",
+        "domanda": "Come si definisce un'interfaccia in Python, che non ha la parola chiave `interface`?",
         "risposte": [
-            "Con una classe vuota",
-            "Con la parola chiave protocol",
-            "Non si può",
-            "Con il duck typing o con una ABC che ha solo metodi astratti"
+            "Con una classe vuota senza metodi",
+            "Con il decoratore `@interface`",
+            "Non si può definire in alcun modo",
+            "Con il duck typing, una `ABC` o `typing.Protocol`"
         ],
         "rispostaCorretta": 3,
-        "spiegazione": "Approccio pythonico: duck typing. Per imporre un contratto: una classe astratta (ABC) con tutti i metodi astratti.",
+        "spiegazione": "In Python si usa il duck typing implicito, oppure `abc.ABC` con `@abstractmethod` per imporre il contratto a runtime, o `typing.Protocol` per il controllo statico strutturale.",
         "tipo": "teoria"
     },
     {
@@ -1284,7 +1284,7 @@
             "`Marco Giulia`"
         ],
         "rispostaCorretta": 0,
-        "spiegazione": "writelines, come write, non aggiunge gli a capo: vanno messi esplicitamente.",
+        "spiegazione": "`writelines`, come `write`, non aggiunge gli a capo: vanno messi esplicitamente.",
         "tipo": "codice"
     },
     {
@@ -1466,7 +1466,7 @@
             "`1 1`"
         ],
         "rispostaCorretta": 2,
-        "spiegazione": "add() traccia l'oggetto ma non scrive: l'id lo assegna il database all'INSERT, che avviene al commit (o al flush).",
+        "spiegazione": "`add()` traccia l'oggetto ma non scrive nel database: l'`id` viene assegnato dal database durante l'`INSERT`, che avviene al `commit` (o al `flush`).",
         "tipo": "codice"
     },
     {

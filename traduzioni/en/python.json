@@ -234,14 +234,14 @@
         "Kernighan and Ritchie"
       ]
     },
-    "c15213e08854": {
-      "domanda": "In a model with Gasoline and Electricity classes, what determines the different behavior of refuel()?",
-      "spiegazione": "refuel() is the same, inherited: the fuel object created in the constructor changes. It is composition.",
+    "bfbb24cdb979": {
+      "domanda": "Given this composition-based model, what determines the different behavior of `refuel()`?\n\n```python\nclass Car:\n    def __init__(self, fuel):\n        self.fuel = fuel\n    def refuel(self):\n        return self.fuel.supply()\n\nclass GasolineCar(Car):\n    def __init__(self):\n        super().__init__(Gasoline())\n\nclass ElectricCar(Car):\n    def __init__(self):\n        super().__init__(Electricity())\n```",
+      "spiegazione": "`refuel()` is the same, inherited: the `fuel` object created in the constructor changes. It is composition.",
       "risposte": [
-        "The fuel object to which refuel() delegates",
+        "The `fuel` object to which `refuel()` delegates",
         "The class name",
-        "The override of refuel() done in the child class",
-        "A parameter passed to refuel()"
+        "The override of `refuel()` done in the child class",
+        "A parameter passed to `refuel()`"
       ]
     },
     "07ce4e206a25": {
@@ -724,14 +724,14 @@
         "No, it can be missing, but it remains the standard way"
       ]
     },
-    "07934ca70fb9": {
-      "domanda": "How do you get an interface in Python, which lacks the interface construct?",
-      "spiegazione": "Pythonic approach: duck typing. To enforce a contract: an abstract class (ABC) with all abstract methods.",
+    "6d9295dc5da6": {
+      "domanda": "How do you define an interface in Python, which lacks the `interface` keyword?",
+      "spiegazione": "In Python you use implicit duck typing, or `abc.ABC` with `@abstractmethod` to enforce the contract at runtime, or `typing.Protocol` for structural static type checking.",
       "risposte": [
-        "With an empty class",
-        "With the protocol keyword",
-        "It is not possible",
-        "With duck typing or with an ABC that has only abstract methods"
+        "With an empty class without methods",
+        "With the `@interface` decorator",
+        "It cannot be defined in any way",
+        "With duck typing, an `ABC`, or `typing.Protocol`"
       ]
     },
     "786d82de1a21": {
@@ -926,7 +926,7 @@
     },
     "69e8fdd0b769": {
       "domanda": "What does the file contain after this code?\n\n```python\nwith open(\"s.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"Marco\", \"Giulia\"])\nprint(open(\"s.txt\", encoding=\"utf-8\").read())\n```",
-      "spiegazione": "A describes the correct output. writelines, like write, does not add newlines: they must be added explicitly.",
+      "spiegazione": "`writelines`, like `write`, does not add newlines: they must be added explicitly.",
       "risposte": [
         "`MarcoGiulia`",
         "`['Marco', 'Giulia']`",
@@ -1056,7 +1056,7 @@
     },
     "9dfbeba7cd3b": {
       "domanda": "What do the two print statements output?\n\n```python\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\nengine = create_engine(\"sqlite://\")\nBase.metadata.create_all(engine)\nwith Session(engine) as s:\n    u = User(name=\"Davide\")\n    s.add(u)\n    print(u.id, end=\" \")\n    s.commit()\n    print(u.id)\n```",
-      "spiegazione": "A describes the correct behavior: `add()` registers the object but does not write it to the database; the ID is assigned by the database during the INSERT operation, which occurs at commit (or flush).",
+      "spiegazione": "`add()` registers the object but does not write it to the database: the `id` is assigned by the database during the `INSERT`, which occurs at `commit` (or `flush`).",
       "risposte": [
         "`0 1`",
         "Raises `InvalidRequestError`",
