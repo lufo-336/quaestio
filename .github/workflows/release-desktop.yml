@@ -1,0 +1,98 @@
+name: Desktop builds for Releases
+
+# Compila la versione desktop (Windows, macOS Apple Silicon, Linux) e la allega
+# alla Release appena pubblicata. L'APK resta compilato e firmato a mano su
+# Windows (la chiave di firma non sta su GitHub, vedi trappola 24).
+#
+# Avvio manuale (workflow_dispatch): senza "tag" produce solo gli artefatti del
+# workflow (utile per provarlo); con "tag" allega i file a quella Release.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag della Release a cui allegare i file (vuoto = solo artefatti)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - rid: win-x64
+            os: windows-latest
+            exe: Wsa.Quiz.Desktop.exe
+            out: Quaestio.exe
+            pkg: Quaestio-windows-x64.zip
+          - rid: osx-arm64
+            os: macos-latest
+            exe: Wsa.Quiz.Desktop
+            out: Quaestio
+            pkg: Quaestio-macos-arm64.tar.gz
+          - rid: linux-x64
+            os: ubuntu-latest
+            exe: Wsa.Quiz.Desktop
+            out: Quaestio
+            pkg: Quaestio-linux-x64.tar.gz
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Su una Release compila il codice del suo tag; a mano, il ramo scelto.
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Pin .NET 10 SDK
+        # I runner possono avere anche .NET 11: senza global.json vincerebbe quello (trappola 28).
+        run: |
+          dotnet new globaljson --sdk-version 10.0.100 --roll-forward latestFeature --force
+          dotnet --version
+
+      - name: Publish (self-contained, single file)
+        run: >
+          dotnet publish wsa.quiz.desktop -c Release -r ${{ matrix.rid }} --self-contained
+          -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
+          -o publish
+
+      - name: Package
+        # Solo l'eseguibile: materie e domande sono incorporate e l'app ripiega su quelle.
+        run: |
+          mkdir dist
+          cp "publish/${{ matrix.exe }}" "dist/${{ matrix.out }}"
+          cd dist
+          if [ "${{ matrix.rid }}" = "win-x64" ]; then
+            7z a "../${{ matrix.pkg }}" "${{ matrix.out }}"
+          else
+            chmod +x "${{ matrix.out }}"
+            tar -czf "../${{ matrix.pkg }}" "${{ matrix.out }}"
+          fi
+          cd ..
+          ls -la "${{ matrix.pkg }}"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.pkg }}
+          path: ${{ matrix.pkg }}
+
+      - name: Attach to Release
+        if: github.event_name == 'release' || inputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: gh release upload "$TAG" "${{ matrix.pkg }}" --clobber --repo "${{ github.repository }}"
