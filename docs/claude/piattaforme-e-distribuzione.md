@@ -140,7 +140,7 @@ riscritta per toglierle e `dist/` è ora nel `.gitignore`.
 Per pubblicare una versione nuova: aumenta di 1 `ApplicationVersion` in
 `wsa.quiz.android/Wsa.Quiz.Android.csproj` (è il `versionCode`: se non cresce,
 Android rifiuta di installare l'APK sopra quello vecchio; il numero visibile viene
-da `<Version>` in `Directory.Build.props`), poi `dotnet build wsa.quiz.android -c Release`, poi
+da `<Version>` in `Directory.Build.props`), poi **cancellare `wsa.quiz.android/bin` e `obj`** e `dotnet build wsa.quiz.android -c Release` (build pulita, trappola 29), provarlo sul telefono, poi
 
 ```powershell
 gh release create apk-AAAA-MM-GG `

@@ -325,3 +325,13 @@
     `global.json` solo in CI (`dotnet new globaljson --sdk-version 10.0.100
     --roll-forward latestFeature --force`). Dopo il fix il browser può tenere in cache
     il vecchio `dotnet.js`: ricaricare con Cmd+Shift+R.
+
+29. **APK Release da build incrementale = crash all'avvio** *(scoperta 2026-11-15)*.
+    Dopo una modifica al solo `AndroidManifest.xml`, `dotnet build -c Release` è
+    durato 9 secondi e ha prodotto un APK firmato che si installa ma muore subito:
+    `java.lang.UnsatisfiedLinkError: No implementation found for void
+    crc...AvaloniaAndroidApplication_1.n_onCreate()` (logcat, filtrare `FATAL`).
+    Il codice non c'entra e disinstallare non serve: l'APK è incoerente.
+    **Soluzione**: prima di ogni APK da pubblicare cancellare
+    `wsa.quiz.android/bin` e `wsa.quiz.android/obj` e ricompilare da zero
+    (~1 minuto), poi provarlo sul telefono **prima** di `gh release create`.
