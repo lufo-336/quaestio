@@ -770,3 +770,22 @@ Cosa c'è in lucablog da cui partire (prima idea, da validare con i mockup):
 
 Metodo: prima elenco dei difetti, poi 2-3 mockup affiancati (feedback
 "mockup prima della UI"), poi spec e piano.
+
+### 🗺️ In roadmap — partita sui punti deboli (chiesta il 2026-11-15)
+
+Una modalità che costruisce la partita dalle domande sapute meno: l'utente
+sceglie il **livello di fallimento** degli argomenti e gioca solo quelli.
+- **La scala c'è già** ed è quella della heatmap Statistiche
+  (`QuizColors.HeatmapBordo`): per categoria, errore < 20% verde, 20-59% ambra,
+  ≥ 60% rosso. Errore = `!(Corretta && Tentativi == 1)` (`StatisticheService`).
+- **Solo partite concluse**: oggi `StatisticheService.Calcola` conta anche gli
+  abbandonati; questa modalità deve filtrare `RisultatoQuiz.Abbandonato == false`.
+  Basta un parametro/filtro a monte, il calcolo resta lo stesso.
+- **Da decidere con Luca**:
+  - se entrano tutte le domande delle categorie al livello scelto, o solo quelle
+    già sbagliate (`CategoriaStat.Sbagliate`), o un misto;
+  - se `TempoScaduto` conta come partita conclusa;
+  - livelli cumulativi ("ambra e peggio") o singoli; soglia minima di domande
+    viste perché una categoria conti (1 su 1 sbagliata = 100%);
+  - dove sta in Home (accanto ai filtri tipo/materie, punto 5 roadmap 11/11).
+- Con cronologia vuota o nessuna categoria al livello scelto: messaggio, non partita vuota.
