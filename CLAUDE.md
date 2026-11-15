@@ -7,7 +7,7 @@
 > namespace/progetti `Wsa.Quiz.*`, `ApplicationId it.eduits.wsaquiz`, path/nomi
 > file, e la cartella dati utente `WsaQuiz` (rinominarla farebbe perdere
 > cronologia/preferenze). "WSA" nel resto del documento resta come nome del
-> corso (Web & Software Architect), non del brand.
+> corso (Web Solutions Architect), non del brand.
 
 > Documento unico di contesto. Sostituisce e unifica `README_STEP1/2/3.md`,
 > `WSA_QUIZ_HANDOFF.md` e le spec/plan in `docs/superpowers/`.

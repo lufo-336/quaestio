@@ -20,7 +20,7 @@ A multi-subject quiz application built with C# / .NET 10 and Avalonia UI for stu
 
 ## The Story
 
-Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web & Software Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
+Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web Solutions Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
 
 Today, the repository includes **11 subjects and 2,383 questions**, with both the application interface and the question banks available in Italian and English.
 
@@ -235,6 +235,8 @@ dotnet publish wsa.quiz.browser -c Release
 
 The application is branded as **Quaestio** (from the Latin for inquiry or examination). Internal namespaces (`Wsa.Quiz.*`), project names (`wsa.quiz.*`), package identifiers (`it.eduits.wsaquiz`), and the user data folder (`WsaQuiz`) retain the original naming scheme. Renaming internal identifiers would risk breaking saved user history, application preferences, and build configurations; they remain as part of the project's history.
 
+Italian was the project's starting language, and many things still reflect that: code identifiers (classes such as `Domanda`, `Materia`, `SessioneQuiz`), JSON field names, folder and file names (`domande/`, `traduzioni/`, `materie.json`), the question-generation guide, commit messages, and the working documents in `docs/`. The app interface and the questions are available in both Italian and English.
+
 ## About the Questions
 
 The built-in questions were generated with AI from course study material. I have not always verified that every question, answer, and explanation is actually correct, so treat them as a study aid, not as a reference: some may contain mistakes.
@@ -252,7 +254,7 @@ All 11 built-in subjects and 2,383 questions are available in both Italian and E
 
 ## Acknowledgments
 
-Thanks to my classmates from the Web & Software Architect course for testing the app.
+Thanks to my classmates from the Web Solutions Architect course for testing the app.
 
 ## License
 
