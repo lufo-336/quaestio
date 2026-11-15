@@ -778,13 +778,12 @@ sceglie il **livello di fallimento** degli argomenti e gioca solo quelli.
 - **La scala c'è già** ed è quella della heatmap Statistiche
   (`QuizColors.HeatmapBordo`): per categoria, errore < 20% verde, 20-59% ambra,
   ≥ 60% rosso. Errore = `!(Corretta && Tentativi == 1)` (`StatisticheService`).
-- **Solo partite concluse**: oggi `StatisticheService.Calcola` conta anche gli
-  abbandonati; questa modalità deve filtrare `RisultatoQuiz.Abbandonato == false`.
-  Basta un parametro/filtro a monte, il calcolo resta lo stesso.
+- **Partite concluse e abbandonate** (deciso da Luca il 15/11): come le
+  Statistiche, quindi si riusa `StatisticheService.Calcola` così com'è. Restano
+  fuori solo i quiz sospesi (non sono in cronologia).
 - **Da decidere con Luca**:
   - se entrano tutte le domande delle categorie al livello scelto, o solo quelle
     già sbagliate (`CategoriaStat.Sbagliate`), o un misto;
-  - se `TempoScaduto` conta come partita conclusa;
   - livelli cumulativi ("ambra e peggio") o singoli; soglia minima di domande
     viste perché una categoria conti (1 su 1 sbagliata = 100%);
   - dove sta in Home (accanto ai filtri tipo/materie, punto 5 roadmap 11/11).
