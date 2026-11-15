@@ -26,7 +26,7 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
 e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
-`apk-2026-11-06` (domande in inglese). Exe desktop portabile in
+`v2.0.0` (15/11, APK + desktop Windows/macOS/Linux). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
 provato il 2026-11-09; **iPad fisico** (Apple ID gratuito, Debug e Release
