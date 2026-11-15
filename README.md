@@ -20,7 +20,7 @@ A multi-subject quiz application built with C# / .NET 10 and Avalonia UI for stu
 
 ## The Story
 
-Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web Solutions Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
+Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web Solution Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
 
 Today, the repository includes **11 subjects and 2,383 questions**, with both the application interface and the question banks available in Italian and English.
 
@@ -254,7 +254,7 @@ All 11 built-in subjects and 2,383 questions are available in both Italian and E
 
 ## Acknowledgments
 
-Thanks to my classmates from the Web Solutions Architect course for testing the app.
+Thanks to my classmates from the Web Solution Architect course for testing the app.
 
 ## License
 

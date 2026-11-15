@@ -57,7 +57,7 @@ Lingua: inglese. Struttura in quest'ordine:
    `https://lufo-336.github.io/quaestio/` e APK dall'ultima Release
    (`https://github.com/lufo-336/quaestio/releases/latest`).
 2. **Screenshot** (vedi sotto).
-3. **La storia**: nata come quiz da console per ripassare il corso Web Solutions
+3. **La storia**: nata come quiz da console per ripassare il corso Web Solution
    Architect (WsA) di Luca; poi GUI Avalonia, Android, iOS, web;
    11 materie / 2383 domande; interfaccia e domande in italiano e inglese.
    Va detto chiaramente che l'app è stata **vibe-coded** con l'IA e che lo storico

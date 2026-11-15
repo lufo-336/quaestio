@@ -1589,7 +1589,7 @@ Sostituire il paragrafo introduttivo (righe 1-8 del README attuale) con:
 ```markdown
 # WSA Quiz
 
-App di quiz multi-materia pensata per ripassare il programma del corso **Web Solutions Architect (WSA)**. Tre eseguibili condividono lo stesso Core, gli stessi dati e la stessa cronologia:
+App di quiz multi-materia pensata per ripassare il programma del corso **Web Solution Architect (WSA)**. Tre eseguibili condividono lo stesso Core, gli stessi dati e la stessa cronologia:
 
 - **`wsa.quiz.cli`** — versione console. Pratica per ripassare senza distrazioni o da terminale.
 - **`wsa.quiz.desktop`** — versione grafica desktop (Avalonia 12).

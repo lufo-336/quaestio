@@ -64,7 +64,7 @@
   <data name="Impostazioni_TemaScuro" xml:space="preserve"><value>Dark</value></data>
   <data name="Impostazioni_TemaChiaro" xml:space="preserve"><value>Light</value></data>
   <data name="Impostazioni_Informazioni" xml:space="preserve"><value>About</value></data>
-  <data name="Impostazioni_DescrizioneApp" xml:space="preserve"><value>A quiz app for studying any subject: you can import your own questions from Manage content. It was born during the WsA course (Web Solutions Architect), so it comes with computer science questions included.</value></data>
+  <data name="Impostazioni_DescrizioneApp" xml:space="preserve"><value>A quiz app for studying any subject: you can import your own questions from Manage content. It was born during the WsA course (Web Solution Architect), so it comes with computer science questions included.</value></data>
   <data name="Impostazioni_Contenuti" xml:space="preserve"><value>Content</value></data>
   <data name="Impostazioni_ContenutiNota" xml:space="preserve"><value>Sections hidden in Manage content are not counted.</value></data>
   <data name="Impostazioni_Dati" xml:space="preserve"><value>Data</value></data>
