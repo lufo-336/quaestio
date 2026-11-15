@@ -741,3 +741,32 @@ Spec `docs/superpowers/specs/2026-11-14-repo-pubblico-design.md`, piano
 - **Resta (solo su ok di Luca)**: `gh repo edit --visibility public`.
 - Annotato: con UI in inglese il nome della modalità multi-materia resta
   "Quizzone" (Home/Cronologia/Riepilogo) — da tradurre.
+
+### 🗺️ In roadmap — revisione visiva e identità di Quaestio (chiesta il 2026-11-15)
+
+Non da fare subito. Due parti, sia app (Android/iOS) sia desktop/web:
+
+1. **Correzioni**: su telefono alcune scritte e riquadri si sovrappongono.
+   Prima di toccare il codice serve l'elenco dei punti (schermate da Luca).
+2. **Identità visiva originale**, ripresa dal sistema a griglia di
+   **lucablog** (`dev/lucablog`, spec `docs/superpowers/specs/2026-09-14-sistema-griglia-design.md`,
+   token in `src/styles/tokens.css`): stile svizzero a griglia esposta.
+
+Cosa c'è in lucablog da cui partire (prima idea, da validare con i mockup):
+- **Griglia**: 12 colonne (6 sotto 40rem), gronda 14, margine 28, modulo 28;
+  spazi multipli di 7. In Avalonia: `Grid` a colonne + linee disegnate sotto.
+- **Neutri**: Grafite nel chiaro (`#e8e7e3` fondo, `#141413` testo), Arena nello
+  scuro (`#0c0c0c` / `#f4f4f2`), righe da 1 px invece di ombre e card.
+- **Colore funzionale**: ocra `#ebaf00`, rosso `#d6414b`, blu `#3a6cb8`, verde
+  `#40a79b`, grigio. Mappano già su esito/heatmap (verde/ambra/rosso di
+  `QuizColors`) e possono diventare le scelte del colore utente (roadmap 11/11 p.2);
+  un colore per materia è un'altra possibilità.
+- **Carattere**: Archivo variabile (OFL), titoli pesanti e stretti. Rischio:
+  verificare se Avalonia regge l'asse di larghezza, altrimenti istanze statiche
+  (Archivo Condensed/ExtraBold). Il codice resta in JetBrains Mono.
+- **Segni**: le cinque fasce di colore accanto ai titoli, angoli vivi, campi di
+  colore pieni (es. risposta scelta, riepilogo); la heatmap è già una griglia.
+- Il monogramma "Q" (rebrand 18/07) può essere ridisegnato sul modulo.
+
+Metodo: prima elenco dei difetti, poi 2-3 mockup affiancati (feedback
+"mockup prima della UI"), poi spec e piano.
