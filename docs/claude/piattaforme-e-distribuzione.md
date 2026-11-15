@@ -60,6 +60,24 @@ sorgente, pacchetti finali diversi. RID utili: `win-x64`, `win-arm64`,
 > `-p:IncludeNativeLibrariesForSelfExtract=true` (impacchetta le native) e
 > `-p:DebugType=none` (niente `.pdb`).
 
+### Release automatiche della versione desktop (dal 2026-11-15)
+
+Il workflow `.github/workflows/release-desktop.yml` parte quando si **pubblica
+una Release** su GitHub: compila `wsa.quiz.desktop` per `win-x64`
+(windows-latest), `osx-arm64` (macos-latest, firma ad hoc automatica) e
+`linux-x64` (ubuntu-latest) con i flag del publish qui sotto, e allega
+`Quaestio-windows-x64.zip`, `Quaestio-macos-arm64.tar.gz`,
+`Quaestio-linux-x64.tar.gz` (solo l'eseguibile, ~44 MB compressi). Usa il
+`global.json` in CI della trappola 28. A mano (`gh workflow run
+release-desktop.yml`) senza input produce solo gli artefatti; con `-f tag=<tag>`
+li allega a quella Release.
+
+**Procedura di rilascio** (da Windows, dove c'è la chiave di firma dell'APK):
+compilare l'APK Release, poi
+`gh release create <tag> <apk> --title ... --notes ...` → il workflow aggiunge
+da solo i tre file desktop alla stessa Release. Gli eseguibili non sono firmati
+(SmartScreen su Windows, Gatekeeper su macOS: istruzioni nel README).
+
 ### Windows (`.exe` singolo autonomo)
 
 ```powershell

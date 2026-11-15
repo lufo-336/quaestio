@@ -3,7 +3,9 @@
 A multi-subject quiz application built with C# / .NET 10 and Avalonia UI for studying and self-assessment, running on desktop (Windows, macOS, Linux), mobile (Android, iOS/iPadOS), and the web (WebAssembly).
 
 - **Try the Web version:** [lufo-336.github.io/quaestio](https://lufo-336.github.io/quaestio/)
-- **Download Android APK:** [Latest Release on GitHub](https://github.com/lufo-336/quaestio/releases/latest)
+- **Download for Windows, macOS (Apple Silicon), Linux and Android:** [Latest Release on GitHub](https://github.com/lufo-336/quaestio/releases/latest)
+
+The desktop downloads are a single self-contained executable (no .NET installation needed). They are not signed, so the first launch needs one extra step: on Windows, *More info → Run anyway* in the SmartScreen prompt; on macOS, right-click → *Open* (or `xattr -d com.apple.quarantine Quaestio` in Terminal). On Android, allow installing apps from unknown sources.
 
 ## Screenshots
 
