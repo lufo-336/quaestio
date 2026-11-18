@@ -12,15 +12,23 @@
 
     <DockPanel>
 
-        <!-- Header con bottone indietro + titolo -->
+        <!-- Header con bottone indietro + bottone ripassa + titolo -->
         <Grid DockPanel.Dock="Top"
-              ColumnDefinitions="Auto,*"
+              ColumnDefinitions="Auto,Auto,*"
               Margin="20,16,20,8">
             <Button Content="{x:Static r:Strings.Statistiche_Indietro}"
                     Click="OnIndietroClick"
                     Padding="14,6"
                     FontSize="12"/>
-            <TextBlock Grid.Column="1"
+            <Button Grid.Column="1"
+                    Content="{x:Static r:Strings.Statistiche_Ripassa}"
+                    Click="OnRipassaClick"
+                    Classes="accent"
+                    Padding="14,6"
+                    FontSize="12"
+                    Margin="8,0,0,0"
+                    IsVisible="{Binding HaSbagliate}"/>
+            <TextBlock Grid.Column="2"
                        Text="{Binding Titolo}"
                        FontSize="18" FontWeight="SemiBold"
                        VerticalAlignment="Center"

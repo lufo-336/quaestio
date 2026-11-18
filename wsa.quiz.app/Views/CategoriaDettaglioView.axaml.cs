@@ -20,6 +20,9 @@ public partial class CategoriaDettaglioView : UserControl, INotifyPropertyChange
 {
     public new event PropertyChangedEventHandler? PropertyChanged;
     public event EventHandler? IndietroRichiesto;
+    public event EventHandler<CategoriaStat>? RipassaRichiesto;
+
+    private CategoriaStat? _statCorrente;
 
     public ObservableCollection<DomandaSbagliata> Sbagliate { get; } = new();
 
@@ -28,6 +31,13 @@ public partial class CategoriaDettaglioView : UserControl, INotifyPropertyChange
     {
         get => _titolo;
         private set { if (_titolo != value) { _titolo = value; Raise(); } }
+    }
+
+    private bool _haSbagliate;
+    public bool HaSbagliate
+    {
+        get => _haSbagliate;
+        private set { if (_haSbagliate != value) { _haSbagliate = value; Raise(); } }
     }
 
     public CategoriaDettaglioView()
@@ -42,6 +52,7 @@ public partial class CategoriaDettaglioView : UserControl, INotifyPropertyChange
 
     public void Mostra(CategoriaStat stat)
     {
+        _statCorrente = stat;
         Titolo = string.Format(Strings.Statistiche_TitoloDettaglio,
             EtichetteContenuti.Correnti.Materia(stat.Materia),
             EtichetteContenuti.Correnti.Categoria(stat.Materia, stat.Categoria),
@@ -49,10 +60,17 @@ public partial class CategoriaDettaglioView : UserControl, INotifyPropertyChange
         Sbagliate.Clear();
         foreach (var d in stat.Sbagliate)
             Sbagliate.Add(d);
+        HaSbagliate = stat.Sbagliate.Count > 0;
     }
 
     private void OnIndietroClick(object? sender, RoutedEventArgs e)
         => IndietroRichiesto?.Invoke(this, EventArgs.Empty);
+
+    private void OnRipassaClick(object? sender, RoutedEventArgs e)
+    {
+        if (_statCorrente != null)
+            RipassaRichiesto?.Invoke(this, _statCorrente);
+    }
 
     private void OnKeyDownTunnel(object? sender, KeyEventArgs e)
     {

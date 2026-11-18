@@ -91,6 +91,13 @@
   <data name="Home_TipoArchitettura" xml:space="preserve"><value>Architettura</value></data>
   <data name="Home_TipoSuggerimento" xml:space="preserve"><value>Tocca per includere o escludere un tipo. Almeno uno resta acceso.</value></data>
   <data name="Home_SoloTipi" xml:space="preserve"><value>solo {0}</value></data>
+  <data name="Home_PuntiDeboliTitolo" xml:space="preserve"><value>Punti deboli</value></data>
+  <data name="Home_LivelloRosse" xml:space="preserve"><value>Rosse</value></data>
+  <data name="Home_LivelloAmbra" xml:space="preserve"><value>Ambra</value></data>
+  <data name="Home_LivelloVerdi" xml:space="preserve"><value>Verdi</value></data>
+  <data name="Home_LivelloNuove" xml:space="preserve"><value>Nuove</value></data>
+  <data name="Home_PuntiDeboliSuggerimento" xml:space="preserve"><value>Filtra le categorie in base allo storico. Con tutti accesi nessun filtro; con un limite di domande prima le sbagliate.</value></data>
+  <data name="Home_SoloLivelli" xml:space="preserve"><value>solo categorie {0}</value></data>
   <data name="Home_ModPerCategoria" xml:space="preserve"><value>Per categoria</value></data>
   <data name="Home_ModCompleto" xml:space="preserve"><value>Completo</value></data>
   <data name="Home_ModCompletoRandomizzato" xml:space="preserve"><value>Completo randomizzato</value></data>
@@ -233,6 +240,8 @@
   <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ sbagliata </value></data>
   <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> volte</value></data>
   <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ corretta: </value></data>
+  <data name="Statistiche_Ripassa" xml:space="preserve"><value>Ripassa</value></data>
+  <data name="Statistiche_RipassaModalita" xml:space="preserve"><value>{0} — Ripasso: {1}</value></data>
   <data name="Gestione_NDomande" xml:space="preserve"><value>{0} domande</value></data>
   <data name="Gestione_NDomandeBreve" xml:space="preserve"><value>{0} dom.</value></data>
   <data name="Gestione_BadgeImportata" xml:space="preserve"><value>Importata</value></data>

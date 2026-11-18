@@ -29,6 +29,9 @@ public class OpzioniQuiz
     /// <summary>Se >0, la sessione termina automaticamente dopo questi minuti (modalità a tempo).</summary>
     public int LimiteTempoMinuti { get; set; }
 
+    /// <summary>Id delle domande da prendere per prime quando c'è un limite di domande.</summary>
+    public List<string> IdPrioritari { get; set; } = new();
+
     /// <summary>Filtro per categorie. Vuoto = nessun filtro.</summary>
     public List<string> Categorie { get; set; } = new();
 

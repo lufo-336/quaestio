@@ -284,7 +284,11 @@ public class SessioneQuiz : ObservableObject
                 ? QuizService.DomandeRandomizzate(_poolIniziale)
                 : _poolIniziale.ToList();
             if (Opzioni.LimiteDomande > 0 && ordine.Count > Opzioni.LimiteDomande)
-                ordine = ordine.Take(Opzioni.LimiteDomande).ToList();
+            {
+                ordine = (Opzioni.IdPrioritari.Count > 0)
+                    ? QuizService.ApplicaLimiteConPriorita(ordine, Opzioni.LimiteDomande, Opzioni.IdPrioritari)
+                    : ordine.Take(Opzioni.LimiteDomande).ToList();
+            }
 
             if (Opzioni.Rotazione)
             {

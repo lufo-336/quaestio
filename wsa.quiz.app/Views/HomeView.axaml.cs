@@ -11,6 +11,7 @@ using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Statistiche;
 
 using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
@@ -46,6 +47,16 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
     /// <summary>Tipi spenti (chiavi canoniche). Vuoto = tutti accesi. Persistito da MainView.</summary>
     public List<string> TipiEsclusi => Tipi.Where(t => !t.IsSelected).Select(t => t.Id).ToList();
+
+    /// <summary>I quattro pulsanti del riquadro "Punti deboli" (rosse / ambra / verdi / nuove).</summary>
+    public ObservableCollection<LivelloSelezionabile> Livelli { get; } =
+        new(LivelliDebolezza.Tutti.Select(l => new LivelloSelezionabile(l)));
+
+    /// <summary>Livelli spenti (chiavi canoniche). Vuoto = tutti accesi. Persistito da MainView.</summary>
+    public List<string> LivelliEsclusi => Livelli.Where(l => !l.IsSelected).Select(l => l.Id).ToList();
+
+    private Dictionary<(string Materia, string Categoria), string> _livelliPerCategoria = new();
+    private HashSet<string> _idSbagliate = new(StringComparer.OrdinalIgnoreCase);
 
     // ------------------------------------------------------------------ OPZIONI
 
@@ -146,6 +157,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         InitializeComponent();
         DataContext = this;
         foreach (var t in Tipi) t.PropertyChanged += OnTipoPropertyChanged;
+        foreach (var l in Livelli) l.PropertyChanged += OnLivelloPropertyChanged;
         AggiornaRiepilogo();
         if (AppEnv.TouchMode)
         {
@@ -191,7 +203,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         // Trova il Border-zona piu' vicino antenato.
         var zona = focused.GetVisualAncestors()
             .OfType<Border>()
-            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni" or "ZonaTipo");
+            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni" or "ZonaTipo" or "ZonaLivelli");
         if (zona == null) return;
 
         // Raccogli tutti i controlli focusable dentro la zona, in ordine visivo.
@@ -257,6 +269,11 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         foreach (var t in Tipi)
             t.IsSelected = tuttiEsclusi || !esclusi.Contains(t.Id);
 
+        var esclusiLiv = preferenze.LivelliEsclusi ?? new List<string>();
+        bool tuttiLivEsclusi = Livelli.All(l => esclusiLiv.Contains(l.Id));
+        foreach (var l in Livelli)
+            l.IsSelected = tuttiLivEsclusi || !esclusiLiv.Contains(l.Id);
+
         // 1. Popolo materie con conteggio domande
         Materie.Clear();
         foreach (var m in materie)
@@ -316,6 +333,30 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         Raise(nameof(TipiEsclusi));
     }
 
+    private void OnLivelloPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(LivelloSelezionabile.IsSelected)) return;
+        // Almeno un livello resta acceso: spegnere l'ultimo darebbe sempre 0 domande.
+        if (sender is LivelloSelezionabile l && !l.IsSelected && Livelli.All(x => !x.IsSelected))
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() => l.IsSelected = true);
+            return;
+        }
+        AggiornaRiepilogo();
+        Raise(nameof(LivelliEsclusi));
+    }
+
+    /// <summary>
+    /// Ricalcola i livelli di debolezza delle categorie e le domande sbagliate
+    /// a partire dalle statistiche cronologia.
+    /// </summary>
+    public void AggiornaStorico(IReadOnlyList<StatistichePerMateria> stat)
+    {
+        _livelliPerCategoria = QuizService.LivelliPerCategoria(stat);
+        _idSbagliate = QuizService.IdSbagliate(stat);
+        AggiornaRiepilogo();
+    }
+
     private void AggiornaCategorieVisibili()
     {
         CategorieVisibili.Clear();
@@ -340,7 +381,11 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// nomi categoria identici su materie diverse non si confondono.
     /// </summary>
     private List<Domanda> CalcolaPoolCorrente()
-        => QuizService.FiltraPerTipo(CalcolaPoolSenzaTipo(), TipiEsclusi);
+    {
+        var poolMaterieCat = CalcolaPoolSenzaTipo();
+        var poolLivelli = QuizService.FiltraPerLivello(poolMaterieCat, LivelliEsclusi, _livelliPerCategoria);
+        return QuizService.FiltraPerTipo(poolLivelli, TipiEsclusi);
+    }
 
     /// <summary>Pool di materie + categorie, prima del filtro per tipo: serve ai conteggi dei pulsanti tipo.</summary>
     private List<Domanda> CalcolaPoolSenzaTipo()
@@ -366,7 +411,18 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         var poolSenzaTipo = CalcolaPoolSenzaTipo();
         foreach (var t in Tipi)
             t.NumDomande = poolSenzaTipo.Count(d => string.Equals(d.Tipo, t.Id, StringComparison.OrdinalIgnoreCase));
-        var pool = QuizService.FiltraPerTipo(poolSenzaTipo, TipiEsclusi);
+        foreach (var l in Livelli)
+        {
+            l.NumDomande = poolSenzaTipo.Count(d =>
+            {
+                string liv = _livelliPerCategoria.TryGetValue((d.MateriaNome, d.Categoria), out var v)
+                    ? v
+                    : LivelliDebolezza.Nuove;
+                return string.Equals(liv, l.Id, StringComparison.OrdinalIgnoreCase);
+            });
+        }
+        var poolLivelli = QuizService.FiltraPerLivello(poolSenzaTipo, LivelliEsclusi, _livelliPerCategoria);
+        var pool = QuizService.FiltraPerTipo(poolLivelli, TipiEsclusi);
         int disponibili = pool.Count;
 
         // Quante davvero giocheremo (limite N)
@@ -391,7 +447,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
         RiepilogoSelezione = nMaterie == 0
             ? testoMaterie
-            : $"{testoMaterie}  ·  {testoCat}{TestoTipi("  ·  ")}  ·  {testoDom}{testoTempo}";
+            : $"{testoMaterie}  ·  {testoCat}{TestoLivelli("  ·  ")}{TestoTipi("  ·  ")}  ·  {testoDom}{testoTempo}";
 
         if (nMaterie == 0)            AvvisoSelezione = Strings.Home_AvvisoNessunaMateria;
         else if (disponibili == 0)    AvvisoSelezione = Strings.Home_AvvisoNessunaDomanda;
@@ -423,6 +479,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         else
             nomeMod = $"{materiaMostrata} — {(quizzone ? Strings.Home_ModCompletoRandomizzato : Strings.Home_ModCompleto)}";
 
+        nomeMod += TestoLivelli(" — ");
         nomeMod += TestoTipi(" — ");
 
         var opz = new OpzioniQuiz
@@ -435,12 +492,24 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
             Cronometro              = Cronometro,
             LimiteDomande           = LimitaDomande ? (int)LimiteN : 0,
             LimiteTempoMinuti       = ModalitaTempo ? (int)MinutiTempo : 0,
+            IdPrioritari            = Livelli.Any(l => !l.IsSelected) ? _idSbagliate.ToList() : new List<string>(),
             Categorie               = catSel.Select(c => c.ChiaveCombinata).ToList(),
             Materie                 = materieSel.Select(m => m.Id).ToList()
         };
 
         var sessione = new SessioneQuiz(pool, opz);
         QuizAvviato?.Invoke(this, sessione);
+    }
+
+    /// <summary>
+    /// "solo categorie Rosse + Ambra" preceduto dal separatore, o stringa vuota se
+    /// nessun livello e' escluso (caso normale: non serve dirlo).
+    /// </summary>
+    private string TestoLivelli(string separatore)
+    {
+        if (Livelli.All(l => l.IsSelected)) return string.Empty;
+        string nomi = string.Join(" + ", Livelli.Where(l => l.IsSelected).Select(l => l.Nome));
+        return separatore + string.Format(Strings.Home_SoloLivelli, nomi);
     }
 
     /// <summary>

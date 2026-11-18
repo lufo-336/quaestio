@@ -91,6 +91,13 @@
   <data name="Home_TipoArchitettura" xml:space="preserve"><value>Architecture</value></data>
   <data name="Home_TipoSuggerimento" xml:space="preserve"><value>Tap to include or exclude a type. At least one stays on.</value></data>
   <data name="Home_SoloTipi" xml:space="preserve"><value>{0} only</value></data>
+  <data name="Home_PuntiDeboliTitolo" xml:space="preserve"><value>Weak spots</value></data>
+  <data name="Home_LivelloRosse" xml:space="preserve"><value>Red</value></data>
+  <data name="Home_LivelloAmbra" xml:space="preserve"><value>Amber</value></data>
+  <data name="Home_LivelloVerdi" xml:space="preserve"><value>Green</value></data>
+  <data name="Home_LivelloNuove" xml:space="preserve"><value>New</value></data>
+  <data name="Home_PuntiDeboliSuggerimento" xml:space="preserve"><value>Filter categories based on your history. All enabled means no filter; with a question limit, wrong ones come first.</value></data>
+  <data name="Home_SoloLivelli" xml:space="preserve"><value>{0} categories only</value></data>
   <data name="Home_ModPerCategoria" xml:space="preserve"><value>By category</value></data>
   <data name="Home_ModCompleto" xml:space="preserve"><value>Full</value></data>
   <data name="Home_ModCompletoRandomizzato" xml:space="preserve"><value>Full, shuffled</value></data>
@@ -233,6 +240,8 @@
   <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ wrong </value></data>
   <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> times</value></data>
   <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ correct: </value></data>
+  <data name="Statistiche_Ripassa" xml:space="preserve"><value>Review</value></data>
+  <data name="Statistiche_RipassaModalita" xml:space="preserve"><value>{0} — Review: {1}</value></data>
   <data name="Gestione_NDomande" xml:space="preserve"><value>{0} questions</value></data>
   <data name="Gestione_NDomandeBreve" xml:space="preserve"><value>{0} q.</value></data>
   <data name="Gestione_BadgeImportata" xml:space="preserve"><value>Imported</value></data>

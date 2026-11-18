@@ -20,6 +20,7 @@ namespace Wsa.Quiz.App.Views;
 public partial class StatisticheView : UserControl, INotifyPropertyChanged
 {
     public new event PropertyChangedEventHandler? PropertyChanged;
+    public event EventHandler<CategoriaStat>? RipassaRichiesto;
 
     private StorageService? _storage;
     private readonly StatisticheService _servizio = new();
@@ -158,6 +159,7 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
         {
             _dettaglio = new CategoriaDettaglioView();
             _dettaglio.IndietroRichiesto += (_, _) => ChiudiDettaglio();
+            _dettaglio.RipassaRichiesto += (_, s) => RipassaRichiesto?.Invoke(this, s);
             DettaglioArea.Content = _dettaglio;
         }
         _dettaglio.Mostra(stat);
