@@ -151,7 +151,7 @@ gh release create apk-AAAA-MM-GG `
 Nessun commit: l'APK è un artefatto, non sorgente. Le release stanno su
 <https://github.com/lufo-336/quaestio/releases>.
 
-Release pubblicate finora: `apk-2026-07-21`, `apk-2026-09-09`, `apk-2026-10-23` (firmata su Windows: chiave diversa dalla 09-09), `apk-2026-11-06` (domande in inglese; stessa chiave della 10-23) e **`v2.0.0`** (15/11, corrente: APK + desktop, stessa chiave). Da `v2.0.0` il tag è la versione (`v<Version>`), non la data, perché la Release contiene anche la versione desktop.
+Release pubblicate finora: `apk-2026-07-21`, `apk-2026-09-09`, `apk-2026-10-23` (firmata su Windows: chiave diversa dalla 09-09), `apk-2026-11-06` (domande in inglese; stessa chiave della 10-23) `v2.0.0` (15/11), `v2.0.1` (18/11, solo NoSQL) e **`v2.1.0`** (19/11, corrente: seconda possibilità; APK + desktop, stessa chiave). Da `v2.0.0` il tag è la versione (`v<Version>`), non la data, perché la Release contiene anche la versione desktop.
 
 Il manifest **non** deve contenere `android:versionCode`/`android:versionName`: se ci sono vincono sul csproj (fino al 15/11 l'APK diceva 1 / 1.0 nonostante il csproj).
 Nelle note di release conviene sempre segnalare **se la firma è cambiata**: chi

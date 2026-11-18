@@ -25,7 +25,7 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 ## Stato attuale (2026-11-11)
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
-e domande it/en; **12 materie / 2483 domande**. Ultima release APK:
+`v2.1.0` (19/11: seconda possibilità sul mezzo errore; APK + desktop Windows/macOS/Linux). Punti deboli + Ripassa: branch `feature/punti-deboli` (WIP, da provare a mano). Exe desktop portabile in
 `v2.0.0` (15/11, APK + desktop Windows/macOS/Linux). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
