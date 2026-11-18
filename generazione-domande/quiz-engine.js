@@ -18,6 +18,7 @@
 //  FORMATO DEL FILE DATI (es. miamateria.data.js):
 //    module.exports = [
 //      { c:"Categoria", d:"Testo domanda?", r:["opz0","opz1","opz2","opz3"], k:1,
+//        t:"teoria"|"codice"|"architettura",
 //        s:"Spiegazione: perche' la corretta e' giusta e (se utile) perche' le altre no." },
 //      ...
 //    ];
@@ -123,6 +124,8 @@ function riferimentiCorso(testo) {
 
 // ---------- audit completo di un banco domande ----------
 // Accetta domande nello schema finale (o intermedio) e restituisce { buckets, posizioni, categorie, avvisi }
+const TIPI = ['codice', 'teoria', 'architettura']; // come TipiDomanda.cs
+
 function auditBanco(domande, simile = 6) {
   const buckets = { L: 0, S: 0, M: 0, Q: 0 };
   const posizioni = {};
@@ -144,6 +147,10 @@ function auditBanco(domande, simile = 6) {
     // Calcolo bucket lunghezza
     const b = bucket(risposte, corretta, simile);
     buckets[b] = (buckets[b] || 0) + 1;
+
+    // Tipo trasversale (campo "tipo" nel JSON, "t" nel file dati)
+    const tipo = q.tipo !== undefined ? q.tipo : q.t;
+    if (!TIPI.includes(tipo)) avvisi.push(`#${id}: tipo mancante o non valido (${JSON.stringify(tipo)}; ammessi: ${TIPI.join(', ')})`);
 
     // Posizione risposta corretta
     if (typeof corretta === 'number') {
@@ -286,6 +293,7 @@ if (require.main === module) {
     if (typeof q.k !== 'number' || q.k < 0 || q.k >= (q.r ? q.r.length : 0)) errs.push(`#${n}: indice corretto (k) fuori range`);
     if (q.r && new Set(q.r).size !== q.r.length) errs.push(`#${n}: risposte duplicate`);
     if (!q.s) errs.push(`#${n}: spiegazione mancante`);
+    if (!TIPI.includes(q.t)) errs.push(`#${n}: tipo (t) mancante o non valido (ammessi: ${TIPI.join(', ')})`);
   });
   const testi = DATA.map(q => q.d);
   testi.forEach((t, i) => { if (testi.indexOf(t) !== i) errs.push(`#${i + 1}: domanda duplicata ("${t.slice(0, 40)}...")`); });
@@ -297,7 +305,7 @@ if (require.main === module) {
   // ---------- costruzione + mescolamento ----------
   let out = DATA.map(q => {
     const b = bucket(q.r, q.k, SIMILE);
-    return { categoria: q.c, domanda: q.d, risposte: q.r.slice(), rispostaCorretta: q.k, spiegazione: q.s, _b: b };
+    return { categoria: q.c, tipo: q.t, domanda: q.d, risposte: q.r.slice(), rispostaCorretta: q.k, spiegazione: q.s, _b: b };
   });
 
   // mescola posizione delle risposte (la lunghezza/bucket NON cambiano)
@@ -362,7 +370,7 @@ if (require.main === module) {
       console.error('\nERRORE: con --write serve anche il percorso di output.');
       process.exit(1);
     }
-    const clean = out.map(o => ({ id: o.id, categoria: o.categoria, domanda: o.domanda, risposte: o.risposte, rispostaCorretta: o.rispostaCorretta, spiegazione: o.spiegazione }));
+    const clean = out.map(o => ({ id: o.id, categoria: o.categoria, tipo: o.tipo, domanda: o.domanda, risposte: o.risposte, rispostaCorretta: o.rispostaCorretta, spiegazione: o.spiegazione }));
     fs.writeFileSync(path.resolve(process.cwd(), outPath), JSON.stringify(clean, null, 4), 'utf8');
     console.log(`\nOK -> scritto ${outPath} (${clean.length} domande).`);
   } else {

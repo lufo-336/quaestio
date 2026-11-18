@@ -55,6 +55,7 @@ Lo stesso schema dei banchi esistenti. Ogni domanda è un oggetto:
 {
     "id": 1,
     "categoria": "Nome area",
+    "tipo": "teoria",
     "domanda": "Testo della domanda?",
     "risposte": ["opzione A", "opzione B", "opzione C", "opzione D"],
     "rispostaCorretta": 1,
@@ -64,21 +65,24 @@ Lo stesso schema dei banchi esistenti. Ogni domanda è un oggetto:
 
 - `rispostaCorretta` è l'**indice 0-based** dentro `risposte` (0 = prima opzione).
 - L'`id` lo assegna il motore (rinumera dopo il mescolamento).
+- `tipo` è **obbligatorio**: `codice` (si ragiona su codice/query/config), `teoria` (definizioni, concetti)
+  o `architettura` (scelte di design, confronti). Senza tipo la domanda compare in app solo con tutti
+  e tre i filtri "Tipo di domande" accesi.
 
 ---
 
 ## 4. Formato del file dati (quello che scrivi tu/l'IA)
 
 File `NOMEMATERIA.data.js`. Forma compatta: `c`=categoria, `d`=domanda, `r`=risposte,
-`k`=indice 0-based della corretta, `s`=spiegazione.
+`t`=tipo (`codice`/`teoria`/`architettura`), `k`=indice 0-based della corretta, `s`=spiegazione.
 
 ```js
 module.exports = [
-  { c:"Basi", d:"Cos'è X?",
+  { c:"Basi", t:"teoria", d:"Cos'è X?",
     r:["Definizione lunga e corretta di X che spiega bene il concetto","Un breve termine errato","Un altro errato","Un terzo errato"],
     k:0, s:"X è… ; le altre sono sbagliate perché…" },
 
-  { c:"Basi", d:"Quale di questi è Y?",
+  { c:"Basi", t:"teoria", d:"Quale di questi è Y?",
     r:["Una definizione errata ma molto lunga e articolata che sembra plausibile","Y","Un'altra definizione errata altrettanto lunga","Una terza errata e lunga"],
     k:1, s:"Y è il termine corretto; le altre sono distrattori lunghi." },
 ];
@@ -383,7 +387,7 @@ python3 -I generazione-domande/strumenti/coppie_it_en.py importa <materiaId> cop
 - [ ] Spiegazioni chiare, corrette ed esplicative.
 - [ ] Motore in DRY RUN / `--audit` eseguito senza avvisi di errore o riferimenti al corso.
 - [ ] Se sono stati modificati testi in un banco esistente: traduzioni inglesi ri-chiavate con successo.
-- [ ] File JSON valido e conforme allo schema (`id, categoria, domanda, risposte, rispostaCorretta, spiegazione`).
+- [ ] File JSON valido e conforme allo schema (`id, categoria, tipo, domanda, risposte, rispostaCorretta, spiegazione`).
 
 > *Nota storica:* questo modello nasce dal banco "UX e Accessibilità" (100 domande,
 > distribuzione 25/25/25/25). Vedi `domande/ux/ux_domande_unificate.json` per un esempio reale completo.
