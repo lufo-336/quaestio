@@ -160,6 +160,10 @@
                                   IsChecked="{Binding Rotazione, Mode=TwoWay}"
                                   ToolTip.Tip="{x:Static r:Strings.Home_RotazioneTip}"/>
 
+                        <CheckBox Content="{x:Static r:Strings.Home_SecondaPossibilita}"
+                                  IsChecked="{Binding SecondaPossibilita, Mode=TwoWay}"
+                                  ToolTip.Tip="{x:Static r:Strings.Home_SecondaPossibilitaTip}"/>
+
                         <CheckBox Content="{x:Static r:Strings.Home_MostraCronometro}"
                                   IsChecked="{Binding Cronometro, Mode=TwoWay}"/>
 

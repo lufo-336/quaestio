@@ -52,6 +52,8 @@
   <data name="Home_RandomizzaTip" xml:space="preserve"><value>When off, questions follow the order of the JSON files.</value></data>
   <data name="Home_Rotazione" xml:space="preserve"><value>Rotation mode (wrong answers go back in the queue)</value></data>
   <data name="Home_RotazioneTip" xml:space="preserve"><value>The quiz ends only when every question has been answered correctly at least once.</value></data>
+  <data name="Home_SecondaPossibilita" xml:space="preserve"><value>Second chance (retry right away if you miss)</value></data>
+  <data name="Home_SecondaPossibilitaTip" xml:space="preserve"><value>The first wrong answer doesn't reveal the solution: you can retry immediately. Getting it right on the second try counts as half a mistake.</value></data>
   <data name="Home_MostraCronometro" xml:space="preserve"><value>Show timer during the quiz</value></data>
   <data name="Home_LimitaA" xml:space="preserve"><value>Limit to</value></data>
   <data name="Home_DomandeEstratte" xml:space="preserve"><value>questions (randomly picked)</value></data>
@@ -127,9 +129,12 @@
   <data name="Quiz_DomandaNDiMVista" xml:space="preserve"><value>Question {0} of {1} (viewing)</value></data>
   <data name="Quiz_DomandaNDiM" xml:space="preserve"><value>Question {0} of {1}</value></data>
   <data name="Quiz_Corretto" xml:space="preserve"><value>Correct!</value></data>
+  <data name="Quiz_MezzoCorretto" xml:space="preserve"><value>Right on the second try</value></data>
+  <data name="Quiz_UltimaPossibilita" xml:space="preserve"><value>Last chance</value></data>
   <data name="Quiz_Sbagliato" xml:space="preserve"><value>Wrong</value></data>
   <data name="Quiz_PausaOrfana" xml:space="preserve"><value>The questions in this paused session are no longer available.</value></data>
   <data name="Dettaglio_CorrettaDopoTentativi" xml:space="preserve"><value>Answered correctly after {0} attempts</value></data>
+  <data name="Dettaglio_SecondoTentativo" xml:space="preserve"><value>Answered correctly on the second try</value></data>
   <data name="Dettaglio_Corretto" xml:space="preserve"><value>Correct</value></data>
   <data name="Riepilogo_RisposteSbagliate" xml:space="preserve"><value>Wrong answers</value></data>
   <data name="Riepilogo_RisposteSbagliateN" xml:space="preserve"><value>Wrong answers ({0})</value></data>

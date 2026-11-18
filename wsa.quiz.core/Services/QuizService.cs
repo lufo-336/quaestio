@@ -118,6 +118,7 @@ public static class QuizService
 
     /// <summary>
     /// Punteggio semplice: 10 punti per ogni risposta corretta al primo tentativo,
+    /// 7 per quelle corrette al secondo tentativo (seconda possibilità),
     /// 4 per quelle corrette dopo qualche errore (modalità rotazione),
     /// 0 per quelle errate o non risposte.
     /// </summary>
@@ -127,7 +128,10 @@ public static class QuizService
         foreach (var d in r.Dettagli)
         {
             if (!d.Corretta) continue;
-            punti += d.Tentativi <= 1 ? 10 : 4;
+            if (d.Tentativi <= 1)
+                punti += d.SecondoTentativo ? 7 : 10;
+            else
+                punti += 4;
         }
         return punti;
     }

@@ -52,6 +52,8 @@
   <data name="Home_RandomizzaTip" xml:space="preserve"><value>Se disattivato, le domande seguono l'ordine dei file JSON.</value></data>
   <data name="Home_Rotazione" xml:space="preserve"><value>Modalita' rotazione (le sbagliate rientrano in coda)</value></data>
   <data name="Home_RotazioneTip" xml:space="preserve"><value>Il quiz termina solo quando tutte le domande sono state risposte correttamente almeno una volta.</value></data>
+  <data name="Home_SecondaPossibilita" xml:space="preserve"><value>Seconda possibilita' (riprova subito se sbagli)</value></data>
+  <data name="Home_SecondaPossibilitaTip" xml:space="preserve"><value>La prima risposta sbagliata non svela la soluzione: puoi riprovare subito. Azzeccata al secondo colpo conta come mezzo errore.</value></data>
   <data name="Home_MostraCronometro" xml:space="preserve"><value>Mostra cronometro durante il quiz</value></data>
   <data name="Home_LimitaA" xml:space="preserve"><value>Limita a</value></data>
   <data name="Home_DomandeEstratte" xml:space="preserve"><value>domande (estratte casualmente)</value></data>
@@ -127,9 +129,12 @@
   <data name="Quiz_DomandaNDiMVista" xml:space="preserve"><value>Domanda {0} di {1} (vista)</value></data>
   <data name="Quiz_DomandaNDiM" xml:space="preserve"><value>Domanda {0} di {1}</value></data>
   <data name="Quiz_Corretto" xml:space="preserve"><value>Corretto!</value></data>
+  <data name="Quiz_MezzoCorretto" xml:space="preserve"><value>Giusto al secondo tentativo</value></data>
+  <data name="Quiz_UltimaPossibilita" xml:space="preserve"><value>Ultima possibilità</value></data>
   <data name="Quiz_Sbagliato" xml:space="preserve"><value>Sbagliato</value></data>
   <data name="Quiz_PausaOrfana" xml:space="preserve"><value>Le domande di questa pausa non sono piu' disponibili.</value></data>
   <data name="Dettaglio_CorrettaDopoTentativi" xml:space="preserve"><value>Risposta corretta dopo {0} tentativi</value></data>
+  <data name="Dettaglio_SecondoTentativo" xml:space="preserve"><value>Risposta corretta al secondo tentativo</value></data>
   <data name="Dettaglio_Corretto" xml:space="preserve"><value>Corretto</value></data>
   <data name="Riepilogo_RisposteSbagliate" xml:space="preserve"><value>Risposte sbagliate</value></data>
   <data name="Riepilogo_RisposteSbagliateN" xml:space="preserve"><value>Risposte sbagliate ({0})</value></data>

@@ -175,6 +175,12 @@
                                                FontStyle="Italic"
                                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
 
+                                    <TextBlock Text="{Binding SecondoTentativoEtichetta}"
+                                               IsVisible="{Binding MostraSecondoTentativo}"
+                                               FontSize="11"
+                                               FontStyle="Italic"
+                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+
                                     <c:TestoConCodice Testo="{Binding Spiegazione}"
                                                FontSize="11"
                                                Margin="0,4,0,0"

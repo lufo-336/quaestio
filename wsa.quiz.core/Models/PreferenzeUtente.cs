@@ -19,6 +19,7 @@ public class PreferenzeUtente
 
     public bool RandomizzaOrdine { get; set; } = true;
     public bool Rotazione { get; set; } = false;
+    public bool SecondaPossibilita { get; set; } = false;
     public bool Cronometro { get; set; } = false;
     public bool LimitaDomande { get; set; } = false;
     public int LimiteN { get; set; } = 10;

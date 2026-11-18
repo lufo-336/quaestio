@@ -63,6 +63,13 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         set { if (_rotazione != value) { _rotazione = value; Raise(); AggiornaRiepilogo(); } }
     }
 
+    private bool _secondaPossibilita;
+    public bool SecondaPossibilita
+    {
+        get => _secondaPossibilita;
+        set { if (_secondaPossibilita != value) { _secondaPossibilita = value; Raise(); AggiornaRiepilogo(); } }
+    }
+
     private bool _cronometro;
     public bool Cronometro
     {
@@ -235,9 +242,10 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         // MainView si iscrive a HomeView.PropertyChanged (OnHomeOpzioniCambiate)
         // SOLO dopo che questa chiamata e' tornata (vedi i due call site in
         // MainView.axaml.cs), quindi questi eventi non hanno ancora ascoltatori.
-        RandomizzaOrdine = preferenze.RandomizzaOrdine;
-        Rotazione        = preferenze.Rotazione;
-        Cronometro       = preferenze.Cronometro;
+        RandomizzaOrdine   = preferenze.RandomizzaOrdine;
+        Rotazione          = preferenze.Rotazione;
+        SecondaPossibilita = preferenze.SecondaPossibilita;
+        Cronometro         = preferenze.Cronometro;
         LimitaDomande    = preferenze.LimitaDomande;
         LimiteN          = preferenze.LimiteN;
         ModalitaTempo    = preferenze.ModalitaTempo;
@@ -423,6 +431,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
             MateriaNomeLabel        = materiaLabel,
             RandomizzaOrdineDomande = RandomizzaOrdine,
             Rotazione               = Rotazione,
+            SecondaPossibilita      = SecondaPossibilita,
             Cronometro              = Cronometro,
             LimiteDomande           = LimitaDomande ? (int)LimiteN : 0,
             LimiteTempoMinuti       = ModalitaTempo ? (int)MinutiTempo : 0,

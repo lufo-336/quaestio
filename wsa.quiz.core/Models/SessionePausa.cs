@@ -19,4 +19,7 @@ public class SessionePausa
     public int EffettuateClassica { get; set; }
     public TimeSpan TempoTrascorso { get; set; }
     public List<DettaglioRisposta> Dettagli { get; set; } = new();
+
+    /// <summary>Id delle domande per cui la seconda possibilità è già stata usata nella partita.</summary>
+    public List<string> SecondaUsataIds { get; set; } = new();
 }

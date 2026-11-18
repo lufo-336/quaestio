@@ -34,6 +34,11 @@ public class DettaglioRispostaItem
 
     public string TentativiEtichetta => string.Format(Strings.Dettaglio_CorrettaDopoTentativi, Dettaglio.Tentativi);
 
+    /// <summary>Mostra l'etichetta del secondo colpo se indovinata al secondo tentativo.</summary>
+    public bool MostraSecondoTentativo => Dettaglio.SecondoTentativo && Dettaglio.Corretta;
+
+    public string SecondoTentativoEtichetta => Strings.Dettaglio_SecondoTentativo;
+
     public IBrush ColoreBordo { get; }
     public IBrush ColoreRisposta { get; }
     public string EsitoEtichetta { get; }

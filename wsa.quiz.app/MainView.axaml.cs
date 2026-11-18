@@ -486,7 +486,7 @@ public partial class MainView : UserControl
 
     private static readonly HashSet<string> _proprietaOpzioniQuiz = new(StringComparer.Ordinal)
     {
-        nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.Cronometro),
+        nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.SecondaPossibilita), nameof(HomeView.Cronometro),
         nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo),
         nameof(HomeView.TipiEsclusi)
     };
@@ -500,9 +500,10 @@ public partial class MainView : UserControl
         if (e.PropertyName == null || !_proprietaOpzioniQuiz.Contains(e.PropertyName)) return;
 
         var prefs = _storage.CaricaPreferenze();
-        prefs.RandomizzaOrdine = _homeView.RandomizzaOrdine;
-        prefs.Rotazione        = _homeView.Rotazione;
-        prefs.Cronometro       = _homeView.Cronometro;
+        prefs.RandomizzaOrdine   = _homeView.RandomizzaOrdine;
+        prefs.Rotazione          = _homeView.Rotazione;
+        prefs.SecondaPossibilita = _homeView.SecondaPossibilita;
+        prefs.Cronometro         = _homeView.Cronometro;
         prefs.LimitaDomande    = _homeView.LimitaDomande;
         prefs.LimiteN          = (int)_homeView.LimiteN;
         prefs.ModalitaTempo    = _homeView.ModalitaTempo;

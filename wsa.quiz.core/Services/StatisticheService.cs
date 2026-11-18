@@ -11,8 +11,9 @@ public class StatisticheService
 {
     /// <summary>
     /// Calcola le statistiche per materia/categoria. Errore =
-    /// !(Corretta &amp;&amp; Tentativi == 1): unifica modalita' classica
-    /// e rotazione (in rotazione, "sbagliata al primo colpo" = Tentativi&gt;1).
+    /// somma di PesoErrore(): 0 per corretta al primo colpo, 0.5 per corretta
+    /// al secondo colpo (seconda possibilità), 1 per errore pieno.
+    /// Unifica modalita' classica e rotazione.
     /// </summary>
     /// <param name="sessioni">Cronologia completa (anche abbandonati).</param>
     /// <param name="limiteUltimeN">Se valorizzato, considera solo le ultime N
@@ -56,11 +57,11 @@ public class StatisticheService
         string materia, string categoria, List<DettaglioRisposta> dettagli)
     {
         int visti = dettagli.Count;
-        int errori = dettagli.Count(d => !(d.Corretta && d.Tentativi == 1));
-        double pct = visti == 0 ? 0.0 : (double)errori / visti;
+        double errori = dettagli.Sum(d => d.PesoErrore());
+        double pct = visti == 0 ? 0.0 : errori / visti;
 
         var sbagliate = dettagli
-            .Where(d => !(d.Corretta && d.Tentativi == 1))
+            .Where(d => d.PesoErrore() > 0)
             .GroupBy(d => d.IdDomanda)
             .Select(g =>
             {
