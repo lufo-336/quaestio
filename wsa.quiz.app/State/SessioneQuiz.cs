@@ -63,7 +63,9 @@ public class SessioneQuiz : ObservableObject
         string SpiegazioneTesto,
         string LetteraCorretta,
         string TestoRispostaCorretta,
-        List<(string Testo, StatoRisposta Stato)> Risposte);
+        List<(string Testo, StatoRisposta Stato)> Risposte,
+        bool SecondaPossibilitaInCorso,
+        int? PrimaRispostaErrata);
 
     // Sessione classica
     private List<Domanda> _ordineClassica = new();
@@ -74,6 +76,8 @@ public class SessioneQuiz : ObservableObject
     private LinkedList<Domanda> _codaRotazione = new();
     private Dictionary<string, int> _tentativiPerId = new();
     private HashSet<string> _corretteIds = new();
+    private HashSet<string> _secondaUsataIds = new();
+    private int? _primaRispostaErrata;
     private int _totUnicoRotazione;
     private int _sbagliateContatoreRotazione;
     private int _indicePosizioneRotazione;
@@ -162,6 +166,14 @@ public class SessioneQuiz : ObservableObject
     public IBrush TempoBrush { get => _tempoBrush; private set => SetField(ref _tempoBrush, value); }
 
     public ObservableCollection<RispostaItem> Risposte { get; } = new();
+
+    private bool _secondaPossibilitaInCorso;
+    /// <summary>Vero dopo la prima risposta sbagliata finché non si risponde di nuovo (modalità seconda possibilità).</summary>
+    public bool SecondaPossibilitaInCorso
+    {
+        get => _secondaPossibilitaInCorso;
+        private set => SetField(ref _secondaPossibilitaInCorso, value);
+    }
 
     private bool _rispostaInviata;
     public bool RispostaInviata
@@ -344,6 +356,8 @@ public class SessioneQuiz : ObservableObject
             Risposte.Add(new RispostaItem(i, _domandaCorrente.RisposteShufflate[i]));
 
         // reset feedback
+        _primaRispostaErrata = null;
+        SecondaPossibilitaInCorso = false;
         RispostaInviata = false;
         FeedbackTitolo = string.Empty;
         SpiegazioneTesto = string.Empty;
@@ -361,19 +375,45 @@ public class SessioneQuiz : ObservableObject
         if (RispostaInviata) return;            // gia' risposto: ignora doppi click
         if (_domandaCorrente == null) return;
         if (indiceShufflato < 0 || indiceShufflato >= _domandaCorrente.RisposteShufflate.Count) return;
+        if (_primaRispostaErrata == indiceShufflato) return;
+
+        bool ok = indiceShufflato == _domandaCorrente.IndiceCorrettoShufflato;
+        string idDomanda = _domandaCorrente.Originale.Id;
+
+        // Prima risposta errata con opzione Seconda possibilità attiva: riprova subito
+        if (!ok && Opzioni.SecondaPossibilita
+            && !_secondaUsataIds.Contains(idDomanda)
+            && !_tentativiPerId.ContainsKey(idDomanda)
+            && _primaRispostaErrata == null)
+        {
+            Risposte[indiceShufflato].Stato = StatoRisposta.Sbagliata;
+            _primaRispostaErrata = indiceShufflato;
+            SecondaPossibilitaInCorso = true;
+            IndiceHighlight = null;
+            return;
+        }
 
         IndiceHighlight = null;
 
-        bool ok = indiceShufflato == _domandaCorrente.IndiceCorrettoShufflato;
+        bool secondoTentativo = _primaRispostaErrata != null;
+        bool mezzoErrore = secondoTentativo && ok;
+        bool superata = ok && !mezzoErrore;
+
         string lettera = ((char)('A' + indiceShufflato)).ToString();
 
         // Aggiorno il dettaglio in cronologia (stesso schema del console)
         int tentativi = 1;
         if (Opzioni.Rotazione)
         {
-            string id = _domandaCorrente.Originale.Id;
-            _tentativiPerId[id] = _tentativiPerId.GetValueOrDefault(id, 0) + 1;
-            tentativi = _tentativiPerId[id];
+            if (!mezzoErrore)
+            {
+                _tentativiPerId[idDomanda] = _tentativiPerId.GetValueOrDefault(idDomanda, 0) + 1;
+                tentativi = _tentativiPerId[idDomanda];
+            }
+            else
+            {
+                tentativi = 1;
+            }
         }
 
         Risultato.Dettagli.Add(new DettaglioRisposta
@@ -387,10 +427,15 @@ public class SessioneQuiz : ObservableObject
             Corretta = ok,
             Spiegazione = _domandaCorrente.Originale.Spiegazione,
             Tentativi = tentativi,
+            SecondoTentativo = secondoTentativo,
             RisposteShufflate = _domandaCorrente.RisposteShufflate.ToList(),
             IndiceCorrettoShufflato = _domandaCorrente.IndiceCorrettoShufflato,
             IndiceDataShufflato = indiceShufflato
         });
+        if (secondoTentativo)
+        {
+            _secondaUsataIds.Add(idDomanda);
+        }
         RaisePropertyChanged(nameof(PuoIndietro));
 
         // Aggiorno gli stati visibili delle risposte
@@ -405,7 +450,7 @@ public class SessioneQuiz : ObservableObject
         // Stato sessione + feedback
         if (Opzioni.Rotazione)
         {
-            if (ok)
+            if (superata)
             {
                 _corretteIds.Add(_domandaCorrente.Originale.Id);
             }
@@ -435,11 +480,16 @@ public class SessioneQuiz : ObservableObject
         }
 
         UltimaRispostaCorretta = ok;
-        FeedbackTitolo = ok ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
+        if (mezzoErrore)
+            FeedbackTitolo = Strings.Quiz_MezzoCorretto;
+        else
+            FeedbackTitolo = ok ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
+
         SpiegazioneTesto = _domandaCorrente.Originale.Spiegazione ?? string.Empty;
         LetteraCorretta = _domandaCorrente.LetteraCorretta.ToString();
         TestoRispostaCorretta = _domandaCorrente.TestoRispostaCorretta;
         RispostaInviata = true;
+        SecondaPossibilitaInCorso = false;
     }
 
     /// <summary>Avanza alla domanda successiva (o conclude se finita).</summary>
@@ -468,7 +518,7 @@ public class SessioneQuiz : ObservableObject
 
         if (Opzioni.Rotazione)
         {
-            int rispPrimoColpo = Risultato.Dettagli.Count(d => d.Corretta && d.Tentativi == 1);
+            int rispPrimoColpo = Risultato.Dettagli.Count(d => d.Corretta && d.Tentativi == 1 && !d.SecondoTentativo);
             Risultato.RisposteCorrette = Risultato.Dettagli.Count(d => d.Corretta);
             Risultato.RisposteErrate   = Risultato.Dettagli.Count(d => !d.Corretta);
             Risultato.TotaleDomande    = Risultato.Dettagli.Count;
@@ -555,7 +605,8 @@ public class SessioneQuiz : ObservableObject
             Opzioni = Opzioni,
             ModalitaRotazione = Opzioni.Rotazione,
             TempoTrascorso = _cron.Elapsed + _offsetCronometro,
-            Dettagli = Risultato.Dettagli.ToList()
+            Dettagli = Risultato.Dettagli.ToList(),
+            SecondaUsataIds = _secondaUsataIds.ToList()
         };
 
         if (Opzioni.Rotazione)
@@ -617,7 +668,8 @@ public class SessioneQuiz : ObservableObject
         {
             _sessioneId = pausa.SessioneId,
             _avviataDaRipresa = true,
-            _offsetCronometro = pausa.TempoTrascorso
+            _offsetCronometro = pausa.TempoTrascorso,
+            _secondaUsataIds = new HashSet<string>(pausa.SecondaUsataIds ?? (IEnumerable<string>)Array.Empty<string>())
         };
 
         // Dettagli cumulativi delle risposte gia' date pre-pausa
@@ -668,7 +720,9 @@ public class SessioneQuiz : ObservableObject
             SpiegazioneTesto: _spiegazioneTesto,
             LetteraCorretta: _letteraCorretta,
             TestoRispostaCorretta: _testoRispostaCorretta,
-            Risposte: Risposte.Select(r => (r.Testo, r.Stato)).ToList());
+            Risposte: Risposte.Select(r => (r.Testo, r.Stato)).ToList(),
+            SecondaPossibilitaInCorso: _secondaPossibilitaInCorso,
+            PrimaRispostaErrata: _primaRispostaErrata);
     }
 
     /// <summary>
@@ -700,6 +754,8 @@ public class SessioneQuiz : ObservableObject
         TestoRispostaCorretta = b.TestoRispostaCorretta;
         UltimaRispostaCorretta = b.UltimaRispostaCorretta;
         RispostaInviata = b.RispostaInviata;
+        SecondaPossibilitaInCorso = b.SecondaPossibilitaInCorso;
+        _primaRispostaErrata = b.PrimaRispostaErrata;
 
         _backupLive = null;
     }
@@ -733,7 +789,9 @@ public class SessioneQuiz : ObservableObject
         }
 
         UltimaRispostaCorretta = d.Corretta;
-        FeedbackTitolo = d.Corretta ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
+        FeedbackTitolo = d.Corretta
+            ? (d.SecondoTentativo ? Strings.Quiz_MezzoCorretto : Strings.Quiz_Corretto)
+            : Strings.Quiz_Sbagliato;
         SpiegazioneTesto = d.Spiegazione ?? string.Empty;
         LetteraCorretta = d.IndiceCorrettoShufflato >= 0
             ? ((char)('A' + d.IndiceCorrettoShufflato)).ToString()

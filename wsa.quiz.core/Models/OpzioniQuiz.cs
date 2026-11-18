@@ -11,6 +11,12 @@ public class OpzioniQuiz
     /// </summary>
     public bool Rotazione { get; set; }
 
+    /// <summary>
+    /// Se vera, dopo la prima risposta sbagliata si può riprovare subito la stessa domanda.
+    /// Azzeccata al secondo colpo conta come mezzo errore (0,5 nelle statistiche).
+    /// </summary>
+    public bool SecondaPossibilita { get; set; }
+
     /// <summary>Se vero, mostra il tempo trascorso in alto e il tempo per domanda.</summary>
     public bool Cronometro { get; set; }
 

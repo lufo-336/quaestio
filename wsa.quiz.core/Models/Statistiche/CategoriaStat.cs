@@ -7,6 +7,6 @@ public record CategoriaStat(
     string Materia,
     string Categoria,
     int Visti,
-    int Errori,
+    double Errori,
     double PctErrore,
     IReadOnlyList<DomandaSbagliata> Sbagliate);

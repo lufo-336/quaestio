@@ -30,6 +30,7 @@ Modifica: `wsa.quiz.core/Models/DettaglioRisposta.cs`, `OpzioniQuiz.cs`, `Prefer
 Nuovo: `wsa.quiz.core.tests/SecondaPossibilitaTests.cs`.
 
 ## Task 1 — Modello e preferenze (core)
+- [x] Fatto 2026-11-18 (agy): file DettaglioRisposta.cs, OpzioniQuiz.cs, PreferenzeUtente.cs, SessionePausa.cs, Strings.resx, Strings.en.resx — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `DettaglioRisposta`: aggiungi `bool SecondoTentativo { get; set; }` (default false) con commento:
   vero se la comparsa ha richiesto il secondo colpo, riuscito o no. Aggiungi anche un **metodo**
   (non una proprietà: le proprietà finirebbero nel JSON) `double PesoErrore()`: se
@@ -46,6 +47,7 @@ Nuovo: `wsa.quiz.core.tests/SecondaPossibilitaTests.cs`.
   ("Risposta corretta al secondo tentativo" / "Answered correctly on the second try").
 
 ## Task 2 — Statistiche e punteggio (core)
+- [x] Fatto 2026-11-18 (agy): file CategoriaStat.cs, StatisticheService.cs, QuizService.cs — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `CategoriaStat`: il campo `Errori` passa da `int` a `double` (somma dei pesi).
 - `StatisticheService.CostruisciCategoriaStat`: `errori` = somma di `PesoErrore()` sui dettagli;
   `PctErrore` = errori / visti come ora. L'elenco `sbagliate` deve includere i dettagli con
@@ -56,6 +58,7 @@ Nuovo: `wsa.quiz.core.tests/SecondaPossibilitaTests.cs`.
   aggiungi 7 punti; le altre corrette restano 10 (primo colpo) o 4. Aggiorna il commento.
 
 ## Task 3 — Logica di sessione (`SessioneQuiz`)
+- [x] Fatto 2026-11-18 (agy): file SessioneQuiz.cs — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 Leggi per intero `RispondiA`, `CaricaProssimaDomanda`, `CreaSnapshotPausa` (o come si chiama il
 metodo che costruisce `SessionePausa`), `RiprendiDa` e `Concludi`.
 - Nuovi campi privati: `HashSet<string> _secondaUsataIds`, e `int? _primaRispostaErrata` (indice
@@ -91,6 +94,7 @@ metodo che costruisce `SessionePausa`), `RiprendiDa` e `Concludi`.
 - La prima volta che `_secondaUsataIds` non contiene l'id basta a decidere "è la prima comparsa".
 
 ## Task 4 — Interfaccia
+- [x] Fatto 2026-11-18 (agy): file HomeView.axaml.cs, HomeView.axaml, MainView.axaml.cs, QuizView.axaml, DettaglioRispostaItem.cs, CronologiaDettaglioView.axaml — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `HomeView.axaml.cs`: proprietà `SecondaPossibilita` bool sul modello di `Rotazione` (campo,
   `Raise()`, `AggiornaRiepilogo()`), letta dalle preferenze dove si legge `Rotazione` (riga ~239) e
   passata a `OpzioniQuiz` dove si costruisce (riga ~425).
@@ -107,6 +111,7 @@ metodo che costruisce `SessionePausa`), `RiprendiDa` e `Concludi`.
   `CronologiaDettaglioView.axaml` mostrala accanto alla riga dei tentativi, con lo stesso stile.
 
 ## Task 5 — Test (xUnit, `wsa.quiz.core.tests/SecondaPossibilitaTests.cs`)
+- [x] Fatto 2026-11-18 (agy): file SecondaPossibilitaTests.cs — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 Copia lo stile di `TestoConCodiceTests.cs`. Casi: `PesoErrore()` per le quattro combinazioni
 (corretto primo colpo = 0; corretto con `SecondoTentativo` = 0,5; sbagliato = 1; corretto con
 `Tentativi` 2 = 1); `StatisticheService.Calcola` con una categoria di 10 dettagli (7 giusti, 2 mezzi

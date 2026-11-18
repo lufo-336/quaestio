@@ -17,6 +17,20 @@ public class DettaglioRisposta
     /// <summary>Numero di tentativi prima che fosse data la risposta corretta (modalità rotazione). 1 = al primo colpo.</summary>
     public int Tentativi { get; set; } = 1;
 
+    /// <summary>Vero se la comparsa ha richiesto il secondo colpo, riuscito o no.</summary>
+    public bool SecondoTentativo { get; set; }
+
+    /// <summary>
+    /// Peso dell'errore per le statistiche: 0 se corretta al primo colpo, 0.5 se corretta
+    /// al secondo colpo (seconda possibilità), 1 in ogni altro caso.
+    /// </summary>
+    public double PesoErrore()
+    {
+        if (Corretta && Tentativi == 1)
+            return SecondoTentativo ? 0.5 : 0;
+        return 1;
+    }
+
     // ----- Step 7: campi per ricostruire i 4 bottoni A/B/C/D in view-mode -----
     // Additivi: i record JSON esistenti caricano con default vuoto/-1. Ignorati
     // dal CronologiaDettaglioView. Popolati in SessioneQuiz.RispondiA.
