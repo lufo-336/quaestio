@@ -25,7 +25,7 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 ## Stato attuale (2026-11-11)
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
-e domande it/en; **11 materie / 2383 domande**. Ultima release APK:
+e domande it/en; **12 materie / 2483 domande**. Ultima release APK:
 `v2.0.0` (15/11, APK + desktop Windows/macOS/Linux). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
@@ -55,9 +55,9 @@ Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 wsa.quiz/
 ├── Wsa.Quiz.sln
 ├── materie.json                ← editabile, copiato nei bin a ogni build
-├── domande/                    ← 11 materie (2383 domande)
+├── domande/                    ← 12 materie (2483 domande)
 │   ├── cloudservices/, cpp/, cs/, cybersecurity/, frontend/, infra/,
-│   │   python/, restfulapi/, sql/, ux/, versioncontrol/
+│   │   nosql/, python/, restfulapi/, sql/, ux/, versioncontrol/
 ├── traduzioni/                 ← traduzioni overlay delle domande (en/)
 ├── generazione-domande/        ← guida IA, quiz-engine.js e strumenti di supporto
 ├── wsa.quiz.core/              (class library di logica)

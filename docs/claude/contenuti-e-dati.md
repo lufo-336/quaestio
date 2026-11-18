@@ -18,6 +18,11 @@ l'aggiunta di **Python** (220 domande, 11 categorie, da Tipi di dati a ORM e
 SQLAlchemy). Ripartizione per file: cs 652, sql 248, versioncontrol 236, python
 220, frontend 210, cpp 200, cloud 190, restfulapi 167, ux 100, infra 50+50,
 cybersecurity 60.
+**Dal 2026-11-18: 12 materie / 2483 domande**, con l'aggiunta di **NoSQL**
+(100 domande, 13 categorie: MongoDB — query, CRUD, indici, validazione,
+aggregation, modellazione e design pattern, import/backup — ed Elasticsearch;
+48 teoria / 31 codice / 21 architettura; stile ripreso da una simulazione di
+verifica; blocchi `js` per `mongosh` e `http` per le richieste Elasticsearch).
 
 **Attenzione**: i csproj includono `..\domande\**\*.json` (AvaloniaResource +
 None). **Qualsiasi** `.json` lasciato in `domande/` — anche temporaneo o

@@ -64,5 +64,11 @@
     "nome": "Python",
     "cartella": "domande/python",
     "formato": "standard"
+  },
+  {
+    "id": "nosql",
+    "nome": "NoSQL",
+    "cartella": "domande/nosql",
+    "formato": "standard"
   }
 ]

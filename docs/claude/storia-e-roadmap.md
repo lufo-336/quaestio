@@ -6,7 +6,7 @@
 
 > **2026-10-23**: interfaccia disponibile in **italiano e inglese** (selettore
 > in Impostazioni; le domande restano in italiano) e nuova materia **Python** →
-> **11 materie / 2383 domande**. Vedi "Localizzazione dell'interfaccia it/en".
+> **12 materie / 2483 domande**. Vedi "Localizzazione dell'interfaccia it/en".
 >
 > **Aggiornato al 2026-09-09.** In sintesi: **tutta la roadmap Step 1–14 è
 > chiusa** (Step 11 ed export/filtri e Step 14 About+icona+publish chiusi oggi;

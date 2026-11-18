@@ -1,0 +1,1020 @@
+{
+  "nome": "NoSQL",
+  "categorie": {
+    "Aggregation framework": "Aggregation Framework",
+    "MongoDB: modello e strumenti": "MongoDB: Model and Tools",
+    "Fondamenti NoSQL": "NoSQL Fundamentals",
+    "Modellazione e design pattern": "Data Modeling and Design Patterns",
+    "Elasticsearch: query e aggregazioni": "Elasticsearch: Queries and Aggregations",
+    "Validazione dello schema": "Schema Validation",
+    "Elasticsearch: architettura e CRUD": "Elasticsearch: Architecture and CRUD",
+    "Indici": "Indexes",
+    "Poliglottismo e architetture": "Polyglot Persistence and Architectures",
+    "Elasticsearch: mapping e analyzer": "Elasticsearch: Mapping and Analyzers",
+    "Query e array": "Queries and Arrays",
+    "CRUD e aggiornamenti": "CRUD and Updates",
+    "Import, export e backup": "Import, Export and Backup"
+  },
+  "domande": {
+    "fd2ee3532d2c": {
+      "domanda": "Given these documents, what result does the pipeline produce?\n\n```js\n{ tipo: \"acacia\", analisi: [\n  { p: \"HMF\", v: 6 }, { p: \"diast\", v: 20 } ] }\n{ tipo: \"acacia\", analisi: [\n  { p: \"HMF\", v: 10 }, { p: \"diast\", v: 18 } ] }\n{ tipo: \"castagno\", analisi: [ { p: \"HMF\", v: 4 } ] }\n{ tipo: \"castagno\", analisi: [ { p: \"diast\", v: 25 } ] }\n```\n\n```js\ndb.smielature.aggregate([\n  { $unwind: \"$analisi\" },\n  { $match: { \"analisi.p\": \"HMF\" } },\n  { $group: { _id: \"$tipo\",\n              hmf: { $avg: \"$analisi.v\" } } },\n  { $sort: { hmf: -1 } }\n])\n```",
+      "spiegazione": "`$unwind` creates one document per analysis; `$match` keeps only the HMF rows (6 and 10 for acacia, 4 for chestnut); `$group` computes the average (acacia = 8, chestnut = 4); `$sort` with `-1` puts 8 before 4.",
+      "risposte": [
+        "`[{ _id: \"acacia\", hmf: 13.5 }, { _id: \"castagno\", hmf: 14.5 }]`",
+        "`[{ _id: \"acacia\", hmf: 8 }, { _id: \"castagno\", hmf: 4 }]`",
+        "`[{ _id: \"acacia\", hmf: 16 }, { _id: \"castagno\", hmf: 4 }]`",
+        "`[{ _id: \"castagno\", hmf: 4 }, { _id: \"acacia\", hmf: 8 }]`"
+      ]
+    },
+    "5641368fdc5e": {
+      "domanda": "Which `mongosh` command selects (or prepares to use) the `negozio` database?",
+      "spiegazione": "`use <name>` sets the current database. If it does not exist, it is created only when the first data is inserted.",
+      "risposte": [
+        "`open negozio`",
+        "`db negozio`",
+        "`use negozio`",
+        "`select negozio`"
+      ]
+    },
+    "3e7864c6138b": {
+      "domanda": "What is a typical cost of denormalization, common to many NoSQL databases?",
+      "spiegazione": "Denormalizing speeds up reads (no joins) but duplicates data: if a value changes, such as a product name, it must be updated in every document that contains it.",
+      "risposte": [
+        "Reads always become slower",
+        "Bulk updates are more expensive, because the same data is replicated across several documents and must be changed everywhere",
+        "The database cannot be replicated",
+        "No index can be used anymore"
+      ]
+    },
+    "1ad66d470da7": {
+      "domanda": "In a blog each post can receive thousands of comments, which are read in pages of 20. Which choice is the most appropriate?",
+      "spiegazione": "An array that grows without bound in the post risks exceeding 16 MB and bloats the working set. With the Subset pattern only the latest comments stay in the post, while the others live in a separate collection.",
+      "risposte": [
+        "Embedding all the comments in an array inside the post document.",
+        "A single global document containing all posts and all comments.",
+        "One document per comment that repeats the full text of the post.",
+        "A separate collection of comments referencing the post; only the latest comments inside the post (Subset pattern)."
+      ]
+    },
+    "a6cf80cdfdd5": {
+      "domanda": "Which query finds the records whose `descrizione` matches \"miele cremoso\" and with `prezzo_kg` at most 20?",
+      "spiegazione": "Full-text search goes in `must` with `match` (it affects the score); the price constraint goes in `filter` with `range` and `lte` (\"at most\"), without affecting the score. `term` does not analyze text and `gte` would express \"at least\".",
+      "risposte": [
+        "`{ \"query\": { \"bool\": { \"must\": [{ \"term\": { \"descrizione\": \"miele cremoso\" } }], \"filter\": [{ \"range\": { \"prezzo_kg\": { \"lte\": 20 } } }] } } }`",
+        "`{ \"query\": { \"bool\": { \"must\": [{ \"match\": { \"descrizione\": \"miele cremoso\" } }], \"filter\": [{ \"range\": { \"prezzo_kg\": { \"gte\": 20 } } }] } } }`",
+        "`{ \"query\": { \"bool\": { \"must\": [{ \"match\": { \"descrizione\": \"miele cremoso\" } }], \"filter\": [{ \"range\": { \"prezzo_kg\": { \"lte\": 20 } } }] } } }`",
+        "`{ \"query\": { \"bool\": { \"must_not\": [{ \"match\": { \"descrizione\": \"miele cremoso\" } }], \"filter\": [{ \"range\": { \"prezzo_kg\": { \"lte\": 20 } } }] } } }`"
+      ]
+    },
+    "fff2288de767": {
+      "domanda": "Which `validationAction` value logs a warning but still accepts the invalid document?",
+      "spiegazione": "`validationAction: \"warn\"` reports the violation in the log but allows the write; `error` (the default) rejects the document. `strict` and `moderate` are `validationLevel` values.",
+      "risposte": [
+        "`warn`",
+        "`moderate`",
+        "`error`",
+        "`strict`"
+      ]
+    },
+    "01cbac707c27": {
+      "domanda": "With the Bulk API, what happens if one of the operations in the batch fails?",
+      "spiegazione": "The Bulk API uses the NDJSON format and has fault isolation: a failed operation does not block the others. You must check `items` in the response to see which ones succeeded.",
+      "risposte": [
+        "The other operations continue, and the outcome of each is in the `items` field of the response",
+        "The cluster goes to red status until the client successfully retries the whole batch",
+        "The whole batch is rolled back",
+        "All subsequent operations are ignored, but those already executed remain"
+      ]
+    },
+    "f20f2d8d8006": {
+      "domanda": "What does it mean for a NoSQL database to be \"schema-less\"?",
+      "spiegazione": "Schema-less (or schema-free) means the structure is not enforced up front: each document can have its own set of fields. Indexes and identifiers are still available.",
+      "risposte": [
+        "That documents in the same collection can have different fields, with no fixed structure declared up front",
+        "That data is always stored in memory only",
+        "That every document has no identifier",
+        "That it does not support any kind of index"
+      ]
+    },
+    "0b74082985f3": {
+      "domanda": "Which statement about TTL indexes is correct?",
+      "spiegazione": "TTL indexes are single-field indexes on a date: removal happens in the background (about every 60 seconds), so there may be a delay. They are not supported on compound indexes, on the `_id` field or on capped collections.",
+      "risposte": [
+        "They can also be created as compound indexes",
+        "Deletion is handled by a background thread that runs about every 60 seconds, so some time may pass between expiry and removal",
+        "They delete the document at the exact moment of expiry",
+        "They cannot be created on date fields"
+      ]
+    },
+    "c0776a3dbdad": {
+      "domanda": "An e-commerce site needs full-text search over its catalog, sorted by relevance. Which storage is the best fit?",
+      "spiegazione": "Full-text search with relevance ranking is Elasticsearch's strength; a simple LIKE on a relational database computes no score and scans the rows.",
+      "risposte": [
+        "Memcached",
+        "Cassandra",
+        "Elasticsearch",
+        "MongoDB"
+      ]
+    },
+    "c18d914f34b8": {
+      "domanda": "Which index type automatically removes documents after a certain number of seconds from the indicated date?",
+      "spiegazione": "The TTL (Time To Live) index uses the `expireAfterSeconds` option: a background thread deletes expired documents. Useful for sessions, logs and tokens.",
+      "risposte": [
+        "TTL",
+        "Partial",
+        "2dsphere",
+        "Multikey"
+      ]
+    },
+    "9174a9f8825b": {
+      "domanda": "Which `createIndex` option builds the index only on documents with `rating` greater than 5?",
+      "spiegazione": "`partialFilterExpression` indexes only the documents that satisfy the filter, saving space and RAM. `sparse` only considers the presence of the field, not its value.",
+      "risposte": [
+        "`{ unique: true, sparse: true, filter: \"rating > 5\" }`",
+        "`{ sparse: { rating: { $gt: 5 } } }`",
+        "`{ expireAfterSeconds: 5 }`",
+        "`{ partialFilterExpression: { rating: { $gt: 5 } } }`"
+      ]
+    },
+    "baf41081e664": {
+      "domanda": "In a streaming platform, billing and subscriptions require ACID, while feeds and recommendations tolerate slightly stale data. Which principle describes this choice?",
+      "spiegazione": "Consistency is not uniform: billing = strong, feeds and recommendations = eventual, cache = best-effort. Sagas and compensations are preferred over distributed 2PC.",
+      "risposte": [
+        "Always eventual consistency everywhere, to maximize speed",
+        "Using a single distributed transaction (2PC) for every operation",
+        "A uniform consistency level for every service in the architecture",
+        "Consistency per domain"
+      ]
+    },
+    "6b98761c89de": {
+      "domanda": "A dashboard shows the total and number of finds by species and month. It is read very often and the data changes with every new find. Which solution is the most suitable?",
+      "spiegazione": "When data is read far more often than written, it pays to precompute it: the Computed pattern keeps counters (`numero_ritrovamenti`, `peso_totale_g`) updated on the fly with `$inc`.",
+      "risposte": [
+        "A statistics collection with counters updated via `$inc` on every insert (Computed pattern)",
+        "Recomputing the aggregations with `$group` every time the dashboard is opened",
+        "An array with all finds in the species document, to be summed in the application every time the dashboard is opened",
+        "A TTL index that deletes old finds"
+      ]
+    },
+    "a2b7c2d35234": {
+      "domanda": "What does this stage produce?\n\n```js\n{ $group: { _id: null, tot: { $sum: \"$age\" } } }\n```",
+      "spiegazione": "With `_id: null` all documents end up in a single group: the output is a single document with the total of the ages.",
+      "risposte": [
+        "A single document",
+        "One document for each distinct value of `age`, with its partial sum",
+        "One document for each input document, with the `tot` field added",
+        "No result: `_id` cannot be `null` in a `$group` stage"
+      ]
+    },
+    "2cabb3d81d4b": {
+      "domanda": "What is the difference between query context and filter context in Elasticsearch?",
+      "spiegazione": "In query context you ask \"how well does it match?\" (and compute `_score`); in filter context \"does it match, yes or no?\": no score, faster and cacheable. That is why exact `range` and `term` clauses go in `filter`.",
+      "risposte": [
+        "Query context is for numbers, filter context for text",
+        "They are two names for the same context, used in different versions",
+        "Query context computes a relevance score (`_score`), while filter context answers yes/no, with no score, and is often cached",
+        "Filter context computes a more precise score, but is much slower than query context"
+      ]
+    },
+    "4c4a642bcca6": {
+      "domanda": "A thousand sensors send one reading per second and one document per reading bloats the collection and its indexes. Which pattern reduces documents and index size?",
+      "spiegazione": "The Bucket pattern groups readings by interval (for example a minute or a day) into a single document: fewer documents, smaller indexes and the chance of pre-aggregated data (sum, count, average).",
+      "risposte": [
+        "Subset: keep only the latest readings in the sensor's document",
+        "Referencing: one document per sensor with the list of the `_id`s of all readings, stored elsewhere",
+        "Computed: recompute the average on every read",
+        "Bucket: one document per time interval, with the readings in an array"
+      ]
+    },
+    "75206f5d3d57": {
+      "domanda": "Which request indexes the document with id 1 and FAILS if it already exists?",
+      "spiegazione": "`_create` fails if the document already exists, protecting against accidental overwrites; `POST _doc/<id>` instead creates or replaces the document.",
+      "risposte": [
+        "`DELETE /products/_doc/1`",
+        "`POST /products/_doc/1`",
+        "`POST /products/_update/1`",
+        "`PUT /products/_create/1`"
+      ]
+    },
+    "61acdd61902e": {
+      "domanda": "Which statement about shards and replicas of an Elasticsearch index is correct?",
+      "spiegazione": "Shards are partitions of the index: their number is decided at creation (changing it requires a reindex). Replicas are copies of the shards: they provide fault tolerance and more read throughput, and can be changed with `PUT /<index>/_settings`.",
+      "risposte": [
+        "Both numbers can be changed at any time",
+        "Replicas are only for backups and do not answer search queries",
+        "The number of shards can be changed at runtime, the replicas only by reindexing",
+        "The number of replicas can be changed at any time, while the number of shards is fixed at creation"
+      ]
+    },
+    "221ce77d1149": {
+      "domanda": "What is the difference between `$set` (an alias of `$addFields`) and `$project`?",
+      "spiegazione": "`$set`/`$addFields` add fields (or overwrite existing ones) leaving the rest intact; `$project` reshapes documents by choosing which fields to include or exclude. Neither modifies the data in the collection.",
+      "risposte": [
+        "`$set` removes fields that are not mentioned, `$project` keeps them all",
+        "`$set` modifies the documents in the collection, `$project` only in the result",
+        "`$set` adds or overwrites fields while keeping existing ones, whereas `$project` reshapes the document by including or excluding fields",
+        "They are identical, only the name differs in older versions"
+      ]
+    },
+    "841c17b50ca9": {
+      "domanda": "Which type keeps the elements of an array of objects independently queryable?",
+      "spiegazione": "An `object` field is flattened and loses the relationships among the elements of an array of objects; `nested` indexes each element as a separate hidden document, queryable with the `nested` query.",
+      "risposte": [
+        "nested",
+        "keyword",
+        "object",
+        "text"
+      ]
+    },
+    "63683f79feb1": {
+      "domanda": "After `{ $sort: { n: 1 } }`, what does this stage produce?\n\n```js\n{ $group: { _id: null,\n            v: { $push: \"$n\" } } }\n```",
+      "spiegazione": "`$push` appends every encountered value to an array, keeping arrival order: after an ascending `$sort` you get a single document with all the `n` in ascending order (useful, with `$arrayElemAt`, for percentiles and the median).",
+      "risposte": [
+        "An array with only the distinct values of `n`, without duplicates and with no guaranteed order",
+        "A sorted array of `n`",
+        "One document for each value of `n`, with an array of the documents that contain it",
+        "The maximum value of `n`, because `$push` keeps only the last value"
+      ]
+    },
+    "466e8fffb704": {
+      "domanda": "MongoDB has no join operator like SQL. How do you combine documents from two collections inside an aggregation pipeline?",
+      "spiegazione": "`$lookup` performs a left outer join with another collection in the same database and adds an array field with the matching documents. It is often followed by `$unwind`.",
+      "risposte": [
+        "With `$lookup`, which adds to each document an array with the matching documents from the other collection",
+        "With `$join`, available only on Atlas",
+        "With `$merge`, which compares fields with the same name",
+        "It is not possible: you can only duplicate the data"
+      ]
+    },
+    "40b4d45d4188": {
+      "domanda": "You want the average price per region, only for organic honeys, without returning the documents. Which request is correct?",
+      "spiegazione": "You need to filter with `term` on `bio`, use `size: 0` to avoid returning documents, group with `terms` on `regione` (bucket) and compute `avg` as a sub-aggregation (metric). A metric cannot contain sub-aggregations.",
+      "risposte": [
+        "A `term` query on `bio: true` with `size: 0` and a single `avg` aggregation on `prezzo_kg`",
+        "A `match` query on `bio` with `size: 10` and a `terms` aggregation on `prezzo_kg`",
+        "A `term` query on `bio: true`, `size: 0` and a `terms` aggregation on `regione` with an `avg` sub-aggregation on `prezzo_kg`",
+        "An `avg` aggregation on `prezzo_kg` with a `terms` sub-aggregation on `regione`, with no filter on organic ones"
+      ]
+    },
+    "7bb9c74d984d": {
+      "domanda": "In the translation from a conceptual model to JSON documents, how is a composite attribute with maximum cardinality N represented?",
+      "spiegazione": "A composite attribute becomes a sub-document; if it is also multivalued (maxcard N) it becomes an array of sub-documents. An atomic attribute is a key-value pair and an atomic multivalued one is an array of values.",
+      "risposte": [
+        "Array of sub-documents",
+        "Always a separate collection",
+        "Nested sub-document",
+        "A string-valued field"
+      ]
+    },
+    "09371bf907f4": {
+      "domanda": "What is the main difference between BSON and JSON?",
+      "spiegazione": "MongoDB stores data as BSON (Binary JSON): besides the JSON types it offers date, int, long, double and ObjectId, which standard JSON does not have.",
+      "risposte": [
+        "BSON does not support arrays",
+        "BSON is a text-only format, JSON is binary",
+        "BSON cannot contain nested documents",
+        "BSON is an extended binary representation that adds types such as dates, integers of different sizes and ObjectId"
+      ]
+    },
+    "96082bdd7bbd": {
+      "domanda": "An operation must atomically modify documents from several collections. What do you need in MongoDB?",
+      "spiegazione": "Atomicity is guaranteed per single document; to read or write several documents (even in different collections) atomically you need multi-document transactions, available on replica sets since 4.0 and on sharded clusters since 4.2.",
+      "risposte": [
+        "An `updateMany` operation on the collections involved",
+        "A unique index on the `_id` field of each collection",
+        "A multi-document transaction",
+        "The `bypassDocumentValidation` option on every write"
+      ]
+    },
+    "c9e7c9cf7ecf": {
+      "domanda": "Which method shows how many documents a query examined and how long it took?",
+      "spiegazione": "`explain(\"executionStats\")` returns the execution plan with documents and keys examined and timings, and lets you spot a `COLLSCAN`. `hint` forces an index, `getIndexes` lists them and `dropIndexes` removes them.",
+      "risposte": [
+        "`.explain(\"executionStats\")`",
+        "`.getIndexes()`",
+        "`.hint({ _id: 1 })`",
+        "`.dropIndexes()`"
+      ]
+    },
+    "3b8b31552be6": {
+      "domanda": "In a backup strategy, what does the RPO (Recovery Point Objective) express?",
+      "spiegazione": "RPO measures how much recent data can be lost (and thus how often to back up); RTO (Recovery Time Objective) measures the acceptable time to be operational again.",
+      "risposte": [
+        "The maximum allowed size of a dump",
+        "The maximum amount of recent data that can be lost, i.e. how often to back up",
+        "The number of copies of each backup kept in the cloud, distributed across different geographic regions",
+        "The maximum acceptable time to restore the service"
+      ]
+    },
+    "e427de3c3b85": {
+      "domanda": "In MongoDB, which statement about the atomicity of writes is correct?",
+      "spiegazione": "Every write on a single document is atomic, even with nested arrays and sub-documents. An `updateMany` is atomic for each document but not as a whole.",
+      "risposte": [
+        "An `updateMany` is atomic as a whole across all the modified documents.",
+        "Without transactions, writes are never atomic.",
+        "Atomicity is guaranteed only if the collection is sharded.",
+        "A write is atomic at the level of a single document, even if it modifies embedded sub-documents."
+      ]
+    },
+    "2368ed9314fc": {
+      "domanda": "A truffle hunter has one to a few dogs, each with a name, breed and certifications, and the profile always shows everything together. Which modeling is the most suitable?",
+      "spiegazione": "A one-to-few relationship with data always read together is the ideal case for embedding: the dogs (with their certifications) become an array of sub-documents in the hunter's document, with a single read and no join.",
+      "risposte": [
+        "A `cani` collection and a `brevetti` one, linked by references to be recomposed with `$lookup`",
+        "One document per certification, repeating the dog and hunter data in every copy",
+        "Dogs and certifications embedded",
+        "A single global document with all hunters, their dogs and the related certifications"
+      ]
+    },
+    "e2e360c07c1b": {
+      "domanda": "The Customer document is embedded in every Order, even though customers may have no orders. Which problem, besides duplication, results?",
+      "spiegazione": "If the customer's participation in the relationship is optional, embedding it in orders loses the customers without orders; moreover duplicated data must be updated everywhere. It is better to embed the other side or use referencing.",
+      "risposte": [
+        "The first order immediately exceeds the 16 MB limit",
+        "Orders can no longer be queried by date, not even when an index exists on the field",
+        "The customer's `_id` is no longer unique",
+        "Customers without orders would be lost and every change would have to be propagated"
+      ]
+    },
+    "9c1ac8ab00ad": {
+      "domanda": "Which official tool offers a visual query builder, a per-stage preview of pipeline results and Explain Plan?",
+      "spiegazione": "MongoDB Compass is the official GUI: it analyzes schemas, builds queries and pipelines with a per-stage preview, shows the Explain Plan and manages schema validation. The `mongo*` tools are command-line utilities.",
+      "risposte": [
+        "MongoDB Compass",
+        "mongorestore",
+        "Studio 3T",
+        "mongoimport"
+      ]
+    },
+    "73d446399d85": {
+      "domanda": "A document has the sub-document `address: { city: \"Rome\" }`. How do you filter by city?",
+      "spiegazione": "For the fields of a sub-document you use dot notation inside quotes. `{ address: { city: \"Rome\" } }` would instead require an exact match of the whole sub-document.",
+      "risposte": [
+        "`{ address: \"Rome\" }`",
+        "`{ \"address.city\": \"Rome\" }`",
+        "`{ address: { $elemMatch: { city: \"Rome\" } } }` (which requires an array)",
+        "`{ address->city: \"Rome\" }`"
+      ]
+    },
+    "c7d1e0893db8": {
+      "domanda": "Which index is created automatically when the indexed field contains an array?",
+      "spiegazione": "The multikey index is created automatically when the indexed field is an array: the index contains one entry for each value of the array.",
+      "risposte": [
+        "Multikey, with one entry for each element of the array",
+        "A compound index, which must always be declared explicitly for every array field",
+        "Hashed",
+        "Wildcard"
+      ]
+    },
+    "8cbdd02a04d1": {
+      "domanda": "A truffle ground records thousands of finds per season. How should they be stored?",
+      "spiegazione": "This is the \"Unbounded Growth\" antipattern: an array with unlimited growth risks exceeding 16 MB and slows down RAM. Finds belong in a dedicated collection that references the truffle ground.",
+      "risposte": [
+        "In an array embedded in the truffle ground's document, to read everything in a single query",
+        "In a separate collection, with a reference to the truffle ground",
+        "In a concatenated string field",
+        "By repeating the entire truffle ground document in every find, to avoid any reference between the two collections"
+      ]
+    },
+    "5083982f5152": {
+      "domanda": "Why are neither the `$` operator nor `$[]` enough to mark all queens born before 2024 in an apiary?",
+      "spiegazione": "What is needed is the middle path: `$[<identifier>]` with `arrayFilters` selects exactly the elements that meet the condition, neither only the first (`$`) nor all indiscriminately (`$[]`).",
+      "risposte": [
+        "Because they only modify arrays of numbers and not of sub-documents",
+        "Because they are operators reserved for reads only",
+        "Because `$` and `$[]` work only if the document already has a multikey index on the array field involved",
+        "Because `$` updates only the first matching element and `$[]` changes them all"
+      ]
+    },
+    "73de073f0ef2": {
+      "domanda": "What does `$unwind` produce on a document whose array field contains 3 elements?",
+      "spiegazione": "`$unwind` deconstructs the array: it produces one document per element (n elements → n documents), while an empty array produces no documents.",
+      "risposte": [
+        "A single document with the three elements concatenated into one string",
+        "Three documents, one for each element of the array",
+        "One document with the array sorted",
+        "Three identical copies of the original, each with the full array intact"
+      ]
+    },
+    "7a47a4d829ff": {
+      "domanda": "Which pair of terms roughly corresponds to the relational \"table\" and \"row\" in MongoDB?",
+      "spiegazione": "The rough mapping is: database → database, table → collection, row (record) → document, column → field.",
+      "risposte": [
+        "Collection and field",
+        "Database and field",
+        "Document and collection",
+        "Collection and document"
+      ]
+    },
+    "40df5fdfb88d": {
+      "domanda": "In apiary \"AP-012\" you must mark with `da_sostituire: true` (inside `regina`) every hive whose queen was born before 2024, without touching the others. Which update is correct?",
+      "spiegazione": "`$[a]` with `arrayFilters` updates all and only the elements meeting the condition. `$[]` would touch every hive, `$` only the first match (and needs a condition on the array in the filter), and the other command would set a field on the apiary document, not on the queens.",
+      "risposte": [
+        "`updateOne({ _id: \"AP-012\" }, { $set: { \"arnie.$.regina.da_sostituire\": true } })`",
+        "`updateMany({ \"arnie.regina.anno\": { $lt: 2024 } }, { $set: { da_sostituire: true } })`",
+        "`updateOne({ _id: \"AP-012\" }, { $set: { \"arnie.$[].regina.da_sostituire\": true } })`",
+        "`updateOne({ _id: \"AP-012\" }, { $set: { \"arnie.$[a].regina.da_sostituire\": true } }, { arrayFilters: [{ \"a.regina.anno\": { $lt: 2024 } }] })`"
+      ]
+    },
+    "149d7e87fd2e": {
+      "domanda": "Which key of the `range` query means \"less than or equal\"?",
+      "spiegazione": "`lte` = less than or equal (≤), `lt` = strictly less than, `gte` = greater than or equal, `gt` = strictly greater than.",
+      "risposte": [
+        "`gte`",
+        "`lt`",
+        "`lte`",
+        "`gt`"
+      ]
+    },
+    "61dd58ba843a": {
+      "domanda": "Which command increments the `age` field by 3 in all documents whose `status` is \"A\"?",
+      "spiegazione": "`$inc` adds a numeric value to the field and `updateMany` acts on all documents matching the filter. `updateOne` would change only one, `$set` would set the value to 3 and a string value is not numeric.",
+      "risposte": [
+        "`updateMany({ status: \"A\" }, { $inc: { age: 3 } })`",
+        "`updateOne({ status: \"A\" }, { $inc: { age: 3 } })`",
+        "`updateMany({ status: \"A\" }, { $set: { age: 3 } })`",
+        "`updateMany({ status: \"A\" }, { $inc: { age: \"3\" } })`"
+      ]
+    },
+    "f4469feab156": {
+      "domanda": "Which expression returns the 3 highest apiaries, from highest to lowest?",
+      "spiegazione": "Sorting in descending order (`-1`) and limiting to 3 gives the three highest values. Ascending order would give the lowest ones, a filter with `-1` sorts nothing and `skip(3)` would skip exactly the first three.",
+      "risposte": [
+        "`db.apiari.find().sort({ altitudine_m: -1 }).skip(3).limit(3)`",
+        "`db.apiari.find().sort({ altitudine_m: -1 }).limit(3)`",
+        "`db.apiari.find().sort({ altitudine_m: 1 }).limit(3).pretty()`",
+        "`db.apiari.find({ altitudine_m: -1 }).limit(3).sort({ altitudine_m: 1 })`"
+      ]
+    },
+    "fd7be0fd02da": {
+      "domanda": "Which of these systems is a column-oriented database?",
+      "spiegazione": "Cassandra, HBase and DynamoDB are column-family databases. Neo4j is a graph database, Redis is key-value and MongoDB is document-oriented.",
+      "risposte": [
+        "MongoDB",
+        "Cassandra",
+        "Redis",
+        "Neo4j"
+      ]
+    },
+    "100010202b17": {
+      "domanda": "A truffle ground's profile shows permits with hunters' names and license numbers, data that rarely changes. Which pattern avoids a `$lookup` on every read?",
+      "spiegazione": "Extended Reference stores in the referencing document both the `_id` and a copy of the most-read and stable fields (here name and license number), avoiding frequent joins at the cost of controlled duplication.",
+      "risposte": [
+        "Extended Reference",
+        "Outlier Pattern",
+        "Subset Pattern",
+        "Bucket Pattern"
+      ]
+    },
+    "c03254e94ac9": {
+      "domanda": "Which filter selects all the 2026 extractions, including those with a time on the last day of the year?",
+      "spiegazione": "The half-open interval `[2026-01-01, 2027-01-01)` covers every instant of 2026. With `$lte: 2026-12-31` you would lose extractions after midnight on December 31; the other filters lack a lower or an upper bound.",
+      "risposte": [
+        "`{ data: { $gte: ISODate(\"2026-01-01\"), $lt: ISODate(\"2027-01-01\") } }`",
+        "`{ data: { $gte: ISODate(\"2026-01-01\"), $lte: ISODate(\"2026-12-31\") } }`",
+        "`{ data: { $gt: ISODate(\"2026-01-01\") } }`",
+        "`{ data: { $lt: ISODate(\"2027-01-01\") } }`"
+      ]
+    },
+    "3b133217fecf": {
+      "domanda": "After adding a validator to an already populated collection, when are the existing documents checked?",
+      "spiegazione": "Existing documents are not validated until they are modified (and with `moderate` only if they were already valid).",
+      "risposte": [
+        "At every restart of the MongoDB server, during the initial check phase",
+        "Immediately, when the validator is added, with automatic removal of non-conforming ones",
+        "At every read, before returning them to the client and without modifying the data",
+        "Only if modified"
+      ]
+    },
+    "f43874f28ee2": {
+      "domanda": "Which pipeline stage plays the role of the SQL `HAVING` clause?",
+      "spiegazione": "A `$match` placed after the `$group` filters the already aggregated groups (for example `total > 1000`), exactly like `HAVING`; a `$match` before the `$group` corresponds instead to `WHERE`.",
+      "risposte": [
+        "`$sort` executed right before the pipeline's `$group` stage",
+        "`$match` after `$group`",
+        "`$project` placed before the pipeline's `$group` stage",
+        "`$limit` applied before grouping the documents of the collection"
+      ]
+    },
+    "a5f70549c882": {
+      "domanda": "Which family of NoSQL databases maps each key to an opaque value that the database does not interpret?",
+      "spiegazione": "In key-value databases the value is opaque: it is only accessed through its key, with no scans or joins, which makes them very fast and easy to distribute (Redis, Riak, Memcached).",
+      "risposte": [
+        "Column-oriented database, which organizes data by columns for analytical reads",
+        "Document database, which stores nested, self-describing documents",
+        "Graph database, which stores vertices and edges to represent relationships",
+        "Key-value"
+      ]
+    },
+    "11844f078a37": {
+      "domanda": "What does this command do?\n\n```js\ndb.students.updateMany(\n  {},\n  { $inc: { \"grades.$[]\": 10 } }\n)\n```",
+      "spiegazione": "`$[]` is the all-positional operator: it applies the change to ALL the elements of the array, without distinction. To select only some elements you need `$[<identifier>]` with `arrayFilters`.",
+      "risposte": [
+        "It adds 10 to every element of `grades` in every document",
+        "It adds 10 only to the elements that satisfy a filter condition, provided in `arrayFilters`",
+        "It raises an error: the element identifier is missing",
+        "It adds 10 only to the first element"
+      ]
+    },
+    "d08723691ceb": {
+      "domanda": "Which write stages must be the last stage of the pipeline?",
+      "spiegazione": "`$out` and `$merge` write the result to a collection and must be the last stage. The other stages can appear anywhere (and more than once).",
+      "risposte": [
+        "`$sort` and `$limit`",
+        "`$group` and `$sample`",
+        "`$out` and `$merge`",
+        "`$match` and `$skip`"
+      ]
+    },
+    "5f6a53fa61e7": {
+      "domanda": "What is the difference between `$bucket` and `$group`?",
+      "spiegazione": "With `$bucket` you specify the interval boundaries (for example price bands) and each document falls into a bucket; `$group` instead generates one document per distinct value of the grouping key.",
+      "risposte": [
+        "`$bucket` works only on date fields",
+        "There is no difference: they are aliases of the same stage",
+        "`$bucket` groups into value ranges defined by boundaries, while `$group` creates a group for each distinct value of the expression",
+        "`$bucket` sorts documents, `$group` filters them"
+      ]
+    },
+    "c2bcf9d20354": {
+      "domanda": "What does the `yellow` status returned by `GET /_cluster/health` indicate?",
+      "spiegazione": "Green: primaries and replicas active. Yellow: primaries active but not all replicas. Red: not all primaries are active, with a risk of data loss.",
+      "risposte": [
+        "Some primary shards are not active: there is a risk of data loss",
+        "All primary shards are active, but not all replicas",
+        "The cluster is under maintenance and no longer accepts requests",
+        "All primary shards and all replicas are active"
+      ]
+    },
+    "fd8de2d2ecee": {
+      "domanda": "What happens if you insert a document without specifying the `_id` field?",
+      "spiegazione": "Every document must have a unique `_id`: if you do not provide one, MongoDB adds an automatically generated `ObjectId`. A unique index on `_id` always exists.",
+      "risposte": [
+        "MongoDB leaves the document without an identifier, and therefore not indexable",
+        "The document is saved in a temporary collection, waiting for its identifier",
+        "The insert is rejected with a validation error",
+        "MongoDB automatically generates an `ObjectId`"
+      ]
+    },
+    "cd0a46a8c6c0": {
+      "domanda": "How many text indexes can a collection have, and what are `weights` for?",
+      "spiegazione": "A collection can have at most one text index (even over several fields). The `weights` set the relative importance of the fields in the score: for example `content: 10`, `keywords: 5`, and the default weight is 1.",
+      "risposte": [
+        "As many as you like; weights sort the results alphabetically",
+        "At most one per language; weights decide which documents are removed when a time interval expires",
+        "One per field; weights limit the size of the index",
+        "At most one; weights set the importance of each field in the search score"
+      ]
+    },
+    "c7c578fc3532": {
+      "domanda": "In a honey index, why is `descrizione` of type `text` while `regione` is of type `keyword`?",
+      "spiegazione": "`text` is normalized, split into tokens and indexed for word-based search; `keyword` keeps the value intact and is the right type for exact filters, sorting and `terms` aggregations.",
+      "risposte": [
+        "Because `descrizione` is analyzed for full-text search, while `regione` is an exact value for filters and aggregations",
+        "Because a short string is always `keyword` and a long one always `text`, by automatic choice",
+        "Because `keyword` does not allow uppercase letters, unlike `text`",
+        "Because `text` is always faster than `keyword`"
+      ]
+    },
+    "927293f14fcf": {
+      "domanda": "An application must find circles of acquaintances and suggest friendships by analyzing the relationships among millions of users. Which NoSQL family is the best fit?",
+      "spiegazione": "Graph databases (Neo4j, OrientDB) were designed for social networks, recommendations, fraud detection and knowledge graphs: traversing edges would be costly with many self-joins.",
+      "risposte": [
+        "Document-oriented",
+        "Column-oriented",
+        "Graph, because relationships are first-class edges and can be traversed efficiently",
+        "Key-value"
+      ]
+    },
+    "f87b2e407036": {
+      "domanda": "In the ELK stack, which component is the frontend for exploring data and building real-time dashboards?",
+      "spiegazione": "Kibana is the stack's frontend: it visualizes and analyzes Elasticsearch data with dashboards. Logstash processes data, Beats collects it and X-Pack adds enterprise features.",
+      "risposte": [
+        "Logstash, the server-side pipeline that ingests, transforms and routes data",
+        "Kibana",
+        "Beats, lightweight agents that collect logs, metrics and network traffic",
+        "X-Pack, the extension for security, monitoring, alerting and machine learning"
+      ]
+    },
+    "5f272b2c4016": {
+      "domanda": "A service must read user sessions with a latency of a few microseconds, always by key. Which technology is the most appropriate?",
+      "spiegazione": "Key lookup in microseconds is the typical use case of in-memory key-value databases such as Redis. The other tools are designed for different access patterns.",
+      "risposte": [
+        "Redis",
+        "A distributed full-text index with relevance ranking",
+        "A graph database with traversal queries",
+        "A disk-based relational database with a SELECT for every request"
+      ]
+    },
+    "b1109c9d2fa7": {
+      "domanda": "An index is both `unique` and `sparse`. How many documents lacking the indexed field can coexist in the collection?",
+      "spiegazione": "A sparse index contains entries only for documents that have the field: combined with `unique` it prevents duplicate values, but allows several documents that omit the key.",
+      "risposte": [
+        "None, because every document must contain the indexed field",
+        "As many as you like",
+        "At most one, because the missing field is treated as a duplicate null value",
+        "At most one for each distinct value of the other present fields"
+      ]
+    },
+    "0115f742ba11": {
+      "domanda": "In MongoDB Atlas, what does the free tier include?",
+      "spiegazione": "Atlas's free tier (M0) provides a replica set with 512 MB of storage. It does not include automatic backup, which requires a paid cluster.",
+      "risposte": [
+        "Automatic backups with Point-in-Time Recovery",
+        "Only a local instance without replication",
+        "A dedicated cluster with unlimited storage",
+        "A replica set with 512 MB of storage, suitable for trying things out and practicing"
+      ]
+    },
+    "051f71250995": {
+      "domanda": "What effect does `db.people.deleteMany({})` have?",
+      "spiegazione": "The empty filter `{}` matches every document: `deleteMany` removes them all but leaves the collection (with its indexes). To drop the collection too you use `db.people.drop()`.",
+      "risposte": [
+        "It deletes nothing, because the empty filter matches no document",
+        "It deletes only the first document in the collection",
+        "It deletes all documents, but the `people` collection and its indexes still exist",
+        "It deletes the `people` collection, including its indexes"
+      ]
+    },
+    "7dd48057c135": {
+      "domanda": "A collection is created with this validator. What happens when you insert `{ name: \"Ada\" }`?\n\n```js\ndb.createCollection(\"students\", {\n  validator: { $jsonSchema: {\n    bsonType: \"object\",\n    required: [\"name\", \"year\"],\n    properties: {\n      name: { bsonType: \"string\" },\n      year: { bsonType: \"int\" }\n    }\n  } }\n})\n```",
+      "spiegazione": "With `$jsonSchema`, `required` lists the mandatory fields: with the default `validationAction` (`error`), an insert without `year` is rejected.",
+      "risposte": [
+        "The insert succeeds, but the document is flagged invalid by an internal marker and ignored by queries",
+        "The insert succeeds and `year` is set to `null`",
+        "It is rejected only if `name` is not a string",
+        "The insert is rejected, because the required field `year` is missing"
+      ]
+    },
+    "f3eac80f2616": {
+      "domanda": "Which `mongoimport` option uses the first line of a CSV file as the field names?",
+      "spiegazione": "`--headerline` treats the first CSV line as the header. `--drop` deletes the collection before importing, `--upsert` updates existing documents and `--jsonArray` is for JSON files containing an array.",
+      "risposte": [
+        "`--headerline`",
+        "`--upsert`",
+        "`--drop`",
+        "`--jsonArray`"
+      ]
+    },
+    "8cf5e39ba0f5": {
+      "domanda": "Which filter selects documents with `status` equal to \"A\" or `age` equal to 55?",
+      "spiegazione": "The comma between conditions is an implicit AND; for OR you need the `$or` operator with a list of conditions.",
+      "risposte": [
+        "`{ $or: [{ status: \"A\" }, { age: 55 }] }`",
+        "`{ status: { $in: [\"A\", 55] } }`",
+        "`{ $and: [{ status: \"A\" }, { age: 55 }] }`",
+        "`{ status: \"A\", age: 55 }`"
+      ]
+    },
+    "df5ad0a09d99": {
+      "domanda": "The `price` field is mapped as `float` with coercion enabled (the default). What happens when you index `{ \"price\": \"7.4m\" }`?",
+      "spiegazione": "Coercion converts compatible values (the string `\"7.4\"` becomes 7.4), but `\"7.4m\"` cannot be converted and causes an error. In production it is better to turn it off with `\"coerce\": false`.",
+      "risposte": [
+        "The field becomes `text` and the mapping is automatically updated to accept the value",
+        "An error",
+        "The value is saved as a string, but is not searchable as a number",
+        "The value is converted to 7.4, ignoring the `m` suffix"
+      ]
+    },
+    "74a0f3525a6a": {
+      "domanda": "How does Elasticsearch apply a modification made with `_update` to a document?",
+      "spiegazione": "Elasticsearch never modifies a document in place: it retrieves it, applies the changes and reindexes it; `_version` is incremented on every write.",
+      "risposte": [
+        "It modifies the document's bytes directly on disk",
+        "It locks the index until all replicas have confirmed",
+        "It creates a second document with a new `_id` and leaves the original unchanged for safety",
+        "It retrieves the document, applies the change and reindexes it as a new version"
+      ]
+    },
+    "ed288624ad5d": {
+      "domanda": "Which index lets you search for places within 5 km of a point with the `$near` operator?",
+      "spiegazione": "The `2dsphere` index supports geospatial queries on a sphere (`$near`, `$geoWithin`, `$geoIntersects`) over GeoJSON data or [longitude, latitude] coordinate pairs.",
+      "risposte": [
+        "A hashed index on the field that contains the coordinates",
+        "A sparse index on the coordinates field, with ascending order",
+        "A compound index on two numeric fields, `latitudine` and `longitudine`",
+        "`2dsphere`"
+      ]
+    },
+    "8b8aff3e6f92": {
+      "domanda": "How do you handle frequent schema changes without stopping the application, letting old and new documents coexist?",
+      "spiegazione": "Schema Versioning adds a `schema_version` field (incremented at every change) so you do not rely on the implicit presence of fields; documents are migrated all together or when read, with no downtime.",
+      "risposte": [
+        "By recreating the collection at every change, copying the data into a new database",
+        "By stopping the application and migrating all documents in a maintenance window",
+        "A `schema_version` field in the documents",
+        "By forbidding any schema change after the first production version"
+      ]
+    },
+    "609702673557": {
+      "domanda": "A production index has a field mapped with the wrong type. How do you fix it?",
+      "spiegazione": "Existing mappings cannot be modified (only new fields can be added), because the values were already analyzed with the old rules. You create a new index and use `_reindex`; with an alias the application does not change name.",
+      "risposte": [
+        "By deleting the field from the mapping with `DELETE` and recreating it right after",
+        "With a `PUT` on the mapping that changes the field's type",
+        "By creating a new index with the correct mapping and copying the data with `_reindex`",
+        "It cannot be fixed: you must delete the data for good and start from scratch, with no alternative"
+      ]
+    },
+    "808714519ec0": {
+      "domanda": "Which pair of tools provides a full backup that also preserves indexes and metadata, in BSON format?",
+      "spiegazione": "`mongodump` and `mongorestore` work in BSON and bring the database back to a state equivalent to the original. `mongoexport`/`mongoimport` (JSON or CSV) do not preserve indexes or options and are not full backup tools.",
+      "risposte": [
+        "`mongoexport` and `mongoimport`",
+        "`mongoimport` and `mongodump`",
+        "`mongodump` and `mongorestore`",
+        "`mongoexport` and `mongorestore`"
+      ]
+    },
+    "2f132db784e9": {
+      "domanda": "Each book stores the array of users who bought it: it works almost always, but a best-seller exceeds 16 MB. Which solution does the Outlier pattern adopt?",
+      "spiegazione": "The Outlier pattern prevents a few anomalous cases from shaping the schema for everyone: the anomalous document gets a flag (for example `has_extras`) and the overflow goes into a separate document, read only when needed.",
+      "risposte": [
+        "Redesigning all books with a separate purchases collection, penalizing the common cases that worked fine before",
+        "Raising the document size limit in the server configuration",
+        "Truncating the array",
+        "Flagging the book and moving the overflow into linked documents"
+      ]
+    },
+    "8653fd863860": {
+      "domanda": "Why should a backup be restored periodically, even without incidents?",
+      "spiegazione": "Only a test restore proves that the backup is complete and that restore times (RTO) are acceptable: a backup that was never restored is not a reliable backup.",
+      "risposte": [
+        "Because mongorestore deletes the old backup only after restoring it and rereading it once",
+        "Because dump files lose data after a few weeks of inactivity",
+        "A backup that was never tested is not reliable",
+        "Because Atlas requires it to keep the free trial cluster active"
+      ]
+    },
+    "d8a6c2c18474": {
+      "domanda": "What is the maximum size of a single BSON document in MongoDB?",
+      "spiegazione": "A document cannot exceed 16 MB. This is why arrays with unbounded growth should be avoided in embedded documents.",
+      "risposte": [
+        "64 KB, like a traditional table row",
+        "No limit, as long as disk space is available",
+        "1 GB, the server's memory limit",
+        "16 MB"
+      ]
+    },
+    "76771630c858": {
+      "domanda": "For each beekeeper you must count the weak hives across all their apiaries, keep those with at least 3, and show first and last name (stored in the `apicoltori` collection), sorted by descending count. Which sequence of stages, applied to `apiari`, is correct?",
+      "spiegazione": "You unwind the hives, keep the weak ones, group by beekeeper while counting, filter with a second `$match` (like `HAVING`), do the `$lookup` on `apicoltori`, unwind the resulting array, project first and last name and finally sort.",
+      "risposte": [
+        "`$match` → `$group` → `$unwind` → `$lookup` → `$sort`",
+        "`$unwind` → `$match` → `$group` → `$match` → `$lookup` → `$unwind` → `$project` → `$sort`",
+        "`$lookup` → `$match` → `$group` → `$unwind` → `$project`",
+        "`$group` → `$unwind` → `$match` → `$sort` → `$lookup`"
+      ]
+    },
+    "6a71fddaffdb": {
+      "domanda": "Which bucket aggregation creates a group for each distinct value of a `keyword` field?",
+      "spiegazione": "`terms` is a bucket aggregation (the equivalent of `GROUP BY`); `avg`, `sum` and `stats` are metrics that compute values on a numeric field. They are often nested: bucket with a metric sub-aggregation.",
+      "risposte": [
+        "`sum`",
+        "`terms`",
+        "`stats`",
+        "`avg`"
+      ]
+    },
+    "3472bc755eab": {
+      "domanda": "With `validationLevel: \"moderate\"`, the validation rules of a collection apply:",
+      "spiegazione": "With `moderate`, validation covers inserts and updates of documents that are already valid; with `strict` (the default) it applies to all changes. This way legacy invalid documents remain updatable.",
+      "risposte": [
+        "to no document: it is equivalent to turning validation off.",
+        "only to inserts, never to updates.",
+        "to inserts and to updates of only those existing documents that already satisfy the rules.",
+        "to all existing documents, even without modifying them."
+      ]
+    },
+    "a35e45219857": {
+      "domanda": "What is the order of the stages of an analyzer?",
+      "spiegazione": "An analyzer is a three-stage pipeline: character filters clean the text (for example `html_strip`), the tokenizer splits it into tokens and token filters transform them (lowercase, stop words, stemming).",
+      "risposte": [
+        "Tokenizer, token filter, character filter and finally normalization",
+        "Character filter, tokenizer, token filter",
+        "Character filter, token filter, tokenizer, in this exact order",
+        "Token filter, tokenizer, character filter, in this exact order"
+      ]
+    },
+    "81a2b4a1c15c": {
+      "domanda": "With `\"dynamic\": \"strict\"` in the mapping, what happens when you index a document with an unexpected field?",
+      "spiegazione": "With `strict`, undeclared fields cause an error and the document is rejected, useful in production to avoid silently mismapped typos. With `\"dynamic\": false`, extra fields are instead ignored.",
+      "risposte": [
+        "The field is ignored and not searchable, but the document is accepted",
+        "An error",
+        "The field is saved as `text` and `keyword` together, without reporting errors",
+        "The field is automatically added to the mapping, with the type inferred from the value"
+      ]
+    },
+    "f742dafd4f49": {
+      "domanda": "What is `\"size\": 0` for in an aggregation-only request?",
+      "spiegazione": "`\"size\": 0` avoids returning the `hits` array of documents: only the aggregation statistics matter, saving bandwidth and improving performance.",
+      "risposte": [
+        "It sets the `_score` of all documents found by the query to zero",
+        "It disables the computation of aggregations, to check their syntax without running them",
+        "To not return the documents",
+        "It limits to zero the number of buckets returned by every `terms` aggregation present"
+      ]
+    },
+    "4ed31da4ef1d": {
+      "domanda": "Which filter selects documents with `age` strictly greater than 25 and less than or equal to 50?",
+      "spiegazione": "`$gt` excludes the lower bound and `$lte` includes the upper one. Several operators on the same field combine with an implicit AND.",
+      "risposte": [
+        "`{ age: { $gte: 25, $lt: 50 } }`",
+        "`{ age: { $gt: 25, $lt: 50 } }`",
+        "`{ age: { $gt: 25, $lte: 50 } }`",
+        "`{ age: { $gte: 25, $lte: 50 } }`"
+      ]
+    },
+    "314238c45c10": {
+      "domanda": "The compound index `{ item: 1, location: 1, stock: 1 }` exists. Which query can use it through its prefixes?",
+      "spiegazione": "Valid prefixes start from the leftmost field: `{ item }`, `{ item, location }`, `{ item, location, stock }`. A query that does not include `item` cannot use the index as a prefix.",
+      "risposte": [
+        "A query with a condition only on location",
+        "A query with a condition only on stock",
+        "A query with conditions on location and stock",
+        "A query with conditions on item and location"
+      ]
+    },
+    "a499903040e1": {
+      "domanda": "What is the difference between `{ tag: { $in: [\"a\", \"b\"] } }` and `{ tag: { $all: [\"a\", \"b\"] } }` on an array field?",
+      "spiegazione": "`$in` behaves like an OR over the listed values, `$all` like an AND. Neither enforces an order or the absence of other elements.",
+      "risposte": [
+        "`$in` requires at least one value (OR), `$all` requires all of them (AND)",
+        "`$in` requires both values, `$all` requires at least one",
+        "They are equivalent: only the execution speed differs, which depends on the available indexes",
+        "`$in` also compares the order of the elements, `$all` ignores it"
+      ]
+    },
+    "738e335691dc": {
+      "domanda": "An application updates a primary database and must also keep a search index aligned. Which approach is considered the production standard?",
+      "spiegazione": "Dual write is an anti-pattern: if the second write fails, data silently diverges. With CDC (for example Debezium + Kafka) the order is guaranteed by the log and the state can be rebuilt by replaying events.",
+      "risposte": [
+        "Change Data Capture: read the transaction log and publish events that the other store synchronizes from",
+        "Writing synchronously to both systems (dual write)",
+        "Copying the whole database once a day",
+        "Reading from both systems every time and comparing the results"
+      ]
+    },
+    "35cd51ffde94": {
+      "domanda": "Given an apiary document with `provincia`, `altitudine_m` and `comune`, which query finds the apiaries in provinces PC or PR at 500 m or higher, sorted by descending altitude?\n\n```js\n{ provincia: \"PC\", altitudine_m: 640,\n  comune: \"Bobbio\" }\n```",
+      "spiegazione": "`$in` checks membership in a set (PC or PR), `$gte` expresses \"at least\" and `sort` with `-1` sorts in descending order.",
+      "risposte": [
+        "`find({ provincia: [\"PC\", \"PR\"], altitudine_m: { $gt: 500 } }).sort({ altitudine_m: -1 })`",
+        "`find({ provincia: \"PC\", altitudine_m: { $gte: 500 } }).sort({ altitudine_m: 1 })`",
+        "`find({ $and: [\"PC\", \"PR\"], altitudine_m: { $lte: 500 } }).sort({ altitudine_m: -1 })`",
+        "`find({ provincia: { $in: [\"PC\", \"PR\"] }, altitudine_m: { $gte: 500 } }).sort({ altitudine_m: -1 })`"
+      ]
+    },
+    "1e37171f1f6c": {
+      "domanda": "Given the document `{ _id: 1, grades: [80, 85, 80] }`, what effect does this command have?\n\n```js\ndb.students.updateOne(\n  { _id: 1, grades: 80 },\n  { $set: { \"grades.$\": 82 } }\n)\n```",
+      "spiegazione": "The positional operator `$` updates only the FIRST element matching the query condition. To modify them all you need `$[]` or `$[<identifier>]` with `arrayFilters`.",
+      "risposte": [
+        "Both elements equal to 80 become 82, while 85 stays unchanged",
+        "The command fails, because `$` is not allowed with the `$set` operator",
+        "It changes only the first 80",
+        "All the elements of the array become 82, because `$` represents every element"
+      ]
+    },
+    "5187525d08f8": {
+      "domanda": "Why might `{ \"term\": { \"descrizione\": \"Miele\" } }` fail to find a document whose description is \"Miele chiaro e cremoso\" on a `text` field?",
+      "spiegazione": "A `text` field holds normalized tokens (\"miele\", \"chiaro\"…), while `term` applies no analysis and compares the exact (case-sensitive) value: \"Miele\" does not equal \"miele\". For full-text you use `match`.",
+      "risposte": [
+        "Because the query should be written in filter context and not in `must`, regardless of the field type",
+        "Because `term` ignores uppercase but not spaces",
+        "Because the `text` field was analyzed into lowercase tokens, while `term` looks for the exact value \"Miele\" without analysis",
+        "Because `term` works only on numeric fields"
+      ]
+    },
+    "ea2d8f6dd31c": {
+      "domanda": "Which structure makes full-text search fast in Elasticsearch, even on millions of documents?",
+      "spiegazione": "The inverted index (managed by Apache Lucene) keeps, for each term, the list of documents that contain it: far faster than a `LIKE '%word%'` on a relational table.",
+      "risposte": [
+        "Inverted index",
+        "A hash table that maps each document to its content",
+        "A B+ tree on whole documents, sorted by `_id`",
+        "A parallel sequential scan of all shards"
+      ]
+    },
+    "459805868ce5": {
+      "domanda": "What does a component such as Debezium do in a Change Data Capture pipeline?",
+      "spiegazione": "Debezium is a CDC connector: it watches the source's transaction log and turns each change into an event, from which other stores synchronize without the application doing dual writes.",
+      "risposte": [
+        "Reads the transaction log and publishes the changes as events",
+        "Runs a full backup of the entire source database every night",
+        "Automatically translates SQL queries into equivalent NoSQL queries",
+        "Encrypts data at rest in the destination database of a pipeline"
+      ]
+    },
+    "a63a2467ecf3": {
+      "domanda": "Why can `{ \"arnie.tipo\": \"Langstroth\", \"arnie.stato\": \"debole\" }` return an apiary with no weak Langstroth hive?",
+      "spiegazione": "With dot notation each condition is checked separately against the whole array: one hive can satisfy the first and another the second. To bind them to the same element you need `$elemMatch`.",
+      "risposte": [
+        "Because the array is sorted before comparing the conditions",
+        "Because `stato` and `tipo` are compared as strings joined together",
+        "Because the conditions are evaluated on the array independently",
+        "Because the filter ignores the fields nested inside the array"
+      ]
+    },
+    "1718e096c6e4": {
+      "domanda": "In `mongosh`, which query returns only `nome` and `comune` of the apiaries, excluding `_id`?",
+      "spiegazione": "The second argument of `find` is the projection: with the requested fields set to `1`, `_id` is included unless `_id: 0` is explicit. The first argument is the filter.",
+      "risposte": [
+        "`db.apiari.find({}, { nome: 1, comune: 1, _id: 0 })`",
+        "`db.apiari.find({ nome: 1, comune: 1, _id: 0 }, {})`",
+        "`db.apiari.find({}, { nome: 1, comune: 1 })`",
+        "`db.apiari.find({}, { _id: 1, nome: 0, comune: 0 }).pretty()`"
+      ]
+    },
+    "09cbd3b50fb1": {
+      "domanda": "Athletes of different sports are tracked: they have common fields and sport-specific ones, and are often queried all together. Which pattern fits?",
+      "spiegazione": "With the Polymorphic pattern, similar but not identical documents live in the same collection, so queries across all athletes require no joins. The cost is handling different code paths depending on the type.",
+      "risposte": [
+        "Outlier Pattern",
+        "Polymorphic Pattern",
+        "Bucket Pattern",
+        "Schema Versioning"
+      ]
+    },
+    "07cf95d1e21f": {
+      "domanda": "Which tokens does the `whitespace` analyzer produce on \"É bello, il MARE!\"?",
+      "spiegazione": "`whitespace` splits only on spaces and does not normalize case or punctuation. `standard` would give lowercase tokens without punctuation, `keyword` would produce a single token with the whole text.",
+      "risposte": [
+        "`[\"é bello il mare\"]`",
+        "`[\"É\", \"bello,\", \"il\", \"MARE!\"]`",
+        "`[\"É bello, il MARE!\"]`",
+        "`[\"é\", \"bello\", \"il\", \"mare\"]`"
+      ]
+    },
+    "1c11c0464aa0": {
+      "domanda": "In a polyglot architecture, how should a service obtain data owned by another service's database?",
+      "spiegazione": "Each database owns a bounded context: other services do not query it directly but go through APIs or events.",
+      "risposte": [
+        "With a direct query",
+        "With a manual copy",
+        "Through APIs or events",
+        "With a distributed join"
+      ]
+    },
+    "b7276b356abd": {
+      "domanda": "Each apiary has an `arnie` array of sub-documents with `tipo`, `stato` and `telaini`. Which filter finds the apiaries with at least ONE Langstroth hive that is weak and has fewer than 8 frames?\n\n```js\narnie: [\n  { tipo: \"Dadant\", stato: \"forte\", telaini: 10 },\n  { tipo: \"Langstroth\", stato: \"debole\", telaini: 6 }\n]\n```",
+      "spiegazione": "`$elemMatch` requires all conditions to hold on the SAME array element. With dot notation the conditions can be satisfied by different hives, producing false positives.",
+      "risposte": [
+        "`{ arnie: { $elemMatch: { tipo: \"Langstroth\", stato: \"debole\", telaini: { $lt: 8 } } } }`",
+        "`{ \"arnie.tipo\": \"Langstroth\", \"arnie.stato\": \"debole\", \"arnie.telaini\": { $lt: 8 } }`",
+        "`{ $or: [{ \"arnie.tipo\": \"Langstroth\" }, { \"arnie.stato\": \"debole\" }] }`",
+        "`{ arnie: { tipo: \"Langstroth\", stato: \"debole\" }, telaini: { $lt: 8 } }`"
+      ]
+    },
+    "46da73677c05": {
+      "domanda": "An apiary has `fioriture: [\"tiglio\", \"acacia\", \"castagno\"]`. Which filter finds it, when looking for apiaries with both \"tiglio\" and \"castagno\" and exactly 3 elements?",
+      "spiegazione": "`$all` requires all the listed values to be present, in any order and alongside other elements; `$size` fixes the cardinality. `$in` behaves like an OR, while equality with an array looks for exactly those elements in that order.",
+      "risposte": [
+        "`{ fioriture: { $in: [\"tiglio\", \"castagno\"], $size: 3 } }`",
+        "`{ fioriture: [\"tiglio\", \"castagno\"] }`",
+        "`{ fioriture: { $all: [\"tiglio\", \"castagno\"], $size: 3 } }`",
+        "`{ fioriture: { $elemMatch: [\"tiglio\", \"castagno\"], $size: 2 } }`"
+      ]
+    },
+    "e46e17794e67": {
+      "domanda": "What happens to the fields of the original document that do not appear in the new document passed to `replaceOne`?",
+      "spiegazione": "`replaceOne` replaces the whole content of the document, except `_id`: the fields missing from the new document are removed. To change only some fields you use `updateOne` with `$set`.",
+      "risposte": [
+        "They are saved in a history field, accessible with the `history()` method",
+        "They are set to `null`, while keeping the same field structure as the original",
+        "They stay unchanged: `replaceOne` only modifies the fields listed in the new document",
+        "They disappear"
+      ]
+    },
+    "41f6c6b0f6a2": {
+      "domanda": "What does `findOne()` return when several documents satisfy the filter?",
+      "spiegazione": "`findOne()` returns a single document: the first match in natural order, i.e. the order in which documents are laid out on disk. It suits cases where you only want the first result.",
+      "risposte": [
+        "An error, because the result is ambiguous",
+        "All the matching documents, in an array",
+        "The first document in natural order",
+        "A document chosen at random among the matching ones, on every execution"
+      ]
+    },
+    "efa08efa1230": {
+      "domanda": "An insurer must keep the revision history of each policy, but almost all queries concern the latest version. Which schema fits?",
+      "spiegazione": "This is Document Versioning: the current revision stays in the main collection (fast queries) and old versions go into a revisions collection. The cost is doubled writes and having to target the right collection.",
+      "risposte": [
+        "Only the latest policy, because history is not needed",
+        "A new policy for every change, with no version field",
+        "A `revisioni` array embedded in the policy, which grows with every change",
+        "Latest revision in `current_policies` (`version` field) and previous versions copied into `policy_revisions`"
+      ]
+    },
+    "fc4fb3156d49": {
+      "domanda": "A book has different prices by country and format (ebook, paperback) and they must be searched by currency and amount. Which structure is the most suitable?",
+      "spiegazione": "This is the Attribute pattern: an array of homogeneous objects with `value`, `currency`, `country` and `format` lets you index `prices.currency` and `prices.value` with few indexes, instead of dozens of different fields.",
+      "risposte": [
+        "One document per price, with no reference to the book",
+        "A `prices` array of sub-documents",
+        "One field for each combination, such as `price_it_ebook` and `price_us_paperback`",
+        "A single string with all prices separated by commas, to be parsed in the application"
+      ]
+    }
+  }
+}
