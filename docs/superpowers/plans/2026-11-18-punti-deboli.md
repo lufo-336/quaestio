@@ -29,6 +29,7 @@ Nuovi: `wsa.quiz.core/Models/LivelliDebolezza.cs`, `wsa.quiz.app/State/LivelloSe
 `wsa.quiz.core.tests/PuntiDeboliTests.cs`.
 
 ## Task 1 — Core: livelli, filtro, priorità
+- [x] Fatto 2026-11-18 (agy): file `wsa.quiz.core/Models/LivelliDebolezza.cs`, `wsa.quiz.core/Models/PreferenzeUtente.cs`, `wsa.quiz.core/Models/OpzioniQuiz.cs`, `wsa.quiz.core/Services/QuizService.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx` — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `LivelliDebolezza` (static class, modello `TipiDomanda`): costanti stringa `Rosse = "rosse"`,
   `Ambra = "ambra"`, `Verdi = "verdi"`, `Nuove = "nuove"` e `Tutti` (array in quest'ordine).
 - `QuizService` (metodi statici, nello stile del file):
@@ -53,6 +54,7 @@ Nuovi: `wsa.quiz.core/Models/LivelliDebolezza.cs`, `wsa.quiz.app/State/LivelloSe
   (formato "{0} — Ripasso: {1}" / "{0} — Review: {1}").
 
 ## Task 2 — Sessione: priorità col limite
+- [x] Fatto 2026-11-18 (agy): file `wsa.quiz.app/State/SessioneQuiz.cs` — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 In `SessioneQuiz.Avvia`, nel ramo "sessione non ripresa": se `Opzioni.LimiteDomande > 0`,
 `Opzioni.IdPrioritari` non è vuota e il pool supera il limite, invece di `Take(limite)` sul
 rimescolato prendi **prima** le domande del pool con id in `IdPrioritari` (in ordine casuale),
@@ -61,6 +63,7 @@ non c'è, il comportamento resta identico a oggi. (Metti la logica in un metodo 
 `QuizService`, es. `ApplicaLimiteConPriorita`, per poterla testare.)
 
 ## Task 3 — Home: riquadro Punti deboli
+- [x] Fatto 2026-11-18 (agy): file `wsa.quiz.app/State/LivelloSelezionabile.cs`, `wsa.quiz.app/Views/HomeView.axaml`, `wsa.quiz.app/Views/HomeView.axaml.cs`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `LivelloSelezionabile` (in `wsa.quiz.app/State`, modello `TipoSelezionabile`): `Id`, `Nome`
   (da `Strings.Home_Livello*`), `NumDomande`, `Etichetta` ("Nome · N"), `IsSelected` (default true).
 - `HomeView.axaml.cs`:
@@ -93,6 +96,7 @@ non c'è, il comportamento resta identico a oggi. (Metti la logica in un metodo 
   `StatisticheView.Ricarica`) e chiama `_homeView.AggiornaStorico(...)`.
 
 ## Task 4 — Ripassa nelle Statistiche
+- [x] Fatto 2026-11-18 (agy): file `wsa.quiz.app/Views/CategoriaDettaglioView.axaml`, `wsa.quiz.app/Views/CategoriaDettaglioView.axaml.cs`, `wsa.quiz.app/Views/StatisticheView.axaml.cs`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 - `CategoriaDettaglioView`: pulsante "Ripassa" (`Strings.Statistiche_Ripassa`) accanto a "Indietro",
   visibile/attivo solo se `stat.Sbagliate.Count > 0`; evento pubblico
   `event EventHandler<CategoriaStat>? RipassaRichiesto` sollevato al click con la `CategoriaStat`
@@ -110,6 +114,7 @@ non c'è, il comportamento resta identico a oggi. (Metti la logica in un metodo 
   `AvviaQuizView(sessione)`.
 
 ## Task 5 — Test (xUnit, `PuntiDeboliTests.cs`, stile degli altri test)
+- [x] Fatto 2026-11-18 (agy): file `wsa.quiz.core.tests/PuntiDeboliTests.cs` — verifica: non eseguita (richiesta utente: compilazione eseguita da processo esterno al termine)
 `LivelloDi` ai bordi (0,19 verdi; 0,20 ambra; 0,59 ambra; 0,60 rosse); `FiltraPerLivello` (esclusi
 vuoti = tutto; escludendo `verdi` restano rosse+ambra+nuove; categoria assente dal dizionario =
 nuova); `IdSbagliate`; `ApplicaLimiteConPriorita` (priorità prima, riempimento, limite rispettato,

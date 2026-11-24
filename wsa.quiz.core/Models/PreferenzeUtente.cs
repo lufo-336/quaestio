@@ -28,4 +28,7 @@ public class PreferenzeUtente
 
     /// <summary>Tipi di domanda spenti nel riquadro "Tipo di domande" della Home. Vuoto = tutti.</summary>
     public List<string> TipiEsclusi { get; set; } = new();
+
+    /// <summary>Livelli di debolezza spenti nel riquadro "Punti deboli" della Home. Vuoto = tutti.</summary>
+    public List<string> LivelliEsclusi { get; set; } = new();
 }

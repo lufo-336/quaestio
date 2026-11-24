@@ -11,6 +11,7 @@ using Avalonia.Threading;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Statistiche;
 using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
 
@@ -26,6 +27,7 @@ public partial class MainView : UserControl
     private StorageService? _storage;
     private List<Materia> _materie = new();
     private List<Domanda> _tutteDomande = new();
+    private List<Domanda> _domandeAttive = new();
     private Dictionary<string, Domanda> _mappaDomande = new();
     private ContenutiUtenteService? _contenutiUtente;
 
@@ -405,17 +407,18 @@ public partial class MainView : UserControl
             // pool dei quiz (Home) escludono le sezioni nascoste.
             var esclSet = new HashSet<(string, string)>(
                 _contenutiUtente.CaricaSezioniEscluse().Select(s => (s.MateriaId, s.Categoria)));
-            var domandeAttive = esclSet.Count == 0
+            _domandeAttive = esclSet.Count == 0
                 ? _tutteDomande
                 : _tutteDomande.Where(d => !esclSet.Contains((d.MateriaId, d.Categoria))).ToList();
 
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
 
-            StatoHeaderText.Text = string.Format(Strings.Shell_Conteggi, _materie.Count, domandeAttive.Count);
+            StatoHeaderText.Text = string.Format(Strings.Shell_Conteggi, _materie.Count, _domandeAttive.Count);
 
             // ---------- Tab Home ----------
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, domandeAttive, _preferenze);
+            _homeView.Inizializza(_materie, _domandeAttive, _preferenze);
+            AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
             _homeArea.Content = _homeView;
@@ -434,6 +437,7 @@ public partial class MainView : UserControl
             // ---------- Tab Statistiche ----------
             _statisticheView = new StatisticheView();
             _statisticheView.Inizializza(_storage);
+            _statisticheView.RipassaRichiesto += OnRipassaRichiesto;
             _statisticheArea.Content = _statisticheView;
 
             // ---------- Tab Gestione contenuti ----------
@@ -451,7 +455,7 @@ public partial class MainView : UserControl
             _impostazioniView = new ImpostazioniView();
             // Stessi conteggi dell'header: materie e domande ATTIVE (al netto
             // delle sezioni nascoste), cosi' l'About non contraddice la barra in alto.
-            _impostazioniView.Inizializza(_storage, _preferenze, _materie, domandeAttive);
+            _impostazioniView.Inizializza(_storage, _preferenze, _materie, _domandeAttive);
             _impostazioniArea.Content = _impostazioniView;
 
             // Ripristino l'ultima sezione aperta (Step 13). Clamp: un
@@ -488,7 +492,7 @@ public partial class MainView : UserControl
     {
         nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.SecondaPossibilita), nameof(HomeView.Cronometro),
         nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo),
-        nameof(HomeView.TipiEsclusi)
+        nameof(HomeView.TipiEsclusi), nameof(HomeView.LivelliEsclusi)
     };
 
     /// <summary>Salva su preferenze.json ad ogni cambio di una delle opzioni
@@ -509,6 +513,7 @@ public partial class MainView : UserControl
         prefs.ModalitaTempo    = _homeView.ModalitaTempo;
         prefs.MinutiTempo      = (int)_homeView.MinutiTempo;
         prefs.TipiEsclusi      = _homeView.TipiEsclusi;
+        prefs.LivelliEsclusi   = _homeView.LivelliEsclusi;
         _storage.SalvaPreferenze(prefs);
     }
 
@@ -533,6 +538,7 @@ public partial class MainView : UserControl
                 // La nuova sessione dev'essere visibile la prossima volta che si apre il tab.
                 _cronologiaView?.Ricarica();
                 _statisticheView?.Ricarica();
+                AggiornaStoricoHome();
             }
             catch (Exception ex)
             {
@@ -594,10 +600,76 @@ public partial class MainView : UserControl
         if (_homeView == null)
         {
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _tutteDomande, _preferenze);
+            _homeView.Inizializza(_materie, _domandeAttive.Count > 0 ? _domandeAttive : _tutteDomande, _preferenze);
+            AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
         }
         _homeArea.Content = _homeView;
+    }
+
+    private void AggiornaStoricoHome()
+    {
+        if (_homeView == null || _storage == null) return;
+        try
+        {
+            var stat = new StatisticheService().Calcola(_storage.CaricaCronologia());
+            _homeView.AggiornaStorico(stat);
+        }
+        catch
+        {
+            // Come in StatisticheView.Ricarica: non bloccare l'UI se la cronologia non e' leggibile
+        }
+    }
+
+    private void OnRipassaRichiesto(object? sender, RichiestaRipasso req)
+    {
+        if (req.IdDomandeSbagliate == null || req.IdDomandeSbagliate.Count == 0) return;
+
+        var mappaAttive = _domandeAttive.ToDictionary(d => d.Id, d => d, StringComparer.OrdinalIgnoreCase);
+        var domande = new List<Domanda>();
+        foreach (var id in req.IdDomandeSbagliate)
+        {
+            if (!string.IsNullOrEmpty(id) && mappaAttive.TryGetValue(id, out var d))
+                domande.Add(d);
+        }
+
+        if (domande.Count == 0) return;
+
+        var prefs = _storage?.CaricaPreferenze() ?? _preferenze;
+        string materiaMostrata = EtichetteContenuti.Correnti.Materia(req.MateriaCanon);
+        string nomeMod;
+        List<string> categorie;
+        if (!string.IsNullOrEmpty(req.CategoriaCanon))
+        {
+            string catMostrata = EtichetteContenuti.Correnti.Categoria(req.MateriaCanon, req.CategoriaCanon);
+            nomeMod = string.Format(Strings.Statistiche_RipassaModalita, materiaMostrata, catMostrata);
+            categorie = new List<string> { $"{req.MateriaCanon}/{req.CategoriaCanon}" };
+        }
+        else
+        {
+            nomeMod = string.Format(Strings.Statistiche_RipassaMateriaModalita, materiaMostrata);
+            categorie = new List<string>();
+        }
+
+        var materiaObj = _materie.FirstOrDefault(m => string.Equals(m.Nome, req.MateriaCanon, StringComparison.OrdinalIgnoreCase));
+        var materiaId = materiaObj?.Id ?? domande[0].MateriaId;
+
+        var opz = new OpzioniQuiz
+        {
+            NomeModalita            = nomeMod,
+            MateriaNomeLabel        = req.MateriaCanon,
+            RandomizzaOrdineDomande = prefs.RandomizzaOrdine,
+            Rotazione               = prefs.Rotazione,
+            SecondaPossibilita      = prefs.SecondaPossibilita,
+            Cronometro              = prefs.Cronometro,
+            LimiteDomande           = 0,
+            LimiteTempoMinuti       = 0,
+            Materie                 = new List<string> { materiaId },
+            Categorie               = categorie
+        };
+
+        var sessione = new SessioneQuiz(domande, opz);
+        AvviaQuizView(sessione);
     }
 }

@@ -203,8 +203,8 @@
                 </Border>
 
                 <!-- ============================== TIPO DI DOMANDE ============================== -->
-                <!-- Tre pulsanti accendi/spegni (variante B del mockup del 14/11):
-                     si sommano a materie e categorie. Accesi = inclusi. -->
+                <!-- Tre pulsanti filtro (variante B del mockup del 14/11):
+                     si sommano a materie e categorie. Nessuno acceso = tutti inclusi. -->
                 <Border x:Name="ZonaTipo"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SystemRegionBrush}"
@@ -234,6 +234,54 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                         <TextBlock Text="{x:Static r:Strings.Home_TipoSuggerimento}"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ============================== PUNTI DEBOLI ============================== -->
+                <!-- Quattro pulsanti filtro (Rosse / Ambra / Verdi / Nuove):
+                     filtrano le categorie in base allo storico. Nessuno acceso = nessun filtro. -->
+                <Border x:Name="ZonaLivelli"
+                        KeyboardNavigation.TabNavigation="Once"
+                        Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="14">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{x:Static r:Strings.Home_PuntiDeboliTitolo}"
+                                   FontWeight="SemiBold"/>
+                        <ItemsControl ItemsSource="{Binding Livelli}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="state:LivelloSelezionabile">
+                                    <ToggleButton Classes="tipo"
+                                                  IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                  HorizontalAlignment="Stretch"
+                                                  HorizontalContentAlignment="Center"
+                                                  Padding="6,8"
+                                                  Margin="0,0,6,0">
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+                                            <Ellipse Width="10" Height="10"
+                                                     Fill="{Binding ColorePallino}"
+                                                     Margin="0,0,6,0"
+                                                     VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Etichetta}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ToggleButton>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="{x:Static r:Strings.Home_PuntiDeboliSuggerimento}"
                                    FontSize="11"
                                    TextWrapping="Wrap"
                                    Foreground="{DynamicResource SystemBaseMediumColor}"/>

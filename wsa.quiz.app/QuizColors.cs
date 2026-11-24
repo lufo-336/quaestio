@@ -23,11 +23,16 @@ public static class QuizColors
     private static readonly IBrush _ambraBrush  = new SolidColorBrush(Color.Parse(Ambra));
     private static readonly IBrush _rossoBrush  = new SolidColorBrush(Color.Parse(Rosso));
 
+    public static IBrush VerdeBrush => _verdeBrush;
+    public static IBrush AmbraBrush => _ambraBrush;
+    public static IBrush RossoBrush => _rossoBrush;
+
     // Colore neutro del testo (usato dal cronometro fuori soglia di allerta).
     // Grigio medio invece di quasi-nero: leggibile sia su sfondo chiaro che
     // scuro senza dover rendere il brush theme-aware (Step 10, fix mirato).
     public const string TestoNeutro = "#767676";
     private static readonly IBrush _neutroBrush = new SolidColorBrush(Color.Parse(TestoNeutro));
+    public static IBrush NeutroBrush => _neutroBrush;
 
     // Sfondi tenui per le celle della heatmap statistiche (step 9).
     private static readonly IBrush _verdeBrushSfondo = new SolidColorBrush(Color.Parse("#E5F4EC"));
