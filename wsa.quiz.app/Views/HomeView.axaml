@@ -203,8 +203,8 @@
                 </Border>
 
                 <!-- ============================== TIPO DI DOMANDE ============================== -->
-                <!-- Tre pulsanti accendi/spegni (variante B del mockup del 14/11):
-                     si sommano a materie e categorie. Accesi = inclusi. -->
+                <!-- Tre pulsanti filtro (variante B del mockup del 14/11):
+                     si sommano a materie e categorie. Nessuno acceso = tutti inclusi. -->
                 <Border x:Name="ZonaTipo"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SystemRegionBrush}"
@@ -241,8 +241,8 @@
                 </Border>
 
                 <!-- ============================== PUNTI DEBOLI ============================== -->
-                <!-- Quattro pulsanti accendi/spegni (Rosse / Ambra / Verdi / Nuove):
-                     filtrano le categorie in base allo storico. Accesi = inclusi. -->
+                <!-- Quattro pulsanti filtro (Rosse / Ambra / Verdi / Nuove):
+                     filtrano le categorie in base allo storico. Nessuno acceso = nessun filtro. -->
                 <Border x:Name="ZonaLivelli"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SystemRegionBrush}"

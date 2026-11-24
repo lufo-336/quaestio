@@ -89,14 +89,14 @@
   <data name="Home_TipoCodice" xml:space="preserve"><value>Codice</value></data>
   <data name="Home_TipoTeoria" xml:space="preserve"><value>Teoria</value></data>
   <data name="Home_TipoArchitettura" xml:space="preserve"><value>Architettura</value></data>
-  <data name="Home_TipoSuggerimento" xml:space="preserve"><value>Tocca per includere o escludere un tipo. Almeno uno resta acceso.</value></data>
+  <data name="Home_TipoSuggerimento" xml:space="preserve"><value>Tocca per filtrare per tipo. Nessuno selezionato = tutti i tipi.</value></data>
   <data name="Home_SoloTipi" xml:space="preserve"><value>solo {0}</value></data>
   <data name="Home_PuntiDeboliTitolo" xml:space="preserve"><value>Punti deboli</value></data>
   <data name="Home_LivelloRosse" xml:space="preserve"><value>Rosse</value></data>
   <data name="Home_LivelloAmbra" xml:space="preserve"><value>Ambra</value></data>
   <data name="Home_LivelloVerdi" xml:space="preserve"><value>Verdi</value></data>
   <data name="Home_LivelloNuove" xml:space="preserve"><value>Nuove</value></data>
-  <data name="Home_PuntiDeboliSuggerimento" xml:space="preserve"><value>Filtra le categorie in base allo storico. Con tutti accesi nessun filtro; con un limite di domande prima le sbagliate.</value></data>
+  <data name="Home_PuntiDeboliSuggerimento" xml:space="preserve"><value>Filtra le categorie in base allo storico. Nessuno selezionato = nessun filtro; con un limite di domande prima le sbagliate.</value></data>
   <data name="Home_SoloLivelli" xml:space="preserve"><value>solo categorie {0}</value></data>
   <data name="Home_ModPerCategoria" xml:space="preserve"><value>Per categoria</value></data>
   <data name="Home_ModCompleto" xml:space="preserve"><value>Completo</value></data>
@@ -242,6 +242,21 @@
   <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ corretta: </value></data>
   <data name="Statistiche_Ripassa" xml:space="preserve"><value>Ripassa</value></data>
   <data name="Statistiche_RipassaModalita" xml:space="preserve"><value>{0} — Ripasso: {1}</value></data>
+  <data name="Statistiche_RipassaMateriaModalita" xml:space="preserve"><value>{0} — Ripasso</value></data>
+  <data name="Statistiche_RipassaConConteggio" xml:space="preserve"><value>Ripassa ({0})</value></data>
+  <data name="Statistiche_RipassaMateria" xml:space="preserve"><value>Ripassa materia ({0})</value></data>
+  <data name="Statistiche_IndietroMaterie" xml:space="preserve"><value>← Materie</value></data>
+  <data name="Statistiche_Sottotitolo" xml:space="preserve"><value>Scegli una materia per vedere le categorie e ripassare gli errori.</value></data>
+  <data name="Statistiche_FiltroTutte" xml:space="preserve"><value>Tutte ({0})</value></data>
+  <data name="Statistiche_FiltroLivello" xml:space="preserve"><value>{0} ({1})</value></data>
+  <data name="Statistiche_OrdinaPiuDeboli" xml:space="preserve"><value>Più deboli</value></data>
+  <data name="Statistiche_OrdinaAlfabetico" xml:space="preserve"><value>A–Z</value></data>
+  <data name="Statistiche_OrdinaPiuViste" xml:space="preserve"><value>Più viste</value></data>
+  <data name="Statistiche_NessunaCategoriaFiltro" xml:space="preserve"><value>Nessuna categoria corrisponde al filtro scelto.</value></data>
+  <data name="Statistiche_RiepilogoMateria" xml:space="preserve"><value>{0} risposte · {1} sbagliate</value></data>
+  <data name="Statistiche_NSbagliate" xml:space="preserve"><value>{0} sbagliate</value></data>
+  <data name="Statistiche_UnaSbagliata" xml:space="preserve"><value>1 sbagliata</value></data>
+  <data name="Statistiche_ZeroSbagliate" xml:space="preserve"><value>0 sbagliate</value></data>
   <data name="Gestione_NDomande" xml:space="preserve"><value>{0} domande</value></data>
   <data name="Gestione_NDomandeBreve" xml:space="preserve"><value>{0} dom.</value></data>
   <data name="Gestione_BadgeImportata" xml:space="preserve"><value>Importata</value></data>

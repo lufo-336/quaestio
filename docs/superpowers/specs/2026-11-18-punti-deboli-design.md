@@ -59,3 +59,13 @@ Scelte mie, da controllare:
 ## Lascio al costruttore
 Nomi esatti di stringhe it/en, stile dei pulsanti (classe già usata dai tipi, con i tre colori
 della heatmap), test di `FiltraPerLivello`, prova a mano su desktop e Android.
+
+## Aggiornamento post-prova a mano (2026-11-24)
+Durante il test manuale su desktop sono emersi due miglioramenti UX applicati subito:
+1. **Home (*Tipo di domande* e *Punti deboli*):**
+   - Logica invertita: **tutti spenti di default = nessun filtro** (tutto incluso), eliminato il vincolo "almeno uno resta acceso" che bloccava lo spegnimento dell'ultimo filtro. Compatibile senza migrazione con `PreferenzeUtente.TipiEsclusi` / `LivelliEsclusi` (lista vuota = nessun filtro).
+   - **Conteggi incrociati:** i numeri sui pulsanti *Tipo* tengono conto del filtro *Punti deboli* attivo e viceversa, così eventuali incroci a 0 domande sono evidenti subito sul pulsante.
+2. **Statistiche + *Ripassa*:**
+   - La heatmap piatta nascondeva il pulsante *Ripassa* dentro la singola cella e risultava disordinata. Sostituita (da mockup scelto da Luca: opzione B su desktop, A su mobile) con una vista **Master-Detail adattiva** (`AppEnv.TouchMode`):
+     - **Desktop:** lista materie cliccabili a sinistra (ordinate dalla più debole, con barra 3-colori `BarraLivelli` e conteggi Rosse/Ambra/Verdi) + dettaglio materia a destra con **Ripassa materia (N)**, chip filtro per livello (`Tutte / Rosse / Ambra / Verdi`), ordinamento (`Più deboli / A–Z / Più viste`), righe categoria con barra errore + **Ripassa (N)** sempre visibile e domande sbagliate **espandibili inline**.
+     - **Mobile (`TouchMode`):** stesso codice in 2 step (card materie a tutta larghezza con *Ripassa* rapido → dettaglio materia con `← Materie` ed `Esc`).

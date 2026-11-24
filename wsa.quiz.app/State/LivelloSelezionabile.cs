@@ -40,7 +40,7 @@ public class LivelloSelezionabile : ObservableObject
 
     public string Etichetta => $"{Nome} · {NumDomande}";
 
-    private bool _isSelected = true;
+    private bool _isSelected;
     public bool IsSelected
     {
         get => _isSelected;

@@ -622,33 +622,43 @@ public partial class MainView : UserControl
         }
     }
 
-    private void OnRipassaRichiesto(object? sender, CategoriaStat stat)
+    private void OnRipassaRichiesto(object? sender, RichiestaRipasso req)
     {
-        if (stat.Sbagliate == null || stat.Sbagliate.Count == 0) return;
+        if (req.IdDomandeSbagliate == null || req.IdDomandeSbagliate.Count == 0) return;
 
         var mappaAttive = _domandeAttive.ToDictionary(d => d.Id, d => d, StringComparer.OrdinalIgnoreCase);
         var domande = new List<Domanda>();
-        foreach (var sb in stat.Sbagliate)
+        foreach (var id in req.IdDomandeSbagliate)
         {
-            if (!string.IsNullOrEmpty(sb.IdDomanda) && mappaAttive.TryGetValue(sb.IdDomanda, out var d))
+            if (!string.IsNullOrEmpty(id) && mappaAttive.TryGetValue(id, out var d))
                 domande.Add(d);
         }
 
         if (domande.Count == 0) return;
 
         var prefs = _storage?.CaricaPreferenze() ?? _preferenze;
-        string materiaMostrata = EtichetteContenuti.Correnti.Materia(stat.Materia);
-        string catMostrata = EtichetteContenuti.Correnti.Categoria(stat.Materia, stat.Categoria);
-        string nomeMod = string.Format(Strings.Statistiche_RipassaModalita, materiaMostrata, catMostrata);
+        string materiaMostrata = EtichetteContenuti.Correnti.Materia(req.MateriaCanon);
+        string nomeMod;
+        List<string> categorie;
+        if (!string.IsNullOrEmpty(req.CategoriaCanon))
+        {
+            string catMostrata = EtichetteContenuti.Correnti.Categoria(req.MateriaCanon, req.CategoriaCanon);
+            nomeMod = string.Format(Strings.Statistiche_RipassaModalita, materiaMostrata, catMostrata);
+            categorie = new List<string> { $"{req.MateriaCanon}/{req.CategoriaCanon}" };
+        }
+        else
+        {
+            nomeMod = string.Format(Strings.Statistiche_RipassaMateriaModalita, materiaMostrata);
+            categorie = new List<string>();
+        }
 
-        var materiaObj = _materie.FirstOrDefault(m => string.Equals(m.Nome, stat.Materia, StringComparison.OrdinalIgnoreCase));
+        var materiaObj = _materie.FirstOrDefault(m => string.Equals(m.Nome, req.MateriaCanon, StringComparison.OrdinalIgnoreCase));
         var materiaId = materiaObj?.Id ?? domande[0].MateriaId;
-        string chiaveCombinata = $"{stat.Materia}/{stat.Categoria}";
 
         var opz = new OpzioniQuiz
         {
             NomeModalita            = nomeMod,
-            MateriaNomeLabel        = stat.Materia,
+            MateriaNomeLabel        = req.MateriaCanon,
             RandomizzaOrdineDomande = prefs.RandomizzaOrdine,
             Rotazione               = prefs.Rotazione,
             SecondaPossibilita      = prefs.SecondaPossibilita,
@@ -656,7 +666,7 @@ public partial class MainView : UserControl
             LimiteDomande           = 0,
             LimiteTempoMinuti       = 0,
             Materie                 = new List<string> { materiaId },
-            Categorie               = new List<string> { chiaveCombinata }
+            Categorie               = categorie
         };
 
         var sessione = new SessioneQuiz(domande, opz);
