@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Icona adattiva (API 26+): sfondo verde pieno + monogramma "Q" bianco (Quaestio)
+<!-- Icona adattiva (API 26+): sfondo #0c0c0c + Q del logo a6-2 (Quaestio)
      come foreground. Il glifo vive nella safe-zone centrale 72x72 (vedi ic_launcher_foreground). -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
   <background android:drawable="@color/ic_launcher_background" />
