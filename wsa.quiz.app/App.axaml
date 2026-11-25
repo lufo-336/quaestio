@@ -7,7 +7,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://Wsa.Quiz.App/Themes/Sizes.Desktop.axaml"/>
+                <ResourceInclude Source="avares://Wsa.Quiz.App/Themes/Tokens.axaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <!-- Angoli vivi (raggio 0): override delle risorse Fluent. -->
+            <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+            <CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
             <SolidColorBrush x:Key="AccentoBrush" Color="#3a6cb8"/>
             <SolidColorBrush x:Key="AccentoHoverBrush" Color="#4E7BBF"/>
             <SolidColorBrush x:Key="AccentoPressedBrush" Color="#2E5693"/>
@@ -133,21 +137,21 @@
         <Style Selector="Button">
             <Setter Property="FocusAdorner">
                 <FocusAdornerTemplate>
-                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="4"/>
+                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="0"/>
                 </FocusAdornerTemplate>
             </Setter>
         </Style>
         <Style Selector="CheckBox">
             <Setter Property="FocusAdorner">
                 <FocusAdornerTemplate>
-                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="4"/>
+                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="0"/>
                 </FocusAdornerTemplate>
             </Setter>
         </Style>
         <Style Selector="ListBoxItem">
             <Setter Property="FocusAdorner">
                 <FocusAdornerTemplate>
-                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="4"/>
+                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="0"/>
                 </FocusAdornerTemplate>
             </Setter>
         </Style>
@@ -162,14 +166,14 @@
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="FocusAdorner">
                 <FocusAdornerTemplate>
-                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="4"/>
+                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="0"/>
                 </FocusAdornerTemplate>
             </Setter>
         </Style>
         <Style Selector="NumericUpDown">
             <Setter Property="FocusAdorner">
                 <FocusAdornerTemplate>
-                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="4"/>
+                    <Border BorderBrush="#FFD500" BorderThickness="3" CornerRadius="0"/>
                 </FocusAdornerTemplate>
             </Setter>
         </Style>

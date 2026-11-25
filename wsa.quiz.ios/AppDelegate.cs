@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.iOS;
+using Avalonia.Media;
 using Foundation;
 
 namespace Wsa.Quiz.Ios;
@@ -15,5 +16,5 @@ public partial class AppDelegate : AvaloniaAppDelegate<Wsa.Quiz.App.App>
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
         => base.CustomizeAppBuilder(builder)
-            .WithInterFont();
+            .With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" });
 }

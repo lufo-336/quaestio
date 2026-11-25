@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Media;
 using System;
 
 namespace Wsa.Quiz.Desktop;
@@ -13,6 +14,6 @@ internal class Program
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<Wsa.Quiz.App.App>()
             .UsePlatformDetect()
-            .WithInterFont()
+            .With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" })
             .LogToTrace();
 }

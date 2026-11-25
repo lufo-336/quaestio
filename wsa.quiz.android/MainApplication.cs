@@ -3,6 +3,7 @@ using Android.App;
 using Android.Runtime;
 using Avalonia;
 using Avalonia.Android;
+using Avalonia.Media;
 
 namespace Wsa.Quiz.Droid;
 
@@ -21,5 +22,5 @@ public class MainApplication : AvaloniaAndroidApplication<Wsa.Quiz.App.App>
 
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
         => base.CustomizeAppBuilder(builder)
-            .WithInterFont();
+            .With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" });
 }

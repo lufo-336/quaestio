@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Font titoli: Archivo stretto (larghezza 78%) e peso ExtraBold (800). -->
+    <FontFamily x:Key="FontTitoli">avares://Wsa.Quiz.App/Assets/Fonts#Archivo Titoli</FontFamily>
+
+    <!-- Neutri del brand "lucafoglia": Grafite (chiaro) e Arena (scuro).
+         Tutti SolidColorBrush (mai Color nei Setter di Style, trappola 7). -->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="Sfondo" Color="#e8e7e3"/>
+            <SolidColorBrush x:Key="SfondoRialzato" Color="#f1f0ec"/>
+            <SolidColorBrush x:Key="TestoPrincipale" Color="#141413"/>
+            <SolidColorBrush x:Key="TestoAttenuato" Color="#57564f"/>
+            <SolidColorBrush x:Key="RigaForte" Color="#141413"/>
+            <SolidColorBrush x:Key="RigaDebole" Color="#d6d5d0"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="Sfondo" Color="#0c0c0c"/>
+            <SolidColorBrush x:Key="SfondoRialzato" Color="#161616"/>
+            <SolidColorBrush x:Key="TestoPrincipale" Color="#f4f4f2"/>
+            <SolidColorBrush x:Key="TestoAttenuato" Color="#a6a6a6"/>
+            <SolidColorBrush x:Key="RigaForte" Color="#f4f4f2"/>
+            <SolidColorBrush x:Key="RigaDebole" Color="#212120"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

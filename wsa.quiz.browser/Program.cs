@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Browser;
+using Avalonia.Media;
 using Wsa.Quiz.App;
 using Wsa.Quiz.Core.Services;
 
@@ -66,7 +67,7 @@ internal sealed partial class Program
         AppEnv.UsaTouchInSingleView = IsTouchDevice();
 
         return BuildAvaloniaApp()
-            .WithInterFont()
+            .With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" })
             .StartBrowserAppAsync("out");
     }
 

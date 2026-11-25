@@ -1,10 +1,13 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
+             xmlns:c="using:Wsa.Quiz.App.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Wsa.Quiz.App.MainView">
+             x:Class="Wsa.Quiz.App.MainView"
+             Background="{DynamicResource Sfondo}"
+             Foreground="{DynamicResource TestoPrincipale}">
 
     <!-- Colori della bottom-nav per tema, in hex: SystemAccent/SystemChrome su
          Android si risolvono invisibili (Trappola 20). -->
@@ -76,19 +79,19 @@
         <!-- Header -->
         <Border x:Name="HeaderBorder"
                 DockPanel.Dock="Top"
-                Background="{DynamicResource AccentoBrush}"
+                Background="{DynamicResource Sfondo}"
+                BorderBrush="{DynamicResource RigaForte}"
+                BorderThickness="0,0,0,1"
                 Padding="20,12">
             <Grid ColumnDefinitions="*,Auto">
-                <TextBlock Text="Quaestio"
-                           FontSize="20" FontWeight="SemiBold"
-                           Foreground="White"
-                           VerticalAlignment="Center"/>
+                <c:MarchioQuaestio Height="28"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1"
                            x:Name="StatoHeaderText"
                            VerticalAlignment="Center"
                            FontSize="11"
-                           Foreground="White"
-                           Opacity="0.85"/>
+                           Foreground="{DynamicResource TestoAttenuato}"/>
             </Grid>
         </Border>
 

@@ -88,6 +88,8 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 3: Fondamenta — Archivo, neutri, forme, intestazione col marchio
 
+- [x] Fatto 2026-11-25 (agy, Step 2–5; Step 1 già pronto da Claude): file `wsa.quiz.app/Themes/Tokens.axaml`, `wsa.quiz.app/Controls/MarchioQuaestio.axaml`, `wsa.quiz.app/Controls/MarchioQuaestio.axaml.cs`, `wsa.quiz.app/App.axaml`, `wsa.quiz.app/MainView.axaml`, `wsa.quiz.app/Wsa.Quiz.App.csproj`, `wsa.quiz.desktop/Program.cs`, `wsa.quiz.android/MainApplication.cs`, `wsa.quiz.ios/AppDelegate.cs`, `wsa.quiz.browser/Program.cs` — verifica: non eseguita (sessione headless senza shell; Step 6–7 prova a mano, build, test e commit demandati a Claude)
+
 **Files:**
 - Create: `wsa.quiz.app/Themes/Tokens.axaml`, `wsa.quiz.app/Controls/MarchioQuaestio.axaml` (+ `.axaml.cs`), file Archivo in `wsa.quiz.app/Assets/Fonts/` (+ `OFL-Archivo.txt`)
 - Modify: `wsa.quiz.app/App.axaml` (merge Tokens, stili globali), `wsa.quiz.app/MainView.axaml` (intestazione, fondo), `wsa.quiz.desktop/Program.cs`, `wsa.quiz.android/MainApplication.cs`, `wsa.quiz.ios/AppDelegate.cs`, `wsa.quiz.browser/Program.cs` (font di default)
@@ -95,11 +97,11 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 **Interfaces:**
 - Produces (chiavi risorsa, Brush in `ThemeDictionaries` Light/Dark con i valori dei Global Constraints): `Sfondo`, `SfondoRialzato`, `TestoPrincipale`, `TestoAttenuato`, `RigaForte`, `RigaDebole`; `FontFamily` `FontTitoli` (Archivo stretto, pesante). Controllo `MarchioQuaestio` (nessuna proprietà; altezza 28 nell'intestazione).
 
-- [ ] **Step 1:** procurare Archivo (OFL) in istanze statiche: almeno Regular, SemiBold, Bold a larghezza piena e una ExtraBold stretta (~75–80%) per i titoli; se si parte dal variabile, generarle con `fontTools.varLib.instancer` (gratuito). Includerle come `AvaloniaResource`.
-- [ ] **Step 2:** nei quattro head sostituire `.WithInterFont()` con `.With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" })` (nome famiglia esatto da verificare sul file).
-- [ ] **Step 3:** `Tokens.axaml` con le chiavi sopra; in `App.axaml` merge e override delle risorse Fluent `ControlCornerRadius` e `OverlayCornerRadius` a `0`; fondo della radice di `MainView` = `Sfondo`, testo = `TestoPrincipale`.
-- [ ] **Step 4:** `MarchioQuaestio`: `Viewbox` con un `Canvas` 184×44 e un `Path` per ogni `path`/`rect` di `assets/.../logo-a6-2-marchio-scuro.svg` (le corsie colorate tengono i loro hex; l'anima neutra usa `{DynamicResource TestoPrincipale}`, così cambia col tema).
-- [ ] **Step 5:** intestazione di `MainView`: fondo `Sfondo`, `BorderThickness="0,0,0,1"` `BorderBrush={DynamicResource RigaForte}`, a sinistra `MarchioQuaestio` al posto del `TextBlock "Quaestio"`, a destra `StatoHeaderText` in `TestoAttenuato` senza `Opacity`.
+- [x] **Step 1:** procurare Archivo (OFL) in istanze statiche: almeno Regular, SemiBold, Bold a larghezza piena e una ExtraBold stretta (~75–80%) per i titoli; se si parte dal variabile, generarle con `fontTools.varLib.instancer` (gratuito). Includerle come `AvaloniaResource`.
+- [x] **Step 2:** nei quattro head sostituire `.WithInterFont()` con `.With(new FontManagerOptions { DefaultFamilyName = "avares://Wsa.Quiz.App/Assets/Fonts#Archivo" })` (nome famiglia esatto da verificare sul file).
+- [x] **Step 3:** `Tokens.axaml` con le chiavi sopra; in `App.axaml` merge e override delle risorse Fluent `ControlCornerRadius` e `OverlayCornerRadius` a `0`; fondo della radice di `MainView` = `Sfondo`, testo = `TestoPrincipale`.
+- [x] **Step 4:** `MarchioQuaestio`: `Viewbox` con un `Canvas` 184×44 e un `Path` per ogni `path`/`rect` di `assets/.../logo-a6-2-marchio-scuro.svg` (le corsie colorate tengono i loro hex; l'anima neutra usa `{DynamicResource TestoPrincipale}`, così cambia col tema).
+- [x] **Step 5:** intestazione di `MainView`: fondo `Sfondo`, `BorderThickness="0,0,0,1"` `BorderBrush={DynamicResource RigaForte}`, a sinistra `MarchioQuaestio` al posto del `TextBlock "Quaestio"`, a destra `StatoHeaderText` in `TestoAttenuato` senza `Opacity`.
 - [ ] **Step 6:** prova a mano: desktop chiaro e scuro (cambio tema da Impostazioni senza riavvio → marchio e fondi seguono); WebAssembly (`dotnet run --project wsa.quiz.browser`) mostra Archivo (trappola 27).
 - [ ] **Step 7:** build, test, commit `feat(app): neutri, Archivo, angoli vivi e marchio a6-2 nell'intestazione` + push.
 
