@@ -111,6 +111,9 @@ Insieme si correggono i difetti di impaginazione visti sul telefono (testi e pul
   intestazione e barra. Il **colore di sezione** vive solo nella barra di navigazione: dentro una sezione l'accento è
   sempre quello dell'utente (nel mockup C2 "Ripassa" e "Aggiorna" restano blu anche in Statistiche).
   `Tavolozza` resta quindi un accento globale; non serve un "colore di sezione" ereditato dalle viste.
+- **Aggiunta del 25/11 sera** (Luca, dopo la prova): il colore utente va anche su una riga di 3 px sotto
+  l'intestazione e su un trattino di 4 px a sinistra dei titoli dei riquadri (`Border.trattino` in `App.axaml`).
+  Variante A di `assets/.../mockup-colore-utente.png`; B (testi) e C (campi tinti) restano possibili in seguito.
 - **Esiti usati come colore del testo** su fondo neutro (percentuali, esito, cronometro in Riepilogo, Cronologia,
   CronologiaDettaglio, Quiz): come in lucablog (`--c-*-text` in `tokens.css`) si usa una **variante per il testo**
   nel tema chiaro — ocra `#9b7300`, verde acqua `#33867c`, rosso `#d6414b` — e i colori pieni nel tema scuro.
