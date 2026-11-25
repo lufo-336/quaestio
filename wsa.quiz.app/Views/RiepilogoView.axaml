@@ -101,9 +101,11 @@
         <!-- LISTA SBAGLIATE -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <StackPanel Spacing="10">
-                <TextBlock Text="{Binding TitoloLista}"
+                <Border Classes="trattino">
+                    <TextBlock Text="{Binding TitoloLista}"
                            FontWeight="SemiBold"
                            FontSize="14"/>
+                </Border>
 
                 <TextBlock Text="{x:Static r:Strings.Riepilogo_TutteCorrette}"
                            IsVisible="{Binding NessunaSbagliata}"

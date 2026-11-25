@@ -178,8 +178,8 @@
         <Border x:Name="HeaderBorder"
                 DockPanel.Dock="Top"
                 Background="{DynamicResource Sfondo}"
-                BorderBrush="{DynamicResource RigaForte}"
-                BorderThickness="0,0,0,1"
+                BorderBrush="{DynamicResource AccentoBrush}"
+                BorderThickness="0,0,0,3"
                 Padding="20,12">
             <Grid ColumnDefinitions="*,Auto">
                 <c:MarchioQuaestio Height="28"

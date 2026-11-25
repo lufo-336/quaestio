@@ -68,10 +68,11 @@
                             BorderThickness="1"
                             Padding="14">
                         <DockPanel>
-                            <TextBlock DockPanel.Dock="Top"
+                            <Border Classes="trattino" DockPanel.Dock="Top" Margin="0,0,0,8">
+                                <TextBlock
                                        Text="{x:Static r:Strings.Home_Materie}"
-                                       FontWeight="SemiBold"
-                                       Margin="0,0,0,8"/>
+                                       FontWeight="SemiBold"/>
+                            </Border>
                             <ScrollViewer MaxHeight="240"
                                           VerticalScrollBarVisibility="Auto">
                                 <ItemsControl ItemsSource="{Binding Materie}">
@@ -99,10 +100,11 @@
                             MinHeight="180">
                         <DockPanel>
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="0,0,0,8">
-                                <TextBlock Text="{x:Static r:Strings.Home_CategorieTitolo}"
+                                <Border Classes="trattino" VerticalAlignment="Center">
+                                    <TextBlock Text="{x:Static r:Strings.Home_CategorieTitolo}"
                                            FontWeight="SemiBold"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"/>
+                                           TextWrapping="Wrap"/>
+                                </Border>
                                 <Button Grid.Column="1"
                                         Content="{x:Static r:Strings.Home_Pulisci}"
                                         Click="OnPulisciCategorieClick"
@@ -152,8 +154,10 @@
                         BorderThickness="1"
                         Padding="14">
                     <StackPanel Spacing="8">
-                        <TextBlock Text="{x:Static r:Strings.Home_Opzioni}"
+                        <Border Classes="trattino">
+                            <TextBlock Text="{x:Static r:Strings.Home_Opzioni}"
                                    FontWeight="SemiBold"/>
+                        </Border>
 
                         <CheckBox IsChecked="{Binding RandomizzaOrdine, Mode=TwoWay}"
                                   ToolTip.Tip="{x:Static r:Strings.Home_RandomizzaTip}">
@@ -217,8 +221,10 @@
                         BorderThickness="1"
                         Padding="14">
                     <StackPanel Spacing="8">
-                        <TextBlock Text="{x:Static r:Strings.Home_TipoTitolo}"
+                        <Border Classes="trattino">
+                            <TextBlock Text="{x:Static r:Strings.Home_TipoTitolo}"
                                    FontWeight="SemiBold"/>
+                        </Border>
                         <ItemsControl ItemsSource="{Binding Tipi}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -256,8 +262,10 @@
                         BorderThickness="1"
                         Padding="14">
                     <StackPanel Spacing="8">
-                        <TextBlock Text="{x:Static r:Strings.Home_PuntiDeboliTitolo}"
+                        <Border Classes="trattino">
+                            <TextBlock Text="{x:Static r:Strings.Home_PuntiDeboliTitolo}"
                                    FontWeight="SemiBold"/>
+                        </Border>
                         <ItemsControl ItemsSource="{Binding Livelli}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

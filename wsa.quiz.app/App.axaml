@@ -60,6 +60,13 @@
              risolversi in un colore invisibile (bianco/trasparente), rendendo il bottone
              abilitato invisibile (testo bianco su bianco). Vedi Trappola 6/20.
              I brush sono impostati dinamicamente da Tavolozza.Applica. -->
+        <!-- Trattino del colore utente a sinistra dei titoli dei riquadri
+             (variante A, mockup-colore-utente.png). -->
+        <Style Selector="Border.trattino">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderThickness" Value="4,0,0,0"/>
+            <Setter Property="Padding" Value="7,0,0,0"/>
+        </Style>
         <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
             <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>

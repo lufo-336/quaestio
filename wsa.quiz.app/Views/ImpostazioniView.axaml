@@ -58,7 +58,9 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Tema}" FontWeight="SemiBold"/>
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Impostazioni_Tema}" FontWeight="SemiBold"/>
+                            </Border>
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_TemaDescrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
@@ -78,7 +80,9 @@
                         Padding="16,14">
                     <Grid x:Name="GrigliaColore" ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Colore}" FontWeight="SemiBold"/>
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Impostazioni_Colore}" FontWeight="SemiBold"/>
+                            </Border>
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_ColoreDescrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
@@ -120,7 +124,9 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static r:Strings.Lingua_Nome}" FontWeight="SemiBold"/>
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Lingua_Nome}" FontWeight="SemiBold"/>
+                            </Border>
                             <TextBlock Text="{x:Static r:Strings.Lingua_Descrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
@@ -143,9 +149,10 @@
 
                 <!-- ======================================== ABOUT (step 14) -->
 
-                <TextBlock Text="{x:Static r:Strings.Impostazioni_Informazioni}"
-                           FontSize="16" FontWeight="SemiBold"
-                           Margin="2,8,0,0"/>
+                <Border Classes="trattino" Margin="2,8,0,0">
+                    <TextBlock Text="{x:Static r:Strings.Impostazioni_Informazioni}"
+                           FontSize="16" FontWeight="SemiBold"/>
+                </Border>
 
                 <!-- App e versione -->
                 <Border Background="{DynamicResource SfondoRialzato}"
@@ -173,7 +180,9 @@
                         BorderThickness="1"
                         Padding="16,14">
                     <StackPanel Spacing="2">
-                        <TextBlock Text="{x:Static r:Strings.Impostazioni_Contenuti}" FontWeight="SemiBold"/>
+                        <Border Classes="trattino">
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Contenuti}" FontWeight="SemiBold"/>
+                        </Border>
                         <TextBlock Text="{Binding ContenutiEtichetta}" FontSize="12"/>
                         <TextBlock Text="{x:Static r:Strings.Impostazioni_ContenutiNota}"
                                    FontSize="11"
@@ -189,7 +198,9 @@
                         Padding="16,14">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2">
-                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Dati}" FontWeight="SemiBold"/>
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Impostazioni_Dati}" FontWeight="SemiBold"/>
+                            </Border>
                             <TextBlock Text="{Binding DatiDescrizione}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
@@ -218,7 +229,9 @@
                         BorderThickness="1"
                         Padding="16,14">
                     <StackPanel Spacing="6">
-                        <TextBlock Text="{x:Static r:Strings.Impostazioni_Crediti}" FontWeight="SemiBold"/>
+                        <Border Classes="trattino">
+                            <TextBlock Text="{x:Static r:Strings.Impostazioni_Crediti}" FontWeight="SemiBold"/>
+                        </Border>
                         <TextBlock Text="{x:Static r:Strings.Impostazioni_CreditiTesto}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
