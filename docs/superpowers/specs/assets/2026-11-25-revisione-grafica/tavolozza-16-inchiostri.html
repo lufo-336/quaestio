@@ -1,0 +1,64 @@
+<style>
+@font-face { font-family:'Archivo'; src:url('/files/archivo-var.woff2') format('woff2-variations'); font-weight:400 900; font-stretch:62% 100%; }
+.pal { font-family:'Archivo',sans-serif; }
+.nastro { display:flex; height:56px; margin:10px 0 6px; }
+.nastro div { flex:1; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; margin:14px 0 28px; }
+.k { border:1px solid #8884; }
+.k .c { height:70px; display:flex; align-items:flex-end; justify-content:space-between; padding:7px 9px; font-weight:800; font-stretch:80%; font-size:17px; }
+.k .c small { font-weight:500; font-size:11px; font-stretch:100%; }
+.k .prev { display:flex; }
+.k .prev div { flex:1; padding:10px 9px; display:flex; justify-content:center; }
+.k .prev .dk { background:#0c0c0c; } .k .prev .lt { background:#e8e7e3; }
+.btn { display:inline-flex; align-items:center; height:30px; padding:0 12px; font-weight:600; font-size:12px; }
+.k .m { font-size:11.5px; padding:7px 9px; color:#888; line-height:1.35; }
+.tag { display:inline-block; font-size:9.5px; text-transform:uppercase; letter-spacing:.1em; padding:1px 5px; margin-right:4px; border:1px solid currentColor; }
+.t-lb { color:#3a6cb8; } .t-p1 { color:#c06a00; } .t-new { color:#2f9a8e; } .t-ris { color:#d6414b; }
+</style>
+
+<div class="pal">
+<h2>Tavolozza estesa: 16 inchiostri</h2>
+<p class="subtitle">Stessa regola per tutti: toni medi, pieni ma smorzati (luminosità 40–58%, saturazione 40–65%), nessun fluorescente, nessun grigiastro. Ordinati sulla ruota dei colori, dal rosso al rosso. Sotto ogni colore: il pulsante d'azione sul fondo scuro (Arena) e su quello chiaro (Grafite), col testo nero o bianco a seconda di quale si legge meglio.</p>
+
+<div class="nastro">
+  <div style="background:#d6414b"></div><div style="background:#e0703a"></div><div style="background:#8f5f3d"></div><div style="background:#ebaf00"></div><div style="background:#95a63f"></div><div style="background:#3fa66a"></div><div style="background:#40a79b"></div><div style="background:#308ea6"></div><div style="background:#539fd4"></div><div style="background:#3a6cb8"></div><div style="background:#4d4dbc"></div><div style="background:#8559b0"></div><div style="background:#a63f8c"></div><div style="background:#d06a95"></div><div style="background:#5c6370"></div><div style="background:#d7d7d7"></div>
+</div>
+<p class="subtitle" style="margin-top:0"><span class="tag t-lb">lucablog</span> già nel sito · <span class="tag t-p1">proposta 1</span> già visti · <span class="tag t-new">nuovo</span> da valutare · <span class="tag t-ris">riservato</span> ha già un significato (esito delle risposte), non sceglibile come colore utente</p>
+
+<div class="grid options" data-multiselect>
+
+<div class="k" data-choice="rosso" onclick="toggleSelect(this)"><div class="c" style="background:#d6414b;color:#000">Rosso <small>#d6414b</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#d6414b;color:#000">Elimina</span></div><div class="lt"><span class="btn" style="background:#d6414b;color:#000">Elimina</span></div></div><div class="m"><span class="tag t-lb">lucablog</span><span class="tag t-ris">riservato</span><br>sbagliata, elimina; il marchio</div></div>
+
+<div class="k" data-choice="terracotta" onclick="toggleSelect(this)"><div class="c" style="background:#e0703a;color:#000">Terracotta <small>#e0703a</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#e0703a;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#e0703a;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-p1">proposta 1</span><br>Statistiche</div></div>
+
+<div class="k" data-choice="cacao" onclick="toggleSelect(this)"><div class="c" style="background:#8f5f3d;color:#fff">Cacao <small>#8f5f3d</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#8f5f3d;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#8f5f3d;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>terra bruciata; c'era già un "cacao" fra i colori dell'app</div></div>
+
+<div class="k" data-choice="ocra" onclick="toggleSelect(this)"><div class="c" style="background:#ebaf00;color:#000">Ocra <small>#ebaf00</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#ebaf00;color:#000">Riprendi</span></div><div class="lt"><span class="btn" style="background:#ebaf00;color:#000">Riprendi</span></div></div><div class="m"><span class="tag t-lb">lucablog</span><span class="tag t-ris">riservato</span><br>a metà / seconda possibilità; Pausa</div></div>
+
+<div class="k" data-choice="oliva" onclick="toggleSelect(this)"><div class="c" style="background:#95a63f;color:#000">Oliva <small>#95a63f</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#95a63f;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#95a63f;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>verde-giallo, colma il buco fra ocra e verde</div></div>
+
+<div class="k" data-choice="prato" onclick="toggleSelect(this)"><div class="c" style="background:#3fa66a;color:#000">Prato <small>#3fa66a</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#3fa66a;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#3fa66a;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>verde vero; troppo vicino a "giusta"? da decidere</div></div>
+
+<div class="k" data-choice="verde" onclick="toggleSelect(this)"><div class="c" style="background:#40a79b;color:#000">Verde acqua <small>#40a79b</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#40a79b;color:#000">Aggiungi</span></div><div class="lt"><span class="btn" style="background:#40a79b;color:#000">Aggiungi</span></div></div><div class="m"><span class="tag t-lb">lucablog</span><span class="tag t-ris">riservato</span><br>giusta; Contenuti</div></div>
+
+<div class="k" data-choice="petrolio" onclick="toggleSelect(this)"><div class="c" style="background:#308ea6;color:#000">Petrolio <small>#308ea6</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#308ea6;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#308ea6;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>fra verde acqua e blu</div></div>
+
+<div class="k" data-choice="azzurro" onclick="toggleSelect(this)"><div class="c" style="background:#539fd4;color:#000">Azzurro <small>#539fd4</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#539fd4;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#539fd4;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>il più chiaro della serie, cielo</div></div>
+
+<div class="k" data-choice="blu" onclick="toggleSelect(this)"><div class="c" style="background:#3a6cb8;color:#fff">Blu <small>#3a6cb8</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#3a6cb8;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#3a6cb8;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-lb">lucablog</span><br>Home; colore utente predefinito</div></div>
+
+<div class="k" data-choice="indaco" onclick="toggleSelect(this)"><div class="c" style="background:#4d4dbc;color:#fff">Indaco <small>#4d4dbc</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#4d4dbc;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#4d4dbc;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>fra blu e viola</div></div>
+
+<div class="k" data-choice="viola" onclick="toggleSelect(this)"><div class="c" style="background:#8559b0;color:#fff">Viola <small>#8559b0</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#8559b0;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#8559b0;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-p1">proposta 1</span><br>Cronologia</div></div>
+
+<div class="k" data-choice="prugna" onclick="toggleSelect(this)"><div class="c" style="background:#a63f8c;color:#fff">Prugna <small>#a63f8c</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#a63f8c;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#a63f8c;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>magenta smorzato</div></div>
+
+<div class="k" data-choice="rosa" onclick="toggleSelect(this)"><div class="c" style="background:#d06a95;color:#000">Rosa antico <small>#d06a95</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#d06a95;color:#000">Ripassa</span></div><div class="lt"><span class="btn" style="background:#d06a95;color:#000">Ripassa</span></div></div><div class="m"><span class="tag t-p1">proposta 1</span><br>fra prugna e rosso</div></div>
+
+<div class="k" data-choice="ardesia" onclick="toggleSelect(this)"><div class="c" style="background:#5c6370;color:#fff">Ardesia <small>#5c6370</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#5c6370;color:#fff">Ripassa</span></div><div class="lt"><span class="btn" style="background:#5c6370;color:#fff">Ripassa</span></div></div><div class="m"><span class="tag t-new">nuovo</span><br>il neutro per chi non vuole colore (era "grafite")</div></div>
+
+<div class="k" data-choice="grigio" onclick="toggleSelect(this)"><div class="c" style="background:#d7d7d7;color:#000">Grigio <small>#d7d7d7</small></div><div class="prev"><div class="dk"><span class="btn" style="background:#d7d7d7;color:#000">Salva</span></div><div class="lt"><span class="btn" style="background:#c4c3bd;color:#000">Salva</span></div></div><div class="m"><span class="tag t-lb">lucablog</span><br>Impostazioni; nel chiaro diventa #c4c3bd</div></div>
+
+</div>
+<p class="subtitle">Clicca i colori che vuoi tenere (puoi selezionarne più d'uno): quelli non cliccati li scarto o li ritocco.</p>
+</div>

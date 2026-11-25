@@ -1,0 +1,66 @@
+<style>
+@font-face { font-family:'Archivo'; src:url('/files/archivo-var.woff2') format('woff2-variations'); font-weight:400 900; font-stretch:62% 100%; }
+.pal { font-family:'Archivo',sans-serif; }
+.sw { display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 24px; }
+.s { width:128px; }
+.s .c { height:84px; display:flex; align-items:flex-end; padding:7px; font-weight:700; font-size:13px; }
+.s .m { font-size:11.5px; line-height:1.35; margin-top:6px; color:#888; }
+.s .m b { color:inherit; }
+.tag { display:inline-block; font-size:10px; text-transform:uppercase; letter-spacing:.1em; padding:1px 5px; border:1px solid #888; margin-top:3px; }
+.new .c { outline:2px dashed #888; outline-offset:3px; }
+table.ruoli { border-collapse:collapse; font-size:13px; margin:8px 0 24px; }
+table.ruoli td { border-top:1px solid #8884; padding:7px 12px 7px 0; vertical-align:middle; }
+.chip { display:inline-block; width:14px; height:14px; vertical-align:-2px; margin-right:6px; }
+.navs { display:flex; gap:28px; flex-wrap:wrap; }
+.nav { display:flex; height:60px; width:320px; font-family:'Archivo',sans-serif; }
+.nav div { flex:1; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.nav div.act { flex:2.4; font-weight:800; font-size:13px; gap:6px; }
+.frame { padding:14px; }
+.frame.dk { background:#0c0c0c; color:#f4f4f2; } .frame.lt { background:#e8e7e3; color:#141413; }
+.esiti { display:flex; gap:7px; margin-top:12px; font-size:12px; }
+.esiti span { padding:5px 9px; color:#000; font-weight:600; }
+</style>
+
+<div class="pal">
+<h2>La tavolozza di Quaestio</h2>
+<p class="subtitle"><b>Come si chiamano questi colori.</b> Non sono pastelli: un pastello è chiaro e slavato (rosa confetto, azzurro polvere). Questi sono <b>toni medi, pieni ma smorzati</b>, come <b>inchiostri da stampa</b> (risograph, manifesti svizzeri): luminosità a metà (45–58%), saturazione moderata (45–65%), mai fluorescenti, mai grigiastri. L'ocra è l'unica eccezione più satura, perché un giallo smorzato diventa senape-fango. Sui due fondi (Grafite chiaro, Arena scuro) reggono tutti; il testo sopra è nero, bianco solo sul blu e sul viola.</p>
+
+<h3>I cinque che ci sono già (da lucablog)</h3>
+<div class="sw">
+  <div class="s"><div class="c" style="background:#d6414b;color:#000">Rosso</div><div class="m">#d6414b · lampone</div></div>
+  <div class="s"><div class="c" style="background:#3a6cb8;color:#fff">Blu</div><div class="m">#3a6cb8 · cobalto</div></div>
+  <div class="s"><div class="c" style="background:#ebaf00;color:#000">Ocra</div><div class="m">#ebaf00 · senape</div></div>
+  <div class="s"><div class="c" style="background:#40a79b;color:#000">Verde</div><div class="m">#40a79b · verde acqua</div></div>
+  <div class="s"><div class="c" style="background:#d7d7d7;color:#000">Grigio</div><div class="m">#d7d7d7 (#c4c3bd nel chiaro)</div></div>
+</div>
+
+<h3>Proposta: tre nuovi, stessa famiglia</h3>
+<div class="sw">
+  <div class="s new"><div class="c" style="background:#8559b0;color:#fff">Viola</div><div class="m">#8559b0 · tra blu e rosso, colma il buco più grande della ruota</div></div>
+  <div class="s new"><div class="c" style="background:#e0703a;color:#000">Terracotta</div><div class="m">#e0703a · tra rosso e ocra; caldo, si distingue da entrambi</div></div>
+  <div class="s new"><div class="c" style="background:#d06a95;color:#000">Rosa antico</div><div class="m">#d06a95 · di riserva, solo come colore utente</div></div>
+</div>
+
+<h3>Che valore dare a ciascuno</h3>
+<p class="subtitle" style="margin-top:0">Due regole. <b>1.</b> Rosso, ocra e verde hanno già un significato nelle risposte (sbagliata / seconda possibilità / giusta): li tengo fissi lì. <b>2.</b> Nella barra C2 ogni sezione ha un colore diverso dagli altri, scelto per somiglianza di senso. Il rosso sta solo nel marchio e negli errori, così una schermata rossa vuol dire sempre "attenzione".</p>
+<table class="ruoli">
+  <tr><td><i class="chip" style="background:#3a6cb8"></i>Blu</td><td><b>Home</b></td><td>il colore "di casa" di lucablog; si parte da qui</td></tr>
+  <tr><td><i class="chip" style="background:#8559b0"></i>Viola</td><td><b>Cronologia</b></td><td>il passato, la memoria</td></tr>
+  <tr><td><i class="chip" style="background:#ebaf00"></i>Ocra</td><td><b>Pausa</b></td><td>giallo del semaforo: in attesa, a metà strada</td></tr>
+  <tr><td><i class="chip" style="background:#e0703a"></i>Terracotta</td><td><b>Statistiche</b></td><td>calore della mappa dei punti deboli; non è verde, così non si confonde con "giusto"</td></tr>
+  <tr><td><i class="chip" style="background:#40a79b"></i>Verde</td><td><b>Contenuti</b></td><td>aggiungere, far crescere</td></tr>
+  <tr><td><i class="chip" style="background:#d7d7d7"></i>Grigio</td><td><b>Impostazioni</b></td><td>come l'ultima banda del sito, quella di lingua e tema</td></tr>
+  <tr><td><i class="chip" style="background:#40a79b"></i><i class="chip" style="background:#ebaf00"></i><i class="chip" style="background:#d6414b"></i></td><td><b>Esiti</b></td><td>giusta · seconda possibilità / a metà · sbagliata (anche Elimina)</td></tr>
+</table>
+
+<h3>La barra C2 con questa assegnazione</h3>
+<div class="navs">
+  <div class="frame dk"><div class="nav">
+    <div style="background:#3a6cb8;color:#fff">⌂</div><div style="background:#8559b0;color:#fff">↺</div><div style="background:#ebaf00">‖</div><div class="act" style="background:#e0703a;color:#000">▥ Statistiche</div><div style="background:#40a79b">＋</div><div style="background:#d7d7d7">⚙</div>
+  </div><div class="esiti"><span style="background:#40a79b">giusta</span><span style="background:#ebaf00">a metà</span><span style="background:#d6414b">sbagliata</span></div></div>
+  <div class="frame lt"><div class="nav">
+    <div class="act" style="background:#3a6cb8;color:#fff">⌂ Home</div><div style="background:#8559b0;color:#fff">↺</div><div style="background:#ebaf00">‖</div><div style="background:#e0703a">▥</div><div style="background:#40a79b">＋</div><div style="background:#c4c3bd">⚙</div>
+  </div><div class="esiti"><span style="background:#40a79b">giusta</span><span style="background:#ebaf00">a metà</span><span style="background:#d6414b">sbagliata</span></div></div>
+</div>
+<p class="subtitle">E il colore scelto dall'utente? Oggi si sceglie tra 8 colori in stile Microsoft (#0078D4 ecc.), fuori famiglia. Proposta: la scelta resta, ma fra questi stessi inchiostri (blu, viola, verde, terracotta, rosa antico, grafite), e colora i pulsanti d'azione ("Ripassa", "Avvia").</p>
+</div>

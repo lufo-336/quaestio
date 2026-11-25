@@ -1,0 +1,133 @@
+<style>
+@font-face { font-family:'Archivo'; src:url('/files/archivo-var.woff2') format('woff2-variations'); font-weight:400 900; font-stretch:62% 100%; }
+.ph { width:320px; background:#0c0c0c; color:#f4f4f2; font-family:'Archivo',sans-serif; border:1px solid #333; display:flex; flex-direction:column; height:560px; overflow:hidden; margin:0 auto; }
+.ph * { box-sizing:border-box; }
+.status { height:22px; font-size:11px; color:#a6a6a6; padding:4px 14px; }
+.body { flex:1; padding:0 14px; }
+.muted { color:#a6a6a6; } .num { font-variant-numeric:tabular-nums; }
+.seg { display:flex; height:4px; }
+.r{background:#d6414b}.o{background:#ebaf00}.g{background:#40a79b}.b{background:#3a6cb8}.gr{background:#d7d7d7}
+.dot{display:inline-block;width:8px;height:8px;margin-right:4px}
+.field { display:inline-flex; border:1px solid #f4f4f2; height:30px; align-items:center; font-size:13px; }
+.field span { padding:0 9px; } .field i { font-style:normal; border-left:1px solid #f4f4f2; width:28px; text-align:center; line-height:28px; }
+.radio { display:inline-flex; gap:10px; align-items:center; font-size:13px; }
+.radio b { display:inline-block; width:12px; height:12px; border:1.5px solid #f4f4f2; margin-right:5px; vertical-align:-1px; }
+.radio b.on { background:#f4f4f2; box-shadow: inset 0 0 0 2px #0c0c0c; }
+.btn { display:inline-flex; align-items:center; justify-content:center; height:34px; padding:0 14px; font-weight:600; font-size:13px; }
+.legend { display:flex; justify-content:space-between; font-size:12px; margin-top:7px; }
+.hdr { padding:8px 14px 10px; border-bottom:1px solid #f4f4f2; display:flex; justify-content:space-between; align-items:center; }
+.brand { font-size:24px; font-weight:800; font-stretch:80%; display:flex; align-items:center; gap:8px; }
+.vl { display:inline-flex; gap:2px; height:20px; } .vl i { width:3px; display:block; }
+h1.t { font-size:32px; margin:18px 0 12px; font-weight:800; font-stretch:75%; }
+.row { border-top:1px solid #333; padding:14px 0; }
+.nav { display:flex; height:56px; }
+.nav div { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:9.5px; color:#a6a6a6; }
+.nav svg { width:18px; height:18px; }
+.legenda { font-size:12px; color:#a6a6a6; font-family:'Archivo',sans-serif; margin-top:10px; text-align:center; }
+</style>
+
+<h2>B più colorata: tre modi di portare il colore in basso</h2>
+<p class="subtitle">Base sobria, marchio B2. Ogni sezione ha un suo colore, ciclico come le bande del menu di lucablog: Home rosso, Cronologia blu, Pausa ocra, Statistiche verde, Contenuti rosso, Impostazioni grigio (l'ultima banda del sito è grigia). Cambia quanto quel colore si vede.</p>
+
+<div class="cards">
+
+<!-- C1 -->
+<div class="card" data-choice="c1" onclick="toggleSelect(this)">
+<div class="card-image" style="background:#222;padding:14px">
+<div class="ph">
+  <div class="status">14:27</div>
+  <div class="hdr"><span class="brand"><span class="vl"><i class="r"></i><i class="b"></i><i class="o"></i><i class="g"></i><i class="gr"></i></span>quaestio</span><span class="muted num" style="font-size:12px">12 materie · 2483</span></div>
+  <div class="body">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><h1 class="t">Statistiche</h1><span style="font-size:13px;color:#3a6cb8">Aggiorna</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div class="radio"><span><b></b>Tutto</span><span><b class="on"></b>Ultime</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="field num"><span>30</span><i>−</i><i>+</i></span><span class="muted" style="font-size:12px">partite</span></div>
+    </div>
+    <div class="row">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:18px;font-weight:700">C / C++</span><span class="num" style="font-size:18px;font-weight:700;color:#d6414b">79%</span></div>
+      <div class="seg" style="margin-top:10px"><div class="r" style="flex:19"></div><div class="o" style="flex:1"></div><div class="g" style="flex:5"></div></div>
+      <div class="legend num"><span><i class="dot r"></i>19 <i class="dot o" style="margin-left:8px"></i>1 <i class="dot g" style="margin-left:8px"></i>5</span><span class="muted">28 risposte · 20 sbagliate</span></div>
+      <div style="text-align:right;margin-top:11px"><span class="btn b" style="color:#fff">Ripassa (20)</span></div>
+    </div>
+  </div>
+  <div class="nav" style="border-top:1px solid #333">
+    <div style="box-shadow:inset 0 4px 0 #d6414b">⌂<span>Home</span></div>
+    <div style="box-shadow:inset 0 4px 0 #3a6cb8">↺<span>Storia</span></div>
+    <div style="box-shadow:inset 0 4px 0 #ebaf00">‖<span>Pausa</span></div>
+    <div style="background:#40a79b;color:#000;font-weight:700">▥<span>Statistiche</span></div>
+    <div style="box-shadow:inset 0 4px 0 #d6414b">＋<span>Contenuti</span></div>
+    <div style="box-shadow:inset 0 4px 0 #d7d7d7">⚙<span>Opzioni</span></div>
+  </div>
+</div>
+<p class="legenda">tutte le sezioni hanno la loro fascia in alto; quella attiva è piena</p>
+</div>
+<div class="card-body"><h3>C1 · Fasce + attiva piena</h3><p>Sopra ogni pulsante della barra una fascia di 4 px nel suo colore, sempre visibile: è il nastro del sito tagliato in sei. La sezione in cui sei diventa un campo pieno. Il resto della schermata resta sobrio, l'accento (Aggiorna, Ripassa) è sempre il colore scelto dall'utente.</p></div>
+</div>
+
+<!-- C2 -->
+<div class="card" data-choice="c2" onclick="toggleSelect(this)">
+<div class="card-image" style="background:#222;padding:14px">
+<div class="ph">
+  <div class="status">14:27</div>
+  <div class="hdr"><span class="brand"><span class="vl"><i class="r"></i><i class="b"></i><i class="o"></i><i class="g"></i><i class="gr"></i></span>quaestio</span><span class="muted num" style="font-size:12px">12 materie · 2483</span></div>
+  <div class="body">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><h1 class="t">Statistiche</h1><span style="font-size:13px;color:#3a6cb8">Aggiorna</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div class="radio"><span><b></b>Tutto</span><span><b class="on"></b>Ultime</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="field num"><span>30</span><i>−</i><i>+</i></span><span class="muted" style="font-size:12px">partite</span></div>
+    </div>
+    <div class="row">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:18px;font-weight:700">C / C++</span><span class="num" style="font-size:18px;font-weight:700;color:#d6414b">79%</span></div>
+      <div class="seg" style="margin-top:10px"><div class="r" style="flex:19"></div><div class="o" style="flex:1"></div><div class="g" style="flex:5"></div></div>
+      <div class="legend num"><span><i class="dot r"></i>19 <i class="dot o" style="margin-left:8px"></i>1 <i class="dot g" style="margin-left:8px"></i>5</span><span class="muted">28 risposte · 20 sbagliate</span></div>
+      <div style="text-align:right;margin-top:11px"><span class="btn b" style="color:#fff">Ripassa (20)</span></div>
+    </div>
+  </div>
+  <div class="nav" style="height:60px">
+    <div class="r" style="color:#000">⌂</div>
+    <div class="b" style="color:#fff">↺</div>
+    <div class="o" style="color:#000">‖</div>
+    <div class="g" style="color:#000;flex:2.4;font-weight:800;font-size:13px;flex-direction:row;gap:6px">▥ Statistiche</div>
+    <div class="r" style="color:#000">＋</div>
+    <div class="gr" style="color:#000">⚙</div>
+  </div>
+</div>
+<p class="legenda">la barra intera è il nastro; la sezione attiva si allarga e mostra il nome</p>
+</div>
+<div class="card-body"><h3>C2 · Barra = nastro</h3><p>La barra in basso è fatta solo di campi di colore pieni, come in A, ma il corpo resta quello sobrio di B. La sezione attiva si allarga e scrive il proprio nome, le altre mostrano solo l'icona. È il punto più colorato possibile restando sobri sopra.</p></div>
+</div>
+
+<!-- C3 -->
+<div class="card" data-choice="c3" onclick="toggleSelect(this)">
+<div class="card-image" style="background:#222;padding:14px">
+<div class="ph">
+  <div class="status">14:27</div>
+  <div class="hdr"><span class="brand"><span class="vl"><i class="r"></i><i class="b"></i><i class="o"></i><i class="g"></i><i class="gr"></i></span>quaestio</span><span class="muted num" style="font-size:12px">12 materie · 2483</span></div>
+  <div class="body">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><h1 class="t" style="display:flex;align-items:center;gap:9px"><i style="display:block;width:12px;height:24px;background:#40a79b"></i>Statistiche</h1><span style="font-size:13px;color:#40a79b">Aggiorna</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div class="radio"><span><b></b>Tutto</span><span><b class="on" style="background:#40a79b"></b>Ultime</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="field num"><span>30</span><i>−</i><i>+</i></span><span class="muted" style="font-size:12px">partite</span></div>
+    </div>
+    <div class="row">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:18px;font-weight:700">C / C++</span><span class="num" style="font-size:18px;font-weight:700;color:#d6414b">79%</span></div>
+      <div class="seg" style="margin-top:10px"><div class="r" style="flex:19"></div><div class="o" style="flex:1"></div><div class="g" style="flex:5"></div></div>
+      <div class="legend num"><span><i class="dot r"></i>19 <i class="dot o" style="margin-left:8px"></i>1 <i class="dot g" style="margin-left:8px"></i>5</span><span class="muted">28 risposte · 20 sbagliate</span></div>
+      <div style="text-align:right;margin-top:11px"><span class="btn g" style="color:#000">Ripassa (20)</span></div>
+    </div>
+  </div>
+  <div class="nav" style="border-top:4px solid #40a79b">
+    <div style="color:#d6414b">⌂<span>Home</span></div>
+    <div style="color:#3a6cb8">↺<span>Storia</span></div>
+    <div style="color:#ebaf00">‖<span>Pausa</span></div>
+    <div style="background:#40a79b;color:#000;font-weight:700">▥<span>Statistiche</span></div>
+    <div style="color:#d6414b">＋<span>Contenuti</span></div>
+    <div style="color:#d7d7d7">⚙<span>Opzioni</span></div>
+  </div>
+</div>
+<p class="legenda">il colore della sezione colora anche titolo, pulsanti e bordo della barra</p>
+</div>
+<div class="card-body"><h3>C3 · La sezione tinge la pagina</h3><p>Icone della barra nel loro colore, attiva piena. In più il colore della sezione entra nella pagina: un blocco accanto al titolo, i pulsanti, il bordo della barra. Ogni schermata ha la sua tinta. Attenzione: prenderebbe il posto del colore scelto dall'utente, e il verde di Statistiche si confonde con il verde "giusto" degli esiti.</p></div>
+</div>
+
+</div>
