@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
 
@@ -25,7 +26,7 @@ public sealed record ColoreAccento(string Id, string NomeRisorsa, Color Base, Co
 ///
 /// NOTA SUI COLORI (Trappola 20 e Trappola 7):
 /// Usiamo brush espliciti propri (AccentoBrush, AccentoHoverBrush, AccentoPressedBrush,
-/// AccentoTestoBrush) invece di SystemAccentColorBrush perché su piattaforme mobile (Android)
+/// AccentoTestoBrush, AccentoLinkBrush) invece di SystemAccentColorBrush perché su piattaforme mobile (Android)
 /// SystemAccentColorBrush può risolversi in un colore trasparente o bianco,
 /// rendendo i bottoni abilitati invisibili. Inoltre, nei Setter degli Style in XAML
 /// si usano DynamicResource di tipo Brush e non Color (Trappola 7).
@@ -71,11 +72,18 @@ public static class Tavolozza
         if (app == null) return;
         Color fluent = c.Base;
 
+        bool scuro = app.ActualThemeVariant == ThemeVariant.Dark;
+        string hexTesto = scuro ? "#f4f4f2" : "#141413";
+        string hexSfondo = scuro ? "#0c0c0c" : "#e8e7e3";
+        var inchiostro = Inchiostri.Trova(migrato);
+        var linkColor = Color.Parse(Inchiostri.VarianteLeggibile(inchiostro.Hex, hexTesto, hexSfondo));
+
         // Nuovi oggetti SolidColorBrush a ogni chiamata
         app.Resources["AccentoBrush"] = new SolidColorBrush(c.Base);
         app.Resources["AccentoHoverBrush"] = new SolidColorBrush(c.Hover);
         app.Resources["AccentoPressedBrush"] = new SolidColorBrush(c.Pressed);
         app.Resources["AccentoTestoBrush"] = new SolidColorBrush(c.Testo);
+        app.Resources["AccentoLinkBrush"] = new SolidColorBrush(linkColor);
 
         // Color per il tema Fluent (caselle, interruttori, tab, barre di avanzamento)
         app.Resources["SystemAccentColor"] = fluent;

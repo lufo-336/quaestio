@@ -8,6 +8,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
@@ -159,6 +160,11 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
             Grid.SetColumn(PannelloDettaglio, 0);
             PannelloDettaglio.BorderThickness = new Thickness(0);
             PannelloDettaglio.Padding = new Thickness(0);
+            DettaglioHeaderGrid.ColumnDefinitions = new ColumnDefinitions("*");
+            Grid.SetColumn(RipassaMateriaBtn, 0);
+            Grid.SetRow(RipassaMateriaBtn, 1);
+            RipassaMateriaBtn.HorizontalAlignment = HorizontalAlignment.Left;
+            RipassaMateriaBtn.Margin = new Thickness(0, 8, 0, 0);
         }
 
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);

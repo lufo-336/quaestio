@@ -23,9 +23,11 @@
             <StackPanel Grid.Column="1" Spacing="2" Margin="16,0,0,0" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Titolo}"
                            FontFamily="{DynamicResource FontTitoli}"
-                           FontSize="20" FontWeight="ExtraBold"/>
+                           FontSize="20" FontWeight="ExtraBold"
+                           TextWrapping="Wrap"/>
                 <TextBlock Text="{Binding Sottotitolo}"
                            FontSize="12"
+                           TextWrapping="Wrap"
                            Foreground="{DynamicResource TestoAttenuato}"/>
             </StackPanel>
         </Grid>
@@ -37,8 +39,9 @@
                 BorderThickness="1"
                 Padding="20"
                 Margin="0,0,0,12">
-            <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="Auto,Auto">
-                <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+            <Grid x:Name="GrigliaStat" ColumnDefinitions="*,*,*,*,*" RowDefinitions="Auto,Auto">
+                <StackPanel x:Name="BloccoPercentuale"
+                            Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
                             HorizontalAlignment="Left" VerticalAlignment="Center"
                             Spacing="2">
                     <TextBlock Text="{Binding PercentualeFormattata}"
@@ -49,14 +52,14 @@
                                Foreground="{DynamicResource TestoAttenuato}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="0" Spacing="2">
+                <StackPanel x:Name="BloccoTotale" Grid.Column="1" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Totale}"
                                FontSize="11"
                                Foreground="{DynamicResource TestoAttenuato}"/>
                     <TextBlock Text="{Binding TotaleDomande}"
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
-                <StackPanel Grid.Column="2" Grid.Row="0" Spacing="2">
+                <StackPanel x:Name="BloccoCorrette" Grid.Column="2" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Corrette}"
                                FontSize="11"
                                Foreground="{DynamicResource TestoAttenuato}"/>
@@ -64,7 +67,7 @@
                                FontSize="18" FontWeight="SemiBold"
                                Foreground="{DynamicResource VerdeTestoBrush}"/>
                 </StackPanel>
-                <StackPanel Grid.Column="3" Grid.Row="0" Spacing="2">
+                <StackPanel x:Name="BloccoErrate" Grid.Column="3" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Errate}"
                                FontSize="11"
                                Foreground="{DynamicResource TestoAttenuato}"/>
@@ -72,7 +75,7 @@
                                FontSize="18" FontWeight="SemiBold"
                                Foreground="{DynamicResource RossoTestoBrush}"/>
                 </StackPanel>
-                <StackPanel Grid.Column="4" Grid.Row="0" Spacing="2">
+                <StackPanel x:Name="BloccoPunteggio" Grid.Column="4" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Punteggio}"
                                FontSize="11"
                                Foreground="{DynamicResource TestoAttenuato}"/>
@@ -80,8 +83,9 @@
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
-                            Orientation="Horizontal" Spacing="20" Margin="0,12,0,0">
+                <WrapPanel x:Name="BloccoDurataModalita"
+                           Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
+                           Orientation="Horizontal" ItemSpacing="20" LineSpacing="6" Margin="0,12,0,0">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Riepilogo_Durata}"
                                    FontSize="12"
@@ -94,16 +98,18 @@
                                    FontSize="12"
                                    Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding Modalita}"
-                                   FontSize="12" FontWeight="SemiBold"/>
+                                   FontSize="12" FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Dettaglio_Materia}"
                                    FontSize="12"
                                    Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding MateriaEtichetta}"
-                                   FontSize="12" FontWeight="SemiBold"/>
+                                   FontSize="12" FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
                     </StackPanel>
-                </StackPanel>
+                </WrapPanel>
             </Grid>
         </Border>
 
@@ -130,6 +136,7 @@
                                 <StackPanel Spacing="4">
                                     <Grid ColumnDefinitions="*,Auto">
                                         <TextBlock FontSize="11"
+                                                   TextWrapping="Wrap"
                                                    Foreground="{DynamicResource TestoAttenuato}">
                                             <Run Text="{Binding MateriaNome}"/>
                                             <Run Text="·"/>
@@ -139,6 +146,7 @@
                                                    Text="{Binding EsitoEtichetta}"
                                                    FontSize="11"
                                                    FontWeight="SemiBold"
+                                                   Margin="8,0,0,0"
                                                    Foreground="{Binding ColoreEsito}"/>
                                     </Grid>
 
@@ -194,12 +202,16 @@
         </ScrollViewer>
 
         <!-- BARRA IN BASSO -->
-        <Grid Grid.Row="3"
-              ColumnDefinitions="Auto,Auto,*,Auto"
+        <Grid x:Name="BarraInferiore"
+              Grid.Row="3"
+              ColumnDefinitions="*,Auto"
+              RowDefinitions="Auto,Auto"
               Margin="0,16,0,0">
 
             <!-- Stato normale -->
             <Button Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Left"
                     Content="{x:Static r:Strings.Dettaglio_EliminaPartita}"
                     Click="OnEliminaClick"
                     Classes="danger"
@@ -208,11 +220,13 @@
                     IsVisible="{Binding NonInAttesaConferma}"/>
 
             <!-- Stato conferma -->
-            <StackPanel Grid.Column="0" Grid.ColumnSpan="2"
-                        Orientation="Horizontal"
-                        Spacing="6"
-                        VerticalAlignment="Center"
-                        IsVisible="{Binding InAttesaConfermaEliminazione}">
+            <WrapPanel Grid.Column="0"
+                       Grid.Row="0"
+                       Orientation="Horizontal"
+                       ItemSpacing="6"
+                       LineSpacing="6"
+                       VerticalAlignment="Center"
+                       IsVisible="{Binding InAttesaConfermaEliminazione}">
                 <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}"
                            VerticalAlignment="Center"
                            FontSize="12"
@@ -228,15 +242,18 @@
                         Click="OnAnnullaEliminaClick"
                         Padding="14,6"
                         FontSize="12"/>
-            </StackPanel>
+            </WrapPanel>
 
-            <Button Grid.Column="3"
+            <Button x:Name="TornaBtn"
+                    Grid.Column="1"
+                    Grid.Row="0"
                     Content="{x:Static r:Strings.Dettaglio_TornaCronologia}"
                     Click="OnIndietroClick"
                     Classes="accent"
                     Padding="22,10"
                     FontSize="14"
-                    FontWeight="SemiBold"/>
+                    FontWeight="SemiBold"
+                    Margin="12,0,0,0"/>
         </Grid>
 
     </Grid>

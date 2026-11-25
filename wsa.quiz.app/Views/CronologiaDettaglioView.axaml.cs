@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
@@ -77,6 +79,34 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
     public CronologiaDettaglioView(RisultatoQuiz risultato)
     {
         InitializeComponent();
+
+        if (AppEnv.TouchMode)
+        {
+            var g = GrigliaStat;
+            g.ColumnDefinitions = new ColumnDefinitions("*,*");
+            g.RowDefinitions = new RowDefinitions("Auto,Auto,Auto,Auto");
+
+            Grid.SetColumn(BloccoPercentuale, 0);
+            Grid.SetColumnSpan(BloccoPercentuale, 2);
+            Grid.SetRow(BloccoPercentuale, 0);
+            Grid.SetRowSpan(BloccoPercentuale, 1);
+
+            PosizionaMetrica(BloccoTotale,    col: 0, row: 1);
+            PosizionaMetrica(BloccoCorrette,  col: 1, row: 1);
+            PosizionaMetrica(BloccoErrate,    col: 0, row: 2);
+            PosizionaMetrica(BloccoPunteggio, col: 1, row: 2);
+
+            Grid.SetColumn(BloccoDurataModalita, 0);
+            Grid.SetColumnSpan(BloccoDurataModalita, 2);
+            Grid.SetRow(BloccoDurataModalita, 3);
+
+            BarraInferiore.ColumnDefinitions = new ColumnDefinitions("*");
+            Grid.SetColumn(TornaBtn, 0);
+            Grid.SetRow(TornaBtn, 1);
+            TornaBtn.HorizontalAlignment = HorizontalAlignment.Right;
+            TornaBtn.Margin = new Thickness(0, 10, 0, 0);
+        }
+
         _risultato = risultato;
 
         Titolo = risultato.Abbandonato
@@ -149,6 +179,14 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
             return;
         }
         base.OnKeyDown(e);
+    }
+
+    static void PosizionaMetrica(Control c, int col, int row)
+    {
+        Grid.SetColumn(c, col);
+        Grid.SetColumnSpan(c, 1);
+        Grid.SetRow(c, row);
+        c.Margin = new Thickness(0, 8, 0, 0);
     }
 
     private void Raise([System.Runtime.CompilerServices.CallerMemberName] string? name = null)

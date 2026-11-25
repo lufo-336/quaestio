@@ -18,9 +18,11 @@
         <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
             <TextBlock Text="{Binding Titolo}"
                        FontFamily="{DynamicResource FontTitoli}"
-                       FontSize="24" FontWeight="ExtraBold"/>
+                       FontSize="24" FontWeight="ExtraBold"
+                       TextWrapping="Wrap"/>
             <TextBlock Text="{Binding Sottotitolo}"
                        FontSize="13"
+                       TextWrapping="Wrap"
                        Foreground="{DynamicResource TestoAttenuato}"/>
         </StackPanel>
 
@@ -76,9 +78,9 @@
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
 
-                <StackPanel x:Name="BloccoDurataModalita"
-                            Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
-                            Orientation="Horizontal" Spacing="20" Margin="0,12,0,0">
+                <WrapPanel x:Name="BloccoDurataModalita"
+                           Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
+                           Orientation="Horizontal" ItemSpacing="20" LineSpacing="6" Margin="0,12,0,0">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Riepilogo_Durata}"
                                    FontSize="12"
@@ -91,9 +93,10 @@
                                    FontSize="12"
                                    Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding Modalita}"
-                                   FontSize="12" FontWeight="SemiBold"/>
+                                   FontSize="12" FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
                     </StackPanel>
-                </StackPanel>
+                </WrapPanel>
             </Grid>
         </Border>
 
@@ -119,6 +122,7 @@
                                     Margin="0,0,0,6">
                                 <StackPanel Spacing="4">
                                     <TextBlock FontSize="11"
+                                               TextWrapping="Wrap"
                                                Foreground="{DynamicResource TestoAttenuato}">
                                         <Run Text="{Binding MateriaNome}"/>
                                         <Run Text="·"/>

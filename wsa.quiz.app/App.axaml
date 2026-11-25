@@ -16,6 +16,7 @@
             <SolidColorBrush x:Key="AccentoHoverBrush" Color="#4E7BBF"/>
             <SolidColorBrush x:Key="AccentoPressedBrush" Color="#2E5693"/>
             <SolidColorBrush x:Key="AccentoTestoBrush" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="AccentoLinkBrush" Color="#3663a8"/>
 
             <!-- Codice nelle domande (TestoConCodice). Font incluso nell'app
                  (JetBrains Mono NL = senza legature: "!=" resta "!=") cosi' e'

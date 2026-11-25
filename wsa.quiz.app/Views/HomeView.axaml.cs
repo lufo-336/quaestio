@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
@@ -186,6 +187,19 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
             if (e.Source == this)
                 this.FindControl<Button>("AvviaBtn")?.Focus();
         };
+    }
+
+    private void OnGrigliaFiltriInitialized(object? sender, EventArgs e)
+    {
+        if (!AppEnv.TouchMode || sender is not UniformGrid ug) return;
+        ug.Rows = 0;
+        ug.Columns = 2;
+    }
+
+    private void OnFiltroToggleInitialized(object? sender, EventArgs e)
+    {
+        if (!AppEnv.TouchMode || sender is not ToggleButton tb) return;
+        tb.Margin = new Thickness(0, 0, 6, 6);
     }
 
     // ------------------------------------------------------------------ TASTIERA HOME (step 8)

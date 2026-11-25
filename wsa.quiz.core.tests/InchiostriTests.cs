@@ -140,4 +140,38 @@ public class InchiostriTests
                 $"Manca stringa en per {i.NomeRisorsa}");
         }
     }
+
+    [Theory]
+    [InlineData("#141413", "#e8e7e3")]
+    [InlineData("#f4f4f2", "#0c0c0c")]
+    public void VarianteLeggibile_TuttiSceglibili_ContrastoSufficiente(string hexTesto, string hexSfondo)
+    {
+        foreach (var inchiostro in Inchiostri.Tutti.Where(i => i.Sceglibile))
+        {
+            string risultato = Inchiostri.VarianteLeggibile(inchiostro.Hex, hexTesto, hexSfondo);
+            double contrasto = Inchiostri.Contrasto(risultato, hexSfondo);
+            Assert.True(contrasto >= 4.5,
+                $"{inchiostro.Id} ({inchiostro.Hex} -> {risultato}) su {hexSfondo} ha contrasto {contrasto:F2} < 4.5");
+        }
+    }
+
+    [Theory]
+    [InlineData("rosso")]
+    [InlineData("ocra")]
+    [InlineData("verdeacqua")]
+    public void VarianteLeggibile_EsitiSuSfondoRialzatoScuro_ContrastoSufficiente(string id)
+    {
+        var inchiostro = Inchiostri.Trova(id);
+        string risultato = Inchiostri.VarianteLeggibile(inchiostro.Hex, "#f4f4f2", "#161616");
+        double contrasto = Inchiostri.Contrasto(risultato, "#161616");
+        Assert.True(contrasto >= 4.5,
+            $"{id} ({inchiostro.Hex} -> {risultato}) su #161616 ha contrasto {contrasto:F2} < 4.5");
+    }
+
+    [Fact]
+    public void VarianteLeggibile_SeGiaLeggibile_RestaInvariato()
+    {
+        string risultato = Inchiostri.VarianteLeggibile("#40a79b", "#f4f4f2", "#161616");
+        Assert.Equal("#40a79b", risultato);
+    }
 }

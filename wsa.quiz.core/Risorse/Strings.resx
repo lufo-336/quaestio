@@ -289,7 +289,7 @@
   <data name="Impostazioni_DatiDescrizioneBrowser" xml:space="preserve"><value>Cronologia, sessioni sospese, preferenze e contenuti importati sono salvati nel browser, solo su questo dispositivo. Se cancelli i dati di navigazione del sito, si perdono: per un backup usa Esporta → JSON in Cronologia.</value></data>
   <data name="Errore_ImprevistoDettaglio" xml:space="preserve"><value>L'operazione non è andata a buon fine, ma puoi continuare a usare l'app. Dettaglio: {0}</value></data>
   <data name="Impostazioni_Colore" xml:space="preserve"><value>Colore</value></data>
-  <data name="Impostazioni_ColoreDescrizione" xml:space="preserve"><value>Barra in alto, bottoni e selezioni.</value></data>
+  <data name="Impostazioni_ColoreDescrizione" xml:space="preserve"><value>Bottoni principali e selezioni.</value></data>
   <data name="Colore_Rosso" xml:space="preserve"><value>Rosso</value></data>
   <data name="Colore_Terracotta" xml:space="preserve"><value>Terracotta</value></data>
   <data name="Colore_Cacao" xml:space="preserve"><value>Cacao</value></data>

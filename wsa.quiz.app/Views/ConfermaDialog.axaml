@@ -22,7 +22,8 @@
           BorderBrush="{DynamicResource RigaDebole}"
           BorderThickness="1"
           Padding="20"
-          MinWidth="340"
+          Margin="16,0"
+          MinWidth="280"
           MaxWidth="460">
     <StackPanel Spacing="14">
       <TextBlock x:Name="MessaggioText"
@@ -34,9 +35,10 @@
                  FontSize="12"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource TestoAttenuato}"/>
-      <StackPanel Orientation="Horizontal"
-                  Spacing="8"
-                  HorizontalAlignment="Right">
+      <WrapPanel Orientation="Horizontal"
+                 ItemSpacing="8"
+                 LineSpacing="8"
+                 HorizontalAlignment="Right">
         <Button x:Name="AnnullaBtn"
                 Content="{x:Static r:Strings.Comune_Annulla}"
                 Padding="14,8"
@@ -44,7 +46,7 @@
         <Button x:Name="ConfermaBtn"
                 Padding="14,8"
                 Click="OnConfermaClick"/>
-      </StackPanel>
+      </WrapPanel>
     </StackPanel>
   </Border>
 

@@ -149,7 +149,7 @@ public class TestoConCodice : ContentControl
         var bordo = new Border
         {
             BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(6),
+            CornerRadius = new CornerRadius(0),
             Padding = new Thickness(10, 8),
             Child = scroll
         };

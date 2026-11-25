@@ -12,7 +12,7 @@
     <UserControl.Styles>
         <!-- Pulsanti della bottom navigation C2 (touch): campi di colore pieni
              assegnati in code-behind da Inchiostri; inattivo = solo icona,
-             attivo = icona + nome sezione nella colonna allargata (2.4*). -->
+             attivo = icona + nome sezione nella colonna allargata (2.8*). -->
         <Style Selector="Button.nav">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="CornerRadius" Value="0"/>
@@ -56,7 +56,7 @@
             <Setter Property="IsVisible" Value="False"/>
             <Setter Property="FontFamily" Value="{DynamicResource FontTitoli}"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
             <Setter Property="Margin" Value="6,0,0,0"/>
@@ -90,12 +90,12 @@
         <!-- Footer diagnostico (desktop). Nascosto su touch in code-behind. -->
         <Border x:Name="FooterBar"
                 DockPanel.Dock="Bottom"
-                BorderBrush="{DynamicResource SystemBaseLowColor}"
+                BorderBrush="{DynamicResource RigaDebole}"
                 BorderThickness="0,1,0,0"
                 Padding="16,6">
             <TextBlock x:Name="FooterText"
                        FontSize="11"
-                       Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                       Foreground="{DynamicResource TestoAttenuato}"/>
         </Border>
 
         <!-- Errore globale (visibile solo se il caricamento dati fallisce) -->
@@ -167,7 +167,7 @@
             <!-- Bottom navigation C2 (touch): barra a tutta larghezza, a filo del
                  bordo inferiore sopra l'inset Android (padding da ApplicaSafeArea).
                  Sei campi di colore pieni (da Inchiostri); l'attivo si allarga a
-                 2.4* mostrando icona + nome della sezione. La sua altezza reale
+                 2.8* mostrando icona + nome della sezione. La sua altezza reale
                  diventa SzRiservaNav, cosi' l'ultimo contenuto di ogni pagina scorre
                  sopra la barra invece di restarne coperto. -->
             <Border x:Name="BottomNav"

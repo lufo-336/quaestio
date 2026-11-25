@@ -35,22 +35,22 @@
             <Setter Property="MinWidth" Value="0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Foreground" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoLinkBrush}"/>
         </Style>
         <Style Selector="Button.link /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoLinkBrush}"/>
         </Style>
         <Style Selector="Button.link:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
         </Style>
         <Style Selector="Button.link:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoPressedBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoAttenuato}"/>
         </Style>
 
         <Style Selector="Button.filtro">
@@ -276,30 +276,39 @@
                         <StackPanel DockPanel.Dock="Top" Spacing="10" Margin="0,0,0,12">
 
                             <!-- Riga titolo + Indietro (touch) + Ripassa materia -->
-                            <Grid ColumnDefinitions="*,Auto">
+                            <Grid x:Name="DettaglioHeaderGrid" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
                                 <StackPanel Spacing="3" VerticalAlignment="Center">
-                                    <WrapPanel ItemSpacing="8" LineSpacing="6" VerticalAlignment="Center">
-                                        <Button Content="{x:Static r:Strings.Statistiche_IndietroMaterie}"
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <Button Grid.Column="0"
+                                                Content="{x:Static r:Strings.Statistiche_IndietroMaterie}"
                                                 Click="OnIndietroMaterieClick"
                                                 Padding="10,4"
                                                 FontSize="12"
+                                                Margin="0,0,8,0"
+                                                VerticalAlignment="Center"
                                                 IsVisible="{Binding MostraIndietro}"/>
-                                        <TextBlock Text="{Binding MateriaTitolo}"
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding MateriaTitolo}"
                                                    FontSize="18"
                                                    FontWeight="SemiBold"
+                                                   TextWrapping="Wrap"
                                                    VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding MateriaPct}"
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding MateriaPct}"
                                                    Foreground="{Binding MateriaColore}"
                                                    FontSize="16"
                                                    FontWeight="Bold"
+                                                   Margin="8,0,0,0"
                                                    VerticalAlignment="Center"/>
-                                    </WrapPanel>
+                                    </Grid>
                                     <TextBlock Text="{Binding MateriaRiepilogo}"
                                                FontSize="12"
+                                               TextWrapping="Wrap"
                                                Foreground="{DynamicResource TestoAttenuato}"/>
                                 </StackPanel>
 
-                                <Button Grid.Column="1"
+                                <Button x:Name="RipassaMateriaBtn"
+                                        Grid.Column="1"
                                         Content="{Binding MateriaEtichettaRipassa}"
                                         Click="OnRipassaMateriaClick"
                                         Classes="accent"
@@ -390,17 +399,21 @@
                                                               PointerPressed="OnCategoriaPressed"
                                                               Margin="12,12,0,12">
                                                             <StackPanel Spacing="5" VerticalAlignment="Center">
-                                                                <WrapPanel ItemSpacing="8" LineSpacing="2">
-                                                                    <TextBlock Text="{Binding NomeMostrato}"
+                                                                <Grid ColumnDefinitions="*,Auto">
+                                                                    <TextBlock Grid.Column="0"
+                                                                               Text="{Binding NomeMostrato}"
                                                                                FontWeight="SemiBold"
                                                                                FontSize="14"
-                                                                               TextWrapping="Wrap"/>
-                                                                    <TextBlock Text="{Binding PctFormattata}"
+                                                                               TextWrapping="Wrap"
+                                                                               VerticalAlignment="Center"/>
+                                                                    <TextBlock Grid.Column="1"
+                                                                               Text="{Binding PctFormattata}"
                                                                                Foreground="{Binding ColoreLivelloTesto}"
                                                                                FontWeight="Bold"
                                                                                FontSize="13"
+                                                                               Margin="8,0,0,0"
                                                                                VerticalAlignment="Center"/>
-                                                                </WrapPanel>
+                                                                </Grid>
                                                                 <WrapPanel ItemSpacing="10" LineSpacing="4" VerticalAlignment="Center">
                                                                     <c:BarraErrore Valore="{Binding PctErrore}"
                                                                                    Colore="{Binding ColoreLivello}"

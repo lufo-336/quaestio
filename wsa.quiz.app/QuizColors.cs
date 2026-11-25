@@ -39,6 +39,10 @@ public static class QuizColors
     private static readonly IBrush _ambraTestoChiaroBrush = new SolidColorBrush(Color.Parse(_ambra.HexTestoSuChiaro!));
     private static readonly IBrush _rossoTestoChiaroBrush = new SolidColorBrush(Color.Parse(_rosso.HexTestoSuChiaro!));
 
+    private static readonly IBrush _verdeTestoScuroBrush = new SolidColorBrush(Color.Parse(Inchiostri.VarianteLeggibile(_verde.Hex, "#f4f4f2", "#161616")));
+    private static readonly IBrush _ambraTestoScuroBrush = new SolidColorBrush(Color.Parse(Inchiostri.VarianteLeggibile(_ambra.Hex, "#f4f4f2", "#161616")));
+    private static readonly IBrush _rossoTestoScuroBrush = new SolidColorBrush(Color.Parse(Inchiostri.VarianteLeggibile(_rosso.Hex, "#f4f4f2", "#161616")));
+
     /// <summary>Brush pieno dell'esito positivo (per riempimenti, barre e bordi; testo sopra nero).</summary>
     public static IBrush VerdeBrush => _verdeBrush;
     /// <summary>Brush pieno dell'esito intermedio (per riempimenti, barre e bordi; testo sopra nero).</summary>
@@ -49,12 +53,12 @@ public static class QuizColors
     private static bool IsTemaScuro =>
         Application.Current?.ActualThemeVariant == ThemeVariant.Dark;
 
-    /// <summary>Colore per il testo dell'esito positivo: scuro sul tema chiaro, inchiostro pieno sul tema scuro.</summary>
-    public static IBrush VerdeTestoBrush => IsTemaScuro ? _verdeBrush : _verdeTestoChiaroBrush;
-    /// <summary>Colore per il testo dell'esito intermedio: scuro sul tema chiaro, inchiostro pieno sul tema scuro.</summary>
-    public static IBrush AmbraTestoBrush => IsTemaScuro ? _ambraBrush : _ambraTestoChiaroBrush;
-    /// <summary>Colore per il testo dell'esito negativo: scuro sul tema chiaro, inchiostro pieno sul tema scuro.</summary>
-    public static IBrush RossoTestoBrush => IsTemaScuro ? _rossoBrush : _rossoTestoChiaroBrush;
+    /// <summary>Colore per il testo dell'esito positivo: adattato al tema chiaro o scuro (contrasto &gt;= 4,5:1).</summary>
+    public static IBrush VerdeTestoBrush => IsTemaScuro ? _verdeTestoScuroBrush : _verdeTestoChiaroBrush;
+    /// <summary>Colore per il testo dell'esito intermedio: adattato al tema chiaro o scuro (contrasto &gt;= 4,5:1).</summary>
+    public static IBrush AmbraTestoBrush => IsTemaScuro ? _ambraTestoScuroBrush : _ambraTestoChiaroBrush;
+    /// <summary>Colore per il testo dell'esito negativo: adattato al tema chiaro o scuro (contrasto &gt;= 4,5:1).</summary>
+    public static IBrush RossoTestoBrush => IsTemaScuro ? _rossoTestoScuroBrush : _rossoTestoChiaroBrush;
 
     // Neutro per riempimenti (es. pallino Nuove, fallback barre) e testo attenuato del cronometro.
     public const string TestoNeutro = "#767676";

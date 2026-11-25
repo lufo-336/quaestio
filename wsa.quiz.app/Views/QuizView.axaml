@@ -102,6 +102,7 @@
                 <TextBlock Text="{Binding EtichettaDomanda}"
                            FontSize="13"
                            FontWeight="SemiBold"
+                           TextWrapping="Wrap"
                            Foreground="#000000"
                            VerticalAlignment="Center"/>
                 <Button Grid.Column="1"
@@ -109,6 +110,7 @@
                         Click="OnTornaACorrenteClick"
                         Classes="accent"
                         Padding="14,5"
+                        Margin="12,0,0,0"
                         FontSize="12"/>
             </Grid>
         </Border>
@@ -124,18 +126,15 @@
                 <StackPanel Orientation="Vertical" Spacing="2">
                     <TextBlock Text="{Binding EtichettaDomanda}"
                                FontSize="13"
-                               FontWeight="SemiBold"/>
-                    <StackPanel Orientation="Horizontal" Spacing="6">
-                        <TextBlock Text="{Binding MateriaCorrente}"
-                                   FontSize="11"
-                                   Foreground="{DynamicResource TestoAttenuato}"/>
-                        <TextBlock Text="·"
-                                   FontSize="11"
-                                   Foreground="{DynamicResource TestoAttenuato}"/>
-                        <TextBlock Text="{Binding CategoriaCorrente}"
-                                   FontSize="11"
-                                   Foreground="{DynamicResource TestoAttenuato}"/>
-                    </StackPanel>
+                               FontWeight="SemiBold"
+                               TextWrapping="Wrap"/>
+                    <TextBlock FontSize="11"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource TestoAttenuato}">
+                        <Run Text="{Binding MateriaCorrente}"/>
+                        <Run Text="·"/>
+                        <Run Text="{Binding CategoriaCorrente}"/>
+                    </TextBlock>
                 </StackPanel>
 
                 <TextBlock Grid.Column="1"
@@ -178,6 +177,7 @@
                     <TextBlock Text="{x:Static r:Strings.Quiz_UltimaPossibilita}"
                                FontSize="13"
                                FontWeight="SemiBold"
+                               TextWrapping="Wrap"
                                Foreground="#000000"/>
                 </Border>
 
@@ -212,11 +212,12 @@
                 IsVisible="{Binding RispostaInviata}"
                 Classes.feedbackOk="{Binding UltimaRispostaCorretta}"
                 Classes.feedbackKo="{Binding !UltimaRispostaCorretta}">
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+            <Grid x:Name="FeedbackGrid" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
                 <TextBlock Grid.Row="0" Grid.Column="0"
                            Text="{Binding FeedbackTitolo}"
                            FontWeight="Bold"
                            FontSize="14"
+                           TextWrapping="Wrap"
                            Foreground="#000000"/>
                 <c:TestoConCodice Grid.Row="1" Grid.Column="0"
                            Testo="{Binding SpiegazioneTesto}"
@@ -224,7 +225,8 @@
                            Margin="0,4,0,0"
                            Foreground="#000000"
                            IsVisible="{Binding SpiegazioneTesto, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <Button Grid.RowSpan="2" Grid.Column="1"
+                <Button x:Name="ProssimaBtn"
+                        Grid.RowSpan="2" Grid.Column="1"
                         Content="{x:Static r:Strings.Quiz_ProssimaDomanda}"
                         Click="OnAvanzaClick"
                         Classes="accent prossima"

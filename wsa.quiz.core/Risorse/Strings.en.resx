@@ -289,7 +289,7 @@
   <data name="Impostazioni_DatiDescrizioneBrowser" xml:space="preserve"><value>History, paused sessions, preferences and imported content are saved in the browser, on this device only. Clearing the site's browsing data deletes them: for a backup use Export → JSON in History.</value></data>
   <data name="Errore_ImprevistoDettaglio" xml:space="preserve"><value>The operation did not complete, but you can keep using the app. Details: {0}</value></data>
   <data name="Impostazioni_Colore" xml:space="preserve"><value>Colour</value></data>
-  <data name="Impostazioni_ColoreDescrizione" xml:space="preserve"><value>Top bar, buttons and selections.</value></data>
+  <data name="Impostazioni_ColoreDescrizione" xml:space="preserve"><value>Primary buttons and selections.</value></data>
   <data name="Colore_Rosso" xml:space="preserve"><value>Red</value></data>
   <data name="Colore_Terracotta" xml:space="preserve"><value>Terracotta</value></data>
   <data name="Colore_Cacao" xml:space="preserve"><value>Cocoa</value></data>

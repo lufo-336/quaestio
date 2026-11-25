@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Styling;
@@ -61,6 +62,16 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     public ImpostazioniView()
     {
         InitializeComponent();
+        if (AppEnv.TouchMode)
+        {
+            GrigliaColore.ColumnDefinitions = new ColumnDefinitions("*");
+            GrigliaColore.RowDefinitions = new RowDefinitions("Auto,Auto");
+            Grid.SetColumn(ListaColori, 0);
+            Grid.SetRow(ListaColori, 1);
+            ListaColori.HorizontalAlignment = HorizontalAlignment.Left;
+            ListaColori.Margin = new Thickness(0, 10, 0, 0);
+            ListaColori.MaxWidth = double.PositiveInfinity;
+        }
         ColoriDisponibili = Tavolozza.Colori
             .Select(c => new ColoreSelezionabile(c.Id, c.Nome, new SolidColorBrush(c.Base)))
             .ToList();

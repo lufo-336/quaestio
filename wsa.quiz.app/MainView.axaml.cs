@@ -293,7 +293,7 @@ public partial class MainView : UserControl
         }
     }
 
-    /// <summary>Evidenzia la sezione attiva della bottom nav allargandone la colonna a 2.4* (altre 1*).</summary>
+    /// <summary>Evidenzia la sezione attiva della bottom nav allargandone la colonna a 2.8* (altre 1*).</summary>
     private void AggiornaNav()
     {
         if (!AppEnv.TouchMode) return;
@@ -306,7 +306,7 @@ public partial class MainView : UserControl
         {
             bool eAttiva = i == attiva;
             sezioni[i].Bottone.Classes.Set("attiva", eAttiva);
-            NavGrid.ColumnDefinitions[i].Width = new GridLength(eAttiva ? 2.4 : 1.0, GridUnitType.Star);
+            NavGrid.ColumnDefinitions[i].Width = new GridLength(eAttiva ? 2.8 : 1.0, GridUnitType.Star);
         }
     }
 

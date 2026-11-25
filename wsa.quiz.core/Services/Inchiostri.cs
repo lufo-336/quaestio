@@ -100,6 +100,30 @@ public static class Inchiostri
     }
 
     /// <summary>
+    /// Rende <paramref name="hex"/> leggibile su <paramref name="hexSfondo"/>
+    /// (contrasto WCAG &gt;= 4,5:1) mescolandolo a passi del 5% verso
+    /// <paramref name="hexTesto"/>.
+    /// </summary>
+    public static string VarianteLeggibile(string hex, string hexTesto, string hexSfondo)
+    {
+        var (rA, gA, bA) = AnalizzaHex(hex);
+        var (rT, gT, bT) = AnalizzaHex(hexTesto);
+
+        for (int passo = 0; passo <= 100; passo += 5)
+        {
+            double t = passo / 100.0;
+            byte r = (byte)Math.Clamp(Math.Round(rA + (rT - rA) * t), 0, 255);
+            byte g = (byte)Math.Clamp(Math.Round(gA + (gT - gA) * t), 0, 255);
+            byte b = (byte)Math.Clamp(Math.Round(bA + (bT - bA) * t), 0, 255);
+            string candidato = $"#{r:x2}{g:x2}{b:x2}";
+            if (Contrasto(candidato, hexSfondo) >= 4.5)
+                return candidato;
+        }
+
+        return $"#{rT:x2}{gT:x2}{bT:x2}";
+    }
+
+    /// <summary>
     /// Rapporto di contrasto WCAG 2.x tra due colori esadecimali sRGB
     /// (es. "#RRGGBB" o "#RGB"), compreso tra 1 e 21.
     /// </summary>

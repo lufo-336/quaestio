@@ -1,6 +1,8 @@
 using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Layout;
 
 namespace Wsa.Quiz.App.Views;
 
@@ -25,6 +27,14 @@ public partial class PausaDialog : OverlayDialogBase
     public PausaDialog()
     {
         InitializeComponent();
+
+        if (AppEnv.TouchMode)
+            AggiornaLayoutPulsantiera(suDueRighe: true);
+        CardBorder.SizeChanged += (_, se) =>
+        {
+            if (!AppEnv.TouchMode && se.NewSize.Width > 0)
+                AggiornaLayoutPulsantiera(suDueRighe: se.NewSize.Width < 380);
+        };
 
         var bottoniInOrdine = new Button[] { AbbandonaBtn, AnnullaBtn, SalvaBtn };
         KeyDown += (_, ke) =>
@@ -53,6 +63,26 @@ public partial class PausaDialog : OverlayDialogBase
                 ke.Handled = true;
             }
         };
+    }
+
+    private void AggiornaLayoutPulsantiera(bool suDueRighe)
+    {
+        if (suDueRighe)
+        {
+            Pulsantiera.ColumnDefinitions = new ColumnDefinitions("*");
+            Grid.SetColumn(AzioniDestra, 0);
+            Grid.SetRow(AzioniDestra, 1);
+            AzioniDestra.HorizontalAlignment = HorizontalAlignment.Right;
+            AzioniDestra.Margin = new Thickness(0, 8, 0, 0);
+        }
+        else
+        {
+            Pulsantiera.ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto");
+            Grid.SetColumn(AzioniDestra, 2);
+            Grid.SetRow(AzioniDestra, 0);
+            AzioniDestra.HorizontalAlignment = HorizontalAlignment.Left;
+            AzioniDestra.Margin = new Thickness(0);
+        }
     }
 
     protected override void OnShown() => AnnullaBtn.Focus();

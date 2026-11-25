@@ -61,6 +61,7 @@
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_Tema}" FontWeight="SemiBold"/>
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_TemaDescrizione}"
                                        FontSize="12"
+                                       TextWrapping="Wrap"
                                        Foreground="{DynamicResource TestoAttenuato}"/>
                         </StackPanel>
                         <ToggleSwitch Grid.Column="1"
@@ -75,7 +76,7 @@
                         BorderBrush="{DynamicResource RigaDebole}"
                         BorderThickness="1"
                         Padding="16,14">
-                    <Grid ColumnDefinitions="*,Auto">
+                    <Grid x:Name="GrigliaColore" ColumnDefinitions="*,Auto">
                         <StackPanel Spacing="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_Colore}" FontWeight="SemiBold"/>
                             <TextBlock Text="{x:Static r:Strings.Impostazioni_ColoreDescrizione}"
@@ -83,8 +84,10 @@
                                        TextWrapping="Wrap"
                                        Foreground="{DynamicResource TestoAttenuato}"/>
                         </StackPanel>
-                        <ItemsControl Grid.Column="1"
+                        <ItemsControl x:Name="ListaColori"
+                                      Grid.Column="1"
                                       ItemsSource="{Binding ColoriDisponibili}"
+                                      MaxWidth="216"
                                       VerticalAlignment="Center"
                                       Margin="12,0,0,0">
                             <ItemsControl.ItemsPanel>

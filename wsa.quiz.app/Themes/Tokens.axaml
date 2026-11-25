@@ -32,7 +32,8 @@
             <SolidColorBrush x:Key="RigaDebole" Color="#212120"/>
             <SolidColorBrush x:Key="VerdeTestoBrush" Color="#40a79b"/>
             <SolidColorBrush x:Key="AmbraTestoBrush" Color="#ebaf00"/>
-            <SolidColorBrush x:Key="RossoTestoBrush" Color="#d6414b"/>
+            <!-- VarianteLeggibile("#d6414b", "#f4f4f2", "#161616") per contrasto >= 4,5:1 su SfondoRialzato -->
+            <SolidColorBrush x:Key="RossoTestoBrush" Color="#d9535c"/>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

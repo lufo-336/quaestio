@@ -1,7 +1,9 @@
 using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Services;
 
@@ -35,6 +37,15 @@ public partial class QuizView : UserControl
     public QuizView(SessioneQuiz sessione, StorageService storage)
     {
         InitializeComponent();
+        if (AppEnv.TouchMode)
+        {
+            FeedbackGrid.ColumnDefinitions = new ColumnDefinitions("*");
+            Grid.SetColumn(ProssimaBtn, 0);
+            Grid.SetRow(ProssimaBtn, 2);
+            Grid.SetRowSpan(ProssimaBtn, 1);
+            ProssimaBtn.HorizontalAlignment = HorizontalAlignment.Right;
+            ProssimaBtn.Margin = new Thickness(0, 10, 0, 0);
+        }
         _sessione = sessione;
         _storage = storage;
         DataContext = sessione;
