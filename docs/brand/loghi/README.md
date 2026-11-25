@@ -8,6 +8,7 @@ I sorgenti caricano i caratteri da `/files/` (il server dei mockup): aperti da s
 
 | Giro | File | Note |
 |---|---|---|
+| 6 | `promossi/giro6-antigravity.png` | a6-1…a6-6, sviluppi di a5-5 e a5-4 con la tavolozza estesa. **Scelto (provvisorio, 25/11): a6-2 · Corsie invertite asimmetriche** — corsia esterna colorata per lettera, anima neutra; indaco `#4d4dbc`, azzurro `#539fd4`, verde acqua `#40a79b`, terracotta `#e0703a` |
 | 5 | `promossi/giro5-antigravity.png` | a5-1…a5-6. Regole: almeno 4 colori del brand, Q e parola nello stesso carattere. Piaciuti tutti; da sviluppare a5-4 (stencil) e a5-5 (corsie Beethoven), con colori meno "Google" |
 
 ## Bocciati
