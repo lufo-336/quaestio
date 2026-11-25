@@ -1,0 +1,84 @@
+<!doctype html><meta charset="utf-8">
+<style>
+@font-face{font-family:Archivo;src:url('file:///Users/lucafoglia/dev/quaestio/wsa.quiz.app/Assets/Fonts/Archivo-Regular.ttf');font-weight:400}
+@font-face{font-family:Archivo;src:url('file:///Users/lucafoglia/dev/quaestio/wsa.quiz.app/Assets/Fonts/Archivo-SemiBold.ttf');font-weight:600}
+@font-face{font-family:Archivo;src:url('file:///Users/lucafoglia/dev/quaestio/wsa.quiz.app/Assets/Fonts/Archivo-Bold.ttf');font-weight:700}
+@font-face{font-family:'Archivo Titoli';src:url('file:///Users/lucafoglia/dev/quaestio/wsa.quiz.app/Assets/Fonts/ArchivoTitoli-ExtraBold.ttf');font-weight:800}
+body{margin:0;background:#1a1a1a;font-family:Archivo,sans-serif;color:#f4f4f2;padding:18px}
+h2{margin:0 0 4px;font-size:20px} p.s{margin:0 0 14px;color:#a6a6a6;font-size:13px;max-width:1040px}
+.cards{display:flex;gap:18px}
+.card{width:330px} .card h3{font-size:15px;margin:0 0 4px} .card p{font-size:12px;color:#a6a6a6;margin:0 0 8px;height:48px}
+.ph{width:330px;height:600px;background:#fafaf8;color:#161616;border:1px solid #444;display:flex;flex-direction:column;overflow:hidden;--a:#a63f8c;--at:#fff;--al:#a63f8c}
+.ph *{box-sizing:border-box}
+.hdr{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #161616}
+.brand{font-family:'Archivo Titoli';font-weight:800;font-size:22px}
+.mut{color:#5f5f5b;font-size:12px}
+.body{flex:1;padding:10px 14px;overflow:hidden}
+.pan{border:1px solid #c9c9c4;padding:10px 12px;margin-bottom:10px}
+.tt{font-weight:700;font-size:14px;margin-bottom:6px}
+.cb{display:flex;align-items:center;gap:8px;font-size:13px;padding:3px 0}
+.cb b{width:14px;height:14px;border:1.5px solid #161616;display:inline-block}
+.cb b.on{background:var(--a);border-color:var(--a);position:relative}
+.cb b.on:after{content:'';position:absolute;left:3px;top:0;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.tg{display:flex} .tg span{flex:1;text-align:center;font-size:12px;padding:6px 0;border:1px solid #c9c9c4;margin-right:-1px}
+.tg span.on{background:var(--a);color:var(--at);border-color:var(--a);font-weight:600}
+.avv{border-top:1px solid #161616;padding:9px 14px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:var(--a);color:var(--at);font-weight:600;font-size:14px;padding:9px 18px}
+.nav{display:flex;height:52px;border-top:1px solid #c9c9c4}
+.nav div{flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#5f5f5b}
+.nav .on{flex:2.8;background:#3a6cb8;color:#fff;font-weight:700;font-size:11px}
+/* varianti */
+.A .hdr{border-bottom:3px solid var(--a)}
+.A .tt{border-left:4px solid var(--a);padding-left:7px}
+.B .tt{color:var(--al)} .B .num{color:var(--al);font-weight:700}
+.B .pan{border-color:color-mix(in srgb,var(--a) 45%,#fff)}
+.C .avv{background:color-mix(in srgb,var(--a) 14%,#fafaf8);border-top:3px solid var(--a)}
+.C .pan.sel{background:color-mix(in srgb,var(--a) 8%,#fafaf8)}
+.C .hdr{border-bottom:3px solid var(--a)}
+</style>
+<h2>Più colore utente (qui Prugna): tre dosi</h2>
+<p class="s">Oggi il colore scelto sta su Avvia, caselle, filtri attivi, barra di avanzamento e link. La barra in basso resta coi colori di sezione. A = fili sottili, B = testi colorati, C = campi tinti.</p>
+<div class="cards">
+<div class="card"><h3>A · Fili</h3><p>Riga di 3 px sotto l'intestazione e trattino di 4 px a sinistra dei titoli dei riquadri.</p>
+<div class="ph A">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">12 materie · <span class="num">2483</span></span></div>
+ <div class="body">
+  <div class="pan sel"><div class="tt">Materie</div>
+   <div class="cb"><b class="on"></b>C / C++</div><div class="cb"><b class="on"></b>C#</div><div class="cb"><b></b>Cloud Services</div><div class="cb"><b></b>Cybersecurity</div></div>
+  <div class="pan sel"><div class="tt">Categorie</div>
+   <div class="cb"><b class="on"></b>Puntatori <span class="mut" style="margin-left:auto"><span class="num">42</span></span></div><div class="cb"><b class="on"></b>Classi <span class="mut" style="margin-left:auto"><span class="num">58</span></span></div><div class="cb"><b></b>LINQ <span class="mut" style="margin-left:auto"><span class="num">31</span></span></div></div>
+  <div class="pan sel"><div class="tt">Tipo</div><div class="tg"><span class="on">Tutte</span><span>Singola</span><span>Multipla</span></div></div>
+  <div class="pan"><div class="tt">Opzioni</div><div class="cb"><b class="on"></b>Ordine casuale</div><div class="cb"><b></b>Cronometro</div></div>
+ </div>
+ <div class="avv"><div><div style="font-size:13px;font-weight:600"><span class="num">100</span> domande</div><div class="mut">2 materie · 2 categorie</div></div><span class="btn">Avvia</span></div>
+ <div class="nav"><div class="on">Home</div><div>Storia</div><div>Pausa</div><div>Stat.</div><div>Cont.</div><div>Opz.</div></div>
+</div></div>
+<div class="card"><h3>B · Testi</h3><p>Titoli dei riquadri e numeri chiave (conteggi, percentuali) nel colore, cornici dei riquadri tinte.</p>
+<div class="ph B">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">12 materie · <span class="num">2483</span></span></div>
+ <div class="body">
+  <div class="pan sel"><div class="tt">Materie</div>
+   <div class="cb"><b class="on"></b>C / C++</div><div class="cb"><b class="on"></b>C#</div><div class="cb"><b></b>Cloud Services</div><div class="cb"><b></b>Cybersecurity</div></div>
+  <div class="pan sel"><div class="tt">Categorie</div>
+   <div class="cb"><b class="on"></b>Puntatori <span class="mut" style="margin-left:auto"><span class="num">42</span></span></div><div class="cb"><b class="on"></b>Classi <span class="mut" style="margin-left:auto"><span class="num">58</span></span></div><div class="cb"><b></b>LINQ <span class="mut" style="margin-left:auto"><span class="num">31</span></span></div></div>
+  <div class="pan sel"><div class="tt">Tipo</div><div class="tg"><span class="on">Tutte</span><span>Singola</span><span>Multipla</span></div></div>
+  <div class="pan"><div class="tt">Opzioni</div><div class="cb"><b class="on"></b>Ordine casuale</div><div class="cb"><b></b>Cronometro</div></div>
+ </div>
+ <div class="avv"><div><div style="font-size:13px;font-weight:600"><span class="num">100</span> domande</div><div class="mut">2 materie · 2 categorie</div></div><span class="btn">Avvia</span></div>
+ <div class="nav"><div class="on">Home</div><div>Storia</div><div>Pausa</div><div>Stat.</div><div>Cont.</div><div>Opz.</div></div>
+</div></div>
+<div class="card"><h3>C · Campi</h3><p>Riga sotto l'intestazione e zona Avvia tinta (14%) con filo pieno; riquadri con qualcosa di selezionato appena tinti.</p>
+<div class="ph C">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">12 materie · <span class="num">2483</span></span></div>
+ <div class="body">
+  <div class="pan sel"><div class="tt">Materie</div>
+   <div class="cb"><b class="on"></b>C / C++</div><div class="cb"><b class="on"></b>C#</div><div class="cb"><b></b>Cloud Services</div><div class="cb"><b></b>Cybersecurity</div></div>
+  <div class="pan sel"><div class="tt">Categorie</div>
+   <div class="cb"><b class="on"></b>Puntatori <span class="mut" style="margin-left:auto"><span class="num">42</span></span></div><div class="cb"><b class="on"></b>Classi <span class="mut" style="margin-left:auto"><span class="num">58</span></span></div><div class="cb"><b></b>LINQ <span class="mut" style="margin-left:auto"><span class="num">31</span></span></div></div>
+  <div class="pan sel"><div class="tt">Tipo</div><div class="tg"><span class="on">Tutte</span><span>Singola</span><span>Multipla</span></div></div>
+  <div class="pan"><div class="tt">Opzioni</div><div class="cb"><b class="on"></b>Ordine casuale</div><div class="cb"><b></b>Cronometro</div></div>
+ </div>
+ <div class="avv"><div><div style="font-size:13px;font-weight:600"><span class="num">100</span> domande</div><div class="mut">2 materie · 2 categorie</div></div><span class="btn">Avvia</span></div>
+ <div class="nav"><div class="on">Home</div><div>Storia</div><div>Pausa</div><div>Stat.</div><div>Cont.</div><div>Opz.</div></div>
+</div></div>
+</div>
