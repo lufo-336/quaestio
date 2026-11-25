@@ -32,6 +32,8 @@
 
 ### Task 0: Misura di partenza sul S21
 
+- [ ] Rimandato 2026-11-25 (Claude): dal Mac mancano adb e il workload Android. Da fare dal PC **prima** di installare il nuovo APK (sul S21 c'è ancora la 2.2.0).
+
 Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richiede il telefono collegato via adb e l'APK 2.2.0 installato.
 
 - [ ] **Step 1:** trovare l'activity: `adb shell cmd package resolve-activity --brief it.eduits.wsaquiz` (ultima riga).
@@ -153,11 +155,15 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 7: Tab desktop/web — mockup, ok, implementazione
 
+- [ ] Step 1 fatto 2026-11-25 (Claude): `docs/superpowers/specs/assets/2026-11-25-revisione-grafica/mockup-tab-desktop.html` (+ `.png`), varianti A fascia sotto / B solo l'attiva / C fascia sopra — in attesa della scelta di Luca
+
 - [ ] **Step 1:** mockup HTML con 2–3 varianti affiancate delle tab in alto (base: spec §5.4, fascia 3–4 px del colore di sezione, attiva piena), tema chiaro e scuro; mostrarle a Luca. **Fermarsi fino al suo ok.**
 - [ ] **Step 2:** implementare la variante scelta sullo stile `TabItem` di `Tabs` in `MainView.axaml` (colori da `Inchiostri` come in Task 6). Se nessuna è scelta: solo stili globali, nessun colore di sezione.
 - [ ] **Step 3:** prova desktop chiaro/scuro e browser su PC; build, test, commit `feat(app): tab desktop coi colori di sezione` + push.
 
 ### Task 8: Icone dell'app a6-2
+
+- [x] Fatto 2026-11-25 (Claude): file `branding/*.svg`, `wsa.quiz.android/Resources/` (vector drawable, fondo `#0c0c0c`, 10 PNG), AppIcon iOS, `quaestio.ico`, `quaestio-icon.png`, favicon web — PNG da Chrome headless + Pillow; tonde con la Q nella zona sicura — verifica: build ok; Step 4 (icona a vista su desktop, launcher, scheda) da fare
 
 **Files:**
 - Modify: `branding/icon.svg`, `branding/icon-foreground.svg`, `wsa.quiz.android/Resources/drawable/ic_launcher_foreground.xml`, `wsa.quiz.android/Resources/values/ic_launcher_background.xml`, `wsa.quiz.android/Resources/mipmap-*/ic_launcher*.png` (10 file), `wsa.quiz.ios/Assets.xcassets/AppIcon.appiconset/*`, `wsa.quiz.desktop/quaestio.ico`, `wsa.quiz.app/Assets/Branding/quaestio-icon.png`
