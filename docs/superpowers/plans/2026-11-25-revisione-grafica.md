@@ -145,9 +145,9 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 **Interfaces:**
 - Consumes: `Inchiostri.Trova(id)` per `blu, viola, ocra, terracotta, verdeacqua, grigio` (ordine delle sei sezioni); `Inchiostro.TestoNero`.
 
-- [ ] **Step 1:** `BottomNav` a tutta larghezza, a filo del bordo inferiore sopra l'inset Android (padding da `ApplicaSafeArea` come oggi), altezza 56, nessun raggio, nessuna ombra; via `NavSfondo`/`NavBordo`/`NavOmbra`.
-- [ ] **Step 2:** ogni `Button.nav` ha fondo pieno del colore della sua sezione; inattivo = solo icona; attivo = colonna larga ~2,4× con icona + nome della sezione (stringhe `Shell_Tab*`); icona e testo nel colore "testo sopra" dell'inchiostro. Le icone `Path` restano quelle di oggi.
-- [ ] **Step 3:** `SzRiservaNav` aggiornato alla nuova altezza, così l'ultimo contenuto di ogni pagina scorre sopra la barra.
+- [x] **Step 1:** `BottomNav` a tutta larghezza, a filo del bordo inferiore sopra l'inset Android (padding da `ApplicaSafeArea` come oggi), altezza 56, nessun raggio, nessuna ombra; via `NavSfondo`/`NavBordo`/`NavOmbra`.
+- [x] **Step 2:** ogni `Button.nav` ha fondo pieno del colore della sua sezione; inattivo = solo icona; attivo = colonna larga ~2,4× con icona + nome della sezione (stringhe `Shell_Tab*`); icona e testo nel colore "testo sopra" dell'inchiostro. Le icone `Path` restano quelle di oggi.
+- [x] **Step 3:** `SzRiservaNav` aggiornato alla nuova altezza, così l'ultimo contenuto di ogni pagina scorre sopra la barra.
 - [ ] **Step 4:** prova nel browser in modalità telefono e su emulatore/telefono: cambio sezione col tocco e con lo swipe aggiorna la colonna larga.
 - [ ] **Step 5:** build, test, commit `feat(app): barra di navigazione a campi di colore (C2)` + push.
 

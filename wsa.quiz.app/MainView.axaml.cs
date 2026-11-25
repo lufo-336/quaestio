@@ -122,18 +122,28 @@ public partial class MainView : UserControl
             FooterBar.IsVisible = false;    // footer diagnostico solo su desktop
             BottomNav.IsVisible = true;
 
+            // Riserva iniziale per la barra C2 (56 + respiro); SizeChanged la aggiorna
+            // con l'altezza reale (inset Android incluso) appena il layout e' pronto.
+            if (Application.Current is { } app)
+                app.Resources["SzRiservaNav"] = new Thickness(0, 0, 0, 70);
+
             // Ogni pagina larga/alta quanto il viewport: lo snap aggancia ai bordi pagina
             // e il contenuto verticale resta dentro il proprio ScrollViewer.
             SwipeHost.SizeChanged += (_, _) => DimensionaPagine();
-            // La pillola copre il fondo delle pagine: ognuna riserva in coda la sua
+            // La barra C2 copre il fondo delle pagine: ognuna riserva in coda la sua
             // altezza reale (inset Android incluso) + un respiro, cosi' l'ultimo
             // contenuto si puo' sempre scorrere fin sopra la barra.
             BottomNav.SizeChanged += (_, e) =>
-                Application.Current!.Resources["SzRiservaNav"] = new Thickness(0, 0, 0, e.NewSize.Height + 12);
-            // Lo scroll (swipe o animazione) aggiorna l'icona attiva nella bottom nav.
+            {
+                if (e.NewSize.Height > 0 && Application.Current is { } current)
+                    current.Resources["SzRiservaNav"] = new Thickness(0, 0, 0, e.NewSize.Height + 14);
+            };
+            // Lo scroll (swipe o animazione) aggiorna la sezione attiva nella bottom nav.
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
                 new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiataDebounced(); }));
 
+            AggiornaColoriNav();
+            QuizColors.CollegaCambioTema(this, AggiornaColoriNav);
             AggiornaNav();
         }
         else
@@ -238,13 +248,66 @@ public partial class MainView : UserControl
         _salvaTabDebounce.Start();
     }
 
-    /// <summary>Evidenzia l'icona della bottom nav corrispondente alla sezione attiva.</summary>
+    private (Button Bottone, string InchiostroId)[]? _sezioniNav;
+    private int _navAttiva = -1;
+
+    private (Button Bottone, string InchiostroId)[] SezioniNav => _sezioniNav ??=
+    [
+        (NavHome, "blu"),
+        (NavCronologia, "viola"),
+        (NavSospesi, "ocra"),
+        (NavStatistiche, "terracotta"),
+        (NavGestione, "verdeacqua"),
+        (NavImpostazioni, "grigio")
+    ];
+
+    /// <summary>
+    /// Applica a ogni pulsante della bottom-nav il colore pieno della propria sezione
+    /// da <see cref="Inchiostri"/> (con HexChiaro per il grigio nel tema chiaro) e
+    /// imposta icona e testo nel colore di contrasto dell'inchiostro.
+    /// </summary>
+    private void AggiornaColoriNav()
+    {
+        if (!AppEnv.TouchMode) return;
+        bool scuro = Application.Current?.ActualThemeVariant == ThemeVariant.Dark;
+
+        foreach (var (bottone, inchiostroId) in SezioniNav)
+        {
+            var inchiostro = Inchiostri.Trova(inchiostroId);
+            string hex = !scuro && inchiostro.HexChiaro != null ? inchiostro.HexChiaro : inchiostro.Hex;
+            var sfondo = new SolidColorBrush(Color.Parse(hex));
+            IBrush testo = inchiostro.TestoNero ? Brushes.Black : Brushes.White;
+
+            bottone.Background = sfondo;
+            bottone.Foreground = testo;
+            if (bottone.Content is Panel contenuto)
+            {
+                foreach (var figlio in contenuto.Children)
+                {
+                    if (figlio is Avalonia.Controls.Shapes.Path icona)
+                        icona.Stroke = testo;
+                    else if (figlio is TextBlock etichetta)
+                        etichetta.Foreground = testo;
+                }
+            }
+        }
+    }
+
+    /// <summary>Evidenzia la sezione attiva della bottom nav allargandone la colonna a 2.4* (altre 1*).</summary>
     private void AggiornaNav()
     {
         if (!AppEnv.TouchMode) return;
-        var bottoni = new[] { NavHome, NavCronologia, NavSospesi, NavStatistiche, NavGestione, NavImpostazioni };
-        for (int i = 0; i < bottoni.Length; i++)
-            bottoni[i].Classes.Set("attiva", i == IndiceSezione);
+        int attiva = IndiceSezione;
+        if (attiva == _navAttiva) return;
+        _navAttiva = attiva;
+
+        var sezioni = SezioniNav;
+        for (int i = 0; i < sezioni.Length; i++)
+        {
+            bool eAttiva = i == attiva;
+            sezioni[i].Bottone.Classes.Set("attiva", eAttiva);
+            NavGrid.ColumnDefinitions[i].Width = new GridLength(eAttiva ? 2.4 : 1.0, GridUnitType.Star);
+        }
     }
 
     // ------------------------------------------------------------------ SAFE AREA (edge-to-edge Android/iOS)
