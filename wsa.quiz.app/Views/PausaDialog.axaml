@@ -7,12 +7,12 @@
     <!-- Accent dinamico: usa i brush dell'applicazione (vedi App.axaml). -->
     <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
-      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
       <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
     </Style>
     <Style Selector="Button.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
-      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
       <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
     </Style>
   </UserControl.Styles>

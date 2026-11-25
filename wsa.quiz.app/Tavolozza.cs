@@ -4,29 +4,28 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Media;
 using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App;
 
 /// <summary>
 /// Rappresenta una variante cromatica d'accento dell'applicazione.
 /// </summary>
-/// <param name="BasePerScuro">Se valorizzato, sostituisce <c>Base</c> per i controlli Fluent
-/// (caselle, interruttori, linea della tab) quando il tema e' scuro: serve ai colori troppo
-/// scuri per staccarsi dallo sfondo nero (Grafite). Barra e bottoni restano su <c>Base</c>.</param>
-public sealed record ColoreAccento(string Id, string NomeRisorsa, Color Base, Color Hover, Color Pressed, Color? BasePerScuro = null)
+public sealed record ColoreAccento(string Id, string NomeRisorsa, Color Base, Color Hover, Color Pressed, Color Testo)
 {
     /// <summary>Nome localizzato del colore (letto dalle risorse Strings).</summary>
     public string Nome => Strings.ResourceManager.GetString(NomeRisorsa, Lingue.Cultura) ?? Id;
 }
 
 /// <summary>
-/// Tavolozza dei colori d'accento selezionabili dall'utente.
+/// Tavolozza dei colori d'accento selezionabili dall'utente, costruita dagli
+/// inchiostri sceglibili del core (<see cref="Inchiostri"/>).
 /// Gestisce la definizione dei colori e la loro applicazione a runtime
 /// nelle Application.Current.Resources.
 ///
 /// NOTA SUI COLORI (Trappola 20 e Trappola 7):
-/// Usiamo brush espliciti propri (AccentoBrush, AccentoHoverBrush, AccentoPressedBrush)
-/// invece di SystemAccentColorBrush perché su piattaforme mobile (Android)
+/// Usiamo brush espliciti propri (AccentoBrush, AccentoHoverBrush, AccentoPressedBrush,
+/// AccentoTestoBrush) invece di SystemAccentColorBrush perché su piattaforme mobile (Android)
 /// SystemAccentColorBrush può risolversi in un colore trasparente o bianco,
 /// rendendo i bottoni abilitati invisibili. Inoltre, nei Setter degli Style in XAML
 /// si usano DynamicResource di tipo Brush e non Color (Trappola 7).
@@ -34,22 +33,28 @@ public sealed record ColoreAccento(string Id, string NomeRisorsa, Color Base, Co
 /// </summary>
 public static class Tavolozza
 {
-    public static IReadOnlyList<ColoreAccento> Colori { get; } = new List<ColoreAccento>
+    public static IReadOnlyList<ColoreAccento> Colori { get; } = Inchiostri.Tutti
+        .Where(i => i.Sceglibile)
+        .Select(CreaColore)
+        .ToList();
+
+    private static ColoreAccento CreaColore(Inchiostro i)
     {
-        new("blu", "Colore_Blu", Color.Parse("#0078D4"), Color.Parse("#2B90DE"), Color.Parse("#005FB0")),
-        new("blunotte", "Colore_BluNotte", Color.Parse("#23408E"), Color.Parse("#3555A8"), Color.Parse("#1A3170")),
-        new("indaco", "Colore_Indaco", Color.Parse("#4F46E5"), Color.Parse("#6A62EE"), Color.Parse("#3F37C4")),
-        new("viola", "Colore_Viola", Color.Parse("#7E3FB8"), Color.Parse("#9459CC"), Color.Parse("#663096")),
-        new("magenta", "Colore_Magenta", Color.Parse("#B4236E"), Color.Parse("#C73E86"), Color.Parse("#931B59")),
-        new("verdeacqua", "Colore_VerdeAcqua", Color.Parse("#00838F"), Color.Parse("#1A9AA6"), Color.Parse("#006A74")),
-        new("cacao", "Colore_Cacao", Color.Parse("#7A4E2D"), Color.Parse("#8F6342"), Color.Parse("#613D22")),
-        new("grafite", "Colore_Grafite", Color.Parse("#3D4B5C"), Color.Parse("#526174"), Color.Parse("#2E3946"), Color.Parse("#8A9BB0")),
-    };
+        var baseColor = Color.Parse(i.Hex);
+        return new ColoreAccento(
+            i.Id,
+            i.NomeRisorsa,
+            baseColor,
+            Mescola(baseColor, Colors.White, 0.10),
+            Mescola(baseColor, Colors.Black, 0.20),
+            i.TestoNero ? Colors.Black : Colors.White);
+    }
 
     public static ColoreAccento Trova(string? id)
     {
-        if (string.IsNullOrEmpty(id)) return Colori[0];
-        return Colori.FirstOrDefault(c => string.Equals(c.Id, id, StringComparison.OrdinalIgnoreCase)) ?? Colori[0];
+        string migrato = Inchiostri.MigraIdColore(id);
+        return Colori.FirstOrDefault(c => string.Equals(c.Id, migrato, StringComparison.OrdinalIgnoreCase))
+               ?? Colori.First(c => string.Equals(c.Id, Inchiostri.Predefinito, StringComparison.OrdinalIgnoreCase));
     }
 
     private static string? _ultimo;
@@ -59,17 +64,18 @@ public static class Tavolozza
 
     public static void Applica(string? id)
     {
-        _ultimo = id;
-        var c = Trova(id);
+        string migrato = Inchiostri.MigraIdColore(id);
+        _ultimo = migrato;
+        var c = Trova(migrato);
         var app = Application.Current;
         if (app == null) return;
-        bool scuro = app.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        Color fluent = scuro && c.BasePerScuro is Color chiaro ? chiaro : c.Base;
+        Color fluent = c.Base;
 
         // Nuovi oggetti SolidColorBrush a ogni chiamata
         app.Resources["AccentoBrush"] = new SolidColorBrush(c.Base);
         app.Resources["AccentoHoverBrush"] = new SolidColorBrush(c.Hover);
         app.Resources["AccentoPressedBrush"] = new SolidColorBrush(c.Pressed);
+        app.Resources["AccentoTestoBrush"] = new SolidColorBrush(c.Testo);
 
         // Color per il tema Fluent (caselle, interruttori, tab, barre di avanzamento)
         app.Resources["SystemAccentColor"] = fluent;

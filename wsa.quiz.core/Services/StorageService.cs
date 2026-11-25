@@ -472,16 +472,33 @@ public class StorageService
     public PreferenzeUtente CaricaPreferenze()
     {
         if (!File.Exists(_filePreferenze)) return new PreferenzeUtente();
+        PreferenzeUtente preferenze;
         try
         {
             string json = LeggiFileCondiviso(_filePreferenze);
-            return JsonSerializer.Deserialize<PreferenzeUtente>(json, OpzioniLettura) ?? new PreferenzeUtente();
+            preferenze = JsonSerializer.Deserialize<PreferenzeUtente>(json, OpzioniLettura) ?? new PreferenzeUtente();
         }
         catch
         {
             // File assente/corrotto: non blocco l'app, ricomincio dai default.
             return new PreferenzeUtente();
         }
+
+        // Migrazione lazy una-tantum degli id colore legacy/sconosciuti verso i 12 inchiostri sceglibili.
+        string migrato = Inchiostri.MigraIdColore(preferenze.ColoreAccento);
+        if (!string.Equals(migrato, preferenze.ColoreAccento, StringComparison.Ordinal))
+        {
+            preferenze.ColoreAccento = migrato;
+            try
+            {
+                SalvaPreferenze(preferenze);
+            }
+            catch
+            {
+                // Se la riscrittura fallisce (file in lock, sola lettura), in memoria resta comunque l'id migrato.
+            }
+        }
+        return preferenze;
     }
 
     public void SalvaPreferenze(PreferenzeUtente preferenze)

@@ -69,6 +69,8 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 2: Colore utente sugli inchiostri
 
+- [x] Fatto 2026-11-25 (agy): file `wsa.quiz.app/Tavolozza.cs`, `wsa.quiz.app/App.axaml`, `wsa.quiz.app/Views/ConfermaDialog.axaml`, `wsa.quiz.app/Views/PausaDialog.axaml`, `wsa.quiz.app/Views/StatisticheView.axaml`, `wsa.quiz.app/Views/ImpostazioniView.axaml.cs`, `wsa.quiz.core/Services/StorageService.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx`, `wsa.quiz.core.tests/PreferenzeMigrazioneTests.cs` — verifica: non eseguita (sessione headless senza shell; compilazione, test e prova a mano demandati a Claude)
+
 **Files:**
 - Modify: `wsa.quiz.app/Tavolozza.cs`, `wsa.quiz.app/App.axaml` (stili `Button.accent`), `wsa.quiz.app/Views/ConfermaDialog.axaml`, `wsa.quiz.app/Views/PausaDialog.axaml`, `wsa.quiz.app/Views/StatisticheView.axaml` (Setter con `AccentoBrush`), punto di caricamento delle preferenze (dove si legge `PreferenzeUtente.ColoreAccento`)
 
@@ -78,9 +80,9 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
   - `Tavolozza.Colori` = solo inchiostri sceglibili, nell'ordine di `Inchiostri.Tutti`; `ColoreAccento(string Id, string NomeRisorsa, Color Base, Color Hover, Color Pressed, Color Testo)` (cade `BasePerScuro`).
   - Risorsa nuova `AccentoTestoBrush` (Brush) impostata da `Tavolozza.Applica`, accanto a `AccentoBrush`/`AccentoHoverBrush`/`AccentoPressedBrush`.
 
-- [ ] **Step 1:** `Tavolozza` costruisce `Colori` da `Inchiostri` (hover/pressed con `Mescola` ±10%/20% come oggi); `Trova`/`Applica` passano l'id da `Inchiostri.MigraIdColore`. `Applica` imposta anche `AccentoTestoBrush`.
-- [ ] **Step 2:** tutti i `Foreground="White"`/`Value="White"` degli stili accent (App.axaml, ConfermaDialog, PausaDialog, StatisticheView) diventano `{DynamicResource AccentoTestoBrush}`; valore iniziale in `App.axaml`: blu `#3a6cb8` con testo `#FFFFFF`.
-- [ ] **Step 3:** al caricamento delle preferenze, se `MigraIdColore(id) != id`, salvare l'id migrato (una volta).
+- [x] **Step 1:** `Tavolozza` costruisce `Colori` da `Inchiostri` (hover/pressed con `Mescola` ±10%/20% come oggi); `Trova`/`Applica` passano l'id da `Inchiostri.MigraIdColore`. `Applica` imposta anche `AccentoTestoBrush`.
+- [x] **Step 2:** tutti i `Foreground="White"`/`Value="White"` degli stili accent (App.axaml, ConfermaDialog, PausaDialog, StatisticheView) diventano `{DynamicResource AccentoTestoBrush}`; valore iniziale in `App.axaml`: blu `#3a6cb8` con testo `#FFFFFF`.
+- [x] **Step 3:** al caricamento delle preferenze, se `MigraIdColore(id) != id`, salvare l'id migrato (una volta).
 - [ ] **Step 4:** prova a mano desktop: con `preferenze.json` a `"ColoreAccento": "magenta"` l'app si apre in prugna e il file viene riscritto con `prugna`; in Impostazioni ci sono 12 colori con nomi it/en; scegliendo un inchiostro chiaro (azzurro, oliva) il testo dei bottoni è nero, con uno scuro (indaco, cacao) è bianco.
 - [ ] **Step 5:** build desktop+browser, test, commit `feat(app): colore utente scelto fra gli inchiostri` + push.
 

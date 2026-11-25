@@ -83,11 +83,9 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
         _storage = storage;
         _temaScuro = preferenze.TemaScuro;
 
-        string coloreAttivo = string.IsNullOrEmpty(preferenze.ColoreAccento) ? "blu" : preferenze.ColoreAccento;
+        string coloreAttivo = Tavolozza.Trova(preferenze.ColoreAccento).Id;
         foreach (var c in ColoriDisponibili)
             c.Selezionato = string.Equals(c.Id, coloreAttivo, StringComparison.OrdinalIgnoreCase);
-        if (!ColoriDisponibili.Any(c => c.Selezionato) && ColoriDisponibili.Count > 0)
-            ColoriDisponibili[0].Selezionato = true;
 
         _percorsoDati = storage.CartellaUtente;
         _contenutiEtichetta = $"{Plurale(materie.Count, Strings.Impostazioni_Materia_Uno, Strings.Impostazioni_Materia_Molti)} · " +
@@ -231,7 +229,7 @@ public partial class ImpostazioniView : UserControl, INotifyPropertyChanged
     private void ApplicaTema()
     {
         Application.Current!.RequestedThemeVariant = _temaScuro ? ThemeVariant.Dark : ThemeVariant.Light;
-        Tavolozza.Riapplica();   // alcuni colori hanno una variante per il tema scuro
+        Tavolozza.Riapplica();
     }
 
     /// <summary>

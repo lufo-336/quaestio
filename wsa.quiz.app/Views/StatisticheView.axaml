@@ -35,17 +35,17 @@
         </Style>
         <Style Selector="Button.filtro.attivo /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
         </Style>
         <Style Selector="Button.filtro.attivo:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
         </Style>
         <Style Selector="Button.filtro.attivo:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
         </Style>
     </UserControl.Styles>

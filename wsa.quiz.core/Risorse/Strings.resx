@@ -305,7 +305,4 @@
   <data name="Colore_RosaAntico" xml:space="preserve"><value>Rosa antico</value></data>
   <data name="Colore_Ardesia" xml:space="preserve"><value>Ardesia</value></data>
   <data name="Colore_Grigio" xml:space="preserve"><value>Grigio</value></data>
-  <data name="Colore_BluNotte" xml:space="preserve"><value>Blu notte</value></data>
-  <data name="Colore_Magenta" xml:space="preserve"><value>Magenta</value></data>
-  <data name="Colore_Grafite" xml:space="preserve"><value>Grafite</value></data>
 </root>

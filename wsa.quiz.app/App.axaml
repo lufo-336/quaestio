@@ -8,9 +8,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://Wsa.Quiz.App/Themes/Sizes.Desktop.axaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="AccentoBrush" Color="#0078D4"/>
-            <SolidColorBrush x:Key="AccentoHoverBrush" Color="#2B90DE"/>
-            <SolidColorBrush x:Key="AccentoPressedBrush" Color="#005FB0"/>
+            <SolidColorBrush x:Key="AccentoBrush" Color="#3a6cb8"/>
+            <SolidColorBrush x:Key="AccentoHoverBrush" Color="#4E7BBF"/>
+            <SolidColorBrush x:Key="AccentoPressedBrush" Color="#2E5693"/>
+            <SolidColorBrush x:Key="AccentoTestoBrush" Color="#FFFFFF"/>
 
             <!-- Codice nelle domande (TestoConCodice). Font incluso nell'app
                  (JetBrains Mono NL = senza legature: "!=" resta "!=") cosi' e'
@@ -56,17 +57,17 @@
              I brush sono impostati dinamicamente da Tavolozza.Applica. -->
         <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
         </Style>
         <Style Selector="Button.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
         </Style>
         <Style Selector="Button.accent:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
         </Style>
         <Style Selector="Button.accent:disabled /template/ ContentPresenter#PART_ContentPresenter">
@@ -83,17 +84,17 @@
              (Trappola 20): niente SystemAccentColorBrush del tema Fluent. -->
         <Style Selector="ToggleButton.tipo:checked /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
         </Style>
         <Style Selector="ToggleButton.tipo:checked:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
         </Style>
         <Style Selector="ToggleButton.tipo:checked:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
         </Style>
 
