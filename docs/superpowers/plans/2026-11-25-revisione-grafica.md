@@ -155,10 +155,10 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 7: Tab desktop/web — mockup, ok, implementazione
 
-- [ ] Step 1 fatto 2026-11-25 (Claude): `docs/superpowers/specs/assets/2026-11-25-revisione-grafica/mockup-tab-desktop.html` (+ `.png`), varianti A fascia sotto / B solo l'attiva / C fascia sopra — in attesa della scelta di Luca
+- [ ] Step 1 fatto 2026-11-25 (Claude): `docs/superpowers/specs/assets/2026-11-25-revisione-grafica/mockup-tab-desktop.html` (+ `.png`), varianti A fascia sotto / B solo l'attiva / C fascia sopra — scelto A da Luca. Step 2 fatto 2026-11-25 (agy): file `wsa.quiz.app/MainView.axaml`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell). Resta Step 3.
 
 - [ ] **Step 1:** mockup HTML con 2–3 varianti affiancate delle tab in alto (base: spec §5.4, fascia 3–4 px del colore di sezione, attiva piena), tema chiaro e scuro; mostrarle a Luca. **Fermarsi fino al suo ok.**
-- [ ] **Step 2:** implementare la variante scelta sullo stile `TabItem` di `Tabs` in `MainView.axaml` (colori da `Inchiostri` come in Task 6). Se nessuna è scelta: solo stili globali, nessun colore di sezione.
+- [x] **Step 2:** implementare la variante scelta sullo stile `TabItem` di `Tabs` in `MainView.axaml` (colori da `Inchiostri` come in Task 6). Se nessuna è scelta: solo stili globali, nessun colore di sezione.
 - [ ] **Step 3:** prova desktop chiaro/scuro e browser su PC; build, test, commit `feat(app): tab desktop coi colori di sezione` + push.
 
 ### Task 8: Icone dell'app a6-2

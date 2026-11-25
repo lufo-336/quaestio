@@ -157,6 +157,9 @@ public partial class MainView : UserControl
 
             // Evidenzia (no-op su desktop) tenuta per simmetria; AggiornaNav esce subito.
             Tabs.SelectionChanged += (_, _) => { AggiornaNav(); SalvaTabSeCambiata(); };
+
+            AggiornaColoriTab();
+            QuizColors.CollegaCambioTema(this, AggiornaColoriTab);
         }
 
         if (OperatingSystem.IsBrowser())
@@ -248,18 +251,52 @@ public partial class MainView : UserControl
         _salvaTabDebounce.Start();
     }
 
-    private (Button Bottone, string InchiostroId)[]? _sezioniNav;
+    private static readonly string[] _inchiostriSezioni =
+    [
+        "blu",
+        "viola",
+        "ocra",
+        "terracotta",
+        "verdeacqua",
+        "grigio"
+    ];
+
+    private Button[]? _bottoniNav;
+    private TabItem[]? _tabSezioni;
     private int _navAttiva = -1;
 
-    private (Button Bottone, string InchiostroId)[] SezioniNav => _sezioniNav ??=
+    private Button[] BottoniNav => _bottoniNav ??=
     [
-        (NavHome, "blu"),
-        (NavCronologia, "viola"),
-        (NavSospesi, "ocra"),
-        (NavStatistiche, "terracotta"),
-        (NavGestione, "verdeacqua"),
-        (NavImpostazioni, "grigio")
+        NavHome,
+        NavCronologia,
+        NavSospesi,
+        NavStatistiche,
+        NavGestione,
+        NavImpostazioni
     ];
+
+    private TabItem[] TabSezioni => _tabSezioni ??=
+    [
+        TabHome,
+        TabCronologia,
+        TabSospesi,
+        TabStatistiche,
+        TabGestione,
+        TabImpostazioni
+    ];
+
+    /// <summary>
+    /// Risolve colore di sezione (usando HexChiaro nel tema chiaro, es. grigio)
+    /// e colore del testo di contrasto da <see cref="Inchiostri"/>.
+    /// </summary>
+    private static (SolidColorBrush Colore, IBrush TestoSopra, bool TestoNero) RisolviColoreSezione(string inchiostroId, bool scuro)
+    {
+        var inchiostro = Inchiostri.Trova(inchiostroId);
+        string hex = !scuro && inchiostro.HexChiaro != null ? inchiostro.HexChiaro : inchiostro.Hex;
+        var colore = new SolidColorBrush(Color.Parse(hex));
+        IBrush testo = inchiostro.TestoNero ? Brushes.Black : Brushes.White;
+        return (colore, testo, inchiostro.TestoNero);
+    }
 
     /// <summary>
     /// Applica a ogni pulsante della bottom-nav il colore pieno della propria sezione
@@ -270,13 +307,12 @@ public partial class MainView : UserControl
     {
         if (!AppEnv.TouchMode) return;
         bool scuro = Application.Current?.ActualThemeVariant == ThemeVariant.Dark;
+        var bottoni = BottoniNav;
 
-        foreach (var (bottone, inchiostroId) in SezioniNav)
+        for (int i = 0; i < _inchiostriSezioni.Length; i++)
         {
-            var inchiostro = Inchiostri.Trova(inchiostroId);
-            string hex = !scuro && inchiostro.HexChiaro != null ? inchiostro.HexChiaro : inchiostro.Hex;
-            var sfondo = new SolidColorBrush(Color.Parse(hex));
-            IBrush testo = inchiostro.TestoNero ? Brushes.Black : Brushes.White;
+            var (sfondo, testo, _) = RisolviColoreSezione(_inchiostriSezioni[i], scuro);
+            var bottone = bottoni[i];
 
             bottone.Background = sfondo;
             bottone.Foreground = testo;
@@ -293,6 +329,26 @@ public partial class MainView : UserControl
         }
     }
 
+    /// <summary>
+    /// Applica a ogni tab desktop/web il colore della propria sezione su
+    /// <c>BorderBrush</c> (fascia 4 px sotto e sfondo pieno della tab attiva)
+    /// e la classe <c>testo-nero</c> per il testo sopra quando selezionata.
+    /// </summary>
+    private void AggiornaColoriTab()
+    {
+        if (AppEnv.TouchMode) return;
+        bool scuro = Application.Current?.ActualThemeVariant == ThemeVariant.Dark;
+        var tabs = TabSezioni;
+
+        for (int i = 0; i < _inchiostriSezioni.Length; i++)
+        {
+            var (colore, _, testoNero) = RisolviColoreSezione(_inchiostriSezioni[i], scuro);
+            var tab = tabs[i];
+            tab.BorderBrush = colore;
+            tab.Classes.Set("testo-nero", testoNero);
+        }
+    }
+
     /// <summary>Evidenzia la sezione attiva della bottom nav allargandone la colonna a 2.8* (altre 1*).</summary>
     private void AggiornaNav()
     {
@@ -301,11 +357,11 @@ public partial class MainView : UserControl
         if (attiva == _navAttiva) return;
         _navAttiva = attiva;
 
-        var sezioni = SezioniNav;
-        for (int i = 0; i < sezioni.Length; i++)
+        var bottoni = BottoniNav;
+        for (int i = 0; i < bottoni.Length; i++)
         {
             bool eAttiva = i == attiva;
-            sezioni[i].Bottone.Classes.Set("attiva", eAttiva);
+            bottoni[i].Classes.Set("attiva", eAttiva);
             NavGrid.ColumnDefinitions[i].Width = new GridLength(eAttiva ? 2.8 : 1.0, GridUnitType.Star);
         }
     }

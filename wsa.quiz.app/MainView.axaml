@@ -9,7 +9,113 @@
              Background="{DynamicResource Sfondo}"
              Foreground="{DynamicResource TestoPrincipale}">
 
+    <UserControl.Resources>
+        <!-- Tab desktop/web (variante A): riga da 1 px sotto la barra delle tab,
+             nessun indicatore Fluent di default, angoli vivi. -->
+        <ControlTheme x:Key="TabsStripTheme" TargetType="TabControl">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="ItemsPanel">
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </Setter>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <DockPanel>
+                            <Border DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                                    BorderBrush="{DynamicResource RigaDebole}"
+                                    BorderThickness="0,0,0,1">
+                                <ItemsPresenter Name="PART_ItemsPresenter"
+                                                ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                            </Border>
+                            <ContentPresenter Name="PART_SelectedContentHost"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding SelectedContent}"
+                                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </ControlTheme>
+
+        <!-- Singola tab desktop/web (variante A): fascia 4 px sotto del colore di sezione
+             (via BorderBrush assegnato in code-behind da Inchiostri), campo pieno quando
+             attiva con testo bianco o nero (classe testo-nero), angoli vivi. -->
+        <ControlTheme x:Key="TabSezioneTheme" TargetType="TabItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TestoPrincipale}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10,12,11"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Panel Background="{TemplateBinding Background}">
+                        <Border Name="SfondoHover"
+                                Background="{DynamicResource SfondoRialzato}"
+                                CornerRadius="0"
+                                IsVisible="False"/>
+                        <Border Name="SfondoAttivo"
+                                Background="{TemplateBinding BorderBrush}"
+                                CornerRadius="0"
+                                IsVisible="False"/>
+                        <Border Name="FasciaSotto"
+                                Height="4"
+                                VerticalAlignment="Bottom"
+                                CornerRadius="0"
+                                Background="{TemplateBinding BorderBrush}"/>
+                        <Border Padding="{TemplateBinding Padding}">
+                            <ContentPresenter Name="TabContentPresenter"
+                                              Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              RecognizesAccessKey="True"/>
+                        </Border>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^:pointerover /template/ Border#SfondoHover">
+                <Setter Property="IsVisible" Value="True"/>
+            </Style>
+            <Style Selector="^:selected /template/ Border#SfondoAttivo">
+                <Setter Property="IsVisible" Value="True"/>
+            </Style>
+            <Style Selector="^:selected">
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Style>
+            <Style Selector="^.testo-nero:selected">
+                <Setter Property="Foreground" Value="#000000"/>
+            </Style>
+        </ControlTheme>
+    </UserControl.Resources>
+
     <UserControl.Styles>
+        <!-- Tab desktop/web (variante A): tema personalizzato solo sui TabItem di Tabs. -->
+        <Style Selector="TabControl#Tabs > TabItem">
+            <Setter Property="Theme" Value="{StaticResource TabSezioneTheme}"/>
+        </Style>
+
         <!-- Pulsanti della bottom navigation C2 (touch): campi di colore pieni
              assegnati in code-behind da Inchiostri; inattivo = solo icona,
              attivo = icona + nome sezione nella colonna allargata (2.8*). -->
@@ -122,23 +228,25 @@
              impostata in ConfiguraNavigazione secondo AppEnv.TouchMode; i due host non
              sono mai visibili insieme. -->
         <Grid>
-            <TabControl x:Name="Tabs" Padding="0">
-                <TabItem Header="{x:Static r:Strings.Shell_TabHome}">
+            <TabControl x:Name="Tabs"
+                        Theme="{StaticResource TabsStripTheme}"
+                        Padding="0">
+                <TabItem x:Name="TabHome" Header="{x:Static r:Strings.Shell_TabHome}">
                     <ContentControl x:Name="HomeArea"/>
                 </TabItem>
-                <TabItem Header="{x:Static r:Strings.Shell_TabCronologia}">
+                <TabItem x:Name="TabCronologia" Header="{x:Static r:Strings.Shell_TabCronologia}">
                     <ContentControl x:Name="CronologiaArea"/>
                 </TabItem>
-                <TabItem Header="{x:Static r:Strings.Shell_TabSospesi}">
+                <TabItem x:Name="TabSospesi" Header="{x:Static r:Strings.Shell_TabSospesi}">
                     <ContentControl x:Name="SospesiArea"/>
                 </TabItem>
-                <TabItem Header="{x:Static r:Strings.Shell_TabStatistiche}">
+                <TabItem x:Name="TabStatistiche" Header="{x:Static r:Strings.Shell_TabStatistiche}">
                     <ContentControl x:Name="StatisticheArea"/>
                 </TabItem>
-                <TabItem Header="{x:Static r:Strings.Shell_TabGestione}">
+                <TabItem x:Name="TabGestione" Header="{x:Static r:Strings.Shell_TabGestione}">
                     <ContentControl x:Name="GestioneArea"/>
                 </TabItem>
-                <TabItem Header="{x:Static r:Strings.Shell_TabImpostazioni}">
+                <TabItem x:Name="TabImpostazioni" Header="{x:Static r:Strings.Shell_TabImpostazioni}">
                     <ContentControl x:Name="ImpostazioniArea"/>
                 </TabItem>
             </TabControl>
