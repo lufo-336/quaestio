@@ -80,6 +80,7 @@
   <data name="Home_NMaterie" xml:space="preserve"><value>{0} subjects selected</value></data>
   <data name="Home_TutteLeCategorie" xml:space="preserve"><value>all categories</value></data>
   <data name="Home_NCategorie" xml:space="preserve"><value>{0} categories</value></data>
+  <data name="Materia_Quizzone" xml:space="preserve"><value>Quizz-One</value></data>
   <data name="Home_NDomande" xml:space="preserve"><value>{0} questions</value></data>
   <data name="Home_NDomandeLimitate" xml:space="preserve"><value>{0} questions (limited from {1})</value></data>
   <data name="Home_MaxMinuti" xml:space="preserve"><value>max {0} min</value></data>

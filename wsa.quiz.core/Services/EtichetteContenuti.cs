@@ -1,3 +1,6 @@
+using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Risorse;
+
 namespace Wsa.Quiz.Core.Services;
 
 /// <summary>
@@ -24,8 +27,12 @@ public sealed class EtichetteContenuti
                 _categorie[(nomeMateriaCanonico, chiave)] = visualizzato;
     }
 
+    // "Quizzone" non e' una materia ma una label multi-materia salvata in
+    // cronologia: resta canonica nei dati, si traduce solo qui.
     public string Materia(string nomeCanonico)
-        => _materie.TryGetValue(nomeCanonico, out var n) ? n : nomeCanonico;
+        => string.Equals(nomeCanonico, FiltroCronologia.EtichettaQuizzone, StringComparison.OrdinalIgnoreCase)
+            ? Strings.Materia_Quizzone
+            : _materie.TryGetValue(nomeCanonico, out var n) ? n : nomeCanonico;
 
     public string Categoria(string nomeMateriaCanonico, string categoria)
         => _categorie.TryGetValue((nomeMateriaCanonico, categoria), out var n) ? n : categoria;
