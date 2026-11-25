@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Foreground dell'icona adattiva: Q del logo a6-2 (corsie indaco, azzurro,
      verde acqua, terracotta + anima neutra) su viewport 108x108, senza fondo.
-     Stessi tracciati di branding/icon-foreground.svg: il glifo (74x89 nel
-     112 originale) è scalato a 66 di altezza dentro la zona sicura. -->
+     Stessi tracciati di branding/icon-foreground.svg: il cerchio minimo del glifo (r 50,4 nel
+     112 originale) è scalato nel cerchio sicuro di raggio 33. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="108dp"
         android:height="108dp"
         android:viewportWidth="108"
         android:viewportHeight="108">
   <group
-      android:scaleX="0.741573"
-      android:scaleY="0.741573"
-      android:translateX="12.472"
-      android:translateY="12.843">
+      android:scaleX="0.654632"
+      android:scaleY="0.654632"
+      android:translateX="12.251"
+      android:translateY="15.425">
     <path android:fillColor="#40a79b"
         android:pathData="M65,83.89 A37,37 0 0 1 31.72,75.92 L40.25,66.11 A24,24 0 0 0 65,70.25 Z" />
     <path android:fillColor="#539fd4"

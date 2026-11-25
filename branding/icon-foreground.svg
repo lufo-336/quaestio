@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108">
-  <!-- Q a6-2 senza fondo, scalata nella zona sicura dell icona adattiva (66/108): bbox glifo 74x89 nel 112 originale -->
-  <g transform="translate(12.472 12.843) scale(0.741573)">
+  <!-- Q a6-2 senza fondo, scalata nel cerchio sicuro (r 33 su 108): cerchio minimo del glifo r 50.4 nel 112 originale -->
+  <g transform="translate(12.251 15.425) scale(0.654632)">
     <path fill="#40a79b" d="M 65.00 83.89 A 37.0 37.0 0 0 1 31.72 75.92 L 40.25 66.11 A 24.0 24.0 0 0 0 65.00 70.25 Z"/>
     <path fill="#539fd4" d="M 27.66 71.78 A 37.0 37.0 0 0 1 38.06 15.64 L 44.36 27.01 A 24.0 24.0 0 0 0 37.62 63.43 Z"/>
     <path fill="#4d4dbc" d="M 43.35 13.23 A 37.0 37.0 0 0 1 93.00 48.00 L 80.00 48.00 A 24.0 24.0 0 0 0 47.79 25.45 Z"/>
