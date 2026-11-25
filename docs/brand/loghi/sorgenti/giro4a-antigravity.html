@@ -1,0 +1,941 @@
+<style>
+@font-face {
+  font-family: 'Archivo';
+  src: url('/files/archivo-var.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-stretch: 62% 100%;
+}
+
+.a4a-root {
+  font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+  color: #f4f4f2;
+}
+
+.a4a-root *,
+.a4a-root *::before,
+.a4a-root *::after {
+  box-sizing: border-box;
+}
+
+.a4a-intro {
+  margin: 0 0 18px;
+}
+
+.a4a-intro h2 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 850;
+  font-stretch: 72%;
+  font-size: 28px;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.a4a-intro p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #b4b3ad;
+  max-width: 88ch;
+}
+
+.a4a-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.a4a-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+  border: 1px solid #3a3a39;
+  border-radius: 0;
+  background: #161616;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.14s ease, background-color 0.14s ease;
+}
+
+.a4a-card:hover {
+  border-color: #8a8a86;
+}
+
+.a4a-card.selected {
+  border-color: #3a6cb8;
+  outline: 2px solid #3a6cb8;
+  outline-offset: 2px;
+  background: #181a1f;
+}
+
+.a4a-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: center;
+  gap: 16px;
+  padding: 20px 22px 16px;
+  background: #222221;
+  border-right: 1px solid #3a3a39;
+}
+
+.a4a-spec {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.a4a-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.a4a-ico {
+  display: block;
+}
+
+.a4a-cap {
+  font: 500 10.5px/1 'Archivo', system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  color: #9a9a96;
+}
+
+.a4a-detail {
+  padding: 20px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.a4a-bar {
+  width: 600px;
+  max-width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  overflow: hidden;
+}
+
+.a4a-bar--dk {
+  background: #0c0c0c;
+  color: #f4f4f2;
+  border-color: #f4f4f2;
+}
+
+.a4a-bar--lt {
+  background: #e8e7e3;
+  color: #141413;
+  border-color: #141413;
+}
+
+.a4a-brand {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+}
+
+.a4a-brand--bleed {
+  margin-left: -16px;
+}
+
+.a4a-word-svg {
+  display: block;
+  overflow: visible;
+}
+
+.a4a-count {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.a4a-bar--dk .a4a-count {
+  color: #a6a6a6;
+}
+
+.a4a-bar--lt .a4a-count {
+  color: #57564f;
+}
+
+.a4a-copy {
+  margin-top: 8px;
+}
+
+.a4a-copy h3 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 850;
+  font-stretch: 74%;
+  font-size: 22px;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  color: #f4f4f2;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.a4a-copy h3 small {
+  font-weight: 500;
+  font-stretch: 100%;
+  font-size: 11px;
+  color: #a6a6a6;
+  letter-spacing: 0.06em;
+}
+
+.a4a-copy p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.48;
+  max-width: 86ch;
+  color: #c9c8c3;
+}
+
+@media (max-width: 900px) {
+  .a4a-card {
+    grid-template-columns: 1fr;
+  }
+  .a4a-icons {
+    border-right: 0;
+    border-bottom: 1px solid #3a3a39;
+  }
+}
+</style>
+
+<div class="a4a-root">
+  <div class="a4a-intro">
+    <h2>Quaestio: quarto giro — sviluppi su a3-1, a3-2 e a3-3</h2>
+    <p>Due evoluzioni per ciascuna delle prime tre proposte del terzo giro, con incroci mirati verso le altre varianti (a3-1..a3-6). Corone e corsie sono ispessite per restare nitide a 28 px, l'effetto bersaglio di a3-3 è risolto aprendo il centro e colorando per moduli, e ogni «q» d'intestazione allinea esattamente x-height, linea di base e discendente ad Archivo.</p>
+  </div>
+
+  <div class="options a4a-list">
+
+    <!-- A4-1A: a3-1 x a3-4 — Corone e gambo (nucleo rosso + corona blu + asta e piede ortogonali) -->
+    <div class="option a4a-card" data-choice="a4-1a" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Corone e gambo scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+            <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+            <path fill="#f4f4f2" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Corone e gambo chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+            <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+            <path fill="#141413" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+              <path fill="#f4f4f2" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+              <path fill="#141413" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+              <path fill="#f4f4f2" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="49.0" r="11.5" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 51.50 71.91 A 23.0 23.0 0 1 1 70.35 39.28 L 64.00 42.24 A 16.0 16.0 0 1 0 50.89 64.94 Z"/>
+              <path fill="#141413" d="M 65.35 82.99 A 37.5 37.5 0 1 1 87.00 49.00 L 87.00 78.00 A 11.5 11.5 0 0 0 98.50 89.50 L 98.50 99.50 A 21.5 21.5 0 0 1 77.00 78.00 L 77.00 49.00 A 27.5 27.5 0 1 0 61.12 73.92 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="17.8" width="23.8" height="1.8" fill="#3a6cb8"/>
+              <rect x="0" y="21.6" width="23.8" height="1.8" fill="#d6414b"/>
+              <circle cx="36.2" cy="20.6" r="2.9" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 36.71 26.48 A 5.9 5.9 0 1 1 41.55 18.11 L 39.92 18.87 A 4.1 4.1 0 1 0 36.56 24.68 Z"/>
+              <path fill="#f4f4f2" d="M 40.51 29.84 A 10.2 10.2 0 1 1 46.40 20.60 L 46.40 31.80 A 2.7 2.7 0 0 0 49.10 34.50 L 49.10 37.60 A 5.8 5.8 0 0 1 43.30 31.80 L 43.30 20.60 A 7.1 7.1 0 1 0 39.20 27.03 Z"/>
+              <text x="51.2" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="17.8" width="23.8" height="1.8" fill="#3a6cb8"/>
+              <rect x="0" y="21.6" width="23.8" height="1.8" fill="#d6414b"/>
+              <circle cx="36.2" cy="20.6" r="2.9" fill="#d6414b"/>
+              <path fill="#3a6cb8" d="M 36.71 26.48 A 5.9 5.9 0 1 1 41.55 18.11 L 39.92 18.87 A 4.1 4.1 0 1 0 36.56 24.68 Z"/>
+              <path fill="#141413" d="M 40.51 29.84 A 10.2 10.2 0 1 1 46.40 20.60 L 46.40 31.80 A 2.7 2.7 0 0 0 49.10 34.50 L 49.10 37.60 A 5.8 5.8 0 0 1 43.30 31.80 L 43.30 20.60 A 7.1 7.1 0 1 0 39.20 27.03 Z"/>
+              <text x="51.2" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>1a · Corone e gambo <small>A3-1 × A3-4 · 2 COLORI + NEUTRO</small></h3>
+          <p>Parte da <strong>a3-1</strong> (disco focale rosso e corone spezzate alla Müller-Brockmann) e si incrocia con <strong>a3-4</strong>: al posto della coda obliqua di a3-1, la corona esterna neutra prosegue in un'asta verticale con piede a quarto di cerchio. Le due corone più spesse (con l'arco interno blu <code>#3a6cb8</code>) e il nucleo <code>#d6414b</code> reggono bene a 28 px; nella barra due bande orizzontali dal bordo sinistro entrano nella «q» a piena x-height e discendente allineata ad Archivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4-1B: a3-1 x a3-6 — Corone e gradino (nucleo rosso + corona ocra + gradino assonometrico blu/ocra/rosso) -->
+    <div class="option a4a-card" data-choice="a4-1b" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Corone e gradino scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+            <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+            <path fill="#f4f4f2" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+            <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+            <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+            <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Corone e gradino chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+            <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+            <path fill="#141413" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+            <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+            <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+            <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+              <path fill="#f4f4f2" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+              <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+              <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+              <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+              <path fill="#141413" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+              <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+              <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+              <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+              <path fill="#f4f4f2" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+              <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+              <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+              <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="49.5" r="12.0" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 49.50 73.00 A 23.5 23.5 0 1 1 72.20 43.42 L 65.44 45.23 A 16.5 16.5 0 1 0 49.50 66.00 Z"/>
+              <path fill="#141413" d="M 61.71 87.07 A 39.5 39.5 0 1 1 88.85 46.06 L 77.39 47.06 A 28.0 28.0 0 1 0 58.15 76.13 Z"/>
+              <polygon fill="#ebaf00" points="63.50,63.00 71.29,58.50 94.67,72.00 86.88,76.50"/>
+              <polygon fill="#3a6cb8" points="63.50,63.00 86.88,76.50 86.88,91.50 63.50,78.00"/>
+              <polygon fill="#d6414b" points="86.88,76.50 94.67,72.00 94.67,87.00 86.88,91.50"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <circle cx="11.2" cy="20.6" r="2.8" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 11.20 26.30 A 5.7 5.7 0 1 1 16.71 19.12 L 14.97 19.59 A 3.9 3.9 0 1 0 11.20 24.50 Z"/>
+              <path fill="#f4f4f2" d="M 14.35 30.30 A 10.2 10.2 0 1 1 21.36 19.71 L 18.07 20.00 A 6.9 6.9 0 1 0 13.33 27.16 Z"/>
+              <polygon fill="#ebaf00" points="15.80,25.80 18.05,24.50 22.73,27.20 20.48,28.50"/>
+              <polygon fill="#3a6cb8" points="15.80,25.80 20.48,28.50 20.48,37.50 15.80,34.80"/>
+              <polygon fill="#d6414b" points="20.48,28.50 22.73,27.20 22.73,36.20 20.48,37.50"/>
+              <text x="24.5" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <circle cx="11.2" cy="20.6" r="2.8" fill="#d6414b"/>
+              <path fill="#ebaf00" d="M 11.20 26.30 A 5.7 5.7 0 1 1 16.71 19.12 L 14.97 19.59 A 3.9 3.9 0 1 0 11.20 24.50 Z"/>
+              <path fill="#141413" d="M 14.35 30.30 A 10.2 10.2 0 1 1 21.36 19.71 L 18.07 20.00 A 6.9 6.9 0 1 0 13.33 27.16 Z"/>
+              <polygon fill="#ebaf00" points="15.80,25.80 18.05,24.50 22.73,27.20 20.48,28.50"/>
+              <polygon fill="#3a6cb8" points="15.80,25.80 20.48,28.50 20.48,37.50 15.80,34.80"/>
+              <polygon fill="#d6414b" points="20.48,28.50 22.73,27.20 22.73,36.20 20.48,37.50"/>
+              <text x="24.5" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>1b · Corone e gradino <small>A3-1 × A3-6 · 3 COLORI + NEUTRO</small></h3>
+          <p>Parte da <strong>a3-1</strong> (corone spezzate e disco rosso) e si incrocia con <strong>a3-6</strong>: nel taglio inferiore destro entra un blocco assonometrico a facce piatte (±30° e verticale) in blu <code>#3a6cb8</code>, ocra <code>#ebaf00</code> e rosso <code>#d6414b</code>, mentre la corona interna ocra e l'anello esterno neutro da 11,5 px mantengono il contrasto netto anche a 28 px. La stessa «q» con gradino assonometrico discendente apre «quaestio» alla medesima altezza di «uaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4-2A: a3-2 x a3-3 — Spirale a corsie (4 corsie uniformi nei 4 colori + 4 righe che entrano nella q) -->
+    <div class="option a4a-card" data-choice="a4-2a" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Spirale a corsie scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+            <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+            <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+            <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Spirale a corsie chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+            <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+            <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+            <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+              <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+              <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+              <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+              <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+              <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+              <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+              <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+              <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+              <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#ebaf00" d="M 52.23 64.46 A 15.7 15.7 0 1 1 63.10 41.15 L 56.00 45.25 A 7.5 7.5 0 1 0 50.80 56.39 Z"/>
+              <path fill="#3a6cb8" d="M 51.43 76.63 A 27.7 27.7 0 1 1 77.13 50.93 L 68.95 50.36 A 19.5 19.5 0 1 0 50.86 68.45 Z"/>
+              <path fill="#d6414b" d="M 48.11 88.68 A 39.7 39.7 0 1 1 86.31 63.87 L 78.71 60.80 A 31.5 31.5 0 1 0 48.40 80.48 Z"/>
+              <path fill="#40a79b" d="M 65.81 76.60 A 43.0 43.0 0 0 0 97.00 90.00 L 97.00 81.80 A 34.8 34.8 0 0 1 71.76 70.95 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="15.6" width="24.4" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="18.4" width="24.4" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="21.2" width="24.4" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="24.0" width="24.4" height="1.6" fill="#40a79b"/>
+              <path fill="#ebaf00" d="M 37.44 24.24 A 3.7 3.7 0 1 1 40.00 18.75 L 38.27 19.75 A 1.7 1.7 0 1 0 37.10 22.27 Z"/>
+              <path fill="#3a6cb8" d="M 37.28 27.48 A 6.9 6.9 0 1 1 43.68 21.08 L 41.59 20.93 A 4.8 4.8 0 1 0 37.13 25.39 Z"/>
+              <path fill="#d6414b" d="M 36.44 30.79 A 10.2 10.2 0 1 1 46.50 23.75 L 44.41 23.07 A 8.0 8.0 0 1 0 36.52 28.60 Z"/>
+              <path fill="#40a79b" d="M 44.00 25.80 L 46.20 25.80 L 46.20 32.50 A 2.8 2.8 0 0 0 49.00 35.30 L 49.00 37.50 A 5.0 5.0 0 0 1 44.00 32.50 Z"/>
+              <text x="51.0" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="15.6" width="24.4" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="18.4" width="24.4" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="21.2" width="24.4" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="24.0" width="24.4" height="1.6" fill="#40a79b"/>
+              <path fill="#ebaf00" d="M 37.44 24.24 A 3.7 3.7 0 1 1 40.00 18.75 L 38.27 19.75 A 1.7 1.7 0 1 0 37.10 22.27 Z"/>
+              <path fill="#3a6cb8" d="M 37.28 27.48 A 6.9 6.9 0 1 1 43.68 21.08 L 41.59 20.93 A 4.8 4.8 0 1 0 37.13 25.39 Z"/>
+              <path fill="#d6414b" d="M 36.44 30.79 A 10.2 10.2 0 1 1 46.50 23.75 L 44.41 23.07 A 8.0 8.0 0 1 0 36.52 28.60 Z"/>
+              <path fill="#40a79b" d="M 44.00 25.80 L 46.20 25.80 L 46.20 32.50 A 2.8 2.8 0 0 0 49.00 35.30 L 49.00 37.50 A 5.0 5.0 0 0 1 44.00 32.50 Z"/>
+              <text x="51.0" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>2a · Spirale a corsie <small>A3-2 × A3-3 · 4 COLORI</small></h3>
+          <p>Parte da <strong>a3-2</strong> (spirale nei quattro inchiostri attivi: ocra, blu, rosso, verde acqua) e si incrocia con <strong>a3-3</strong>: tutte le corsie assumono larghezza uniforme da 8,2 px e canali costanti da 3,8 px, con l'arco verde acqua che esce in continuità dall'orbita mediana fino a 97 px senza impastarsi a 28 px. Nell'intestazione le quattro bande orizzontali di a3-3 entrano dal margine sinistro e alimentano la «q» a spirale scalata all'esatta x-height di «uaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4-2B: a3-2 x a3-1 — Spirale con nucleo (nucleo pieno ocra + arco blu + corona esterna neutra + uscita rossa) -->
+    <div class="option a4a-card" data-choice="a4-2b" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Spirale con nucleo scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+            <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+            <path fill="#f4f4f2" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+            <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Spirale con nucleo chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+            <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+            <path fill="#141413" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+            <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+              <path fill="#f4f4f2" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+              <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+              <path fill="#141413" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+              <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+              <path fill="#f4f4f2" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+              <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <circle cx="49.5" cy="48.5" r="10.5" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 29.58 60.00 A 23.0 23.0 0 1 1 69.42 60.00 L 62.49 56.00 A 15.0 15.0 0 1 0 36.51 56.00 Z"/>
+              <path fill="#141413" d="M 46.14 86.85 A 38.5 38.5 0 1 1 87.42 41.81 L 76.58 43.72 A 27.5 27.5 0 1 0 47.10 75.90 Z"/>
+              <path fill="#d6414b" d="M 62.91 74.60 A 44.5 44.5 0 0 0 97.00 90.50 L 97.00 80.50 A 34.5 34.5 0 0 1 70.57 68.18 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <circle cx="11.2" cy="20.6" r="2.7" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 6.09 23.55 A 5.9 5.9 0 1 1 16.31 23.55 L 14.58 22.55 A 3.9 3.9 0 1 0 7.82 22.55 Z"/>
+              <path fill="#f4f4f2" d="M 10.31 30.76 A 10.2 10.2 0 1 1 21.25 18.83 L 18.19 19.37 A 7.1 7.1 0 1 0 10.58 27.67 Z"/>
+              <path fill="#d6414b" d="M 15.50 25.40 L 18.10 25.40 L 18.10 32.00 A 2.9 2.9 0 0 0 21.00 34.90 L 21.00 37.50 A 5.5 5.5 0 0 1 15.50 32.00 Z"/>
+              <text x="22.8" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <circle cx="11.2" cy="20.6" r="2.7" fill="#ebaf00"/>
+              <path fill="#3a6cb8" d="M 6.09 23.55 A 5.9 5.9 0 1 1 16.31 23.55 L 14.58 22.55 A 3.9 3.9 0 1 0 7.82 22.55 Z"/>
+              <path fill="#141413" d="M 10.31 30.76 A 10.2 10.2 0 1 1 21.25 18.83 L 18.19 19.37 A 7.1 7.1 0 1 0 10.58 27.67 Z"/>
+              <path fill="#d6414b" d="M 15.50 25.40 L 18.10 25.40 L 18.10 32.00 A 2.9 2.9 0 0 0 21.00 34.90 L 21.00 37.50 A 5.5 5.5 0 0 1 15.50 32.00 Z"/>
+              <text x="22.8" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>2b · Spirale con nucleo <small>A3-2 × A3-1 · 3 COLORI + NEUTRO</small></h3>
+          <p>Parte da <strong>a3-2</strong> (rotazione sfasata a spirale) e si incrocia con <strong>a3-1</strong>: aggiunge un disco pieno centrale ocra <code>#ebaf00</code> e porta il neutro ad alto contrasto sull'anello esterno da 11 px, mentre l'arco interno blu <code>#3a6cb8</code> e la coda rossa uscente <code>#d6414b</code> srotolano la spirale verso il basso-destra. Nell'intestazione il segno autonomo forma la «q» di «quaestio» con occhiello allineato alla x-height di «uaestio» e coda discendente fino a 37,5 px.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4-3A: a3-3 x a3-4 — Quarti a blocchi (centro aperto + 3 corsie + colore per blocco modulare, niente bersaglio) -->
+    <div class="option a4a-card" data-choice="a4-3a" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Quarti a blocchi scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <!-- TL rosso (50.0, 44.0) -->
+            <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+            <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+            <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+            <!-- BL ocra (50.0, 47.0) + estensione verso asta -->
+            <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+            <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+            <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+            <!-- TR + asta blu (53.0, 44.0) -->
+            <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+            <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+            <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+            <!-- Piede a S verde acqua (95.6, 68.0) -->
+            <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+            <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+            <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Quarti a blocchi chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+            <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+            <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+            <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+            <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+            <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+            <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+            <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+            <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+            <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+            <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+            <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+              <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+              <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+              <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+              <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+              <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+              <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+              <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+              <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+              <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+              <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+              <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+              <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+              <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+              <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+              <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+              <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+              <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+              <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#d6414b" d="M 34.80 44.00 A 15.2 15.2 0 0 1 50.00 28.80 L 50.00 35.00 A 9.0 9.0 0 0 0 41.00 44.00 Z"/>
+              <path fill="#d6414b" d="M 25.60 44.00 A 24.4 24.4 0 0 1 50.00 19.60 L 50.00 25.80 A 18.2 18.2 0 0 0 31.80 44.00 Z"/>
+              <path fill="#d6414b" d="M 16.40 44.00 A 33.6 33.6 0 0 1 50.00 10.40 L 50.00 16.60 A 27.4 27.4 0 0 0 22.60 44.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 62.20 L 50.00 62.20 A 15.2 15.2 0 0 1 34.80 47.00 L 41.00 47.00 A 9.0 9.0 0 0 0 50.00 56.00 L 59.00 56.00 Z"/>
+              <path fill="#ebaf00" d="M 59.00 71.40 L 50.00 71.40 A 24.4 24.4 0 0 1 25.60 47.00 L 31.80 47.00 A 18.2 18.2 0 0 0 50.00 65.20 L 59.00 65.20 Z"/>
+              <path fill="#ebaf00" d="M 59.00 80.60 L 50.00 80.60 A 33.6 33.6 0 0 1 16.40 47.00 L 22.60 47.00 A 27.4 27.4 0 0 0 50.00 74.40 L 59.00 74.40 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 28.80 A 15.2 15.2 0 0 1 68.20 44.00 L 68.20 65.00 L 62.00 65.00 L 62.00 44.00 A 9.0 9.0 0 0 0 53.00 35.00 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 19.60 A 24.4 24.4 0 0 1 77.40 44.00 L 77.40 65.00 L 71.20 65.00 L 71.20 44.00 A 18.2 18.2 0 0 0 53.00 25.80 Z"/>
+              <path fill="#3a6cb8" d="M 53.00 10.40 A 33.6 33.6 0 0 1 86.60 44.00 L 86.60 65.00 L 80.40 65.00 L 80.40 44.00 A 27.4 27.4 0 0 0 53.00 16.60 Z"/>
+              <path fill="#40a79b" d="M 95.60 83.20 A 15.2 15.2 0 0 1 80.40 68.00 L 86.60 68.00 A 9.0 9.0 0 0 0 95.60 77.00 Z"/>
+              <path fill="#40a79b" d="M 95.60 92.40 A 24.4 24.4 0 0 1 71.20 68.00 L 77.40 68.00 A 18.2 18.2 0 0 0 95.60 86.20 Z"/>
+              <path fill="#40a79b" d="M 95.60 101.60 A 33.6 33.6 0 0 1 62.00 68.00 L 68.20 68.00 A 27.4 27.4 0 0 0 95.60 95.40 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="15.8" width="24.2" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="18.5" width="24.2" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="21.2" width="24.2" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="23.9" width="24.2" height="1.6" fill="#40a79b"/>
+              <path fill="#d6414b" d="M 31.40 20.10 A 4.30 4.30 0 0 1 35.70 15.80 L 35.70 17.65 A 2.45 2.45 0 0 0 33.25 20.10 Z"/>
+              <path fill="#d6414b" d="M 28.70 20.10 A 7.00 7.00 0 0 1 35.70 13.10 L 35.70 14.95 A 5.15 5.15 0 0 0 30.55 20.10 Z"/>
+              <path fill="#d6414b" d="M 26.00 20.10 A 9.70 9.70 0 0 1 35.70 10.40 L 35.70 12.25 A 7.85 7.85 0 0 0 27.85 20.10 Z"/>
+              <path fill="#ebaf00" d="M 38.20 25.40 L 35.70 25.40 A 4.30 4.30 0 0 1 31.40 21.10 L 33.25 21.10 A 2.45 2.45 0 0 0 35.70 23.55 L 38.20 23.55 Z"/>
+              <path fill="#ebaf00" d="M 38.20 28.10 L 35.70 28.10 A 7.00 7.00 0 0 1 28.70 21.10 L 30.55 21.10 A 5.15 5.15 0 0 0 35.70 26.25 L 38.20 26.25 Z"/>
+              <path fill="#ebaf00" d="M 38.20 30.80 L 35.70 30.80 A 9.70 9.70 0 0 1 26.00 21.10 L 27.85 21.10 A 7.85 7.85 0 0 0 35.70 28.95 L 38.20 28.95 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 15.80 A 4.30 4.30 0 0 1 41.00 20.10 L 41.00 27.00 L 39.15 27.00 L 39.15 20.10 A 2.45 2.45 0 0 0 36.70 17.65 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 13.10 A 7.00 7.00 0 0 1 43.70 20.10 L 43.70 27.00 L 41.85 27.00 L 41.85 20.10 A 5.15 5.15 0 0 0 36.70 14.95 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 10.40 A 9.70 9.70 0 0 1 46.40 20.10 L 46.40 27.00 L 44.55 27.00 L 44.55 20.10 A 7.85 7.85 0 0 0 36.70 12.25 Z"/>
+              <path fill="#40a79b" d="M 48.85 32.10 A 4.30 4.30 0 0 1 44.55 27.80 L 46.40 27.80 A 2.45 2.45 0 0 0 48.85 30.25 Z"/>
+              <path fill="#40a79b" d="M 48.85 34.80 A 7.00 7.00 0 0 1 41.85 27.80 L 43.70 27.80 A 5.15 5.15 0 0 0 48.85 32.95 Z"/>
+              <path fill="#40a79b" d="M 48.85 37.50 A 9.70 9.70 0 0 1 39.15 27.80 L 41.00 27.80 A 7.85 7.85 0 0 0 48.85 35.65 Z"/>
+              <text x="50.8" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand a4a-brand--bleed">
+            <svg class="a4a-word-svg" viewBox="0 0 195 44" width="195" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="15.8" width="24.2" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="18.5" width="24.2" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="21.2" width="24.2" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="23.9" width="24.2" height="1.6" fill="#40a79b"/>
+              <path fill="#d6414b" d="M 31.40 20.10 A 4.30 4.30 0 0 1 35.70 15.80 L 35.70 17.65 A 2.45 2.45 0 0 0 33.25 20.10 Z"/>
+              <path fill="#d6414b" d="M 28.70 20.10 A 7.00 7.00 0 0 1 35.70 13.10 L 35.70 14.95 A 5.15 5.15 0 0 0 30.55 20.10 Z"/>
+              <path fill="#d6414b" d="M 26.00 20.10 A 9.70 9.70 0 0 1 35.70 10.40 L 35.70 12.25 A 7.85 7.85 0 0 0 27.85 20.10 Z"/>
+              <path fill="#ebaf00" d="M 38.20 25.40 L 35.70 25.40 A 4.30 4.30 0 0 1 31.40 21.10 L 33.25 21.10 A 2.45 2.45 0 0 0 35.70 23.55 L 38.20 23.55 Z"/>
+              <path fill="#ebaf00" d="M 38.20 28.10 L 35.70 28.10 A 7.00 7.00 0 0 1 28.70 21.10 L 30.55 21.10 A 5.15 5.15 0 0 0 35.70 26.25 L 38.20 26.25 Z"/>
+              <path fill="#ebaf00" d="M 38.20 30.80 L 35.70 30.80 A 9.70 9.70 0 0 1 26.00 21.10 L 27.85 21.10 A 7.85 7.85 0 0 0 35.70 28.95 L 38.20 28.95 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 15.80 A 4.30 4.30 0 0 1 41.00 20.10 L 41.00 27.00 L 39.15 27.00 L 39.15 20.10 A 2.45 2.45 0 0 0 36.70 17.65 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 13.10 A 7.00 7.00 0 0 1 43.70 20.10 L 43.70 27.00 L 41.85 27.00 L 41.85 20.10 A 5.15 5.15 0 0 0 36.70 14.95 Z"/>
+              <path fill="#3a6cb8" d="M 36.70 10.40 A 9.70 9.70 0 0 1 46.40 20.10 L 46.40 27.00 L 44.55 27.00 L 44.55 20.10 A 7.85 7.85 0 0 0 36.70 12.25 Z"/>
+              <path fill="#40a79b" d="M 48.85 32.10 A 4.30 4.30 0 0 1 44.55 27.80 L 46.40 27.80 A 2.45 2.45 0 0 0 48.85 30.25 Z"/>
+              <path fill="#40a79b" d="M 48.85 34.80 A 7.00 7.00 0 0 1 41.85 27.80 L 43.70 27.80 A 5.15 5.15 0 0 0 48.85 32.95 Z"/>
+              <path fill="#40a79b" d="M 48.85 37.50 A 9.70 9.70 0 0 1 39.15 27.80 L 41.00 27.80 A 7.85 7.85 0 0 0 48.85 35.65 Z"/>
+              <text x="50.8" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>3a · Quarti a blocchi <small>A3-3 × A3-4 · 4 COLORI</small></h3>
+          <p>Parte da <strong>a3-3</strong> (quarti di corona Beethoven) e si incrocia con <strong>a3-4</strong> per eliminare del tutto l'effetto bersaglio: il centro si apre su 18 px liberi, le corsie scendono a tre più spesse (6,2 px) e i quattro colori del brand passano dalle corone concentriche ai singoli blocchi modulari (rosso in alto a sinistra, ocra in basso a sinistra, blu sul quarto superiore e sull'asta dritta, verde acqua sul piede a S). Le quattro righe di a3-3 dal bordo sinistro precedono la «q» a piena x-height e discendente vera.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4-3B: a3-3 x a3-5 — Quarti piegati (2 corsie spesse: anello interno neutro a 4 quarti + 3 quarti esterni ocra/rosso/blu + coda a nastro piegato) -->
+    <div class="option a4a-card" data-choice="a4-3b" onclick="toggleSelect(this)">
+      <div class="a4a-icons">
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Quarti piegati scuro">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <!-- Anello interno a 4 quarti neutri (w=10.0) -->
+            <path fill="#f4f4f2" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+            <path fill="#f4f4f2" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+            <path fill="#f4f4f2" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+            <path fill="#f4f4f2" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+            <!-- Quarti esterni a colori a3-5 (w=10.0) -->
+            <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+            <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+            <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+            <!-- Coda a nastro piegato nel quarto aperto BR -->
+            <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+            <polygon fill="#f4f4f2" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+            <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+          </svg>
+          <figcaption class="a4a-cap">scuro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <svg class="a4a-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Quarti piegati chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <path fill="#141413" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+            <path fill="#141413" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+            <path fill="#141413" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+            <path fill="#141413" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+            <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+            <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+            <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+            <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+            <polygon fill="#141413" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+            <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+          </svg>
+          <figcaption class="a4a-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#f4f4f2" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+              <path fill="#f4f4f2" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+              <path fill="#f4f4f2" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+              <path fill="#f4f4f2" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+              <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+              <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+              <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+              <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+              <polygon fill="#f4f4f2" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+              <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#141413" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+              <path fill="#141413" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+              <path fill="#141413" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+              <path fill="#141413" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+              <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+              <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+              <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+              <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+              <polygon fill="#141413" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+              <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">48</figcaption>
+        </figure>
+        <figure class="a4a-spec">
+          <div class="a4a-pair">
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#f4f4f2" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+              <path fill="#f4f4f2" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+              <path fill="#f4f4f2" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+              <path fill="#f4f4f2" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+              <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+              <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+              <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+              <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+              <polygon fill="#f4f4f2" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+              <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+            </svg>
+            <svg class="a4a-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <path fill="#141413" d="M 25.00 50.00 A 23.0 23.0 0 0 1 48.00 27.00 L 48.00 37.00 A 13.0 13.0 0 0 0 35.00 50.00 Z"/>
+              <path fill="#141413" d="M 51.50 27.00 A 23.0 23.0 0 0 1 74.50 50.00 L 64.50 50.00 A 13.0 13.0 0 0 0 51.50 37.00 Z"/>
+              <path fill="#141413" d="M 48.00 76.50 A 23.0 23.0 0 0 1 25.00 53.50 L 35.00 53.50 A 13.0 13.0 0 0 0 48.00 66.50 Z"/>
+              <path fill="#141413" d="M 74.50 53.50 A 23.0 23.0 0 0 1 51.50 76.50 L 51.50 66.50 A 13.0 13.0 0 0 0 64.50 53.50 Z"/>
+              <path fill="#ebaf00" d="M 10.50 50.00 A 37.5 37.5 0 0 1 48.00 12.50 L 48.00 22.50 A 27.5 27.5 0 0 0 20.50 50.00 Z"/>
+              <path fill="#d6414b" d="M 51.50 12.50 A 37.5 37.5 0 0 1 89.00 50.00 L 79.00 50.00 A 27.5 27.5 0 0 0 51.50 22.50 Z"/>
+              <path fill="#3a6cb8" d="M 48.00 91.00 A 37.5 37.5 0 0 1 10.50 53.50 L 20.50 53.50 A 27.5 27.5 0 0 0 48.00 81.00 Z"/>
+              <polygon fill="#ebaf00" points="72.50,71.00 80.29,66.50 99.34,77.50 91.55,82.00"/>
+              <polygon fill="#141413" points="72.50,71.00 91.55,82.00 91.55,96.00 72.50,85.00"/>
+              <polygon fill="#3a6cb8" points="91.55,82.00 99.34,77.50 99.34,91.50 91.55,96.00"/>
+            </svg>
+          </div>
+          <figcaption class="a4a-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a4a-detail">
+        <div class="a4a-bar a4a-bar--dk">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <path fill="#f4f4f2" d="M 5.00 20.10 A 5.7 5.7 0 0 1 10.70 14.40 L 10.70 16.90 A 3.2 3.2 0 0 0 7.50 20.10 Z"/>
+              <path fill="#f4f4f2" d="M 11.70 14.40 A 5.7 5.7 0 0 1 17.40 20.10 L 14.90 20.10 A 3.2 3.2 0 0 0 11.70 16.90 Z"/>
+              <path fill="#f4f4f2" d="M 10.70 26.80 A 5.7 5.7 0 0 1 5.00 21.10 L 7.50 21.10 A 3.2 3.2 0 0 0 10.70 24.30 Z"/>
+              <path fill="#f4f4f2" d="M 17.40 21.10 A 5.7 5.7 0 0 1 11.70 26.80 L 11.70 24.30 A 3.2 3.2 0 0 0 14.90 21.10 Z"/>
+              <path fill="#ebaf00" d="M 1.00 20.10 A 9.7 9.7 0 0 1 10.70 10.40 L 10.70 13.20 A 6.9 6.9 0 0 0 3.80 20.10 Z"/>
+              <path fill="#d6414b" d="M 11.70 10.40 A 9.7 9.7 0 0 1 21.40 20.10 L 18.60 20.10 A 6.9 6.9 0 0 0 11.70 13.20 Z"/>
+              <path fill="#3a6cb8" d="M 10.70 30.80 A 9.7 9.7 0 0 1 1.00 21.10 L 3.80 21.10 A 6.9 6.9 0 0 0 10.70 28.00 Z"/>
+              <polygon fill="#ebaf00" points="16.70,25.90 18.86,24.65 22.50,26.75 20.34,28.00"/>
+              <polygon fill="#f4f4f2" points="16.70,25.90 20.34,28.00 20.34,37.50 16.70,35.40"/>
+              <polygon fill="#3a6cb8" points="20.34,28.00 22.50,26.75 22.50,36.25 20.34,37.50"/>
+              <text x="24.2" y="30.5" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-bar a4a-bar--lt">
+          <span class="a4a-brand">
+            <svg class="a4a-word-svg" viewBox="0 0 166 44" width="166" height="44" role="img" aria-label="quaestio">
+              <path fill="#141413" d="M 5.00 20.10 A 5.7 5.7 0 0 1 10.70 14.40 L 10.70 16.90 A 3.2 3.2 0 0 0 7.50 20.10 Z"/>
+              <path fill="#141413" d="M 11.70 14.40 A 5.7 5.7 0 0 1 17.40 20.10 L 14.90 20.10 A 3.2 3.2 0 0 0 11.70 16.90 Z"/>
+              <path fill="#141413" d="M 10.70 26.80 A 5.7 5.7 0 0 1 5.00 21.10 L 7.50 21.10 A 3.2 3.2 0 0 0 10.70 24.30 Z"/>
+              <path fill="#141413" d="M 17.40 21.10 A 5.7 5.7 0 0 1 11.70 26.80 L 11.70 24.30 A 3.2 3.2 0 0 0 14.90 21.10 Z"/>
+              <path fill="#ebaf00" d="M 1.00 20.10 A 9.7 9.7 0 0 1 10.70 10.40 L 10.70 13.20 A 6.9 6.9 0 0 0 3.80 20.10 Z"/>
+              <path fill="#d6414b" d="M 11.70 10.40 A 9.7 9.7 0 0 1 21.40 20.10 L 18.60 20.10 A 6.9 6.9 0 0 0 11.70 13.20 Z"/>
+              <path fill="#3a6cb8" d="M 10.70 30.80 A 9.7 9.7 0 0 1 1.00 21.10 L 3.80 21.10 A 6.9 6.9 0 0 0 10.70 28.00 Z"/>
+              <polygon fill="#ebaf00" points="16.70,25.90 18.86,24.65 22.50,26.75 20.34,28.00"/>
+              <polygon fill="#141413" points="16.70,25.90 20.34,28.00 20.34,37.50 16.70,35.40"/>
+              <polygon fill="#3a6cb8" points="20.34,28.00 22.50,26.75 22.50,36.25 20.34,37.50"/>
+              <text x="24.2" y="30.5" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a4a-count">12 materie · 2483</span>
+        </div>
+        <div class="a4a-copy">
+          <h3>3b · Quarti piegati <small>A3-3 × A3-5 · 3 COLORI + NEUTRO</small></h3>
+          <p>Parte da <strong>a3-3</strong> (quarti di corona Beethoven) e si incrocia con <strong>a3-5</strong>: riduce a due sole corsie molto spesse (10 px con fuga da 4,5 px attorno a un centro aperto da 26 px) così da evitare l'effetto bersaglio e restare leggibile a 28 px. I quattro quarti interni neutri chiudono l'anello, mentre i tre quarti esterni in ocra, rosso e blu lasciano aperto il quadrante inferiore destro per la coda a nastro piegato; nell'intestazione la stessa «q» si allinea alla x-height e alla discendente di Archivo.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

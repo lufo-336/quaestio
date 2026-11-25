@@ -1,0 +1,1117 @@
+<style>
+@font-face {
+  font-family: 'Archivo';
+  src: url('/files/archivo-var.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-stretch: 62% 100%;
+}
+
+.a2-root {
+  font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+  color: #f4f4f2;
+}
+
+.a2-root *,
+.a2-root *::before,
+.a2-root *::after {
+  box-sizing: border-box;
+}
+
+.a2-intro {
+  margin: 0 0 18px;
+}
+
+.a2-intro h2 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 850;
+  font-stretch: 72%;
+  font-size: 28px;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.a2-intro p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #b4b3ad;
+  max-width: 86ch;
+}
+
+.a2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.a2-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+  border: 1px solid #3a3a39;
+  border-radius: 0;
+  background: #161616;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.14s ease, background-color 0.14s ease;
+}
+
+.a2-card:hover {
+  border-color: #8a8a86;
+}
+
+.a2-card.selected {
+  border-color: #3a6cb8;
+  outline: 2px solid #3a6cb8;
+  outline-offset: 2px;
+  background: #181a1f;
+}
+
+.a2-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: center;
+  gap: 16px;
+  padding: 20px 22px 16px;
+  background: #222221;
+  border-right: 1px solid #3a3a39;
+}
+
+.a2-spec {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.a2-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.a2-ico {
+  display: block;
+}
+
+.a2-cap {
+  font: 500 10.5px/1 'Archivo', system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  color: #9a9a96;
+}
+
+.a2-detail {
+  padding: 20px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.a2-bar {
+  width: 600px;
+  max-width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  overflow: hidden;
+}
+
+.a2-bar--dk {
+  background: #0c0c0c;
+  color: #f4f4f2;
+  border-color: #f4f4f2;
+}
+
+.a2-bar--lt {
+  background: #e8e7e3;
+  color: #141413;
+  border-color: #141413;
+}
+
+.a2-brand {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+}
+
+.a2-brand--bleed {
+  margin-left: -16px;
+}
+
+.a2-word-svg {
+  display: block;
+  overflow: visible;
+}
+
+.a2-count {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.a2-bar--dk .a2-count {
+  color: #a6a6a6;
+}
+
+.a2-bar--lt .a2-count {
+  color: #57564f;
+}
+
+/* a2-4: sovrastampa risograph su tutta la parola */
+.a2-riso-wrap {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 850;
+  font-stretch: 78%;
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  user-select: none;
+}
+
+.a2-riso-l {
+  display: block;
+}
+
+.a2-riso-l + .a2-riso-l {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.a2-bar--lt .a2-riso-l {
+  mix-blend-mode: multiply;
+}
+
+.a2-bar--dk .a2-riso-l {
+  mix-blend-mode: screen;
+}
+
+.a2-riso-r {
+  color: #d6414b;
+  transform: translate(-1.3px, 0);
+}
+
+.a2-riso-o {
+  color: #ebaf00;
+  transform: translate(0, -1.3px);
+}
+
+.a2-riso-t {
+  color: #40a79b;
+  transform: translate(1.3px, 0);
+}
+
+.a2-riso-b {
+  color: #3a6cb8;
+  transform: translate(0, 1.3px);
+}
+
+.a2-copy {
+  margin-top: 8px;
+}
+
+.a2-copy h3 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 850;
+  font-stretch: 74%;
+  font-size: 22px;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  color: #f4f4f2;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.a2-copy h3 small {
+  font-weight: 500;
+  font-stretch: 100%;
+  font-size: 11px;
+  color: #a6a6a6;
+  letter-spacing: 0.06em;
+}
+
+.a2-copy p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.48;
+  max-width: 84ch;
+  color: #c9c8c3;
+}
+
+@media (max-width: 900px) {
+  .a2-card {
+    grid-template-columns: 1fr;
+  }
+  .a2-icons {
+    border-right: 0;
+    border-bottom: 1px solid #3a3a39;
+  }
+}
+</style>
+
+<div class="a2-root">
+  <div class="a2-intro">
+    <h2>Quaestio: secondo giro — sei proposte</h2>
+    <p>Icona e marchio condividono lo stesso segno strutturale: nessuna lente a 45°, niente raddoppio davanti a «quaestio», tutte verificate sulla griglia di 28 px.</p>
+  </div>
+
+  <div class="options a2-list">
+
+    <!-- A2-1: STRATI (4 fasce orizzontali su Q e sull'intera parola quaestio) -->
+    <div class="option a2-card" data-choice="a2-1" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Strati scuro">
+            <defs>
+              <clipPath id="a2-1-c-112d">
+                <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#a2-1-c-112d)">
+              <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+              <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+              <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+              <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Strati chiaro">
+            <defs>
+              <clipPath id="a2-1-c-112l">
+                <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <g clip-path="url(#a2-1-c-112l)">
+              <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+              <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+              <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+              <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-1-c-48d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                  <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-1-c-48d)">
+                <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+                <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+                <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+                <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-1-c-48l">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                  <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g clip-path="url(#a2-1-c-48l)">
+                <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+                <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+                <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+                <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-1-c-28d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                  <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-1-c-28d)">
+                <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+                <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+                <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+                <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-1-c-28l">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 32 C 41.8 32, 35 40.4, 35 54 C 35 67.6, 41.8 76, 53 76 C 64.2 76, 71 67.6, 71 54 C 71 40.4, 64.2 32, 53 32 Z"/>
+                  <path d="M 57 64 L 74 64 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g clip-path="url(#a2-1-c-28l)">
+                <rect x="0" y="16" width="112" height="16" fill="#d6414b"/>
+                <rect x="0" y="36" width="112" height="16" fill="#3a6cb8"/>
+                <rect x="0" y="56" width="112" height="16" fill="#ebaf00"/>
+                <rect x="0" y="76" width="112" height="20" fill="#40a79b"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 150 44" width="150" height="44" role="img" aria-label="quaestio">
+              <defs>
+                <mask id="a2-1-hd">
+                  <text x="0" y="31" fill="#ffffff" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:28px;letter-spacing:-0.015em">quaestio</text>
+                </mask>
+              </defs>
+              <g mask="url(#a2-1-hd)">
+                <rect x="0" y="4" width="150" height="14.5" fill="#d6414b"/>
+                <rect x="0" y="19.7" width="150" height="3.0" fill="#3a6cb8"/>
+                <rect x="0" y="23.9" width="150" height="3.0" fill="#ebaf00"/>
+                <rect x="0" y="28.1" width="150" height="13.0" fill="#40a79b"/>
+              </g>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 150 44" width="150" height="44" role="img" aria-label="quaestio">
+              <defs>
+                <mask id="a2-1-hl">
+                  <text x="0" y="31" fill="#ffffff" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:28px;letter-spacing:-0.015em">quaestio</text>
+                </mask>
+              </defs>
+              <g mask="url(#a2-1-hl)">
+                <rect x="0" y="4" width="150" height="14.5" fill="#d6414b"/>
+                <rect x="0" y="19.7" width="150" height="3.0" fill="#3a6cb8"/>
+                <rect x="0" y="23.9" width="150" height="3.0" fill="#ebaf00"/>
+                <rect x="0" y="28.1" width="150" height="13.0" fill="#40a79b"/>
+              </g>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>1 · Strati <small>4 COLORI</small></h3>
+          <p>Evoluzione diretta di AG3: i quattro inchiostri attivi (rosso, blu, ocra, verde acqua, escluso il grigio) costruiscono una Q compatta in proporzioni Archivo su multipli esatti di 4 px a 28 px, con piede basso rientrato anziché coda a lente. Nell'intestazione nessun segno affiancato: le stesse quattro fasce e gli stessi tre tagli orizzontali costruiscono direttamente l'intera parola «quaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-2: INNESTO (4 righe orizzontali dal bordo sinistro che aprono Q e la q iniziale) -->
+    <div class="option a2-card" data-choice="a2-2" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Innesto scuro">
+            <defs>
+              <clipPath id="a2-2-c-112d"><rect width="112" height="112" rx="23.5"/></clipPath>
+            </defs>
+            <g clip-path="url(#a2-2-c-112d)">
+              <rect width="112" height="112" fill="#0c0c0c"/>
+              <path fill="#f4f4f2" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+              <path fill="#f4f4f2" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+              <rect x="20" y="28" width="24" height="52" fill="#0c0c0c"/>
+              <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+              <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+              <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+              <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Innesto chiaro">
+            <defs>
+              <clipPath id="a2-2-c-112l"><rect width="112" height="112" rx="23.5"/></clipPath>
+            </defs>
+            <g clip-path="url(#a2-2-c-112l)">
+              <rect width="112" height="112" fill="#e8e7e3"/>
+              <path fill="#141413" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+              <path fill="#141413" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+              <rect x="20" y="28" width="24" height="52" fill="#e8e7e3"/>
+              <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+              <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+              <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+              <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs><clipPath id="a2-2-c-48d"><rect width="112" height="112" rx="23.5"/></clipPath></defs>
+              <g clip-path="url(#a2-2-c-48d)">
+                <rect width="112" height="112" fill="#0c0c0c"/>
+                <path fill="#f4f4f2" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+                <path fill="#f4f4f2" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+                <rect x="20" y="28" width="24" height="52" fill="#0c0c0c"/>
+                <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+                <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+                <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+                <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs><clipPath id="a2-2-c-48l"><rect width="112" height="112" rx="23.5"/></clipPath></defs>
+              <g clip-path="url(#a2-2-c-48l)">
+                <rect width="112" height="112" fill="#e8e7e3"/>
+                <path fill="#141413" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+                <path fill="#141413" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+                <rect x="20" y="28" width="24" height="52" fill="#e8e7e3"/>
+                <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+                <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+                <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+                <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs><clipPath id="a2-2-c-28d"><rect width="112" height="112" rx="23.5"/></clipPath></defs>
+              <g clip-path="url(#a2-2-c-28d)">
+                <rect width="112" height="112" fill="#0c0c0c"/>
+                <path fill="#f4f4f2" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+                <path fill="#f4f4f2" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+                <rect x="20" y="28" width="24" height="52" fill="#0c0c0c"/>
+                <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+                <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+                <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+                <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs><clipPath id="a2-2-c-28l"><rect width="112" height="112" rx="23.5"/></clipPath></defs>
+              <g clip-path="url(#a2-2-c-28l)">
+                <rect width="112" height="112" fill="#e8e7e3"/>
+                <path fill="#141413" fill-rule="evenodd" d="M 57 16 C 78.1 16, 90 29.7, 90 54 C 90 78.3, 78.1 92, 57 92 C 35.9 92, 24 78.3, 24 54 C 24 29.7, 35.9 16, 57 16 Z M 57 32 C 46.4 32, 40 40.4, 40 54 C 40 67.6, 46.4 76, 57 76 C 67.6 76, 74 67.6, 74 54 C 74 40.4, 67.6 32, 57 32 Z"/>
+                <path fill="#141413" d="M 60 66 L 77 66 L 94 96 L 75 96 Z"/>
+                <rect x="20" y="28" width="24" height="52" fill="#e8e7e3"/>
+                <rect x="-2" y="32" width="60" height="8" fill="#d6414b"/>
+                <rect x="-2" y="44" width="60" height="8" fill="#3a6cb8"/>
+                <rect x="-2" y="56" width="60" height="8" fill="#ebaf00"/>
+                <rect x="-2" y="68" width="60" height="8" fill="#40a79b"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand a2-brand--bleed">
+            <svg class="a2-word-svg" viewBox="0 0 180 44" width="180" height="44" role="img" aria-label="quaestio">
+              <text x="26" y="31" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:800;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">quaestio</text>
+              <rect x="25" y="18.6" width="8" height="10.4" fill="#0c0c0c"/>
+              <rect x="0" y="19.3" width="34.5" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="21.7" width="34.5" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="24.1" width="34.5" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="26.5" width="34.5" height="1.6" fill="#40a79b"/>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand a2-brand--bleed">
+            <svg class="a2-word-svg" viewBox="0 0 180 44" width="180" height="44" role="img" aria-label="quaestio">
+              <text x="26" y="31" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:800;font-stretch:80%;font-size:27px;letter-spacing:-0.015em">quaestio</text>
+              <rect x="25" y="18.6" width="8" height="10.4" fill="#e8e7e3"/>
+              <rect x="0" y="19.3" width="34.5" height="1.6" fill="#d6414b"/>
+              <rect x="0" y="21.7" width="34.5" height="1.6" fill="#3a6cb8"/>
+              <rect x="0" y="24.1" width="34.5" height="1.6" fill="#ebaf00"/>
+              <rect x="0" y="26.5" width="34.5" height="1.6" fill="#40a79b"/>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>2 · Innesto <small>4 COLORI + NEUTRO</small></h3>
+          <p>Sviluppo di Opus 1 con una Q maiuscola più salda al posto della «q» isolata: le quattro righe di lucablog non si fermano al margine esterno della lettera, ma ne aprono il fianco sinistro fermandosi a filo dentro l'occhio (2 px pieni + 1 px di respiro a 28 px). Nella barra partono dal bordo sinistro e ripetono l'identico innesto dentro l'occhio della «q» iniziale di «quaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-3: TRE LASTRE (sovrastampa anatomica 3 colori su Q e sulla q iniziale di quaestio) -->
+    <div class="option a2-card" data-choice="a2-3" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Tre lastre scuro">
+            <defs>
+              <clipPath id="a2-3-rb-112d"><path d="M 18 16 L 68 16 L 68 32 L 36 32 L 36 76 L 68 76 L 68 92 L 18 92 Z"/></clipPath>
+              <clipPath id="a2-3-o-112d"><path d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/></clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <path fill="#d6414b" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+            <path fill="#3a6cb8" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+            <path fill="#7c488f" clip-path="url(#a2-3-rb-112d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+            <path fill="#ebaf00" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+            <path fill="#529947" clip-path="url(#a2-3-o-112d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+            <path fill="#9d8d5e" clip-path="url(#a2-3-o-112d)" d="M 44 76 L 68 76 L 68 92 L 44 92 Z"/>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Tre lastre chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <g style="isolation:isolate">
+              <path fill="#d6414b" style="mix-blend-mode:multiply" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+              <path fill="#3a6cb8" style="mix-blend-mode:multiply" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#ebaf00" style="mix-blend-mode:multiply" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-3-rb-48d"><path d="M 18 16 L 68 16 L 68 32 L 36 32 L 36 76 L 68 76 L 68 92 L 18 92 Z"/></clipPath>
+                <clipPath id="a2-3-o-48d"><path d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/></clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#d6414b" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+              <path fill="#3a6cb8" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#7c488f" clip-path="url(#a2-3-rb-48d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#ebaf00" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+              <path fill="#529947" clip-path="url(#a2-3-o-48d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#9d8d5e" clip-path="url(#a2-3-o-48d)" d="M 44 76 L 68 76 L 68 92 L 44 92 Z"/>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g style="isolation:isolate">
+                <path fill="#d6414b" style="mix-blend-mode:multiply" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+                <path fill="#3a6cb8" style="mix-blend-mode:multiply" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+                <path fill="#ebaf00" style="mix-blend-mode:multiply" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-3-rb-28d"><path d="M 18 16 L 68 16 L 68 32 L 36 32 L 36 76 L 68 76 L 68 92 L 18 92 Z"/></clipPath>
+                <clipPath id="a2-3-o-28d"><path d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/></clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <path fill="#d6414b" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+              <path fill="#3a6cb8" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#7c488f" clip-path="url(#a2-3-rb-28d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#ebaf00" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+              <path fill="#529947" clip-path="url(#a2-3-o-28d)" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+              <path fill="#9d8d5e" clip-path="url(#a2-3-o-28d)" d="M 44 76 L 68 76 L 68 92 L 44 92 Z"/>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g style="isolation:isolate">
+                <path fill="#d6414b" style="mix-blend-mode:multiply" d="M 50 16 L 68 16 L 68 32 L 50 32 C 41 32, 36 40.4, 36 54 C 36 67.6, 41 76, 50 76 L 68 76 L 68 92 L 50 92 C 29.6 92, 18 78.3, 18 54 C 18 29.7, 29.6 16, 50 16 Z"/>
+                <path fill="#3a6cb8" style="mix-blend-mode:multiply" d="M 44 16 L 58 16 C 78.4 16, 90 29.7, 90 54 C 90 78.3, 78.4 92, 58 92 L 44 92 L 44 76 L 58 76 C 67 76, 72 67.6, 72 54 C 72 40.4, 67 32, 58 32 L 44 32 Z"/>
+                <path fill="#ebaf00" style="mix-blend-mode:multiply" d="M 59 66 L 78 66 L 96 96 L 75 96 Z"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 160 44" width="160" height="44" role="img" aria-label="quaestio">
+              <path fill="#d6414b" d="M 7.2 16.0 L 12.2 16.0 L 12.2 18.8 L 7.4 18.8 C 5.4 18.8, 4.4 20.6, 4.4 23.6 C 4.4 26.6, 5.4 28.4, 7.4 28.4 L 12.2 28.4 L 12.2 31.2 L 7.2 31.2 C 3.2 31.2, 1.0 28.1, 1.0 23.6 C 1.0 19.1, 3.2 16.0, 7.2 16.0 Z"/>
+              <rect x="9.6" y="16.0" width="3.8" height="22.0" fill="#3a6cb8"/>
+              <rect x="9.6" y="16.0" width="2.6" height="2.8" fill="#7c488f"/>
+              <rect x="9.6" y="28.4" width="2.6" height="2.8" fill="#7c488f"/>
+              <rect x="7.8" y="34.8" width="7.4" height="3.2" fill="#ebaf00"/>
+              <rect x="9.6" y="34.8" width="3.8" height="3.2" fill="#529947"/>
+              <text x="15.2" y="31" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 160 44" width="160" height="44" role="img" aria-label="quaestio">
+              <g style="isolation:isolate">
+                <path fill="#d6414b" style="mix-blend-mode:multiply" d="M 7.2 16.0 L 12.2 16.0 L 12.2 18.8 L 7.4 18.8 C 5.4 18.8, 4.4 20.6, 4.4 23.6 C 4.4 26.6, 5.4 28.4, 7.4 28.4 L 12.2 28.4 L 12.2 31.2 L 7.2 31.2 C 3.2 31.2, 1.0 28.1, 1.0 23.6 C 1.0 19.1, 3.2 16.0, 7.2 16.0 Z"/>
+                <rect x="9.6" y="16.0" width="3.8" height="22.0" fill="#3a6cb8" style="mix-blend-mode:multiply"/>
+                <rect x="7.8" y="34.8" width="7.4" height="3.2" fill="#ebaf00" style="mix-blend-mode:multiply"/>
+              </g>
+              <text x="15.2" y="31" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>3 · Tre lastre <small>3 COLORI + SOVRASTAMPA</small></h3>
+          <p>Evoluzione di Opus 3: una Q pesante costruita con tre lastre anatomiche — arco sinistro rosso, colonna destra blu, piede ocra — che si sovrappongono generando viola, verde bosco e bronzo (con <code>multiply</code> reale sul chiaro e toni luminosi calibrati sullo scuro, così le giunzioni restano leggibili su #0c0c0c). Nella barra le tre lastre stampano direttamente la «q» iniziale di «quaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-4: FUORIREGISTRO (sovrastampa risograph a 4 inchiostri su Q e sull'intera parola quaestio) -->
+    <div class="option a2-card" data-choice="a2-4" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Fuoriregistro scuro">
+            <defs>
+              <g id="a2-4-q-112d">
+                <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+              </g>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g style="isolation:isolate">
+              <use href="#a2-4-q-112d" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:screen"/>
+              <use href="#a2-4-q-112d" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:screen"/>
+              <use href="#a2-4-q-112d" x="4" y="0" fill="#40a79b" style="mix-blend-mode:screen"/>
+              <use href="#a2-4-q-112d" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:screen"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Fuoriregistro chiaro">
+            <defs>
+              <g id="a2-4-q-112l">
+                <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+              </g>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <g style="isolation:isolate">
+              <use href="#a2-4-q-112l" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:multiply"/>
+              <use href="#a2-4-q-112l" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:multiply"/>
+              <use href="#a2-4-q-112l" x="4" y="0" fill="#40a79b" style="mix-blend-mode:multiply"/>
+              <use href="#a2-4-q-112l" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:multiply"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <g id="a2-4-q-48d">
+                  <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                  <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+                </g>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g style="isolation:isolate">
+                <use href="#a2-4-q-48d" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-48d" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-48d" x="4" y="0" fill="#40a79b" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-48d" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:screen"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <g id="a2-4-q-48l">
+                  <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                  <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+                </g>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g style="isolation:isolate">
+                <use href="#a2-4-q-48l" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-48l" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-48l" x="4" y="0" fill="#40a79b" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-48l" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:multiply"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <g id="a2-4-q-28d">
+                  <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                  <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+                </g>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g style="isolation:isolate">
+                <use href="#a2-4-q-28d" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-28d" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-28d" x="4" y="0" fill="#40a79b" style="mix-blend-mode:screen"/>
+                <use href="#a2-4-q-28d" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:screen"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <g id="a2-4-q-28l">
+                  <path fill-rule="evenodd" d="M 56 20 C 76.2 20, 88 32.1, 88 54 C 88 75.9, 76.2 88, 56 88 C 35.8 88, 24 75.9, 24 54 C 24 32.1, 35.8 20, 56 20 Z M 56 36 C 46.2 36, 40 43.2, 40 54 C 40 64.8, 46.2 72, 56 72 C 65.8 72, 72 64.8, 72 54 C 72 43.2, 65.8 36, 56 36 Z"/>
+                  <path d="M 59 66 L 76 66 L 91 92 L 73 92 Z"/>
+                </g>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g style="isolation:isolate">
+                <use href="#a2-4-q-28l" x="-4" y="0" fill="#d6414b" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-28l" x="0" y="-4" fill="#ebaf00" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-28l" x="4" y="0" fill="#40a79b" style="mix-blend-mode:multiply"/>
+                <use href="#a2-4-q-28l" x="0" y="4" fill="#3a6cb8" style="mix-blend-mode:multiply"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand">
+            <span class="a2-riso-wrap" aria-label="quaestio">
+              <span class="a2-riso-l a2-riso-r">quaestio</span>
+              <span class="a2-riso-l a2-riso-o" aria-hidden="true">quaestio</span>
+              <span class="a2-riso-l a2-riso-t" aria-hidden="true">quaestio</span>
+              <span class="a2-riso-l a2-riso-b" aria-hidden="true">quaestio</span>
+            </span>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand">
+            <span class="a2-riso-wrap" aria-label="quaestio">
+              <span class="a2-riso-l a2-riso-r">quaestio</span>
+              <span class="a2-riso-l a2-riso-o" aria-hidden="true">quaestio</span>
+              <span class="a2-riso-l a2-riso-t" aria-hidden="true">quaestio</span>
+              <span class="a2-riso-l a2-riso-b" aria-hidden="true">quaestio</span>
+            </span>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>4 · Fuoriregistro <small>4 COLORI · RISOGRAPH</small></h3>
+          <p>Quattro passaggi di stampa sfalsati sugli assi (rosso a sinistra, ocra in alto, verde acqua a destra, blu in basso): sul chiaro in <code>multiply</code> la somma dei quattro inchiostri chiude naturalmente in nero pieno al centro senza aggiungere nero; sullo scuro in <code>screen</code> produce un nucleo bianco caldo. L'identica meccanica di registro veste sia la Q sia tutta la parola «quaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-5: TAGLIO POLICROMO (evoluzione AG2 con tagli netti di luce negativa su Q e sulla q di quaestio) -->
+    <div class="option a2-card" data-choice="a2-5" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Taglio policromo scuro">
+            <defs>
+              <clipPath id="a2-5-c-112d">
+                <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#a2-5-c-112d)">
+              <rect x="0" y="0" width="58" height="66" fill="#f4f4f2"/>
+              <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+              <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+              <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Taglio policromo chiaro">
+            <defs>
+              <clipPath id="a2-5-c-112l">
+                <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <g clip-path="url(#a2-5-c-112l)">
+              <rect x="0" y="0" width="58" height="66" fill="#141413"/>
+              <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+              <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+              <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-5-c-48d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-5-c-48d)">
+                <rect x="0" y="0" width="58" height="66" fill="#f4f4f2"/>
+                <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+                <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+                <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-5-c-48l">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g clip-path="url(#a2-5-c-48l)">
+                <rect x="0" y="0" width="58" height="66" fill="#141413"/>
+                <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+                <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+                <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-5-c-28d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-5-c-28d)">
+                <rect x="0" y="0" width="58" height="66" fill="#f4f4f2"/>
+                <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+                <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+                <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-5-c-28l">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 61 69 L 76 58 L 93 96 L 72 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <g clip-path="url(#a2-5-c-28l)">
+                <rect x="0" y="0" width="58" height="66" fill="#141413"/>
+                <path fill="#3a6cb8" d="M 62 0 L 112 0 L 112 63 L 62 46 Z"/>
+                <path fill="#ebaf00" d="M 0 70 L 56 70 L 67 112 L 0 112 Z"/>
+                <path fill="#d6414b" d="M 61 70 L 64 51 L 112 68 L 112 112 L 72 112 Z"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 160 44" width="160" height="44" role="img" aria-label="quaestio">
+              <defs>
+                <clipPath id="a2-5-hd">
+                  <path clip-rule="evenodd" d="M 7.2 16.0 L 13.8 16.0 L 13.8 31.2 L 7.2 31.2 C 3.2 31.2, 1.0 28.1, 1.0 23.6 C 1.0 19.1, 3.2 16.0, 7.2 16.0 Z M 7.6 18.8 C 5.5 18.8, 4.4 20.6, 4.4 23.6 C 4.4 26.6, 5.5 28.4, 7.6 28.4 C 9.4 28.4, 10.3 26.8, 10.3 23.6 C 10.3 20.4, 9.4 18.8, 7.6 18.8 Z"/>
+                  <path d="M 10.1 25.0 L 13.8 23.4 L 13.8 38.2 L 10.1 38.2 Z"/>
+                </clipPath>
+              </defs>
+              <g clip-path="url(#a2-5-hd)">
+                <rect x="0" y="0" width="9.1" height="25.6" fill="#f4f4f2"/>
+                <path fill="#3a6cb8" d="M 10.1 0 L 16 0 L 16 25.4 L 10.1 23.4 Z"/>
+                <path fill="#ebaf00" d="M 0 26.6 L 9.1 26.6 L 9.1 34 L 0 34 Z"/>
+                <path fill="#d6414b" d="M 10.1 24.5 L 16 26.5 L 16 40 L 10.1 40 Z"/>
+              </g>
+              <text x="15.4" y="31" fill="#f4f4f2" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 160 44" width="160" height="44" role="img" aria-label="quaestio">
+              <defs>
+                <clipPath id="a2-5-hl">
+                  <path clip-rule="evenodd" d="M 7.2 16.0 L 13.8 16.0 L 13.8 31.2 L 7.2 31.2 C 3.2 31.2, 1.0 28.1, 1.0 23.6 C 1.0 19.1, 3.2 16.0, 7.2 16.0 Z M 7.6 18.8 C 5.5 18.8, 4.4 20.6, 4.4 23.6 C 4.4 26.6, 5.5 28.4, 7.6 28.4 C 9.4 28.4, 10.3 26.8, 10.3 23.6 C 10.3 20.4, 9.4 18.8, 7.6 18.8 Z"/>
+                  <path d="M 10.1 25.0 L 13.8 23.4 L 13.8 38.2 L 10.1 38.2 Z"/>
+                </clipPath>
+              </defs>
+              <g clip-path="url(#a2-5-hl)">
+                <rect x="0" y="0" width="9.1" height="25.6" fill="#141413"/>
+                <path fill="#3a6cb8" d="M 10.1 0 L 16 0 L 16 25.4 L 10.1 23.4 Z"/>
+                <path fill="#ebaf00" d="M 0 26.6 L 9.1 26.6 L 9.1 34 L 0 34 Z"/>
+                <path fill="#d6414b" d="M 10.1 24.5 L 16 26.5 L 16 40 L 10.1 40 Z"/>
+              </g>
+              <text x="15.4" y="31" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">uaestio</text>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>5 · Taglio policromo <small>3 COLORI + NEUTRO</small></h3>
+          <p>Evoluzione di AG2: l'anello neutro dominante resta ad alto contrasto, ma i tagli di luce negativa a 1 px isolano tre blocchi cromatici netti (blu sulla spalla destra, ocra sull'arco inferiore, rosso sul cuneo di taglio che evita l'angolo da lente). Nella barra la stessa anatomia a tacche scolpisce direttamente la «q» iniziale di «quaestio».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-6: CONTROCAMPO (griglia svizzera asimmetrica a 4 colori invertita tra figura e sfondo) -->
+    <div class="option a2-card" data-choice="a2-6" onclick="toggleSelect(this)">
+      <div class="a2-icons">
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Controcampo scuro">
+            <defs>
+              <clipPath id="a2-6-c-112d">
+                <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                <path d="M 58 66 L 75 66 L 92 96 L 73 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#a2-6-c-112d)">
+              <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+              <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+              <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+              <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+            </g>
+          </svg>
+          <figcaption class="a2-cap">scuro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <svg class="a2-ico" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Quaestio Controcampo chiaro">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+            <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+            <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+            <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+            <path fill="#141413" fill-rule="evenodd" d="M 53 20 C 73.2 20, 84 32.1, 84 54 C 84 75.9, 73.2 88, 53 88 C 32.8 88, 22 75.9, 22 54 C 22 32.1, 32.8 20, 53 20 Z M 53 35 C 43.2 35, 37 42.1, 37 54 C 37 65.9, 43.2 73, 53 73 C 62.8 73, 69 65.9, 69 54 C 69 42.1, 62.8 35, 53 35 Z"/>
+            <path fill="#141413" d="M 57 65 L 73 65 L 89 92 L 71 92 Z"/>
+          </svg>
+          <figcaption class="a2-cap">chiaro</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-6-c-48d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 58 66 L 75 66 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-6-c-48d)">
+                <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+                <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+                <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+                <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+              <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+              <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+              <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+              <path fill="#141413" fill-rule="evenodd" d="M 53 20 C 73.2 20, 84 32.1, 84 54 C 84 75.9, 73.2 88, 53 88 C 32.8 88, 22 75.9, 22 54 C 22 32.1, 32.8 20, 53 20 Z M 53 35 C 43.2 35, 37 42.1, 37 54 C 37 65.9, 43.2 73, 53 73 C 62.8 73, 69 65.9, 69 54 C 69 42.1, 62.8 35, 53 35 Z"/>
+              <path fill="#141413" d="M 57 65 L 73 65 L 89 92 L 71 92 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">48</figcaption>
+        </figure>
+        <figure class="a2-spec">
+          <div class="a2-pair">
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <defs>
+                <clipPath id="a2-6-c-28d">
+                  <path clip-rule="evenodd" d="M 53 16 C 75.4 16, 88 29.7, 88 54 C 88 78.3, 75.4 92, 53 92 C 30.6 92, 18 78.3, 18 54 C 18 29.7, 30.6 16, 53 16 Z M 53 33 C 42.1 33, 36 40.8, 36 54 C 36 67.2, 42.1 75, 53 75 C 63.9 75, 70 67.2, 70 54 C 70 40.8, 63.9 33, 53 33 Z"/>
+                  <path d="M 58 66 L 75 66 L 92 96 L 73 96 Z"/>
+                </clipPath>
+              </defs>
+              <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+              <g clip-path="url(#a2-6-c-28d)">
+                <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+                <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+                <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+                <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+              </g>
+            </svg>
+            <svg class="a2-ico" viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+              <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+              <rect x="16" y="16" width="42" height="32" fill="#d6414b"/>
+              <rect x="16" y="52" width="42" height="44" fill="#40a79b"/>
+              <rect x="62" y="16" width="34" height="44" fill="#3a6cb8"/>
+              <rect x="62" y="64" width="34" height="32" fill="#ebaf00"/>
+              <path fill="#141413" fill-rule="evenodd" d="M 53 20 C 73.2 20, 84 32.1, 84 54 C 84 75.9, 73.2 88, 53 88 C 32.8 88, 22 75.9, 22 54 C 22 32.1, 32.8 20, 53 20 Z M 53 35 C 43.2 35, 37 42.1, 37 54 C 37 65.9, 43.2 73, 53 73 C 62.8 73, 69 65.9, 69 54 C 69 42.1, 62.8 35, 53 35 Z"/>
+              <path fill="#141413" d="M 57 65 L 73 65 L 89 92 L 71 92 Z"/>
+            </svg>
+          </div>
+          <figcaption class="a2-cap">28</figcaption>
+        </figure>
+      </div>
+
+      <div class="a2-detail">
+        <div class="a2-bar a2-bar--dk">
+          <span class="a2-brand">
+            <svg class="a2-word-svg" viewBox="0 0 144 44" width="144" height="44" role="img" aria-label="quaestio">
+              <defs>
+                <mask id="a2-6-hd">
+                  <text x="0" y="31" fill="#ffffff" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">quaestio</text>
+                </mask>
+              </defs>
+              <g mask="url(#a2-6-hd)">
+                <rect x="0" y="4" width="54" height="17.5" fill="#d6414b"/>
+                <rect x="0" y="23.0" width="54" height="17.0" fill="#40a79b"/>
+                <rect x="55.5" y="4" width="84" height="20.5" fill="#3a6cb8"/>
+                <rect x="55.5" y="26.0" width="84" height="14.0" fill="#ebaf00"/>
+              </g>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-bar a2-bar--lt">
+          <span class="a2-brand a2-brand--bleed">
+            <svg class="a2-word-svg" viewBox="0 0 130 44" width="130" height="44" role="img" aria-label="quaestio">
+              <rect x="0" y="0" width="68" height="21.5" fill="#d6414b"/>
+              <rect x="0" y="23.0" width="68" height="21.0" fill="#40a79b"/>
+              <rect x="69.5" y="0" width="60.5" height="24.5" fill="#3a6cb8"/>
+              <rect x="69.5" y="26.0" width="60.5" height="18.0" fill="#ebaf00"/>
+              <text x="16" y="31" fill="#141413" style="font-family:'Archivo',sans-serif;font-weight:850;font-stretch:78%;font-size:27px;letter-spacing:-0.015em">quaestio</text>
+            </svg>
+          </span>
+          <span class="a2-count">12 materie · 2483</span>
+        </div>
+        <div class="a2-copy">
+          <h3>6 · Controcampo <small>4 COLORI · GRIGLIA</small></h3>
+          <p>Sviluppo di Opus 2 su una griglia asimmetrica svizzera a quattro campi (rosso, verde acqua, blu, ocra separati da fughe nette da 1 px). Sullo scuro la griglia costruisce la Q e l'intera parola «quaestio»; sul chiaro griglia e lettera si invertono, trasformando la tavola cromatica nella targa su cui poggia il marchio scuro.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

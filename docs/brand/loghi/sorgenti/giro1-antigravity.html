@@ -1,0 +1,469 @@
+<style>
+@font-face {
+  font-family: 'Archivo';
+  src: url('/files/archivo-var.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-stretch: 62% 100%;
+}
+
+.ag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+}
+
+.ag-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+  padding: 20px 22px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ag-card:hover {
+  border-color: rgba(255, 255, 255, 0.30);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.ag-card.selected {
+  border-color: #3a6cb8;
+  box-shadow: 0 0 0 1px #3a6cb8;
+  background: rgba(58, 108, 184, 0.08);
+}
+
+.ag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.ag-icons {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.ag-specimen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ag-specimen svg {
+  display: block;
+}
+
+.ag-cap {
+  font-size: 11px;
+  line-height: 1;
+  color: #8f8e88;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.ag-detail {
+  flex: 1 1 460px;
+  min-width: 0;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ag-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.ag-bar {
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.ag-bar--dark {
+  background: #0c0c0c;
+  color: #f4f4f2;
+  border-bottom: 1px solid #262624;
+}
+
+.ag-bar--light {
+  background: #e8e7e3;
+  color: #141413;
+  border-bottom: 1px solid #d0cfc9;
+}
+
+.ag-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.ag-stripes {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  transform: translateY(-1px);
+}
+
+.ag-stripe {
+  width: 3px;
+  height: 13px;
+  display: block;
+}
+
+.ag-wordmark {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.ag-meta {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+  font-stretch: 92%;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ag-bar--dark .ag-meta {
+  color: #8f8e88;
+}
+
+.ag-bar--light .ag-meta {
+  color: #65645f;
+}
+
+.ag-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ag-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f4f4f2;
+  letter-spacing: -0.01em;
+}
+
+.ag-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.48;
+  color: #b4b3ad;
+}
+</style>
+
+<div class="ag-list">
+
+  <!-- AG1: Q · Registro (5 colori, Unigrid verticale + Q Archivo condensata) -->
+  <div class="ag-card" data-choice="ag1" onclick="toggleSelect(this)">
+    <div class="ag-row">
+      <div class="ag-icons">
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <rect x="17" y="18" width="8" height="12" fill="#d6414b"/>
+            <rect x="17" y="33.5" width="8" height="12" fill="#3a6cb8"/>
+            <rect x="17" y="49" width="8" height="12" fill="#ebaf00"/>
+            <rect x="17" y="64.5" width="8" height="12" fill="#40a79b"/>
+            <rect x="17" y="80" width="8" height="12" fill="#d7d7d7"/>
+            <path fill="#f4f4f2" fill-rule="evenodd" d="M 64 18 C 82.6 18, 94 32.06, 94 55 C 94 77.94, 82.6 92, 64 92 C 45.4 92, 34 77.94, 34 55 C 34 32.06, 45.4 18, 64 18 Z M 64 31 C 54.4 31, 48 40.6, 48 55 C 48 69.4, 54.4 79, 64 79 C 73.6 79, 80 69.4, 80 55 C 80 40.6, 73.6 31, 64 31 Z"/>
+            <path fill="#f4f4f2" d="M 65.5 70.5 L 74.5 64.8 L 96 97 L 82.5 97 Z"/>
+          </svg>
+          <span class="ag-cap">scuro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <rect x="17" y="18" width="8" height="12" fill="#d6414b"/>
+            <rect x="17" y="33.5" width="8" height="12" fill="#3a6cb8"/>
+            <rect x="17" y="49" width="8" height="12" fill="#ebaf00"/>
+            <rect x="17" y="64.5" width="8" height="12" fill="#40a79b"/>
+            <rect x="17" y="80" width="8" height="12" fill="#c4c3bd"/>
+            <path fill="#141413" fill-rule="evenodd" d="M 64 18 C 82.6 18, 94 32.06, 94 55 C 94 77.94, 82.6 92, 64 92 C 45.4 92, 34 77.94, 34 55 C 34 32.06, 45.4 18, 64 18 Z M 64 31 C 54.4 31, 48 40.6, 48 55 C 48 69.4, 54.4 79, 64 79 C 73.6 79, 80 69.4, 80 55 C 80 40.6, 73.6 31, 64 31 Z"/>
+            <path fill="#141413" d="M 65.5 70.5 L 74.5 64.8 L 96 97 L 82.5 97 Z"/>
+          </svg>
+          <span class="ag-cap">chiaro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <rect x="17" y="18" width="8" height="12" fill="#d6414b"/>
+            <rect x="17" y="33.5" width="8" height="12" fill="#3a6cb8"/>
+            <rect x="17" y="49" width="8" height="12" fill="#ebaf00"/>
+            <rect x="17" y="64.5" width="8" height="12" fill="#40a79b"/>
+            <rect x="17" y="80" width="8" height="12" fill="#d7d7d7"/>
+            <path fill="#f4f4f2" fill-rule="evenodd" d="M 64 18 C 82.6 18, 94 32.06, 94 55 C 94 77.94, 82.6 92, 64 92 C 45.4 92, 34 77.94, 34 55 C 34 32.06, 45.4 18, 64 18 Z M 64 31 C 54.4 31, 48 40.6, 48 55 C 48 69.4, 54.4 79, 64 79 C 73.6 79, 80 69.4, 80 55 C 80 40.6, 73.6 31, 64 31 Z"/>
+            <path fill="#f4f4f2" d="M 65.5 70.5 L 74.5 64.8 L 96 97 L 82.5 97 Z"/>
+          </svg>
+          <span class="ag-cap">48 px</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <rect x="17" y="18" width="8" height="12" fill="#d6414b"/>
+            <rect x="17" y="33.5" width="8" height="12" fill="#3a6cb8"/>
+            <rect x="17" y="49" width="8" height="12" fill="#ebaf00"/>
+            <rect x="17" y="64.5" width="8" height="12" fill="#40a79b"/>
+            <rect x="17" y="80" width="8" height="12" fill="#d7d7d7"/>
+            <path fill="#f4f4f2" fill-rule="evenodd" d="M 64 18 C 82.6 18, 94 32.06, 94 55 C 94 77.94, 82.6 92, 64 92 C 45.4 92, 34 77.94, 34 55 C 34 32.06, 45.4 18, 64 18 Z M 64 31 C 54.4 31, 48 40.6, 48 55 C 48 69.4, 54.4 79, 64 79 C 73.6 79, 80 69.4, 80 55 C 80 40.6, 73.6 31, 64 31 Z"/>
+            <path fill="#f4f4f2" d="M 65.5 70.5 L 74.5 64.8 L 96 97 L 82.5 97 Z"/>
+          </svg>
+          <span class="ag-cap">28</span>
+        </div>
+      </div>
+
+      <div class="ag-detail">
+        <div class="ag-bars">
+          <div class="ag-bar ag-bar--dark">
+            <div class="ag-brand">
+              <div class="ag-stripes" aria-hidden="true">
+                <span class="ag-stripe" style="background:#d6414b"></span>
+                <span class="ag-stripe" style="background:#3a6cb8"></span>
+                <span class="ag-stripe" style="background:#ebaf00"></span>
+                <span class="ag-stripe" style="background:#40a79b"></span>
+                <span class="ag-stripe" style="background:#d7d7d7"></span>
+              </div>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+          <div class="ag-bar ag-bar--light">
+            <div class="ag-brand">
+              <div class="ag-stripes" aria-hidden="true">
+                <span class="ag-stripe" style="background:#d6414b"></span>
+                <span class="ag-stripe" style="background:#3a6cb8"></span>
+                <span class="ag-stripe" style="background:#ebaf00"></span>
+                <span class="ag-stripe" style="background:#40a79b"></span>
+                <span class="ag-stripe" style="background:#c4c3bd"></span>
+              </div>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+        </div>
+        <div class="ag-copy">
+          <h3 class="ag-title">AG1 · Registro</h3>
+          <p class="ag-desc">Riprende il sistema Unigrid e la direzione già scelta nell'intestazione: i cinque inchiostri del brand (rosso, blu, ocra, verde acqua, grigio) sono ordinati in una spina verticale a spigoli vivi accanto a una Q condensata in proporzioni Archivo (~80%). Usa tutti e 5 i colori senza toccare la lettera, lasciando la Q monocroma ad alto contrasto e leggibile fino a 28 px.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AG2: Q · Taglio (1 inchiostro funzionale + neutro, anello euclideo aperto a 45°) -->
+  <div class="ag-card" data-choice="ag2" onclick="toggleSelect(this)">
+    <div class="ag-row">
+      <div class="ag-icons">
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <path fill="#f4f4f2" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+            <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+          </svg>
+          <span class="ag-cap">scuro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <path fill="#141413" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+            <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+          </svg>
+          <span class="ag-cap">chiaro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <path fill="#f4f4f2" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+            <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+          </svg>
+          <span class="ag-cap">48 px</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <path fill="#f4f4f2" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+            <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+          </svg>
+          <span class="ag-cap">28</span>
+        </div>
+      </div>
+
+      <div class="ag-detail">
+        <div class="ag-bars">
+          <div class="ag-bar ag-bar--dark">
+            <div class="ag-brand">
+              <svg viewBox="13 13 86 86" width="20" height="20" aria-hidden="true">
+                <path fill="#f4f4f2" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+                <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+              </svg>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+          <div class="ag-bar ag-bar--light">
+            <div class="ag-brand">
+              <svg viewBox="13 13 86 86" width="20" height="20" aria-hidden="true">
+                <path fill="#141413" d="M 69.20 84.76 A 37 37 0 1 1 84.76 69.20 L 71.59 56.03 A 20 20 0 1 0 56.03 71.59 Z"/>
+                <path fill="#d6414b" d="M 62.61 52.71 L 97.26 87.36 L 87.36 97.26 L 52.71 62.61 Z"/>
+              </svg>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+        </div>
+        <div class="ag-copy">
+          <h3 class="ag-title">AG2 · Taglio</h3>
+          <p class="ag-desc">Massima riduzione svizzera: usa un solo colore del brand (il rosso #d6414b, prima banda di lucablog e segno della verifica) abbinato al neutro. L'anello geometrico è inciso a 45° da un canale netto di luce negativa che isola la barra diagonale senza sovrapposizioni; nell'intestazione il marchio sostituisce le cinque linee per coerenza diretta con l'icona.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AG3: Q · Strati (4 colori attivi in fasce orizzontali stencil) -->
+  <div class="ag-card" data-choice="ag3" onclick="toggleSelect(this)">
+    <div class="ag-row">
+      <div class="ag-icons">
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <defs>
+              <clipPath id="ag3-clip-dark">
+                <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#ag3-clip-dark)">
+              <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+              <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+              <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+              <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+            </g>
+          </svg>
+          <span class="ag-cap">scuro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true">
+            <defs>
+              <clipPath id="ag3-clip-light">
+                <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#e8e7e3"/>
+            <g clip-path="url(#ag3-clip-light)">
+              <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+              <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+              <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+              <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+            </g>
+          </svg>
+          <span class="ag-cap">chiaro</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="48" height="48" aria-hidden="true">
+            <defs>
+              <clipPath id="ag3-clip-48">
+                <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#ag3-clip-48)">
+              <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+              <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+              <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+              <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+            </g>
+          </svg>
+          <span class="ag-cap">48 px</span>
+        </div>
+        <div class="ag-specimen">
+          <svg viewBox="0 0 112 112" width="28" height="28" aria-hidden="true">
+            <defs>
+              <clipPath id="ag3-clip-28">
+                <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+              </clipPath>
+            </defs>
+            <rect width="112" height="112" rx="23.5" fill="#0c0c0c"/>
+            <g clip-path="url(#ag3-clip-28)">
+              <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+              <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+              <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+              <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+            </g>
+          </svg>
+          <span class="ag-cap">28</span>
+        </div>
+      </div>
+
+      <div class="ag-detail">
+        <div class="ag-bars">
+          <div class="ag-bar ag-bar--dark">
+            <div class="ag-brand">
+              <svg viewBox="14 14 84 84" width="20" height="20" aria-hidden="true">
+                <defs>
+                  <clipPath id="ag3-clip-hdr-d">
+                    <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                    <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#ag3-clip-hdr-d)">
+                  <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+                  <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+                  <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+                  <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+                </g>
+              </svg>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+          <div class="ag-bar ag-bar--light">
+            <div class="ag-brand">
+              <svg viewBox="14 14 84 84" width="20" height="20" aria-hidden="true">
+                <defs>
+                  <clipPath id="ag3-clip-hdr-l">
+                    <path d="M 54 16 C 77.31 16, 91 30.06, 91 54 C 91 77.94, 77.31 92, 54 92 C 30.69 92, 17 77.94, 17 54 C 17 30.06, 30.69 16, 54 16 Z M 54 32 C 41.4 32, 34 40.14, 34 54 C 34 67.86, 41.4 76, 54 76 C 66.6 76, 74 67.86, 74 54 C 74 40.14, 66.6 32, 54 32 Z"/>
+                    <path d="M 57 67 L 66 61 L 95 96 L 80 96 Z"/>
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#ag3-clip-hdr-l)">
+                  <rect x="0" y="16" width="112" height="17" fill="#d6414b"/>
+                  <rect x="0" y="37" width="112" height="17" fill="#3a6cb8"/>
+                  <rect x="0" y="58" width="112" height="17" fill="#ebaf00"/>
+                  <rect x="0" y="79" width="112" height="17" fill="#40a79b"/>
+                </g>
+              </svg>
+              <span class="ag-wordmark">quaestio</span>
+            </div>
+            <span class="ag-meta">12 materie · 2483</span>
+          </div>
+        </div>
+        <div class="ag-copy">
+          <h3 class="ag-title">AG3 · Strati</h3>
+          <p class="ag-desc">I 4 inchiostri attivi (rosso, blu, ocra, verde acqua, escluso il grigio affidato allo sfondo) costruiscono direttamente la Q come quattro strati tipografici orizzontali tagliati da tre fessure di griglia nette. Ogni fascia vale 4 px pieni e ogni taglio 1 px alla misura di 28 px, evitando ruote arcobaleno e gradini pixel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
