@@ -3,7 +3,7 @@
 - **Data:** 2026-11-25
 - **Stato:** design da approvare (brainstorming del 25/11 con mockup nel browser; domande del revisore risolte).
 - **Riferimenti visivi:** `assets/2026-11-25-revisione-grafica/` (mockup, tavolozza, logo, screenshot dei difetti).
-  Archivio completo dei loghi: `docs/brand/loghi/`. Sistema di partenza: lucablog
+  Archivio completo dei loghi e ricerca: fuori dal repo, in `~/dev/lf_brand/` (`loghi/quaestio/`, `ricerca/`). Sistema di partenza: lucablog
   (`~/dev/lucablog/src/styles/tokens.css`, copiato in `~/dev/lf_brand/token/`).
 
 ## 1. Perché
