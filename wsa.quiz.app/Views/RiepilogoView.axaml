@@ -78,9 +78,9 @@
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
 
-                <WrapPanel x:Name="BloccoDurataModalita"
+                <StackPanel x:Name="BloccoDurataModalita"
                            Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"
-                           Orientation="Horizontal" ItemSpacing="20" LineSpacing="6" Margin="0,12,0,0">
+                           Spacing="4" Margin="0,12,0,0">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Riepilogo_Durata}"
                                    FontSize="12"
@@ -88,15 +88,13 @@
                         <TextBlock Text="{Binding DurataFormattata}"
                                    FontSize="12" FontWeight="SemiBold"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="6">
-                        <TextBlock Text="{x:Static r:Strings.Riepilogo_Modalita}"
-                                   FontSize="12"
-                                   Foreground="{DynamicResource TestoAttenuato}"/>
-                        <TextBlock Text="{Binding Modalita}"
-                                   FontSize="12" FontWeight="SemiBold"
-                                   TextWrapping="Wrap"/>
-                    </StackPanel>
-                </WrapPanel>
+                    <!-- Etichetta e valore in un solo TextBlock: dentro uno StackPanel orizzontale il testo non andrebbe a capo. -->
+                    <TextBlock FontSize="12" TextWrapping="Wrap">
+                        <Run Text="{x:Static r:Strings.Riepilogo_Modalita}" Foreground="{DynamicResource TestoAttenuato}"/>
+                        <Run Text=" "/>
+                        <Run Text="{Binding Modalita}" FontWeight="SemiBold"/>
+                    </TextBlock>
+                </StackPanel>
             </Grid>
         </Border>
 
