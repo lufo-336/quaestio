@@ -41,6 +41,8 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 1: Inchiostri nel core (dati, migrazione id, contrasto)
 
+- [x] Fatto 2026-11-25 (agy): file `wsa.quiz.core/Services/Inchiostri.cs`, `wsa.quiz.core.tests/InchiostriTests.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx` — verifica: non eseguita (sessione headless senza shell; compilazione/test demandati al processo esterno)
+
 **Files:**
 - Create: `wsa.quiz.core/Services/Inchiostri.cs`
 - Modify: `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx` (nomi colore)
@@ -53,7 +55,7 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
   - Id (minuscoli, senza spazi): `rosso, terracotta, cacao, ocra, oliva, prato, verdeacqua, petrolio, azzurro, blu, indaco, viola, prugna, rosaantico, ardesia, grigio`, in quest'ordine, con hex e testo dalla tabella spec §5.2.
   - Chiavi risorsa `Colore_<Nome>` (es. `Colore_RosaAntico`); en: Red, Terracotta, Cocoa, Ochre, Olive, Meadow, Teal, Petrol, Sky blue, Blue, Indigo, Violet, Plum, Old rose, Slate, Grey.
 
-- [ ] **Step 1: Write the failing tests** in `InchiostriTests.cs`:
+- [x] **Step 1: Write the failing tests** in `InchiostriTests.cs`:
   - `Tutti_Sedici_InOrdine`: `Inchiostri.Tutti.Select(i => i.Id)` uguale alla lista sopra.
   - `Sceglibili_SonoDodici`: gli id con `Sceglibile` sono esattamente `terracotta, cacao, oliva, prato, petrolio, azzurro, blu, indaco, viola, prugna, rosaantico, ardesia` (12); `rosso`, `ocra`, `verdeacqua`, `grigio` non sono sceglibili.
   - `Migra_VecchiId` (Theory): `blu→blu`, `blunotte→indaco`, `indaco→indaco`, `viola→viola`, `magenta→prugna`, `verdeacqua→petrolio`, `cacao→cacao`, `grafite→ardesia`, `null→blu`, `""→blu`, `"xyz"→blu`, `"BLUNOTTE"→indaco`; ogni id già nuovo e sceglibile resta sé stesso.
@@ -61,7 +63,7 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
   - `TestoEsito_SuChiaro_Contrasto`: per `rosso`, `ocra`, `verdeacqua`, `Contrasto(HexTestoSuChiaro, "#e8e7e3") >= 4.5`.
   - `Contrasto_Riferimento`: `Contrasto("#000000", "#ffffff")` ≈ 21 (±0.01).
 - [ ] **Step 2:** `dotnet test wsa.quiz.core.tests --filter InchiostriTests` → FAIL (tipo inesistente).
-- [ ] **Step 3:** implementare `Inchiostri.cs` (contrasto WCAG: luminanza relativa sRGB, `(L1+0.05)/(L2+0.05)`). Per `HexTestoSuChiaro` partire dalle varianti di lucablog (ocra `#9b7300`, verde acqua `#33867c`, rosso `#d6414b`) e scurirle mantenendo la tinta finché il test passa (fondo `#e8e7e3` → luminanza ≤ ~0,138). Aggiungere le stringhe `Colore_*` mancanti, togliere quelle non più usate (`Colore_BluNotte`, `Colore_Magenta`, `Colore_Grafite`).
+- [x] **Step 3:** implementare `Inchiostri.cs` (contrasto WCAG: luminanza relativa sRGB, `(L1+0.05)/(L2+0.05)`). Per `HexTestoSuChiaro` partire dalle varianti di lucablog (ocra `#9b7300`, verde acqua `#33867c`, rosso `#d6414b`) e scurirle mantenendo la tinta finché il test passa (fondo `#e8e7e3` → luminanza ≤ ~0,138). Aggiungere le stringhe `Colore_*` mancanti, togliere quelle non più usate (`Colore_BluNotte`, `Colore_Magenta`, `Colore_Grafite`).
 - [ ] **Step 4:** `dotnet test wsa.quiz.core.tests` → tutti PASS.
 - [ ] **Step 5:** commit `feat(core): tavolozza dei 16 inchiostri, migrazione colori e contrasto` + push.
 

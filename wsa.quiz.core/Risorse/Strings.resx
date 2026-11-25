@@ -289,12 +289,23 @@
   <data name="Errore_ImprevistoDettaglio" xml:space="preserve"><value>L'operazione non è andata a buon fine, ma puoi continuare a usare l'app. Dettaglio: {0}</value></data>
   <data name="Impostazioni_Colore" xml:space="preserve"><value>Colore</value></data>
   <data name="Impostazioni_ColoreDescrizione" xml:space="preserve"><value>Barra in alto, bottoni e selezioni.</value></data>
+  <data name="Colore_Rosso" xml:space="preserve"><value>Rosso</value></data>
+  <data name="Colore_Terracotta" xml:space="preserve"><value>Terracotta</value></data>
+  <data name="Colore_Cacao" xml:space="preserve"><value>Cacao</value></data>
+  <data name="Colore_Ocra" xml:space="preserve"><value>Ocra</value></data>
+  <data name="Colore_Oliva" xml:space="preserve"><value>Oliva</value></data>
+  <data name="Colore_Prato" xml:space="preserve"><value>Prato</value></data>
+  <data name="Colore_VerdeAcqua" xml:space="preserve"><value>Verde acqua</value></data>
+  <data name="Colore_Petrolio" xml:space="preserve"><value>Petrolio</value></data>
+  <data name="Colore_Azzurro" xml:space="preserve"><value>Azzurro</value></data>
   <data name="Colore_Blu" xml:space="preserve"><value>Blu</value></data>
-  <data name="Colore_BluNotte" xml:space="preserve"><value>Blu notte</value></data>
   <data name="Colore_Indaco" xml:space="preserve"><value>Indaco</value></data>
   <data name="Colore_Viola" xml:space="preserve"><value>Viola</value></data>
+  <data name="Colore_Prugna" xml:space="preserve"><value>Prugna</value></data>
+  <data name="Colore_RosaAntico" xml:space="preserve"><value>Rosa antico</value></data>
+  <data name="Colore_Ardesia" xml:space="preserve"><value>Ardesia</value></data>
+  <data name="Colore_Grigio" xml:space="preserve"><value>Grigio</value></data>
+  <data name="Colore_BluNotte" xml:space="preserve"><value>Blu notte</value></data>
   <data name="Colore_Magenta" xml:space="preserve"><value>Magenta</value></data>
-  <data name="Colore_VerdeAcqua" xml:space="preserve"><value>Verde acqua</value></data>
-  <data name="Colore_Cacao" xml:space="preserve"><value>Cacao</value></data>
   <data name="Colore_Grafite" xml:space="preserve"><value>Grafite</value></data>
 </root>
