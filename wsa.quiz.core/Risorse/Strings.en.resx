@@ -234,13 +234,10 @@
   <data name="Statistiche_NessunQuizDesc" xml:space="preserve"><value>Take a quiz from Home to see where your weak spots are.</value></data>
   <data name="Statistiche_FiltroStretto" xml:space="preserve"><value>No sessions in the last N games</value></data>
   <data name="Statistiche_FiltroStrettoDesc" xml:space="preserve"><value>Raise the limit N or switch to 'All'.</value></data>
-  <data name="Statistiche_Indietro" xml:space="preserve"><value>← Statistics</value></data>
-  <data name="Statistiche_TitoloDettaglio" xml:space="preserve"><value>{0} / {1} — {2} wrong out of {3} seen ({4:P0})</value></data>
   <data name="Statistiche_CellaTooltip" xml:space="preserve"><value>{0} wrong out of {1} seen</value></data>
   <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ wrong </value></data>
   <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> times</value></data>
   <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ correct: </value></data>
-  <data name="Statistiche_Ripassa" xml:space="preserve"><value>Review</value></data>
   <data name="Statistiche_RipassaModalita" xml:space="preserve"><value>{0} — Review: {1}</value></data>
   <data name="Statistiche_RipassaMateriaModalita" xml:space="preserve"><value>{0} — Review</value></data>
   <data name="Statistiche_RipassaConConteggio" xml:space="preserve"><value>Review ({0})</value></data>

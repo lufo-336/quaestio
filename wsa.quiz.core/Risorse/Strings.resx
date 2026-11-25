@@ -234,13 +234,10 @@
   <data name="Statistiche_NessunQuizDesc" xml:space="preserve"><value>Fai un quiz dalla Home per vedere le statistiche dei tuoi punti deboli.</value></data>
   <data name="Statistiche_FiltroStretto" xml:space="preserve"><value>Nessuna sessione nelle ultime N partite</value></data>
   <data name="Statistiche_FiltroStrettoDesc" xml:space="preserve"><value>Aumenta il limite N oppure passa a 'Tutto'.</value></data>
-  <data name="Statistiche_Indietro" xml:space="preserve"><value>← Statistiche</value></data>
-  <data name="Statistiche_TitoloDettaglio" xml:space="preserve"><value>{0} / {1} — {2} errori su {3} viste ({4:P0})</value></data>
   <data name="Statistiche_CellaTooltip" xml:space="preserve"><value>{0} errori su {1} viste</value></data>
   <data name="Statistiche_SbagliataPrefisso" xml:space="preserve"><value>❌ sbagliata </value></data>
   <data name="Statistiche_VolteSuffisso" xml:space="preserve"><value> volte</value></data>
   <data name="Statistiche_CorrettaPrefisso" xml:space="preserve"><value>✓ corretta: </value></data>
-  <data name="Statistiche_Ripassa" xml:space="preserve"><value>Ripassa</value></data>
   <data name="Statistiche_RipassaModalita" xml:space="preserve"><value>{0} — Ripasso: {1}</value></data>
   <data name="Statistiche_RipassaMateriaModalita" xml:space="preserve"><value>{0} — Ripasso</value></data>
   <data name="Statistiche_RipassaConConteggio" xml:space="preserve"><value>Ripassa ({0})</value></data>

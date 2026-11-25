@@ -106,7 +106,7 @@ Il controllo custom `TestoConCodice` (`wsa.quiz.app/Controls/TestoConCodice.cs`,
 da `ContentControl`) si occupa del rendering di domande, risposte e spiegazioni riconoscendo
 automaticamente codice inline e blocchi di codice. È interamente implementato in code-behind
 (senza file XAML) e sostituisce i vecchi `TextBlock` semplici in tutte le viste dell'app
-(`QuizView`, `RiepilogoView`, `CronologiaDettaglioView`, `CategoriaDettaglioView`).
+(`QuizView`, `RiepilogoView`, `CronologiaDettaglioView`, `StatisticheView`).
 
 Funzionamento:
 - Utilizza il parser condiviso in `Wsa.Quiz.Core.Services.TestoConCodice.Analizza(testo)`
