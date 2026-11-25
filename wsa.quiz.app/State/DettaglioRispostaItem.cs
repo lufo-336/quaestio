@@ -12,7 +12,7 @@ namespace Wsa.Quiz.App.State;
 /// non puo' avere riferimenti UI), espone gia' i colori e i flag che servono
 /// al template XAML per disegnare correttamente corrette e sbagliate.
 /// </summary>
-public class DettaglioRispostaItem
+public class DettaglioRispostaItem : ObservableObject
 {
     public DettaglioRisposta Dettaglio { get; }
 
@@ -39,17 +39,20 @@ public class DettaglioRispostaItem
 
     public string SecondoTentativoEtichetta => Strings.Dettaglio_SecondoTentativo;
 
-    public IBrush ColoreBordo { get; }
-    public IBrush ColoreRisposta { get; }
+    public IBrush ColoreBordo => QuizColors.Esito(Dettaglio.Corretta);
+    public IBrush ColoreRisposta => QuizColors.EsitoTesto(Dettaglio.Corretta);
     public string EsitoEtichetta { get; }
-    public IBrush ColoreEsito { get; }
+    public IBrush ColoreEsito => QuizColors.EsitoTesto(Dettaglio.Corretta);
 
     public DettaglioRispostaItem(DettaglioRisposta d)
     {
         Dettaglio = d;
-        ColoreBordo = QuizColors.Esito(d.Corretta);
-        ColoreRisposta = QuizColors.Esito(d.Corretta);
         EsitoEtichetta = d.Corretta ? Strings.Dettaglio_Corretto : Strings.Quiz_Sbagliato;
-        ColoreEsito = QuizColors.Esito(d.Corretta);
+    }
+
+    public void NotificaCambioTema()
+    {
+        RaisePropertyChanged(nameof(ColoreRisposta));
+        RaisePropertyChanged(nameof(ColoreEsito));
     }
 }

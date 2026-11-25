@@ -96,6 +96,14 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
                 Raise(nameof(MostraHeaderColonne));
             }
         };
+
+        QuizColors.CollegaCambioTema(this, AggiornaColoriTema);
+    }
+
+    private void AggiornaColoriTema()
+    {
+        foreach (var item in Sessioni)
+            item.NotificaCambioTema();
     }
 
     // ------------------------------------------------------------------ FILTRI (step 11)

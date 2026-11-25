@@ -129,7 +129,7 @@
                                        IsVisible="{Binding QuizInCorso}"
                                        FontSize="12"
                                        TextWrapping="Wrap"
-                                       Foreground="#B8860B"/>
+                                       Foreground="{DynamicResource AmbraTestoBrush}"/>
                         </StackPanel>
                         <ComboBox Grid.Column="1"
                                   MinWidth="130"

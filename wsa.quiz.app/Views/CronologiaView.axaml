@@ -233,11 +233,11 @@
                                                    FontSize="13" FontWeight="SemiBold"/>
                                         <TextBlock Text="{x:Static r:Strings.Stato_Abbandonato}"
                                                    FontSize="10"
-                                                   Foreground="#B85450"
+                                                   Foreground="{DynamicResource RossoTestoBrush}"
                                                    IsVisible="{Binding Abbandonato}"/>
                                         <TextBlock Text="{x:Static r:Strings.Cronologia_BadgeTempoScaduto}"
                                                    FontSize="10"
-                                                   Foreground="#B8860B"
+                                                   Foreground="{DynamicResource AmbraTestoBrush}"
                                                    IsVisible="{Binding TempoScaduto}"/>
                                     </StackPanel>
 
@@ -254,7 +254,7 @@
                                     <TextBlock Grid.Column="3"
                                                Text="{Binding PercentualeFormattata}"
                                                FontSize="14" FontWeight="SemiBold"
-                                               Foreground="{Binding ColorePercentuale}"
+                                               Foreground="{Binding ColorePercentualeTesto}"
                                                HorizontalAlignment="Right"
                                                VerticalAlignment="Center"/>
 
@@ -349,16 +349,16 @@
                                                 <TextBlock Text="{Binding DataFormattata}"
                                                            FontWeight="SemiBold"
                                                            FontSize="{DynamicResource SzFontBody}"/>
-                                                <TextBlock Text="{x:Static r:Strings.Stato_Abbandonato}" FontSize="10" Foreground="#B85450"
+                                                <TextBlock Text="{x:Static r:Strings.Stato_Abbandonato}" FontSize="10" Foreground="{DynamicResource RossoTestoBrush}"
                                                            IsVisible="{Binding Abbandonato}"/>
-                                                <TextBlock Text="{x:Static r:Strings.Cronologia_BadgeTempoScaduto}" FontSize="10" Foreground="#B8860B"
+                                                <TextBlock Text="{x:Static r:Strings.Cronologia_BadgeTempoScaduto}" FontSize="10" Foreground="{DynamicResource AmbraTestoBrush}"
                                                            IsVisible="{Binding TempoScaduto}"/>
                                             </StackPanel>
                                             <TextBlock Grid.Column="1"
                                                        Text="{Binding PercentualeFormattata}"
                                                        FontWeight="SemiBold"
                                                        FontSize="{DynamicResource SzFontBody}"
-                                                       Foreground="{Binding ColorePercentuale}"
+                                                       Foreground="{Binding ColorePercentualeTesto}"
                                                        VerticalAlignment="Center"/>
                                         </Grid>
 

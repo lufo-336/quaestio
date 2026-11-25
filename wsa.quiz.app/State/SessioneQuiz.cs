@@ -165,6 +165,20 @@ public class SessioneQuiz : ObservableObject
     private IBrush _tempoBrush = QuizColors.TempoNeutro;
     public IBrush TempoBrush { get => _tempoBrush; private set => SetField(ref _tempoBrush, value); }
 
+    /// <summary>Ricalcola il brush del cronometro dopo un cambio di tema chiaro/scuro.</summary>
+    public void NotificaCambioTema()
+    {
+        if (HaLimiteTempo)
+        {
+            var rimanente = TimeSpan.FromMinutes(Opzioni.LimiteTempoMinuti) - (_cron.Elapsed + _offsetCronometro);
+            TempoBrush = QuizColors.TempoRimanente(rimanente < TimeSpan.Zero ? TimeSpan.Zero : rimanente);
+        }
+        else
+        {
+            TempoBrush = QuizColors.TempoNeutro;
+        }
+    }
+
     public ObservableCollection<RispostaItem> Risposte { get; } = new();
 
     private bool _secondaPossibilitaInCorso;

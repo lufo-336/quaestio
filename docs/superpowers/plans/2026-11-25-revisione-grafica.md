@@ -107,6 +107,8 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 4: Colori degli esiti
 
+- [x] Fatto 2026-11-25 (agy, Step 1–3): file `wsa.quiz.app/QuizColors.cs`, `wsa.quiz.app/Themes/Tokens.axaml`, `wsa.quiz.app/App.axaml`, `wsa.quiz.app/State/RisultatoCronologiaItem.cs`, `wsa.quiz.app/State/DettaglioRispostaItem.cs`, `wsa.quiz.app/State/SessioneQuiz.cs`, `wsa.quiz.app/State/MateriaStatItem.cs`, `wsa.quiz.app/State/CategoriaStatItem.cs`, `wsa.quiz.app/Views/RiepilogoView.axaml(.cs)`, `wsa.quiz.app/Views/CronologiaDettaglioView.axaml(.cs)`, `wsa.quiz.app/Views/CronologiaView.axaml(.cs)`, `wsa.quiz.app/Views/StatisticheView.axaml(.cs)`, `wsa.quiz.app/Views/QuizView.axaml(.cs)`, `wsa.quiz.app/Views/SospesiView.axaml`, `wsa.quiz.app/Views/HomeView.axaml`, `wsa.quiz.app/Views/GestioneContenutiView.axaml`, `wsa.quiz.app/Views/ImpostazioniView.axaml`, `wsa.quiz.app/MainView.axaml` — verifica: non eseguita (sessione headless senza shell; Step 4–5 prova a mano, build, test e commit demandati a Claude)
+
 **Files:**
 - Modify: `wsa.quiz.app/QuizColors.cs`, `wsa.quiz.app/Controls/BarraLivelli.cs` e i chiamanti di `QuizColors` che lo usano come `Foreground` (`State/RisultatoCronologiaItem.cs`, `State/DettaglioRispostaItem.cs`, `State/SessioneQuiz.cs`, `State/MateriaStatItem.cs`, `State/CategoriaStatItem.cs`, `State/LivelloSelezionabile.cs`, `Views/RiepilogoView.axaml.cs`, `Views/CronologiaDettaglioView.axaml.cs`, `Views/StatisticheView.axaml.cs`)
 
@@ -114,9 +116,9 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 - Consumes: `Inchiostri.Trova("verdeacqua"|"ocra"|"rosso")` (`Hex`, `HexTestoSuChiaro`).
 - Produces: in `QuizColors` le costanti `Verde`/`Ambra`/`Rosso` diventano gli hex degli inchiostri; brush di riempimento invariati di nome (`VerdeBrush`, `AmbraBrush`, `RossoBrush`, `HeatmapBordo`, `HeatmapSfondo`); nuovi `VerdeTestoBrush`, `AmbraTestoBrush`, `RossoTestoBrush` che restituiscono `HexTestoSuChiaro` nel tema chiaro e `Hex` nel tema scuro.
 
-- [ ] **Step 1:** aggiornare costanti e sfondi tenui (heatmap/barre) derivandoli dai tre inchiostri; `Danger*` = rosso inchiostro e sue mescole.
-- [ ] **Step 2:** dove un brush esito è usato come **colore del testo**, passare alla variante `*TestoBrush`; dove è un **riempimento** con testo sopra, il testo è nero.
-- [ ] **Step 3:** assicurare che le viste che mostrano testi esito si aggiornino al cambio tema (es. ricalcolo sull'evento `ActualThemeVariantChanged` dove i valori sono calcolati in code-behind).
+- [x] **Step 1:** aggiornare costanti e sfondi tenui (heatmap/barre) derivandoli dai tre inchiostri; `Danger*` = rosso inchiostro e sue mescole.
+- [x] **Step 2:** dove un brush esito è usato come **colore del testo**, passare alla variante `*TestoBrush`; dove è un **riempimento** con testo sopra, il testo è nero.
+- [x] **Step 3:** assicurare che le viste che mostrano testi esito si aggiornino al cambio tema (es. ricalcolo sull'evento `ActualThemeVariantChanged` dove i valori sono calcolati in code-behind).
 - [ ] **Step 4:** prova a mano: Riepilogo, Cronologia, CronologiaDettaglio, Statistiche, cronometro del Quiz in chiaro e scuro; cambio tema senza riavvio.
 - [ ] **Step 5:** build, test, commit `feat(app): esiti con gli inchiostri e varianti per il testo` + push.
 

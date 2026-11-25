@@ -39,6 +39,7 @@ public partial class QuizView : UserControl
         _storage = storage;
         DataContext = sessione;
         _sessione.Concluso += OnSessioneConclusa;
+        QuizColors.CollegaCambioTema(this, () => _sessione.NotificaCambioTema());
     }
 
     protected override void OnAttachedToVisualTree(global::Avalonia.VisualTreeAttachmentEventArgs e)

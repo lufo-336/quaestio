@@ -23,6 +23,7 @@ public class CategoriaStatItem : ObservableObject
     public double PctErrore => Stat.PctErrore;
     public string PctFormattata => $"{Stat.PctErrore:P0}";
     public IBrush ColoreLivello => QuizColors.HeatmapBordo(Stat.PctErrore);
+    public IBrush ColoreLivelloTesto => QuizColors.HeatmapTesto(Stat.PctErrore);
 
     public int Visti => Stat.Visti;
     public double Errori => Stat.Errori;
@@ -74,4 +75,6 @@ public class CategoriaStatItem : ObservableObject
             .ToList();
         return new RichiestaRipasso(Stat.Materia, Stat.Categoria, ids);
     }
+
+    public void NotificaCambioTema() => RaisePropertyChanged(nameof(ColoreLivelloTesto));
 }

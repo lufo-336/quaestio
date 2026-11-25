@@ -110,7 +110,7 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
 
     public string MateriaTitolo => _materiaSelezionata?.MateriaMostrata ?? string.Empty;
     public string MateriaPct => _materiaSelezionata?.PctFormattata ?? string.Empty;
-    public IBrush MateriaColore => _materiaSelezionata?.ColoreLivello ?? QuizColors.NeutroBrush;
+    public IBrush MateriaColore => _materiaSelezionata?.ColoreLivelloTesto ?? QuizColors.TempoNeutro;
     public string MateriaRiepilogo => _materiaSelezionata?.RiepilogoDettaglio ?? string.Empty;
     public bool MateriaHaSbagliate => _materiaSelezionata?.HaSbagliate ?? false;
     public string MateriaEtichettaRipassa => _materiaSelezionata?.EtichettaRipassaMateria ?? string.Empty;
@@ -161,6 +161,14 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
         }
 
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
+        QuizColors.CollegaCambioTema(this, AggiornaColoriTema);
+    }
+
+    private void AggiornaColoriTema()
+    {
+        foreach (var m in Materie)
+            m.NotificaCambioTema();
+        Raise(nameof(MateriaColore));
     }
 
     public void Inizializza(StorageService storage)

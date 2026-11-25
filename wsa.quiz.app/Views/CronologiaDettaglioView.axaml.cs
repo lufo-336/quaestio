@@ -43,7 +43,7 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
         : string.Format(Strings.Dettaglio_DomandeSessioneN, Dettagli.Count);
 
     public string PercentualeFormattata { get; }
-    public IBrush ColorePercentuale { get; }
+    public IBrush ColorePercentuale => QuizColors.PercentualeTesto(_risultato.PercentualeCorrette);
     public int TotaleDomande => _risultato.TotaleDomande;
     public int RisposteCorrette => _risultato.RisposteCorrette;
     public int RisposteErrate => _risultato.RisposteErrate;
@@ -85,7 +85,6 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
         Sottotitolo = string.Format(Lingue.Cultura, Strings.Dettaglio_Avviata, risultato.DataOra);
 
         PercentualeFormattata = $"{Math.Round(risultato.PercentualeCorrette)}%";
-        ColorePercentuale = QuizColors.Percentuale(risultato.PercentualeCorrette);
 
         DurataFormattata = Core.Services.QuizService.FormattaDurata(risultato.DurataQuiz);
 
@@ -94,9 +93,17 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
             .ToList();
 
         DataContext = this;
+        QuizColors.CollegaCambioTema(this, AggiornaColoriTema);
 
         Focusable = true;
         AttachedToVisualTree += (_, _) => Focus();
+    }
+
+    private void AggiornaColoriTema()
+    {
+        Raise(nameof(ColorePercentuale));
+        foreach (var item in Dettagli)
+            item.NotificaCambioTema();
     }
 
 

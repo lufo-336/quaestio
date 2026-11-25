@@ -62,7 +62,7 @@
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding RisposteCorrette}"
                                FontSize="18" FontWeight="SemiBold"
-                               Foreground="#1F7A4D"/>
+                               Foreground="{DynamicResource VerdeTestoBrush}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Errate}"
@@ -70,7 +70,7 @@
                                Foreground="{DynamicResource SystemBaseMediumColor}"/>
                     <TextBlock Text="{Binding RisposteErrate}"
                                FontSize="18" FontWeight="SemiBold"
-                               Foreground="#B85450"/>
+                               Foreground="{DynamicResource RossoTestoBrush}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="4" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Punteggio}"
@@ -166,7 +166,7 @@
                                         <c:TestoConCodice Grid.Column="1"
                                                    Testo="{Binding RispostaCorretta}"
                                                    FontSize="12"
-                                                   Foreground="#1F7A4D"/>
+                                                   Foreground="{DynamicResource VerdeTestoBrush}"/>
                                     </Grid>
 
                                     <TextBlock Text="{Binding TentativiEtichetta}"
@@ -217,7 +217,7 @@
                 <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}"
                            VerticalAlignment="Center"
                            FontSize="12"
-                           Foreground="#B85450"
+                           Foreground="{DynamicResource RossoTestoBrush}"
                            FontWeight="SemiBold"
                            Margin="0,0,4,0"/>
                 <Button Content="{x:Static r:Strings.Comune_SiElimina}"

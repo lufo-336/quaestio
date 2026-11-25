@@ -26,6 +26,7 @@ public class RisultatoCronologiaItem : ObservableObject, IConfermaEliminazione
     public string MateriaEtichetta { get; }
     public string PercentualeFormattata { get; }
     public IBrush ColorePercentuale { get; }
+    public IBrush ColorePercentualeTesto => QuizColors.PercentualeTesto(Risultato.PercentualeCorrette);
     public string DurataFormattata { get; }
     public string Conteggio { get; }
     public bool Abbandonato { get; }
@@ -73,5 +74,7 @@ public class RisultatoCronologiaItem : ObservableObject, IConfermaEliminazione
                        : r.TempoScaduto ? Strings.Stato_TempoScaduto
                        : Strings.Stato_Concluso;
     }
+
+    public void NotificaCambioTema() => RaisePropertyChanged(nameof(ColorePercentualeTesto));
 
 }

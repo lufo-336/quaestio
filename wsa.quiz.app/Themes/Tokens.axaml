@@ -4,6 +4,11 @@
     <!-- Font titoli: Archivo stretto (larghezza 78%) e peso ExtraBold (800). -->
     <FontFamily x:Key="FontTitoli">avares://Wsa.Quiz.App/Assets/Fonts#Archivo Titoli</FontFamily>
 
+    <!-- Esiti (colori di riempimento): verdeacqua, ocra, rosso da Inchiostri.cs -->
+    <SolidColorBrush x:Key="VerdeBrush" Color="#40a79b"/>
+    <SolidColorBrush x:Key="AmbraBrush" Color="#ebaf00"/>
+    <SolidColorBrush x:Key="RossoBrush" Color="#d6414b"/>
+
     <!-- Neutri del brand "lucafoglia": Grafite (chiaro) e Arena (scuro).
          Tutti SolidColorBrush (mai Color nei Setter di Style, trappola 7). -->
     <ResourceDictionary.ThemeDictionaries>
@@ -14,6 +19,9 @@
             <SolidColorBrush x:Key="TestoAttenuato" Color="#57564f"/>
             <SolidColorBrush x:Key="RigaForte" Color="#141413"/>
             <SolidColorBrush x:Key="RigaDebole" Color="#d6d5d0"/>
+            <SolidColorBrush x:Key="VerdeTestoBrush" Color="#2b7168"/>
+            <SolidColorBrush x:Key="AmbraTestoBrush" Color="#836100"/>
+            <SolidColorBrush x:Key="RossoTestoBrush" Color="#b83740"/>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="Sfondo" Color="#0c0c0c"/>
@@ -22,6 +30,9 @@
             <SolidColorBrush x:Key="TestoAttenuato" Color="#a6a6a6"/>
             <SolidColorBrush x:Key="RigaForte" Color="#f4f4f2"/>
             <SolidColorBrush x:Key="RigaDebole" Color="#212120"/>
+            <SolidColorBrush x:Key="VerdeTestoBrush" Color="#40a79b"/>
+            <SolidColorBrush x:Key="AmbraTestoBrush" Color="#ebaf00"/>
+            <SolidColorBrush x:Key="RossoTestoBrush" Color="#d6414b"/>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

@@ -25,32 +25,40 @@
         </Style>
 
         <Style Selector="Button.risposta.corretta">
-            <Setter Property="Background" Value="#1F7A4D"/>
-            <Setter Property="BorderBrush" Value="#155A38"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.risposta.corretta /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.risposta.corretta:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#1F7A4D"/>
-            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.risposta.corretta:disabled /template/ ContentPresenter">
-            <Setter Property="Background" Value="#1F7A4D"/>
-            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
             <Setter Property="Opacity" Value="1"/>
         </Style>
 
         <Style Selector="Button.risposta.sbagliata">
-            <Setter Property="Background" Value="#B85450"/>
-            <Setter Property="BorderBrush" Value="#8C3B38"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.risposta.sbagliata /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.risposta.sbagliata:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#B85450"/>
-            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.risposta.sbagliata:disabled /template/ ContentPresenter">
-            <Setter Property="Background" Value="#B85450"/>
-            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
             <Setter Property="Opacity" Value="1"/>
         </Style>
 
@@ -60,20 +68,23 @@
         </Style>
 
         <Style Selector="Button.prossima /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="#1F1F1F"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
         </Style>
         <Style Selector="Button.prossima:pointerover /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="#1F1F1F"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.prossima:pressed /template/ ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
         </Style>
 
         <!-- Feedback box, colore dipende da UltimaRispostaCorretta -->
         <Style Selector="Border.feedbackOk">
-            <Setter Property="Background" Value="#E5F4EC"/>
-            <Setter Property="BorderBrush" Value="#1F7A4D"/>
+            <Setter Property="Background" Value="#E4F3F1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource VerdeBrush}"/>
         </Style>
         <Style Selector="Border.feedbackKo">
-            <Setter Property="Background" Value="#F9E7E6"/>
-            <Setter Property="BorderBrush" Value="#B85450"/>
+            <Setter Property="Background" Value="#F9E4E6"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RossoBrush}"/>
         </Style>
     </UserControl.Styles>
 
@@ -81,8 +92,8 @@
 
         <!-- BANNER VIEW-MODE (step 7): visibile solo quando si sta rivedendo una passata -->
         <Border Grid.Row="0"
-                Background="#FFF8E1"
-                BorderBrush="#E0C36C"
+                Background="#FCF4DB"
+                BorderBrush="{DynamicResource AmbraBrush}"
                 BorderThickness="1"
                 CornerRadius="6"
                 Padding="14,8"
@@ -92,7 +103,7 @@
                 <TextBlock Text="{Binding EtichettaDomanda}"
                            FontSize="13"
                            FontWeight="SemiBold"
-                           Foreground="#5C4A12"
+                           Foreground="#000000"
                            VerticalAlignment="Center"/>
                 <Button Grid.Column="1"
                         Content="{x:Static r:Strings.Quiz_TornaACorrente}"
@@ -162,8 +173,8 @@
                 </Border>
 
                 <!-- AVVISO SECONDA POSSIBILITA' -->
-                <Border Background="#FFF8E1"
-                        BorderBrush="#E0C36C"
+                <Border Background="#FCF4DB"
+                        BorderBrush="{DynamicResource AmbraBrush}"
                         BorderThickness="1"
                         CornerRadius="6"
                         Padding="14,8"
@@ -171,7 +182,7 @@
                     <TextBlock Text="{x:Static r:Strings.Quiz_UltimaPossibilita}"
                                FontSize="13"
                                FontWeight="SemiBold"
-                               Foreground="#5C4A12"/>
+                               Foreground="#000000"/>
                 </Border>
 
                 <ItemsControl ItemsSource="{Binding Risposte}">
@@ -211,12 +222,12 @@
                            Text="{Binding FeedbackTitolo}"
                            FontWeight="Bold"
                            FontSize="14"
-                           Foreground="#1F1F1F"/>
+                           Foreground="#000000"/>
                 <c:TestoConCodice Grid.Row="1" Grid.Column="0"
                            Testo="{Binding SpiegazioneTesto}"
                            FontSize="12"
                            Margin="0,4,0,0"
-                           Foreground="#1F1F1F"
+                           Foreground="#000000"
                            IsVisible="{Binding SpiegazioneTesto, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                 <Button Grid.RowSpan="2" Grid.Column="1"
                         Content="{x:Static r:Strings.Quiz_ProssimaDomanda}"

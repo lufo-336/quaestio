@@ -104,22 +104,22 @@
 
         <!--
           Stile per i bottoni "danger" (azioni distruttive: Elimina sospeso).
-          Variante rossa con stesso comportamento sui quattro stati.
+          Rosso inchiostro (#d6414b) e sue mescole (QuizColors.Danger*), testo nero.
         -->
         <Style Selector="Button.danger /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#B85450"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#B85450"/>
+            <Setter Property="Background" Value="#d6414b"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="BorderBrush" Value="#d6414b"/>
         </Style>
         <Style Selector="Button.danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#A04340"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#A04340"/>
+            <Setter Property="Background" Value="#DA545D"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="BorderBrush" Value="#DA545D"/>
         </Style>
         <Style Selector="Button.danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#8C3B38"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#8C3B38"/>
+            <Setter Property="Background" Value="#AB343C"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
         </Style>
         <Style Selector="Button.danger:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="#D6D6D6"/>

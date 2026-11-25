@@ -109,18 +109,18 @@
         <!-- Errore globale (visibile solo se il caricamento dati fallisce) -->
         <Border x:Name="ErrorePanel"
                 DockPanel.Dock="Top"
-                Background="#F9E7E6"
-                BorderBrush="#B85450"
+                Background="#F9E4E6"
+                BorderBrush="{DynamicResource RossoBrush}"
                 BorderThickness="0,0,0,1"
                 Padding="16,12"
                 IsVisible="False">
             <StackPanel Spacing="4">
                 <TextBlock Text="{x:Static r:Strings.Shell_ErroreCaricamento}"
                            FontWeight="SemiBold"
-                           Foreground="#8C3B38"/>
+                           Foreground="#000000"/>
                 <TextBlock x:Name="ErroreText"
                            FontSize="12"
-                           Foreground="#8C3B38"
+                           Foreground="#000000"
                            TextWrapping="Wrap"/>
             </StackPanel>
         </Border>

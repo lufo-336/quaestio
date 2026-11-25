@@ -25,6 +25,7 @@ public class MateriaStatItem : ObservableObject
     public double PctErrore => TotaleViste == 0 ? 0.0 : TotaleErrori / TotaleViste;
     public string PctFormattata => $"{PctErrore:P0}";
     public IBrush ColoreLivello => QuizColors.HeatmapBordo(PctErrore);
+    public IBrush ColoreLivelloTesto => QuizColors.HeatmapTesto(PctErrore);
 
     public int CountRosse { get; }
     public int CountAmbra { get; }
@@ -76,4 +77,11 @@ public class MateriaStatItem : ObservableObject
 
     public RichiestaRipasso CreaRichiestaRipasso()
         => new(Stat.Materia, null, IdSbagliateUniche);
+
+    public void NotificaCambioTema()
+    {
+        RaisePropertyChanged(nameof(ColoreLivelloTesto));
+        foreach (var c in Categorie)
+            c.NotificaCambioTema();
+    }
 }

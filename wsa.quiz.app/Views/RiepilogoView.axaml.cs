@@ -34,7 +34,7 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
         : string.Format(Strings.Riepilogo_RisposteSbagliateN, Sbagliate.Count);
 
     public string PercentualeFormattata { get; }
-    public IBrush ColorePercentuale { get; }
+    public IBrush ColorePercentuale => QuizColors.PercentualeTesto(_risultato.PercentualeCorrette);
     public int TotaleDomande => _risultato.TotaleDomande;
     public int RisposteCorrette => _risultato.RisposteCorrette;
     public int RisposteErrate => _risultato.RisposteErrate;
@@ -88,13 +88,20 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
                 : Strings.Riepilogo_SottotitoloConcluso;
 
         PercentualeFormattata = $"{Math.Round(risultato.PercentualeCorrette)}%";
-        ColorePercentuale = QuizColors.Percentuale(risultato.PercentualeCorrette);
 
         DurataFormattata = Core.Services.QuizService.FormattaDurata(risultato.DurataQuiz);
 
         Sbagliate = risultato.Dettagli.Where(x => !x.Corretta).Select(x => new DettaglioRispostaItem(x)).ToList();
 
         DataContext = this;
+        QuizColors.CollegaCambioTema(this, AggiornaColoriTema);
+    }
+
+    private void AggiornaColoriTema()
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColorePercentuale)));
+        foreach (var item in Sbagliate)
+            item.NotificaCambioTema();
     }
 
 

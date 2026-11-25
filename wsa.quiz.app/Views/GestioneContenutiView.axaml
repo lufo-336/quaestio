@@ -52,7 +52,7 @@
                                                         Padding="{DynamicResource SzBtnPadding}" FontSize="12"
                                                         IsVisible="{Binding NonInAttesaConferma}"/>
                                                 <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}" VerticalAlignment="Center" FontSize="12"
-                                                           Foreground="#B85450" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource RossoTestoBrush}" FontWeight="SemiBold"
                                                            IsVisible="{Binding InAttesaConfermaEliminazione}"/>
                                                 <Button Content="{x:Static r:Strings.Comune_SiElimina}" Click="OnConfermaEliminaClick"
                                                         IsTabStop="False" Classes="danger"
