@@ -17,15 +17,10 @@
     </Style>
   </UserControl.Styles>
 
-  <!-- Card del dialogo (overlay in-page, M3). Sfondo chiaro hardcoded; forzo il
-       sottoalbero a tema Light così i Button default (es. "Annulla") restano
-       leggibili anche quando l'app gira in tema scuro (altrimenti testo chiaro
-       su card chiara). Il tema scuro vero della card è rinviato a Step 10. -->
-  <ThemeVariantScope RequestedThemeVariant="Light">
-  <Border Background="#FAFAFA"
-          BorderBrush="#D6D6D6"
+  <!-- Card del dialogo (overlay in-page). Token di tema per chiaro/scuro. -->
+  <Border Background="{DynamicResource SfondoRialzato}"
+          BorderBrush="{DynamicResource RigaDebole}"
           BorderThickness="1"
-          CornerRadius="8"
           Padding="20"
           MinWidth="360"
           MaxWidth="480">
@@ -33,11 +28,12 @@
       <TextBlock Text="{x:Static r:Strings.Pausa_Titolo}"
                  FontSize="14"
                  FontWeight="SemiBold"
-                 Foreground="#1F1F1F"/>
+                 TextWrapping="Wrap"
+                 Foreground="{DynamicResource TestoPrincipale}"/>
       <TextBlock Text="{x:Static r:Strings.Pausa_Spiegazione}"
                  FontSize="12"
                  TextWrapping="Wrap"
-                 Foreground="#5A5A5A"/>
+                 Foreground="{DynamicResource TestoAttenuato}"/>
 
       <!-- Pulsantiera: Abbandona (sx, danger) | spazio | Annulla, Salva e esci (dx, accent) -->
       <Grid ColumnDefinitions="Auto,*,Auto"
@@ -64,6 +60,5 @@
       </Grid>
     </StackPanel>
   </Border>
-  </ThemeVariantScope>
 
 </UserControl>

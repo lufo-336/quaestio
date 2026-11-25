@@ -152,12 +152,13 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
 
         if (AppEnv.TouchMode)
         {
-            HeaderGrid.Margin = new Thickness(12, 12, 12, 8);
-            ContenutoGrid.Margin = new Thickness(12, 0, 12, 0);
+            HeaderGrid.Margin = new Thickness(20, 12, 20, 8);
+            ContenutoGrid.Margin = new Thickness(20, 0, 20, 0);
             ContenutoGrid.ColumnDefinitions = new ColumnDefinitions("*");
             Grid.SetColumn(PannelloMaterie, 0);
             Grid.SetColumn(PannelloDettaglio, 0);
-            PannelloDettaglio.Padding = new Thickness(12);
+            PannelloDettaglio.BorderThickness = new Thickness(0);
+            PannelloDettaglio.Padding = new Thickness(0);
         }
 
         AddHandler(KeyDownEvent, OnKeyDownTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
@@ -227,6 +228,12 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
     // ------------------------------------------------------------------ INTERAZIONI
 
     private void OnAggiornaClick(object? sender, RoutedEventArgs e) => Ricarica();
+
+    private void OnMateriaBorderInitialized(object? sender, EventArgs e)
+    {
+        if (AppEnv.TouchMode && sender is Border b)
+            b.Padding = new Thickness(0, 12);
+    }
 
     private void OnLimiteChanged(object? sender, NumericUpDownValueChangedEventArgs e)
     {

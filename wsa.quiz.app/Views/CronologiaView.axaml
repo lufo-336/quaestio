@@ -9,6 +9,15 @@
              x:Class="Wsa.Quiz.App.Views.CronologiaView"
              x:DataType="views:CronologiaView">
 
+    <UserControl.Styles>
+        <!-- Niente padding extra di Fluent sui ListBoxItem: le righe si allineano
+             ai margini orizzontali della schermata (20px) come le altre viste. -->
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </UserControl.Styles>
+
     <DockPanel>
 
         <!-- ======================================== HEADER (titolo + aggiorna) -->
@@ -59,11 +68,12 @@
 
             <StackPanel Spacing="2" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static r:Strings.Shell_TabCronologia}"
-                           FontSize="22" FontWeight="SemiBold"/>
+                           FontFamily="{DynamicResource FontTitoli}"
+                           FontSize="22" FontWeight="ExtraBold"/>
                 <TextBlock Text="{Binding Sottotitolo}"
                            FontSize="12"
                            TextWrapping="Wrap"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                           Foreground="{DynamicResource TestoAttenuato}"/>
             </StackPanel>
 
         </DockPanel>
@@ -77,10 +87,9 @@
                 <Border DockPanel.Dock="Top"
                         Margin="20,0,20,0"
                         Padding="12,8"
-                        Background="{DynamicResource SystemRegionBrush}"
-                        BorderBrush="{DynamicResource SystemBaseLowColor}"
-                        BorderThickness="1"
-                        CornerRadius="6">
+                        Background="{DynamicResource SfondoRialzato}"
+                        BorderBrush="{DynamicResource RigaDebole}"
+                        BorderThickness="1">
                     <WrapPanel ItemSpacing="12" LineSpacing="8">
 
                         <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
@@ -144,51 +153,51 @@
                 <Border DockPanel.Dock="Top"
                         IsVisible="{Binding NessunaSessione}"
                         Margin="20,8,20,0"
-                        Background="{DynamicResource SystemRegionBrush}"
-                        BorderBrush="{DynamicResource SystemBaseLowColor}"
-                        BorderThickness="1"
-                        CornerRadius="6"
-                        Padding="20">
+                        Background="Transparent"
+                        BorderBrush="{DynamicResource RigaDebole}"
+                        BorderThickness="0,1,0,1"
+                        Padding="0,20">
                     <StackPanel HorizontalAlignment="Center" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Cronologia_NessunaSessione}"
                                    FontWeight="SemiBold"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="{Binding TestoVuoto}"
                                    FontSize="12"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                   Foreground="{DynamicResource TestoAttenuato}"
                                    TextWrapping="Wrap"
                                    TextAlignment="Center"
                                    MaxWidth="420"/>
                     </StackPanel>
                 </Border>
 
-                <!-- Header colonne (visibile solo se la lista non e' vuota e siamo su desktop) -->
+                <!-- Header colonne (visibile solo se la lista non e' vuota e siamo su desktop).
+                     Niente bordo sotto: la prima riga della lista disegna il proprio 1px superiore. -->
                 <Border x:Name="HeaderColonne"
                         DockPanel.Dock="Top"
                         IsVisible="{Binding MostraHeaderColonne}"
                         Margin="20,8,20,0"
-                        BorderBrush="{DynamicResource SystemBaseLowColor}"
-                        BorderThickness="0,0,0,1"
-                        Padding="14,8">
+                        BorderThickness="0"
+                        Padding="0,8">
                     <Grid ColumnDefinitions="Auto,180,*,90,90,90,160">
                         <TextBlock Text="" Width="6"/>
                         <TextBlock Grid.Column="1" Text="{x:Static r:Strings.Cronologia_ColData}"
                                    FontSize="11" FontWeight="SemiBold"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Margin="8,0,4,0"
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Grid.Column="2" Text="{x:Static r:Strings.Cronologia_ColModalita}"
                                    FontSize="11" FontWeight="SemiBold"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Grid.Column="3" Text="%"
                                    FontSize="11" FontWeight="SemiBold"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                   Foreground="{DynamicResource TestoAttenuato}"
                                    HorizontalAlignment="Right"/>
                         <TextBlock Grid.Column="4" Text="{x:Static r:Strings.Cronologia_ColRisposte}"
                                    FontSize="11" FontWeight="SemiBold"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                   Foreground="{DynamicResource TestoAttenuato}"
                                    HorizontalAlignment="Right"/>
                         <TextBlock Grid.Column="5" Text="{x:Static r:Strings.Cronologia_ColDurata}"
                                    FontSize="11" FontWeight="SemiBold"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                   Foreground="{DynamicResource TestoAttenuato}"
                                    HorizontalAlignment="Right"/>
                         <TextBlock Grid.Column="6" Text="" />
                     </Grid>
@@ -200,14 +209,14 @@
                            IsVisible="{Binding !NessunaSessione}"
                            Text="{x:Static r:Strings.Cronologia_DoppioClick}"
                            FontSize="11"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"
-                           Margin="20,4,20,12"/>
+                           Foreground="{DynamicResource TestoAttenuato}"
+                           Margin="20,8,20,12"/>
 
-                <!-- Le due liste (tabella desktop, card touch) stanno in un Grid: nel
+                <!-- Le due liste (tabella desktop, righe touch) stanno in un Grid: nel
                      DockPanel solo l'ULTIMO figlio riempie lo spazio, gli altri senza Dock
                      vanno a sinistra larghi quanto il contenuto. Senza il Grid la tabella
                      (penultima) restava stretta e le colonne non stavano sotto
-                     l'intestazione, perche' l'ultima era la lista card nascosta. -->
+                     l'intestazione, perche' l'ultima era la lista nascosta. -->
                 <Grid>
                 <ScrollViewer x:Name="ScrollTabella"
                               Margin="20,0,20,0"
@@ -218,107 +227,112 @@
                              SelectionMode="Single"
                              DoubleTapped="OnSessioneDoubleTapped"
                              Background="Transparent"
-                             BorderThickness="0">
+                             Padding="0"
+                             BorderBrush="{DynamicResource RigaDebole}"
+                             BorderThickness="0,0,0,1">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="state:RisultatoCronologiaItem">
-                                <Grid ColumnDefinitions="6,180,*,90,90,90,160"
-                                      Margin="0,2">
-                                    <Border Grid.Column="0"
-                                            Width="6"
-                                            Background="{Binding ColorePercentuale}"
-                                            CornerRadius="3"/>
+                                <Border Background="Transparent"
+                                        BorderBrush="{DynamicResource RigaDebole}"
+                                        BorderThickness="0,1,0,0"
+                                        Padding="0,8">
+                                    <Grid ColumnDefinitions="6,180,*,90,90,90,160">
+                                        <Border Grid.Column="0"
+                                                Width="6"
+                                                Background="{Binding ColorePercentuale}"/>
 
-                                    <StackPanel Grid.Column="1" Spacing="2" Margin="8,2,4,2">
-                                        <TextBlock Text="{Binding DataFormattata}"
-                                                   FontSize="13" FontWeight="SemiBold"/>
-                                        <TextBlock Text="{x:Static r:Strings.Stato_Abbandonato}"
-                                                   FontSize="10"
-                                                   Foreground="{DynamicResource RossoTestoBrush}"
-                                                   IsVisible="{Binding Abbandonato}"/>
-                                        <TextBlock Text="{x:Static r:Strings.Cronologia_BadgeTempoScaduto}"
-                                                   FontSize="10"
-                                                   Foreground="{DynamicResource AmbraTestoBrush}"
-                                                   IsVisible="{Binding TempoScaduto}"/>
-                                    </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="2" Margin="8,2,4,2">
+                                            <TextBlock Text="{Binding DataFormattata}"
+                                                       FontSize="13" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{x:Static r:Strings.Stato_Abbandonato}"
+                                                       FontSize="10"
+                                                       Foreground="{DynamicResource RossoTestoBrush}"
+                                                       IsVisible="{Binding Abbandonato}"/>
+                                            <TextBlock Text="{x:Static r:Strings.Cronologia_BadgeTempoScaduto}"
+                                                       FontSize="10"
+                                                       Foreground="{DynamicResource AmbraTestoBrush}"
+                                                       IsVisible="{Binding TempoScaduto}"/>
+                                        </StackPanel>
 
-                                    <StackPanel Grid.Column="2" Spacing="2" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Modalita}"
-                                                   TextWrapping="NoWrap"
-                                                   TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="{Binding MateriaEtichetta}"
-                                                   FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}"
-                                                   TextTrimming="CharacterEllipsis"/>
-                                    </StackPanel>
+                                        <StackPanel Grid.Column="2" Spacing="2" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Modalita}"
+                                                       TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding MateriaEtichetta}"
+                                                       FontSize="11"
+                                                       Foreground="{DynamicResource TestoAttenuato}"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </StackPanel>
 
-                                    <TextBlock Grid.Column="3"
-                                               Text="{Binding PercentualeFormattata}"
-                                               FontSize="14" FontWeight="SemiBold"
-                                               Foreground="{Binding ColorePercentualeTesto}"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding PercentualeFormattata}"
+                                                   FontSize="14" FontWeight="SemiBold"
+                                                   Foreground="{Binding ColorePercentualeTesto}"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="4"
-                                               Text="{Binding Conteggio}"
-                                               FontSize="12"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="4"
+                                                   Text="{Binding Conteggio}"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="5"
-                                               Text="{Binding DurataFormattata}"
-                                               FontSize="12"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="5"
+                                                   Text="{Binding DurataFormattata}"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"/>
 
-                                    <!-- Bottoni: stato normale.
-                                         IsTabStop=False perche' altrimenti il Tab entrerebbe
-                                         dentro i bottoni della riga al posto di restare sul
-                                         ListBoxItem: cosi' frecce e Invio funzionano come
-                                         si aspetta l'utente sulla riga selezionata. Il
-                                         click di mouse continua a funzionare; per eliminare
-                                         da tastiera c'e' il tasto Canc. -->
-                                    <StackPanel Grid.Column="6"
-                                                Orientation="Horizontal"
-                                                Spacing="6"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Margin="8,0,0,0"
-                                                IsVisible="{Binding NonInAttesaConferma}">
-                                        <Button Content="{x:Static r:Strings.Comune_Elimina}"
-                                                Click="OnEliminaClick"
-                                                IsTabStop="False"
-                                                Classes="danger"
-                                                Padding="12,4"
-                                                FontSize="11"/>
-                                    </StackPanel>
+                                        <!-- Bottoni: stato normale.
+                                             IsTabStop=False perche' altrimenti il Tab entrerebbe
+                                             dentro i bottoni della riga al posto di restare sul
+                                             ListBoxItem: cosi' frecce e Invio funzionano come
+                                             si aspetta l'utente sulla riga selezionata. Il
+                                             click di mouse continua a funzionare; per eliminare
+                                             da tastiera c'e' il tasto Canc. -->
+                                        <StackPanel Grid.Column="6"
+                                                    Orientation="Horizontal"
+                                                    Spacing="6"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Margin="8,0,0,0"
+                                                    IsVisible="{Binding NonInAttesaConferma}">
+                                            <Button Content="{x:Static r:Strings.Comune_Elimina}"
+                                                    Click="OnEliminaClick"
+                                                    IsTabStop="False"
+                                                    Classes="danger"
+                                                    Padding="12,4"
+                                                    FontSize="11"/>
+                                        </StackPanel>
 
-                                    <!-- Bottoni: stato conferma -->
-                                    <StackPanel Grid.Column="6"
-                                                Orientation="Horizontal"
-                                                Spacing="6"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Margin="8,0,0,0"
-                                                IsVisible="{Binding InAttesaConfermaEliminazione}">
-                                        <Button Content="{x:Static r:Strings.Comune_SiElimina}"
-                                                Click="OnConfermaEliminaClick"
-                                                IsTabStop="False"
-                                                Classes="danger"
-                                                Padding="10,4"
-                                                FontSize="11"/>
-                                        <Button Content="{x:Static r:Strings.Comune_Annulla}"
-                                                Click="OnAnnullaEliminaClick"
-                                                IsTabStop="False"
-                                                Padding="10,4"
-                                                FontSize="11"/>
-                                    </StackPanel>
-                                </Grid>
+                                        <!-- Bottoni: stato conferma -->
+                                        <StackPanel Grid.Column="6"
+                                                    Orientation="Horizontal"
+                                                    Spacing="6"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Margin="8,0,0,0"
+                                                    IsVisible="{Binding InAttesaConfermaEliminazione}">
+                                            <Button Content="{x:Static r:Strings.Comune_SiElimina}"
+                                                    Click="OnConfermaEliminaClick"
+                                                    IsTabStop="False"
+                                                    Classes="danger"
+                                                    Padding="10,4"
+                                                    FontSize="11"/>
+                                            <Button Content="{x:Static r:Strings.Comune_Annulla}"
+                                                    Click="OnAnnullaEliminaClick"
+                                                    IsTabStop="False"
+                                                    Padding="10,4"
+                                                    FontSize="11"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </ScrollViewer>
 
-                <!-- Lista a card (touch) — visibile solo su touch quando ci sono sessioni -->
+                <!-- Lista a righe (touch) — visibile solo su touch quando ci sono sessioni -->
                 <ScrollViewer x:Name="ScrollCard"
                               Margin="20,0,20,0"
                               VerticalScrollBarVisibility="Auto"
@@ -329,22 +343,21 @@
                              SelectionMode="Single"
                              DoubleTapped="OnSessioneDoubleTapped"
                              Background="Transparent"
-                             BorderThickness="0">
+                             Padding="0"
+                             BorderBrush="{DynamicResource RigaDebole}"
+                             BorderThickness="0,0,0,1">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="state:RisultatoCronologiaItem">
-                                <Border Background="{DynamicResource SystemRegionBrush}"
-                                        BorderBrush="{DynamicResource SystemBaseLowColor}"
-                                        BorderThickness="1"
-                                        CornerRadius="6"
-                                        Padding="14,12"
-                                        Margin="0,0,0,8">
+                                <Border Background="Transparent"
+                                        BorderBrush="{DynamicResource RigaDebole}"
+                                        BorderThickness="0,1,0,0"
+                                        Padding="0,14">
                                     <Grid ColumnDefinitions="6,*" RowDefinitions="Auto,Auto,Auto">
                                         <Border Grid.RowSpan="3" Width="6"
-                                                Background="{Binding ColorePercentuale}"
-                                                CornerRadius="3" Margin="0,0,10,0"/>
+                                                Background="{Binding ColorePercentuale}"/>
 
                                         <!-- Riga 1: data + % -->
-                                        <Grid Grid.Column="1" Grid.Row="0" ColumnDefinitions="*,Auto">
+                                        <Grid Grid.Column="1" Grid.Row="0" ColumnDefinitions="*,Auto" Margin="10,0,0,0">
                                             <StackPanel Spacing="2">
                                                 <TextBlock Text="{Binding DataFormattata}"
                                                            FontWeight="SemiBold"
@@ -363,15 +376,15 @@
                                         </Grid>
 
                                         <!-- Riga 2: modalita' + materia -->
-                                        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="2" Margin="0,4,0,0">
+                                        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="2" Margin="10,4,0,0">
                                             <TextBlock Text="{Binding Modalita}" TextTrimming="CharacterEllipsis"/>
                                             <TextBlock Text="{Binding MateriaEtichetta}" FontSize="11"
-                                                       Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                       Foreground="{DynamicResource TestoAttenuato}"
                                                        TextTrimming="CharacterEllipsis"/>
                                         </StackPanel>
 
                                         <!-- Riga 3: conteggio/durata + Elimina -->
-                                        <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="*,Auto" Margin="0,6,0,0">
+                                        <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="*,Auto" Margin="10,6,0,0">
                                             <StackPanel Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding Conteggio}" FontSize="12"/>
                                                 <TextBlock Text="{Binding DurataFormattata}" FontSize="12"/>

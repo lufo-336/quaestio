@@ -130,10 +130,10 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 **Interfaces:**
 - Consumes: chiavi di Task 3 (`Sfondo`, `SfondoRialzato`, `RigaForte`, `RigaDebole`, `TestoAttenuato`).
 
-- [ ] **Step 1:** in tutte le viste: togliere `CornerRadius` e `BoxShadow` dalle card (raggio 0), bordo 1 px `RigaDebole`, fondo `SfondoRialzato` o trasparente; colori esadecimali sparsi sostituiti dalle chiavi dei token quando sono neutri.
-- [ ] **Step 2:** Cronologia, Sessioni in pausa, Statistiche: niente card; ogni voce è una riga con `BorderThickness="0,1,0,0"` `RigaDebole` (l'ultima chiude con `0,1,0,1`), stessi margini orizzontali delle altre schermate (spec §5.6).
-- [ ] **Step 3:** Statistiche: "Aggiorna" diventa un link testuale nell'accento sulla riga del titolo, senza scavalcarlo; filtri (Tutto/Ultime + campo numero + "partite") su riga propria; campo numerico largo abbastanza per tre cifre; contenuto di "Ripassa (n)" centrato verticalmente.
-- [ ] **Step 4:** Sessioni in pausa: in `TouchMode` "Riprendi" ed "Elimina" vanno **sotto** testo e progresso, mai sopra; titolo con `TextWrapping` o `TextTrimming` senza coprire nulla. Contatore: stringhe distinte per 1 e per n (es. `Sospesi_ContaUno` "1 sessione in pausa." / `Sospesi_ContaMolte` "{0} sessioni in pausa."; en "1 paused session." / "{0} paused sessions.").
+- [x] **Step 1:** in tutte le viste: togliere `CornerRadius` e `BoxShadow` dalle card (raggio 0), bordo 1 px `RigaDebole`, fondo `SfondoRialzato` o trasparente; colori esadecimali sparsi sostituiti dalle chiavi dei token quando sono neutri.
+- [x] **Step 2:** Cronologia, Sessioni in pausa, Statistiche: niente card; ogni voce è una riga con `BorderThickness="0,1,0,0"` `RigaDebole` (l'ultima chiude con `0,1,0,1`), stessi margini orizzontali delle altre schermate (spec §5.6).
+- [x] **Step 3:** Statistiche: "Aggiorna" diventa un link testuale nell'accento sulla riga del titolo, senza scavalcarlo; filtri (Tutto/Ultime + campo numero + "partite") su riga propria; campo numerico largo abbastanza per tre cifre; contenuto di "Ripassa (n)" centrato verticalmente.
+- [x] **Step 4:** Sessioni in pausa: in `TouchMode` "Riprendi" ed "Elimina" vanno **sotto** testo e progresso, mai sopra; titolo con `TextWrapping` o `TextTrimming` senza coprire nulla. Contatore: stringhe distinte per 1 e per n (es. `Sospesi_ContaUno` "1 sessione in pausa." / `Sospesi_ContaMolte` "{0} sessioni in pausa."; en "1 paused session." / "{0} paused sessions.").
 - [ ] **Step 5:** controllo a 360 di larghezza: finestra desktop stretta a 360 e browser in modalità telefono (`UsaTouchInSingleView`), tema chiaro e scuro, tutte le schermate; elencare in fondo al piano ("Difetti trovati") ogni altra sovrapposizione e correggerla.
 - [ ] **Step 6:** build, test, commit `fix(app): schermate in stile sobrio, elenchi a righe e sovrapposizioni su telefono` + push.
 

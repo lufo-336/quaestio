@@ -21,7 +21,7 @@
             <Setter Property="FontSize" Value="{DynamicResource SzFontBody}"/>
             <Setter Property="Margin" Value="0,4"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="CornerRadius" Value="0"/>
         </Style>
 
         <Style Selector="Button.risposta.corretta">
@@ -95,7 +95,6 @@
                 Background="#FCF4DB"
                 BorderBrush="{DynamicResource AmbraBrush}"
                 BorderThickness="1"
-                CornerRadius="6"
                 Padding="14,8"
                 Margin="0,0,0,10"
                 IsVisible="{Binding InViewMode}">
@@ -116,10 +115,9 @@
 
         <!-- HEADER -->
         <Border Grid.Row="1"
-                Background="{DynamicResource SystemRegionBrush}"
-                BorderBrush="{DynamicResource SystemBaseLowColor}"
+                Background="{DynamicResource SfondoRialzato}"
+                BorderBrush="{DynamicResource RigaDebole}"
                 BorderThickness="1"
-                CornerRadius="6"
                 Padding="14,10"
                 Margin="0,0,0,12">
             <Grid ColumnDefinitions="*,Auto,Auto" VerticalAlignment="Center">
@@ -130,13 +128,13 @@
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{Binding MateriaCorrente}"
                                    FontSize="11"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="·"
                                    FontSize="11"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding CategoriaCorrente}"
                                    FontSize="11"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -162,10 +160,9 @@
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <StackPanel Spacing="14">
 
-                <Border Background="{DynamicResource SystemRegionBrush}"
-                        BorderBrush="{DynamicResource SystemBaseLowColor}"
+                <Border Background="{DynamicResource SfondoRialzato}"
+                        BorderBrush="{DynamicResource RigaDebole}"
                         BorderThickness="1"
-                        CornerRadius="6"
                         Padding="18,16">
                     <c:TestoConCodice Testo="{Binding DomandaTesto}"
                                FontSize="{DynamicResource SzFontDomanda}"
@@ -176,7 +173,6 @@
                 <Border Background="#FCF4DB"
                         BorderBrush="{DynamicResource AmbraBrush}"
                         BorderThickness="1"
-                        CornerRadius="6"
                         Padding="14,8"
                         IsVisible="{Binding SecondaPossibilitaInCorso}">
                     <TextBlock Text="{x:Static r:Strings.Quiz_UltimaPossibilita}"
@@ -211,7 +207,6 @@
         <!-- FEEDBACK -->
         <Border Grid.Row="3"
                 Padding="14,12"
-                CornerRadius="6"
                 BorderThickness="1"
                 Margin="0,12,0,0"
                 IsVisible="{Binding RispostaInviata}"

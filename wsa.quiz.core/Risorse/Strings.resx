@@ -218,7 +218,8 @@
   <data name="Dettaglio_Titolo" xml:space="preserve"><value>Dettaglio sessione</value></data>
   <data name="Dettaglio_Avviata" xml:space="preserve"><value>Avviata il {0:dd MMM yyyy} alle {0:HH:mm}.</value></data>
   <data name="Sospesi_NessunaPunto" xml:space="preserve"><value>Nessuna sessione in pausa.</value></data>
-  <data name="Sospesi_NInPausa" xml:space="preserve"><value>{0} sessioni in pausa.</value></data>
+  <data name="Sospesi_ContaUno" xml:space="preserve"><value>1 sessione in pausa.</value></data>
+  <data name="Sospesi_ContaMolte" xml:space="preserve"><value>{0} sessioni in pausa.</value></data>
   <data name="Comune_Caricamento" xml:space="preserve"><value>Caricamento...</value></data>
   <data name="Comune_ErroreCaricamento" xml:space="preserve"><value>Errore nel caricamento: {0}</value></data>
   <data name="Sospesi_Rotazione" xml:space="preserve"><value>Rotazione</value></data>

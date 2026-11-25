@@ -13,25 +13,50 @@
 
     <UserControl.Styles>
         <Style Selector="Border.materiaCard">
-            <Setter Property="Background" Value="{DynamicResource SystemRegionBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SystemBaseLowColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="6"/>
-            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            <Setter Property="Padding" Value="8,12"/>
         </Style>
         <Style Selector="Border.materiaCard:pointerover">
-            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
         </Style>
         <Style Selector="Border.materiaCard.selezionata">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="11,9"/>
+            <Setter Property="BorderThickness" Value="3,1,0,0"/>
+            <Setter Property="Padding" Value="5,12,8,12"/>
+        </Style>
+
+        <Style Selector="Button.link">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="4,4"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.link /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.link:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoHoverBrush}"/>
+        </Style>
+        <Style Selector="Button.link:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoPressedBrush}"/>
         </Style>
 
         <Style Selector="Button.filtro">
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="CornerRadius" Value="0"/>
         </Style>
         <Style Selector="Button.filtro.attivo /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
@@ -55,40 +80,52 @@
         <!-- ============================== HEADER ============================== -->
         <Grid x:Name="HeaderGrid"
               DockPanel.Dock="Top"
-              ColumnDefinitions="*,Auto"
+              RowDefinitions="Auto,Auto"
               Margin="20,16,20,10">
-            <StackPanel Spacing="6">
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
                 <TextBlock Text="{x:Static r:Strings.Shell_TabStatistiche}"
+                           FontFamily="{DynamicResource FontTitoli}"
                            FontSize="{DynamicResource SzFontTitolo}"
-                           FontWeight="SemiBold"/>
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <!-- Niente GroupName: vedi Trappola 19. -->
-                    <RadioButton Content="{x:Static r:Strings.Statistiche_Tutto}"
-                                 IsChecked="{Binding ModalitaTutto}"
-                                 Margin="0,0,10,0"/>
-                    <RadioButton Content="{x:Static r:Strings.Statistiche_Ultime}"
-                                 IsChecked="{Binding !ModalitaTutto}"
-                                 Margin="0,0,10,0"/>
+                           FontWeight="ExtraBold"
+                           TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Center"/>
+                <Button Grid.Column="1"
+                        Classes="link"
+                        Content="{x:Static r:Strings.Comune_Aggiorna}"
+                        Click="OnAggiornaClick"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        Margin="12,0,0,0"/>
+            </Grid>
+            <WrapPanel Grid.Row="1"
+                       Orientation="Horizontal"
+                       ItemSpacing="10"
+                       LineSpacing="6"
+                       VerticalAlignment="Center"
+                       Margin="0,8,0,0">
+                <!-- Niente GroupName: vedi Trappola 19. -->
+                <RadioButton Content="{x:Static r:Strings.Statistiche_Tutto}"
+                             IsChecked="{Binding ModalitaTutto}"
+                             VerticalAlignment="Center"/>
+                <RadioButton Content="{x:Static r:Strings.Statistiche_Ultime}"
+                             IsChecked="{Binding !ModalitaTutto}"
+                             VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                     <NumericUpDown Value="{Binding LimiteUltimeN}"
                                    Minimum="1"
                                    Maximum="9999"
                                    Increment="1"
                                    FormatString="0"
-                                   Width="100"
+                                   Width="136"
                                    IsEnabled="{Binding !ModalitaTutto}"
                                    ValueChanged="OnLimiteChanged"
-                                   Margin="0,0,10,0"/>
+                                   VerticalAlignment="Center"/>
                     <TextBlock Text="{x:Static r:Strings.Statistiche_Partite}"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
-                </WrapPanel>
-            </StackPanel>
-            <Button Grid.Column="1"
-                    Content="{x:Static r:Strings.Comune_Aggiorna}"
-                    Click="OnAggiornaClick"
-                    Padding="14,6"
-                    FontSize="12"
-                    VerticalAlignment="Top"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
+                </StackPanel>
+            </WrapPanel>
         </Grid>
 
         <!-- ============================== CORPO ============================== -->
@@ -98,18 +135,17 @@
             <Border IsVisible="{Binding NessunDato}"
                     Margin="20,8,20,16"
                     VerticalAlignment="Top"
-                    Background="{DynamicResource SystemRegionBrush}"
-                    BorderBrush="{DynamicResource SystemBaseLowColor}"
-                    BorderThickness="1"
-                    CornerRadius="6"
-                    Padding="20">
+                    Background="Transparent"
+                    BorderBrush="{DynamicResource RigaDebole}"
+                    BorderThickness="0,1,0,1"
+                    Padding="0,20">
                 <StackPanel HorizontalAlignment="Center" Spacing="6">
                     <TextBlock Text="{x:Static r:Strings.Statistiche_NessunQuiz}"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="{x:Static r:Strings.Statistiche_NessunQuizDesc}"
                                FontSize="12"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"
+                               Foreground="{DynamicResource TestoAttenuato}"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                MaxWidth="460"/>
@@ -120,18 +156,17 @@
             <Border IsVisible="{Binding FiltroTroppoStretto}"
                     Margin="20,8,20,16"
                     VerticalAlignment="Top"
-                    Background="{DynamicResource SystemRegionBrush}"
-                    BorderBrush="{DynamicResource SystemBaseLowColor}"
-                    BorderThickness="1"
-                    CornerRadius="6"
-                    Padding="20">
+                    Background="Transparent"
+                    BorderBrush="{DynamicResource RigaDebole}"
+                    BorderThickness="0,1,0,1"
+                    Padding="0,20">
                 <StackPanel HorizontalAlignment="Center" Spacing="6">
                     <TextBlock Text="{x:Static r:Strings.Statistiche_FiltroStretto}"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="{x:Static r:Strings.Statistiche_FiltroStrettoDesc}"
                                FontSize="12"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"
+                               Foreground="{DynamicResource TestoAttenuato}"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                MaxWidth="460"/>
@@ -149,20 +184,22 @@
                               Grid.Column="0"
                               VerticalScrollBarVisibility="Auto"
                               IsVisible="{Binding MostraListaMaterie}">
-                    <StackPanel Spacing="8" Margin="{DynamicResource SzRiservaNav}">
+                    <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
                         <TextBlock Text="{x:Static r:Strings.Statistiche_Sottotitolo}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                   Foreground="{DynamicResource TestoAttenuato}"
                                    IsVisible="{Binding MostraSottotitoloMaterie}"
-                                   Margin="0,0,0,4"/>
+                                   Margin="0,0,0,10"/>
+                        <Border BorderBrush="{DynamicResource RigaDebole}"
+                                BorderThickness="0,0,0,1">
                         <ItemsControl ItemsSource="{Binding Materie}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="state:MateriaStatItem">
                                     <Border Classes="materiaCard"
                                             Classes.selezionata="{Binding IsSelected}"
-                                            Margin="0,0,0,8"
                                             Cursor="Hand"
+                                            Initialized="OnMateriaBorderInitialized"
                                             PointerPressed="OnMateriaPressed">
                                         <StackPanel Spacing="7">
                                             <Grid ColumnDefinitions="*,Auto,Auto">
@@ -182,8 +219,10 @@
                                                         Content="{Binding EtichettaRipassaBreve}"
                                                         Click="OnRipassaMateriaCardClick"
                                                         Classes="accent"
-                                                        Padding="10,4"
+                                                        Padding="12,6"
                                                         FontSize="12"
+                                                        VerticalAlignment="Center"
+                                                        VerticalContentAlignment="Center"
                                                         Margin="10,0,0,0"
                                                         IsVisible="{Binding MostraRipassaSuCard}"/>
                                             </Grid>
@@ -197,21 +236,21 @@
                                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                                                     <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding HaRosse}">
                                                         <Ellipse Width="8" Height="8" Fill="{DynamicResource RossoBrush}" VerticalAlignment="Center"/>
-                                                        <TextBlock Text="{Binding CountRosse}" FontSize="11" Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                        <TextBlock Text="{Binding CountRosse}" FontSize="11" Foreground="{DynamicResource TestoAttenuato}"/>
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding HaAmbra}">
                                                         <Ellipse Width="8" Height="8" Fill="{DynamicResource AmbraBrush}" VerticalAlignment="Center"/>
-                                                        <TextBlock Text="{Binding CountAmbra}" FontSize="11" Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                        <TextBlock Text="{Binding CountAmbra}" FontSize="11" Foreground="{DynamicResource TestoAttenuato}"/>
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding HaVerdi}">
                                                         <Ellipse Width="8" Height="8" Fill="{DynamicResource VerdeBrush}" VerticalAlignment="Center"/>
-                                                        <TextBlock Text="{Binding CountVerdi}" FontSize="11" Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                        <TextBlock Text="{Binding CountVerdi}" FontSize="11" Foreground="{DynamicResource TestoAttenuato}"/>
                                                     </StackPanel>
                                                 </StackPanel>
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding RiepilogoDettaglio}"
                                                            FontSize="11"
-                                                           Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                           Foreground="{DynamicResource TestoAttenuato}"
                                                            VerticalAlignment="Center"/>
                                             </Grid>
                                         </StackPanel>
@@ -219,17 +258,17 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        </Border>
                     </StackPanel>
                 </ScrollViewer>
 
                 <!-- PANNELLO 2: DETTAGLIO MATERIA -->
                 <Border x:Name="PannelloDettaglio"
                         Grid.Column="2"
-                        Background="{DynamicResource SystemRegionBrush}"
-                        BorderBrush="{DynamicResource SystemBaseLowColor}"
-                        BorderThickness="1"
-                        CornerRadius="6"
-                        Padding="16"
+                        Background="Transparent"
+                        BorderBrush="{DynamicResource RigaDebole}"
+                        BorderThickness="1,0,0,0"
+                        Padding="16,0,0,0"
                         IsVisible="{Binding MostraDettaglioMateria}">
                     <DockPanel>
 
@@ -257,7 +296,7 @@
                                     </WrapPanel>
                                     <TextBlock Text="{Binding MateriaRiepilogo}"
                                                FontSize="12"
-                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                               Foreground="{DynamicResource TestoAttenuato}"/>
                                 </StackPanel>
 
                                 <Button Grid.Column="1"
@@ -268,6 +307,7 @@
                                         FontSize="12"
                                         FontWeight="SemiBold"
                                         VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
                                         Margin="10,0,0,0"
                                         IsVisible="{Binding MateriaHaSbagliate}"/>
                             </Grid>
@@ -320,22 +360,23 @@
 
                         <!-- Elenco ordinato delle categorie -->
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel Spacing="8" Margin="{DynamicResource SzRiservaNav}">
+                            <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
                                 <TextBlock Text="{x:Static r:Strings.Statistiche_NessunaCategoriaFiltro}"
                                            FontSize="13"
                                            FontStyle="Italic"
-                                           Foreground="{DynamicResource SystemBaseMediumColor}"
+                                           Foreground="{DynamicResource TestoAttenuato}"
                                            IsVisible="{Binding NessunaCategoriaFiltrata}"
                                            Margin="4,12"/>
 
+                                <Border BorderBrush="{DynamicResource RigaDebole}"
+                                        BorderThickness="0,0,0,1"
+                                        IsVisible="{Binding !NessunaCategoriaFiltrata}">
                                 <ItemsControl ItemsSource="{Binding CategorieFiltrate}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate DataType="state:CategoriaStatItem">
-                                            <Border BorderBrush="{DynamicResource SystemBaseLowColor}"
-                                                    BorderThickness="1"
-                                                    CornerRadius="6"
-                                                    ClipToBounds="True"
-                                                    Margin="0,0,0,8">
+                                            <Border Background="Transparent"
+                                                    BorderBrush="{DynamicResource RigaDebole}"
+                                                    BorderThickness="0,1,0,0">
                                                 <Grid ColumnDefinitions="4,*">
                                                     <!-- Barra laterale colorata per livello -->
                                                     <Border Grid.Column="0"
@@ -347,7 +388,7 @@
                                                               Background="Transparent"
                                                               Cursor="Hand"
                                                               PointerPressed="OnCategoriaPressed"
-                                                              Margin="12,10">
+                                                              Margin="12,12,0,12">
                                                             <StackPanel Spacing="5" VerticalAlignment="Center">
                                                                 <WrapPanel ItemSpacing="8" LineSpacing="2">
                                                                     <TextBlock Text="{Binding NomeMostrato}"
@@ -368,16 +409,16 @@
                                                                                    VerticalAlignment="Center"/>
                                                                     <TextBlock Text="{Binding RiepilogoNumeri}"
                                                                                FontSize="12"
-                                                                               Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                                               Foreground="{DynamicResource TestoAttenuato}"
                                                                                VerticalAlignment="Center"/>
                                                                     <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
                                                                         <TextBlock Text="{Binding FrecciaEspansione}"
                                                                                    FontSize="12"
-                                                                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                                                   Foreground="{DynamicResource TestoAttenuato}"
                                                                                    IsVisible="{Binding HaSbagliate}"/>
                                                                         <TextBlock Text="{Binding EtichettaSbagliate}"
                                                                                    FontSize="12"
-                                                                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                                                   Foreground="{DynamicResource TestoAttenuato}"/>
                                                                     </StackPanel>
                                                                 </WrapPanel>
                                                             </StackPanel>
@@ -386,27 +427,27 @@
                                                                     Content="{Binding EtichettaRipassa}"
                                                                     Click="OnRipassaCategoriaClick"
                                                                     Classes="accent"
-                                                                    Padding="11,5"
+                                                                    Padding="12,6"
                                                                     FontSize="12"
                                                                     VerticalAlignment="Center"
+                                                                    VerticalContentAlignment="Center"
                                                                     Margin="10,0,0,0"
                                                                     IsVisible="{Binding HaSbagliate}"/>
                                                         </Grid>
 
                                                         <!-- Domande sbagliate espandibili inline -->
-                                                        <Border BorderBrush="{DynamicResource SystemBaseLowColor}"
-                                                                BorderThickness="0,1,0,0"
-                                                                Padding="12,10"
+                                                        <Border BorderThickness="0"
+                                                                Padding="12,0,0,12"
                                                                 IsVisible="{Binding MostraSbagliateInline}">
+                                                            <Border BorderBrush="{DynamicResource RigaDebole}"
+                                                                    BorderThickness="0,0,0,1">
                                                             <ItemsControl ItemsSource="{Binding Sbagliate}">
                                                                 <ItemsControl.ItemTemplate>
                                                                     <DataTemplate DataType="stats:DomandaSbagliata">
-                                                                        <Border Background="{DynamicResource SystemRegionBrush}"
-                                                                                BorderBrush="{DynamicResource SystemBaseLowColor}"
-                                                                                BorderThickness="1"
-                                                                                CornerRadius="5"
-                                                                                Padding="10,8"
-                                                                                Margin="0,0,0,6">
+                                                                        <Border Background="{DynamicResource SfondoRialzato}"
+                                                                                BorderBrush="{DynamicResource RigaDebole}"
+                                                                                BorderThickness="0,1,0,0"
+                                                                                Padding="10,8">
                                                                             <StackPanel Spacing="5">
                                                                                 <TextBlock FontWeight="SemiBold"
                                                                                            Foreground="{DynamicResource RossoTestoBrush}"
@@ -431,13 +472,14 @@
                                                                                 <c:TestoConCodice Testo="{Binding Spiegazione}"
                                                                                                   FontStyle="Italic"
                                                                                                   FontSize="12"
-                                                                                                  Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                                                                  Foreground="{DynamicResource TestoAttenuato}"
                                                                                                   IsVisible="{Binding Spiegazione, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                                                                             </StackPanel>
                                                                         </Border>
                                                                     </DataTemplate>
                                                                 </ItemsControl.ItemTemplate>
                                                             </ItemsControl>
+                                                            </Border>
                                                         </Border>
                                                     </StackPanel>
                                                 </Grid>
@@ -445,6 +487,7 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
+                                </Border>
                             </StackPanel>
                         </ScrollViewer>
 

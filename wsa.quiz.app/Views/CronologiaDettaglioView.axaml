@@ -22,19 +22,19 @@
                     ToolTip.Tip="{x:Static r:Strings.Dettaglio_IndietroTip}"/>
             <StackPanel Grid.Column="1" Spacing="2" Margin="16,0,0,0" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Titolo}"
-                           FontSize="20" FontWeight="SemiBold"/>
+                           FontFamily="{DynamicResource FontTitoli}"
+                           FontSize="20" FontWeight="ExtraBold"/>
                 <TextBlock Text="{Binding Sottotitolo}"
                            FontSize="12"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                           Foreground="{DynamicResource TestoAttenuato}"/>
             </StackPanel>
         </Grid>
 
         <!-- STATISTICHE (stesso pattern di RiepilogoView) -->
         <Border Grid.Row="1"
-                Background="{DynamicResource SystemRegionBrush}"
-                BorderBrush="{DynamicResource SystemBaseLowColor}"
+                Background="{DynamicResource SfondoRialzato}"
+                BorderBrush="{DynamicResource RigaDebole}"
                 BorderThickness="1"
-                CornerRadius="6"
                 Padding="20"
                 Margin="0,0,0,12">
             <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="Auto,Auto">
@@ -46,20 +46,20 @@
                                Foreground="{Binding ColorePercentuale}"/>
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_CorretteMinuscolo}"
                                FontSize="11"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Totale}"
                                FontSize="11"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
                     <TextBlock Text="{Binding TotaleDomande}"
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Corrette}"
                                FontSize="11"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
                     <TextBlock Text="{Binding RisposteCorrette}"
                                FontSize="18" FontWeight="SemiBold"
                                Foreground="{DynamicResource VerdeTestoBrush}"/>
@@ -67,7 +67,7 @@
                 <StackPanel Grid.Column="3" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Errate}"
                                FontSize="11"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
                     <TextBlock Text="{Binding RisposteErrate}"
                                FontSize="18" FontWeight="SemiBold"
                                Foreground="{DynamicResource RossoTestoBrush}"/>
@@ -75,7 +75,7 @@
                 <StackPanel Grid.Column="4" Grid.Row="0" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.Riepilogo_Punteggio}"
                                FontSize="11"
-                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                               Foreground="{DynamicResource TestoAttenuato}"/>
                     <TextBlock Text="{Binding Punteggio}"
                                FontSize="18" FontWeight="SemiBold"/>
                 </StackPanel>
@@ -85,21 +85,21 @@
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Riepilogo_Durata}"
                                    FontSize="12"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding DurataFormattata}"
                                    FontSize="12" FontWeight="SemiBold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Riepilogo_Modalita}"
                                    FontSize="12"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding Modalita}"
                                    FontSize="12" FontWeight="SemiBold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <TextBlock Text="{x:Static r:Strings.Dettaglio_Materia}"
                                    FontSize="12"
-                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                   Foreground="{DynamicResource TestoAttenuato}"/>
                         <TextBlock Text="{Binding MateriaEtichetta}"
                                    FontSize="12" FontWeight="SemiBold"/>
                     </StackPanel>
@@ -116,22 +116,21 @@
 
                 <TextBlock Text="{x:Static r:Strings.Dettaglio_NessunaRisposta}"
                            IsVisible="{Binding NessunDettaglio}"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"
+                           Foreground="{DynamicResource TestoAttenuato}"
                            FontStyle="Italic"/>
 
                 <ItemsControl ItemsSource="{Binding Dettagli}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="state:DettaglioRispostaItem">
-                            <Border Background="{DynamicResource SystemRegionBrush}"
+                            <Border Background="{DynamicResource SfondoRialzato}"
                                     BorderBrush="{Binding ColoreBordo}"
                                     BorderThickness="2"
-                                    CornerRadius="6"
                                     Padding="14,10"
                                     Margin="0,0,0,6">
                                 <StackPanel Spacing="4">
                                     <Grid ColumnDefinitions="*,Auto">
                                         <TextBlock FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}">
+                                                   Foreground="{DynamicResource TestoAttenuato}">
                                             <Run Text="{Binding MateriaNome}"/>
                                             <Run Text="·"/>
                                             <Run Text="{Binding Categoria}"/>
@@ -149,7 +148,7 @@
                                     <Grid ColumnDefinitions="Auto,*" Margin="0,4,0,0">
                                         <TextBlock Text="{x:Static r:Strings.Comune_TuHaiRisposto}"
                                                    FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                   Foreground="{DynamicResource TestoAttenuato}"
                                                    Margin="0,0,8,0"/>
                                         <c:TestoConCodice Grid.Column="1"
                                                    Testo="{Binding RispostaData}"
@@ -161,7 +160,7 @@
                                           IsVisible="{Binding MostraRispostaCorretta}">
                                         <TextBlock Text="{x:Static r:Strings.Comune_CorrettaDuePunti}"
                                                    FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}"
+                                                   Foreground="{DynamicResource TestoAttenuato}"
                                                    Margin="0,0,8,0"/>
                                         <c:TestoConCodice Grid.Column="1"
                                                    Testo="{Binding RispostaCorretta}"
@@ -173,19 +172,19 @@
                                                IsVisible="{Binding MostraTentativi}"
                                                FontSize="11"
                                                FontStyle="Italic"
-                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                               Foreground="{DynamicResource TestoAttenuato}"/>
 
                                     <TextBlock Text="{Binding SecondoTentativoEtichetta}"
                                                IsVisible="{Binding MostraSecondoTentativo}"
                                                FontSize="11"
                                                FontStyle="Italic"
-                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                               Foreground="{DynamicResource TestoAttenuato}"/>
 
                                     <c:TestoConCodice Testo="{Binding Spiegazione}"
                                                FontSize="11"
                                                Margin="0,4,0,0"
                                                IsVisible="{Binding Spiegazione, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                               Foreground="{DynamicResource SystemBaseMediumHighColor}"/>
+                                               Foreground="{DynamicResource TestoPrincipale}"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

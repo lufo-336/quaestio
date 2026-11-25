@@ -9,6 +9,15 @@
              x:Class="Wsa.Quiz.App.Views.SospesiView"
              x:DataType="views:SospesiView">
 
+    <UserControl.Styles>
+        <!-- Niente padding extra di Fluent sui ListBoxItem: le righe si allineano
+             ai margini orizzontali della schermata (20px) come le altre viste. -->
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </UserControl.Styles>
+
     <DockPanel>
 
         <!-- ======================================== HEADER -->
@@ -17,10 +26,11 @@
               Margin="20,16,20,8">
             <StackPanel Spacing="2">
                 <TextBlock Text="{x:Static r:Strings.Sospesi_Titolo}"
-                           FontSize="22" FontWeight="SemiBold"/>
+                           FontFamily="{DynamicResource FontTitoli}"
+                           FontSize="22" FontWeight="ExtraBold"/>
                 <TextBlock Text="{Binding Sottotitolo}"
                            FontSize="12"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                           Foreground="{DynamicResource TestoAttenuato}"/>
             </StackPanel>
 
             <Button Grid.Column="1"
@@ -35,18 +45,17 @@
         <Border DockPanel.Dock="Top"
                 IsVisible="{Binding NessunaSessione}"
                 Margin="20,8,20,0"
-                Background="{DynamicResource SystemRegionBrush}"
-                BorderBrush="{DynamicResource SystemBaseLowColor}"
-                BorderThickness="1"
-                CornerRadius="6"
-                Padding="20">
+                Background="Transparent"
+                BorderBrush="{DynamicResource RigaDebole}"
+                BorderThickness="0,1,0,1"
+                Padding="0,20">
             <StackPanel HorizontalAlignment="Center" Spacing="6">
                 <TextBlock Text="{x:Static r:Strings.Sospesi_Nessuna}"
                            FontWeight="SemiBold"
                            HorizontalAlignment="Center"/>
                 <TextBlock Text="{x:Static r:Strings.Sospesi_NessunaDettaglio}"
                            FontSize="12"
-                           Foreground="{DynamicResource SystemBaseMediumColor}"
+                           Foreground="{DynamicResource TestoAttenuato}"
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            MaxWidth="520"/>
@@ -62,129 +71,118 @@
                      ItemsSource="{Binding Sessioni}"
                      SelectionMode="Single"
                      Background="Transparent"
-                     BorderThickness="0">
+                     Padding="0"
+                     BorderBrush="{DynamicResource RigaDebole}"
+                     BorderThickness="0,0,0,1">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="state:SessioneSospesaItem">
-                        <Border Background="{DynamicResource SystemRegionBrush}"
-                                BorderBrush="{DynamicResource SystemBaseLowColor}"
-                                BorderThickness="1"
-                                CornerRadius="6"
-                                Padding="14,12"
-                                Margin="0,0,0,8">
-                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Border Background="Transparent"
+                                BorderBrush="{DynamicResource RigaDebole}"
+                                BorderThickness="0,1,0,0"
+                                Padding="0,14">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto"
+                                  Initialized="OnRigaSospesaInitialized">
 
                                 <!-- Riga 1: data + tipo -->
                                 <Grid Grid.Column="0" Grid.Row="0"
                                       ColumnDefinitions="*,Auto">
                                     <TextBlock Text="{Binding DataFormattata}"
                                                FontWeight="SemiBold"
-                                               FontSize="13"/>
+                                               FontSize="13"
+                                               TextTrimming="CharacterEllipsis"
+                                               VerticalAlignment="Center"/>
                                     <Border Grid.Column="1"
-                                            Background="{DynamicResource SystemBaseLowColor}"
-                                            CornerRadius="3"
+                                            Background="{DynamicResource RigaDebole}"
                                             Padding="6,2"
                                             Margin="8,0,0,0">
                                         <TextBlock Text="{Binding TipoEtichetta}"
                                                    FontSize="10"
-                                                   Foreground="{DynamicResource SystemBaseMediumHighColor}"/>
+                                                   Foreground="{DynamicResource TestoPrincipale}"/>
                                     </Border>
                                 </Grid>
 
-                                <!-- Riga 2: modalita' + materia. Grid (non StackPanel
-                                     orizzontale) così la materia in colonna * resta
-                                     vincolata alla larghezza disponibile e viene troncata
-                                     con ellissi invece di sovrapporsi ai bottoni Riprendi/
-                                     Elimina della colonna a fianco. Margine destro per
-                                     staccarla dai bottoni. -->
-                                <Grid Grid.Column="0" Grid.Row="1"
-                                      ColumnDefinitions="Auto,Auto,*"
-                                      Margin="0,4,8,0">
-                                    <TextBlock Grid.Column="0"
-                                               Text="{Binding Modalita}"
-                                               FontSize="12"/>
-                                    <TextBlock Grid.Column="1"
-                                               Text="·"
-                                               FontSize="12"
-                                               Margin="8,0"
-                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
-                                    <TextBlock Grid.Column="2"
-                                               Text="{Binding MateriaEtichetta}"
-                                               FontSize="12"
-                                               TextTrimming="CharacterEllipsis"
-                                               Foreground="{DynamicResource SystemBaseMediumColor}"/>
-                                </Grid>
+                                <!-- Riga 2: modalita' + materia (wrappa su schermo stretto senza sovrapporsi) -->
+                                <TextBlock Grid.Column="0" Grid.Row="1"
+                                           TextWrapping="Wrap"
+                                           FontSize="13"
+                                           Margin="0,4,0,0">
+                                    <Run Text="{Binding Modalita}" FontWeight="SemiBold"/>
+                                    <Run Text=" · " FontSize="12" Foreground="{DynamicResource TestoAttenuato}"/>
+                                    <Run Text="{Binding MateriaEtichetta}" FontSize="12" Foreground="{DynamicResource TestoAttenuato}"/>
+                                </TextBlock>
 
                                 <!-- Riga 3: avanzamento + tempo -->
-                                <StackPanel Grid.Column="0" Grid.Row="2"
-                                            Orientation="Horizontal"
-                                            Margin="0,4,0,0"
-                                            Spacing="16">
+                                <WrapPanel Grid.Column="0" Grid.Row="2"
+                                           Orientation="Horizontal"
+                                           ItemSpacing="14"
+                                           LineSpacing="4"
+                                           Margin="0,4,0,0">
                                     <StackPanel Orientation="Horizontal" Spacing="6">
                                         <TextBlock Text="{x:Static r:Strings.Sospesi_Progresso}"
                                                    FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                   Foreground="{DynamicResource TestoAttenuato}"/>
                                         <TextBlock Text="{Binding Avanzamento}"
                                                    FontSize="11"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="6">
                                         <TextBlock Text="{x:Static r:Strings.Sospesi_Tempo}"
                                                    FontSize="11"
-                                                   Foreground="{DynamicResource SystemBaseMediumColor}"/>
+                                                   Foreground="{DynamicResource TestoAttenuato}"/>
                                         <TextBlock Text="{Binding TempoTrascorsoFormattato}"
                                                    FontSize="11"/>
                                     </StackPanel>
-                                </StackPanel>
+                                </WrapPanel>
 
-                                <!-- Bottoni: stato normale.
+                                <!-- Azioni: a destra su desktop, spostate alla riga 3 (sotto) in TouchMode.
                                      IsTabStop=False per le stesse ragioni della Cronologia:
                                      Tab atterra sul ListBoxItem (= riga), non sui bottoni
                                      interni. Riprendi/Elimina da tastiera: Invio = Riprendi,
                                      Canc = elimina. -->
-                                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
-                                            Orientation="Horizontal"
-                                            Spacing="6"
-                                            Margin="8,0,0,0"
-                                            VerticalAlignment="Center"
-                                            IsVisible="{Binding NonInAttesaConferma}">
-                                    <Button Content="{x:Static r:Strings.Sospesi_Riprendi}"
-                                            Classes="accent"
-                                            Click="OnRiprendiClick"
-                                            IsTabStop="False"
-                                            Padding="{DynamicResource SzBtnPadding}"
-                                            FontSize="12"/>
-                                    <Button Content="{x:Static r:Strings.Comune_Elimina}"
-                                            Click="OnEliminaClick"
-                                            IsTabStop="False"
-                                            Classes="danger"
-                                            Padding="{DynamicResource SzBtnPadding}"
-                                            FontSize="12"/>
-                                </StackPanel>
+                                <Panel Tag="Azioni"
+                                       Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                                       Margin="14,0,0,0"
+                                       VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal"
+                                                Spacing="6"
+                                                IsVisible="{Binding NonInAttesaConferma}">
+                                        <Button Content="{x:Static r:Strings.Sospesi_Riprendi}"
+                                                Classes="accent"
+                                                Click="OnRiprendiClick"
+                                                IsTabStop="False"
+                                                Padding="{DynamicResource SzBtnPadding}"
+                                                FontSize="12"/>
+                                        <Button Content="{x:Static r:Strings.Comune_Elimina}"
+                                                Click="OnEliminaClick"
+                                                IsTabStop="False"
+                                                Classes="danger"
+                                                Padding="{DynamicResource SzBtnPadding}"
+                                                FontSize="12"/>
+                                    </StackPanel>
 
-                                <!-- Bottoni: stato conferma -->
-                                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
-                                            Orientation="Horizontal"
-                                            Spacing="6"
-                                            Margin="8,0,0,0"
-                                            VerticalAlignment="Center"
-                                            IsVisible="{Binding InAttesaConfermaEliminazione}">
-                                    <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}"
+                                    <WrapPanel Orientation="Horizontal"
+                                               ItemSpacing="6"
+                                               LineSpacing="6"
                                                VerticalAlignment="Center"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource RossoTestoBrush}"
-                                               FontWeight="SemiBold"
-                                               Margin="0,0,4,0"/>
-                                    <Button Content="{x:Static r:Strings.Comune_SiElimina}"
-                                            Click="OnConfermaEliminaClick"
-                                            IsTabStop="False"
-                                            Classes="danger"
-                                            Padding="{DynamicResource SzBtnPadding}"
-                                            FontSize="12"/>
-                                    <Button Content="{x:Static r:Strings.Comune_Annulla}"
-                                            Click="OnAnnullaEliminaClick"
-                                            IsTabStop="False"
-                                            Padding="{DynamicResource SzBtnPadding}"
-                                            FontSize="12"/>
-                                </StackPanel>
+                                               IsVisible="{Binding InAttesaConfermaEliminazione}">
+                                        <TextBlock Text="{x:Static r:Strings.Comune_Sicuro}"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="12"
+                                                   Foreground="{DynamicResource RossoTestoBrush}"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,0,4,0"/>
+                                        <Button Content="{x:Static r:Strings.Comune_SiElimina}"
+                                                Click="OnConfermaEliminaClick"
+                                                IsTabStop="False"
+                                                Classes="danger"
+                                                Padding="{DynamicResource SzBtnPadding}"
+                                                FontSize="12"/>
+                                        <Button Content="{x:Static r:Strings.Comune_Annulla}"
+                                                Click="OnAnnullaEliminaClick"
+                                                IsTabStop="False"
+                                                Padding="{DynamicResource SzBtnPadding}"
+                                                FontSize="12"/>
+                                    </WrapPanel>
+                                </Panel>
 
                             </Grid>
                         </Border>

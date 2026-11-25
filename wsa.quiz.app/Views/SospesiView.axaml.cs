@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Services;
@@ -48,8 +50,28 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
             Sessioni.Add(new SessioneSospesaItem(p));
     }
 
-    protected override string FormatSottotitolo(int count) =>
-        count == 0 ? Strings.Sospesi_NessunaPunto : string.Format(Strings.Sospesi_NInPausa, count);
+    protected override string FormatSottotitolo(int count) => count switch
+    {
+        0 => Strings.Sospesi_NessunaPunto,
+        1 => Strings.Sospesi_ContaUno,
+        _ => string.Format(Strings.Sospesi_ContaMolte, count)
+    };
+
+    private void OnRigaSospesaInitialized(object? sender, EventArgs e)
+    {
+        if (!AppEnv.TouchMode || sender is not Grid g) return;
+        g.ColumnDefinitions = new ColumnDefinitions("*");
+        g.RowDefinitions = new RowDefinitions("Auto,Auto,Auto,Auto");
+        if (g.Children.OfType<Control>().FirstOrDefault(c => Equals(c.Tag, "Azioni")) is { } azioni)
+        {
+            Grid.SetColumn(azioni, 0);
+            Grid.SetRow(azioni, 3);
+            Grid.SetRowSpan(azioni, 1);
+            azioni.VerticalAlignment = VerticalAlignment.Center;
+            azioni.HorizontalAlignment = HorizontalAlignment.Left;
+            azioni.Margin = new Thickness(0, 10, 0, 0);
+        }
+    }
 
     protected override void EliminaDaStorage(SessioneSospesaItem item)
         => _storage!.EliminaPausa(item.SessioneId);
