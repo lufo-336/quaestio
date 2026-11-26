@@ -1,6 +1,6 @@
 # Laboratorio di codice — design
 
-Data: 2026-11-26 · Stato: bozza da approvare
+Data: 2026-11-26 · Stato: bozza da approvare (rivista con Luca il 26/11)
 Mockup: `assets/2026-11-26-laboratorio/` (`prevedi-output.html`, `trova-bug.html`, `ingresso.html`; frammenti per il visual companion, si aprono anche da soli nel browser).
 
 ## 1. Perché
@@ -20,9 +20,10 @@ Base didattica (ricerca fatta il 26/11): il tracciamento del codice ("prevedi co
 **Non-obiettivi (v1)**
 - **Nessuna risposta aperta** (né output scritto a tastiera né spiegazioni a parole).
 - **Scelta architetturale** (scenario → componenti): modalità a parte, fase successiva.
-- **Riordina le righe** (Parsons): rimandato. Sulla stessa scheda, dopo tre passaggi sullo stesso codice, sarebbe banale; ha senso su schede proprie, da progettare dopo. *(Mia scelta, da confermare.)*
+- **Riordina le righe** (Parsons): rimandato (confermato da Luca). Sulla stessa scheda, dopo tre passaggi sullo stesso codice, sarebbe banale; ha senso su schede proprie, da progettare dopo.
 - SQL: "prevedi l'output" diventa una tabella, interfaccia diversa; dopo.
-- Pausa/ripresa e cronometro nelle schede (sono corte). *(Mia scelta.)*
+- Cronometro nelle schede. *(Mia scelta.)*
+- **Motore e prompt di generazione** delle schede: si progettano dopo aver visto la v1 funzionare (decisione di Luca). La v1 parte con poche schede scritte a mano (§5.5).
 - Laboratorio nella console (`wsa.quiz.cli`): no. La CLI legge però la stessa cronologia, quindi deve solo **tollerare** i record di Laboratorio (comparire in statistiche va bene, il "ripassa" CLI non deve provare ad aprirli come quiz). *(Mia scelta.)*
 - Traduzione inglese dei contenuti delle schede (l'interfaccia sì, it/en come il resto). *(Mia scelta.)*
 
@@ -55,6 +56,8 @@ In Home, in alto, un interruttore **Quiz | Laboratorio**. Su Laboratorio i riqua
 
 La barra di navigazione resta a 6 sezioni.
 
+**Lo stesso interruttore Quiz | Laboratorio** compare in cima a **Cronologia**, **Statistiche** e **Sospesi** (decisione di Luca). È **un'unica scelta per tutta l'app** *(mia scelta)*: cambiandola in un punto cambia ovunque e viene ricordata in `PreferenzeUtente` (campo additivo). In Cronologia diventa un criterio in più di `FiltroCronologia`; in Statistiche filtra le materie "… · Laboratorio"; in Sospesi filtra le sessioni sospese per tipo.
+
 ### 5.2 La sequenza di una scheda
 Tutti i passaggi lavorano sulla **stessa variante** (il codice con il difetto) e sulla stessa chiamata di esempio. *(Mia scelta: prevedere l'output del codice difettoso e poi confrontarlo con il requisito è esattamente il ragionamento di chi fa review.)*
 
@@ -80,23 +83,29 @@ Tutti i passaggi lavorano sulla **stessa variante** (il codice con il difetto) e
 - Fine sessione: `RiepilogoView` esistente (prende un `RisultatoQuiz`).
 - "Ripassa" di Statistiche su una voce "… · Laboratorio" deve aprire il Laboratorio in modalità "ripassa quelle sbagliate", **non** un quiz su una materia inesistente.
 
+### 5.3-bis Pausa e ripresa (decisione di Luca: nella v1)
+- Si può sospendere una sessione di Laboratorio; compare in **Sospesi** (sotto Laboratorio).
+- Granularità **per scheda** *(mia scelta)*: si salvano l'elenco di schede/varianti della sessione e i `DettaglioRisposta` delle schede **già concluse**; alla ripresa si riparte **dall'inizio della scheda in corso**. Niente stato a metà passo.
+- Formato su disco: additivo rispetto a `SessionePausa` (o un tipo affine nello stesso file), senza rompere le pause dei quiz già salvate. *Dettaglio al builder.*
+
 ### 5.4 Vocabolario dei tipi di difetto (C#, v1)
 Lista fissa nel codice, etichette in `Strings.resx`/`Strings.en.resx`. Proposta iniziale: off-by-one / confine, divisione intera, null / vuoto non gestito, condizione invertita, overflow, variabile o operando sbagliato, confronto di stringhe (case/culture), mutazione di una collezione durante l'iterazione, eccezione inghiottita, risorsa non chiusa. *Il builder può affinarla*; ogni difetto di ogni scheda deve usarne una.
 
 ### 5.5 Ripetibilità e volume
 - Ogni scheda ha **2–4 varianti** (stesso codice "sano", difetti diversi). All'apertura si pesca una variante non ancora vista; esaurite, la meno recente.
 - "Ripassa quelle sbagliate": varianti il cui ultimo tentativo ha almeno un passo con `PesoErrore() > 0`, ricavate dalla cronologia.
-- Volume v1 per C#: **30 schede** (12 base, 12 media, 6 alta) ≈ 90 varianti.
+- **v1**: un primo lotto di schede C# scritte a mano per provare il tutto, almeno 3 per livello con 2 varianti ciascuna. *(Mia scelta sul numero.)*
+- Obiettivo di volume, dopo il motore di generazione: **30 schede** per linguaggio (12 base, 12 media, 6 alta) ≈ 90 varianti.
 - Dimensioni indicative: base 8–12 righe e 1 difetto evidente; media 15–25 righe e 1 difetto sottile; alta 30+ righe e 2–3 difetti di gravità diversa.
 
 ## 6. Contenuti: formato, generazione, verifica
 
 - Cartella `laboratorio/<linguaggio>/` (accanto a `domande/`), un JSON per scheda, incorporata/copiata come `domande/` in tutti i csproj che la usano.
 - Ogni scheda contiene almeno: id, titolo, livello, requisito (cosa deve fare il codice), chiamata di esempio, e per ogni variante: righe di codice, difetti (riga, tipo, indizio, spiegazione; correzioni per il livello media), output effettivo riga per riga + esche, input candidati con atteso/effettivo/`espone`. *Schema esatto al builder.*
-- **Guida di generazione** `generazione-domande/GUIDA_GENERAZIONE_LABORATORIO.md`, sullo stile di quella dei quiz: le schede le genera Claude a mano dentro l'abbonamento.
+- **Guida/prompt di generazione**: fuori dalla v1, da progettare dopo (vedi non-obiettivi). Le schede le genererà Claude dentro l'abbonamento; il formato v1 deve restare abbastanza semplice da poterle scrivere a mano.
 - **Verifica a due livelli** (contro l'anti-obiettivo "chiavi sbagliate"):
   1. *Coerenza* (unit test in `wsa.quiz.core.tests`, come l'integrità delle domande): righe dei difetti esistenti, esattamente una correzione giusta, almeno un input che espone e uno che non espone, esche diverse dall'output vero, tipi di difetto nel vocabolario, id unici.
-  2. *Esecuzione reale* (mia proposta, da confermare): un test solo-sviluppo che **compila ed esegue** ogni variante C# (Roslyn, `Microsoft.CodeAnalysis.CSharp`, dipendenza del solo progetto di test) e controlla che output ed "effettivo" degli input coincidano con la scheda. Python e C/C++ avranno un controllo analogo con gli interpreti/compilatori della macchina di sviluppo, quando arriveranno.
+  2. *Esecuzione reale* (approvato da Luca): un test solo-sviluppo che **compila ed esegue** ogni variante C# (Roslyn, `Microsoft.CodeAnalysis.CSharp`, dipendenza del solo progetto di test) e controlla che output ed "effettivo" degli input coincidano con la scheda. Python e C/C++ avranno un controllo analogo con gli interpreti/compilatori della macchina di sviluppo, quando arriveranno.
 
 ## 7. Lasciato al builder
 
