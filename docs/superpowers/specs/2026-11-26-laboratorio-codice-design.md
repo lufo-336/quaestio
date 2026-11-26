@@ -1,6 +1,6 @@
 # Laboratorio di codice — design
 
-Data: 2026-11-26 · Stato: bozza da approvare (rivista con Luca il 26/11)
+Data: 2026-11-26 · Stato: approvata il 26/11, esecuzione a fette (piano: `docs/superpowers/plans/2026-11-26-laboratorio-codice.md`)
 Mockup: `assets/2026-11-26-laboratorio/` (`prevedi-output.html`, `trova-bug.html`, `ingresso.html`; frammenti per il visual companion, si aprono anche da soli nel browser).
 
 ## 1. Perché
