@@ -1,0 +1,105 @@
+{
+  "id": "massimo-lista",
+  "titolo": "Massimo di una lista",
+  "livello": "base",
+  "requisito": "Restituisce il valore massimo presente in una lista non vuota di numeri interi.",
+  "chiamata": "Console.WriteLine(Massimo(new List<int> { -5, -2, -9 }));",
+  "codiceSano": [
+    "int Massimo(List<int> numeri)",
+    "{",
+    "    int max = numeri[0];",
+    "    for (int i = 1; i < numeri.Count; i++)",
+    "    {",
+    "        if (numeri[i] > max)",
+    "            max = numeri[i];",
+    "    }",
+    "    return max;",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "int Massimo(List<int> numeri)",
+        "{",
+        "    int max = 0;",
+        "    for (int i = 0; i < numeri.Count; i++)",
+        "    {",
+        "        if (numeri[i] > max)",
+        "            max = numeri[i];",
+        "    }",
+        "    return max;",
+        "}"
+      ],
+      "output": [ "0" ],
+      "esche": [ "-2", "-9", "-5" ],
+      "difetti": [
+        {
+          "riga": 3,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda l'inizializzazione di max prima del ciclo.",
+          "spiegazione": "Inizializzare max a 0 funziona solo se la lista contiene almeno un numero non negativo: con soli numeri negativi nessun elemento supera 0 e viene restituito 0."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { 3, 9, 4 }));",
+          "atteso": "9",
+          "effettivo": "9"
+        },
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { -10, -3, -7 }));",
+          "atteso": "-3",
+          "effettivo": "0"
+        },
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { 0, -4, -1 }));",
+          "atteso": "0",
+          "effettivo": "0"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "int Massimo(List<int> numeri)",
+        "{",
+        "    int max = numeri[0];",
+        "    for (int i = 1; i < numeri.Count; i++)",
+        "    {",
+        "        if (numeri[i] < max)",
+        "            max = numeri[i];",
+        "    }",
+        "    return max;",
+        "}"
+      ],
+      "output": [ "-9" ],
+      "esche": [ "-2", "-5", "0" ],
+      "difetti": [
+        {
+          "riga": 6,
+          "tipo": "CondizioneInvertita",
+          "indizio": "Guarda la condizione dell'if dentro il ciclo.",
+          "spiegazione": "La condizione numeri[i] < max aggiorna max quando trova un valore più piccolo, calcolando il minimo invece del massimo."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { 5, 5, 5 }));",
+          "atteso": "5",
+          "effettivo": "5"
+        },
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { 2, 8, 4 }));",
+          "atteso": "8",
+          "effettivo": "2"
+        },
+        {
+          "chiamata": "Console.WriteLine(Massimo(new List<int> { 7 }));",
+          "atteso": "7",
+          "effettivo": "7"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "conta-vocali",
+  "titolo": "Conteggio delle vocali",
+  "livello": "base",
+  "requisito": "Conta quante vocali (a, e, i, o, u, sia minuscole sia maiuscole) compaiono in una stringa.",
+  "chiamata": "Console.WriteLine(ContaVocali(\"Albero\"));",
+  "codiceSano": [
+    "int ContaVocali(string testo)",
+    "{",
+    "    int contatore = 0;",
+    "    foreach (char c in testo)",
+    "    {",
+    "        char min = char.ToLowerInvariant(c);",
+    "        if (min == 'a' || min == 'e' || min == 'i' || min == 'o' || min == 'u')",
+    "            contatore++;",
+    "    }",
+    "    return contatore;",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "int ContaVocali(string testo)",
+        "{",
+        "    int contatore = 0;",
+        "    foreach (char c in testo)",
+        "    {",
+        "        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')",
+        "            contatore++;",
+        "    }",
+        "    return contatore;",
+        "}"
+      ],
+      "output": [ "2" ],
+      "esche": [ "3", "1", "6" ],
+      "difetti": [
+        {
+          "riga": 6,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Guarda la condizione dell'if dentro il ciclo foreach.",
+          "spiegazione": "Il confronto verifica solo le vocali minuscole senza normalizzare il carattere con char.ToLowerInvariant, quindi ignora le maiuscole come 'A'."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"ciao\"));",
+          "atteso": "3",
+          "effettivo": "3"
+        },
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"AEIOU\"));",
+          "atteso": "5",
+          "effettivo": "0"
+        },
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"sky\"));",
+          "atteso": "0",
+          "effettivo": "0"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "int ContaVocali(string testo)",
+        "{",
+        "    int contatore = 0;",
+        "    for (int i = 0; i < testo.Length - 1; i++)",
+        "    {",
+        "        char min = char.ToLowerInvariant(testo[i]);",
+        "        if (min == 'a' || min == 'e' || min == 'i' || min == 'o' || min == 'u')",
+        "            contatore++;",
+        "    }",
+        "    return contatore;",
+        "}"
+      ],
+      "output": [ "2" ],
+      "esche": [ "3", "1", "!IndexOutOfRangeException" ],
+      "difetti": [
+        {
+          "riga": 4,
+          "tipo": "Confine",
+          "indizio": "Guarda la condizione del ciclo for.",
+          "spiegazione": "La condizione i < testo.Length - 1 si ferma un carattere prima della fine della stringa, saltando sempre l'ultimo carattere."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"casa\"));",
+          "atteso": "2",
+          "effettivo": "1"
+        },
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"port\"));",
+          "atteso": "1",
+          "effettivo": "1"
+        },
+        {
+          "chiamata": "Console.WriteLine(ContaVocali(\"\"));",
+          "atteso": "0",
+          "effettivo": "0"
+        }
+      ]
+    }
+  ]
+}

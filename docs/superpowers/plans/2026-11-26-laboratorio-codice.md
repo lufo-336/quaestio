@@ -99,6 +99,8 @@ che le schede arrivino nelle risorse incorporate.
 
 ## Task 1: Modello della scheda e vocabolario dei difetti
 
+- [x] Fatto 2026-11-26 (agy, Hydrogen high): `wsa.quiz.core/Models/Laboratorio/`, `Strings*.resx` — verifica (Claude): build desktop/browser/cli verdi, `dotnet test` 82/82
+
 In `wsa.quiz.core/Models/Laboratorio/`, namespace `Wsa.Quiz.Core.Models.Laboratorio`, classi POCO con proprietà
 `{ get; set; }` e default non nulli, nello stile di `Domanda.cs`. Il JSON usa chiavi camelCase (la lettura in
 `StorageService` è già case-insensitive: riusare le stesse `JsonSerializerOptions`).
@@ -156,6 +158,8 @@ la restituisce sempre in italiano (`Strings.ResourceManager.GetString(chiave, Cu
 
 ## Task 2: `LaboratorioService` e cartella dati
 
+- [x] Fatto 2026-11-26 (agy, Hydrogen high): `LaboratorioService.cs`, csproj app/desktop, `StorageService.OpzioniLettura` → internal, `LaboratorioServiceTests.cs` — verifica (Claude): build desktop/browser/cli verdi, `dotnet test` 82/82
+
 **Cartella dati:** `laboratorio/cs/` nella radice del repo, accanto a `domande/`, un JSON per scheda (un oggetto
 `SchedaLab`, non una lista). Collegarla come `domande/`: in `Wsa.Quiz.App.csproj` una riga `AvaloniaResource` subito
 dopo quella di `traduzioni` (Link `Assets\laboratorio\…`); in `Wsa.Quiz.Desktop.csproj` un `None` con
@@ -192,6 +196,8 @@ stessa scheda; `quante` rispettato.
 
 ## Task 3: Test di coerenza ed esecuzione reale
 
+- [x] Fatto 2026-11-26 (agy, Hydrogen high): `LaboratorioCoerenzaTests.cs`, `LaboratorioEsecuzioneTests.cs` (+ fix Claude: `StringWriter` con InvariantCulture) — verifica (Claude): build desktop/browser/cli verdi, `dotnet test` 82/82
+
 **`LaboratorioCoerenzaTests.cs`**: legge `laboratorio/*/*.json` dalla radice del repo (riusare l'idea di `Radice()` di
 `IntegritaDatiTests`), un caso per file (`[Theory]` + `MemberData`, così il nome della scheda compare nel fallimento).
 Controlli:
@@ -219,6 +225,10 @@ Cultura: eseguire con `CultureInfo.InvariantCulture` impostata sul thread (decim
 macchina) e scriverlo nel commento XML di `VarianteLab.Output`.
 
 ## Task 4: Prime schede base
+
+- [x] Fatto 2026-11-26 (agy, Hydrogen high): `laboratorio/cs/{media-voti,conta-vocali,massimo-lista}.json` — verifica (Claude): build desktop/browser/cli verdi, `dotnet test` 82/82
+
+- [x] Corretto 2026-11-26 (agy): review fetta 1 — file `wsa.quiz.core.tests/LaboratorioCoerenzaTests.cs`, `wsa.quiz.core/Services/LaboratorioService.cs`, `laboratorio/cs/media-voti.json`, `laboratorio/cs/massimo-lista.json`, `laboratorio/cs/conta-vocali.json`
 
 Tre schede in `laboratorio/cs/`, livello `base`, 2 varianti ciascuna, 8–12 righe, un difetto evidente per variante, con
 tipi diversi fra le varianti. Temi d'esempio, liberi: media di un array, conteggio delle vocali in una stringa, massimo di

@@ -32,7 +32,7 @@ public class StorageService
         WriteIndented = true
     };
 
-    private static readonly JsonSerializerOptions OpzioniLettura = new()
+    internal static readonly JsonSerializerOptions OpzioniLettura = new()
     {
         PropertyNameCaseInsensitive = true,
         ReadCommentHandling = JsonCommentHandling.Skip,

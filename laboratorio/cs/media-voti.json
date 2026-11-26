@@ -1,0 +1,101 @@
+{
+  "id": "media-voti",
+  "titolo": "Media dei voti",
+  "livello": "base",
+  "requisito": "Calcola la media aritmetica di un array di voti interi come double. Se l'array è nullo o vuoto, restituisce 0.",
+  "chiamata": "Console.WriteLine(Media(new[] { 6, 7 }));",
+  "codiceSano": [
+    "double Media(int[]? voti)",
+    "{",
+    "    if (voti == null || voti.Length == 0)",
+    "        return 0;",
+    "    int somma = 0;",
+    "    foreach (int v in voti)",
+    "        somma += v;",
+    "    return (double)somma / voti.Length;",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "double Media(int[]? voti)",
+        "{",
+        "    if (voti == null || voti.Length == 0)",
+        "        return 0;",
+        "    int somma = 0;",
+        "    foreach (int v in voti)",
+        "        somma += v;",
+        "    return somma / voti.Length;",
+        "}"
+      ],
+      "output": [ "6" ],
+      "esche": [ "6.5", "7", "6.0" ],
+      "difetti": [
+        {
+          "riga": 8,
+          "tipo": "DivisioneIntera",
+          "indizio": "Guarda l'istruzione di return.",
+          "spiegazione": "somma e voti.Length sono entrambi int, quindi somma / voti.Length esegue una divisione intera troncando i decimali prima della conversione a double."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(Media(new[] { 6, 8 }));",
+          "atteso": "7",
+          "effettivo": "7"
+        },
+        {
+          "chiamata": "Console.WriteLine(Media(new[] { 7, 8 }));",
+          "atteso": "7.5",
+          "effettivo": "7"
+        },
+        {
+          "chiamata": "Console.WriteLine(Media(Array.Empty<int>()));",
+          "atteso": "0",
+          "effettivo": "0"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "double Media(int[]? voti)",
+        "{",
+        "    if (voti!.Length == 0) return 0;",
+        "    int somma = 0;",
+        "    foreach (int v in voti)",
+        "        somma += v;",
+        "    return (double)somma / voti.Length;",
+        "}"
+      ],
+      "output": [ "6.5" ],
+      "esche": [ "6", "13", "!NullReferenceException" ],
+      "difetti": [
+        {
+          "riga": 3,
+          "tipo": "NullVuoto",
+          "indizio": "Guarda la condizione dell'if all'inizio della funzione.",
+          "spiegazione": "La guardia controlla solo voti.Length == 0 senza verificare prima voti == null: passando null l'accesso a voti!.Length lancia NullReferenceException."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(Media(new[] { 6, 8 }));",
+          "atteso": "7",
+          "effettivo": "7"
+        },
+        {
+          "chiamata": "Console.WriteLine(Media(Array.Empty<int>()));",
+          "atteso": "0",
+          "effettivo": "0"
+        },
+        {
+          "chiamata": "Console.WriteLine(Media(null));",
+          "atteso": "0",
+          "effettivo": "!NullReferenceException"
+        }
+      ]
+    }
+  ]
+}

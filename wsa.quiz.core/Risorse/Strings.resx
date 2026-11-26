@@ -306,4 +306,14 @@
   <data name="Colore_RosaAntico" xml:space="preserve"><value>Rosa antico</value></data>
   <data name="Colore_Ardesia" xml:space="preserve"><value>Ardesia</value></data>
   <data name="Colore_Grigio" xml:space="preserve"><value>Grigio</value></data>
+  <data name="Lab_Difetto_Confine" xml:space="preserve"><value>Off-by-one / confine</value></data>
+  <data name="Lab_Difetto_DivisioneIntera" xml:space="preserve"><value>Divisione intera</value></data>
+  <data name="Lab_Difetto_NullVuoto" xml:space="preserve"><value>Null o vuoto non gestito</value></data>
+  <data name="Lab_Difetto_CondizioneInvertita" xml:space="preserve"><value>Condizione invertita</value></data>
+  <data name="Lab_Difetto_Overflow" xml:space="preserve"><value>Overflow</value></data>
+  <data name="Lab_Difetto_OperandoSbagliato" xml:space="preserve"><value>Variabile o operando sbagliato</value></data>
+  <data name="Lab_Difetto_ConfrontoStringhe" xml:space="preserve"><value>Confronto di stringhe</value></data>
+  <data name="Lab_Difetto_MutazioneIterazione" xml:space="preserve"><value>Collezione modificata durante il ciclo</value></data>
+  <data name="Lab_Difetto_EccezioneInghiottita" xml:space="preserve"><value>Eccezione inghiottita</value></data>
+  <data name="Lab_Difetto_RisorsaNonChiusa" xml:space="preserve"><value>Risorsa non chiusa</value></data>
 </root>

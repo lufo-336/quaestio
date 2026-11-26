@@ -34,6 +34,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>traduzioni\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
+    <None Include="..\laboratorio\**\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>laboratorio\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
   </ItemGroup>
 
 </Project>
