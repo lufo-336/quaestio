@@ -12,6 +12,7 @@ using Avalonia.Threading;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.App.Views;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Laboratorio;
 using Wsa.Quiz.Core.Models.Statistiche;
 using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
@@ -30,6 +31,7 @@ public partial class MainView : UserControl
     private List<Domanda> _tutteDomande = new();
     private List<Domanda> _domandeAttive = new();
     private Dictionary<string, Domanda> _mappaDomande = new();
+    private List<SchedaLab> _schedeLab = new();
     private ContenutiUtenteService? _contenutiUtente;
 
     private HomeView? _homeView;
@@ -72,7 +74,7 @@ public partial class MainView : UserControl
         _homeArea.PropertyChanged += (_, e) =>
         {
             if (e.Property == ContentControl.ContentProperty && _impostazioniView != null)
-                _impostazioniView.QuizInCorso = _homeArea.Content is QuizView;
+                _impostazioniView.QuizInCorso = _homeArea.Content is QuizView or LaboratorioView;
         };
         Caricamento();
     }
@@ -648,14 +650,16 @@ public partial class MainView : UserControl
                 : _tutteDomande.Where(d => !esclSet.Contains((d.MateriaId, d.Categoria))).ToList();
 
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
+            _schedeLab = LaboratorioService.CaricaSchede(fonte);
 
             StatoHeaderText.Text = string.Format(Strings.Shell_Conteggi, _materie.Count, _domandeAttive.Count);
 
             // ---------- Tab Home ----------
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _domandeAttive, _preferenze);
+            _homeView.Inizializza(_materie, _domandeAttive, _preferenze, _schedeLab);
             AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
+            _homeView.LaboratorioAvviato += OnLaboratorioAvviato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
             _homeArea.Content = _homeView;
 
@@ -724,11 +728,17 @@ public partial class MainView : UserControl
         AvviaQuizView(sessione);
     }
 
+    private void OnLaboratorioAvviato(object? sender, SessioneLaboratorio sessione)
+    {
+        AvviaLaboratorioView(sessione);
+    }
+
     private static readonly HashSet<string> _proprietaOpzioniQuiz = new(StringComparer.Ordinal)
     {
         nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.SecondaPossibilita), nameof(HomeView.Cronometro),
         nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo),
-        nameof(HomeView.TipiEsclusi), nameof(HomeView.LivelliEsclusi)
+        nameof(HomeView.TipiEsclusi), nameof(HomeView.LivelliEsclusi),
+        nameof(HomeView.Laboratorio), nameof(HomeView.LabLivello), nameof(HomeView.LabRipassa), nameof(HomeView.LabSchede)
     };
 
     /// <summary>Salva su preferenze.json ad ogni cambio di una delle opzioni
@@ -750,6 +760,10 @@ public partial class MainView : UserControl
         prefs.MinutiTempo      = (int)_homeView.MinutiTempo;
         prefs.TipiEsclusi      = _homeView.TipiEsclusi;
         prefs.LivelliEsclusi   = _homeView.LivelliEsclusi;
+        prefs.Laboratorio      = _homeView.Laboratorio;
+        prefs.LabLivello       = _homeView.LabLivello;
+        prefs.LabRipassa       = _homeView.LabRipassa;
+        prefs.LabSchede        = (int)_homeView.LabSchede;
         _storage.SalvaPreferenze(prefs);
     }
 
@@ -804,6 +818,37 @@ public partial class MainView : UserControl
         _homeArea.Content = riep;
     }
 
+    private void AvviaLaboratorioView(SessioneLaboratorio sessione)
+    {
+        var labView = new LaboratorioView(sessione);
+        labView.LaboratorioConcluso += OnLaboratorioConcluso;
+        _homeArea.Content = labView;
+        IndiceSezione = 0;
+    }
+
+    private void OnLaboratorioConcluso(object? sender, SessioneLaboratorio sessione)
+    {
+        if (_storage != null && sessione.Risultato.TotaleDomande > 0)
+        {
+            try
+            {
+                _storage.SalvaRisultato(sessione.Risultato);
+                _cronologiaView?.Ricarica();
+                _statisticheView?.Ricarica();
+                AggiornaStoricoHome();
+            }
+            catch (Exception ex)
+            {
+                ErrorePanel.IsVisible = true;
+                ErroreText.Text = string.Format(Strings.Shell_ErroreSalvaCronologia, ex.Message);
+            }
+        }
+
+        var riep = new RiepilogoView(sessione.Risultato);
+        riep.TornaAllaHome += (_, _) => RitornaAllaHome();
+        _homeArea.Content = riep;
+    }
+
     private void OnQuizMessoInPausa(object? sender, EventArgs e)
     {
         // La pausa e' gia' stata salvata dal QuizView. Torno alla Home e ricarico i sospesi.
@@ -836,9 +881,10 @@ public partial class MainView : UserControl
         if (_homeView == null)
         {
             _homeView = new HomeView();
-            _homeView.Inizializza(_materie, _domandeAttive.Count > 0 ? _domandeAttive : _tutteDomande, _preferenze);
+            _homeView.Inizializza(_materie, _domandeAttive.Count > 0 ? _domandeAttive : _tutteDomande, _preferenze, _schedeLab);
             AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
+            _homeView.LaboratorioAvviato += OnLaboratorioAvviato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
         }
         _homeArea.Content = _homeView;
@@ -849,8 +895,9 @@ public partial class MainView : UserControl
         if (_homeView == null || _storage == null) return;
         try
         {
-            var stat = new StatisticheService().Calcola(_storage.CaricaCronologia());
-            _homeView.AggiornaStorico(stat);
+            var cronologia = _storage.CaricaCronologia();
+            var stat = new StatisticheService().Calcola(cronologia);
+            _homeView.AggiornaStorico(stat, cronologia);
         }
         catch
         {

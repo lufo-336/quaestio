@@ -316,4 +316,48 @@
   <data name="Lab_Difetto_MutazioneIterazione" xml:space="preserve"><value>Collection modified while iterating</value></data>
   <data name="Lab_Difetto_EccezioneInghiottita" xml:space="preserve"><value>Swallowed exception</value></data>
   <data name="Lab_Difetto_RisorsaNonChiusa" xml:space="preserve"><value>Resource not disposed</value></data>
+  <data name="Lab_ModoQuiz" xml:space="preserve"><value>Quiz</value></data>
+  <data name="Lab_ModoLaboratorio" xml:space="preserve"><value>Lab</value></data>
+  <data name="Lab_Linguaggio" xml:space="preserve"><value>Language</value></data>
+  <data name="Lab_Livello" xml:space="preserve"><value>Level</value></data>
+  <data name="Lab_Livello_Base" xml:space="preserve"><value>Basic</value></data>
+  <data name="Lab_Livello_Media" xml:space="preserve"><value>Medium</value></data>
+  <data name="Lab_Livello_Alta" xml:space="preserve"><value>Advanced</value></data>
+  <data name="Lab_Schede" xml:space="preserve"><value>Exercises</value></data>
+  <data name="Lab_SoloNonViste" xml:space="preserve"><value>Unseen first</value></data>
+  <data name="Lab_RipassaSbagliate" xml:space="preserve"><value>Review wrong ones</value></data>
+  <data name="Lab_SchedePerSessione" xml:space="preserve"><value>exercises per session</value></data>
+  <data name="Lab_Inizia" xml:space="preserve"><value>Start</value></data>
+  <data name="Lab_NuoveSuTotale" xml:space="preserve"><value>{0} new of {1}</value></data>
+  <data name="Lab_NessunaNuovaMenoRecenti" xml:space="preserve"><value>No new ones: repeating least recent ({0})</value></data>
+  <data name="Lab_DaRipassareN" xml:space="preserve"><value>{0} to review</value></data>
+  <data name="Lab_SchedeSessioneN" xml:space="preserve"><value>{0} in session</value></data>
+  <data name="Lab_RiepilogoVuoto" xml:space="preserve"><value>{0} · {1} · 0 exercises</value></data>
+  <data name="Lab_AvvisoNessunaScheda" xml:space="preserve"><value>No exercises available for this selection.</value></data>
+  <data name="Lab_AvvisoNullaDaRipassare" xml:space="preserve"><value>No wrong exercises to review.</value></data>
+  <data name="Lab_SchedaNDiM" xml:space="preserve"><value>Exercise {0} of {1}</value></data>
+  <data name="Lab_PassoOutput" xml:space="preserve"><value>Predict the output</value></data>
+  <data name="Lab_PassoBug" xml:space="preserve"><value>Find the bug</value></data>
+  <data name="Lab_PassoInput" xml:space="preserve"><value>Break the function</value></data>
+  <data name="Lab_Chiamata" xml:space="preserve"><value>Call</value></data>
+  <data name="Lab_Codice" xml:space="preserve"><value>Code</value></data>
+  <data name="Lab_SuggerimentoOutputMenu" xml:space="preserve"><value>Each printed line has its own menu.</value></data>
+  <data name="Lab_RigaOutputN" xml:space="preserve"><value>Line {0}</value></data>
+  <data name="Lab_ScegliValore" xml:space="preserve"><value>Choose...</value></data>
+  <data name="Lab_OutputAttesoPrefisso" xml:space="preserve"><value>Actual: {0}</value></data>
+  <data name="Lab_SuggerimentoTrovaBug" xml:space="preserve"><value>Tap the line with the bug, then choose the error type.</value></data>
+  <data name="Lab_CheTipoErrore" xml:space="preserve"><value>What type of error?</value></data>
+  <data name="Lab_RigaN" xml:space="preserve"><value>line {0}</value></data>
+  <data name="Lab_SuggerimentoInput" xml:space="preserve"><value>Choose the input that makes the code fail.</value></data>
+  <data name="Lab_Atteso" xml:space="preserve"><value>Expected</value></data>
+  <data name="Lab_Effettivo" xml:space="preserve"><value>Actual</value></data>
+  <data name="Lab_EsponeBadge" xml:space="preserve"><value>Exposes the bug</value></data>
+  <data name="Lab_Conferma" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Lab_Avanti" xml:space="preserve"><value>Next</value></data>
+  <data name="Lab_Fine" xml:space="preserve"><value>Finish</value></data>
+  <data name="Lab_Esci" xml:space="preserve"><value>Exit</value></data>
+  <data name="Lab_EsciTitolo" xml:space="preserve"><value>Exit the Lab?</value></data>
+  <data name="Lab_EsciDettaglio" xml:space="preserve"><value>The session will end and any completed steps will be saved in history as abandoned.</value></data>
+  <data name="Lab_OutputGiusto" xml:space="preserve"><value>Output predicted correctly!</value></data>
+  <data name="Lab_OutputSbagliato" xml:space="preserve"><value>Incorrect output</value></data>
 </root>

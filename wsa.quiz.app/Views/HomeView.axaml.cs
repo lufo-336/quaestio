@@ -12,6 +12,7 @@ using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Laboratorio;
 using Wsa.Quiz.Core.Models.Statistiche;
 
 using Wsa.Quiz.Core.Risorse;
@@ -29,12 +30,20 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// <summary>Sollevato al click di "Avvia quiz". L'argomento e' la sessione gia' configurata ma non ancora avviata.</summary>
     public event EventHandler<SessioneQuiz>? QuizAvviato;
 
+    /// <summary>Sollevato al click di "Inizia" in modalita' Laboratorio.</summary>
+    public event EventHandler<SessioneLaboratorio>? LaboratorioAvviato;
+
     public new event PropertyChangedEventHandler? PropertyChanged;
 
     // ------------------------------------------------------------------ DATI
 
     /// <summary>Tutte le domande caricate (passate dalla MainWindow). Servono per costruire il pool al click di Avvia.</summary>
     private List<Domanda> _tutteDomande = new();
+    private List<SchedaLab> _schedeLab = new();
+    private IReadOnlyList<RisultatoQuiz> _cronologiaLab = Array.Empty<RisultatoQuiz>();
+    private string _labLinguaggio = string.Empty;
+
+    public ObservableCollection<LinguaggioLabItem> LinguaggiLab { get; } = new();
 
     /// <summary>Mappa materiaId -> tutte le sue categorie (preservando lo stato IsSelected fra rebuild).</summary>
     private readonly Dictionary<string, List<CategoriaSelezionabile>> _categoriePerMateria = new();
@@ -122,6 +131,83 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         get => _minutiTempo;
         set { if (_minutiTempo != value) { _minutiTempo = value; Raise(); AggiornaRiepilogo(); } }
     }
+
+    // ------------------------------------------------------------------ OPZIONI LABORATORIO
+
+    private bool _laboratorio;
+    public bool Laboratorio
+    {
+        get => _laboratorio;
+        set
+        {
+            if (_laboratorio != value)
+            {
+                _laboratorio = value;
+                Raise();
+                Raise(nameof(EtichettaAvvia));
+                AggiornaRiepilogo();
+            }
+        }
+    }
+
+    private string _labLivello = LivelliLab.Base;
+    public string LabLivello
+    {
+        get => _labLivello;
+        set
+        {
+            if (!string.Equals(_labLivello, value, StringComparison.OrdinalIgnoreCase))
+            {
+                _labLivello = value;
+                Raise();
+                Raise(nameof(IsLabBase));
+                Raise(nameof(IsLabMedia));
+                Raise(nameof(IsLabAlta));
+                AggiornaRiepilogo();
+            }
+        }
+    }
+
+    private bool _labRipassa;
+    public bool LabRipassa
+    {
+        get => _labRipassa;
+        set
+        {
+            if (_labRipassa != value)
+            {
+                _labRipassa = value;
+                Raise();
+                Raise(nameof(LabSoloNonViste));
+                AggiornaRiepilogo();
+            }
+        }
+    }
+
+    public bool LabSoloNonViste
+    {
+        get => !_labRipassa;
+        set => LabRipassa = !value;
+    }
+
+    private decimal _labSchede = 5;
+    public decimal LabSchede
+    {
+        get => _labSchede;
+        set { value = Math.Clamp(value, 1, 50); if (_labSchede != value) { _labSchede = value; Raise(); AggiornaRiepilogo(); } }
+    }
+
+    public string EtichettaAvvia => _laboratorio ? Strings.Lab_Inizia : Strings.Home_AvviaQuiz;
+    public bool NessunLinguaggioLab => LinguaggiLab.Count == 0;
+    public bool IsLabBase => string.Equals(_labLivello, LivelliLab.Base, StringComparison.OrdinalIgnoreCase);
+    public bool IsLabMedia => string.Equals(_labLivello, LivelliLab.Media, StringComparison.OrdinalIgnoreCase);
+    public bool IsLabAlta => string.Equals(_labLivello, LivelliLab.Alta, StringComparison.OrdinalIgnoreCase);
+    public bool HaSchedeBase => ContaSchedeLingLivello(LivelliLab.Base) > 0;
+    public bool HaSchedeMedia => ContaSchedeLingLivello(LivelliLab.Media) > 0;
+    public bool HaSchedeAlta => ContaSchedeLingLivello(LivelliLab.Alta) > 0;
+    public string EtichettaLabBase => $"{Strings.Lab_Livello_Base} · {ContaSchedeLingLivello(LivelliLab.Base)}";
+    public string EtichettaLabMedia => $"{Strings.Lab_Livello_Media} · {ContaSchedeLingLivello(LivelliLab.Media)}";
+    public string EtichettaLabAlta => $"{Strings.Lab_Livello_Alta} · {ContaSchedeLingLivello(LivelliLab.Alta)}";
 
     // ------------------------------------------------------------------ STATO DERIVATO (per UI)
 
@@ -223,14 +309,14 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         // Trova il Border-zona piu' vicino antenato.
         var zona = focused.GetVisualAncestors()
             .OfType<Border>()
-            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni" or "ZonaTipo" or "ZonaLivelli");
+            .FirstOrDefault(b => b.Name is "ZonaAvvia" or "ZonaModo" or "ZonaMaterie" or "ZonaCategorie" or "ZonaOpzioni" or "ZonaTipo" or "ZonaLivelli" or "ZonaLabLinguaggio" or "ZonaLabLivello" or "ZonaLabSchede");
         if (zona == null) return;
 
         // Raccogli tutti i controlli focusable dentro la zona, in ordine visivo.
         var focusables = zona.GetVisualDescendants()
             .OfType<Control>()
             .Where(c => c.Focusable && c.IsEffectivelyVisible && c.IsEffectivelyEnabled)
-            .Where(c => c is Button || c is CheckBox || c is NumericUpDown)
+            .Where(c => c is Button || c is CheckBox || c is RadioButton || c is NumericUpDown)
             .ToList();
         if (focusables.Count == 0) return;
 
@@ -256,12 +342,17 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Inizializza la lista materie e l'indice di categorie a partire dai dati caricati.
+    /// Inizializza la lista materie, l'indice di categorie e le schede del Laboratorio a partire dai dati caricati.
     /// Chiamato dalla <see cref="MainWindow"/> al boot.
     /// </summary>
-    public void Inizializza(List<Materia> materie, List<Domanda> tutteDomande, PreferenzeUtente preferenze)
+    public void Inizializza(
+        List<Materia> materie,
+        List<Domanda> tutteDomande,
+        PreferenzeUtente preferenze,
+        IReadOnlyList<SchedaLab>? schedeLab = null)
     {
         _tutteDomande = tutteDomande;
+        _schedeLab = schedeLab?.ToList() ?? new List<SchedaLab>();
 
         // Opzioni quiz: valori salvati invece dei default hardcoded (Step 13).
         // Uso le PROPRIETA' (non i campi diretti): i CheckBox/NumericUpDown in
@@ -320,6 +411,40 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         }
 
         AggiornaCategorieVisibili();
+
+        // Opzioni e dati Laboratorio
+        LinguaggiLab.Clear();
+        foreach (var (id, nome) in LaboratorioService.Linguaggi)
+        {
+            int count = _schedeLab.Count(s => string.Equals(s.Linguaggio, id, StringComparison.OrdinalIgnoreCase));
+            if (count > 0)
+                LinguaggiLab.Add(new LinguaggioLabItem(id, nome, count));
+        }
+        if (LinguaggiLab.Count > 0)
+        {
+            LinguaggiLab[0].IsSelected = true;
+            _labLinguaggio = LinguaggiLab[0].Id;
+        }
+        else
+        {
+            _labLinguaggio = string.Empty;
+        }
+        Raise(nameof(NessunLinguaggioLab));
+
+        string livelloSalvato = LivelliLab.Tutti.FirstOrDefault(l =>
+            string.Equals(l, preferenze.LabLivello, StringComparison.OrdinalIgnoreCase)) ?? LivelliLab.Base;
+        if (ContaSchedeLingLivello(livelloSalvato) == 0)
+        {
+            string? primoDisponibile = LivelliLab.Tutti.FirstOrDefault(l => ContaSchedeLingLivello(l) > 0);
+            if (primoDisponibile != null) livelloSalvato = primoDisponibile;
+        }
+
+        LabLivello = livelloSalvato;
+        LabRipassa = preferenze.LabRipassa;
+        LabSchede = Math.Clamp(preferenze.LabSchede, 1, 50);
+        Laboratorio = preferenze.Laboratorio;
+        NotificaConteggiLivelliLab();
+
         AggiornaRiepilogo();
     }
 
@@ -356,10 +481,12 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// Ricalcola i livelli di debolezza delle categorie e le domande sbagliate
     /// a partire dalle statistiche cronologia.
     /// </summary>
-    public void AggiornaStorico(IReadOnlyList<StatistichePerMateria> stat)
+    public void AggiornaStorico(IReadOnlyList<StatistichePerMateria> stat, IReadOnlyList<RisultatoQuiz>? cronologia = null)
     {
         _livelliPerCategoria = QuizService.LivelliPerCategoria(stat);
         _idSbagliate = QuizService.IdSbagliate(stat);
+        if (cronologia != null)
+            _cronologiaLab = cronologia;
         AggiornaRiepilogo();
     }
 
@@ -410,8 +537,75 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         return pool;
     }
 
+    private void OnModoQuizClick(object? sender, RoutedEventArgs e) => Laboratorio = false;
+
+    private void OnModoLabClick(object? sender, RoutedEventArgs e) => Laboratorio = true;
+
+    private void OnLinguaggioLabClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not RadioButton { DataContext: LinguaggioLabItem item }) return;
+        _labLinguaggio = item.Id;
+        foreach (var l in LinguaggiLab)
+            l.IsSelected = string.Equals(l.Id, item.Id, StringComparison.Ordinal);
+
+        if (ContaSchedeLingLivello(LabLivello) == 0)
+        {
+            string? primoDisponibile = LivelliLab.Tutti.FirstOrDefault(l => ContaSchedeLingLivello(l) > 0);
+            if (primoDisponibile != null) LabLivello = primoDisponibile;
+        }
+        NotificaConteggiLivelliLab();
+        AggiornaRiepilogo();
+    }
+
+    private void OnLabLivelloClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: string livello } && ContaSchedeLingLivello(livello) > 0)
+            LabLivello = livello;
+    }
+
+    private int ContaSchedeLingLivello(string livello)
+    {
+        if (string.IsNullOrEmpty(_labLinguaggio)) return 0;
+        return _schedeLab.Count(s =>
+            string.Equals(s.Linguaggio, _labLinguaggio, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(s.Livello, livello, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private void NotificaConteggiLivelliLab()
+    {
+        Raise(nameof(HaSchedeBase));
+        Raise(nameof(HaSchedeMedia));
+        Raise(nameof(HaSchedeAlta));
+        Raise(nameof(EtichettaLabBase));
+        Raise(nameof(EtichettaLabMedia));
+        Raise(nameof(EtichettaLabAlta));
+    }
+
+    private static string EtichettaLivelloLab(string livello) => livello.ToLowerInvariant() switch
+    {
+        LivelliLab.Base => Strings.Lab_Livello_Base,
+        LivelliLab.Media => Strings.Lab_Livello_Media,
+        LivelliLab.Alta => Strings.Lab_Livello_Alta,
+        _ => livello
+    };
+
+    private string NomeLinguaggioCorrente() =>
+        LinguaggiLab.FirstOrDefault(l => string.Equals(l.Id, _labLinguaggio, StringComparison.OrdinalIgnoreCase))?.Nome
+        ?? LaboratorioService.Linguaggi.FirstOrDefault(l => string.Equals(l.Id, _labLinguaggio, StringComparison.OrdinalIgnoreCase)).Nome
+        ?? _labLinguaggio;
+
+    private List<SchedaLab> SchedeDelLinguaggioCorrente() =>
+        string.IsNullOrEmpty(_labLinguaggio)
+            ? new List<SchedaLab>()
+            : _schedeLab.Where(s => string.Equals(s.Linguaggio, _labLinguaggio, StringComparison.OrdinalIgnoreCase)).ToList();
+
     private void AggiornaRiepilogo()
     {
+        if (Laboratorio)
+        {
+            AggiornaRiepilogoLaboratorio();
+            return;
+        }
         int nMaterie = Materie.Count(m => m.IsSelected);
         int nCat     = CategorieVisibili.Count(c => c.IsSelected);
         var poolSenzaTipo = CalcolaPoolSenzaTipo();
@@ -472,8 +666,66 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
         HaCategorieSelezionate = (nCat > 0);
     }
 
+    private void AggiornaRiepilogoLaboratorio()
+    {
+        var schedeLing = SchedeDelLinguaggioCorrente();
+        if (schedeLing.Count == 0 || string.IsNullOrEmpty(_labLinguaggio))
+        {
+            RiepilogoSelezione = Strings.Lab_AvvisoNessunaScheda;
+            AvvisoSelezione = Strings.Lab_AvvisoNessunaScheda;
+            Raise(nameof(HaAvviso));
+            PuoAvviare = false;
+            return;
+        }
+
+        string nomeLing = NomeLinguaggioCorrente();
+        string nomeLiv = EtichettaLivelloLab(LabLivello);
+        var (nuove, totale, daRipassare) = LaboratorioService.Conteggi(schedeLing, LabLivello, _cronologiaLab);
+
+        if (totale == 0)
+        {
+            RiepilogoSelezione = string.Format(Strings.Lab_RiepilogoVuoto, nomeLing, nomeLiv);
+            AvvisoSelezione = Strings.Lab_AvvisoNessunaScheda;
+            Raise(nameof(HaAvviso));
+            PuoAvviare = false;
+            return;
+        }
+
+        if (LabRipassa)
+        {
+            if (daRipassare == 0)
+            {
+                RiepilogoSelezione = $"{nomeLing} · {nomeLiv} · {string.Format(Strings.Lab_DaRipassareN, 0)}";
+                AvvisoSelezione = Strings.Lab_AvvisoNullaDaRipassare;
+                Raise(nameof(HaAvviso));
+                PuoAvviare = false;
+                return;
+            }
+
+            int previste = Math.Min(daRipassare, (int)LabSchede);
+            RiepilogoSelezione = $"{nomeLing} · {nomeLiv} · {string.Format(Strings.Lab_DaRipassareN, daRipassare)} · {string.Format(Strings.Lab_SchedeSessioneN, previste)}";
+        }
+        else
+        {
+            string statoNuove = nuove > 0
+                ? string.Format(Strings.Lab_NuoveSuTotale, nuove, totale)
+                : string.Format(Strings.Lab_NessunaNuovaMenoRecenti, totale);
+            int previste = Math.Min(totale, (int)LabSchede);
+            RiepilogoSelezione = $"{nomeLing} · {nomeLiv} · {statoNuove} · {string.Format(Strings.Lab_SchedeSessioneN, previste)}";
+        }
+
+        AvvisoSelezione = string.Empty;
+        Raise(nameof(HaAvviso));
+        PuoAvviare = true;
+    }
+
     private void OnAvviaClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+        if (Laboratorio)
+        {
+            AvviaSessioneLaboratorio();
+            return;
+        }
         var pool = CalcolaPoolCorrente();
         if (pool.Count == 0) return;
 
@@ -513,6 +765,24 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
 
         var sessione = new SessioneQuiz(pool, opz);
         QuizAvviato?.Invoke(this, sessione);
+    }
+
+    private void AvviaSessioneLaboratorio()
+    {
+        var schedeLing = SchedeDelLinguaggioCorrente();
+        if (schedeLing.Count == 0) return;
+
+        var coppie = LaboratorioService.Prepara(
+            schedeLing,
+            LabLivello,
+            LabRipassa,
+            (int)LabSchede,
+            _cronologiaLab,
+            Random.Shared);
+        if (coppie.Count == 0) return;
+
+        var sessione = new SessioneLaboratorio(coppie, NomeLinguaggioCorrente(), LabLivello);
+        LaboratorioAvviato?.Invoke(this, sessione);
     }
 
     /// <summary>

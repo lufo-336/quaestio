@@ -31,4 +31,16 @@ public class PreferenzeUtente
 
     /// <summary>Livelli di debolezza spenti nel riquadro "Punti deboli" della Home. Vuoto = tutti.</summary>
     public List<string> LivelliEsclusi { get; set; } = new();
+
+    /// <summary>Modalita' globale attiva (false = Quiz, true = Laboratorio).</summary>
+    public bool Laboratorio { get; set; } = false;
+
+    /// <summary>Livello selezionato nel Laboratorio ("base", "media", "alta").</summary>
+    public string LabLivello { get; set; } = "base";
+
+    /// <summary>Se true, in Laboratorio ripassa solo le varianti sbagliate.</summary>
+    public bool LabRipassa { get; set; } = false;
+
+    /// <summary>Numero massimo di schede per sessione di Laboratorio.</summary>
+    public int LabSchede { get; set; } = 5;
 }

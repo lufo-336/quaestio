@@ -1,0 +1,553 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="clr-namespace:Wsa.Quiz.Core.Risorse;assembly=Wsa.Quiz.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:state="using:Wsa.Quiz.App.State"
+             xmlns:views="using:Wsa.Quiz.App.Views"
+             mc:Ignorable="d"
+             x:Class="Wsa.Quiz.App.Views.LaboratorioView"
+             Padding="{DynamicResource SzRiservaNav}"
+             x:DataType="views:LaboratorioView"
+             Focusable="True">
+
+    <UserControl.Styles>
+        <!-- Righe di codice numerate -->
+        <Style Selector="Button.rigaCodice">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+            <Setter Property="CornerRadius" Value="0"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.interattiva">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.interattiva:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.selezionata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.selezionata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+        </Style>
+
+        <Style Selector="Button.rigaCodice TextBlock.numRiga">
+            <Setter Property="Foreground" Value="{DynamicResource CodiceNumeri}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice TextBlock.codice">
+            <Setter Property="Foreground" Value="{DynamicResource CodiceTesto}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.selezionata TextBlock.numRiga">
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.selezionata TextBlock.codice">
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.corretta TextBlock.numRiga">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.corretta TextBlock.codice">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.sbagliata TextBlock.numRiga">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.sbagliata TextBlock.codice">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <!-- Chip tipi di difetto (passo 2) -->
+        <Style Selector="Button.tipoChip">
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0,0,6,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.tipoChip /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.tipoChip.selezionata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.tipoChip.selezionata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.tipoChip.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tipoChip.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tipoChip.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tipoChip.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+
+        <!-- Card input candidati (passo 3) -->
+        <Style Selector="Button.inputCard">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.inputCard /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.inputCard.selezionata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.selezionata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#E4F3F1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#E4F3F1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#F9E4E6"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RossoBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#F9E4E6"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RossoBrush}"/>
+        </Style>
+
+        <Style Selector="Button.inputCard TextBlock.chiamata">
+            <Setter Property="Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.inputCard.selezionata TextBlock.chiamata">
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.inputCard.corretta TextBlock.chiamata">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.inputCard.sbagliata TextBlock.chiamata">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="Button.inputCard TextBlock.etichettaEsito">
+            <Setter Property="Foreground" Value="{DynamicResource TestoAttenuato}"/>
+        </Style>
+        <Style Selector="Button.inputCard.corretta TextBlock.etichettaEsito">
+            <Setter Property="Foreground" Value="#2B7168"/>
+        </Style>
+        <Style Selector="Button.inputCard.sbagliata TextBlock.etichettaEsito">
+            <Setter Property="Foreground" Value="#8A252C"/>
+        </Style>
+
+        <Style Selector="Button.inputCard TextBlock.valoreEsito">
+            <Setter Property="Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.inputCard.corretta TextBlock.valoreEsito">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.inputCard.sbagliata TextBlock.valoreEsito">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <!-- Feedback box -->
+        <Style Selector="Border.feedbackOk">
+            <Setter Property="Background" Value="#E4F3F1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Border.feedbackKo">
+            <Setter Property="Background" Value="#F9E4E6"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RossoBrush}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- ============================== TESTA ============================== -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource SfondoRialzato}"
+                BorderBrush="{DynamicResource RigaDebole}"
+                BorderThickness="0,0,0,1"
+                Padding="{DynamicResource SzPaginaMargin}">
+            <Grid MaxWidth="980" HorizontalAlignment="Stretch" RowDefinitions="Auto,Auto,Auto">
+                <!-- Barra dei 3 passaggi -->
+                <Grid Grid.Row="0" ColumnDefinitions="*,4,*,4,*">
+                    <Border Grid.Column="0" Height="4" Background="{Binding BarraPasso0Brush}"/>
+                    <Border Grid.Column="2" Height="4" Background="{Binding BarraPasso1Brush}"/>
+                    <Border Grid.Column="4" Height="4" Background="{Binding BarraPasso2Brush}"/>
+                </Grid>
+
+                <!-- Titolo scheda + contatore -->
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="0,8,0,0">
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding TitoloScheda}"
+                               FontFamily="{DynamicResource FontTitoli}"
+                               FontSize="{DynamicResource SzFontTitolo}"
+                               FontWeight="ExtraBold"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding EtichettaSchedaMeta}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TestoAttenuato}"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"/>
+                </Grid>
+
+                <!-- Requisito (sempre visibile, compresso su telefono) -->
+                <Border x:Name="RequisitoBorder"
+                        Grid.Row="2"
+                        Background="{DynamicResource Sfondo}"
+                        BorderBrush="{DynamicResource RigaDebole}"
+                        BorderThickness="1"
+                        Padding="10,8"
+                        Margin="0,8,0,0">
+                    <TextBlock x:Name="RequisitoText"
+                               Text="{Binding RequisitoScheda}"
+                               FontSize="13"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource TestoPrincipale}"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- ============================== CORPO SCROLLABILE ============================== -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Border Padding="{DynamicResource SzPaginaMargin}">
+                <StackPanel MaxWidth="980" HorizontalAlignment="Stretch" Spacing="14">
+
+                    <!-- Nome del passo -->
+                    <Border Classes="trattino">
+                        <TextBlock Text="{Binding Sessione.NomePasso}"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"/>
+                    </Border>
+
+                    <!-- Chiamata d'esempio (passo 1) -->
+                    <Border IsVisible="{Binding IsPassoOutput}"
+                            Background="{DynamicResource CodiceSfondo}"
+                            BorderBrush="{DynamicResource CodiceBordo}"
+                            BorderThickness="1"
+                            Padding="12,8">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{x:Static r:Strings.Lab_Chiamata}"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TestoAttenuato}"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Disabled">
+                                <TextBlock Text="{Binding ChiamataScheda}"
+                                           FontFamily="{DynamicResource FontCodice}"
+                                           FontSize="13"
+                                           TextWrapping="NoWrap"
+                                           Foreground="{DynamicResource CodiceTesto}"/>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Suggerimento passo 2 -->
+                    <TextBlock IsVisible="{Binding IsPassoBug}"
+                               Text="{x:Static r:Strings.Lab_SuggerimentoTrovaBug}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TestoAttenuato}"
+                               TextWrapping="Wrap"/>
+
+                    <!-- Codice della variante (righe numerate, mai a capo, scroll solo orizzontale) -->
+                    <Border Background="{DynamicResource CodiceSfondo}"
+                            BorderBrush="{DynamicResource CodiceBordo}"
+                            BorderThickness="1">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding RigheCodice}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:RigaCodiceItem">
+                                        <Button Classes="rigaCodice"
+                                                Classes.interattiva="{Binding Interattiva}"
+                                                Classes.selezionata="{Binding IsSelected}"
+                                                Classes.corretta="{Binding IsCorretta}"
+                                                Classes.sbagliata="{Binding IsSbagliata}"
+                                                IsHitTestVisible="{Binding Interattiva}"
+                                                IsTabStop="{Binding Interattiva}"
+                                                Click="OnRigaCodiceClick">
+                                            <Grid ColumnDefinitions="32,*">
+                                                <TextBlock Grid.Column="0"
+                                                           Classes="numRiga"
+                                                           Text="{Binding NumeroFormattato}"
+                                                           FontFamily="{DynamicResource FontCodice}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           Margin="0,0,12,0"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Classes="codice"
+                                                           Text="{Binding Testo}"
+                                                           FontFamily="{DynamicResource FontCodice}"
+                                                           FontSize="13"
+                                                           TextWrapping="NoWrap"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+
+                    <!-- PASSO 1 (base): menu a tendina per ogni riga dell'output -->
+                    <Border IsVisible="{Binding IsPassoOutput}"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14,12">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{x:Static r:Strings.Lab_SuggerimentoOutputMenu}"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TestoAttenuato}"
+                                       TextWrapping="Wrap"/>
+                            <ItemsControl ItemsSource="{Binding RigheMenuOutput}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:MenuOutputItem">
+                                        <Border BorderBrush="{Binding ColoreBordo}"
+                                                BorderThickness="3,0,0,0"
+                                                Padding="10,4,0,4"
+                                                Margin="0,0,0,6">
+                                            <WrapPanel Orientation="Horizontal" ItemSpacing="10" LineSpacing="6" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding EtichettaRiga}"
+                                                           FontFamily="{DynamicResource FontCodice}"
+                                                           FontSize="13"
+                                                           MinWidth="64"
+                                                           VerticalAlignment="Center"/>
+                                                <ComboBox ItemsSource="{Binding Voci}"
+                                                          SelectedItem="{Binding VoceSelezionata, Mode=TwoWay}"
+                                                          PlaceholderText="{x:Static r:Strings.Lab_ScegliValore}"
+                                                          IsEnabled="{Binding PuoModificare}"
+                                                          FontFamily="{DynamicResource FontCodice}"
+                                                          FontSize="13"
+                                                          MinWidth="150"
+                                                          VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding EtichettaEsitoRiga}"
+                                                           IsVisible="{Binding MostraEsito}"
+                                                           FontFamily="{DynamicResource FontCodice}"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{Binding ColoreEsitoTesto}"
+                                                           VerticalAlignment="Center"/>
+                                            </WrapPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PASSO 2 (base): vocabolario dei tipi di difetto -->
+                    <Border IsVisible="{Binding IsPassoBug}"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14,12">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{x:Static r:Strings.Lab_CheTipoErrore}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+                            <ItemsControl ItemsSource="{Binding TipiDifettoVoci}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:TipoDifettoItem">
+                                        <Button Classes="tipoChip"
+                                                Classes.selezionata="{Binding IsSelected}"
+                                                Classes.corretta="{Binding IsCorretta}"
+                                                Classes.sbagliata="{Binding IsSbagliata}"
+                                                IsHitTestVisible="{Binding Interattivo}"
+                                                IsTabStop="{Binding Interattivo}"
+                                                Content="{Binding Etichetta}"
+                                                Click="OnTipoDifettoClick"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PASSO 3: input candidati -->
+                    <StackPanel IsVisible="{Binding IsPassoInput}" Spacing="10">
+                        <TextBlock Text="{x:Static r:Strings.Lab_SuggerimentoInput}"
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TestoAttenuato}"
+                                   TextWrapping="Wrap"/>
+                        <ItemsControl ItemsSource="{Binding InputCandidati}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="state:InputCandidatoItem">
+                                    <Button Classes="inputCard"
+                                            Classes.selezionata="{Binding IsSelected}"
+                                            Classes.corretta="{Binding IsCorretta}"
+                                            Classes.sbagliata="{Binding IsSbagliata}"
+                                            IsHitTestVisible="{Binding Interattivo}"
+                                            IsTabStop="{Binding Interattivo}"
+                                            Click="OnInputCandidatoClick">
+                                        <StackPanel Spacing="8">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <TextBlock Grid.Column="0"
+                                                           Classes="chiamata"
+                                                           Text="{Binding Chiamata}"
+                                                           FontFamily="{DynamicResource FontCodice}"
+                                                           FontSize="13"
+                                                           TextWrapping="Wrap"
+                                                           VerticalAlignment="Center"/>
+                                                <Border Grid.Column="1"
+                                                        Background="{DynamicResource VerdeBrush}"
+                                                        Padding="8,3"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        IsVisible="{Binding MostraBadgeEspone}">
+                                                    <TextBlock Text="{x:Static r:Strings.Lab_EsponeBadge}"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#000000"/>
+                                                </Border>
+                                            </Grid>
+                                            <Grid ColumnDefinitions="*,12,*"
+                                                  IsVisible="{Binding MostraDettaglioEsito}">
+                                                <StackPanel Grid.Column="0" Spacing="2">
+                                                    <TextBlock Classes="etichettaEsito"
+                                                               Text="{x:Static r:Strings.Lab_Atteso}"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"/>
+                                                    <TextBlock Classes="valoreEsito"
+                                                               Text="{Binding Atteso}"
+                                                               FontFamily="{DynamicResource FontCodice}"
+                                                               FontSize="12"
+                                                               TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2" Spacing="2">
+                                                    <TextBlock Classes="etichettaEsito"
+                                                               Text="{x:Static r:Strings.Lab_Effettivo}"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"/>
+                                                    <TextBlock Classes="valoreEsito"
+                                                               Text="{Binding Effettivo}"
+                                                               FontFamily="{DynamicResource FontCodice}"
+                                                               FontSize="12"
+                                                               TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- FEEDBACK ESITO -->
+                    <Border Padding="14,12"
+                            BorderThickness="1"
+                            IsVisible="{Binding Sessione.InAttesaDiAvanti}"
+                            Classes.feedbackOk="{Binding Sessione.UltimoEsitoCorretto}"
+                            Classes.feedbackKo="{Binding !Sessione.UltimoEsitoCorretto}">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{Binding FeedbackTitolo}"
+                                       FontWeight="Bold"
+                                       FontSize="14"
+                                       TextWrapping="Wrap"
+                                       Foreground="#000000"/>
+                            <TextBlock Text="{Binding FeedbackDettaglio}"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="#000000"
+                                       IsVisible="{Binding FeedbackDettaglio, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+
+        <!-- ============================== BARRA IN BASSO ============================== -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource SfondoRialzato}"
+                BorderBrush="{DynamicResource RigaDebole}"
+                BorderThickness="0,1,0,0"
+                Padding="20,10">
+            <Grid MaxWidth="980" HorizontalAlignment="Stretch" ColumnDefinitions="Auto,*,Auto">
+                <Button Grid.Column="0"
+                        Content="{x:Static r:Strings.Lab_Esci}"
+                        Click="OnEsciClick"
+                        Padding="16,10"
+                        FontSize="13"/>
+
+                <Button Grid.Column="2"
+                        Content="{x:Static r:Strings.Lab_Conferma}"
+                        Click="OnConfermaClick"
+                        IsVisible="{Binding Sessione.InAttesaDiRisposta}"
+                        IsEnabled="{Binding PuoConfermare}"
+                        Classes="accent"
+                        Padding="22,10"
+                        FontSize="14"
+                        FontWeight="SemiBold"/>
+
+                <Button Grid.Column="2"
+                        Content="{Binding EtichettaAvanti}"
+                        Click="OnAvantiClick"
+                        IsVisible="{Binding Sessione.InAttesaDiAvanti}"
+                        Classes="accent"
+                        Padding="22,10"
+                        FontSize="14"
+                        FontWeight="SemiBold"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+
+</UserControl>

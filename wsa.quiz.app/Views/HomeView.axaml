@@ -9,6 +9,50 @@
              x:Class="Wsa.Quiz.App.Views.HomeView"
              x:DataType="views:HomeView">
 
+    <UserControl.Styles>
+        <Style Selector="Button.segmento">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segmento /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.segmento:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoAttenuato}"/>
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
+    </UserControl.Styles>
+
     <!-- Step 8: Tab cicla DENTRO la Home (le 4 zone) e non scappa fuori, cosi'
          dopo l'ultima zona si ritorna alla prima invece di perdere il focus. -->
     <DockPanel KeyboardNavigation.TabNavigation="Cycle">
@@ -36,7 +80,7 @@
 
                 <Button x:Name="AvviaBtn"
                         Grid.Column="1"
-                        Content="{x:Static r:Strings.Home_AvviaQuiz}"
+                        Content="{Binding EtichettaAvvia}"
                         Click="OnAvviaClick"
                         IsEnabled="{Binding PuoAvviare}"
                         Classes="accent"
@@ -56,8 +100,137 @@
             <Border Padding="{DynamicResource SzPaginaMargin}">
             <StackPanel x:Name="ContenutoScroll" Spacing="16" Margin="{DynamicResource SzRiservaNav}" MaxWidth="980" HorizontalAlignment="Stretch">
 
+                <!-- Interruttore globale Quiz | Laboratorio -->
+                <Border x:Name="ZonaModo"
+                        KeyboardNavigation.TabNavigation="Once">
+                    <Grid ColumnDefinitions="*,6,*">
+                        <Button x:Name="ModoQuizBtn"
+                                Grid.Column="0"
+                                Classes="segmento"
+                                Classes.attivo="{Binding !Laboratorio}"
+                                Content="{x:Static r:Strings.Lab_ModoQuiz}"
+                                Click="OnModoQuizClick"/>
+                        <Button x:Name="ModoLabBtn"
+                                Grid.Column="2"
+                                Classes="segmento"
+                                Classes.attivo="{Binding Laboratorio}"
+                                Content="{x:Static r:Strings.Lab_ModoLaboratorio}"
+                                Click="OnModoLabClick"/>
+                    </Grid>
+                </Border>
+
+                <!-- ============================== LABORATORIO ============================== -->
+                <StackPanel x:Name="ZonaLaboratorio"
+                            IsVisible="{Binding Laboratorio}"
+                            Spacing="16">
+
+                    <!-- Linguaggio -->
+                    <Border x:Name="ZonaLabLinguaggio"
+                            KeyboardNavigation.TabNavigation="Once"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14">
+                        <StackPanel Spacing="8">
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Lab_Linguaggio}"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+                            <TextBlock Text="{x:Static r:Strings.Lab_AvvisoNessunaScheda}"
+                                       Foreground="{DynamicResource TestoAttenuato}"
+                                       FontStyle="Italic"
+                                       TextWrapping="Wrap"
+                                       IsVisible="{Binding NessunLinguaggioLab}"/>
+                            <ItemsControl ItemsSource="{Binding LinguaggiLab}"
+                                          IsVisible="{Binding !NessunLinguaggioLab}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:LinguaggioLabItem">
+                                        <RadioButton IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                     Click="OnLinguaggioLabClick"
+                                                     Margin="0,2">
+                                            <TextBlock Text="{Binding Etichetta}" TextWrapping="Wrap"/>
+                                        </RadioButton>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Livello -->
+                    <Border x:Name="ZonaLabLivello"
+                            KeyboardNavigation.TabNavigation="Once"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14">
+                        <StackPanel Spacing="10">
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Lab_Livello}"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+                            <Grid ColumnDefinitions="*,6,*,6,*">
+                                <Button Grid.Column="0"
+                                        Classes="segmento"
+                                        Classes.attivo="{Binding IsLabBase}"
+                                        IsEnabled="{Binding HaSchedeBase}"
+                                        Content="{Binding EtichettaLabBase}"
+                                        Tag="base"
+                                        Click="OnLabLivelloClick"/>
+                                <Button Grid.Column="2"
+                                        Classes="segmento"
+                                        Classes.attivo="{Binding IsLabMedia}"
+                                        IsEnabled="{Binding HaSchedeMedia}"
+                                        Content="{Binding EtichettaLabMedia}"
+                                        Tag="media"
+                                        Click="OnLabLivelloClick"/>
+                                <Button Grid.Column="4"
+                                        Classes="segmento"
+                                        Classes.attivo="{Binding IsLabAlta}"
+                                        IsEnabled="{Binding HaSchedeAlta}"
+                                        Content="{Binding EtichettaLabAlta}"
+                                        Tag="alta"
+                                        Click="OnLabLivelloClick"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Schede -->
+                    <Border x:Name="ZonaLabSchede"
+                            KeyboardNavigation.TabNavigation="Once"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14">
+                        <StackPanel Spacing="8">
+                            <Border Classes="trattino">
+                                <TextBlock Text="{x:Static r:Strings.Lab_Schede}"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+                            <!-- Niente GroupName: vedi Trappola 19. -->
+                            <RadioButton IsChecked="{Binding LabSoloNonViste, Mode=TwoWay}">
+                                <TextBlock Text="{x:Static r:Strings.Lab_SoloNonViste}" TextWrapping="Wrap"/>
+                            </RadioButton>
+                            <RadioButton IsChecked="{Binding LabRipassa, Mode=TwoWay}">
+                                <TextBlock Text="{x:Static r:Strings.Lab_RipassaSbagliate}" TextWrapping="Wrap"/>
+                            </RadioButton>
+                            <WrapPanel Orientation="Horizontal" ItemSpacing="8" LineSpacing="4" Margin="0,4,0,0">
+                                <NumericUpDown Minimum="1" Maximum="50"
+                                               Value="{Binding LabSchede, Mode=TwoWay}"
+                                               Increment="1"
+                                               FormatString="0"
+                                               Width="120"
+                                               VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Static r:Strings.Lab_SchedePerSessione}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
                 <!-- Materie + Categorie -->
-                <Grid x:Name="GrigliaMaterieCategorie" ColumnDefinitions="*,16,2*" RowDefinitions="Auto,Auto" Margin="0,4,0,0">
+                <Grid x:Name="GrigliaMaterieCategorie" IsVisible="{Binding !Laboratorio}" ColumnDefinitions="*,16,2*" RowDefinitions="Auto,Auto" Margin="0,4,0,0">
 
                     <!-- ============================== MATERIE ============================== -->
                     <Border x:Name="ZonaMaterie"
@@ -148,6 +321,7 @@
 
                 <!-- ============================== OPZIONI ============================== -->
                 <Border x:Name="ZonaOpzioni"
+                        IsVisible="{Binding !Laboratorio}"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SfondoRialzato}"
                         BorderBrush="{DynamicResource RigaDebole}"
@@ -215,6 +389,7 @@
                 <!-- Tre pulsanti filtro (variante B del mockup del 14/11):
                      si sommano a materie e categorie. Nessuno acceso = tutti inclusi. -->
                 <Border x:Name="ZonaTipo"
+                        IsVisible="{Binding !Laboratorio}"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SfondoRialzato}"
                         BorderBrush="{DynamicResource RigaDebole}"
@@ -256,6 +431,7 @@
                 <!-- Quattro pulsanti filtro (Rosse / Ambra / Verdi / Nuove):
                      filtrano le categorie in base allo storico. Nessuno acceso = nessun filtro. -->
                 <Border x:Name="ZonaLivelli"
+                        IsVisible="{Binding !Laboratorio}"
                         KeyboardNavigation.TabNavigation="Once"
                         Background="{DynamicResource SfondoRialzato}"
                         BorderBrush="{DynamicResource RigaDebole}"

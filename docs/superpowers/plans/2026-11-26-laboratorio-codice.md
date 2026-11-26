@@ -246,6 +246,9 @@ finché passa, copiando i valori veri dai messaggi del test. Il test non va modi
 
 ## Task 5: `SessioneLaboratorio`
 
+- [x] Fatto 2026-11-26 (agy): `wsa.quiz.app/State/SessioneLaboratorio.cs`, `wsa.quiz.core/Risorse/Strings*.resx` — verifica (Claude): build desktop/browser/cli/android verdi, `dotnet test` 82/82
+- [x] Corretto 2026-11-26 (Claude): review fetta 2 (Argon, 2 ALTA veri) — ordine degli assegnamenti in `CaricaScheda`/`Avanti` (righe non cliccabili al passo 2; codice della scheda precedente dalla scheda 2); clamp di `LabSchede`; blocco doppione in `HomeView.OnMateriaPropertyChanged` tolto
+
 `wsa.quiz.app/State/SessioneLaboratorio.cs`, eredita `ObservableObject` (come gli altri stati). Riceve la lista di
 coppie da `LaboratorioService.Prepara`, il nome del linguaggio e il livello.
 
@@ -271,6 +274,8 @@ In questa fetta esistono solo le forme base (menu per riga, riga + tipo, un tent
 
 ## Task 6: `LaboratorioView`
 
+- [x] Fatto 2026-11-26 (agy): `wsa.quiz.app/Views/LaboratorioView.axaml`, `wsa.quiz.app/Views/LaboratorioView.axaml.cs`, `wsa.quiz.app/State/LaboratorioItems.cs`, `wsa.quiz.core/Risorse/Strings*.resx` — verifica (Claude): build desktop/browser/cli/android verdi, `dotnet test` 82/82
+
 `wsa.quiz.app/Views/LaboratorioView.axaml(.cs)`, costruita come `QuizView` (costruttore con la sessione, eventi
 `LaboratorioConcluso` e, dalla Fetta 5, `LaboratorioMessoInPausa`). Riferimento visivo: i mockup
 `prevedi-output.html` (variante C per il livello base) e `trova-bug.html` (variante A).
@@ -293,6 +298,8 @@ In questa fetta esistono solo le forme base (menu per riga, riga + tipo, un tent
 - Testi in `Strings` con prefisso `Lab_`.
 
 ## Task 7: Home, preferenze e collegamento
+
+- [x] Fatto 2026-11-26 (agy): `wsa.quiz.core/Models/PreferenzeUtente.cs`, `wsa.quiz.app/Views/HomeView.axaml`, `wsa.quiz.app/Views/HomeView.axaml.cs`, `wsa.quiz.app/MainView.axaml.cs`, `wsa.quiz.core/Risorse/Strings*.resx` — verifica (Claude): build desktop/browser/cli/android verdi, `dotnet test` 82/82
 
 **`PreferenzeUtente`**, campi additivi in fondo: `Laboratorio` (bool, false: l'interruttore globale), `LabLivello`
 (string, `base`), `LabRipassa` (bool, false), `LabSchede` (int, 5).
@@ -317,6 +324,8 @@ In questa fetta esistono solo le forme base (menu per riga, riga + tipo, un tent
 - `RitornaAllaHome` ricostruisce la Home con le schede, come già fa con le domande.
 
 ## Task 8: Cronologia, Riepilogo e CLI con i record del Laboratorio
+
+- [x] Fatto 2026-11-26 (agy): nessuna modifica necessaria — verifica (ispezione codice, nessuna shell eseguita): `CronologiaDettaglioView.axaml(.cs)` e `DettaglioRispostaItem.cs` non leggono `RisposteShufflate` né mostrano bottoni A/B/C/D; `RiepilogoView.axaml(.cs)` mostra `Modalita` e `Sbagliate` tramite `DettaglioRispostaItem` senza errori; `StatisticheView.axaml.cs` e `StatisticheService.cs` raggruppano `C# · Laboratorio` come materia; `wsa.quiz.cli/Program.cs` e `ConsoleUI.cs` mostrano cronologia e breakdown per categoria senza risolvere `IdDomanda` né ripassare sbagliate.
 
 - `CronologiaDettaglioView` / `DettaglioRispostaItem`: un dettaglio con `RisposteShufflate` vuota mostra testo, risposta
   data, risposta corretta e spiegazione, senza i quattro bottoni A/B/C/D e senza errori. Se lo fa già, non toccare
