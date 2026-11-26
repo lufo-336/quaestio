@@ -29,7 +29,7 @@ e domande it/en; **12 materie / 2483 domande**. Versione corrente su `main`:
 **`2.2.0`** (Android `versionCode 5`, iOS `ApplicationVersion 3`; punti deboli
 con filtri spenti di default + conteggi incrociati, Statistiche Master-Detail
 adattive con *Ripassa* per materia e categoria). Ultima GitHub Release
-pubblicata: `v2.1.0` (19/11: seconda possibilità sul mezzo errore; APK + desktop
+pubblicata: `v2.2.0` (26/11: punti deboli, Statistiche, revisione grafica, fix swipe; APK + desktop
 Windows/macOS/Linux). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
@@ -39,10 +39,10 @@ dati in `localStorage`, deploy automatico su GitHub Pages), provato nel
 browser il 2026-11-10.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
 Statistiche.
-**Revisione grafica (25–26/11, su `main`, non ancora in un APK):** tavolozza dei 16
+**Revisione grafica (25–26/11, in `v2.2.0`):** tavolozza dei 16
 inchiostri, font Archivo, angoli vivi, marchio e icone a6-2, barra C2 su telefono,
 tab coi colori di sezione su desktop, colore utente su intestazione e titoli.
-Da riprendere dal PC: nota in testa a `docs/superpowers/plans/2026-11-25-revisione-grafica.md`. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
+Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
 ## Stack
 
