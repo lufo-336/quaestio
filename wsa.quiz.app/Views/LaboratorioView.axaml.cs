@@ -33,14 +33,19 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     private bool _avviata;
     private int _schedaPreparataIndice = -1;
     private List<string> _vociOutputMescolate = new();
+    private List<string> _tessereOutputMescolate = new();
 
     private int? _rigaSelezionata;
     private string? _tipoSelezionato;
+    private string? _correzioneSelezionata;
     private int? _indiceInputSelezionato;
 
     public ObservableCollection<RigaCodiceItem> RigheCodice { get; } = new();
     public ObservableCollection<MenuOutputItem> RigheMenuOutput { get; } = new();
+    public ObservableCollection<TesseraOutputItem> TessereOutput { get; } = new();
+    public ObservableCollection<TesseraCompostaItem> OutputComposto { get; } = new();
     public ObservableCollection<TipoDifettoItem> TipiDifettoVoci { get; } = new();
+    public ObservableCollection<CorrezioneBugItem> CorrezioniBug { get; } = new();
     public ObservableCollection<InputCandidatoItem> InputCandidati { get; } = new();
 
     // ------------------------------------------------------------------ PROPRIETA' LEGATE DALLA UI
@@ -65,8 +70,17 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     }
 
     public bool IsPassoOutput => Sessione.Passo == PassoLab.PrevediOutput;
+    public bool IsPassoOutputMenu => IsPassoOutput && Sessione.IsLivelloBase;
+    public bool IsPassoOutputTessere => IsPassoOutput && !Sessione.IsLivelloBase;
+    public bool OutputCompostoVuoto => OutputComposto.Count == 0;
     public bool IsPassoBug => Sessione.Passo == PassoLab.TrovaBug;
+    public bool MostraPannelloTipo => IsPassoBug && Sessione.IsLivelloBase && Sessione.RigaTrovata;
+    public bool MostraPannelloCorrezione => IsPassoBug && Sessione.IsLivelloMedia && Sessione.RigaTrovata;
     public bool IsPassoInput => Sessione.Passo == PassoLab.RompiFunzione;
+
+    public string SuggerimentoPassoBug => !Sessione.RigaTrovata
+        ? Strings.Lab_SuggerimentoTrovaBugRiga
+        : (Sessione.IsLivelloMedia ? Strings.Lab_SuggerimentoScegliCorrezione : Strings.Lab_SuggerimentoScegliTipo);
 
     public string EtichettaAvanti => Sessione.EUltimoPassoDellaSessione
         ? Strings.Lab_Fine
@@ -74,8 +88,14 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     public bool PuoConfermare => Sessione.Passo switch
     {
-        PassoLab.PrevediOutput => RigheMenuOutput.Count > 0 && RigheMenuOutput.All(r => r.VoceSelezionata != null),
-        PassoLab.TrovaBug => _rigaSelezionata.HasValue && !string.IsNullOrEmpty(_tipoSelezionato),
+        PassoLab.PrevediOutput => Sessione.IsLivelloBase
+            ? RigheMenuOutput.Count > 0 && RigheMenuOutput.All(r => r.VoceSelezionata != null)
+            : OutputComposto.Count > 0,
+        PassoLab.TrovaBug => !Sessione.RigaTrovata
+            ? _rigaSelezionata.HasValue
+            : (Sessione.IsLivelloMedia
+                ? !string.IsNullOrEmpty(_correzioneSelezionata)
+                : !string.IsNullOrEmpty(_tipoSelezionato)),
         PassoLab.RompiFunzione => _indiceInputSelezionato.HasValue,
         _ => false
     };
@@ -93,6 +113,23 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         get => _feedbackDettaglio;
         private set { if (_feedbackDettaglio != value) { _feedbackDettaglio = value; Raise(); } }
     }
+
+    private string _outputAttesoTesto = string.Empty;
+    public string OutputAttesoTesto
+    {
+        get => _outputAttesoTesto;
+        private set
+        {
+            if (_outputAttesoTesto != value)
+            {
+                _outputAttesoTesto = value;
+                Raise();
+                Raise(nameof(MostraOutputAtteso));
+            }
+        }
+    }
+
+    public bool MostraOutputAtteso => !string.IsNullOrEmpty(_outputAttesoTesto);
 
     public IBrush BarraPasso0Brush => ColoreBarraPasso(PassoLab.PrevediOutput);
     public IBrush BarraPasso1Brush => ColoreBarraPasso(PassoLab.TrovaBug);
@@ -162,11 +199,29 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
                 NotificaPassi();
                 break;
 
+            case nameof(SessioneLaboratorio.RigaTrovata):
+                Raise(nameof(SuggerimentoPassoBug));
+                Raise(nameof(MostraPannelloTipo));
+                Raise(nameof(MostraPannelloCorrezione));
+                Raise(nameof(PuoConfermare));
+                break;
+
             case nameof(SessioneLaboratorio.InAttesaDiAvanti):
                 NotificaPassi();
                 Raise(nameof(PuoConfermare));
                 break;
         }
+    }
+
+    private static List<string> Mescola(IEnumerable<string> sorgente)
+    {
+        var lista = sorgente.ToList();
+        for (int i = lista.Count - 1; i > 0; i--)
+        {
+            int j = Random.Shared.Next(i + 1);
+            (lista[i], lista[j]) = (lista[j], lista[i]);
+        }
+        return lista;
     }
 
     private void PreparaSchedaSeNecessario()
@@ -175,17 +230,9 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         if (variante == null || _schedaPreparataIndice == Sessione.IndiceScheda) return;
         _schedaPreparataIndice = Sessione.IndiceScheda;
 
-        // Voci del passo 1 = Output + Esche, distinte e mescolate una volta per scheda.
-        var voci = variante.Output
-            .Concat(variante.Esche)
-            .Distinct(StringComparer.Ordinal)
-            .ToList();
-        for (int i = voci.Count - 1; i > 0; i--)
-        {
-            int j = Random.Shared.Next(i + 1);
-            (voci[i], voci[j]) = (voci[j], voci[i]);
-        }
-        _vociOutputMescolate = voci;
+        // Voci del passo 1 base (distinte) e tessere per media/alta (mantengono eventuali righe ripetute in Output).
+        _vociOutputMescolate = Mescola(variante.Output.Concat(variante.Esche).Distinct(StringComparer.Ordinal));
+        _tessereOutputMescolate = Mescola(variante.Output.Concat(variante.Esche));
 
         RigheCodice.Clear();
         for (int i = 0; i < variante.Righe.Count; i++)
@@ -199,14 +246,16 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
         _rigaSelezionata = null;
         _tipoSelezionato = null;
+        _correzioneSelezionata = null;
         _indiceInputSelezionato = null;
         FeedbackTitolo = string.Empty;
         FeedbackDettaglio = string.Empty;
+        OutputAttesoTesto = string.Empty;
 
         bool eBug = Sessione.Passo == PassoLab.TrovaBug;
         foreach (var r in RigheCodice)
         {
-            r.Interattiva = eBug && Sessione.InAttesaDiRisposta;
+            r.Interattiva = eBug && Sessione.InAttesaDiRisposta && !Sessione.RigaTrovata && r.Numero != Sessione.PrimaRigaErrata;
             r.IsSelected = false;
             r.IsCorretta = false;
             r.IsSbagliata = false;
@@ -215,22 +264,49 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         if (Sessione.Passo == PassoLab.PrevediOutput)
         {
             RigheMenuOutput.Clear();
-            for (int i = 0; i < variante.Output.Count; i++)
+            TessereOutput.Clear();
+            OutputComposto.Clear();
+
+            if (Sessione.IsLivelloBase)
             {
-                var item = new MenuOutputItem(i, _vociOutputMescolate);
-                item.PropertyChanged += (_, args) =>
+                for (int i = 0; i < variante.Output.Count; i++)
                 {
-                    if (args.PropertyName == nameof(MenuOutputItem.VoceSelezionata))
-                        Raise(nameof(PuoConfermare));
-                };
-                RigheMenuOutput.Add(item);
+                    var item = new MenuOutputItem(i, _vociOutputMescolate);
+                    item.PropertyChanged += (_, args) =>
+                    {
+                        if (args.PropertyName == nameof(MenuOutputItem.VoceSelezionata))
+                            Raise(nameof(PuoConfermare));
+                    };
+                    RigheMenuOutput.Add(item);
+                }
             }
+            else
+            {
+                for (int i = 0; i < _tessereOutputMescolate.Count; i++)
+                    TessereOutput.Add(new TesseraOutputItem(i, _tessereOutputMescolate[i]));
+            }
+            Raise(nameof(OutputCompostoVuoto));
         }
         else if (Sessione.Passo == PassoLab.TrovaBug)
         {
             TipiDifettoVoci.Clear();
-            foreach (var id in TipiDifetto.Tutti)
-                TipiDifettoVoci.Add(new TipoDifettoItem(id, TipiDifetto.Etichetta(id)));
+            CorrezioniBug.Clear();
+
+            if (Sessione.IsLivelloMedia)
+            {
+                var difetto = variante.Difetti.FirstOrDefault();
+                if (difetto != null)
+                {
+                    var opzioni = Mescola(new[] { difetto.Correzione }.Concat(difetto.Trappole));
+                    for (int i = 0; i < opzioni.Count; i++)
+                        CorrezioniBug.Add(new CorrezioneBugItem(i, opzioni[i]));
+                }
+            }
+            else
+            {
+                foreach (var id in TipiDifetto.Tutti)
+                    TipiDifettoVoci.Add(new TipoDifettoItem(id, TipiDifetto.Etichetta(id)));
+            }
         }
         else if (Sessione.Passo == PassoLab.RompiFunzione)
         {
@@ -249,10 +325,35 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     // ------------------------------------------------------------------ INTERAZIONI
 
+    private void OnTesseraPoolClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.PrevediOutput || Sessione.IsLivelloBase || !Sessione.InAttesaDiRisposta) return;
+        if (sender is not Button { DataContext: TesseraOutputItem tessera } || tessera.IsUsata) return;
+
+        tessera.IsUsata = true;
+        OutputComposto.Add(new TesseraCompostaItem(tessera));
+        Raise(nameof(OutputCompostoVuoto));
+        Raise(nameof(PuoConfermare));
+        Focus();
+    }
+
+    private void OnTesseraCompostaClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.PrevediOutput || Sessione.IsLivelloBase || !Sessione.InAttesaDiRisposta) return;
+        if (sender is not Button { DataContext: TesseraCompostaItem item }) return;
+
+        OutputComposto.Remove(item);
+        item.Origine.IsUsata = false;
+        Raise(nameof(OutputCompostoVuoto));
+        Raise(nameof(PuoConfermare));
+        Focus();
+    }
+
     private void OnRigaCodiceClick(object? sender, RoutedEventArgs e)
     {
-        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta) return;
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta || Sessione.RigaTrovata) return;
         if (sender is not Button { DataContext: RigaCodiceItem riga }) return;
+        if (Sessione.PrimaRigaErrata == riga.Numero) return;
 
         _rigaSelezionata = riga.Numero;
         foreach (var r in RigheCodice)
@@ -264,12 +365,25 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     private void OnTipoDifettoClick(object? sender, RoutedEventArgs e)
     {
-        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta) return;
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta || !Sessione.RigaTrovata) return;
         if (sender is not Button { DataContext: TipoDifettoItem item }) return;
 
         _tipoSelezionato = item.Id;
         foreach (var t in TipiDifettoVoci)
             t.IsSelected = t.Id == item.Id;
+
+        Raise(nameof(PuoConfermare));
+        Focus();
+    }
+
+    private void OnCorrezioneBugClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta || !Sessione.RigaTrovata) return;
+        if (sender is not Button { DataContext: CorrezioneBugItem item }) return;
+
+        _correzioneSelezionata = item.Testo;
+        foreach (var c in CorrezioniBug)
+            c.IsSelected = c.Indice == item.Indice;
 
         Raise(nameof(PuoConfermare));
         Focus();
@@ -297,11 +411,38 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         {
             case PassoLab.PrevediOutput:
             {
-                var risposte = RigheMenuOutput.Select(r => r.VoceSelezionata!).ToList();
-                Sessione.RispondiOutput(risposte);
+                if (Sessione.IsLivelloBase)
+                {
+                    var risposte = RigheMenuOutput.Select(r => r.VoceSelezionata!).ToList();
+                    Sessione.RispondiOutput(risposte);
 
-                for (int i = 0; i < RigheMenuOutput.Count && i < variante.Output.Count; i++)
-                    RigheMenuOutput[i].ImpostaEsito(variante.Output[i]);
+                    for (int i = 0; i < RigheMenuOutput.Count && i < variante.Output.Count; i++)
+                        RigheMenuOutput[i].ImpostaEsito(variante.Output[i]);
+
+                    OutputAttesoTesto = string.Empty;
+                }
+                else
+                {
+                    var risposte = OutputComposto.Select(t => t.Testo).ToList();
+                    Sessione.RispondiOutput(risposte);
+
+                    foreach (var t in TessereOutput)
+                        t.Interattiva = false;
+
+                    for (int i = 0; i < OutputComposto.Count; i++)
+                    {
+                        var tile = OutputComposto[i];
+                        tile.Interattiva = false;
+                        bool giusta = i < variante.Output.Count
+                            && string.Equals(tile.Testo, variante.Output[i], StringComparison.Ordinal);
+                        tile.IsCorretta = giusta;
+                        tile.IsSbagliata = !giusta;
+                    }
+
+                    OutputAttesoTesto = Sessione.UltimoEsitoCorretto
+                        ? string.Empty
+                        : string.Join("\n", variante.Output);
+                }
 
                 FeedbackTitolo = Sessione.UltimoEsitoCorretto
                     ? Strings.Lab_OutputGiusto
@@ -312,32 +453,91 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
             case PassoLab.TrovaBug:
             {
-                int rigaScelta = _rigaSelezionata!.Value;
-                string tipoScelto = _tipoSelezionato!;
-                Sessione.RispondiBugTipo(rigaScelta, tipoScelto);
-
                 var difetto = variante.Difetti.FirstOrDefault();
-                foreach (var r in RigheCodice)
+
+                if (!Sessione.RigaTrovata)
                 {
-                    r.Interattiva = false;
-                    r.IsSelected = false;
-                    if (difetto != null && r.Numero == difetto.Riga)
-                        r.IsCorretta = true;
-                    else if (r.Numero == rigaScelta)
-                        r.IsSbagliata = true;
+                    int rigaScelta = _rigaSelezionata!.Value;
+                    Sessione.TentaRigaBug(rigaScelta);
+
+                    if (Sessione.RigaTrovata)
+                    {
+                        foreach (var r in RigheCodice)
+                        {
+                            r.Interattiva = false;
+                            r.IsSelected = false;
+                            if (r.Numero == rigaScelta)
+                                r.IsCorretta = true;
+                        }
+                        NotificaPassi();
+                        Raise(nameof(PuoConfermare));
+                    }
+                    else if (Sessione.InAttesaDiAvanti)
+                    {
+                        foreach (var r in RigheCodice)
+                        {
+                            r.Interattiva = false;
+                            r.IsSelected = false;
+                            if (difetto != null && r.Numero == difetto.Riga)
+                                r.IsCorretta = true;
+                            else if (r.Numero == rigaScelta || r.Numero == Sessione.PrimaRigaErrata)
+                                r.IsSbagliata = true;
+                        }
+                        FeedbackTitolo = Strings.Quiz_Sbagliato;
+                        FeedbackDettaglio = difetto?.Spiegazione ?? string.Empty;
+                    }
+                    else
+                    {
+                        _rigaSelezionata = null;
+                        foreach (var r in RigheCodice)
+                        {
+                            r.IsSelected = false;
+                            if (r.Numero == rigaScelta)
+                            {
+                                r.IsSbagliata = true;
+                                r.Interattiva = false;
+                            }
+                        }
+                        Raise(nameof(PuoConfermare));
+                    }
+                    break;
                 }
 
-                foreach (var t in TipiDifettoVoci)
+                int rigaConfermata = Sessione.RigaConfermata ?? _rigaSelezionata!.Value;
+                if (Sessione.IsLivelloMedia)
                 {
-                    t.Interattivo = false;
-                    t.IsSelected = false;
-                    if (difetto != null && string.Equals(t.Id, difetto.Tipo, StringComparison.Ordinal))
-                        t.IsCorretta = true;
-                    else if (string.Equals(t.Id, tipoScelto, StringComparison.Ordinal))
-                        t.IsSbagliata = true;
+                    string corrScelta = _correzioneSelezionata!;
+                    Sessione.RispondiBugCorrezione(rigaConfermata, corrScelta);
+
+                    foreach (var c in CorrezioniBug)
+                    {
+                        c.Interattivo = false;
+                        c.IsSelected = false;
+                        if (difetto != null && string.Equals(c.Testo, difetto.Correzione, StringComparison.Ordinal))
+                            c.IsCorretta = true;
+                        else if (string.Equals(c.Testo, corrScelta, StringComparison.Ordinal))
+                            c.IsSbagliata = true;
+                    }
+                }
+                else
+                {
+                    string tipoScelto = _tipoSelezionato!;
+                    Sessione.RispondiBugTipo(rigaConfermata, tipoScelto);
+
+                    foreach (var t in TipiDifettoVoci)
+                    {
+                        t.Interattivo = false;
+                        t.IsSelected = false;
+                        if (difetto != null && string.Equals(t.Id, difetto.Tipo, StringComparison.Ordinal))
+                            t.IsCorretta = true;
+                        else if (string.Equals(t.Id, tipoScelto, StringComparison.Ordinal))
+                            t.IsSbagliata = true;
+                    }
                 }
 
-                FeedbackTitolo = Sessione.UltimoEsitoCorretto ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
+                FeedbackTitolo = Sessione.UltimoEsitoCorretto
+                    ? (Sessione.UltimoSecondoTentativo ? Strings.Quiz_MezzoCorretto : Strings.Quiz_Corretto)
+                    : Strings.Quiz_Sbagliato;
                 FeedbackDettaglio = difetto?.Spiegazione ?? string.Empty;
                 break;
             }
@@ -442,7 +642,13 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     private void NotificaPassi()
     {
         Raise(nameof(IsPassoOutput));
+        Raise(nameof(IsPassoOutputMenu));
+        Raise(nameof(IsPassoOutputTessere));
+        Raise(nameof(OutputCompostoVuoto));
         Raise(nameof(IsPassoBug));
+        Raise(nameof(SuggerimentoPassoBug));
+        Raise(nameof(MostraPannelloTipo));
+        Raise(nameof(MostraPannelloCorrezione));
         Raise(nameof(IsPassoInput));
         Raise(nameof(EtichettaAvanti));
         Raise(nameof(BarraPasso0Brush));

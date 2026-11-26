@@ -149,6 +149,46 @@ public static class LaboratorioService
     public static bool ERisultatoLab(RisultatoQuiz? r) =>
         r != null && string.Equals(r.Modalita, Modalita, StringComparison.Ordinal);
 
+    // ------------------------------------------------------------------ REGOLE DI CORREZIONE
+
+    /// <summary>True se le righe previste coincidono esattamente, nell'ordine, con <see cref="VarianteLab.Output"/>.</summary>
+    public static bool OutputCorretto(VarianteLab? variante, IReadOnlyList<string>? righe)
+    {
+        if (variante == null || righe == null) return false;
+        return righe.Count == variante.Output.Count
+            && righe.SequenceEqual(variante.Output, StringComparer.Ordinal);
+    }
+
+    /// <summary>True se <paramref name="riga"/> (1-based) coincide con la riga del difetto principale.</summary>
+    public static bool BugRigaCorretta(VarianteLab? variante, int riga)
+    {
+        if (variante == null || variante.Difetti.Count == 0) return false;
+        return riga == variante.Difetti[0].Riga;
+    }
+
+    /// <summary>True se riga (1-based) e tipo coincidono con il difetto della variante (livello base).</summary>
+    public static bool BugTipoCorretto(VarianteLab? variante, int riga, string? tipo)
+    {
+        if (variante == null || variante.Difetti.Count == 0) return false;
+        var difetto = variante.Difetti[0];
+        return riga == difetto.Riga && string.Equals(tipo, difetto.Tipo, StringComparison.Ordinal);
+    }
+
+    /// <summary>True se riga (1-based) e correzione coincidono con il difetto della variante (livello media).</summary>
+    public static bool BugCorrezioneCorretta(VarianteLab? variante, int riga, string? correzione)
+    {
+        if (variante == null || variante.Difetti.Count == 0) return false;
+        var difetto = variante.Difetti[0];
+        return riga == difetto.Riga && string.Equals(correzione, difetto.Correzione, StringComparison.Ordinal);
+    }
+
+    /// <summary>True se l'input candidato all'indice indicato espone un difetto.</summary>
+    public static bool InputCorretto(VarianteLab? variante, int indice)
+    {
+        if (variante == null || indice < 0 || indice >= variante.Input.Count) return false;
+        return variante.Input[indice].Espone;
+    }
+
     /// <summary>
     /// Seleziona al massimo <paramref name="quante"/> coppie (scheda, variante) del livello richiesto,
     /// garantendo al più un elemento per scheda:

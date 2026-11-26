@@ -126,6 +126,127 @@
             <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
 
+        <!-- Tessere passo 1 (media/alta): riserva e output composto -->
+        <Style Selector="Button.tesseraPool">
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0,0,6,6"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.tesseraPool /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.tesseraPool:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.tesseraPool.usata">
+            <Setter Property="Opacity" Value="0.3"/>
+        </Style>
+        <Style Selector="Button.tesseraPool.usata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoAttenuato}"/>
+        </Style>
+
+        <Style Selector="Button.tesseraComposta">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.tesseraComposta.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+
+        <!-- Tre righe di correzione (passo 2 media) -->
+        <Style Selector="Button.correzioneBtn">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.selezionata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.selezionata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+        </Style>
+
+        <Style Selector="Button.correzioneBtn TextBlock.codiceCorrezione">
+            <Setter Property="Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.selezionata TextBlock.codiceCorrezione">
+            <Setter Property="Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.corretta TextBlock.codiceCorrezione">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.correzioneBtn.sbagliata TextBlock.codiceCorrezione">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
         <!-- Card input candidati (passo 3) -->
         <Style Selector="Button.inputCard">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -296,10 +417,29 @@
 
                     <!-- Suggerimento passo 2 -->
                     <TextBlock IsVisible="{Binding IsPassoBug}"
-                               Text="{x:Static r:Strings.Lab_SuggerimentoTrovaBug}"
+                               Text="{Binding SuggerimentoPassoBug}"
                                FontSize="12"
                                Foreground="{DynamicResource TestoAttenuato}"
                                TextWrapping="Wrap"/>
+
+                    <!-- Avviso seconda possibilità + indizio (passo 2 base/media) -->
+                    <Border Background="#FCF4DB"
+                            BorderBrush="{DynamicResource AmbraBrush}"
+                            BorderThickness="1"
+                            Padding="14,10"
+                            IsVisible="{Binding Sessione.SecondaPossibilitaInCorso}">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{x:Static r:Strings.Lab_SecondaPossibilitaTitolo}"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       Foreground="#000000"/>
+                            <TextBlock Text="{Binding Sessione.IndizioCorrente}"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="#000000"/>
+                        </StackPanel>
+                    </Border>
 
                     <!-- Codice della variante (righe numerate, mai a capo, scroll solo orizzontale) -->
                     <Border Background="{DynamicResource CodiceSfondo}"
@@ -343,7 +483,7 @@
                     </Border>
 
                     <!-- PASSO 1 (base): menu a tendina per ogni riga dell'output -->
-                    <Border IsVisible="{Binding IsPassoOutput}"
+                    <Border IsVisible="{Binding IsPassoOutputMenu}"
                             Background="{DynamicResource SfondoRialzato}"
                             BorderBrush="{DynamicResource RigaDebole}"
                             BorderThickness="1"
@@ -389,8 +529,82 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- PASSO 2 (base): vocabolario dei tipi di difetto -->
-                    <Border IsVisible="{Binding IsPassoBug}"
+                    <!-- PASSO 1 (media/alta): tessere da comporre in ordine -->
+                    <Border IsVisible="{Binding IsPassoOutputTessere}"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14,12">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{x:Static r:Strings.Lab_SuggerimentoOutputTessere}"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TestoAttenuato}"
+                                       TextWrapping="Wrap"/>
+
+                            <!-- Zona output composto -->
+                            <Border Background="{DynamicResource Sfondo}"
+                                    BorderBrush="{DynamicResource RigaForte}"
+                                    BorderThickness="1"
+                                    MinHeight="64"
+                                    Padding="10,8">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{x:Static r:Strings.Lab_OutputCompostoVuoto}"
+                                               IsVisible="{Binding OutputCompostoVuoto}"
+                                               FontSize="12"
+                                               FontStyle="Italic"
+                                               Foreground="{DynamicResource TestoAttenuato}"
+                                               Margin="0,4"/>
+                                    <ItemsControl ItemsSource="{Binding OutputComposto}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="state:TesseraCompostaItem">
+                                                <Button Classes="tesseraComposta"
+                                                        Classes.corretta="{Binding IsCorretta}"
+                                                        Classes.sbagliata="{Binding IsSbagliata}"
+                                                        IsHitTestVisible="{Binding Interattiva}"
+                                                        IsTabStop="{Binding Interattiva}"
+                                                        Click="OnTesseraCompostaClick">
+                                                    <TextBlock Text="{Binding Testo}"
+                                                               FontFamily="{DynamicResource FontCodice}"
+                                                               FontSize="13"
+                                                               TextWrapping="Wrap"/>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Riserva delle tessere -->
+                            <TextBlock Text="{x:Static r:Strings.Lab_TessereDisponibili}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TestoAttenuato}"/>
+                            <ItemsControl ItemsSource="{Binding TessereOutput}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:TesseraOutputItem">
+                                        <Button Classes="tesseraPool"
+                                                Classes.usata="{Binding IsUsata}"
+                                                IsHitTestVisible="{Binding PuoToccare}"
+                                                IsTabStop="{Binding PuoToccare}"
+                                                Click="OnTesseraPoolClick">
+                                            <TextBlock Text="{Binding Testo}"
+                                                       FontFamily="{DynamicResource FontCodice}"
+                                                       FontSize="13"
+                                                       TextWrapping="Wrap"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PASSO 2 (base, dopo riga trovata): vocabolario dei tipi di difetto -->
+                    <Border IsVisible="{Binding MostraPannelloTipo}"
                             Background="{DynamicResource SfondoRialzato}"
                             BorderBrush="{DynamicResource RigaDebole}"
                             BorderThickness="1"
@@ -415,6 +629,38 @@
                                                 IsTabStop="{Binding Interattivo}"
                                                 Content="{Binding Etichetta}"
                                                 Click="OnTipoDifettoClick"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PASSO 2 (media, dopo riga trovata): tre righe di correzione -->
+                    <Border IsVisible="{Binding MostraPannelloCorrezione}"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14,12">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{x:Static r:Strings.Lab_ComeLaCorreggi}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+                            <ItemsControl ItemsSource="{Binding CorrezioniBug}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:CorrezioneBugItem">
+                                        <Button Classes="correzioneBtn"
+                                                Classes.selezionata="{Binding IsSelected}"
+                                                Classes.corretta="{Binding IsCorretta}"
+                                                Classes.sbagliata="{Binding IsSbagliata}"
+                                                IsHitTestVisible="{Binding Interattivo}"
+                                                IsTabStop="{Binding Interattivo}"
+                                                Click="OnCorrezioneBugClick">
+                                            <TextBlock Classes="codiceCorrezione"
+                                                       Text="{Binding TestoVisibile}"
+                                                       FontFamily="{DynamicResource FontCodice}"
+                                                       FontSize="12"
+                                                       TextWrapping="Wrap"/>
+                                        </Button>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -496,12 +742,29 @@
                             IsVisible="{Binding Sessione.InAttesaDiAvanti}"
                             Classes.feedbackOk="{Binding Sessione.UltimoEsitoCorretto}"
                             Classes.feedbackKo="{Binding !Sessione.UltimoEsitoCorretto}">
-                        <StackPanel Spacing="4">
+                        <StackPanel Spacing="6">
                             <TextBlock Text="{Binding FeedbackTitolo}"
                                        FontWeight="Bold"
                                        FontSize="14"
                                        TextWrapping="Wrap"
                                        Foreground="#000000"/>
+                            <Border Background="#FFFFFF"
+                                    BorderBrush="{DynamicResource RossoBrush}"
+                                    BorderThickness="1"
+                                    Padding="10,6"
+                                    IsVisible="{Binding MostraOutputAtteso}">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{x:Static r:Strings.Lab_OutputAttesoTitolo}"
+                                               FontSize="11"
+                                               FontWeight="SemiBold"
+                                               Foreground="#8A252C"/>
+                                    <TextBlock Text="{Binding OutputAttesoTesto}"
+                                               FontFamily="{DynamicResource FontCodice}"
+                                               FontSize="12"
+                                               TextWrapping="Wrap"
+                                               Foreground="#000000"/>
+                                </StackPanel>
+                            </Border>
                             <TextBlock Text="{Binding FeedbackDettaglio}"
                                        FontSize="12"
                                        TextWrapping="Wrap"

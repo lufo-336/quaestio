@@ -21,7 +21,7 @@ public enum PassoLab
 }
 
 /// <summary>
-/// Macchina a stati di una sessione del Laboratorio di codice (livello base in questa fetta).
+/// Macchina a stati di una sessione del Laboratorio di codice (livelli base e media).
 /// Eredita <see cref="ObservableObject"/> ed espone stato e metodi di risposta per la <c>LaboratorioView</c>.
 /// Al termine o all'abbandono produce un <see cref="RisultatoQuiz"/> compatibile con Cronologia,
 /// Statistiche e Riepilogo.
@@ -31,10 +31,17 @@ public class SessioneLaboratorio : ObservableObject
     private readonly List<(SchedaLab Scheda, VarianteLab Variante)> _coppie;
     private readonly Stopwatch _cron = new();
     private bool _avviata;
+    private bool _rigaAlSecondoTentativo;
 
     public string NomeLinguaggio { get; }
     public string Livello { get; }
     public string MateriaNome { get; }
+
+    /// <summary>Livello effettivo della scheda corrente (o della sessione se non caricata).</summary>
+    public string LivelloCorrente => _schedaCorrente?.Livello ?? Livello;
+    public bool IsLivelloBase => string.Equals(LivelloCorrente, LivelliLab.Base, StringComparison.OrdinalIgnoreCase);
+    public bool IsLivelloMedia => string.Equals(LivelloCorrente, LivelliLab.Media, StringComparison.OrdinalIgnoreCase);
+    public bool IsLivelloAlta => string.Equals(LivelloCorrente, LivelliLab.Alta, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Risultato della sessione, compilato passo per passo e finalizzato alla chiusura.</summary>
     public RisultatoQuiz Risultato { get; } = new();
@@ -50,7 +57,16 @@ public class SessioneLaboratorio : ObservableObject
     public SchedaLab? SchedaCorrente
     {
         get => _schedaCorrente;
-        private set => SetField(ref _schedaCorrente, value);
+        private set
+        {
+            if (SetField(ref _schedaCorrente, value))
+            {
+                RaisePropertyChanged(nameof(LivelloCorrente));
+                RaisePropertyChanged(nameof(IsLivelloBase));
+                RaisePropertyChanged(nameof(IsLivelloMedia));
+                RaisePropertyChanged(nameof(IsLivelloAlta));
+            }
+        }
     }
 
     private VarianteLab? _varianteCorrente;
@@ -131,6 +147,54 @@ public class SessioneLaboratorio : ObservableObject
         private set => SetField(ref _ultimoEsitoCorretto, value);
     }
 
+    private bool _ultimoSecondoTentativo;
+    /// <summary>True se l'ultimo passo chiuso è riuscito al secondo tentativo (peso ½).</summary>
+    public bool UltimoSecondoTentativo
+    {
+        get => _ultimoSecondoTentativo;
+        private set => SetField(ref _ultimoSecondoTentativo, value);
+    }
+
+    private bool _secondaPossibilitaInCorso;
+    /// <summary>True dopo il primo errore di riga nel passo 2 (base/media), finché non si riprova.</summary>
+    public bool SecondaPossibilitaInCorso
+    {
+        get => _secondaPossibilitaInCorso;
+        private set => SetField(ref _secondaPossibilitaInCorso, value);
+    }
+
+    private string _indizioCorrente = string.Empty;
+    /// <summary>Indizio mostrato durante la seconda possibilità nel passo 2.</summary>
+    public string IndizioCorrente
+    {
+        get => _indizioCorrente;
+        private set => SetField(ref _indizioCorrente, value);
+    }
+
+    private int? _primaRigaErrata;
+    /// <summary>Numero 1-based della prima riga sbagliata scelta al passo 2, per non ripeterla.</summary>
+    public int? PrimaRigaErrata
+    {
+        get => _primaRigaErrata;
+        private set => SetField(ref _primaRigaErrata, value);
+    }
+
+    private bool _rigaTrovata;
+    /// <summary>True nel passo 2 (base/media) dopo aver individuato la riga giusta e prima di scegliere tipo o correzione.</summary>
+    public bool RigaTrovata
+    {
+        get => _rigaTrovata;
+        private set => SetField(ref _rigaTrovata, value);
+    }
+
+    private int? _rigaConfermata;
+    /// <summary>Numero 1-based della riga confermata come giusta nel passo 2.</summary>
+    public int? RigaConfermata
+    {
+        get => _rigaConfermata;
+        private set => SetField(ref _rigaConfermata, value);
+    }
+
     public bool EUltimoPassoDellaSessione =>
         TotaleSchede > 0 && _indiceScheda + 1 >= TotaleSchede && _passo == PassoLab.RompiFunzione;
 
@@ -190,12 +254,24 @@ public class SessioneLaboratorio : ObservableObject
     {
         // Ordine voluto: la vista si ricostruisce su IndiceScheda e Passo, quindi
         // stato d'attesa e variante nuova devono essere già pronti quando cambiano.
+        ResetStatoPasso2();
         UltimoEsitoCorretto = false;
         InAttesaDiAvanti = false;
         SchedaCorrente = _coppie[indice].Scheda;
         VarianteCorrente = _coppie[indice].Variante;
         Passo = PassoLab.PrevediOutput;
         IndiceScheda = indice;
+    }
+
+    private void ResetStatoPasso2()
+    {
+        _rigaAlSecondoTentativo = false;
+        UltimoSecondoTentativo = false;
+        PrimaRigaErrata = null;
+        RigaConfermata = null;
+        RigaTrovata = false;
+        SecondaPossibilitaInCorso = false;
+        IndizioCorrente = string.Empty;
     }
 
     // ------------------------------------------------------------------ RISPOSTE
@@ -207,7 +283,7 @@ public class SessioneLaboratorio : ObservableObject
         if (SchedaCorrente == null || VarianteCorrente == null) return;
 
         var attese = VarianteCorrente.Output;
-        bool ok = righe.Count == attese.Count && righe.SequenceEqual(attese, StringComparer.Ordinal);
+        bool ok = LaboratorioService.OutputCorretto(VarianteCorrente, righe);
 
         RegistraDettaglio(
             passoId: "output",
@@ -216,30 +292,117 @@ public class SessioneLaboratorio : ObservableObject
             rispostaCorretta: string.Join("\n", attese),
             corretta: ok);
 
+        UltimoSecondoTentativo = false;
         UltimoEsitoCorretto = ok;
+        InAttesaDiAvanti = true;
+    }
+
+    /// <summary>
+    /// Verifica la riga scelta nel passo 2 (base o media).
+    /// Se la prima scelta è sbagliata, attiva la seconda possibilità con l'indizio.
+    /// Se fallisce anche la seconda, chiude il passo come errato; se è giusta,
+    /// abilita <see cref="RigaTrovata"/> per chiedere tipo o correzione.
+    /// </summary>
+    public void TentaRigaBug(int riga)
+    {
+        if (InAttesaDiAvanti || Passo != PassoLab.TrovaBug || RigaTrovata) return;
+        if (SchedaCorrente == null || VarianteCorrente == null || VarianteCorrente.Difetti.Count == 0) return;
+        if (riga < 1 || riga > VarianteCorrente.Righe.Count) return;
+        if (_primaRigaErrata == riga) return;
+
+        var difetto = VarianteCorrente.Difetti[0];
+        if (LaboratorioService.BugRigaCorretta(VarianteCorrente, riga))
+        {
+            _rigaAlSecondoTentativo = _primaRigaErrata.HasValue;
+            RigaConfermata = riga;
+            SecondaPossibilitaInCorso = false;
+            IndizioCorrente = string.Empty;
+            RigaTrovata = true;
+            return;
+        }
+
+        if (!IsLivelloAlta && !_primaRigaErrata.HasValue)
+        {
+            PrimaRigaErrata = riga;
+            IndizioCorrente = difetto.Indizio;
+            SecondaPossibilitaInCorso = true;
+            return;
+        }
+
+        string rispostaCorretta = IsLivelloMedia
+            ? FormattazioneRigaCorrezione(difetto.Riga, difetto.Correzione)
+            : FormattazioneRigaTipo(difetto.Riga, difetto.Tipo);
+
+        RegistraDettaglio(
+            passoId: "bug",
+            nomePasso: Strings.Lab_PassoBug,
+            rispostaData: string.Format(Strings.Lab_RigaN, riga),
+            rispostaCorretta: rispostaCorretta,
+            corretta: false,
+            secondoTentativo: true);
+
+        SecondaPossibilitaInCorso = false;
+        IndizioCorrente = string.Empty;
+        UltimoSecondoTentativo = false;
+        UltimoEsitoCorretto = false;
         InAttesaDiAvanti = true;
     }
 
     /// <summary>Registra la risposta al passo 2 base ("Trova il bug": riga 1-based + tipo di difetto).</summary>
     public void RispondiBugTipo(int riga, string tipo)
     {
+        if (VarianteCorrente == null || VarianteCorrente.Difetti.Count == 0) return;
+        var difetto = VarianteCorrente.Difetti[0];
+        bool ok = LaboratorioService.BugTipoCorretto(VarianteCorrente, riga, tipo);
+
+        RispondiBugSingolo(
+            riga,
+            ok,
+            rispostaData: FormattazioneRigaTipo(riga, tipo),
+            rispostaCorretta: FormattazioneRigaTipo(difetto.Riga, difetto.Tipo));
+    }
+
+    /// <summary>Registra la risposta al passo 2 media ("Trova il bug": riga 1-based + correzione scelta).</summary>
+    public void RispondiBugCorrezione(int riga, string correzione)
+    {
+        if (VarianteCorrente == null || VarianteCorrente.Difetti.Count == 0) return;
+        var difetto = VarianteCorrente.Difetti[0];
+        bool ok = LaboratorioService.BugCorrezioneCorretta(VarianteCorrente, riga, correzione);
+
+        RispondiBugSingolo(
+            riga,
+            ok,
+            rispostaData: FormattazioneRigaCorrezione(riga, correzione),
+            rispostaCorretta: FormattazioneRigaCorrezione(difetto.Riga, difetto.Correzione));
+    }
+
+    private void RispondiBugSingolo(int riga, bool ok, string rispostaData, string rispostaCorretta)
+    {
         if (InAttesaDiAvanti || Passo != PassoLab.TrovaBug) return;
         if (SchedaCorrente == null || VarianteCorrente == null || VarianteCorrente.Difetti.Count == 0) return;
         if (riga < 1 || riga > VarianteCorrente.Righe.Count) return;
 
-        var difetto = VarianteCorrente.Difetti[0];
-        bool ok = riga == difetto.Riga && string.Equals(tipo, difetto.Tipo, StringComparison.Ordinal);
+        // Se chiamato direttamente (es. da test) su una riga sbagliata prima di RigaTrovata,
+        // applica comunque la seconda possibilità sulla riga.
+        if (!RigaTrovata && !LaboratorioService.BugRigaCorretta(VarianteCorrente, riga))
+        {
+            TentaRigaBug(riga);
+            return;
+        }
 
-        string data = FormattazioneRigaTipo(riga, tipo);
-        string corretta = FormattazioneRigaTipo(difetto.Riga, difetto.Tipo);
+        bool secondoTentativo = _rigaAlSecondoTentativo || _primaRigaErrata.HasValue;
 
         RegistraDettaglio(
             passoId: "bug",
             nomePasso: Strings.Lab_PassoBug,
-            rispostaData: data,
-            rispostaCorretta: corretta,
-            corretta: ok);
+            rispostaData: rispostaData,
+            rispostaCorretta: rispostaCorretta,
+            corretta: ok,
+            secondoTentativo: secondoTentativo);
 
+        SecondaPossibilitaInCorso = false;
+        IndizioCorrente = string.Empty;
+        UltimoSecondoTentativo = ok && secondoTentativo;
         UltimoEsitoCorretto = ok;
         InAttesaDiAvanti = true;
     }
@@ -252,7 +415,7 @@ public class SessioneLaboratorio : ObservableObject
         if (indice < 0 || indice >= VarianteCorrente.Input.Count) return;
 
         var scelto = VarianteCorrente.Input[indice];
-        bool ok = scelto.Espone;
+        bool ok = LaboratorioService.InputCorretto(VarianteCorrente, indice);
         string corretta = string.Join("\n", VarianteCorrente.Input.Where(i => i.Espone).Select(i => i.Chiamata));
 
         RegistraDettaglio(
@@ -262,6 +425,7 @@ public class SessioneLaboratorio : ObservableObject
             rispostaCorretta: corretta,
             corretta: ok);
 
+        UltimoSecondoTentativo = false;
         UltimoEsitoCorretto = ok;
         InAttesaDiAvanti = true;
     }
@@ -273,15 +437,17 @@ public class SessioneLaboratorio : ObservableObject
 
         switch (Passo)
         {
-            // InAttesaDiAvanti prima di Passo: la vista prepara il passo nuovo
+            // Reset e InAttesaDiAvanti prima di Passo: la vista prepara il passo nuovo
             // (righe cliccabili) quando cambia Passo.
             case PassoLab.PrevediOutput:
+                ResetStatoPasso2();
                 UltimoEsitoCorretto = false;
                 InAttesaDiAvanti = false;
                 Passo = PassoLab.TrovaBug;
                 break;
 
             case PassoLab.TrovaBug:
+                ResetStatoPasso2();
                 UltimoEsitoCorretto = false;
                 InAttesaDiAvanti = false;
                 Passo = PassoLab.RompiFunzione;
@@ -310,7 +476,8 @@ public class SessioneLaboratorio : ObservableObject
         string nomePasso,
         string rispostaData,
         string rispostaCorretta,
-        bool corretta)
+        bool corretta,
+        bool secondoTentativo = false)
     {
         if (SchedaCorrente == null || VarianteCorrente == null) return;
 
@@ -330,7 +497,7 @@ public class SessioneLaboratorio : ObservableObject
             Corretta = corretta,
             Spiegazione = primoDifetto?.Spiegazione ?? string.Empty,
             Tentativi = 1,
-            SecondoTentativo = false,
+            SecondoTentativo = secondoTentativo,
             RisposteShufflate = new List<string>()
         });
     }
@@ -340,6 +507,13 @@ public class SessioneLaboratorio : ObservableObject
         string parteRiga = string.Format(Strings.Lab_RigaN, riga);
         string etichettaTipo = TipiDifetto.Etichetta(tipo);
         return string.IsNullOrEmpty(etichettaTipo) ? parteRiga : $"{parteRiga} · {etichettaTipo}";
+    }
+
+    private static string FormattazioneRigaCorrezione(int riga, string correzione)
+    {
+        string parteRiga = string.Format(Strings.Lab_RigaN, riga);
+        string testo = correzione.Trim();
+        return string.IsNullOrEmpty(testo) ? parteRiga : $"{parteRiga} · {testo}";
     }
 
     private void Concludi(bool abbandonato)

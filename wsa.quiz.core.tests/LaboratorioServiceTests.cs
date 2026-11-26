@@ -397,4 +397,124 @@ public class LaboratorioServiceTests
             if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
         }
     }
+
+    [Fact]
+    public void OutputCorretto_ConfrontaRigheEOrdine()
+    {
+        var v = new VarianteLab { Output = new List<string> { "7", "False" } };
+
+        Assert.True(LaboratorioService.OutputCorretto(v, new[] { "7", "False" }));
+        Assert.False(LaboratorioService.OutputCorretto(v, new[] { "False", "7" }));
+        Assert.False(LaboratorioService.OutputCorretto(v, new[] { "7" }));
+        Assert.False(LaboratorioService.OutputCorretto(v, new[] { "7", "False", "0" }));
+        Assert.False(LaboratorioService.OutputCorretto(v, Array.Empty<string>()));
+        Assert.False(LaboratorioService.OutputCorretto(null, new[] { "7", "False" }));
+    }
+
+    [Fact]
+    public void BugCorretto_VerificaRigaTipoECorrezione()
+    {
+        var v = new VarianteLab
+        {
+            Difetti = new List<DifettoLab>
+            {
+                new()
+                {
+                    Riga = 5,
+                    Tipo = TipiDifetto.DivisioneIntera,
+                    Correzione = "double m = (double)somma / voti.Length;",
+                    Trappole = new List<string>
+                    {
+                        "double m = (double)(somma / voti.Length);",
+                        "double m = somma / (voti.Length - 1);"
+                    }
+                }
+            }
+        };
+
+        Assert.True(LaboratorioService.BugRigaCorretta(v, 5));
+        Assert.False(LaboratorioService.BugRigaCorretta(v, 4));
+
+        Assert.True(LaboratorioService.BugTipoCorretto(v, 5, TipiDifetto.DivisioneIntera));
+        Assert.False(LaboratorioService.BugTipoCorretto(v, 4, TipiDifetto.DivisioneIntera));
+        Assert.False(LaboratorioService.BugTipoCorretto(v, 5, TipiDifetto.Confine));
+
+        Assert.True(LaboratorioService.BugCorrezioneCorretta(v, 5, "double m = (double)somma / voti.Length;"));
+        Assert.False(LaboratorioService.BugCorrezioneCorretta(v, 4, "double m = (double)somma / voti.Length;"));
+        Assert.False(LaboratorioService.BugCorrezioneCorretta(v, 5, v.Difetti[0].Trappole[0]));
+    }
+
+    [Fact]
+    public void InputCorretto_VerificaEsponeEIndice()
+    {
+        var v = new VarianteLab
+        {
+            Input = new List<InputLab>
+            {
+                new() { Chiamata = "F(0);", Atteso = "0", Effettivo = "0" },
+                new() { Chiamata = "F(1, 2);", Atteso = "1.5", Effettivo = "1" }
+            }
+        };
+
+        Assert.False(LaboratorioService.InputCorretto(v, 0));
+        Assert.True(LaboratorioService.InputCorretto(v, 1));
+        Assert.False(LaboratorioService.InputCorretto(v, -1));
+        Assert.False(LaboratorioService.InputCorretto(v, 2));
+    }
+
+    [Fact]
+    public void SecondoTentativo_PesoMezzoInStatisticheEPunteggio()
+    {
+        var s = CreaScheda("media-voti", LivelliLab.Media, numVarianti: 1);
+        var v = s.Varianti[0];
+
+        var risultato = new RisultatoQuiz
+        {
+            DataOra = new DateTime(2026, 11, 26, 12, 0, 0),
+            Modalita = LaboratorioService.Modalita,
+            MateriaNome = "C#" + LaboratorioService.SuffissoMateria,
+            Dettagli = new List<DettaglioRisposta>
+            {
+                new()
+                {
+                    IdDomanda = LaboratorioService.IdPasso(s, v, "output"),
+                    MateriaNome = "C#" + LaboratorioService.SuffissoMateria,
+                    Categoria = TipiDifetto.EtichettaCanonica(TipiDifetto.DivisioneIntera),
+                    Corretta = true,
+                    Tentativi = 1,
+                    SecondoTentativo = false
+                },
+                new()
+                {
+                    IdDomanda = LaboratorioService.IdPasso(s, v, "bug"),
+                    MateriaNome = "C#" + LaboratorioService.SuffissoMateria,
+                    Categoria = TipiDifetto.EtichettaCanonica(TipiDifetto.DivisioneIntera),
+                    Corretta = true,
+                    Tentativi = 1,
+                    SecondoTentativo = true
+                },
+                new()
+                {
+                    IdDomanda = LaboratorioService.IdPasso(s, v, "input"),
+                    MateriaNome = "C#" + LaboratorioService.SuffissoMateria,
+                    Categoria = TipiDifetto.EtichettaCanonica(TipiDifetto.DivisioneIntera),
+                    Corretta = false,
+                    Tentativi = 1,
+                    SecondoTentativo = false
+                }
+            }
+        };
+
+        Assert.Equal(0.0, risultato.Dettagli[0].PesoErrore());
+        Assert.Equal(0.5, risultato.Dettagli[1].PesoErrore());
+        Assert.Equal(1.0, risultato.Dettagli[2].PesoErrore());
+        Assert.Equal(17, QuizService.CalcolaPunteggio(risultato));
+
+        var stat = new StatisticheService().Calcola(new[] { risultato });
+        var mat = Assert.Single(stat);
+        var cat = Assert.Single(mat.Categorie);
+        Assert.Equal(3, cat.Visti);
+        Assert.Equal(1.5, cat.Errori, 3);
+        Assert.Equal(0.5, cat.PctErrore, 3);
+    }
 }

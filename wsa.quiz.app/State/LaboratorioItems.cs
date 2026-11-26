@@ -284,3 +284,122 @@ public class LinguaggioLabItem : ObservableObject
         NumSchede = numSchede;
     }
 }
+
+/// <summary>
+/// Tessera disponibile nella riserva del passo 1 per i livelli media e alta ("Prevedi l'output").
+/// </summary>
+public class TesseraOutputItem : ObservableObject
+{
+    public int Id { get; }
+    public string Testo { get; }
+
+    private bool _isUsata;
+    public bool IsUsata
+    {
+        get => _isUsata;
+        set
+        {
+            if (SetField(ref _isUsata, value))
+                RaisePropertyChanged(nameof(PuoToccare));
+        }
+    }
+
+    private bool _interattiva = true;
+    public bool Interattiva
+    {
+        get => _interattiva;
+        set
+        {
+            if (SetField(ref _interattiva, value))
+                RaisePropertyChanged(nameof(PuoToccare));
+        }
+    }
+
+    public bool PuoToccare => _interattiva && !_isUsata;
+
+    public TesseraOutputItem(int id, string testo)
+    {
+        Id = id;
+        Testo = testo;
+    }
+}
+
+/// <summary>
+/// Tessera collocata nell'area "output composto" nel passo 1 (media/alta).
+/// Un secondo tocco la rimette fra le tessere disponibili.
+/// </summary>
+public class TesseraCompostaItem : ObservableObject
+{
+    public TesseraOutputItem Origine { get; }
+    public string Testo => Origine.Testo;
+
+    private bool _interattiva = true;
+    public bool Interattiva
+    {
+        get => _interattiva;
+        set => SetField(ref _interattiva, value);
+    }
+
+    private bool _isCorretta;
+    public bool IsCorretta
+    {
+        get => _isCorretta;
+        set => SetField(ref _isCorretta, value);
+    }
+
+    private bool _isSbagliata;
+    public bool IsSbagliata
+    {
+        get => _isSbagliata;
+        set => SetField(ref _isSbagliata, value);
+    }
+
+    public TesseraCompostaItem(TesseraOutputItem origine)
+    {
+        Origine = origine;
+    }
+}
+
+/// <summary>
+/// Opzione di correzione (una giusta e due trappole) nel passo 2 di livello media ("Trova il bug").
+/// </summary>
+public class CorrezioneBugItem : ObservableObject
+{
+    public int Indice { get; }
+    public string Testo { get; }
+    public string TestoVisibile => Testo.Trim();
+
+    private bool _interattivo = true;
+    public bool Interattivo
+    {
+        get => _interattivo;
+        set => SetField(ref _interattivo, value);
+    }
+
+    private bool _isSelected;
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetField(ref _isSelected, value);
+    }
+
+    private bool _isCorretta;
+    public bool IsCorretta
+    {
+        get => _isCorretta;
+        set => SetField(ref _isCorretta, value);
+    }
+
+    private bool _isSbagliata;
+    public bool IsSbagliata
+    {
+        get => _isSbagliata;
+        set => SetField(ref _isSbagliata, value);
+    }
+
+    public CorrezioneBugItem(int indice, string testo)
+    {
+        Indice = indice;
+        Testo = testo;
+    }
+}

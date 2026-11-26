@@ -402,6 +402,8 @@ spiegazione in inglese; codice e output identici all'italiano.
 
 ## Task 9: Tessere, correzione fra tre righe, seconda possibilità
 
+- [x] Fatto 2026-11-26 (agy): file `wsa.quiz.core/Services/LaboratorioService.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx`, `wsa.quiz.core.tests/LaboratorioServiceTests.cs`, `wsa.quiz.app/State/SessioneLaboratorio.cs`, `wsa.quiz.app/State/LaboratorioItems.cs`, `wsa.quiz.app/Views/LaboratorioView.axaml`, `wsa.quiz.app/Views/LaboratorioView.axaml.cs` — verifica: non eseguita (sessione headless senza shell; riletti i file modificati)
+
 Riferimento: mockup `prevedi-output.html` variante B, `trova-bug.html` variante B.
 
 - **Passo 1 media/alta, tessere:** le righe di `Output` più le `Esche`, mescolate, come tessere da toccare in ordine;

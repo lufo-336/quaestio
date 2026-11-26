@@ -360,4 +360,13 @@
   <data name="Lab_EsciDettaglio" xml:space="preserve"><value>La sessione verra' chiusa e i passi gia' completati verranno salvati in cronologia come sessione abbandonata.</value></data>
   <data name="Lab_OutputGiusto" xml:space="preserve"><value>Output previsto correttamente!</value></data>
   <data name="Lab_OutputSbagliato" xml:space="preserve"><value>Output non esatto</value></data>
+  <data name="Lab_SuggerimentoOutputTessere" xml:space="preserve"><value>Tocca le tessere nell'ordine per comporre l'output. Tocca una riga composta per toglierla.</value></data>
+  <data name="Lab_OutputCompostoVuoto" xml:space="preserve"><value>Tocca una tessera qui sotto…</value></data>
+  <data name="Lab_TessereDisponibili" xml:space="preserve"><value>Tessere</value></data>
+  <data name="Lab_OutputAttesoTitolo" xml:space="preserve"><value>Output atteso:</value></data>
+  <data name="Lab_SecondaPossibilitaTitolo" xml:space="preserve"><value>Riga sbagliata — seconda possibilità</value></data>
+  <data name="Lab_ComeLaCorreggi" xml:space="preserve"><value>Come la correggi?</value></data>
+  <data name="Lab_SuggerimentoTrovaBugRiga" xml:space="preserve"><value>Tocca la riga con il bug e premi Conferma.</value></data>
+  <data name="Lab_SuggerimentoScegliTipo" xml:space="preserve"><value>Riga individuata! Ora scegli il tipo di errore.</value></data>
+  <data name="Lab_SuggerimentoScegliCorrezione" xml:space="preserve"><value>Riga individuata! Ora scegli la correzione giusta.</value></data>
 </root>

@@ -360,4 +360,13 @@
   <data name="Lab_EsciDettaglio" xml:space="preserve"><value>The session will end and any completed steps will be saved in history as abandoned.</value></data>
   <data name="Lab_OutputGiusto" xml:space="preserve"><value>Output predicted correctly!</value></data>
   <data name="Lab_OutputSbagliato" xml:space="preserve"><value>Incorrect output</value></data>
+  <data name="Lab_SuggerimentoOutputTessere" xml:space="preserve"><value>Tap the tiles in order to compose the output. Tap a placed line to remove it.</value></data>
+  <data name="Lab_OutputCompostoVuoto" xml:space="preserve"><value>Tap a tile below…</value></data>
+  <data name="Lab_TessereDisponibili" xml:space="preserve"><value>Tiles</value></data>
+  <data name="Lab_OutputAttesoTitolo" xml:space="preserve"><value>Expected output:</value></data>
+  <data name="Lab_SecondaPossibilitaTitolo" xml:space="preserve"><value>Wrong line — second chance</value></data>
+  <data name="Lab_ComeLaCorreggi" xml:space="preserve"><value>How would you fix it?</value></data>
+  <data name="Lab_SuggerimentoTrovaBugRiga" xml:space="preserve"><value>Tap the line with the bug and press Confirm.</value></data>
+  <data name="Lab_SuggerimentoScegliTipo" xml:space="preserve"><value>Line found! Now choose the error type.</value></data>
+  <data name="Lab_SuggerimentoScegliCorrezione" xml:space="preserve"><value>Line found! Now choose the right fix.</value></data>
 </root>
