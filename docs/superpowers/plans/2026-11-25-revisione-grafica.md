@@ -43,7 +43,7 @@
 
 ### Task 0: Misura di partenza sul S21
 
-- [ ] Rimandato 2026-11-25 (Claude): dal Mac mancano adb e il workload Android. Da fare dal PC **prima** di installare il nuovo APK (sul S21 c'è ancora la 2.2.0).
+- [x] Fatto 2026-11-26 (Claude, da Fedora con adb): numeri in fondo, sezione "Misure".
 
 Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richiede il telefono collegato via adb e l'APK 2.2.0 installato.
 
@@ -197,7 +197,11 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ## Misure
 
-(da compilare in Task 0 e Task 9)
+**Prima (Task 0, 2026-11-26, S21 `R3CRC0LH0RH`, 2.2.0, da Fedora):**
+- Avvio a freddo (`am start -W`, 5 prove): 2665, 2272, 2298, 2302, 2289 ms. **Mediana 2298 ms**; soglia Task 9: ≤ 2528 ms (+10%).
+- Scorrimento: `dumpsys gfxinfo` dà 0 frame (Avalonia disegna su una `SurfaceView`, non su HWUI). Misurato invece con `dumpsys SurfaceFlinger --latency '<layer SurfaceView BLAST>'` durante 16 swipe su Home: **126 frame, 0 intervalli > 25 ms**. Cronologia/Statistiche non scorrevoli (cronologia vuota sul telefono): misurata solo la Home.
+
+**Dopo (Task 9):** (da compilare)
 
 ## Difetti trovati
 
