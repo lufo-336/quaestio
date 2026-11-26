@@ -1,0 +1,152 @@
+{
+  "id": "verifica-buffer",
+  "titolo": "Verifica spazio buffer video",
+  "livello": "media",
+  "requisito": "Calcola lo spazio totale in MB occupato da una sequenza di clip video (larghezza w, altezza h, canali per pixel e numero di fotogrammi per clip). Restituisce \"non valido\" se i parametri non sono positivi, se l'array di clip è nullo o vuoto o se una clip ha fotogrammi negativi (o pari a 0 quando consentiVuote è false); altrimenti restituisce \"ok (N MB)\" o \"eccede (N MB)\" rispetto a maxMb.",
+  "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 25, 0 }, 200, true));\nConsole.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 300, 212 }, 1000, false));\nConsole.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 50, -10 }, 500, true));",
+  "codiceSano": [
+    "string VerificaBuffer(int w, int h, int canali, int[]? clip, int maxMb, bool consentiVuote)",
+    "{",
+    "    if (w <= 0 || h <= 0 || canali <= 0 || maxMb <= 0)",
+    "        return \"non valido\";",
+    "    if (clip == null || clip.Length == 0)",
+    "        return \"non valido\";",
+    "    int fotogrammi = 0;",
+    "    foreach (int f in clip)",
+    "    {",
+    "        if (f < 0 || (!consentiVuote && f == 0))",
+    "            return \"non valido\";",
+    "        fotogrammi += f;",
+    "    }",
+    "    long byteTotali = (long)w * h * canali * fotogrammi;",
+    "    long mbTotali = byteTotali / (1024 * 1024);",
+    "    if (mbTotali > maxMb)",
+    "        return $\"eccede ({mbTotali} MB)\";",
+    "    return $\"ok ({mbTotali} MB)\";",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "string VerificaBuffer(int w, int h, int canali, int[]? clip, int maxMb, bool consentiVuote)",
+        "{",
+        "    if (w <= 0 || h <= 0 || canali <= 0 || maxMb <= 0)",
+        "        return \"non valido\";",
+        "    if (clip == null || clip.Length == 0)",
+        "        return \"non valido\";",
+        "    int fotogrammi = 0;",
+        "    foreach (int f in clip)",
+        "    {",
+        "        if (f < 0 || (!consentiVuote && f == 0))",
+        "            return \"non valido\";",
+        "        fotogrammi += f;",
+        "    }",
+        "    long byteTotali = w * h * canali * fotogrammi;",
+        "    long mbTotali = byteTotali / (1024 * 1024);",
+        "    if (mbTotali > maxMb)",
+        "        return $\"eccede ({mbTotali} MB)\";",
+        "    return $\"ok ({mbTotali} MB)\";",
+        "}"
+      ],
+      "output": [ "ok (100 MB)", "ok (-2048 MB)", "non valido" ],
+      "esche": [ "eccede (2048 MB)", "!OverflowException", "ok (2048 MB)" ],
+      "difetti": [
+        {
+          "riga": 14,
+          "tipo": "Overflow",
+          "indizio": "Guarda il calcolo dei byte totali.",
+          "spiegazione": "Tutti gli operandi di w * h * canali * fotogrammi sono int: superando int.MaxValue, il prodotto trabocca silenziosamente in negativo prima dell'assegnazione a long.",
+          "correzione": "    long byteTotali = (long)w * h * canali * fotogrammi;",
+          "trappole": [
+            "    long byteTotali = (long)(w * h * canali * fotogrammi);",
+            "    long byteTotali = checked(w * h * canali * fotogrammi);"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 200, 50 }, 1200, false));",
+          "atteso": "ok (1000 MB)",
+          "effettivo": "ok (1000 MB)"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 400, 368 }, 2000, false));",
+          "atteso": "eccede (3072 MB)",
+          "effettivo": "ok (-1024 MB)"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 300 }, 1000, false));",
+          "atteso": "eccede (1200 MB)",
+          "effettivo": "eccede (1200 MB)"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 100, 0 }, 500, false));",
+          "atteso": "non valido",
+          "effettivo": "non valido"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "string VerificaBuffer(int w, int h, int canali, int[]? clip, int maxMb, bool consentiVuote)",
+        "{",
+        "    if (w <= 0 || h <= 0 || canali <= 0 || maxMb <= 0)",
+        "        return \"non valido\";",
+        "    if (clip == null || clip.Length == 0)",
+        "        return \"non valido\";",
+        "    int fotogrammi = 0;",
+        "    foreach (int f in clip)",
+        "    {",
+        "        if (f <= 0 && !consentiVuote)",
+        "            return \"non valido\";",
+        "        fotogrammi += f;",
+        "    }",
+        "    long byteTotali = (long)w * h * canali * fotogrammi;",
+        "    long mbTotali = byteTotali / (1024 * 1024);",
+        "    if (mbTotali > maxMb)",
+        "        return $\"eccede ({mbTotali} MB)\";",
+        "    return $\"ok ({mbTotali} MB)\";",
+        "}"
+      ],
+      "output": [ "ok (100 MB)", "eccede (2048 MB)", "ok (160 MB)" ],
+      "esche": [ "non valido", "ok (200 MB)", "ok (240 MB)" ],
+      "difetti": [
+        {
+          "riga": 10,
+          "tipo": "CondizioneInvertita",
+          "indizio": "Guarda la condizione di validità per i fotogrammi di ogni clip.",
+          "spiegazione": "La condizione f <= 0 && !consentiVuote disabilita il controllo anche sui valori negativi quando consentiVuote è true, lasciando passare clip con fotogrammi negativi.",
+          "correzione": "        if (f < 0 || (!consentiVuote && f == 0))",
+          "trappole": [
+            "        if (f < 0 && (!consentiVuote || f == 0))",
+            "        if (f < 0 || (consentiVuote && f == 0))"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 100, -25 }, 500, true));",
+          "atteso": "non valido",
+          "effettivo": "ok (300 MB)"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 100, 0 }, 500, false));",
+          "atteso": "non valido",
+          "effettivo": "non valido"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 100, 0 }, 500, true));",
+          "atteso": "ok (400 MB)",
+          "effettivo": "ok (400 MB)"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaBuffer(1024, 1024, 4, new[] { 150, 150 }, 1000, false));",
+          "atteso": "eccede (1200 MB)",
+          "effettivo": "eccede (1200 MB)"
+        }
+      ]
+    }
+  ]
+}

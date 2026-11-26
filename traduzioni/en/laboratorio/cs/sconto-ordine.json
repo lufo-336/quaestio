@@ -1,0 +1,22 @@
+{
+  "titolo": "Progressive order discount",
+  "requisito": "Computes the discounted order total from item prices and quantities (ignoring non-positive entries). Applies a 10% discount from 100 upward, 20% from 200 upward, and an extra +5% for VIP customers when the discount is below 20%. Returns 0 if the arrays are empty or have different lengths.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the expression that computes the discount amount.",
+          "spiegazione": "subtotale, percentualeSconto, and 100 are all int, so dividing by 100 truncates the fractional part of the discount before assigning to double."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the conditions in the discount tier checks.",
+          "spiegazione": "The check uses subtotale > 100 instead of subtotale >= 100, leaving subtotals equal to exactly 100 without the 10% discount."
+        }
+      ]
+    }
+  }
+}

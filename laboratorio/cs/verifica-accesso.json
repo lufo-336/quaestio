@@ -1,0 +1,161 @@
+{
+  "id": "verifica-accesso",
+  "titolo": "Verifica accesso per email e ruolo",
+  "livello": "media",
+  "requisito": "Dato un indirizzo email, un ruolo e una lista di ruoli ammessi, restituisce il ruolo ammesso in minuscolo se il dominio dell'email è esattamente azienda.it (ignorando spazi ai bordi e maiuscole/minuscole) e il ruolo figura tra quelli ammessi; altrimenti restituisce \"negato\".",
+  "chiamata": "Console.WriteLine(VerificaAccesso(\" Luca@Azienda.it \", \"admin\", new[] { \"User\", \"Admin\" }));\nConsole.WriteLine(VerificaAccesso(\"anna@azienda.it\", \"EDITOR\", new[] { \"editor\", \"admin\" }));\nConsole.WriteLine(VerificaAccesso(\"sara@azienda.it\", \"Viewer\", new[] { \"viewer\" }));",
+  "codiceSano": [
+    "string VerificaAccesso(string? email, string? ruolo, string?[]? ruoli)",
+    "{",
+    "    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(ruolo))",
+    "        return \"negato\";",
+    "    if (ruoli == null || ruoli.Length == 0)",
+    "        return \"negato\";",
+    "    string pulita = email.Trim();",
+    "    int chiocciola = pulita.IndexOf('@');",
+    "    if (chiocciola <= 0)",
+    "        return \"negato\";",
+    "    string dominio = pulita.Substring(chiocciola + 1);",
+    "    if (!string.Equals(dominio, \"azienda.it\", StringComparison.OrdinalIgnoreCase))",
+    "        return \"negato\";",
+    "    string target = ruolo.Trim();",
+    "    foreach (string? r in ruoli)",
+    "    {",
+    "        string voce = (r ?? \"\").Trim();",
+    "        if (string.Equals(voce, target, StringComparison.OrdinalIgnoreCase))",
+    "            return voce.ToLowerInvariant();",
+    "    }",
+    "    return \"negato\";",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "string VerificaAccesso(string? email, string? ruolo, string?[]? ruoli)",
+        "{",
+        "    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(ruolo))",
+        "        return \"negato\";",
+        "    if (ruoli == null || ruoli.Length == 0)",
+        "        return \"negato\";",
+        "    string pulita = email.Trim();",
+        "    int chiocciola = pulita.IndexOf('@');",
+        "    if (chiocciola <= 0)",
+        "        return \"negato\";",
+        "    string dominio = pulita.Substring(chiocciola + 1);",
+        "    if (!string.Equals(dominio, \"azienda.it\", StringComparison.Ordinal))",
+        "        return \"negato\";",
+        "    string target = ruolo.Trim();",
+        "    foreach (string? r in ruoli)",
+        "    {",
+        "        string voce = (r ?? \"\").Trim();",
+        "        if (string.Equals(voce, target, StringComparison.OrdinalIgnoreCase))",
+        "            return voce.ToLowerInvariant();",
+        "    }",
+        "    return \"negato\";",
+        "}"
+      ],
+      "output": [ "negato", "editor", "viewer" ],
+      "esche": [ "admin", "EDITOR", "Viewer" ],
+      "difetti": [
+        {
+          "riga": 12,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Guarda il controllo sul dominio dell'email.",
+          "spiegazione": "Il confronto sul dominio usa StringComparison.Ordinal ed è sensibile alle maiuscole, rifiutando domini validi come \"Azienda.it\".",
+          "correzione": "    if (!string.Equals(dominio, \"azienda.it\", StringComparison.OrdinalIgnoreCase))",
+          "trappole": [
+            "    if (string.Equals(dominio, \"azienda.it\", StringComparison.OrdinalIgnoreCase))",
+            "    if (!dominio.Contains(\"azienda.it\", StringComparison.OrdinalIgnoreCase))"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"luca@AZIENDA.IT\", \"admin\", new string?[] { \"Admin\", \"Editor\" }));",
+          "atteso": "admin",
+          "effettivo": "negato"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"mario@finta-azienda.it\", \"admin\", new string?[] { \"Admin\" }));",
+          "atteso": "negato",
+          "effettivo": "negato"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"anna@azienda.it\", \"ADMIN\", new string?[] { \"admin\" }));",
+          "atteso": "admin",
+          "effettivo": "admin"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"  \", \"admin\", new string?[] { \"Admin\" }));",
+          "atteso": "negato",
+          "effettivo": "negato"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "string VerificaAccesso(string? email, string? ruolo, string?[]? ruoli)",
+        "{",
+        "    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(ruolo))",
+        "        return \"negato\";",
+        "    if (ruoli == null || ruoli.Length == 0)",
+        "        return \"negato\";",
+        "    string pulita = email.Trim();",
+        "    int chiocciola = pulita.IndexOf('@');",
+        "    if (chiocciola <= 0)",
+        "        return \"negato\";",
+        "    string dominio = pulita.Substring(chiocciola + 1);",
+        "    if (!string.Equals(dominio, \"azienda.it\", StringComparison.OrdinalIgnoreCase))",
+        "        return \"negato\";",
+        "    string target = ruolo.Trim();",
+        "    foreach (string? r in ruoli)",
+        "    {",
+        "        string voce = r!.Trim();",
+        "        if (string.Equals(voce, target, StringComparison.OrdinalIgnoreCase))",
+        "            return voce.ToLowerInvariant();",
+        "    }",
+        "    return \"negato\";",
+        "}"
+      ],
+      "output": [ "admin", "editor", "viewer" ],
+      "esche": [ "negato", "EDITOR", "Viewer" ],
+      "difetti": [
+        {
+          "riga": 17,
+          "tipo": "NullVuoto",
+          "indizio": "Guarda come viene preparata ogni voce dentro il ciclo sui ruoli.",
+          "spiegazione": "Chiamare r!.Trim() senza gestire un eventuale elemento nullo nell'array provoca NullReferenceException appena si incontra una voce null.",
+          "correzione": "        string voce = (r ?? \"\").Trim();",
+          "trappole": [
+            "        string voce = r!.ToString().Trim();",
+            "        string voce = string.IsNullOrEmpty(r) ? \"\" : r;"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"anna@azienda.it\", \"editor\", new string?[] { null, \"Editor\" }));",
+          "atteso": "editor",
+          "effettivo": "!NullReferenceException"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"mario@azienda.it\", \"admin\", new string?[] { \" User \", \" Admin \" }));",
+          "atteso": "admin",
+          "effettivo": "admin"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"paolo@altro.it\", \"admin\", new string?[] { \"Admin\" }));",
+          "atteso": "negato",
+          "effettivo": "negato"
+        },
+        {
+          "chiamata": "Console.WriteLine(VerificaAccesso(\"elena@azienda.it\", \"ospite\", new string?[] { \"Admin\", \"Editor\" }));",
+          "atteso": "negato",
+          "effettivo": "negato"
+        }
+      ]
+    }
+  ]
+}

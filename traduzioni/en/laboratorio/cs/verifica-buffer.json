@@ -1,0 +1,22 @@
+{
+  "titolo": "Video buffer size check",
+  "requisito": "Computes the total size in MB of a sequence of video clips (width w, height h, channels per pixel, and frame count per clip). Returns \"non valido\" if the parameters are not positive, if the clip array is null or empty, or if any clip has a negative frame count (or 0 when consentiVuote is false); otherwise returns \"ok (N MB)\" or \"eccede (N MB)\" against maxMb.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how total bytes are calculated.",
+          "spiegazione": "Every operand in w * h * canali * fotogrammi is an int: once the product exceeds int.MaxValue, it silently wraps to a negative number before converting to long."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the validity condition for each clip's frame count.",
+          "spiegazione": "The condition f <= 0 && !consentiVuote disables the check on negative values too whenever consentiVuote is true, letting negative frame counts slip through."
+        }
+      ]
+    }
+  }
+}

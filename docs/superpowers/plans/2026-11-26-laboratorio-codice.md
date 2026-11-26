@@ -422,6 +422,8 @@ Riferimento: mockup `prevedi-output.html` variante B, `trova-bug.html` variante 
 
 ## Task 10: Schede media
 
+- [x] Fatto 2026-11-26 (agy): file `laboratorio/cs/{sconto-ordine,verifica-accesso,verifica-buffer}.json`, `traduzioni/en/laboratorio/cs/{sconto-ordine,verifica-accesso,verifica-buffer}.json` — verifica: non eseguita (sessione headless senza shell; verifica manuale di struttura, coerenza, traduzioni ed esecuzione riga per riga)
+
 Tre schede `media`, 2 varianti, 15–25 righe, un difetto sottile per variante (es. un `<=` al posto di `<`, una
 divisione intera dentro un'espressione, un confronto di stringhe sensibile alle maiuscole), `Correzione` + 2 `Trappole`
 che compilano e sembrano giuste. Stessa regola del Task 4 per `dotnet test --filter Laboratorio`. Ogni scheda con la

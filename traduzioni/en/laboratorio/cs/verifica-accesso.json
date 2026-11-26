@@ -1,0 +1,22 @@
+{
+  "titolo": "Email and role access check",
+  "requisito": "Given an email address, a role, and a list of allowed roles, returns the matched role in lowercase if the email domain is exactly azienda.it (ignoring leading/trailing spaces and case) and the role is in the allowed list; otherwise returns \"negato\".",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how the email domain is checked.",
+          "spiegazione": "The domain comparison uses StringComparison.Ordinal, making it case-sensitive and rejecting valid domains such as \"Azienda.it\"."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at how each entry is prepared inside the roles loop.",
+          "spiegazione": "Calling r!.Trim() without handling a null element in the array throws a NullReferenceException as soon as a null entry is encountered."
+        }
+      ]
+    }
+  }
+}

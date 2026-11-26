@@ -1,0 +1,158 @@
+{
+  "id": "sconto-ordine",
+  "titolo": "Sconto progressivo sull'ordine",
+  "livello": "media",
+  "requisito": "Calcola il totale scontato di un ordine a partire da prezzi e quantità degli articoli (ignorando voci con valori non positivi). Applica il 10% di sconto da 100 in su, il 20% da 200 in su, e un +5% ai clienti VIP se lo sconto è inferiore al 20%. Restituisce 0 se gli array sono vuoti o di lunghezza diversa.",
+  "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 50 }, new[] { 1 }, true));\nConsole.WriteLine(TotaleOrdine(new[] { 60, 40 }, new[] { 1, 1 }, false));\nConsole.WriteLine(TotaleOrdine(new[] { 70, 45 }, new[] { 1, 1 }, false));",
+  "codiceSano": [
+    "double TotaleOrdine(int[] prezzi, int[] quantita, bool clienteVip)",
+    "{",
+    "    if (prezzi.Length != quantita.Length || prezzi.Length == 0)",
+    "        return 0;",
+    "    int subtotale = 0;",
+    "    for (int i = 0; i < prezzi.Length; i++)",
+    "    {",
+    "        if (prezzi[i] <= 0 || quantita[i] <= 0)",
+    "            continue;",
+    "        subtotale += prezzi[i] * quantita[i];",
+    "    }",
+    "    int percentualeSconto = 0;",
+    "    if (subtotale >= 200)",
+    "        percentualeSconto = 20;",
+    "    else if (subtotale >= 100)",
+    "        percentualeSconto = 10;",
+    "    if (clienteVip && percentualeSconto < 20)",
+    "        percentualeSconto += 5;",
+    "    double sconto = subtotale * percentualeSconto / 100.0;",
+    "    return Math.Round(subtotale - sconto, 2);",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "double TotaleOrdine(int[] prezzi, int[] quantita, bool clienteVip)",
+        "{",
+        "    if (prezzi.Length != quantita.Length || prezzi.Length == 0)",
+        "        return 0;",
+        "    int subtotale = 0;",
+        "    for (int i = 0; i < prezzi.Length; i++)",
+        "    {",
+        "        if (prezzi[i] <= 0 || quantita[i] <= 0)",
+        "            continue;",
+        "        subtotale += prezzi[i] * quantita[i];",
+        "    }",
+        "    int percentualeSconto = 0;",
+        "    if (subtotale >= 200)",
+        "        percentualeSconto = 20;",
+        "    else if (subtotale >= 100)",
+        "        percentualeSconto = 10;",
+        "    if (clienteVip && percentualeSconto < 20)",
+        "        percentualeSconto += 5;",
+        "    double sconto = subtotale * percentualeSconto / 100;",
+        "    return Math.Round(subtotale - sconto, 2);",
+        "}"
+      ],
+      "output": [ "48", "90", "104" ],
+      "esche": [ "47.5", "103.5", "50" ],
+      "difetti": [
+        {
+          "riga": 19,
+          "tipo": "DivisioneIntera",
+          "indizio": "Guarda l'espressione che calcola il valore dello sconto.",
+          "spiegazione": "subtotale, percentualeSconto e 100 sono tutti int: la divisione per 100 tronca la parte decimale dello sconto prima dell'assegnazione a double.",
+          "correzione": "    double sconto = subtotale * percentualeSconto / 100.0;",
+          "trappole": [
+            "    double sconto = (double)(subtotale * percentualeSconto / 100);",
+            "    double sconto = subtotale * (double)(percentualeSconto / 100);"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 40, 60 }, new[] { 1, 1 }, false));",
+          "atteso": "90",
+          "effettivo": "90"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 70, 45 }, new[] { 1, 1 }, false));",
+          "atteso": "103.5",
+          "effettivo": "104"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 120, 80 }, new[] { 1, 1 }, true));",
+          "atteso": "160",
+          "effettivo": "160"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 25, -10 }, new[] { 2, 1 }, false));",
+          "atteso": "50",
+          "effettivo": "50"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "double TotaleOrdine(int[] prezzi, int[] quantita, bool clienteVip)",
+        "{",
+        "    if (prezzi.Length != quantita.Length || prezzi.Length == 0)",
+        "        return 0;",
+        "    int subtotale = 0;",
+        "    for (int i = 0; i < prezzi.Length; i++)",
+        "    {",
+        "        if (prezzi[i] <= 0 || quantita[i] <= 0)",
+        "            continue;",
+        "        subtotale += prezzi[i] * quantita[i];",
+        "    }",
+        "    int percentualeSconto = 0;",
+        "    if (subtotale >= 200)",
+        "        percentualeSconto = 20;",
+        "    else if (subtotale > 100)",
+        "        percentualeSconto = 10;",
+        "    if (clienteVip && percentualeSconto < 20)",
+        "        percentualeSconto += 5;",
+        "    double sconto = subtotale * percentualeSconto / 100.0;",
+        "    return Math.Round(subtotale - sconto, 2);",
+        "}"
+      ],
+      "output": [ "47.5", "100", "103.5" ],
+      "esche": [ "90", "95", "104" ],
+      "difetti": [
+        {
+          "riga": 15,
+          "tipo": "Confine",
+          "indizio": "Guarda le condizioni della scala degli sconti.",
+          "spiegazione": "La soglia usa subtotale > 100 invece di subtotale >= 100, escludendo esattamente i subtotali pari a 100 dallo sconto del 10%.",
+          "correzione": "    else if (subtotale >= 100)",
+          "trappole": [
+            "    if (subtotale >= 100)",
+            "    else if (subtotale > 100 && subtotale < 200)"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 30, 70 }, new[] { 1, 1 }, false));",
+          "atteso": "90",
+          "effettivo": "100"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 120, 130 }, new[] { 1, 1 }, false));",
+          "atteso": "200",
+          "effettivo": "200"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 40, 25 }, new[] { 2, 1 }, true));",
+          "atteso": "89.25",
+          "effettivo": "89.25"
+        },
+        {
+          "chiamata": "Console.WriteLine(TotaleOrdine(new[] { 45 }, new[] { 2 }, false));",
+          "atteso": "90",
+          "effettivo": "90"
+        }
+      ]
+    }
+  ]
+}
