@@ -143,6 +143,7 @@ public partial class MainView : UserControl
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
                 new EventHandler<ScrollChangedEventArgs>((_, _) =>
                 {
+                    if (BloccaDerivaOrizzontale()) return;
                     CampionaOffset();
                     AggiornaNav(); SalvaTabSeCambiataDebounced();
                 }));
@@ -163,15 +164,25 @@ public partial class MainView : UserControl
             {
                 _scrollAnim?.Stop();   // il dito riprende il controllo di una pagina ancora in animazione
                 _puntoInizio = _puntoUltimo = pe.GetPosition(SwipeHost);
+                _orizzontale = false; _paginaInizioGesto = IndiceSezione;
             }), RoutingStrategies.Tunnel, handledEventsToo: true);
             SwipeHost.AddHandler(InputElement.PointerMovedEvent, new EventHandler<PointerEventArgs>((_, pe) =>
                 _puntoUltimo = pe.GetPosition(SwipeHost)), RoutingStrategies.Tunnel, handledEventsToo: true);
+            // Rete di sicurezza: se alzando il dito la pagina resta a meta' (ScrollGestureEnded
+            // non arrivato o arrivato prima dell'ultimo spostamento), la si assesta.
+            EventHandler<RoutedEventArgs> rilascio = (_, _) => AssestaDopoRilascio();
+            SwipeHost.AddHandler(InputElement.PointerReleasedEvent, new EventHandler<PointerReleasedEventArgs>(rilascio),
+                RoutingStrategies.Tunnel, handledEventsToo: true);
+            SwipeHost.AddHandler(InputElement.PointerCaptureLostEvent, new EventHandler<PointerCaptureLostEventArgs>(rilascio),
+                RoutingStrategies.Tunnel, handledEventsToo: true);
             SwipeHost.AddHandler(InputElement.ScrollGestureEvent,
                 new EventHandler<ScrollGestureEventArgs>((_, ge) =>
                 {
-                    if (!_gestoAttivo || ge.Id != _idGesto)
+                    // Due recognizer (pagina verticale e host orizzontale) possono emettere
+                    // gesti con id diversi nello stesso trascinamento: si parte una volta sola.
+                    if (!_gestoAttivo)
                     {
-                        _gestoAttivo = true; _idGesto = ge.Id; _paginaInizioGesto = IndiceSezione; _campioni.Clear();
+                        _gestoAttivo = true; _idGesto = ge.Id; _campioni.Clear();
                     }
                 }),
                 handledEventsToo: true);
@@ -203,6 +214,40 @@ public partial class MainView : UserControl
             FooterBar.IsVisible = false;
     }
 
+    private bool _orizzontale;
+
+    /// <summary>Blocco d'asse: il gesto e' orizzontale solo se il dito si e' mosso in modo netto
+    /// di lato; altrimenti (verticale o ancora incerto) l'offset dell'host torna alla pagina di
+    /// partenza, cosi' uno scroll verticale non trascina mai la pagina di lato. True = offset
+    /// ripristinato (da ignorare).</summary>
+    private bool BloccaDerivaOrizzontale()
+    {
+        double w = LarghezzaPagina;
+        if (!_gestoAttivo || w <= 0 || _scrollAnim is { IsEnabled: true }) return false;
+        double dx = Math.Abs(_puntoUltimo.X - _puntoInizio.X), dy = Math.Abs(_puntoUltimo.Y - _puntoInizio.Y);
+        if (!_orizzontale && dx > 40 && dx > dy * 1.5) _orizzontale = true;   // ponytail: soglie a occhio, da tarare sul S21
+        if (_orizzontale) return false;
+        double base_ = _paginaInizioGesto * w;
+        if (Math.Abs(SwipeHost.Offset.X - base_) < 0.5) return false;
+        SwipeHost.Offset = new Vector(base_, 0);
+        return true;
+    }
+
+    private void AssestaDopoRilascio()
+    {
+        var t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(80) };
+        t.Tick += (_, _) =>
+        {
+            t.Stop();
+            double w = LarghezzaPagina;
+            if (w <= 0 || _scrollAnim is { IsEnabled: true }) return;
+            double r = SwipeHost.Offset.X % w;
+            if (r > 0.5 && w - r > 0.5) { _gestoAttivo = true; FineGesto(); }
+            else _gestoAttivo = false;
+        };
+        t.Start();
+    }
+
     private Point _puntoInizio, _puntoUltimo;
     private bool _gestoAttivo;
     private int _idGesto;
@@ -231,7 +276,7 @@ public partial class MainView : UserControl
             v = (recenti[^1].x - recenti[0].x) / (recenti[^1].ms - recenti[0].ms);
         int dir = 0;
         double dx = _puntoUltimo.X - _puntoInizio.X, dy = _puntoUltimo.Y - _puntoInizio.Y;
-        bool inPrevalenzaVerticale = Math.Abs(dy) > Math.Abs(dx) * 0.6;  // 0/0 se i move non arrivano: si procede
+        bool inPrevalenzaVerticale = !_orizzontale && Math.Abs(dy) > Math.Abs(dx) * 0.6;  // 0/0 se i move non arrivano: si procede
         if (inPrevalenzaVerticale) dir = 0;
         else if (Math.Abs(v) > 0.12) dir = Math.Sign(v);                      // scatto
         else if (Math.Abs(trascinato) > w * 0.1) dir = Math.Sign(trascinato); // trascinamento
