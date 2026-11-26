@@ -1,0 +1,102 @@
+<style>
+.cards{display:flex;gap:18px;flex-wrap:wrap}
+.ph{width:320px;height:620px;background:#e8e7e3;color:#141413;border:1px solid #444;display:flex;flex-direction:column;overflow:hidden;font-family:Archivo,system-ui,sans-serif}
+.ph *{box-sizing:border-box}
+.hdr{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:3px solid #3a6cb8;font-size:12px}
+.brand{font-weight:800;font-size:20px}
+.mut{color:#57564f;font-size:11px}
+.body{flex:1;padding:10px 12px;overflow:hidden}
+.passi{display:flex;gap:4px;margin-bottom:8px}.passi span{flex:1;height:5px;background:#d6d5d0}.passi span.on{background:#3a6cb8}.passi span.ok{background:#40a79b}
+.tt{font-weight:700;font-size:14px;border-left:4px solid #3a6cb8;padding-left:7px;margin:6px 0}
+.req{font-size:11.5px;color:#57564f;margin:0 0 6px}
+.code{background:#f1f0ec;border:1px solid #d6d5d0;font:11px/1.25 'JetBrains Mono',monospace;margin-bottom:8px}
+.code div{white-space:pre;padding:4px 6px;border-bottom:1px solid #e3e2dd}
+.code .n{color:#9a9990;display:inline-block;width:16px}
+.code .sel{background:#3a6cb8;color:#fff}.code .sel .n{color:#dfe6f3}
+.lbl{font-size:12px;font-weight:600;margin:6px 0 4px}
+.cat{display:flex;flex-wrap:wrap;gap:5px}
+.cat span{border:1px solid #141413;padding:4px 8px;font-size:11.5px;background:#f1f0ec}
+.cat span.on{background:#3a6cb8;color:#fff;border-color:#3a6cb8}
+.fix{border:1px solid #141413;padding:5px 7px;margin-bottom:5px;font:10.5px 'JetBrains Mono',monospace;white-space:pre;background:#f1f0ec}
+.fix.on{background:#3a6cb8;color:#fff;border-color:#3a6cb8}
+.btn{margin:8px 12px;background:#3a6cb8;color:#fff;font-weight:600;font-size:14px;padding:10px;text-align:center}
+</style>
+<h2>Passo 2 · Trova il bug</h2>
+<p class="subtitle">Funzione che deve restituire la media con i decimali (6, 8, 7, 8 → 7,25). Il difetto è alla riga 5: divisione tra interi. In tutti e tre la riga si sceglie toccandola; cambia cosa chiedo dopo.</p>
+
+<div class="cards">
+<div class="card" data-choice="a" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · media</span></div>
+ <div class="body">
+  <div class="passi"><span class="ok"></span><span class="on"></span><span></span></div>
+  <div class="tt">Dov'è il bug?</div>
+  <div class="req">Deve restituire la media con i decimali.</div>
+  <div class="code">
+<div><span class="n">1</span>double Media(int[] voti)</div>
+<div><span class="n">2</span>{</div>
+<div><span class="n">3</span>    int somma = 0;</div>
+<div><span class="n">4</span>    foreach (var v in voti) somma += v;</div>
+<div class="sel"><span class="n">5</span>    double m = somma / voti.Length;</div>
+<div><span class="n">6</span>    return m;</div>
+<div><span class="n">7</span>}</div>
+  </div>
+  <div class="lbl">Che tipo di errore?</div>
+  <div class="cat"><span>Off-by-one</span><span class="on">Divisione intera</span><span>Null</span><span>Condizione invertita</span><span>Overflow</span><span>Variabile sbagliata</span></div>
+ </div>
+ <div class="btn">Conferma</div>
+</div></div>
+<div class="card-body"><h3>A · Riga + tipo di errore</h3><p>Due decisioni: dove e cosa. Le categorie diventano un vocabolario da review (e una statistica: "sbagli sempre gli off-by-one").</p></div>
+</div>
+
+<div class="card" data-choice="b" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · media</span></div>
+ <div class="body">
+  <div class="passi"><span class="ok"></span><span class="on"></span><span></span></div>
+  <div class="tt">Dov'è il bug?</div>
+  <div class="req">Deve restituire la media con i decimali.</div>
+  <div class="code">
+<div><span class="n">1</span>double Media(int[] voti)</div>
+<div><span class="n">2</span>{</div>
+<div><span class="n">3</span>    int somma = 0;</div>
+<div><span class="n">4</span>    foreach (var v in voti) somma += v;</div>
+<div class="sel"><span class="n">5</span>    double m = somma / voti.Length;</div>
+<div><span class="n">6</span>    return m;</div>
+<div><span class="n">7</span>}</div>
+  </div>
+  <div class="lbl">Come la correggi?</div>
+  <div class="fix">double m = (double)(somma / voti.Length);</div>
+  <div class="fix on">double m = (double)somma / voti.Length;</div>
+  <div class="fix">double m = somma / (voti.Length - 1);</div>
+ </div>
+ <div class="btn">Conferma</div>
+</div></div>
+<div class="card-body"><h3>B · Riga + correzione</h3><p>Scegli la riga che la sistema. Più vicino a una review vera ("suggerisci la modifica") e le correzioni sbagliate sono trappole istruttive (il cast messo nel posto sbagliato).</p></div>
+</div>
+
+<div class="card" data-choice="c" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · alta</span></div>
+ <div class="body">
+  <div class="passi"><span class="ok"></span><span class="on"></span><span></span></div>
+  <div class="tt">Segna i problemi (3)</div>
+  <div class="req">Review: trova tutti i difetti, poi dai a ognuno il tipo.</div>
+  <div class="code">
+<div><span class="n">1</span>double Media(int[] voti)</div>
+<div><span class="n">2</span>{</div>
+<div class="sel"><span class="n">3</span>    int somma = 0;           <b>①</b></div>
+<div><span class="n">4</span>    foreach (var v in voti) somma += v;</div>
+<div class="sel"><span class="n">5</span>    double m = somma / voti.Length; <b>②</b></div>
+<div><span class="n">6</span>    return m;</div>
+<div><span class="n">7</span>}</div>
+  </div>
+  <div class="lbl">② che tipo?</div>
+  <div class="cat"><span>Off-by-one</span><span class="on">Divisione intera</span><span>Null / vuoto</span><span>Overflow</span></div>
+  <div class="req" style="margin-top:8px">Trovati 2 su 3 · un segno sbagliato toglie punti</div>
+ </div>
+ <div class="btn">Ho finito</div>
+</div></div>
+<div class="card-body"><h3>C · Review completa (livello alto)</h3><p>Più segni, contatore dei difetti, i falsi allarmi pesano. Qui: ① overflow della somma, ② divisione intera, ③ array vuoto non gestito.</p></div>
+</div>
+</div>

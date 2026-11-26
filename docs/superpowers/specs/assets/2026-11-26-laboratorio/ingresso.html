@@ -1,0 +1,86 @@
+<style>
+.cards{display:flex;gap:18px;flex-wrap:wrap}
+.ph{width:320px;height:600px;background:#e8e7e3;color:#141413;border:1px solid #444;display:flex;flex-direction:column;overflow:hidden;font-family:Archivo,system-ui,sans-serif}
+.ph *{box-sizing:border-box}
+.hdr{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:3px solid #3a6cb8;font-size:12px}
+.brand{font-weight:800;font-size:20px}
+.mut{color:#57564f;font-size:11px}
+.body{flex:1;padding:10px 12px;overflow:hidden}
+.tt{font-weight:700;font-size:14px;border-left:4px solid #3a6cb8;padding-left:7px;margin:8px 0 6px}
+.pan{border:1px solid #d6d5d0;background:#f1f0ec;padding:8px 10px;margin-bottom:8px}
+.cb{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:3px 0}
+.cb b{width:13px;height:13px;border:1.5px solid #141413;display:inline-block}.cb b.on{background:#3a6cb8;border-color:#3a6cb8}
+.tg{display:flex}.tg span{flex:1;text-align:center;font-size:12px;padding:7px 0;border:1px solid #141413;margin-right:-1px;background:#f1f0ec}
+.tg span.on{background:#3a6cb8;color:#fff;border-color:#3a6cb8;font-weight:600}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:7px 0;border-bottom:1px solid #d6d5d0}
+.row:last-child{border-bottom:0}
+.dot{display:inline-block;width:8px;height:8px;margin-right:6px}
+.avv{border-top:1px solid #141413;padding:9px 12px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:#3a6cb8;color:#fff;font-weight:600;font-size:14px;padding:9px 18px}
+.nav{display:flex;height:50px}
+.nav div{flex:1;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff}
+.nav .on{flex:2.6;font-weight:700;font-size:11px}
+.new{outline:2px dashed #d6414b;outline-offset:-2px}
+</style>
+<h2>Da dove si entra nel Laboratorio?</h2>
+<p class="subtitle">Oggi la barra ha 6 sezioni (Home, Cronologia, Sospesi, Statistiche, Gestione, Impostazioni). Il tratteggio rosso segna cosa è nuovo.</p>
+
+<div class="cards">
+<div class="card" data-choice="a" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">12 materie</span></div>
+ <div class="body">
+  <div class="tg new"><span>Quiz</span><span class="on">Laboratorio</span></div>
+  <div class="tt">Linguaggio</div>
+  <div class="pan"><div class="cb"><b class="on"></b>C#</div><div class="cb" style="color:#9a9990"><b></b>Python · presto</div><div class="cb" style="color:#9a9990"><b></b>C / C++ · presto</div></div>
+  <div class="tt">Livello</div>
+  <div class="tg"><span>Base</span><span class="on">Media</span><span>Alta</span></div>
+  <div class="tt">Schede</div>
+  <div class="pan"><div class="cb"><b class="on"></b>Solo non ancora viste</div><div class="cb"><b></b>Ripassa quelle sbagliate</div></div>
+ </div>
+ <div class="avv"><div><div style="font-size:13px;font-weight:600">12 schede</div><div class="mut">C# · media</div></div><span class="btn">Inizia</span></div>
+ <div class="nav"><div class="on" style="background:#3a6cb8">Home</div><div style="background:#7a4fa6">Cr</div><div style="background:#ebaf00;color:#141413">So</div><div style="background:#c2613d">St</div><div style="background:#40a79b">Ge</div><div style="background:#8c8c8c">Im</div></div>
+</div></div>
+<div class="card-body"><h3>A · Interruttore in Home</h3><p>Stessa Home, in alto scegli Quiz o Laboratorio e i riquadri sotto cambiano. Nessuna sezione in più nella barra; il Laboratorio vive "accanto" ai quiz.</p></div>
+</div>
+
+<div class="card" data-choice="b" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">Laboratorio</span></div>
+ <div class="body">
+  <div class="tt">Livello</div>
+  <div class="tg"><span>Base</span><span class="on">Media</span><span>Alta</span></div>
+  <div class="tt">C# · schede media</div>
+  <div class="pan">
+   <div class="row"><span><span class="dot" style="background:#40a79b"></span>Media dei voti</span><span class="mut">3/3 · 2 varianti</span></div>
+   <div class="row"><span><span class="dot" style="background:#ebaf00"></span>Cerca nel carrello</span><span class="mut">1½/3</span></div>
+   <div class="row"><span><span class="dot" style="background:#d6d5d0"></span>Parsing della data</span><span class="mut">nuova</span></div>
+   <div class="row"><span><span class="dot" style="background:#d6d5d0"></span>Sconto a scaglioni</span><span class="mut">nuova</span></div>
+  </div>
+ </div>
+ <div class="avv"><div class="mut">Tocca una scheda o</div><span class="btn">Scheda a caso</span></div>
+ <div class="nav new"><div style="background:#3a6cb8">Ho</div><div class="on" style="background:#2f8f8a">Laboratorio</div><div style="background:#7a4fa6">Cr</div><div style="background:#ebaf00;color:#141413">So</div><div style="background:#c2613d">St</div><div style="background:#40a79b">Ge</div><div style="background:#8c8c8c">Im</div></div>
+</div></div>
+<div class="card-body"><h3>B · Settima sezione con elenco schede</h3><p>Sezione sua, nella barra, con il suo colore. Vedi le schede una per una con l'esito; ne apri una o peschi a caso. Costo: 7 voci nella barra del telefono si stringono.</p></div>
+</div>
+
+<div class="card" data-choice="c" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">12 materie</span></div>
+ <div class="body">
+  <div class="tt">Materie</div>
+  <div class="pan"><div class="cb"><b class="on"></b>C#</div><div class="cb"><b></b>SQL</div><div class="cb"><b></b>Python</div></div>
+  <div class="tt">Tipo</div>
+  <div class="tg"><span>Tutte</span><span>Singola</span><span>Multipla</span></div>
+  <div class="tt">Laboratorio</div>
+  <div class="pan new">
+   <div class="row"><span>C# · media · 12 schede</span><span class="mut">8 nuove</span></div>
+   <div class="row"><span style="color:#3a6cb8;font-weight:600">Apri il laboratorio →</span><span></span></div>
+  </div>
+ </div>
+ <div class="avv"><div><div style="font-size:13px;font-weight:600">100 domande</div><div class="mut">1 materia</div></div><span class="btn">Avvia</span></div>
+ <div class="nav"><div class="on" style="background:#3a6cb8">Home</div><div style="background:#7a4fa6">Cr</div><div style="background:#ebaf00;color:#141413">So</div><div style="background:#c2613d">St</div><div style="background:#40a79b">Ge</div><div style="background:#8c8c8c">Im</div></div>
+</div></div>
+<div class="card-body"><h3>C · Riquadro in fondo alla Home</h3><p>La Home quiz resta com'è, sotto un riquadro rimanda al Laboratorio (pagina sua). Il meno invasivo, ma il Laboratorio resta "di secondo piano".</p></div>
+</div>
+</div>

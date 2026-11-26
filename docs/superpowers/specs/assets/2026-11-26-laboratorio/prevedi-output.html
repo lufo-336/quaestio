@@ -1,0 +1,94 @@
+<style>
+.cards{display:flex;gap:18px;flex-wrap:wrap}
+.ph{width:320px;height:600px;background:#e8e7e3;color:#141413;border:1px solid #444;display:flex;flex-direction:column;overflow:hidden;font-family:Archivo,system-ui,sans-serif}
+.ph *{box-sizing:border-box}
+.hdr{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:3px solid #3a6cb8;font-size:12px}
+.brand{font-weight:800;font-size:20px}
+.mut{color:#57564f;font-size:11px}
+.body{flex:1;padding:10px 12px;overflow:hidden}
+.passi{display:flex;gap:4px;margin-bottom:8px}.passi span{flex:1;height:5px;background:#d6d5d0}.passi span.on{background:#3a6cb8}
+.tt{font-weight:700;font-size:14px;border-left:4px solid #3a6cb8;padding-left:7px;margin:6px 0}
+pre{margin:0 0 10px;background:#f1f0ec;border:1px solid #d6d5d0;padding:8px;font:11.5px/1.5 'JetBrains Mono',monospace;white-space:pre}
+.n{color:#9a9990;display:inline-block;width:16px}
+.opt{border:1px solid #141413;padding:7px 9px;margin-bottom:6px;font:12px 'JetBrains Mono',monospace;white-space:pre;background:#f1f0ec}
+.opt.sel{background:#3a6cb8;color:#fff;border-color:#3a6cb8}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{border:1px solid #141413;padding:5px 10px;font:12px 'JetBrains Mono',monospace;background:#f1f0ec}
+.chip.used{opacity:.3}
+.out{border:1px dashed #141413;min-height:56px;padding:6px 8px;font:12px/1.7 'JetBrains Mono',monospace;background:#f1f0ec}
+.out .chip{display:inline-block;padding:1px 8px;background:#3a6cb8;color:#fff;border-color:#3a6cb8}
+.blank{display:inline-block;border:1px solid #141413;padding:1px 8px;min-width:60px;background:#fff}
+.btn{margin:8px 12px;background:#3a6cb8;color:#fff;font-weight:600;font-size:14px;padding:10px;text-align:center}
+.hint{font-size:11px;color:#57564f;margin:2px 0 6px}
+</style>
+<h2>Passo 1 · Prevedi l'output, senza risposta aperta</h2>
+<p class="subtitle">Stesso codice in tutti e tre. La trappola: 29 / 4 tra interi fa 7, non 7,25. Clicca quello che ti convince.</p>
+
+<div class="cards">
+<div class="card" data-choice="a" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · base</span></div>
+ <div class="body">
+  <div class="passi"><span class="on"></span><span></span><span></span></div>
+  <div class="tt">Cosa stampa?</div>
+<pre><span class="n">1</span>int[] voti = { 6, 8, 7, 8 };
+<span class="n">2</span>int somma = 0;
+<span class="n">3</span>foreach (var v in voti)
+<span class="n">4</span>    somma += v;
+<span class="n">5</span>Console.WriteLine(somma / voti.Length);
+<span class="n">6</span>Console.WriteLine(somma % 2 == 0);</pre>
+  <div class="opt">7,25
+False</div>
+  <div class="opt sel">7
+False</div>
+  <div class="opt">7
+True</div>
+  <div class="opt">29
+False</div>
+ </div>
+ <div class="btn">Conferma</div>
+</div></div>
+<div class="card-body"><h3>A · Quattro output tra cui scegliere</h3><p>La più semplice da costruire e da generare. Rischio: si va per esclusione invece di eseguire il codice in testa.</p></div>
+</div>
+
+<div class="card" data-choice="b" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · base</span></div>
+ <div class="body">
+  <div class="passi"><span class="on"></span><span></span><span></span></div>
+  <div class="tt">Componi l'output</div>
+<pre><span class="n">1</span>int[] voti = { 6, 8, 7, 8 };
+<span class="n">2</span>int somma = 0;
+<span class="n">3</span>foreach (var v in voti)
+<span class="n">4</span>    somma += v;
+<span class="n">5</span>Console.WriteLine(somma / voti.Length);
+<span class="n">6</span>Console.WriteLine(somma % 2 == 0);</pre>
+  <div class="hint">Tocca le tessere nell'ordine. Ogni tessera è una riga.</div>
+  <div class="out"><span class="chip">7</span><br><span style="color:#9a9990">…</span></div>
+  <div class="chips"><span class="chip">7,25</span><span class="chip used">7</span><span class="chip">29</span><span class="chip">True</span><span class="chip">False</span><span class="chip">0</span></div>
+ </div>
+ <div class="btn">Conferma</div>
+</div></div>
+<div class="card-body"><h3>B · Tessere da mettere in fila</h3><p>Costruisci l'output riga per riga, con tessere esca. Niente tastiera sul telefono, controllo esatto, molto più difficile tirare a indovinare.</p></div>
+</div>
+
+<div class="card" data-choice="c" onclick="toggleSelect(this)">
+<div class="card-image"><div class="ph">
+ <div class="hdr"><span class="brand">quaestio</span><span class="mut">C# · Laboratorio · base</span></div>
+ <div class="body">
+  <div class="passi"><span class="on"></span><span></span><span></span></div>
+  <div class="tt">Completa l'output</div>
+<pre><span class="n">1</span>int[] voti = { 6, 8, 7, 8 };
+<span class="n">2</span>int somma = 0;
+<span class="n">3</span>foreach (var v in voti)
+<span class="n">4</span>    somma += v;
+<span class="n">5</span>Console.WriteLine(somma / voti.Length);
+<span class="n">6</span>Console.WriteLine(somma % 2 == 0);</pre>
+  <div class="hint">Ogni riga stampata ha il suo menu.</div>
+  <div class="out">riga 5 → <span class="blank">7 ▾</span><br>riga 6 → <span class="blank">scegli ▾</span></div>
+ </div>
+ <div class="btn">Conferma</div>
+</div></div>
+<div class="card-body"><h3>C · Un menu per riga stampata</h3><p>Ti dice già quante righe escono e da dove: più guidata. Comoda con output lunghi (cicli), ma regala la struttura.</p></div>
+</div>
+</div>
