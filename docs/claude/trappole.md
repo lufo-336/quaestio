@@ -335,3 +335,14 @@
     **Soluzione**: prima di ogni APK da pubblicare cancellare
     `wsa.quiz.android/bin` e `wsa.quiz.android/obj` e ricompilare da zero
     (~1 minuto), poi provarlo sul telefono **prima** di `gh release create`.
+30. **Swipe fra sezioni: uno scroll verticale sposta la pagina di lato** *(26/11/2026, **risolto**)*:
+    con `SwipeHost` (ScrollViewer orizzontale) che contiene pagine con ScrollViewer verticale, un
+    trascinamento quasi verticale con un po' di deriva laterale muoveva ANCHE l'host: pagina
+    spostata di 80-300 px e ferma a metà (due recognizer attivi insieme, emettono `ScrollGesture`
+    con id diversi; `ScrollStartDistance` da solo non basta). **Soluzione** (`MainView.axaml.cs`,
+    `BloccaDerivaOrizzontale`): blocco d'asse a mano. Il gesto è orizzontale solo se `dx>40 && dx>1.5·dy`
+    (posizioni dal `PointerMoved` in tunnel); altrimenti a ogni `ScrollChanged` si rimette l'offset
+    sulla pagina di partenza. In più `AssestaDopoRilascio`: 80 ms dopo `PointerReleased`/`CaptureLost`,
+    se l'offset non è su un confine di pagina, si assesta. Non resettare lo stato a ogni `ge.Id` nuovo.
+    **Come si prova senza dita**: `adb shell input swipe x1 y1 x2 y2 ms` (es. `540 1900 600 1000 300` =
+    verticale con deriva) + `screencap`; riproduce il bug. Il telefono deve essere sbloccato.

@@ -165,3 +165,4 @@ volta, non è ciò che si consegna. Per produrre eseguibili autonomi o pacchetti
 27. WebAssembly: JsonSerializerIsReflectionDisabled, assembly satellite .resx (loadAllSatelliteResources) e cartella _framework su GitHub Pages (.nojekyll)
 28. Deploy web: runner GitHub con .NET 11 → serve `global.json` in CI, altrimenti SkiaSharp non viene ricollegato (sito nero)
 29. APK Release da build incrementale = crash all'avvio (`UnsatisfiedLinkError`): pulire `bin`/`obj`
+30. Swipe fra sezioni: scroll verticale sposta la pagina di lato → blocco d'asse manuale (`BloccaDerivaOrizzontale`), prova con `adb shell input swipe`
