@@ -37,7 +37,7 @@ Il codice e le schede li scrive **agy**, non sotto-agenti Claude. Claude (Opus) 
 
 | Task | Lavoro | Modello agy | Perché |
 |---|---|---|---|
-| 1, 2, 5, 14 | logica core/stato, JSON, storage | `gemini-4-hydrogen-high` | fedele al brief, compila al primo colpo |
+| 1, 2, 5, 8b, 14 | logica core/stato, JSON, storage, traduzioni | `gemini-4-hydrogen-high` | fedele al brief, compila al primo colpo |
 | 3 | test di coerenza + runner Roslyn | `gemini-4-hydrogen-high` | permesso in più: `dotnet test` |
 | 4 | schede base | `gemini-4-hydrogen-high` | il test d'esecuzione corregge i valori; permesso `dotnet test --filter Laboratorio` |
 | 10, 12 | schede media / alta | `gemini-4-hydrogen-xhigh` | difetti sottili o multipli: serve più ragionamento per esche e trappole plausibili |
@@ -67,7 +67,8 @@ che le schede arrivino nelle risorse incorporate.
   del Laboratorio vanno in un **file separato** (`laboratorio_in_pausa.json`), così le pause dei quiz e la CLI restano
   intatte.
 - Testi dell'interfaccia in `wsa.quiz.core/Risorse/Strings.resx` + `Strings.en.resx`, chiavi con prefisso `Lab_`. I
-  contenuti delle schede restano solo in italiano.
+  contenuti delle schede si traducono con la sovrapposizione del Task 8b (`traduzioni/en/laboratorio/…`): ogni scheda
+  nuova nasce con la sua traduzione.
 - Nessuna esecuzione di codice sul dispositivo: l'app confronta soltanto con valori presenti nel JSON.
 - I modelli JSON stanno in `Wsa.Quiz.Core` (già radice del trimmer per WebAssembly, trappola 27): nessun cambio al
   csproj del browser.
@@ -84,6 +85,8 @@ che le schede arrivino nelle risorse incorporate.
 | `wsa.quiz.core/Models/PreferenzeUtente.cs`, `FiltroCronologia.cs` | modifica | 7, 13 |
 | `wsa.quiz.core/Risorse/Strings.resx`, `Strings.en.resx` | modifica | 1, 6, 7, 9, 11, 13, 14 |
 | `laboratorio/cs/*.json` | nuovo | 4, 10, 12 |
+| `wsa.quiz.core/Models/Laboratorio/TraduzioneScheda.cs` | nuovo | 8b |
+| `traduzioni/en/laboratorio/cs/*.json` | nuovo | 8b, 10, 12 |
 | `wsa.quiz.app/Wsa.Quiz.App.csproj`, `wsa.quiz.desktop/Wsa.Quiz.Desktop.csproj` | modifica | 2 |
 | `wsa.quiz.core.tests/Wsa.Quiz.Core.Tests.csproj` | modifica (Roslyn) | 3 |
 | `wsa.quiz.core.tests/LaboratorioServiceTests.cs`, `LaboratorioCoerenzaTests.cs`, `LaboratorioEsecuzioneTests.cs` | nuovi | 2, 3, 9, 11, 14 |
@@ -344,6 +347,55 @@ leggibilità del codice su 360 dp.
 
 ---
 
+# Fetta 2b — Schede in inglese
+
+Decisione di Luca (2026-11-26): anche i **contenuti** delle schede si traducono, non solo l'interfaccia. Va fatto
+prima della Fetta 3, così le schede media e alta nascono già con la traduzione.
+
+## Task 8b: Sovrapposizione inglese delle schede
+
+Stesso principio delle domande (`StorageService.ApplicaTraduzione`, `Models/TraduzioneMateria.cs`): un file per
+scheda che sovrappone **solo i testi**, mai bloccante. Le schede hanno id fissi (kebab-case), quindi a differenza
+delle domande una traduzione non diventa orfana se cambia il testo italiano.
+
+**File:** `traduzioni/<lingua>/laboratorio/<linguaggio>/<schedaId>.json`, es. `traduzioni/en/laboratorio/cs/media-voti.json`.
+I csproj di app e desktop includono già `traduzioni/**` in modo ricorsivo: nessun cambio. Il test esistente
+`IntegritaDatiTests.Traduzioni_NessunaChiaveOrfana` legge solo i file in cima a `traduzioni/en/`: non va toccato.
+
+**Modello** `wsa.quiz.core/Models/Laboratorio/TraduzioneScheda.cs` (stesso namespace di `SchedaLab`, tutti i campi
+opzionali come in `TraduzioneMateria`):
+- `TraduzioneScheda`: `Titolo`, `Requisito` (string?), `Varianti` (Dictionary\<string, TraduzioneVariante\>, chiave = id
+  della variante);
+- `TraduzioneVariante`: `Difetti` (List\<TraduzioneDifetto\>, **stesso ordine e stesso numero** dei `Difetti` della
+  variante);
+- `TraduzioneDifetto`: `Indizio`, `Spiegazione` (string?).
+
+Si traducono solo `Titolo`, `Requisito`, `Indizio`, `Spiegazione`. Restano identici: `Chiamata`, `CodiceSano`, `Righe`,
+`Output`, `Esche`, `Input`, `Correzione`, `Trappole` (sono codice o il suo output, verificati da Roslyn), `Livello`,
+`Tipo`, gli id. Le stringhe dentro il codice (es. `Console.WriteLine("Media: ...")`) restano come sono.
+
+**`LaboratorioService.CaricaSchede(IFonteDati fonte, string lingua = Lingue.Base)`**: dopo aver validato una scheda, se
+`lingua` non è quella base e il file di traduzione esiste, lo sovrappone (path costruito da linguaggio e `scheda.Id`).
+Regole come `ApplicaTraduzione`: file illeggibile → scheda in italiano con avviso su `Console.Error`; campo nullo o
+vuoto → resta l'italiano; variante non trovata → avviso e salto; numero di difetti diverso → avviso e quella variante
+resta in italiano. In `MainView.Caricamento` passare la stessa lingua che riceve `_storage.LinguaContenuti`.
+
+**Test:**
+- `LaboratorioServiceTests`: la sovrapposizione cambia i quattro testi e nient'altro; con un numero di difetti diverso
+  la variante resta in italiano; con `lingua` base non si legge niente. Per la fonte, riusare quella già usata nei test
+  di `CaricaSchede` se c'è, altrimenti una cartella temporanea.
+- `LaboratorioCoerenzaTests`: per ogni scheda di `laboratorio/*/*.json` esiste `traduzioni/en/laboratorio/<ling>/<id>.json`,
+  con `Titolo` e `Requisito` non vuoti, le stesse varianti (né in più né in meno), per ogni variante lo stesso numero
+  di difetti, `Indizio` e `Spiegazione` non vuoti; nessun file di traduzione senza la scheda corrispondente.
+
+**Traduzione delle tre schede base** (`media-voti`, `conta-vocali`, `massimo-lista`): inglese naturale, stesso tono
+didattico; gli indizi continuano a dire dove guardare, non cosa c'è.
+
+**Punto di controllo:** lingua inglese nelle Impostazioni → una scheda base mostra titolo, requisito, indizio e
+spiegazione in inglese; codice e output identici all'italiano.
+
+---
+
 # Fetta 3 — Livello media
 
 ## Task 9: Tessere, correzione fra tre righe, seconda possibilità
@@ -368,7 +420,8 @@ Riferimento: mockup `prevedi-output.html` variante B, `trova-bug.html` variante 
 
 Tre schede `media`, 2 varianti, 15–25 righe, un difetto sottile per variante (es. un `<=` al posto di `<`, una
 divisione intera dentro un'espressione, un confronto di stringhe sensibile alle maiuscole), `Correzione` + 2 `Trappole`
-che compilano e sembrano giuste. Stessa regola del Task 4 per `dotnet test --filter Laboratorio`.
+che compilano e sembrano giuste. Stessa regola del Task 4 per `dotnet test --filter Laboratorio`. Ogni scheda con la
+sua traduzione in `traduzioni/en/laboratorio/cs/` (Task 8b).
 
 **Punto di controllo Fetta 3:** una sessione Media sul desktop e sul telefono (le tessere al tocco), seconda possibilità
 riuscita e fallita, peso ½ visibile in Statistiche.
@@ -398,7 +451,8 @@ Riferimento: mockup `trova-bug.html` variante C.
 ## Task 12: Schede alta
 
 Tre schede `alta`, 2 varianti, 30+ righe, 2–3 difetti di gravità diversa per variante, elencati dal più grave, con
-almeno un input che espone il più grave. Stessa regola del Task 4 per i test.
+almeno un input che espone il più grave. Stessa regola del Task 4 per i test. Ogni scheda con la sua traduzione
+(Task 8b).
 
 **Punto di controllo Fetta 4:** una sessione Alta; provare che "segna tutto" non conviene.
 
@@ -449,7 +503,8 @@ coppia trovata: niente, come oggi.
 
 - `CLAUDE.md`: cartella `laboratorio/` nel layout del repo; riga di stato; nessuna trappola nuova se non ne sono emerse.
 - `docs/claude/contenuti-e-dati.md`: sezione "Schede del Laboratorio" (formato, convenzioni script/eccezioni/cultura,
-  come si verifica con `dotnet test --filter Laboratorio`, come si aggiunge un linguaggio).
+  come si verifica con `dotnet test --filter Laboratorio`, la traduzione in `traduzioni/en/laboratorio/`, come si
+  aggiunge un linguaggio).
 - `docs/claude/architettura-gui.md`: `SessioneLaboratorio`, `LaboratorioView`, interruttore globale, pause separate.
 - `docs/claude/trappole.md`: solo le trappole davvero incontrate in questo piano.
 

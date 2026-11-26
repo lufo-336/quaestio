@@ -25,7 +25,10 @@ Base didattica (ricerca fatta il 26/11): il tracciamento del codice ("prevedi co
 - Cronometro nelle schede. *(Mia scelta.)*
 - **Motore e prompt di generazione** delle schede: si progettano dopo aver visto la v1 funzionare (decisione di Luca). La v1 parte con poche schede scritte a mano (§5.5).
 - Laboratorio nella console (`wsa.quiz.cli`): no. La CLI legge però la stessa cronologia, quindi deve solo **tollerare** i record di Laboratorio (comparire in statistiche va bene, il "ripassa" CLI non deve provare ad aprirli come quiz). *(Mia scelta.)*
-- Traduzione inglese dei contenuti delle schede (l'interfaccia sì, it/en come il resto). *(Mia scelta.)*
+- ~~Traduzione inglese dei contenuti delle schede~~ — **tolto dai non-obiettivi il 2026-11-26 (decisione di Luca):**
+  titolo, requisito, indizi e spiegazioni si traducono con un file sovrapposto per scheda
+  (`traduzioni/en/laboratorio/<linguaggio>/<id>.json`), come le domande; codice, output, esche e input restano
+  identici. Dettagli nel Task 8b del piano.
 
 **Anti-obiettivi** (fallimento anche se funziona)
 - Diventa "un quiz con un altro nome": scelta tra 4 alternative per ogni passo, si va per esclusione.
