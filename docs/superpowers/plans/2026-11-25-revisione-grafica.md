@@ -30,6 +30,17 @@
 
 ---
 
+> **Ripresa dal PC (nota di Claude, 2026-11-26).** Dal Mac è fatto tutto quello che si poteva: Task 1–8 su `main`
+> (ultimo `ff5d303`), più la variante A del colore utente (riga sotto l'intestazione + trattino sui titoli dei
+> riquadri, `e9887c0`, spec aggiornata). Restano, in quest'ordine, dal PC Windows (adb + workload Android, chiave
+> di firma della v2.1.0, trappola 24):
+> 1. **Task 0** — misure sul S21 con la 2.2.0 ancora installata, PRIMA del nuovo APK.
+> 2. **Prove a vista sul telefono** (mai fatte): barra C2, Statistiche/Cronologia/Sospesi a righe, colori degli
+>    esiti, colore utente su intestazione e titoli; Task 8 Step 4 (icona nel launcher).
+> 3. **Task 9** — APK Release da build pulita (trappola 29), misure dopo, giro dei colori sul pulsante Avvia,
+>    `CLAUDE.md` (Archivo al posto di Inter), `architettura-gui.md`, `trappole.md`.
+> 4. Poi la GitHub Release (versione da decidere, la 2.2.0 non è mai stata pubblicata).
+
 ### Task 0: Misura di partenza sul S21
 
 - [ ] Rimandato 2026-11-25 (Claude): dal Mac mancano adb e il workload Android. Da fare dal PC **prima** di installare il nuovo APK (sul S21 c'è ancora la 2.2.0).
@@ -155,11 +166,11 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 7: Tab desktop/web — mockup, ok, implementazione
 
-- [ ] Step 1 fatto 2026-11-25 (Claude): `docs/superpowers/specs/assets/2026-11-25-revisione-grafica/mockup-tab-desktop.html` (+ `.png`), varianti A fascia sotto / B solo l'attiva / C fascia sopra — scelto A da Luca. Step 2 fatto 2026-11-25 (agy): file `wsa.quiz.app/MainView.axaml`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell). Resta Step 3.
+- [x] Fatto 2026-11-25 (Claude, Step 3: build+test+prova nel browser chiaro/scuro, commit `d24d1df`). Step 1 fatto 2026-11-25 (Claude): `docs/superpowers/specs/assets/2026-11-25-revisione-grafica/mockup-tab-desktop.html` (+ `.png`), varianti A fascia sotto / B solo l'attiva / C fascia sopra — scelto A da Luca. Step 2 fatto 2026-11-25 (agy): file `wsa.quiz.app/MainView.axaml`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell).
 
 - [ ] **Step 1:** mockup HTML con 2–3 varianti affiancate delle tab in alto (base: spec §5.4, fascia 3–4 px del colore di sezione, attiva piena), tema chiaro e scuro; mostrarle a Luca. **Fermarsi fino al suo ok.**
 - [x] **Step 2:** implementare la variante scelta sullo stile `TabItem` di `Tabs` in `MainView.axaml` (colori da `Inchiostri` come in Task 6). Se nessuna è scelta: solo stili globali, nessun colore di sezione.
-- [ ] **Step 3:** prova desktop chiaro/scuro e browser su PC; build, test, commit `feat(app): tab desktop coi colori di sezione` + push.
+- [x] **Step 3:** prova desktop chiaro/scuro e browser su PC; build, test, commit `feat(app): tab desktop coi colori di sezione` + push.
 
 ### Task 8: Icone dell'app a6-2
 

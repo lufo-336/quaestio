@@ -38,7 +38,11 @@ AOT) provato il 2026-11-09; **WebAssembly** su `main` (head `wsa.quiz.browser`,
 dati in `localStorage`, deploy automatico su GitHub Pages), provato nel
 browser il 2026-11-10.
 Restano da verificare a mano: una partita intera, Gestione contenuti,
-Statistiche. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
+Statistiche.
+**Revisione grafica (25–26/11, su `main`, non ancora in un APK):** tavolozza dei 16
+inchiostri, font Archivo, angoli vivi, marchio e icone a6-2, barra C2 su telefono,
+tab coi colori di sezione su desktop, colore utente su intestazione e titoli.
+Da riprendere dal PC: nota in testa a `docs/superpowers/plans/2026-11-25-revisione-grafica.md`. Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
 ## Stack
 
