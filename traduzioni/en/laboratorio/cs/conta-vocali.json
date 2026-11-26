@@ -1,0 +1,22 @@
+{
+  "titolo": "Vowel count",
+  "requisito": "Counts how many vowels (a, e, i, o, u, both lowercase and uppercase) appear in a string.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the if condition inside the foreach loop.",
+          "spiegazione": "The comparison only checks lowercase vowels without normalizing the character with char.ToLowerInvariant, so it skips uppercase letters like 'A'."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the for loop condition.",
+          "spiegazione": "The condition i < testo.Length - 1 stops one character before the end of the string, always skipping the last character."
+        }
+      ]
+    }
+  }
+}

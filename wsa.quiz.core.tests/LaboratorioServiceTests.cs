@@ -1,5 +1,6 @@
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Models.Laboratorio;
+using Wsa.Quiz.Core.Risorse;
 using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.Core.Tests;
@@ -183,5 +184,217 @@ public class LaboratorioServiceTests
         Assert.Equal(1, nuove);       // s2 ha varianti mai viste; s1 no
         Assert.Equal(2, totale);
         Assert.Equal(1, daRipassare); // s1/v1 sbagliata
+    }
+
+    private const string SchedaEsempioJson = """
+        {
+          "id": "somma-due",
+          "titolo": "Titolo IT",
+          "livello": "base",
+          "requisito": "Requisito IT",
+          "chiamata": "Console.WriteLine(Somma(2, 3));",
+          "codiceSano": [ "int Somma(int a, int b) => a + b;" ],
+          "varianti": [
+            {
+              "id": "v1",
+              "righe": [ "int Somma(int a, int b) => a - b;" ],
+              "output": [ "-1" ],
+              "esche": [ "5", "6" ],
+              "difetti": [
+                {
+                  "riga": 1,
+                  "tipo": "OperandoSbagliato",
+                  "indizio": "Indizio v1 IT",
+                  "spiegazione": "Spiegazione v1 IT",
+                  "correzione": "int Somma(int a, int b) => a + b;",
+                  "trappole": [ "int Somma(int a, int b) => a * b;", "int Somma(int a, int b) => b - a;" ]
+                }
+              ],
+              "input": [
+                { "chiamata": "Console.WriteLine(Somma(1, 2));", "atteso": "3", "effettivo": "-1" },
+                { "chiamata": "Console.WriteLine(Somma(5, 0));", "atteso": "5", "effettivo": "5" },
+                { "chiamata": "Console.WriteLine(Somma(0, 0));", "atteso": "0", "effettivo": "0" }
+              ]
+            },
+            {
+              "id": "v2",
+              "righe": [ "int Somma(int a, int b) => a + 1;" ],
+              "output": [ "3" ],
+              "esche": [ "5", "4" ],
+              "difetti": [
+                {
+                  "riga": 1,
+                  "tipo": "OperandoSbagliato",
+                  "indizio": "Indizio v2 IT",
+                  "spiegazione": "Spiegazione v2 IT"
+                }
+              ],
+              "input": [
+                { "chiamata": "Console.WriteLine(Somma(1, 2));", "atteso": "3", "effettivo": "2" },
+                { "chiamata": "Console.WriteLine(Somma(5, 1));", "atteso": "6", "effettivo": "6" },
+                { "chiamata": "Console.WriteLine(Somma(0, 1));", "atteso": "1", "effettivo": "1" }
+              ]
+            }
+          ]
+        }
+        """;
+
+    private static string CreaDirTemporaneaConScheda(string? pathTraduzioneRelativo = null, string? jsonTraduzione = null)
+    {
+        string dir = Path.Combine(Path.GetTempPath(), $"quaestio-lab-test-{Guid.NewGuid():N}");
+        string dirLab = Path.Combine(dir, "laboratorio", "cs");
+        Directory.CreateDirectory(dirLab);
+        File.WriteAllText(Path.Combine(dirLab, "somma-due.json"), SchedaEsempioJson);
+
+        if (pathTraduzioneRelativo != null && jsonTraduzione != null)
+        {
+            string fullTrad = Path.Combine(dir, pathTraduzioneRelativo);
+            Directory.CreateDirectory(Path.GetDirectoryName(fullTrad)!);
+            File.WriteAllText(fullTrad, jsonTraduzione);
+        }
+        return dir;
+    }
+
+    [Fact]
+    public void CaricaSchede_LinguaEn_SovrapponeSoloIQuattroTesti()
+    {
+        const string tradJson = """
+            {
+              "titolo": "Sum of two",
+              "requisito": "Requirement EN",
+              "varianti": {
+                "v1": {
+                  "difetti": [
+                    { "indizio": "Hint v1 EN", "spiegazione": "Explanation v1 EN" }
+                  ]
+                },
+                "v2": {
+                  "difetti": [
+                    { "indizio": "Hint v2 EN", "spiegazione": "Explanation v2 EN" }
+                  ]
+                }
+              }
+            }
+            """;
+
+        string dir = CreaDirTemporaneaConScheda(
+            Path.Combine("traduzioni", "en", "laboratorio", "cs", "somma-due.json"),
+            tradJson);
+        try
+        {
+            var schede = LaboratorioService.CaricaSchede(new FileSystemFonteDati(dir), "en");
+            var s = Assert.Single(schede);
+
+            Assert.Equal("Sum of two", s.Titolo);
+            Assert.Equal("Requirement EN", s.Requisito);
+            Assert.Equal("Hint v1 EN", s.Varianti[0].Difetti[0].Indizio);
+            Assert.Equal("Explanation v1 EN", s.Varianti[0].Difetti[0].Spiegazione);
+            Assert.Equal("Hint v2 EN", s.Varianti[1].Difetti[0].Indizio);
+            Assert.Equal("Explanation v2 EN", s.Varianti[1].Difetti[0].Spiegazione);
+
+            // Tutto il resto resta identico all'originale italiano
+            Assert.Equal("somma-due", s.Id);
+            Assert.Equal("base", s.Livello);
+            Assert.Equal("cs", s.Linguaggio);
+            Assert.Equal("Console.WriteLine(Somma(2, 3));", s.Chiamata);
+            Assert.Equal(new[] { "int Somma(int a, int b) => a + b;" }, s.CodiceSano);
+
+            Assert.Equal(new[] { "int Somma(int a, int b) => a - b;" }, s.Varianti[0].Righe);
+            Assert.Equal(new[] { "-1" }, s.Varianti[0].Output);
+            Assert.Equal(new[] { "5", "6" }, s.Varianti[0].Esche);
+            Assert.Equal(1, s.Varianti[0].Difetti[0].Riga);
+            Assert.Equal("OperandoSbagliato", s.Varianti[0].Difetti[0].Tipo);
+            Assert.Equal("int Somma(int a, int b) => a + b;", s.Varianti[0].Difetti[0].Correzione);
+            Assert.Equal(2, s.Varianti[0].Difetti[0].Trappole.Count);
+            Assert.Equal("Console.WriteLine(Somma(1, 2));", s.Varianti[0].Input[0].Chiamata);
+            Assert.Equal("3", s.Varianti[0].Input[0].Atteso);
+            Assert.Equal("-1", s.Varianti[0].Input[0].Effettivo);
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void CaricaSchede_NumeroDifettiDiverso_VarianteRestaInItaliano()
+    {
+        const string tradJson = """
+            {
+              "titolo": "Sum of two",
+              "requisito": "Requirement EN",
+              "varianti": {
+                "v1": {
+                  "difetti": [
+                    { "indizio": "Hint v1 EN", "spiegazione": "Explanation v1 EN" },
+                    { "indizio": "Extra", "spiegazione": "Extra" }
+                  ]
+                },
+                "v2": {
+                  "difetti": [
+                    { "indizio": "Hint v2 EN", "spiegazione": "Explanation v2 EN" }
+                  ]
+                }
+              }
+            }
+            """;
+
+        string dir = CreaDirTemporaneaConScheda(
+            Path.Combine("traduzioni", "en", "laboratorio", "cs", "somma-due.json"),
+            tradJson);
+        try
+        {
+            var schede = LaboratorioService.CaricaSchede(new FileSystemFonteDati(dir), "en");
+            var s = Assert.Single(schede);
+
+            Assert.Equal("Sum of two", s.Titolo);
+            Assert.Equal("Requirement EN", s.Requisito);
+            // v1 ha numero di difetti diverso -> resta in italiano
+            Assert.Equal("Indizio v1 IT", s.Varianti[0].Difetti[0].Indizio);
+            Assert.Equal("Spiegazione v1 IT", s.Varianti[0].Difetti[0].Spiegazione);
+            // v2 ha numero di difetti corretto -> tradotta
+            Assert.Equal("Hint v2 EN", s.Varianti[1].Difetti[0].Indizio);
+            Assert.Equal("Explanation v2 EN", s.Varianti[1].Difetti[0].Spiegazione);
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void CaricaSchede_LinguaBase_NonLeggeTraduzioni()
+    {
+        const string tradJson = """
+            {
+              "titolo": "Non dovrebbe essere letto",
+              "requisito": "Nemmeno questo",
+              "varianti": {
+                "v1": {
+                  "difetti": [
+                    { "indizio": "Indizio sovrascritto", "spiegazione": "Spiegazione sovrascritta" }
+                  ]
+                }
+              }
+            }
+            """;
+
+        string dir = CreaDirTemporaneaConScheda(
+            Path.Combine("traduzioni", Lingue.Base, "laboratorio", "cs", "somma-due.json"),
+            tradJson);
+        try
+        {
+            var schede = LaboratorioService.CaricaSchede(new FileSystemFonteDati(dir), Lingue.Base);
+            var s = Assert.Single(schede);
+
+            Assert.Equal("Titolo IT", s.Titolo);
+            Assert.Equal("Requisito IT", s.Requisito);
+            Assert.Equal("Indizio v1 IT", s.Varianti[0].Difetti[0].Indizio);
+            Assert.Equal("Spiegazione v1 IT", s.Varianti[0].Difetti[0].Spiegazione);
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
     }
 }

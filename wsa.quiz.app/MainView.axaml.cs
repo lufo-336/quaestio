@@ -650,7 +650,7 @@ public partial class MainView : UserControl
                 : _tutteDomande.Where(d => !esclSet.Contains((d.MateriaId, d.Categoria))).ToList();
 
             _mappaDomande = _tutteDomande.ToDictionary(d => d.Id, d => d);
-            _schedeLab = LaboratorioService.CaricaSchede(fonte);
+            _schedeLab = LaboratorioService.CaricaSchede(fonte, _storage.LinguaContenuti);
 
             StatoHeaderText.Text = string.Format(Strings.Shell_Conteggi, _materie.Count, _domandeAttive.Count);
 

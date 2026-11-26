@@ -354,6 +354,8 @@ prima della Fetta 3, così le schede media e alta nascono già con la traduzione
 
 ## Task 8b: Sovrapposizione inglese delle schede
 
+- [x] Fatto 2026-11-26 (agy): file `wsa.quiz.core/Models/Laboratorio/TraduzioneScheda.cs`, `wsa.quiz.core/Services/LaboratorioService.cs`, `wsa.quiz.app/MainView.axaml.cs`, `wsa.quiz.core.tests/LaboratorioServiceTests.cs`, `wsa.quiz.core.tests/LaboratorioCoerenzaTests.cs`, `traduzioni/en/laboratorio/cs/{media-voti,conta-vocali,massimo-lista}.json` — verifica: non eseguita (sessione headless senza shell; riletti tutti i file creati e modificati)
+
 Stesso principio delle domande (`StorageService.ApplicaTraduzione`, `Models/TraduzioneMateria.cs`): un file per
 scheda che sovrappone **solo i testi**, mai bloccante. Le schede hanno id fissi (kebab-case), quindi a differenza
 delle domande una traduzione non diventa orfana se cambia il testo italiano.

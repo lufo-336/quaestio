@@ -158,4 +158,86 @@ public class LaboratorioCoerenzaTests
             Assert.True(v.Input.Any(i => !i.Espone), $"{scheda.Id} {v.Id}: serve almeno un input che non espone il difetto");
         }
     }
+
+    [Theory]
+    [MemberData(nameof(FileSchede))]
+    public void Scheda_HaTraduzioneEnCoerente(string percorsoRelativo)
+    {
+        var scheda = CaricaScheda(percorsoRelativo);
+        string[] parti = percorsoRelativo.Split('/');
+        string ling = parti[1];
+
+        string pathTrad = Path.Combine(Radice(), "traduzioni", "en", "laboratorio", ling, $"{scheda.Id}.json");
+        Assert.True(File.Exists(pathTrad), $"Traduzione inglese mancante: traduzioni/en/laboratorio/{ling}/{scheda.Id}.json");
+
+        var trad = JsonSerializer.Deserialize<TraduzioneScheda>(
+            File.ReadAllText(pathTrad), StorageService.OpzioniLettura);
+        Assert.NotNull(trad);
+        Assert.False(string.IsNullOrWhiteSpace(trad.Titolo), $"{scheda.Id} (en): titolo vuoto");
+        Assert.False(string.IsNullOrWhiteSpace(trad.Requisito), $"{scheda.Id} (en): requisito vuoto");
+        Assert.NotNull(trad.Varianti);
+
+        var attese = scheda.Varianti.Select(v => v.Id).ToHashSet(StringComparer.Ordinal);
+        var trovate = trad.Varianti.Keys.ToHashSet(StringComparer.Ordinal);
+        Assert.True(
+            attese.SetEquals(trovate),
+            $"{scheda.Id} (en): varianti non corrispondenti (attese: [{string.Join(", ", attese)}], trovate: [{string.Join(", ", trovate)}])");
+
+        foreach (var v in scheda.Varianti)
+        {
+            var tv = trad.Varianti[v.Id];
+            Assert.NotNull(tv);
+            Assert.NotNull(tv.Difetti);
+            Assert.Equal(v.Difetti.Count, tv.Difetti.Count);
+
+            for (int i = 0; i < v.Difetti.Count; i++)
+            {
+                var td = tv.Difetti[i];
+                Assert.NotNull(td);
+                Assert.False(string.IsNullOrWhiteSpace(td.Indizio), $"{scheda.Id} {v.Id} difetto {i + 1} (en): indizio vuoto");
+                Assert.False(string.IsNullOrWhiteSpace(td.Spiegazione), $"{scheda.Id} {v.Id} difetto {i + 1} (en): spiegazione vuota");
+            }
+        }
+    }
+
+    [Fact]
+    public void TraduzioniEnLab_NessunFileSenzaScheda()
+    {
+        string dirTradLab = Path.Combine(Radice(), "traduzioni", "en", "laboratorio");
+        Assert.True(Directory.Exists(dirTradLab), "Cartella traduzioni/en/laboratorio/ mancante.");
+
+        string dirLab = Path.Combine(Radice(), "laboratorio");
+        var schedePerLing = new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+        if (Directory.Exists(dirLab))
+        {
+            foreach (var dirLing in Directory.GetDirectories(dirLab))
+            {
+                string ling = Path.GetFileName(dirLing);
+                var ids = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var file in Directory.GetFiles(dirLing, "*.json"))
+                {
+                    var s = JsonSerializer.Deserialize<SchedaLab>(
+                        File.ReadAllText(file), StorageService.OpzioniLettura);
+                    if (s != null && !string.IsNullOrWhiteSpace(s.Id))
+                        ids.Add(s.Id);
+                }
+                schedePerLing[ling] = ids;
+            }
+        }
+
+        var orfane = new List<string>();
+        foreach (var dirLing in Directory.GetDirectories(dirTradLab).OrderBy(d => d, StringComparer.Ordinal))
+        {
+            string ling = Path.GetFileName(dirLing);
+            schedePerLing.TryGetValue(ling, out var ids);
+            foreach (var file in Directory.GetFiles(dirLing, "*.json").OrderBy(f => f, StringComparer.Ordinal))
+            {
+                string id = Path.GetFileNameWithoutExtension(file);
+                if (ids == null || !ids.Contains(id))
+                    orfane.Add($"{ling}/{id}.json");
+            }
+        }
+
+        Assert.Empty(orfane);
+    }
 }

@@ -1,0 +1,22 @@
+{
+  "titolo": "Maximum of a list",
+  "requisito": "Returns the maximum value in a non-empty list of integers.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how max is initialized before the loop.",
+          "spiegazione": "Initializing max to 0 only works when the list contains at least one non-negative number: with only negative numbers, no element exceeds 0 and 0 is returned."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the if condition inside the loop.",
+          "spiegazione": "The condition numeri[i] < max updates max whenever a smaller value is found, computing the minimum instead of the maximum."
+        }
+      ]
+    }
+  }
+}

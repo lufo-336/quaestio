@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Wsa.Quiz.Core.Models;
 using Wsa.Quiz.Core.Models.Laboratorio;
+using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.Core.Services;
 
@@ -23,10 +24,11 @@ public static class LaboratorioService
 
     /// <summary>
     /// Carica tutte le schede valide dalle cartelle <c>laboratorio/&lt;id&gt;/</c>,
-    /// valorizzando <see cref="SchedaLab.Linguaggio"/>. Un file illeggibile viene saltato
+    /// valorizzando <see cref="SchedaLab.Linguaggio"/> e sovrapponendo l'eventuale
+    /// traduzione per <paramref name="lingua"/>. Un file illeggibile viene saltato
     /// senza bloccare l'avvio dell'app.
     /// </summary>
-    public static List<SchedaLab> CaricaSchede(IFonteDati fonte)
+    public static List<SchedaLab> CaricaSchede(IFonteDati fonte, string lingua = Lingue.Base)
     {
         var risultato = new List<SchedaLab>();
         foreach (var (id, _) in Linguaggi)
@@ -43,6 +45,8 @@ public static class LaboratorioService
                         continue;
                     }
                     scheda.Linguaggio = id;
+                    if (!string.IsNullOrWhiteSpace(lingua) && lingua != Lingue.Base)
+                        ApplicaTraduzione(fonte, scheda, lingua);
                     risultato.Add(scheda);
                 }
                 catch (Exception ex)
@@ -52,6 +56,61 @@ public static class LaboratorioService
             }
         }
         return risultato;
+    }
+
+    /// <summary>
+    /// Sovrappone titolo, requisito, indizi e spiegazioni tradotti da
+    /// <c>traduzioni/&lt;lingua&gt;/laboratorio/&lt;linguaggio&gt;/&lt;schedaId&gt;.json</c>.
+    /// Mai bloccante: file assente o rotto lascia la scheda in italiano;
+    /// campo nullo o vuoto resta in italiano; variante con numero di difetti
+    /// diverso resta in italiano.
+    /// </summary>
+    private static void ApplicaTraduzione(IFonteDati fonte, SchedaLab scheda, string lingua)
+    {
+        string percorso = $"traduzioni/{lingua}/laboratorio/{scheda.Linguaggio}/{scheda.Id}.json";
+        if (!fonte.Esiste(percorso)) return;
+
+        TraduzioneScheda? t;
+        try
+        {
+            t = JsonSerializer.Deserialize<TraduzioneScheda>(fonte.LeggiTesto(percorso), StorageService.OpzioniLettura);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[ATTENZIONE] Traduzione '{percorso}' illeggibile: {ex.Message}");
+            return;
+        }
+        if (t == null) return;
+
+        if (!string.IsNullOrWhiteSpace(t.Titolo)) scheda.Titolo = t.Titolo;
+        if (!string.IsNullOrWhiteSpace(t.Requisito)) scheda.Requisito = t.Requisito;
+        if (t.Varianti == null) return;
+
+        var perId = new Dictionary<string, VarianteLab>(StringComparer.Ordinal);
+        foreach (var v in scheda.Varianti)
+            perId.TryAdd(v.Id, v);
+
+        foreach (var (varId, tv) in t.Varianti)
+        {
+            if (!perId.TryGetValue(varId, out var variante))
+            {
+                Console.Error.WriteLine($"[ATTENZIONE] {percorso}: variante '{varId}' senza corrispondenza.");
+                continue;
+            }
+            if (tv?.Difetti == null) continue;
+            if (tv.Difetti.Count != variante.Difetti.Count)
+            {
+                Console.Error.WriteLine($"[ATTENZIONE] {percorso}: variante '{varId}' ha {tv.Difetti.Count} difetti invece di {variante.Difetti.Count}.");
+                continue;
+            }
+            for (int i = 0; i < variante.Difetti.Count; i++)
+            {
+                var td = tv.Difetti[i];
+                if (td == null) continue;
+                if (!string.IsNullOrWhiteSpace(td.Indizio)) variante.Difetti[i].Indizio = td.Indizio;
+                if (!string.IsNullOrWhiteSpace(td.Spiegazione)) variante.Difetti[i].Spiegazione = td.Spiegazione;
+            }
+        }
     }
 
     private static bool SchedaValida(SchedaLab scheda)

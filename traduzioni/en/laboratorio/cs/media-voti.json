@@ -1,0 +1,22 @@
+{
+  "titolo": "Grade average",
+  "requisito": "Computes the arithmetic mean of an integer array of grades as a double. If the array is null or empty, it returns 0.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the return statement.",
+          "spiegazione": "somma and voti.Length are both int, so somma / voti.Length performs integer division, truncating the fractional part before converting to double."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the if condition at the start of the function.",
+          "spiegazione": "The guard only checks voti.Length == 0 without checking voti == null first: when null is passed, accessing voti!.Length throws a NullReferenceException."
+        }
+      ]
+    }
+  }
+}
