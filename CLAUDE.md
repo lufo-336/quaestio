@@ -49,7 +49,7 @@ Da riprendere dal PC: nota in testa a `docs/superpowers/plans/2026-11-25-revisio
 - **.NET 10** (target framework — `net10.0` su tutti e tre i csproj)
 - **Avalonia 12.0.2** (release del 28 aprile 2026, mobile improvement notevoli
   — buono per il futuro Android/iOS)
-- **Tema Fluent** + font **Inter**
+- **Tema Fluent** + font **Archivo** (OFL; **JetBrains Mono NL** per il codice, invariato — spec: `docs/superpowers/specs/2026-11-25-revisione-grafica-design.md`)
 - **Nessuna libreria di grafici**: la heatmap statistiche di Step 9 è fatta
   con `ItemsControl`/`WrapPanel`/`Border` nativi. LiveCharts2 era previsto in
   origine, scartato per YAGNI. Se in futuro servirà un line chart vero

@@ -140,6 +140,25 @@ Funzionamento:
     perfettamente leggibile sia sul fondo pagina, sia sui bottoni di risposta colorati di verde o rosso
     nella fase di feedback (Trappola 12).
 
+### Revisione grafica lucafoglia
+
+Spec di riferimento: `docs/superpowers/specs/2026-11-25-revisione-grafica-design.md`. Strato di token e stili sopra `FluentTheme`, con font UI **Archivo** (OFL; variante stretta ExtraBold `Archivo Titoli` per `FontTitoli`) al posto di Inter.
+
+- **Token (`wsa.quiz.app/Themes/Tokens.axaml`)**: inclusi in `App.axaml` via `MergedDictionaries`. Espongono `FontTitoli`, i brush pieni degli esiti (`VerdeBrush` `#40a79b`, `AmbraBrush` `#ebaf00`, `RossoBrush` `#d6414b`) e i `ThemeDictionaries` `Light`/`Dark` (tutti `SolidColorBrush`, mai `Color`, per Trappola 7).
+- **Neutri chiaro/scuro (`Tokens.axaml`)**:
+  - *Light (Grafite)*: `Sfondo` `#e8e7e3`, `SfondoRialzato` `#f1f0ec`, `TestoPrincipale` `#141413`, `TestoAttenuato` `#57564f`, `RigaForte` `#141413`, `RigaDebole` `#d6d5d0`.
+  - *Dark (Arena)*: `Sfondo` `#0c0c0c`, `SfondoRialzato` `#161616`, `TestoPrincipale` `#f4f4f2`, `TestoAttenuato` `#a6a6a6`, `RigaForte` `#f4f4f2`, `RigaDebole` `#212120`.
+- **16 inchiostri (`wsa.quiz.core/Services/Inchiostri.cs` e `wsa.quiz.app/Tavolozza.cs`)**:
+  - `Inchiostri.Tutti` definisce i 16 inchiostri (`rosso`, `terracotta`, `cacao`, `ocra`, `oliva`, `prato`, `verdeacqua`, `petrolio`, `azzurro`, `blu`, `indaco`, `viola`, `prugna`, `rosaantico`, `ardesia`, `grigio`), con hex, `TestoNero`, `Sceglibile` (12 sceglibili; `rosso`, `ocra`, `verdeacqua`, `grigio` riservati; `grigio` ha `HexChiaro` `#c4c3bd` oltre a `#d7d7d7`), `HexTestoSuChiaro` e calcolo WCAG (`Contrasto`, `VarianteLeggibile`).
+  - Migrazione id legacy (`Inchiostri.MigraIdColore`): `blunotte`→`indaco`, `magenta`→`prugna`, `verdeacqua`→`petrolio`, `grafite`→`ardesia`; id sconosciuto/vuoto/non sceglibile → `blu` (`Predefinito`).
+  - `Tavolozza` espone i 12 `ColoreAccento` sceglibili (hover +10% bianco, pressed +20% nero, testo nero o bianco da `TestoNero`). `Tavolozza.Applica` (e `Riapplica` al cambio tema) imposta in `Application.Current.Resources` `AccentoBrush`, `AccentoHoverBrush`, `AccentoPressedBrush`, `AccentoTestoBrush`, `AccentoLinkBrush` (reso leggibile sul fondo attivo) e `SystemAccentColor*`.
+- **Navigazione (`MainView.axaml` / `MainView.axaml.cs`)**: sei sezioni con inchiostri fissi (`blu` Home, `viola` Cronologia, `ocra` Sospesi, `terracotta` Statistiche, `verdeacqua` Gestione, `grigio` Impostazioni):
+  - *Telefono/touch (`BottomNav`, C2)*: barra a tutta larghezza (altezza 56 + padding safe-area, riserva `SzRiservaNav`), angoli vivi e niente ombra; 6 `Button.nav` a campo pieno del colore di sezione (inattivi `1*` solo icona; attivo `2.8*` con classe `attiva`, icona + nome nel colore di contrasto).
+  - *Desktop/web (`Tabs`, `TabsStripTheme` + `TabSezioneTheme`)*: ogni `TabItem` ha una fascia inferiore di 4 px (`FasciaSotto`) del colore di sezione (`BorderBrush`); la tab attiva diventa campo pieno con testo bianco o nero (classe `testo-nero`).
+- **Colori degli esiti (`wsa.quiz.app/QuizColors.cs`)**: derivati da `verdeacqua` (`#40a79b`), `ocra` (`#ebaf00`) e `rosso` (`#d6414b`, usato anche per `Danger*` e `Button.danger` con testo nero). Riempimenti/bordi usano i brush pieni (`VerdeBrush`, `AmbraBrush`, `RossoBrush`, `Percentuale`, `Esito`, `HeatmapBordo`); i testi su fondo neutro usano `VerdeTestoBrush`, `AmbraTestoBrush`, `RossoTestoBrush` (`PercentualeTesto`, `EsitoTesto`, `HeatmapTesto`, `TempoRimanente`), pari a `HexTestoSuChiaro` (`#2b7168`, `#836100`, `#b83740`) in chiaro e a `VarianteLeggibile` su `#161616` (`#40a79b`, `#ebaf00`, `#d9535c`) in scuro, ricalcolati via `QuizColors.CollegaCambioTema`.
+- **Colore utente su intestazione e titoli**: `HeaderBorder` (`MainView.axaml`) ha fondo neutro `Sfondo`, marchio vettoriale `MarchioQuaestio` (a6-2, anima `TestoPrincipale`) e bordo inferiore di 3 px in `AccentoBrush`; i titoli dei riquadri usano `Border.trattino` (`App.axaml`, bordo sinistro di 4 px in `AccentoBrush`, padding sinistro 7 px).
+- **Angoli vivi e niente `BoxShadow`**: in `App.axaml` `ControlCornerRadius` e `OverlayCornerRadius` valgono `0`; rimossi `BoxShadow` e raggi dalle viste, con riquadri bordati da 1 px (`RigaDebole`/`RigaForte`) ed elenchi (Cronologia, Sospesi, Statistiche) a righe separate da filetti di 1 px.
+
 ## Decisioni UX consolidate
 
 - **Home unificata** ("Caso A"): materie a sinistra (checkbox), categorie

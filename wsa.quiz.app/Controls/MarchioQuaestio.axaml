@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Wsa.Quiz.App.Controls.MarchioQuaestio"
-             AutomationProperties.Name="Quaestio">
+             AutomationProperties.Name="Quaestio"
+             Cursor="Hand"
+             Background="Transparent">
 
     <!-- Marchio a6-2 ("Corsie invertite") da logo-a6-2-marchio-scuro.svg (viewBox 184x44).
          Corsie esterne coi colori fissi del brand; anima neutra legata a TestoPrincipale
@@ -14,44 +16,44 @@
              VerticalAlignment="Center">
         <Canvas Width="184" Height="44">
             <!-- q -->
-            <Path Fill="#40a79b" Data="M 15.00 33.00 A 11.4 11.4 0 0 1 4.52 30.58 L 6.76 28.02 A 8.0 8.0 0 0 0 15.00 29.42 Z"/>
-            <Path Fill="#539fd4" Data="M 3.27 29.32 A 11.4 11.4 0 0 1 6.47 12.04 L 8.12 15.01 A 8.0 8.0 0 0 0 5.88 27.13 Z"/>
-            <Path Fill="#4d4dbc" Data="M 8.10 11.29 A 11.4 11.4 0 0 1 23.40 22.00 L 20.00 22.00 A 8.0 8.0 0 0 0 9.26 14.48 Z"/>
-            <Path Fill="#e0703a" Data="M 20.0 23.4 H 23.4 V 40.0 H 20.0 Z"/>
+            <Path Fill="{DynamicResource MarchioC1}" Data="M 15.00 33.00 A 11.4 11.4 0 0 1 4.52 30.58 L 6.76 28.02 A 8.0 8.0 0 0 0 15.00 29.42 Z"/>
+            <Path Fill="{DynamicResource MarchioC2}" Data="M 3.27 29.32 A 11.4 11.4 0 0 1 6.47 12.04 L 8.12 15.01 A 8.0 8.0 0 0 0 5.88 27.13 Z"/>
+            <Path Fill="{DynamicResource MarchioC3}" Data="M 8.10 11.29 A 11.4 11.4 0 0 1 23.40 22.00 L 20.00 22.00 A 8.0 8.0 0 0 0 9.26 14.48 Z"/>
+            <Path Fill="{DynamicResource MarchioC4}" Data="M 20.0 23.4 H 23.4 V 40.0 H 20.0 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 15.00 27.99 A 6.7 6.7 0 1 1 18.70 22.00 L 18.70 40.00 L 16.70 40.00 L 16.70 22.00 A 4.7 4.7 0 1 0 15.00 25.60 Z"/>
 
             <!-- u -->
-            <Path Fill="#4d4dbc" Data="M 27.60 10.60 L 31.00 10.60 L 31.00 22.00 A 8.0 8.0 0 0 0 47.00 22.00 L 47.00 10.60 L 50.40 10.60 L 50.40 33.40 L 47.00 33.40 L 47.00 29.85 A 11.4 11.4 0 0 1 27.60 22.00 Z"/>
+            <Path Fill="{DynamicResource MarchioC3}" Data="M 27.60 10.60 L 31.00 10.60 L 31.00 22.00 A 8.0 8.0 0 0 0 47.00 22.00 L 47.00 10.60 L 50.40 10.60 L 50.40 33.40 L 47.00 33.40 L 47.00 29.85 A 11.4 11.4 0 0 1 27.60 22.00 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 32.30 10.60 L 34.30 10.60 L 34.30 22.00 A 4.7 4.7 0 0 0 43.70 22.00 L 43.70 10.60 L 45.70 10.60 L 45.70 22.00 A 6.7 6.7 0 0 1 32.30 22.00 Z"/>
 
             <!-- a -->
-            <Path Fill="#539fd4" Data="M 69.00 33.00 A 11.4 11.4 0 1 1 77.40 22.00 L 77.40 33.40 L 74.00 33.40 L 74.00 22.00 A 8.0 8.0 0 1 0 69.00 29.42 Z"/>
+            <Path Fill="{DynamicResource MarchioC2}" Data="M 69.00 33.00 A 11.4 11.4 0 1 1 77.40 22.00 L 77.40 33.40 L 74.00 33.40 L 74.00 22.00 A 8.0 8.0 0 1 0 69.00 29.42 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 69.00 27.99 A 6.7 6.7 0 1 1 72.70 22.00 L 70.70 22.00 A 4.7 4.7 0 1 0 69.00 25.60 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 70.7 23.4 H 72.7 V 33.4 H 70.7 Z"/>
 
             <!-- e -->
-            <Path Fill="#40a79b" Data="M 101.98 29.02 A 11.4 11.4 0 1 1 104.40 22.00 L 104.40 23.70 L 89.20 23.70 L 89.20 20.30 L 100.83 20.30 A 8.0 8.0 0 1 0 99.31 26.86 Z"/>
+            <Path Fill="{DynamicResource MarchioC1}" Data="M 101.98 29.02 A 11.4 11.4 0 1 1 104.40 22.00 L 104.40 23.70 L 89.20 23.70 L 89.20 20.30 L 100.83 20.30 A 8.0 8.0 0 1 0 99.31 26.86 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 98.40 26.00 A 6.7 6.7 0 1 1 99.49 20.30 L 97.43 20.30 A 4.7 4.7 0 1 0 96.81 24.75 Z"/>
 
             <!-- s -->
-            <Path Fill="#e0703a" Data="M 125.60 10.60 L 115.00 10.60 A 6.55 6.55 0 0 0 115.00 23.70 L 120.20 23.70 A 3.15 3.15 0 0 1 120.20 30.00 L 108.60 30.00 L 108.60 33.40 L 120.20 33.40 A 6.55 6.55 0 0 0 120.20 20.30 L 115.00 20.30 A 3.15 3.15 0 0 1 115.00 14.00 L 125.60 14.00 Z"/>
+            <Path Fill="{DynamicResource MarchioC4}" Data="M 125.60 10.60 L 115.00 10.60 A 6.55 6.55 0 0 0 115.00 23.70 L 120.20 23.70 A 3.15 3.15 0 0 1 120.20 30.00 L 108.60 30.00 L 108.60 33.40 L 120.20 33.40 A 6.55 6.55 0 0 0 120.20 20.30 L 115.00 20.30 A 3.15 3.15 0 0 1 115.00 14.00 L 125.60 14.00 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 125.60 15.30 L 115.00 15.30 A 1.85 1.85 0 0 0 115.00 19.00 L 115.00 17.30 L 125.60 17.30 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 108.60 28.70 L 120.20 28.70 A 1.85 1.85 0 0 0 120.20 25.00 L 120.20 26.70 L 108.60 26.70 Z"/>
 
             <!-- t -->
-            <Path Fill="#4d4dbc" Data="M 133.20 4.20 L 136.60 4.20 L 136.60 10.60 L 144.80 10.60 L 144.80 14.00 L 136.60 14.00 L 136.60 26.40 A 3.6 3.6 0 0 0 140.20 30.00 L 144.80 30.00 L 144.80 33.40 L 140.20 33.40 A 7.0 7.0 0 0 1 133.20 26.40 L 133.20 14.00 L 130.60 14.00 L 130.60 10.60 L 133.20 10.60 Z"/>
+            <Path Fill="{DynamicResource MarchioC3}" Data="M 133.20 4.20 L 136.60 4.20 L 136.60 10.60 L 144.80 10.60 L 144.80 14.00 L 136.60 14.00 L 136.60 26.40 A 3.6 3.6 0 0 0 140.20 30.00 L 144.80 30.00 L 144.80 33.40 L 140.20 33.40 A 7.0 7.0 0 0 1 133.20 26.40 L 133.20 14.00 L 130.60 14.00 L 130.60 10.60 L 133.20 10.60 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 137.9 4.2 H 139.9 V 14.0 H 137.9 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 130.6 15.3 H 144.8 V 17.3 H 130.6 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 137.90 18.60 L 139.90 18.60 L 139.90 26.70 L 144.80 26.70 L 144.80 28.70 L 137.90 28.70 Z"/>
 
             <!-- i -->
-            <Path Fill="#539fd4" Data="M 148.4 4.2 H 151.8 V 8.4 H 148.4 Z"/>
-            <Path Fill="#539fd4" Data="M 148.4 10.6 H 151.8 V 33.4 H 148.4 Z"/>
+            <Path Fill="{DynamicResource MarchioC2}" Data="M 148.4 4.2 H 151.8 V 8.4 H 148.4 Z"/>
+            <Path Fill="{DynamicResource MarchioC2}" Data="M 148.4 10.6 H 151.8 V 33.4 H 148.4 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 153.1 4.2 H 155.1 V 8.4 H 153.1 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 153.1 10.6 H 155.1 V 33.4 H 153.1 Z"/>
 
             <!-- o -->
-            <Path Fill="#40a79b" Data="M 171.20 10.60 A 11.4 11.4 0 1 0 171.20 33.40 A 11.4 11.4 0 1 0 171.20 10.60 Z M 171.20 14.00 A 8.0 8.0 0 1 1 171.20 30.00 A 8.0 8.0 0 1 1 171.20 14.00 Z"/>
+            <Path Fill="{DynamicResource MarchioC1}" Data="M 171.20 10.60 A 11.4 11.4 0 1 0 171.20 33.40 A 11.4 11.4 0 1 0 171.20 10.60 Z M 171.20 14.00 A 8.0 8.0 0 1 1 171.20 30.00 A 8.0 8.0 0 1 1 171.20 14.00 Z"/>
             <Path Fill="{DynamicResource TestoPrincipale}" Data="M 171.20 15.30 A 6.7 6.7 0 1 0 171.20 28.70 A 6.7 6.7 0 1 0 171.20 15.30 Z M 171.20 17.30 A 4.7 4.7 0 1 1 171.20 26.70 A 4.7 4.7 0 1 1 171.20 17.30 Z"/>
         </Canvas>
     </Viewbox>

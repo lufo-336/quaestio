@@ -184,7 +184,7 @@
                               Grid.Column="0"
                               VerticalScrollBarVisibility="Auto"
                               IsVisible="{Binding MostraListaMaterie}">
-                    <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
+<Border Padding="0,0,14,0">                    <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
                         <TextBlock Text="{x:Static r:Strings.Statistiche_Sottotitolo}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
@@ -260,7 +260,7 @@
                         </ItemsControl>
                         </Border>
                     </StackPanel>
-                </ScrollViewer>
+</Border>                </ScrollViewer>
 
                 <!-- PANNELLO 2: DETTAGLIO MATERIA -->
                 <Border x:Name="PannelloDettaglio"
@@ -369,7 +369,7 @@
 
                         <!-- Elenco ordinato delle categorie -->
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
+<Border Padding="0,0,14,0">                            <StackPanel Spacing="0" Margin="{DynamicResource SzRiservaNav}">
                                 <TextBlock Text="{x:Static r:Strings.Statistiche_NessunaCategoriaFiltro}"
                                            FontSize="13"
                                            FontStyle="Italic"
@@ -502,7 +502,7 @@
                                 </ItemsControl>
                                 </Border>
                             </StackPanel>
-                        </ScrollViewer>
+</Border>                        </ScrollViewer>
 
                     </DockPanel>
                 </Border>

@@ -260,8 +260,7 @@
             <ScrollViewer x:Name="SwipeHost" IsVisible="False"
                           HorizontalScrollBarVisibility="Hidden"
                           VerticalScrollBarVisibility="Disabled"
-                          HorizontalSnapPointsType="MandatorySingle"
-                          HorizontalSnapPointsAlignment="Near">
+                          IsScrollInertiaEnabled="False">
                 <StackPanel x:Name="SwipePages" Orientation="Horizontal">
                     <ContentControl x:Name="HomeAreaTouch"/>
                     <ContentControl x:Name="CronologiaAreaTouch"/>

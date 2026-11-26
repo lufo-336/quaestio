@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Platform;
@@ -140,7 +141,43 @@ public partial class MainView : UserControl
             };
             // Lo scroll (swipe o animazione) aggiorna la sezione attiva nella bottom nav.
             SwipeHost.AddHandler(ScrollViewer.ScrollChangedEvent,
-                new EventHandler<ScrollChangedEventArgs>((_, _) => { AggiornaNav(); SalvaTabSeCambiataDebounced(); }));
+                new EventHandler<ScrollChangedEventArgs>((_, _) =>
+                {
+                    CampionaOffset();
+                    AggiornaNav(); SalvaTabSeCambiataDebounced();
+                }));
+            // Blocco d'asse: il gesto orizzontale parte solo dopo 60 px, quello verticale delle
+            // pagine dopo 30: un trascinamento in prevalenza verticale vince sempre lo scroll.
+            // Il recognizer lo crea lo ScrollViewer con il template: si imposta a template pronto.
+            SwipeHost.TemplateApplied += (_, te) =>
+            {
+                if (te.NameScope.Find("PART_ContentPresenter") is InputElement presenter)
+                    foreach (var r in presenter.GestureRecognizers.OfType<Avalonia.Input.GestureRecognizers.ScrollGestureRecognizer>())
+                        r.ScrollStartDistance = 60;
+            };
+            // Pager fatto in casa: il dito trascina la pagina (scroll nativo, senza inerzia);
+            // al rilascio uno scatto veloce o un trascinamento di ~10% porta alla pagina
+            // vicina con un'animazione. handledEventsToo: lo ScrollViewer marca l'evento gestito.
+            // Punto di inizio/ultimo punto del dito: serve a scartare i gesti in prevalenza verticali.
+            SwipeHost.AddHandler(InputElement.PointerPressedEvent, new EventHandler<PointerPressedEventArgs>((_, pe) =>
+            {
+                _scrollAnim?.Stop();   // il dito riprende il controllo di una pagina ancora in animazione
+                _puntoInizio = _puntoUltimo = pe.GetPosition(SwipeHost);
+            }), RoutingStrategies.Tunnel, handledEventsToo: true);
+            SwipeHost.AddHandler(InputElement.PointerMovedEvent, new EventHandler<PointerEventArgs>((_, pe) =>
+                _puntoUltimo = pe.GetPosition(SwipeHost)), RoutingStrategies.Tunnel, handledEventsToo: true);
+            SwipeHost.AddHandler(InputElement.ScrollGestureEvent,
+                new EventHandler<ScrollGestureEventArgs>((_, ge) =>
+                {
+                    if (!_gestoAttivo || ge.Id != _idGesto)
+                    {
+                        _gestoAttivo = true; _idGesto = ge.Id; _paginaInizioGesto = IndiceSezione; _campioni.Clear();
+                    }
+                }),
+                handledEventsToo: true);
+            SwipeHost.AddHandler(InputElement.ScrollGestureEndedEvent,
+                new EventHandler<ScrollGestureEndedEventArgs>((_, _) => FineGesto()),
+                handledEventsToo: true);
 
             AggiornaColoriNav();
             QuizColors.CollegaCambioTema(this, AggiornaColoriNav);
@@ -164,6 +201,41 @@ public partial class MainView : UserControl
 
         if (OperatingSystem.IsBrowser())
             FooterBar.IsVisible = false;
+    }
+
+    private Point _puntoInizio, _puntoUltimo;
+    private bool _gestoAttivo;
+    private int _idGesto;
+    private int _paginaInizioGesto;
+    private readonly List<(long ms, double x)> _campioni = new();
+
+    private void CampionaOffset()
+    {
+        if (!_gestoAttivo) return;
+        _campioni.Add((Environment.TickCount64, SwipeHost.Offset.X));
+        if (_campioni.Count > 12) _campioni.RemoveAt(0);
+    }
+
+    private void FineGesto()
+    {
+        if (!_gestoAttivo) return;
+        _gestoAttivo = false;
+        double w = LarghezzaPagina;
+        if (w <= 0) return;
+        double trascinato = SwipeHost.Offset.X - _paginaInizioGesto * w;
+        // velocità sugli ultimi ~120 ms (px/ms, positiva = verso la pagina successiva)
+        double v = 0;
+        long adesso = Environment.TickCount64;
+        var recenti = _campioni.Where(c => adesso - c.ms <= 120).ToList();
+        if (recenti.Count >= 2 && recenti[^1].ms > recenti[0].ms)
+            v = (recenti[^1].x - recenti[0].x) / (recenti[^1].ms - recenti[0].ms);
+        int dir = 0;
+        double dx = _puntoUltimo.X - _puntoInizio.X, dy = _puntoUltimo.Y - _puntoInizio.Y;
+        bool inPrevalenzaVerticale = Math.Abs(dy) > Math.Abs(dx) * 0.6;  // 0/0 se i move non arrivano: si procede
+        if (inPrevalenzaVerticale) dir = 0;
+        else if (Math.Abs(v) > 0.12) dir = Math.Sign(v);                      // scatto
+        else if (Math.Abs(trascinato) > w * 0.1) dir = Math.Sign(trascinato); // trascinamento
+        ScorriAllaPagina(Math.Clamp(_paginaInizioGesto + dir, 0, 5), animato: true);
     }
 
     /// <summary>Allinea larghezza e altezza delle 4 pagine al viewport dello SwipeHost,

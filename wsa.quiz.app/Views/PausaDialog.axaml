@@ -37,35 +37,29 @@
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource TestoAttenuato}"/>
 
-      <!-- Pulsantiera: Abbandona (sx, danger) | spazio | Annulla, Salva e esci (dx, accent) -->
-      <Grid x:Name="Pulsantiera"
-            ColumnDefinitions="Auto,*,Auto"
-            RowDefinitions="Auto,Auto"
-            Margin="0,4,0,0">
+      <!-- Pulsantiera: tre pulsanti a tutta larghezza in colonna (stessa cosa su ogni larghezza) -->
+      <StackPanel x:Name="Pulsantiera" Spacing="8" Margin="0,4,0,0">
+        <Button x:Name="SalvaBtn"
+                Content="{x:Static r:Strings.Pausa_SalvaEsci}"
+                Padding="14,8"
+                Classes="accent"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Click="OnSalvaClick"/>
+        <Button x:Name="AnnullaBtn"
+                Content="{x:Static r:Strings.Comune_Annulla}"
+                Padding="14,8"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Click="OnAnnullaClick"/>
         <Button x:Name="AbbandonaBtn"
                 Content="{x:Static r:Strings.Pausa_Abbandona}"
                 Padding="14,8"
                 Classes="danger"
-                Grid.Column="0"
-                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
                 Click="OnAbbandonaClick"/>
-        <WrapPanel x:Name="AzioniDestra"
-                   Grid.Column="2"
-                   Grid.Row="0"
-                   Orientation="Horizontal"
-                   ItemSpacing="8"
-                   LineSpacing="8">
-          <Button x:Name="AnnullaBtn"
-                  Content="{x:Static r:Strings.Comune_Annulla}"
-                  Padding="14,8"
-                  Click="OnAnnullaClick"/>
-          <Button x:Name="SalvaBtn"
-                  Content="{x:Static r:Strings.Pausa_SalvaEsci}"
-                  Padding="14,8"
-                  Classes="accent"
-                  Click="OnSalvaClick"/>
-        </WrapPanel>
-      </Grid>
+      </StackPanel>
     </StackPanel>
   </Border>
 

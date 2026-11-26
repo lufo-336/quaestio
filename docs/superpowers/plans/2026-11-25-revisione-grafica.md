@@ -201,7 +201,9 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 - Avvio a freddo (`am start -W`, 5 prove): 2665, 2272, 2298, 2302, 2289 ms. **Mediana 2298 ms**; soglia Task 9: ≤ 2528 ms (+10%).
 - Scorrimento: `dumpsys gfxinfo` dà 0 frame (Avalonia disegna su una `SurfaceView`, non su HWUI). Misurato invece con `dumpsys SurfaceFlinger --latency '<layer SurfaceView BLAST>'` durante 16 swipe su Home: **126 frame, 0 intervalli > 25 ms**. Cronologia/Statistiche non scorrevoli (cronologia vuota sul telefono): misurata solo la Home.
 
-**Dopo (Task 9):** (da compilare)
+**Dopo (Task 9, 2026-11-26, S21, APK Release da build pulita installato con `adb install -r`, dati conservati):**
+- Avvio a freddo (5 prove): 2423, 2427, 2409, 2438, 2426 ms. **Mediana 2426 ms** (+5,6% su 2298; soglia 2528 ms: ok). La prima prova dopo l'installazione (3271 ms) è stata scartata.
+- Scorrimento Home (stesso metodo SurfaceFlinger, 16 swipe): **126 frame, 0 intervalli > 25 ms** (invariato).
 
 ## Difetti trovati
 
