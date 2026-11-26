@@ -188,9 +188,11 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 
 ### Task 9: Verifica finale e documentazione
 
-- [ ] **Step 1:** APK Release da build pulita (pulire `bin`/`obj`, trappola 29), installarlo sul S21; ripetere le misure di Task 0 e scriverle in "Misure". Nessun peggioramento percepibile (avvio mediano entro +10%, frame janky non in aumento).
+- [x] Fatto 2026-11-26 (Claude, da Windows, APK con firma Windows e fix swipe `2d5e32b`; misure in "Misure")
+- [ ] **Step 1 (fatto):** APK Release da build pulita (pulire `bin`/`obj`, trappola 29), installarlo sul S21; ripetere le misure di Task 0 e scriverle in "Misure". Nessun peggioramento percepibile (avvio mediano entro +10%, frame janky non in aumento).
 - [ ] **Step 2:** con Luca, giro a mano sul telefono: ogni colore sceglibile sul pulsante "Avvia" (Review Focus 3), tema chiaro/scuro, tutte le sezioni.
-- [ ] **Step 3:** aggiornare `CLAUDE.md` (Stack: Archivo al posto di Inter; rimando alla spec) e `docs/claude/architettura-gui.md` (token, inchiostri, barra C2, colori degli esiti); nuove trappole incontrate in `docs/claude/trappole.md`.
+- [x] Fatto 2026-11-26 (CLAUDE.md, architettura-gui.md e trappola 30 già aggiornati)
+- [ ] **Step 3 (fatto):** aggiornare `CLAUDE.md` (Stack: Archivo al posto di Inter; rimando alla spec) e `docs/claude/architettura-gui.md` (token, inchiostri, barra C2, colori degli esiti); nuove trappole incontrate in `docs/claude/trappole.md`.
 - [ ] **Step 4:** commit `docs: revisione grafica lucafoglia` + push.
 
 ---
@@ -204,6 +206,8 @@ Serve il "prima" per l'anti-obiettivo sulle prestazioni (spec §2, §6). Richied
 **Dopo (Task 9, 2026-11-26, S21, APK Release da build pulita installato con `adb install -r`, dati conservati):**
 - Avvio a freddo (5 prove): 2423, 2427, 2409, 2438, 2426 ms. **Mediana 2426 ms** (+5,6% su 2298; soglia 2528 ms: ok). La prima prova dopo l'installazione (3271 ms) è stata scartata.
 - Scorrimento Home (stesso metodo SurfaceFlinger, 16 swipe): **126 frame, 0 intervalli > 25 ms** (invariato).
+
+**Dopo, da Windows (2026-11-26, APK con fix swipe, firma Windows):** avvio a freddo 2379, 2360, 2351, 2341, 2331 ms, **mediana 2351 ms** (+2,3% su 2298; soglia 2528: ok).
 
 ## Difetti trovati
 
