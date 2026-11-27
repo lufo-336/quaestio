@@ -57,7 +57,7 @@ public class RisultatoCronologiaItem : ObservableObject, IConfermaEliminazione
 
         DataFormattata = r.DataOra.ToString("dd MMM yyyy · HH:mm", Lingue.Cultura);
 
-        Modalita = string.IsNullOrWhiteSpace(r.Modalita) ? "—" : r.Modalita;
+        Modalita = string.IsNullOrWhiteSpace(r.Modalita) ? "—" : EtichetteContenuti.Modalita(r.Modalita);
 
         MateriaEtichetta = string.IsNullOrWhiteSpace(r.MateriaNome) ? "—" : EtichetteContenuti.Correnti.Materia(r.MateriaNome);
 

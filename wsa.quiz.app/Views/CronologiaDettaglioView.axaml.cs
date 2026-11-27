@@ -51,7 +51,7 @@ public partial class CronologiaDettaglioView : UserControl, INotifyPropertyChang
     public int RisposteErrate => _risultato.RisposteErrate;
     public int Punteggio => _risultato.Punteggio;
     public string DurataFormattata { get; }
-    public string Modalita => string.IsNullOrWhiteSpace(_risultato.Modalita) ? "—" : _risultato.Modalita;
+    public string Modalita => string.IsNullOrWhiteSpace(_risultato.Modalita) ? "—" : EtichetteContenuti.Modalita(_risultato.Modalita);
     public string MateriaEtichetta => string.IsNullOrWhiteSpace(_risultato.MateriaNome) ? "—" : EtichetteContenuti.Correnti.Materia(_risultato.MateriaNome);
 
     public IList<DettaglioRispostaItem> Dettagli { get; }

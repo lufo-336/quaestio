@@ -40,7 +40,7 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
     public int RisposteErrate => _risultato.RisposteErrate;
     public int Punteggio => _risultato.Punteggio;
     public string DurataFormattata { get; }
-    public string Modalita => _risultato.Modalita;
+    public string Modalita => Core.Services.EtichetteContenuti.Modalita(_risultato.Modalita);
 
     public IList<DettaglioRispostaItem> Sbagliate { get; }
     public bool NessunaSbagliata => Sbagliate.Count == 0;
