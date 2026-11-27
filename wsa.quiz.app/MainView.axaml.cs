@@ -991,6 +991,17 @@ public partial class MainView : UserControl
     {
         if (req.IdDomandeSbagliate == null || req.IdDomandeSbagliate.Count == 0) return;
 
+        if (req.MateriaCanon.EndsWith(LaboratorioService.SuffissoMateria, StringComparison.Ordinal))
+        {
+            var coppie = LaboratorioService.CoppieDaId(_schedeLab, req.IdDomandeSbagliate);
+            if (coppie.Count == 0) return;
+
+            string nomeLinguaggio = req.MateriaCanon[..^LaboratorioService.SuffissoMateria.Length];
+            var sessioneLab = new SessioneLaboratorio(coppie, nomeLinguaggio, coppie[0].Scheda.Livello);
+            AvviaLaboratorioView(sessioneLab);
+            return;
+        }
+
         var mappaAttive = _domandeAttive.ToDictionary(d => d.Id, d => d, StringComparer.OrdinalIgnoreCase);
         var domande = new List<Domanda>();
         foreach (var id in req.IdDomandeSbagliate)

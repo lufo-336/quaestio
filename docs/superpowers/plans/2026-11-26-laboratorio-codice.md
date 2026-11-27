@@ -508,6 +508,8 @@ almeno un input che espone il più grave. Stessa regola del Task 4 per i test. O
 
 ## Task 15: Ripassa da Statistiche
 
+- [x] Fatto 2026-11-27 (agy): file `wsa.quiz.core/Services/LaboratorioService.cs`, `wsa.quiz.core.tests/LaboratorioServiceTests.cs`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell; riletti i file modificati)
+
 In `MainView.OnRipassaRichiesto`: se la materia ha `SuffissoMateria`, invece del quiz si ricavano dagli id sbagliati le
 coppie (scheda, variante) ancora esistenti, una per scheda, e si avvia una `SessioneLaboratorio` con quelle (il livello
 della sessione è quello delle schede; con livelli misti va bene, ogni scheda usa le forme del proprio livello). Nessuna

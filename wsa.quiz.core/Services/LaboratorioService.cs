@@ -353,6 +353,39 @@ public static class LaboratorioService
         return (nuove, filtrate.Count, daRipassare);
     }
 
+    /// <summary>
+    /// Dagli id sbagliati (<c>lab:&lt;linguaggio&gt;:&lt;scheda&gt;:&lt;variante&gt;:&lt;passo&gt;</c>)
+    /// ricava le coppie (scheda, variante) ancora esistenti in <paramref name="schede"/>,
+    /// mantenendo al più una coppia per scheda (la prima incontrata).
+    /// </summary>
+    public static List<(SchedaLab Scheda, VarianteLab Variante)> CoppieDaId(
+        IEnumerable<SchedaLab>? schede,
+        IEnumerable<string>? idSbagliati)
+    {
+        var risultato = new List<(SchedaLab Scheda, VarianteLab Variante)>();
+        if (schede == null || idSbagliati == null) return risultato;
+
+        var perChiave = new Dictionary<(string Ling, string SchedaId, string VarianteId), (SchedaLab Scheda, VarianteLab Variante)>();
+        foreach (var s in schede)
+        {
+            foreach (var v in s.Varianti)
+                perChiave.TryAdd((s.Linguaggio, s.Id, v.Id), (s, v));
+        }
+
+        if (perChiave.Count == 0) return risultato;
+
+        var schedeViste = new HashSet<(string Ling, string SchedaId)>();
+        foreach (var id in idSbagliati)
+        {
+            if (!TryEstraiChiave(id, out var chiave)) continue;
+            if (!perChiave.TryGetValue(chiave, out var coppia)) continue;
+            if (!schedeViste.Add((chiave.Ling, chiave.SchedaId))) continue;
+            risultato.Add(coppia);
+        }
+
+        return risultato;
+    }
+
     private static Dictionary<(string Ling, string SchedaId, string VarianteId), (DateTime DataOra, bool Sbagliata)>
         EstraiStoricoVarianti(IEnumerable<RisultatoQuiz>? cronologia)
     {

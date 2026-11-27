@@ -781,4 +781,32 @@ public class LaboratorioServiceTests
             if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
         }
     }
+
+    [Fact]
+    public void CoppieDaId_IgnoraSpariteEDeduplicaPerScheda()
+    {
+        var s1 = CreaScheda("s1", LivelliLab.Base, numVarianti: 2);
+        var s2 = CreaScheda("s2", LivelliLab.Media, numVarianti: 2);
+        var schede = new[] { s1, s2 };
+
+        var idSbagliati = new[]
+        {
+            "lab:cs:sparita:v1:output",     // scheda sparita -> ignorata
+            "lab:cs:s1:v99:bug",            // variante sparita -> ignorata
+            "non-valido",                   // formato non lab -> ignorato
+            "lab:cs:s1:v2:output",          // prima coppia valida per s1
+            "lab:cs:s1:v2:bug",             // stesso passo/variante di s1 -> deduplicato
+            "lab:cs:s1:v1:input",           // altra variante della stessa scheda s1 -> deduplicato
+            "lab:cs:s2:v1:bug",             // prima coppia valida per s2
+        };
+
+        var coppie = LaboratorioService.CoppieDaId(schede, idSbagliati);
+
+        Assert.Equal(2, coppie.Count);
+        Assert.Equal(("s1", "v2"), (coppie[0].Scheda.Id, coppie[0].Variante.Id));
+        Assert.Equal(("s2", "v1"), (coppie[1].Scheda.Id, coppie[1].Variante.Id));
+
+        Assert.Empty(LaboratorioService.CoppieDaId(schede, new[] { "lab:cs:sparita:v1:output" }));
+        Assert.Empty(LaboratorioService.CoppieDaId(schede, Array.Empty<string>()));
+    }
 }
