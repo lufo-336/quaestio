@@ -249,7 +249,9 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
                 daSelezionare = Materie.FirstOrDefault();
             }
 
-            ImpostaMateriaSelezionata(daSelezionare, resetFiltro: false);
+            // Materia diversa (es. cambio Quiz | Laboratorio): il filtro Rosse/Gialle/... della vecchia non vale più.
+            bool stessaMateria = string.Equals(precedente, daSelezionare?.MateriaCanon, StringComparison.OrdinalIgnoreCase);
+            ImpostaMateriaSelezionata(daSelezionare, resetFiltro: !stessaMateria);
         }
         catch
         {

@@ -67,12 +67,13 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     {
         get
         {
-            string livello = Sessione.Livello switch
+            // LivelloCorrente: con Ripassa le schede possono essere di livelli diversi.
+            string livello = Sessione.LivelloCorrente switch
             {
                 LivelliLab.Base => Strings.Lab_Livello_Base,
                 LivelliLab.Media => Strings.Lab_Livello_Media,
                 LivelliLab.Alta => Strings.Lab_Livello_Alta,
-                _ => Sessione.Livello
+                _ => Sessione.LivelloCorrente
             };
             return $"{Sessione.EtichettaScheda} · {Sessione.NomeLinguaggio} · {livello}";
         }
@@ -231,6 +232,7 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
                 PreparaSchedaSeNecessario();
                 PreparaPassoCorrente();
                 NotificaTestata();
+                CorpoScroll.ScrollToHome(); // scheda nuova: si riparte dall'inizio, non a metà codice
                 break;
 
             case nameof(SessioneLaboratorio.Passo):
