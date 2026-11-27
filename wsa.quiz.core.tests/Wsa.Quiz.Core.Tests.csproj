@@ -20,6 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Esecutore delle schede del Laboratorio, condiviso col motore di generazione. -->
+    <Compile Include="..\generazione-laboratorio\motore\EsecutoreLab.cs" Link="EsecutoreLab.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\wsa.quiz.core\Wsa.Quiz.Core.csproj" />
   </ItemGroup>
 

@@ -73,6 +73,7 @@ wsa.quiz/
 ├── laboratorio/                ← schede del Laboratorio di codice (cs/, 3 livelli × 3 schede)
 ├── traduzioni/                 ← traduzioni overlay di domande e schede (en/, en/laboratorio/cs/)
 ├── generazione-domande/        ← guida IA, quiz-engine.js e strumenti di supporto
+├── generazione-laboratorio/    ← guida IA e motore (esegue il codice, scrive le schede del Laboratorio)
 ├── wsa.quiz.core/              (class library di logica)
 │   ├── Wsa.Quiz.Core.csproj
 │   ├── Models/   (RisultatoQuiz, DettaglioRisposta, SessionePausa,

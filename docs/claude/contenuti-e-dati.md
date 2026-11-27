@@ -165,6 +165,15 @@ Dal 2026-11-27 anche **Python (`py`)**, stessa struttura (9 schede / 18 varianti
 - **Script Python** (`laboratorio/py/`): modulo Python 3 con funzioni a livello superiore, la `chiamata` stampa con `print(...)`. Gli output sono quelli reali di `print` (`True`, `None`, `90.0`, `[1, 2]`); un'eccezione non gestita dà `!NomeEccezione` (es. `!ZeroDivisionError`), un `SyntaxError`/`IndentationError` conta come "non compila" (ammesso solo nelle trappole). Il test lancia `py -3` su Windows e `python3` altrove: per `dotnet test` serve Python installato.
 - **Cultura invariante**: tutti gli output sono valutati con `CultureInfo.InvariantCulture` (decimali col punto, es. `7.5`). Nel runner di test (`LaboratorioEsecuzioneTests.Esegui`), oltre a impostare `CultureInfo.CurrentCulture = CultureInfo.InvariantCulture`, lo `StringWriter` passato a `Console.SetOut` va costruito esplicitamente con `new StringWriter(CultureInfo.InvariantCulture)`: `TextWriter` fissa infatti il proprio `FormatProvider` al momento della costruzione, perciò un `new StringWriter()` senza argomenti cattura la cultura del sistema operativo (formattando `7,5` su macchine italiane).
 
+### Scrivere schede nuove
+
+Guida (riusabile come prompt per un'IA) e motore in `generazione-laboratorio/`: si scrive una bozza in
+`generazione-laboratorio/bozze/<ling>/` (ignorata da git), il motore
+(`dotnet run --project generazione-laboratorio/motore -- <bozza> <cs|py> [--write]`) esegue il codice, calcola
+`output`/`atteso`/`effettivo`, controlla esche, input, correzione e trappole e scrive `laboratorio/<ling>/<id>.json`.
+L'esecutore (`generazione-laboratorio/motore/EsecutoreLab.cs`) è lo stesso dei test, collegato nel csproj di
+`wsa.quiz.core.tests`. Il progetto del motore è fuori da `Wsa.Quiz.sln`.
+
 ### Verifica con i test
 
 L'app non compila né esegue codice sul dispositivo: confronta solo le scelte dell'utente con i valori del JSON.

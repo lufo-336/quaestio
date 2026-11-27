@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Motore di generazione delle schede del Laboratorio: esegue il codice di una bozza,
+       calcola output/atteso/effettivo e scrive laboratorio/<ling>/<id>.json.
+       Fuori da Wsa.Quiz.sln di proposito: è uno strumento di sviluppo, non parte dell'app.
+       Uso: vedi ../GUIDA_GENERAZIONE_SCHEDE.md -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>motore-lab</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\wsa.quiz.core\Wsa.Quiz.Core.csproj" />
+  </ItemGroup>
+
+</Project>

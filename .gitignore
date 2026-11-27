@@ -92,3 +92,6 @@ __pycache__/
 .revisione/
 .superpowers/
 .claude/
+
+# bozze delle schede del Laboratorio (vedi generazione-laboratorio/GUIDA_GENERAZIONE_SCHEDE.md)
+generazione-laboratorio/bozze/
