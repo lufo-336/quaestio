@@ -489,7 +489,9 @@ public static class Program
         risultato.Abbandonato = abbandonato;
         risultato.TotaleDomande = risultato.Dettagli.Count;
         // Percentuale basata sul primo colpo: misura reale di padronanza
-        risultato.PercentualeCorrette = totUnico == 0 ? 0 : 100.0 * rispPrimoColpo / totUnico;
+        // Abbandonata: conta solo le domande viste, non tutte quelle della sessione.
+        int base100 = abbandonato ? risultato.Dettagli.Select(d => d.IdDomanda).Distinct().Count() : totUnico;
+        risultato.PercentualeCorrette = base100 == 0 ? 0 : 100.0 * rispPrimoColpo / base100;
         if (!string.IsNullOrWhiteSpace(stato?.SessioneId))
             storage.EliminaPausa(stato.SessioneId);
         return new EsitoSessione(risultato, false);

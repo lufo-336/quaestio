@@ -148,6 +148,8 @@
   <data name="Riepilogo_RisposteSbagliateN" xml:space="preserve"><value>Risposte sbagliate ({0})</value></data>
   <data name="Riepilogo_QuizAbbandonato" xml:space="preserve"><value>Quiz abbandonato</value></data>
   <data name="Riepilogo_QuizConcluso" xml:space="preserve"><value>Quiz concluso</value></data>
+  <data name="Riepilogo_LabAbbandonato" xml:space="preserve"><value>Laboratorio abbandonato</value></data>
+  <data name="Riepilogo_LabConcluso" xml:space="preserve"><value>Laboratorio concluso</value></data>
   <data name="Riepilogo_SottotitoloAbbandonato" xml:space="preserve"><value>Hai abbandonato la sessione. Le risposte gia' date sono state comunque salvate.</value></data>
   <data name="Riepilogo_SottotitoloTempoScaduto" xml:space="preserve"><value>Il tempo e' scaduto. Ecco com'e' andata fino a qui.</value></data>
   <data name="Riepilogo_SottotitoloConcluso" xml:space="preserve"><value>Ecco com'e' andata.</value></data>

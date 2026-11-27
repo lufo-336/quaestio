@@ -78,9 +78,10 @@ public partial class RiepilogoView : UserControl, INotifyPropertyChanged
 
         _risultato = risultato;
 
-        Titolo = risultato.Abbandonato ? Strings.Riepilogo_QuizAbbandonato
+        bool lab = risultato.Modalita == Core.Services.LaboratorioService.Modalita;
+        Titolo = risultato.Abbandonato ? (lab ? Strings.Riepilogo_LabAbbandonato : Strings.Riepilogo_QuizAbbandonato)
                : risultato.TempoScaduto ? Strings.Stato_TempoScaduto
-               : Strings.Riepilogo_QuizConcluso;
+               : lab ? Strings.Riepilogo_LabConcluso : Strings.Riepilogo_QuizConcluso;
         Sottotitolo = risultato.Abbandonato
             ? Strings.Riepilogo_SottotitoloAbbandonato
             : risultato.TempoScaduto

@@ -540,9 +540,14 @@ public class SessioneQuiz : ObservableObject
             Risultato.RisposteCorrette = Risultato.Dettagli.Count(d => d.Corretta);
             Risultato.RisposteErrate   = Risultato.Dettagli.Count(d => !d.Corretta);
             Risultato.TotaleDomande    = Risultato.Dettagli.Count;
-            Risultato.PercentualeCorrette = _totUnicoRotazione == 0
+            // Abbandonata: conta solo le domande viste, non tutte quelle della sessione
+            // (2 giuste su 2 viste = 100%, non 2 su 480 = 0%).
+            int base100 = abbandonato
+                ? Risultato.Dettagli.Select(d => d.IdDomanda).Distinct().Count()
+                : _totUnicoRotazione;
+            Risultato.PercentualeCorrette = base100 == 0
                 ? 0
-                : 100.0 * rispPrimoColpo / _totUnicoRotazione;
+                : 100.0 * rispPrimoColpo / base100;
         }
         else
         {
