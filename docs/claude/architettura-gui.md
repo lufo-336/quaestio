@@ -65,12 +65,111 @@ cambiare il template XAML.
 ### Navigazione fra schermate
 
 La `MainWindow` ha tre tab. Dentro la tab Home c'è un `ContentControl` il cui
-`Content` viene swappato fra `HomeView`, `QuizView`, `RiepilogoView`. La tab
+`Content` viene swappato fra `HomeView`, `QuizView`, `LaboratorioView`, `RiepilogoView`. La tab
 Cronologia ha `CronologiaView` con swap interno fra lista e
 `CronologiaDettaglioView`. La tab Sospesi ha `SospesiView`.
 
 `Ctrl+Tab` / `Ctrl+Shift+Tab` (gestiti in `MainWindow.OnKeyDown`) ciclano fra
 le 3 tab principali con re-focus della view attiva.
+
+### Laboratorio di codice (`SessioneLaboratorio`, `LaboratorioView`, interruttore globale e pause)
+
+Formato delle schede, convenzioni e servizi (`LaboratorioService`) sono descritti in `docs/claude/contenuti-e-dati.md`.
+
+#### `SessioneLaboratorio` (`wsa.quiz.app/State/SessioneLaboratorio.cs`)
+
+Macchina a stati dedicata (eredita `ObservableObject`), separata da `SessioneQuiz`. Riceve la lista di coppie
+`(SchedaLab, VarianteLab)` selezionata da `LaboratorioService.Prepara` (o `LaboratorioService.CoppieDaId` quando
+si avvia da *Ripassa* in Statistiche), il nome del linguaggio e il livello; espone `LivelloCorrente`
+(`SchedaCorrente?.Livello ?? Livello`) così ogni scheda usa le forme del proprio livello anche in sessioni miste.
+
+- **Passaggi (`PassoLab`)**: per ogni scheda attraversa `PrevediOutput` → `TrovaBug` → `RompiFunzione` (fino a
+  `Concluso`). Metodi di risposta: `RispondiOutput(righe)`, `TentaRigaBug(riga)` + `RispondiBugTipo(riga, tipo)`
+  (livello `base`) o `RispondiBugCorrezione(riga, correzione)` (livello `media`), `RispondiBugReview(segni)`
+  (livello `alta`), `RispondiInput(indice)`; `Avanti()` passa al passo o alla scheda successivi; `Abbandona()`
+  chiude mantenendo i passi già svolti.
+- **Seconda possibilità e review completa**:
+  - Nel passo 2 di `base` e `media`, un primo click su una riga errata attiva `SecondaPossibilitaInCorso`,
+    espone `IndizioCorrente` e salva `PrimaRigaErrata` (disabilitata al secondo tentativo). Se al secondo
+    tentativo la riga è giusta e il tipo/correzione scelto è giusto, il dettaglio viene registrato con
+    `Corretta = true` e `SecondoTentativo = true` (peso errore ½). Se la riga è giusta ma il tipo o la
+    correzione sono sbagliati, il passo è errato senza secondo tentativo.
+  - Nel passo 2 di `alta` (review completa su 2–3 difetti, nessuna seconda possibilità),
+    `LaboratorioService.PunteggioReview` calcola `(+1 per riga+tipo giusti, +0,5 per riga giusta con tipo sbagliato, -1 per ogni riga sana segnata) / numeroDifetti`,
+    limitato a `[0, 1]`. `LaboratorioService.EsitoReview` traduce `1` in corretto, `[0,5, 1)` in
+    `Corretta = true, SecondoTentativo = true` (peso ½) e `< 0,5` in errato.
+- **Ordine degli assegnamenti e `PropertyChanged`**: `LaboratorioView` si aggiorna in risposta a
+  `PropertyChanged` su `IndiceScheda`, `SchedaCorrente`, `VarianteCorrente`, `Passo`, `RigaTrovata` e
+  `InAttesaDiAvanti` (`PreparaSchedaSeNecessario` e `PreparaPassoCorrente`). In `SessioneLaboratorio`
+  (`CaricaScheda`, `Avanti`, `Concludi`, `RiprendiDa`) gli assegnamenti che fanno scattare `PropertyChanged`
+  sulle proprietà osservate dalla vista (`Passo`, `IndiceScheda`) **vanno eseguiti solo dopo** aver preparato
+  tutto lo stato letto dalla vista (`ResetStatoPasso2()`, `UltimoEsitoCorretto`, `InAttesaDiAvanti`,
+  `SchedaCorrente`, `VarianteCorrente`); invertire l'ordine fa sì che la vista ricostruisca il passo leggendo
+  ancora `InAttesaDiAvanti = true` o la variante precedente (righe non cliccabili al passo 2, codice della
+  scheda precedente al cambio scheda).
+- **Esito e *Ripassa* da Statistiche**: a fine sessione `MainView.OnLaboratorioConcluso` salva `sessione.Risultato`
+  in `cronologia.json` (se ha almeno un passo) e apre `RiepilogoView`. In `MainView.OnRipassaRichiesto`, se
+  `MateriaCanon` termina con `LaboratorioService.SuffissoMateria` (`" · Laboratorio"`), gli id sbagliati vengono
+  convertiti in coppie tramite `LaboratorioService.CoppieDaId(_schedeLab, req.IdDomandeSbagliate)` (al più una
+  variante per scheda, scartando schede o varianti non più esistenti) e viene avviata una `SessioneLaboratorio`.
+
+#### `LaboratorioView` (`wsa.quiz.app/Views/LaboratorioView.axaml(.cs)`, item in `State/LaboratorioItems.cs`)
+
+Costruita come `QuizView` (riceve `SessioneLaboratorio` e `StorageService`, avvia la sessione in
+`OnAttachedToVisualTree`, solleva `LaboratorioConcluso` e `LaboratorioMessoInPausa`).
+
+- **Struttura**: in testa la barra dei 3 passaggi (`BarraPasso0/1/2Brush`), titolo della scheda, metadati
+  (`"Scheda N di M · C# · Livello"`) e riquadro del requisito; nel corpo scorrevole il codice numerato in
+  `FontCodice` (`JetBrains Mono NL`) dentro uno `ScrollViewer` con scroll solo orizzontale
+  (`TextWrapping="NoWrap"`, così i numeri di riga restano sempre fedeli) e i pannelli del passo attivo
+  (`MenuOutputItem` per il passo 1 base; `TesseraOutputItem` + `TesseraCompostaItem` per il passo 1 media/alta;
+  `TipoDifettoItem`, `CorrezioneBugItem` o `SegnoBugItem` per il passo 2; `InputCandidatoItem` con confronto
+  *atteso*/*effettivo* per il passo 3); in basso la barra azioni (*Conferma* / *Avanti* / *Fine*, *Pausa*, *Esci*).
+- **Accorgimenti per il telefono (`AppEnv.TouchMode`)**:
+  - Poiché su schermo stretto le righe di codice escono a destra (scroll orizzontale), un indicatore posto solo
+    in fondo alla riga (come il badge `EtichettaSegno`) finisce fuori schermo: ciò che segnala una riga
+    (`Button.rigaCodice.segnata`) sta quindi **a sinistra**, con una barra verticale di 6 px
+    (`BorderThickness="6,0,0,1"`) e il numero di riga in grassetto colorati con `AccentoBrush`.
+  - In `TouchMode` il requisito in testa (`RequisitoText`) è compresso a **2 righe** (`MaxLines = 2`,
+    `TextTrimming.CharacterEllipsis`) per non sottrarre spazio verticale al codice, e si apre/chiude al tocco
+    su `RequisitoBorder`.
+
+#### Interruttore globale `Quiz | Laboratorio`
+
+Un interruttore a due voci in cima a `HomeView`, `CronologiaView`, `StatisticheView` e `SospesiView` governa
+l'intera app tramite `PreferenzeUtente.Laboratorio` (affiancato da `LabLivello`, `LabRipassa`, `LabSchede`):
+
+- Ogni vista espone la proprietà `Laboratorio` e l'evento `LaboratorioCambiato`; `MainView.OnLaboratorioCambiato`
+  propaga la scelta alle altre tre viste (protetta dal flag `_propagandoLaboratorio`) e salva `preferenze.json`
+  una volta sola.
+- **Home**: commuta fra i riquadri dei quiz e `ZonaLaboratorio` (*Linguaggio*, *Livello* Base/Media/Alta con
+  conteggio schede, *Schede* nuove o da ripassare + numero di schede per sessione, riepilogo da
+  `LaboratorioService.Conteggi`).
+- **Cronologia**: imposta `FiltroCronologia.Laboratorio`, che filtra i record con
+  `LaboratorioService.ERisultatoLab(r) == Laboratorio` **senza** entrare in `FiltroCronologia.Attivo` (non è un
+  filtro del pannello e non accende l'indicatore "filtri attivi"), e popola la tendina delle materie solo dai
+  record del modo selezionato.
+- **Statistiche**: mostra solo le materie senza `SuffissoMateria` in modalità *Quiz*, e solo quelle con
+  `SuffissoMateria` in modalità *Laboratorio*.
+- **Sospesi**: mostra le pause di `quiz_in_pausa.json` con *Quiz* e quelle di `laboratorio_in_pausa.json` con
+  *Laboratorio*.
+
+#### Pause separate del Laboratorio (`PausaLaboratorio`)
+
+- Persistite in `laboratorio_in_pausa.json` (`StorageService.CaricaPauseLab`, `SalvaPausaLab`, `EliminaPausaLab`),
+  separato da `quiz_in_pausa.json` per non toccare le pause dei quiz né la CLI.
+- **Granularità per scheda**: `SessioneLaboratorio.CreaPausa()` salva in `PausaLaboratorio` (`SessioneId`,
+  `DataOraPausa`, `Linguaggio`, `Livello`, `Coppie` nel formato `"schedaId/varianteId"`, `IndiceScheda`,
+  `TempoTrascorso`) solo i `Dettagli` delle schede **già concluse** (`_dettagliSchedeConcluse`), scartando
+  i passi eventualmente già risposti sulla scheda in corso.
+- **Ripresa**: `SessioneLaboratorio.RiprendiDa(pausa, schede)` ricostruisce la sessione ripartendo dal passo 1
+  della scheda `IndiceScheda`. Se una scheda o variante della pausa non esiste più, lancia
+  `InvalidOperationException`, catturata da `MainView.OnRiprendiSospesaLab` (messaggio in `ErrorePanel` ed
+  eliminazione della pausa orfana). Alla conclusione o all'abbandono della sessione ripresa,
+  `MainView.OnLaboratorioConcluso` elimina la pausa tramite `sessione.IdSessionePausa`.
+- In `SospesiView`, `SessioneSospesaItem` incapsula sia `SessionePausa` sia `PausaLaboratorio` (`ELaboratorio`),
+  mostrando per il Laboratorio `"<Linguaggio> · Laboratorio"`, il livello, `"Scheda N di M"` e la durata, e
+  sollevando `RiprendiLabRichiesto` alla pressione di *Riprendi*.
 
 ### Style globali (App.axaml)
 

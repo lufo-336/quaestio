@@ -517,6 +517,8 @@ coppia trovata: niente, come oggi.
 
 ## Task 16: Documentazione
 
+- [x] Fatto 2026-11-27 (agy): file `CLAUDE.md`, `docs/claude/contenuti-e-dati.md`, `docs/claude/architettura-gui.md` — verifica: riletti i file modificati e controllata la coerenza con il codice reale (`docs/claude/trappole.md` invariato: nessuna nuova trappola emersa oltre alle note documentate in `contenuti-e-dati.md` e `architettura-gui.md`)
+
 - `CLAUDE.md`: cartella `laboratorio/` nel layout del repo; riga di stato; nessuna trappola nuova se non ne sono emerse.
 - `docs/claude/contenuti-e-dati.md`: sezione "Schede del Laboratorio" (formato, convenzioni script/eccezioni/cultura,
   come si verifica con `dotnet test --filter Laboratorio`, la traduzione in `traduzioni/en/laboratorio/`, come si

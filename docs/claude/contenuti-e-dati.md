@@ -73,6 +73,9 @@ Default cross-platform via helper statico `StorageService.CartellaUtenteDefault(
 - `storage.SalvaRisultato(RisultatoQuiz)` — append; genera `Guid` se `Id` vuoto
 - `storage.SalvaPausa(SessionePausa)` — upsert per `SessioneId`
 - `storage.EliminaPausa(string sessioneId)`
+- `storage.CaricaPauseLab()` → `List<PausaLaboratorio>` (file separato `laboratorio_in_pausa.json`)
+- `storage.SalvaPausaLab(PausaLaboratorio)` — upsert per `SessioneId`
+- `storage.EliminaPausaLab(string sessioneId)`
 - `storage.EliminaRisultato(string id)`
 - `storage.SvuotaCronologia()`
 
@@ -103,3 +106,84 @@ Default cross-platform via helper statico `StorageService.CartellaUtenteDefault(
   servono al `QuizView` in view-mode per ricostruire i 4 bottoni colorati
   anche dopo pausa/ripresa. Default vuoto/-1 → backward compatible coi record
   JSON vecchi.
+- **Record del Laboratorio in `cronologia.json`**: una sessione di Laboratorio salva un normale
+  `RisultatoQuiz` con `Modalita = "Laboratorio"` (`LaboratorioService.Modalita`),
+  `MateriaNome = "<Linguaggio> · Laboratorio"` (`LaboratorioService.SuffissoMateria`, es. `"C# · Laboratorio"`)
+  e un `DettaglioRisposta` per passaggio con `IdDomanda = "lab:<ling>:<scheda>:<variante>:<passo>"`
+  (`passo` = `output` | `bug` | `input`), `Categoria` = `TipiDifetto.EtichettaCanonica(tipo)` (sempre in italiano,
+  dal primo difetto della variante) e `RisposteShufflate` vuota. Vedi `docs/claude/architettura-gui.md` per
+  la macchina a stati e l'integrazione con la UI.
+
+## Schede del Laboratorio
+
+Le schede del Laboratorio di codice vivono in `laboratorio/<linguaggio>/` (nella radice del repo, accanto a
+`domande/`), un file `.json` per scheda (un singolo oggetto `SchedaLab`, non una lista). Come `domande/`, la
+cartella è inclusa con wildcard in `Wsa.Quiz.App.csproj` (`AvaloniaResource` sotto `Assets\laboratorio\…`) e
+in `Wsa.Quiz.Desktop.csproj` (`None` con `CopyToOutputDirectory`): **non lasciare file `.json` temporanei**
+dentro `laboratorio/`.
+
+Stato v1 (2026-11-27): linguaggio **C# (`cs`)**, **9 schede / 18 varianti** (2 varianti per scheda, tutte con
+traduzione inglese):
+- `base` (8–12 righe, 1 difetto): `media-voti`, `conta-vocali`, `massimo-lista`;
+- `media` (15–25 righe, 1 difetto + correzione e 2 trappole): `sconto-ordine`, `verifica-accesso`, `verifica-buffer`;
+- `alta` (30+ righe, 2–3 difetti per la review completa): `paginazione-catalogo`, `parser-righe-csv`, `pulizia-cache-ttl`.
+
+### Formato JSON (`wsa.quiz.core/Models/Laboratorio/`)
+
+- **`SchedaLab` (`SchedaLab.cs`)**:
+  - `id`: kebab-case unico nel linguaggio (es. `"media-voti"`), senza `:`;
+  - `titolo`: titolo breve mostrato in testa;
+  - `livello`: `"base"`, `"media"` o `"alta"` (`LivelliLab`);
+  - `requisito`: 1–3 frasi su cosa deve fare il codice;
+  - `chiamata`: istruzioni C# per il passo 1 (*Prevedi l'output*) che invocano il codice e stampano con `Console.WriteLine`;
+  - `codiceSano`: `List<string>` (una riga per elemento) del codice corretto; non mostrato all'utente, usato dai test per verificare `atteso`;
+  - `varianti`: 2–4 oggetti `VarianteLab`;
+  - `Linguaggio` (`[JsonIgnore]`): valorizzato al caricamento da `LaboratorioService.CaricaSchede` in base alla cartella (`"cs"`).
+- **`VarianteLab`**:
+  - `id`: `"v1"`, `"v2"`… (unico nella scheda, senza `:`);
+  - `righe`: `List<string>` del codice col difetto mostrato all'utente;
+  - `output`: `List<string>` delle righe stampate da `righe` + `chiamata`;
+  - `esche`: almeno 2 righe plausibili ma false, tutte distinte fra loro e assenti da `output` (usate nei menu del livello `base` e nelle tessere di `media`/`alta`);
+  - `difetti`: `List<DifettoLab>`, esattamente 1 per `base` e `media`, 2–3 per `alta` **elencati dal più grave al meno grave** (il primo fornisce la `Categoria` del `DettaglioRisposta`);
+  - `input`: 3–4 oggetti `InputLab` per il passo 3 (*Rompi la funzione*), con `chiamata` distinte, `atteso` (output di `codiceSano`) ed `effettivo` (output di `righe`). `Espone` (`[JsonIgnore]`, `Atteso != Effettivo`) deve essere vero per almeno un input e falso per almeno uno.
+- **`DifettoLab` e `TipiDifetto` (`TipiDifetto.cs`)**:
+  - `riga`: indice 1-based in `righe` (un solo difetto per riga; la riga non può essere vuota, una sola parentesi `{`/`}` né comparire identica in `codiceSano`);
+  - `tipo`: uno dei 10 id fissi di `TipiDifetto.Tutti` (`Confine`, `DivisioneIntera`, `NullVuoto`, `CondizioneInvertita`, `Overflow`, `OperandoSbagliato`, `ConfrontoStringhe`, `MutazioneIterazione`, `EccezioneInghiottita`, `RisorsaNonChiusa`), localizzati in `Strings*.resx` con prefisso `Lab_Difetto_`;
+  - `indizio`: indica dove guardare senza svelare il difetto (usato nella seconda possibilità di `base`/`media`);
+  - `spiegazione`: spiegazione didattica mostrata all'esito e salvata nel dettaglio;
+  - `correzione` e `trappole`: obbligatori a livello `media` (`correzione` sostituisce `riga`; `trappole` contiene esattamente 2 righe sbagliate ma plausibili, diverse fra loro, dalla `correzione` e dalla riga difettosa).
+
+### Convenzioni: script, eccezioni, cultura
+
+- **Script C#**: `codiceSano` e `righe` sono codice C# valido come script top-level (funzioni a livello superiore, senza `class Program` o `Main`), eseguito con gli using impliciti `System`, `System.Linq`, `System.Collections.Generic`, `System.Text`.
+- **Eccezioni non gestite**: se l'esecuzione solleva un'eccezione, l'output registrato in `output`, `atteso` o `effettivo` consiste nelle eventuali righe stampate fino a quel punto seguite da una riga `!NomeEccezione` (es. `!NullReferenceException`, `!DivideByZeroException`, `!ArgumentOutOfRangeException`). Nelle stringhe multilinea (`chiamata`, `atteso`, `effettivo`) le righe sono separate da `\n`.
+- **Cultura invariante**: tutti gli output sono valutati con `CultureInfo.InvariantCulture` (decimali col punto, es. `7.5`). Nel runner di test (`LaboratorioEsecuzioneTests.Esegui`), oltre a impostare `CultureInfo.CurrentCulture = CultureInfo.InvariantCulture`, lo `StringWriter` passato a `Console.SetOut` va costruito esplicitamente con `new StringWriter(CultureInfo.InvariantCulture)`: `TextWriter` fissa infatti il proprio `FormatProvider` al momento della costruzione, perciò un `new StringWriter()` senza argomenti cattura la cultura del sistema operativo (formattando `7,5` su macchine italiane).
+
+### Verifica con i test
+
+L'app non compila né esegue codice sul dispositivo: confronta solo le scelte dell'utente con i valori del JSON.
+La validazione avviene in sviluppo con:
+
+```powershell
+dotnet test wsa.quiz.core.tests --filter Laboratorio
+```
+
+- **`LaboratorioCoerenzaTests`**: controlla struttura JSON, unicità degli id, vincoli su `righe`/`esche`/`difetti`/`input` e completezza delle traduzioni inglesi.
+- **`LaboratorioEsecuzioneTests`**: compila ed esegue ogni variante C# con Roslyn (`Microsoft.CodeAnalysis.CSharp.Scripting`, dipendenza del solo progetto di test). Verifica che `righe + chiamata` stampi `output`, che su ogni `input` `codiceSano` stampi `atteso` e `righe` stampi `effettivo`, e — per il livello `media` — che la riga `correzione` produca `atteso` su tutti gli input mentre ciascuna `trappola` fallisca (o non compili) su almeno un input. Quando un'asserzione fallisce, il messaggio riporta scheda, variante, input e il valore reale stampato dal codice.
+
+### Traduzioni (`traduzioni/en/laboratorio/`)
+
+Ogni scheda ha un file di sovrapposizione in `traduzioni/<lingua>/laboratorio/<linguaggio>/<schedaId>.json`
+(es. `traduzioni/en/laboratorio/cs/media-voti.json`), deserializzato in `TraduzioneScheda`
+(`wsa.quiz.core/Models/Laboratorio/TraduzioneScheda.cs`).
+
+- Si traducono **solo i testi didattici**: `titolo`, `requisito` e, per ciascuna variante in `varianti[<varId>].difetti` (stesso numero e stesso ordine di `VarianteLab.Difetti`), `indizio` e `spiegazione`.
+- Codice (`codiceSano`, `righe`, `chiamata`, `correzione`, `trappole`), `output`, `esche` e `input` restano nel JSON principale: essendo verificati da Roslyn non vengono duplicati.
+- Poiché l'`id` della scheda e gli id delle varianti sono fissi, modificare il testo italiano non richiede alcuna ri-chiavatura. `LaboratorioService.CaricaSchede(fonte, lingua)` applica la traduzione in modo non bloccante (file assente/corrotto o numero di difetti discorde → resta l'italiano con avviso su `Console.Error`), mentre `LaboratorioCoerenzaTests.Scheda_HaTraduzioneEnCoerente` e `TraduzioniEnLab_NessunFileSenzaScheda` verificano che ogni scheda abbia la traduzione inglese allineata e che non ci siano file orfani.
+
+### Aggiungere un linguaggio
+
+1. Aggiungere la coppia `(Id, Nome)` a `LaboratorioService.Linguaggi` in `wsa.quiz.core/Services/LaboratorioService.cs` (es. `("py", "Python")`).
+2. Creare i file delle schede in `laboratorio/<id>/*.json` e le traduzioni in `traduzioni/en/laboratorio/<id>/*.json` (i glob `..\laboratorio\**\*.json` e `..\traduzioni\**\*.json` nei csproj li includono già).
+3. La UI in `HomeView` elenca automaticamente i linguaggi di `LaboratorioService.Linguaggi` che hanno almeno una scheda valida e registra i risultati in cronologia/statistiche come `"<Nome> · Laboratorio"`.
+4. Estendere `LaboratorioEsecuzioneTests` per smistare l'esecuzione in base alla sottocartella del linguaggio (Roslyn per `cs`, runner specifico per il nuovo linguaggio).

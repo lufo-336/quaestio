@@ -42,6 +42,10 @@ Statistiche.
 **Revisione grafica (25–26/11, in `v2.2.0`):** tavolozza dei 16
 inchiostri, font Archivo, angoli vivi, marchio e icone a6-2, barra C2 su telefono,
 tab coi colori di sezione su desktop, colore utente su intestazione e titoli.
+**Laboratorio di codice (27/11):** 3 livelli × 3 schede C# (18 varianti it/en,
+prevedi l'output → trova il bug → rompi la funzione, review completa al livello
+alta), pause separate (`laboratorio_in_pausa.json`) e interruttore globale
+Quiz | Laboratorio.
 Dettagli e storia: `docs/claude/storia-e-roadmap.md`.
 
 ## Stack
@@ -66,14 +70,15 @@ wsa.quiz/
 ├── domande/                    ← 12 materie (2483 domande)
 │   ├── cloudservices/, cpp/, cs/, cybersecurity/, frontend/, infra/,
 │   │   nosql/, python/, restfulapi/, sql/, ux/, versioncontrol/
-├── traduzioni/                 ← traduzioni overlay delle domande (en/)
+├── laboratorio/                ← schede del Laboratorio di codice (cs/, 3 livelli × 3 schede)
+├── traduzioni/                 ← traduzioni overlay di domande e schede (en/, en/laboratorio/cs/)
 ├── generazione-domande/        ← guida IA, quiz-engine.js e strumenti di supporto
 ├── wsa.quiz.core/              (class library di logica)
 │   ├── Wsa.Quiz.Core.csproj
 │   ├── Models/   (RisultatoQuiz, DettaglioRisposta, SessionePausa,
 │   │              Materia, Domanda, DomandaPreparata, OpzioniQuiz,
-│   │              Statistiche/, PreferenzeUtente, SezioneEsclusa)
-│   ├── Services/ (QuizService, StorageService, StatisticheService,
+│   │              Statistiche/, Laboratorio/, PreferenzeUtente, SezioneEsclusa)
+│   ├── Services/ (QuizService, StorageService, StatisticheService, LaboratorioService,
 │   │              ContenutiUtenteService, TestoConCodice, EsportazioneService)
 │   └── Risorse/  (Strings.resx, Strings.en.resx)
 ├── wsa.quiz.core.tests/        (unit test xUnit, parser e integrità dati)
@@ -83,8 +88,8 @@ wsa.quiz/
 │   ├── QuizColors.cs              ← colori condivisi (verde/ambra/rosso)
 │   ├── AppEnv.cs                  ← flag TouchMode e safe area
 │   ├── Controls/ (TestoConCodice)
-│   ├── State/    (SessioneQuiz state machine, wrapper observable)
-│   ├── Views/    (Home, Quiz, Riepilogo, Cronologia, Sospesi, Statistiche,
+│   ├── State/    (SessioneQuiz, SessioneLaboratorio, wrapper observable)
+│   ├── Views/    (Home, Quiz, Laboratorio, Riepilogo, Cronologia, Sospesi, Statistiche,
 │   │              GestioneContenuti, Impostazioni, overlay dialoghi)
 │   └── Assets/   (Fonts monospazio, icone)
 ├── wsa.quiz.desktop/           (head desktop Avalonia, Windows/Mac/Linux)
@@ -135,8 +140,8 @@ volta, non è ciò che si consegna. Per produrre eseguibili autonomi o pacchetti
 |---|---|
 | `docs/claude/trappole.md` | prima di toccare la zona di una trappola (indice sotto) |
 | `docs/claude/piattaforme-e-distribuzione.md` | build su Fedora/Mac, publish desktop, APK e release, test su device con adb |
-| `docs/claude/contenuti-e-dati.md` | aggiungere materie/domande, storage condiviso console↔GUI, API, modello dati |
-| `docs/claude/architettura-gui.md` | lavorare sulla GUI: SessioneQuiz, pausa/ripresa, navigazione, stili, colori, decisioni UX |
+| `docs/claude/contenuti-e-dati.md` | aggiungere materie/domande, schede del Laboratorio, storage condiviso console↔GUI, API, modello dati |
+| `docs/claude/architettura-gui.md` | lavorare sulla GUI: SessioneQuiz, SessioneLaboratorio, pausa/ripresa, navigazione, stili, colori, decisioni UX |
 | `docs/claude/storia-e-roadmap.md` | capire perché una cosa è fatta così (step chiusi, verifiche fatte) |
 
 ### Indice delle trappole (dettagli in `docs/claude/trappole.md`)
