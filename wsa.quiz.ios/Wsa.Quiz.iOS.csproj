@@ -20,7 +20,7 @@
     <AssemblyName>Wsa.Quiz.iOS</AssemblyName>
     <ApplicationId>it.eduits.wsaquiz</ApplicationId>
     <ApplicationTitle>Quaestio</ApplicationTitle>
-    <ApplicationVersion>5</ApplicationVersion>
+    <ApplicationVersion>6</ApplicationVersion>
     <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <!-- Icona: Assets.xcassets/AppIcon.appiconset (PNG 1024x1024 opaco, angoli
          squadrati: li arrotonda iOS). Senza questa proprieta' actool non riceve
