@@ -36,8 +36,19 @@
         <Style Selector="Button.rigaCodice.interattiva:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
         </Style>
+        <!-- Riga segnata: barra a sinistra e numero nel colore d'accento, così si vede anche
+             quando l'etichetta in fondo alla riga è fuori schermo (telefono, scroll orizzontale). -->
+        <Style Selector="Button.rigaCodice.segnata">
+            <Setter Property="Padding" Value="4,5,10,5"/>
+        </Style>
         <Style Selector="Button.rigaCodice.segnata /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderThickness" Value="6,0,0,1"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.segnata TextBlock.numRiga">
+            <Setter Property="Foreground" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style Selector="Button.rigaCodice.segnata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource Sfondo}"/>

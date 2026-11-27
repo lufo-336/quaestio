@@ -170,6 +170,10 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         {
             RequisitoBorder.Padding = new Thickness(8, 5);
             RequisitoText.FontSize = 12;
+            // Sul telefono il requisito occupava un terzo dello schermo: 2 righe, un tocco lo apre/chiude.
+            RequisitoText.MaxLines = 2;
+            RequisitoText.TextTrimming = TextTrimming.CharacterEllipsis;
+            RequisitoBorder.Tapped += (_, _) => RequisitoText.MaxLines = RequisitoText.MaxLines == 0 ? 2 : 0;
         }
 
         Sessione = sessione;

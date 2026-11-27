@@ -369,7 +369,7 @@
   <data name="Lab_SuggerimentoTrovaBugRiga" xml:space="preserve"><value>Tocca la riga con il bug e premi Conferma.</value></data>
   <data name="Lab_SuggerimentoScegliTipo" xml:space="preserve"><value>Riga individuata! Ora scegli il tipo di errore.</value></data>
   <data name="Lab_SuggerimentoScegliCorrezione" xml:space="preserve"><value>Riga individuata! Ora scegli la correzione giusta.</value></data>
-  <data name="Lab_DifettiSegnatiNDiM" xml:space="preserve"><value>Difetti segnati: {0} di {1}</value></data>
+  <data name="Lab_DifettiSegnatiNDiM" xml:space="preserve"><value>Righe segnate: {0} · difetti da trovare: {1}</value></data>
   <data name="Lab_SuggerimentoReview" xml:space="preserve"><value>Tocca le righe con un difetto e assegna il tipo a ciascuna. Un segno su una riga senza difetti toglie punti.</value></data>
   <data name="Lab_SuggerimentoReviewFalsoAllarme" xml:space="preserve"><value>Un segno su una riga senza difetti toglie punti.</value></data>
   <data name="Lab_RigaCheTipo" xml:space="preserve"><value>Riga {0} — che tipo di errore?</value></data>
