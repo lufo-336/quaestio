@@ -42,7 +42,7 @@ Statistiche.
 **Revisione grafica (25–26/11, in `v2.2.0`):** tavolozza dei 16
 inchiostri, font Archivo, angoli vivi, marchio e icone a6-2, barra C2 su telefono,
 tab coi colori di sezione su desktop, colore utente su intestazione e titoli.
-**Laboratorio di codice (27/11):** 3 livelli × 3 schede C# (18 varianti it/en,
+**Laboratorio di codice (27/11):** 3 livelli × 3 schede per C# e per Python (18 varianti it/en ciascuno,
 prevedi l'output → trova il bug → rompi la funzione, review completa al livello
 alta), pause separate (`laboratorio_in_pausa.json`) e interruttore globale
 Quiz | Laboratorio.

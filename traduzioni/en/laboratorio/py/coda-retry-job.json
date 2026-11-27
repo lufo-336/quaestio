@@ -1,0 +1,38 @@
+{
+  "titolo": "Job queue with retry attempts",
+  "requisito": "Simulates running a list of (job_id, esiti) jobs allowing at most max_tentativi attempts per job (valid outcomes \"OK\" or \"KO\", ignoring whitespace and case; any other outcome raises ValueError). Skips None entries, empty/None job_id, or empty/None esiti; returns \"non valido\" if max_tentativi <= 0 or lavori is None. Records failed job_id values into scarti (a new list if None) and returns succeeded count, failed count, average attempts per processed job (1 decimal place), and the scarti list.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Check the default parameter values in the esegui_coda function signature.",
+          "spiegazione": "The mutable default argument scarti=[] is shared across subsequent calls that omit the parameter, leaving failed jobs from earlier calls accumulated in the list."
+        },
+        {
+          "indizio": "Look at the condition that stops the loop when a job reaches the attempt limit.",
+          "spiegazione": "Using usati > max_tentativi instead of >= allows one extra attempt beyond max_tentativi before stopping the loop."
+        },
+        {
+          "indizio": "Look at the denominator used when calculating average attempts.",
+          "spiegazione": "The average divides by len(lavori) (including None or skipped entries) instead of processati, undercounting the average whenever the queue contains ignored items."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Check how an unknown outcome is handled in the inner attempts loop.",
+          "spiegazione": "The except ValueError block swallows the invalid outcome error by breaking out of the loop instead of letting ValueError propagate as specified."
+        },
+        {
+          "indizio": "Look at what value is added to the tentativi_tot accumulator after each job.",
+          "spiegazione": "Adding 1 instead of usati counts only a single attempt per job regardless of how many retries were executed."
+        },
+        {
+          "indizio": "Look at the average attempts calculation when processati is greater than zero.",
+          "spiegazione": "Using // performs integer division, truncating decimals and returning an integer (for example, 1 instead of 1.0 or 1.5)."
+        }
+      ]
+    }
+  }
+}

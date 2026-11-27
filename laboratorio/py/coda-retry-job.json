@@ -1,0 +1,260 @@
+{
+  "id": "coda-retry-job",
+  "titolo": "Coda lavori con tentativi di retry",
+  "livello": "alta",
+  "requisito": "Simula l'esecuzione di una lista di lavori (job_id, esiti) consentendo al più max_tentativi tentativi per lavoro (esiti validi \"OK\" o \"KO\", ignorando spazi e maiuscole; qualsiasi altro esito solleva ValueError). Ignora voci None, con job_id vuoto/None o esiti vuoti/None; se max_tentativi <= 0 o lavori è None restituisce \"non valido\". Registra in scarti (nuova lista se None) i job_id falliti e restituisce riusciti, falliti, media tentativi per lavoro elaborato (1 decimale) e la lista scarti.",
+  "chiamata": "print(esegui_coda([(\"j1\", [\"KO\", \"KO\"]), (\"j2\", [\"OK\"])], 2))\nprint(esegui_coda([(\"j3\", [\"KO\", \"KO\", \"OK\"]), None, (\"j4\", [\"OK\"]), None], 2))\nprint(esegui_coda([(\"j5\", [\"OK\"]), None, (\"j6\", [\"KO\", \"BAD\"])], 2))",
+  "codiceSano": [
+    "def esegui_coda(lavori, max_tentativi, scarti=None):",
+    "    if lavori is None or max_tentativi <= 0:",
+    "        return \"non valido\"",
+    "    if scarti is None:",
+    "        scarti = []",
+    "    riusciti = 0",
+    "    falliti = 0",
+    "    tentativi_tot = 0",
+    "    for voce in lavori:",
+    "        if voce is None or len(voce) != 2:",
+    "            continue",
+    "        job_id, esiti = voce",
+    "        if not job_id or not job_id.strip() or not esiti:",
+    "            continue",
+    "        jid = job_id.strip()",
+    "        completato = False",
+    "        usati = 0",
+    "        for raw in esiti:",
+    "            if usati >= max_tentativi:",
+    "                break",
+    "            stato = (raw or \"\").strip().upper()",
+    "            if stato != \"OK\" and stato != \"KO\":",
+    "                raise ValueError(\"Esito non valido\")",
+    "            usati += 1",
+    "            if stato == \"OK\":",
+    "                completato = True",
+    "                break",
+    "        tentativi_tot += usati",
+    "        if completato:",
+    "            riusciti += 1",
+    "        else:",
+    "            falliti += 1",
+    "            scarti.append(jid)",
+    "    processati = riusciti + falliti",
+    "    if processati == 0:",
+    "        media = 0.0",
+    "    else:",
+    "        media = round(tentativi_tot / processati, 1)",
+    "    esito = f\"ok={riusciti}; ko={falliti}; med={media}\"",
+    "    return f\"{esito}; scarti={scarti}\""
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def esegui_coda(lavori, max_tentativi, scarti=[]):",
+        "    if lavori is None or max_tentativi <= 0:",
+        "        return \"non valido\"",
+        "    riusciti = 0",
+        "    falliti = 0",
+        "    tentativi_tot = 0",
+        "    for voce in lavori:",
+        "        if voce is None or len(voce) != 2:",
+        "            continue",
+        "        job_id, esiti = voce",
+        "        if not job_id or not job_id.strip() or not esiti:",
+        "            continue",
+        "        jid = job_id.strip()",
+        "        completato = False",
+        "        usati = 0",
+        "        for raw in esiti:",
+        "            if usati > max_tentativi:",
+        "                break",
+        "            stato = (raw or \"\").strip().upper()",
+        "            if stato != \"OK\" and stato != \"KO\":",
+        "                raise ValueError(\"Esito non valido\")",
+        "            usati += 1",
+        "            if stato == \"OK\":",
+        "                completato = True",
+        "                break",
+        "        tentativi_tot += usati",
+        "        if completato:",
+        "            riusciti += 1",
+        "        else:",
+        "            falliti += 1",
+        "            scarti.append(jid)",
+        "    processati = riusciti + falliti",
+        "    if processati == 0:",
+        "        media = 0.0",
+        "    else:",
+        "        media = round(tentativi_tot / len(lavori), 1)",
+        "    esito = f\"ok={riusciti}; ko={falliti}; med={media}\"",
+        "    return f\"{esito}; scarti={scarti}\""
+      ],
+      "output": [
+        "ok=1; ko=1; med=1.5; scarti=['j1']",
+        "ok=2; ko=0; med=1.0; scarti=['j1']",
+        "!ValueError"
+      ],
+      "esche": [
+        "ok=1; ko=1; med=1.5; scarti=['j3']",
+        "ok=2; ko=0; med=2.0; scarti=[]",
+        "ok=2; ko=0; med=1.0; scarti=[]",
+        "ok=1; ko=1; med=1; scarti=['j1']"
+      ],
+      "difetti": [
+        {
+          "riga": 1,
+          "tipo": "MutazioneIterazione",
+          "indizio": "Controlla i valori predefiniti nella firma della funzione esegui_coda.",
+          "spiegazione": "L'argomento di default mutabile scarti=[] viene condiviso tra chiamate successive che omettono il parametro: i lavori falliti delle chiamate precedenti restano accumulati nella lista.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 17,
+          "tipo": "Confine",
+          "indizio": "Guarda la condizione che arresta il ciclo quando il lavoro raggiunge il limite di tentativi.",
+          "spiegazione": "Usare usati > max_tentativi al posto di >= consente un tentativo in più rispetto a max_tentativi prima di interrompere il ciclo.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 36,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Osserva il denominatore usato nel calcolo della media dei tentativi.",
+          "spiegazione": "La media divide per len(lavori) (includendo voci None o scartate) invece che per processati, sottostimando la media quando la coda contiene voci ignorate.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(esegui_coda([(\"a1\", [\"KO\", \"KO\", \"OK\"]), (\"a2\", [\"OK\"])], 2))",
+          "atteso": "ok=1; ko=1; med=1.5; scarti=['a1']",
+          "effettivo": "ok=2; ko=0; med=2.0; scarti=[]"
+        },
+        {
+          "chiamata": "esegui_coda([(\"a1\", [\"KO\"])], 1)\nprint(esegui_coda([(\"a2\", [\"OK\"])], 1))",
+          "atteso": "ok=1; ko=0; med=1.0; scarti=[]",
+          "effettivo": "ok=1; ko=0; med=1.0; scarti=['a1']"
+        },
+        {
+          "chiamata": "print(esegui_coda([(\"a1\", [\"KO\", \"OK\"]), None], 2))",
+          "atteso": "ok=1; ko=0; med=2.0; scarti=[]",
+          "effettivo": "ok=1; ko=0; med=1.0; scarti=[]"
+        },
+        {
+          "chiamata": "print(esegui_coda([(\"a1\", [\"OK\"]), (\"a2\", [\"KO\", \"OK\"])], 2))",
+          "atteso": "ok=2; ko=0; med=1.5; scarti=[]",
+          "effettivo": "ok=2; ko=0; med=1.5; scarti=[]"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def esegui_coda(lavori, max_tentativi, scarti=None):",
+        "    if lavori is None or max_tentativi <= 0:",
+        "        return \"non valido\"",
+        "    if scarti is None:",
+        "        scarti = []",
+        "    riusciti = 0",
+        "    falliti = 0",
+        "    tentativi_tot = 0",
+        "    for voce in lavori:",
+        "        if voce is None or len(voce) != 2:",
+        "            continue",
+        "        job_id, esiti = voce",
+        "        if not job_id or not job_id.strip() or not esiti:",
+        "            continue",
+        "        jid = job_id.strip()",
+        "        completato = False",
+        "        usati = 0",
+        "        for raw in esiti:",
+        "            if usati >= max_tentativi:",
+        "                break",
+        "            stato = (raw or \"\").strip().upper()",
+        "            try:",
+        "                if stato != \"OK\" and stato != \"KO\":",
+        "                    raise ValueError(\"Esito non valido\")",
+        "            except ValueError:",
+        "                break",
+        "            usati += 1",
+        "            if stato == \"OK\":",
+        "                completato = True",
+        "                break",
+        "        tentativi_tot += 1",
+        "        if completato:",
+        "            riusciti += 1",
+        "        else:",
+        "            falliti += 1",
+        "            scarti.append(jid)",
+        "    processati = riusciti + falliti",
+        "    if processati == 0:",
+        "        media = 0.0",
+        "    else:",
+        "        media = tentativi_tot // processati",
+        "    esito = f\"ok={riusciti}; ko={falliti}; med={media}\"",
+        "    return f\"{esito}; scarti={scarti}\""
+      ],
+      "output": [
+        "ok=1; ko=1; med=1; scarti=['j1']",
+        "ok=1; ko=1; med=1; scarti=['j3']",
+        "ok=1; ko=1; med=1; scarti=['j6']"
+      ],
+      "esche": [
+        "ok=1; ko=1; med=1.5; scarti=['j1']",
+        "ok=1; ko=1; med=1.5; scarti=['j3']",
+        "!ValueError",
+        "ok=1; ko=1; med=1.0; scarti=['j6']"
+      ],
+      "difetti": [
+        {
+          "riga": 25,
+          "tipo": "EccezioneInghiottita",
+          "indizio": "Controlla come viene gestito un esito sconosciuto nel ciclo interno sui tentativi.",
+          "spiegazione": "Il blocco except ValueError inghiotte l'errore dell'esito non valido interrompendo il ciclo con break, invece di lasciare propagare ValueError come specificato.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 31,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda cosa viene sommato all'accumulatore tentativi_tot al termine di ogni lavoro.",
+          "spiegazione": "Sommare 1 al posto di usati conta un solo tentativo per lavoro indipendentemente dai retry eseguiti.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 41,
+          "tipo": "DivisioneIntera",
+          "indizio": "Osserva il calcolo della media tentativi quando processati è maggiore di zero.",
+          "spiegazione": "Usare // esegue la divisione intera troncando i decimali e restituendo un intero (es. 1 invece di 1.0 o 1.5).",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(esegui_coda([None, (\"\", [\"OK\"]), (\"b1\", [])], 2))",
+          "atteso": "ok=0; ko=0; med=0.0; scarti=[]",
+          "effettivo": "ok=0; ko=0; med=0.0; scarti=[]"
+        },
+        {
+          "chiamata": "print(esegui_coda([(\"b1\", [\"ERR\"])], 2))",
+          "atteso": "!ValueError",
+          "effettivo": "ok=0; ko=1; med=1; scarti=['b1']"
+        },
+        {
+          "chiamata": "print(esegui_coda([(\"b1\", [\"KO\", \"OK\"]), (\"b2\", [\"KO\", \"OK\"])], 2))",
+          "atteso": "ok=2; ko=0; med=2.0; scarti=[]",
+          "effettivo": "ok=2; ko=0; med=1; scarti=[]"
+        },
+        {
+          "chiamata": "print(esegui_coda([(\"b1\", [\"OK\"]), (\"b2\", [\"OK\"])], 2))",
+          "atteso": "ok=2; ko=0; med=1.0; scarti=[]",
+          "effettivo": "ok=2; ko=0; med=1; scarti=[]"
+        }
+      ]
+    }
+  ]
+}

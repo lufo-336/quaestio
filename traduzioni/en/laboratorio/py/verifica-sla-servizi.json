@@ -1,0 +1,38 @@
+{
+  "titolo": "SLA check on request logs",
+  "requisito": "Analyzes a list of event dictionaries (keys \"servizio\", \"stato\", \"ms\"): skips None entries or entries with empty/None \"servizio\"; if critici is not None, keeps only services in critici (ignoring whitespace and case). Converts stato and ms with int(...), raising ValueError if invalid, stato < 100, or ms < 0. Returns \"non valido\" if eventi is None or soglia_ms <= 0; otherwise returns valid count, OK percentage (stato < 500) rounded to 1 decimal place, and slow request count (ms > soglia_ms).",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how format or range errors are handled while parsing stato and ms.",
+          "spiegazione": "The except ValueError block swallows validation errors and skips corrupt records instead of letting the check fail with ValueError as specified."
+        },
+        {
+          "indizio": "Check the inequality deciding whether a request exceeds the latency threshold.",
+          "spiegazione": "Using ms >= soglia_ms instead of > counts requests whose latency is exactly equal to soglia_ms as slow."
+        },
+        {
+          "indizio": "Look at the expression computing the final success percentage.",
+          "spiegazione": "The // operator performs integer division, truncating decimals (for example, 37.5 becomes 37) and returning an integer without the expected decimal place."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Check the condition classifying an HTTP response as successful (OK).",
+          "spiegazione": "The condition stato >= 500 is inverted relative to stato < 500: it counts server errors as OK requests and drops valid responses."
+        },
+        {
+          "indizio": "Look at the denominator used to calculate the success percentage.",
+          "spiegazione": "The percentage divides by len(eventi) (which includes None, empty, or filtered-out records) instead of totale (only the valid analyzed events)."
+        },
+        {
+          "indizio": "Look at how the service name read from each record is normalized.",
+          "spiegazione": "Without .lower(), srv_raw.strip() keeps uppercase letters: names such as \"Auth\" fail to match the lowercase keys in filtro and get skipped."
+        }
+      ]
+    }
+  }
+}

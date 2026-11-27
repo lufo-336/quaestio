@@ -1,0 +1,274 @@
+{
+  "id": "prenotazione-magazzino",
+  "titolo": "Prenotazione ordini in magazzino",
+  "livello": "alta",
+  "requisito": "Elabora una lista di comandi (azione, sku, qta) sulle giacenze iniziali senza modificare il dizionario in ingresso, ignorando voci None, sku vuoti/None o qta <= 0 e sollevando ValueError per azioni diverse da PRENOTA e RILASCIA. PRENOTA scala la scorta se disponibile (>= qta) e aggiorna i prenotati; RILASCIA riesce solo se prenotato >= qta. Restituisce \"non valido\" se giacenze o ordini è None o soglia < 0; altrimenti restituisce evasi, rifiutati, totale unità ancora prenotate e SKU con scorta <= soglia.",
+  "chiamata": "print(elabora_prenotazioni({\"A1\": 10, \"B2\": 4}, [(\"PRENOTA\", \"a1\", 4), (\"RILASCIA\", \"A1\", 1), (\"PRENOTA\", \"b2\", 4)], 2))\nprint(elabora_prenotazioni({\"A1\": 5, \"C3\": 2}, [(\"PRENOTA\", \"A1\", 2), (\"PRENOTA\", \"C3\", 4)], 3))\nprint(elabora_prenotazioni({\"A1\": 8}, [(\"PRENOTA\", \"A1\", 3), (\"RILASCIA\", \"A1\", 3)], 5))",
+  "codiceSano": [
+    "def elabora_prenotazioni(giacenze, ordini, soglia):",
+    "    if giacenze is None or ordini is None or soglia < 0:",
+    "        return \"non valido\"",
+    "    scorte = {}",
+    "    for k, v in giacenze.items():",
+    "        if k is not None and k.strip() and v >= 0:",
+    "            chiave = k.strip().upper()",
+    "            scorte[chiave] = scorte.get(chiave, 0) + v",
+    "    prenotati = {}",
+    "    evasi = 0",
+    "    rifiutati = 0",
+    "    for voce in ordini:",
+    "        if voce is None or len(voce) != 3:",
+    "            continue",
+    "        azione, sku, qta = voce",
+    "        if sku is None or not sku.strip() or qta <= 0:",
+    "            continue",
+    "        op = (azione or \"\").strip().upper()",
+    "        cod = sku.strip().upper()",
+    "        if op == \"PRENOTA\":",
+    "            if cod in scorte and scorte[cod] >= qta:",
+    "                scorte[cod] -= qta",
+    "                prenotati[cod] = prenotati.get(cod, 0) + qta",
+    "                evasi += 1",
+    "            else:",
+    "                rifiutati += 1",
+    "        elif op == \"RILASCIA\":",
+    "            if cod in prenotati and prenotati[cod] >= qta:",
+    "                prenotati[cod] -= qta",
+    "                scorte[cod] = scorte.get(cod, 0) + qta",
+    "                evasi += 1",
+    "            else:",
+    "                rifiutati += 1",
+    "        else:",
+    "            raise ValueError(\"Azione sconosciuta\")",
+    "    for k in list(prenotati):",
+    "        if prenotati[k] == 0:",
+    "            del prenotati[k]",
+    "    allerta = 0",
+    "    for q in scorte.values():",
+    "        if q <= soglia:",
+    "            allerta += 1",
+    "    tot_pren = sum(prenotati.values())",
+    "    esito = f\"evasi={evasi}; rifiutati={rifiutati}\"",
+    "    return f\"{esito}; pren={tot_pren}; allerta={allerta}\""
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def elabora_prenotazioni(giacenze, ordini, soglia):",
+        "    if giacenze is None or ordini is None or soglia < 0:",
+        "        return \"non valido\"",
+        "    scorte = {}",
+        "    for k, v in giacenze.items():",
+        "        if k is not None and k.strip() and v >= 0:",
+        "            chiave = k.strip().upper()",
+        "            scorte[chiave] = scorte.get(chiave, 0) + v",
+        "    prenotati = {}",
+        "    evasi = 0",
+        "    rifiutati = 0",
+        "    for voce in ordini:",
+        "        if voce is None or len(voce) != 3:",
+        "            continue",
+        "        azione, sku, qta = voce",
+        "        if sku is None or not sku.strip() or qta <= 0:",
+        "            continue",
+        "        op = (azione or \"\").strip().upper()",
+        "        cod = sku.strip().upper()",
+        "        if op == \"PRENOTA\":",
+        "            if cod in scorte and scorte[cod] > qta:",
+        "                scorte[cod] -= qta",
+        "                prenotati[cod] = prenotati.get(cod, 0) + qta",
+        "                evasi += 1",
+        "            else:",
+        "                rifiutati += 1",
+        "        elif op == \"RILASCIA\":",
+        "            if cod in prenotati and prenotati[cod] >= qta:",
+        "                prenotati[cod] -= qta",
+        "                scorte[cod] = scorte.get(cod, 0) + qta",
+        "                evasi += 1",
+        "            else:",
+        "                rifiutati += 1",
+        "        else:",
+        "            raise ValueError(\"Azione sconosciuta\")",
+        "    for k in prenotati:",
+        "        if prenotati[k] == 0:",
+        "            del prenotati[k]",
+        "    allerta = 0",
+        "    for q in prenotati.values():",
+        "        if q <= soglia:",
+        "            allerta += 1",
+        "    tot_pren = sum(prenotati.values())",
+        "    esito = f\"evasi={evasi}; rifiutati={rifiutati}\"",
+        "    return f\"{esito}; pren={tot_pren}; allerta={allerta}\""
+      ],
+      "output": [
+        "evasi=2; rifiutati=1; pren=3; allerta=0",
+        "evasi=1; rifiutati=1; pren=2; allerta=1",
+        "!RuntimeError"
+      ],
+      "esche": [
+        "evasi=3; rifiutati=0; pren=7; allerta=1",
+        "evasi=1; rifiutati=1; pren=2; allerta=2",
+        "evasi=2; rifiutati=0; pren=0; allerta=0",
+        "evasi=2; rifiutati=1; pren=3; allerta=1"
+      ],
+      "difetti": [
+        {
+          "riga": 36,
+          "tipo": "MutazioneIterazione",
+          "indizio": "Controlla il ciclo che ripulisce le voci azzerate dal dizionario prenotati.",
+          "spiegazione": "Iterare direttamente su prenotati mentre si esegue del prenotati[k] modifica il dizionario durante l'iterazione e solleva RuntimeError appena uno SKU viene rilasciato del tutto.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 21,
+          "tipo": "Confine",
+          "indizio": "Osserva la condizione che verifica se la scorta basta a soddisfare una prenotazione.",
+          "spiegazione": "Usare scorte[cod] > qta al posto di >= rifiuta le prenotazioni che esauriscono esattamente la giacenza residua di uno SKU.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 40,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda su quale dizionario viene eseguito il conteggio finale degli SKU in allerta.",
+          "spiegazione": "Il ciclo scorre prenotati.values() invece di scorte.values(), verificando la soglia sulle quantità prenotate anziché sulle scorte residue in magazzino.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(elabora_prenotazioni({\"X1\": 5}, [(\"PRENOTA\", \"X1\", 5)], 1))",
+          "atteso": "evasi=1; rifiutati=0; pren=5; allerta=1",
+          "effettivo": "evasi=0; rifiutati=1; pren=0; allerta=0"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"X1\": 6}, [(\"PRENOTA\", \"X1\", 2), (\"RILASCIA\", \"X1\", 2)], 1))",
+          "atteso": "evasi=2; rifiutati=0; pren=0; allerta=0",
+          "effettivo": "!RuntimeError"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"X1\": 10}, [(\"PRENOTA\", \"X1\", 3), (\"RILASCIA\", \"X1\", 1)], 1))",
+          "atteso": "evasi=2; rifiutati=0; pren=2; allerta=0",
+          "effettivo": "evasi=2; rifiutati=0; pren=2; allerta=0"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"X1\": 10, \"X2\": 1}, [(\"PRENOTA\", \"X1\", 4)], 2))",
+          "atteso": "evasi=1; rifiutati=0; pren=4; allerta=1",
+          "effettivo": "evasi=1; rifiutati=0; pren=4; allerta=0"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def elabora_prenotazioni(giacenze, ordini, soglia):",
+        "    if giacenze is None or ordini is None or soglia < 0:",
+        "        return \"non valido\"",
+        "    scorte = {}",
+        "    for k, v in giacenze.items():",
+        "        if k is not None and k.strip() and v >= 0:",
+        "            chiave = k.strip().upper()",
+        "            scorte[chiave] = scorte.get(chiave, 0) + v",
+        "    prenotati = {}",
+        "    evasi = 0",
+        "    rifiutati = 0",
+        "    for voce in ordini:",
+        "        if voce is None or len(voce) != 3:",
+        "            continue",
+        "        azione, sku, qta = voce",
+        "        if not sku.strip() or qta <= 0:",
+        "            continue",
+        "        op = (azione or \"\").strip().upper()",
+        "        cod = sku.strip()",
+        "        if op == \"PRENOTA\":",
+        "            if cod in scorte and scorte[cod] < qta:",
+        "                scorte[cod] -= qta",
+        "                prenotati[cod] = prenotati.get(cod, 0) + qta",
+        "                evasi += 1",
+        "            else:",
+        "                rifiutati += 1",
+        "        elif op == \"RILASCIA\":",
+        "            if cod in prenotati and prenotati[cod] >= qta:",
+        "                prenotati[cod] -= qta",
+        "                scorte[cod] = scorte.get(cod, 0) + qta",
+        "                evasi += 1",
+        "            else:",
+        "                rifiutati += 1",
+        "        else:",
+        "            raise ValueError(\"Azione sconosciuta\")",
+        "    for k in list(prenotati):",
+        "        if prenotati[k] == 0:",
+        "            del prenotati[k]",
+        "    allerta = 0",
+        "    for q in scorte.values():",
+        "        if q <= soglia:",
+        "            allerta += 1",
+        "    tot_pren = sum(prenotati.values())",
+        "    esito = f\"evasi={evasi}; rifiutati={rifiutati}\"",
+        "    return f\"{esito}; pren={tot_pren}; allerta={allerta}\""
+      ],
+      "output": [
+        "evasi=0; rifiutati=3; pren=0; allerta=0",
+        "evasi=1; rifiutati=1; pren=4; allerta=1",
+        "evasi=0; rifiutati=2; pren=0; allerta=0"
+      ],
+      "esche": [
+        "evasi=3; rifiutati=0; pren=7; allerta=1",
+        "evasi=1; rifiutati=1; pren=2; allerta=2",
+        "evasi=2; rifiutati=0; pren=0; allerta=0",
+        "!ValueError"
+      ],
+      "difetti": [
+        {
+          "riga": 16,
+          "tipo": "NullVuoto",
+          "indizio": "Controlla la guardia sui campi del comando prima di normalizzare lo SKU.",
+          "spiegazione": "Chiamare sku.strip() senza verificare prima che sku non sia None solleva AttributeError appena un comando contiene uno SKU nullo.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 21,
+          "tipo": "CondizioneInvertita",
+          "indizio": "Guarda la disuguaglianza che decide quando una prenotazione è accettabile.",
+          "spiegazione": "La condizione scorte[cod] < qta è invertita rispetto a >=: rifiuta gli ordini coperti dalla giacenza e accetta proprio quelli che superano le scorte, portandole in negativo.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 19,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Osserva come viene normalizzato il codice SKU letto da ciascun comando.",
+          "spiegazione": "Manca .upper() su sku.strip(): i codici in minuscolo o misto non corrispondono alle chiavi normalizzate in scorte e vengono rifiutati.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(elabora_prenotazioni({\"A1\": 5}, [(\"PRENOTA\", \"Z9\", 2), (\"PRENOTA\", \"A1\", -1)], 5))",
+          "atteso": "evasi=0; rifiutati=1; pren=0; allerta=1",
+          "effettivo": "evasi=0; rifiutati=1; pren=0; allerta=1"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"A1\": 5}, [(\"PRENOTA\", \"a1\", 3)], 1))",
+          "atteso": "evasi=1; rifiutati=0; pren=3; allerta=0",
+          "effettivo": "evasi=0; rifiutati=1; pren=0; allerta=0"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"A1\": 5}, [(\"PRENOTA\", None, 2)], 1))",
+          "atteso": "evasi=0; rifiutati=0; pren=0; allerta=0",
+          "effettivo": "!AttributeError"
+        },
+        {
+          "chiamata": "print(elabora_prenotazioni({\"A1\": 3}, [(\"PRENOTA\", \"A1\", 5)], 1))",
+          "atteso": "evasi=0; rifiutati=1; pren=0; allerta=0",
+          "effettivo": "evasi=1; rifiutati=0; pren=5; allerta=1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "titolo": "Warehouse order reservation",
+  "requisito": "Processes a list of (azione, sku, qta) commands against initial giacenze without mutating the input dictionary, skipping None entries, empty/None sku, or qta <= 0, and raising ValueError for actions other than PRENOTA and RILASCIA. PRENOTA deducts stock when available (>= qta) and tracks reserved units; RILASCIA succeeds only when reserved >= qta. Returns \"non valido\" if giacenze or ordini is None or soglia < 0; otherwise returns fulfilled count, rejected count, total still-reserved units, and SKUs with stock <= soglia.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the loop that removes zeroed entries from the prenotati dictionary.",
+          "spiegazione": "Iterating directly over prenotati while running del prenotati[k] mutates the dictionary during iteration and raises RuntimeError as soon as a SKU is fully released."
+        },
+        {
+          "indizio": "Check the condition deciding whether available stock is enough to fulfill a reservation.",
+          "spiegazione": "Using scorte[cod] > qta instead of >= rejects reservations that exactly exhaust the remaining stock of a SKU."
+        },
+        {
+          "indizio": "Look at which dictionary is iterated to count low-stock alert SKUs at the end.",
+          "spiegazione": "The loop iterates over prenotati.values() instead of scorte.values(), checking the threshold against reserved quantities rather than remaining warehouse stock."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Check the guard on command fields before normalizing the SKU string.",
+          "spiegazione": "Calling sku.strip() without checking for sku being None first raises AttributeError as soon as a command has a null SKU."
+        },
+        {
+          "indizio": "Look at the inequality that decides when a reservation is allowed.",
+          "spiegazione": "The condition scorte[cod] < qta is inverted relative to >=: it rejects orders covered by stock and accepts those exceeding stock, driving inventory negative."
+        },
+        {
+          "indizio": "Look at how the SKU code read from each command is normalized.",
+          "spiegazione": "Missing .upper() on sku.strip() prevents lowercase or mixed-case SKU codes from matching the normalized keys in scorte, causing valid orders to be rejected."
+        }
+      ]
+    }
+  }
+}

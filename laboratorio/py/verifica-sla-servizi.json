@@ -1,0 +1,256 @@
+{
+  "id": "verifica-sla-servizi",
+  "titolo": "Verifica SLA su log di richieste",
+  "livello": "alta",
+  "requisito": "Analizza una lista di dizionari evento (chiavi \"servizio\", \"stato\", \"ms\"): ignora voci None o con \"servizio\" vuoto/None; se critici non è None, considera solo i servizi in critici (ignorando spazi e maiuscole). Converte stato e ms con int(...) sollevando ValueError se non validi, stato < 100 o ms < 0. Restituisce \"non valido\" se eventi è None o soglia_ms <= 0; altrimenti restituisce totale validi, percentuale OK (stato < 500) arrotondata a 1 decimale e conteggio lenti (ms > soglia_ms).",
+  "chiamata": "print(verifica_sla([{\"servizio\": \"Auth\", \"stato\": 200, \"ms\": 100}, {\"servizio\": \"auth\", \"stato\": 502, \"ms\": 50}, {\"servizio\": \"web\", \"stato\": 500, \"ms\": 20}, None], 100, [\"auth\"]))\nprint(verifica_sla([{\"servizio\": \"api\", \"stato\": s, \"ms\": 40} for s in [200, 200, 200, 500, 500, 500, 500, 500]], 100))\nprint(verifica_sla([{\"servizio\": \"auth\", \"stato\": 200, \"ms\": 30}, {\"servizio\": \"auth\", \"stato\": \"bad\", \"ms\": 20}], 100))",
+  "codiceSano": [
+    "def verifica_sla(eventi, soglia_ms, critici=None):",
+    "    if eventi is None or soglia_ms <= 0:",
+    "        return \"non valido\"",
+    "    filtro = None",
+    "    if critici is not None:",
+    "        filtro = set()",
+    "        for nome in critici:",
+    "            if nome is not None and nome.strip():",
+    "                filtro.add(nome.strip().lower())",
+    "    totale = 0",
+    "    ok = 0",
+    "    lenti = 0",
+    "    for rec in eventi:",
+    "        if rec is None:",
+    "            continue",
+    "        srv_raw = rec.get(\"servizio\")",
+    "        if srv_raw is None or not srv_raw.strip():",
+    "            continue",
+    "        srv = srv_raw.strip().lower()",
+    "        if filtro is not None and srv not in filtro:",
+    "            continue",
+    "        stato_raw = rec.get(\"stato\")",
+    "        ms_raw = rec.get(\"ms\")",
+    "        if stato_raw is None or ms_raw is None:",
+    "            raise ValueError(\"Campo mancante\")",
+    "        stato = int(stato_raw)",
+    "        ms = int(ms_raw)",
+    "        if stato < 100 or ms < 0:",
+    "            raise ValueError(\"Valore fuori scala\")",
+    "        totale += 1",
+    "        if stato < 500:",
+    "            ok += 1",
+    "        if ms > soglia_ms:",
+    "            lenti += 1",
+    "    if totale == 0:",
+    "        return \"tot=0; ok=0.0%; lenti=0\"",
+    "    tasso = round(ok * 100 / totale, 1)",
+    "    return f\"tot={totale}; ok={tasso}%; lenti={lenti}\""
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def verifica_sla(eventi, soglia_ms, critici=None):",
+        "    if eventi is None or soglia_ms <= 0:",
+        "        return \"non valido\"",
+        "    filtro = None",
+        "    if critici is not None:",
+        "        filtro = set()",
+        "        for nome in critici:",
+        "            if nome is not None and nome.strip():",
+        "                filtro.add(nome.strip().lower())",
+        "    totale = 0",
+        "    ok = 0",
+        "    lenti = 0",
+        "    for rec in eventi:",
+        "        if rec is None:",
+        "            continue",
+        "        srv_raw = rec.get(\"servizio\")",
+        "        if srv_raw is None or not srv_raw.strip():",
+        "            continue",
+        "        srv = srv_raw.strip().lower()",
+        "        if filtro is not None and srv not in filtro:",
+        "            continue",
+        "        stato_raw = rec.get(\"stato\")",
+        "        ms_raw = rec.get(\"ms\")",
+        "        try:",
+        "            if stato_raw is None or ms_raw is None:",
+        "                raise ValueError(\"Campo mancante\")",
+        "            stato = int(stato_raw)",
+        "            ms = int(ms_raw)",
+        "            if stato < 100 or ms < 0:",
+        "                raise ValueError(\"Valore fuori scala\")",
+        "        except ValueError:",
+        "            continue",
+        "        totale += 1",
+        "        if stato < 500:",
+        "            ok += 1",
+        "        if ms >= soglia_ms:",
+        "            lenti += 1",
+        "    if totale == 0:",
+        "        return \"tot=0; ok=0.0%; lenti=0\"",
+        "    tasso = ok * 100 // totale",
+        "    return f\"tot={totale}; ok={tasso}%; lenti={lenti}\""
+      ],
+      "output": [
+        "tot=2; ok=50%; lenti=1",
+        "tot=8; ok=37%; lenti=0",
+        "tot=1; ok=100%; lenti=0"
+      ],
+      "esche": [
+        "tot=2; ok=50.0%; lenti=0",
+        "tot=8; ok=37.5%; lenti=0",
+        "!ValueError",
+        "tot=2; ok=50.0%; lenti=1"
+      ],
+      "difetti": [
+        {
+          "riga": 31,
+          "tipo": "EccezioneInghiottita",
+          "indizio": "Guarda come vengono gestiti gli errori di formato o intervallo durante il parsing di stato e ms.",
+          "spiegazione": "Il blocco except ValueError inghiotte l'errore di validazione e salta il record corrotto anziché far fallire l'analisi con ValueError come richiesto.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 36,
+          "tipo": "Confine",
+          "indizio": "Controlla la disuguaglianza che decide se una richiesta supera la soglia di latenza.",
+          "spiegazione": "Usare ms >= soglia_ms invece di > conteggia come lenti anche i record con latenza esattamente uguale a soglia_ms.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 40,
+          "tipo": "DivisioneIntera",
+          "indizio": "Osserva il calcolo della percentuale finale di richieste riuscite.",
+          "spiegazione": "L'operatore // esegue una divisione intera troncando la parte decimale (es. 37.5 diventa 37) e restituendo un intero privo del decimale richiesto.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"web\", \"stato\": 200, \"ms\": 50}], 100, [\"auth\"]))",
+          "atteso": "tot=0; ok=0.0%; lenti=0",
+          "effettivo": "tot=0; ok=0.0%; lenti=0"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"auth\", \"stato\": 200, \"ms\": -5}], 100))",
+          "atteso": "!ValueError",
+          "effettivo": "tot=0; ok=0.0%; lenti=0"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"db\", \"stato\": s, \"ms\": 20} for s in [200, 200, 200, 500, 500, 500, 500, 500]], 50))",
+          "atteso": "tot=8; ok=37.5%; lenti=0",
+          "effettivo": "tot=8; ok=37%; lenti=0"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"auth\", \"stato\": 200, \"ms\": 50}, {\"servizio\": \"auth\", \"stato\": 404, \"ms\": 80}], 80))",
+          "atteso": "tot=2; ok=100.0%; lenti=0",
+          "effettivo": "tot=2; ok=100%; lenti=1"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def verifica_sla(eventi, soglia_ms, critici=None):",
+        "    if eventi is None or soglia_ms <= 0:",
+        "        return \"non valido\"",
+        "    filtro = None",
+        "    if critici is not None:",
+        "        filtro = set()",
+        "        for nome in critici:",
+        "            if nome is not None and nome.strip():",
+        "                filtro.add(nome.strip().lower())",
+        "    totale = 0",
+        "    ok = 0",
+        "    lenti = 0",
+        "    for rec in eventi:",
+        "        if rec is None:",
+        "            continue",
+        "        srv_raw = rec.get(\"servizio\")",
+        "        if srv_raw is None or not srv_raw.strip():",
+        "            continue",
+        "        srv = srv_raw.strip()",
+        "        if filtro is not None and srv not in filtro:",
+        "            continue",
+        "        stato_raw = rec.get(\"stato\")",
+        "        ms_raw = rec.get(\"ms\")",
+        "        if stato_raw is None or ms_raw is None:",
+        "            raise ValueError(\"Campo mancante\")",
+        "        stato = int(stato_raw)",
+        "        ms = int(ms_raw)",
+        "        if stato < 100 or ms < 0:",
+        "            raise ValueError(\"Valore fuori scala\")",
+        "        totale += 1",
+        "        if stato >= 500:",
+        "            ok += 1",
+        "        if ms > soglia_ms:",
+        "            lenti += 1",
+        "    if totale == 0:",
+        "        return \"tot=0; ok=0.0%; lenti=0\"",
+        "    tasso = round(ok * 100 / len(eventi), 1)",
+        "    return f\"tot={totale}; ok={tasso}%; lenti={lenti}\""
+      ],
+      "output": [
+        "tot=1; ok=25.0%; lenti=0",
+        "tot=8; ok=62.5%; lenti=0",
+        "!ValueError"
+      ],
+      "esche": [
+        "tot=2; ok=50.0%; lenti=0",
+        "tot=8; ok=37.5%; lenti=0",
+        "tot=1; ok=100.0%; lenti=0",
+        "tot=2; ok=50%; lenti=1"
+      ],
+      "difetti": [
+        {
+          "riga": 31,
+          "tipo": "CondizioneInvertita",
+          "indizio": "Controlla la condizione che classifica una risposta HTTP come riuscita (OK).",
+          "spiegazione": "La condizione stato >= 500 è invertita rispetto a stato < 500: conta gli errori del server come richieste OK e scarta le risposte valide.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 37,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda il denominatore usato per calcolare la percentuale di successo.",
+          "spiegazione": "La percentuale divide per len(eventi) (che comprende anche record None, vuoti o filtrati fuori) anziché per totale (solo gli eventi validi analizzati).",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 19,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Osserva come viene normalizzato il nome del servizio letto da ciascun record.",
+          "spiegazione": "Senza .lower(), srv_raw.strip() conserva le maiuscole: servizi come \"Auth\" non corrispondono alle chiavi in minuscolo di filtro e vengono esclusi.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"db\", \"stato\": 200, \"ms\": 40}, {\"servizio\": \"db\", \"stato\": 201, \"ms\": 60}], 100))",
+          "atteso": "tot=2; ok=100.0%; lenti=0",
+          "effettivo": "tot=2; ok=0.0%; lenti=0"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"db\", \"stato\": 200, \"ms\": 40}, {\"servizio\": \"db\", \"stato\": 500, \"ms\": 50}, None, None], 100))",
+          "atteso": "tot=2; ok=50.0%; lenti=0",
+          "effettivo": "tot=2; ok=25.0%; lenti=0"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"db\", \"stato\": 200, \"ms\": 40}, {\"servizio\": \"db\", \"stato\": 503, \"ms\": 120}], 100))",
+          "atteso": "tot=2; ok=50.0%; lenti=1",
+          "effettivo": "tot=2; ok=50.0%; lenti=1"
+        },
+        {
+          "chiamata": "print(verifica_sla([{\"servizio\": \"Auth\", \"stato\": 200, \"ms\": 40}, {\"servizio\": \"Auth\", \"stato\": 500, \"ms\": 50}], 100, [\"auth\"]))",
+          "atteso": "tot=2; ok=50.0%; lenti=0",
+          "effettivo": "tot=0; ok=0.0%; lenti=0"
+        }
+      ]
+    }
+  ]
+}

@@ -128,6 +128,11 @@ traduzione inglese):
 - `media` (15–25 righe, 1 difetto + correzione e 2 trappole): `sconto-ordine`, `verifica-accesso`, `verifica-buffer`;
 - `alta` (30+ righe, 2–3 difetti per la review completa): `paginazione-catalogo`, `parser-righe-csv`, `pulizia-cache-ttl`.
 
+Dal 2026-11-27 anche **Python (`py`)**, stessa struttura (9 schede / 18 varianti, traduzione inglese):
+- `base`: `normalizza-email`, `filtra-finestra`, `lotti-spedizione`;
+- `media`: `budget-categorie`, `parametri-query`, `merge-intervalli`;
+- `alta`: `prenotazione-magazzino`, `verifica-sla-servizi`, `coda-retry-job`.
+
 ### Formato JSON (`wsa.quiz.core/Models/Laboratorio/`)
 
 - **`SchedaLab` (`SchedaLab.cs`)**:
@@ -157,6 +162,7 @@ traduzione inglese):
 
 - **Script C#**: `codiceSano` e `righe` sono codice C# valido come script top-level (funzioni a livello superiore, senza `class Program` o `Main`), eseguito con gli using impliciti `System`, `System.Linq`, `System.Collections.Generic`, `System.Text`.
 - **Eccezioni non gestite**: se l'esecuzione solleva un'eccezione, l'output registrato in `output`, `atteso` o `effettivo` consiste nelle eventuali righe stampate fino a quel punto seguite da una riga `!NomeEccezione` (es. `!NullReferenceException`, `!DivideByZeroException`, `!ArgumentOutOfRangeException`). Nelle stringhe multilinea (`chiamata`, `atteso`, `effettivo`) le righe sono separate da `\n`.
+- **Script Python** (`laboratorio/py/`): modulo Python 3 con funzioni a livello superiore, la `chiamata` stampa con `print(...)`. Gli output sono quelli reali di `print` (`True`, `None`, `90.0`, `[1, 2]`); un'eccezione non gestita dà `!NomeEccezione` (es. `!ZeroDivisionError`), un `SyntaxError`/`IndentationError` conta come "non compila" (ammesso solo nelle trappole). Il test lancia `py -3` su Windows e `python3` altrove: per `dotnet test` serve Python installato.
 - **Cultura invariante**: tutti gli output sono valutati con `CultureInfo.InvariantCulture` (decimali col punto, es. `7.5`). Nel runner di test (`LaboratorioEsecuzioneTests.Esegui`), oltre a impostare `CultureInfo.CurrentCulture = CultureInfo.InvariantCulture`, lo `StringWriter` passato a `Console.SetOut` va costruito esplicitamente con `new StringWriter(CultureInfo.InvariantCulture)`: `TextWriter` fissa infatti il proprio `FormatProvider` al momento della costruzione, perciò un `new StringWriter()` senza argomenti cattura la cultura del sistema operativo (formattando `7,5` su macchine italiane).
 
 ### Verifica con i test
@@ -169,7 +175,7 @@ dotnet test wsa.quiz.core.tests --filter Laboratorio
 ```
 
 - **`LaboratorioCoerenzaTests`**: controlla struttura JSON, unicità degli id, vincoli su `righe`/`esche`/`difetti`/`input` e completezza delle traduzioni inglesi.
-- **`LaboratorioEsecuzioneTests`**: compila ed esegue ogni variante C# con Roslyn (`Microsoft.CodeAnalysis.CSharp.Scripting`, dipendenza del solo progetto di test). Verifica che `righe + chiamata` stampi `output`, che su ogni `input` `codiceSano` stampi `atteso` e `righe` stampi `effettivo`, e — per il livello `media` — che la riga `correzione` produca `atteso` su tutti gli input mentre ciascuna `trappola` fallisca (o non compili) su almeno un input. Quando un'asserzione fallisce, il messaggio riporta scheda, variante, input e il valore reale stampato dal codice.
+- **`LaboratorioEsecuzioneTests`**: esegue ogni variante: C# con Roslyn (`Microsoft.CodeAnalysis.CSharp.Scripting`, dipendenza del solo progetto di test), Python con l'interprete di sistema (`EseguiPython`). Verifica che `righe + chiamata` stampi `output`, che su ogni `input` `codiceSano` stampi `atteso` e `righe` stampi `effettivo`, e — per il livello `media` — che la riga `correzione` produca `atteso` su tutti gli input mentre ciascuna `trappola` fallisca (o non compili) su almeno un input. Quando un'asserzione fallisce, il messaggio riporta scheda, variante, input e il valore reale stampato dal codice.
 
 ### Traduzioni (`traduzioni/en/laboratorio/`)
 
@@ -186,4 +192,4 @@ Ogni scheda ha un file di sovrapposizione in `traduzioni/<lingua>/laboratorio/<l
 1. Aggiungere la coppia `(Id, Nome)` a `LaboratorioService.Linguaggi` in `wsa.quiz.core/Services/LaboratorioService.cs` (es. `("py", "Python")`).
 2. Creare i file delle schede in `laboratorio/<id>/*.json` e le traduzioni in `traduzioni/en/laboratorio/<id>/*.json` (i glob `..\laboratorio\**\*.json` e `..\traduzioni\**\*.json` nei csproj li includono già).
 3. La UI in `HomeView` elenca automaticamente i linguaggi di `LaboratorioService.Linguaggi` che hanno almeno una scheda valida e registra i risultati in cronologia/statistiche come `"<Nome> · Laboratorio"`.
-4. Estendere `LaboratorioEsecuzioneTests` per smistare l'esecuzione in base alla sottocartella del linguaggio (Roslyn per `cs`, runner specifico per il nuovo linguaggio).
+4. Estendere `LaboratorioEsecuzioneTests.Esegui`, che smista l'esecuzione in base alla sottocartella del linguaggio (Roslyn per `cs`, `EseguiPython` per `py`), con il runner del nuovo linguaggio.
