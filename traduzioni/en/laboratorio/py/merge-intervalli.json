@@ -1,0 +1,22 @@
+{
+  "titolo": "Merging time intervals",
+  "requisito": "Given a list of (inizio, fine) intervals in minutes, ignores None entries, entries whose length is not 2, negative values, or cases with inizio > fine, sorts the remaining ones, and merges intervals that overlap or touch (inizio <= fine_precedente). Returns [] if the list is None, empty, or has no valid intervals.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the condition that decides whether the current interval should merge with the previous one.",
+          "spiegazione": "Using inizio < fine_c instead of <= excludes adjacent intervals that touch at an endpoint (such as (10, 20) and (20, 30)), leaving them separate."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at how the end bound of the merged interval is computed.",
+          "spiegazione": "Assigning fine directly instead of max(fine_c, fine) shrinks the interval whenever the second one is fully contained in the first (e.g., (10, 40) and (15, 25) become (10, 25))."
+        }
+      ]
+    }
+  }
+}

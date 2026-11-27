@@ -1,0 +1,173 @@
+{
+  "id": "parametri-query",
+  "titolo": "Parsing di una query string",
+  "livello": "media",
+  "requisito": "Estrae un dizionario di coppie chiave=valore da una query string (se contiene '?', usa la parte dopo il primo '?'), ignorando segmenti senza '=' o con chiave vuota dopo il trim. Per le chiavi presenti in chiavi_intere converte il valore con int (lasciando propagare ValueError se non valido); se query è None o vuota restituisce {}.",
+  "chiamata": "print(estrai_parametri(\"https://sito.it?pag=2&tag=py\", {\"pag\"}))\nprint(estrai_parametri(\"?token=ab=cd&&pag=10\", {\"pag\"}))\nprint(estrai_parametri(\"pag=abc&tag=web\", {\"pag\"}))",
+  "codiceSano": [
+    "def estrai_parametri(query, chiavi_intere):",
+    "    if query is None or not query.strip():",
+    "        return {}",
+    "    testo = query.strip()",
+    "    if \"?\" in testo:",
+    "        testo = testo.split(\"?\", 1)[1]",
+    "    risultato = {}",
+    "    for blocco in testo.split(\"&\"):",
+    "        if \"=\" not in blocco:",
+    "            continue",
+    "        chiave, val = blocco.split(\"=\", 1)",
+    "        chiave = chiave.strip()",
+    "        if not chiave:",
+    "            continue",
+    "        val = val.strip()",
+    "        if chiavi_intere and chiave in chiavi_intere:",
+    "            val = int(val)",
+    "        risultato[chiave] = val",
+    "    return risultato"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def estrai_parametri(query, chiavi_intere):",
+        "    if query is None or not query.strip():",
+        "        return {}",
+        "    testo = query.strip()",
+        "    if \"?\" in testo:",
+        "        testo = testo.split(\"?\", 1)[1]",
+        "    risultato = {}",
+        "    for blocco in testo.split(\"&\"):",
+        "        if \"=\" not in blocco:",
+        "            continue",
+        "        chiave, val = blocco.split(\"=\", 1)",
+        "        chiave = chiave.strip()",
+        "        if not chiave:",
+        "            continue",
+        "        val = val.strip()",
+        "        if chiavi_intere and chiave in chiavi_intere:",
+        "            try:",
+        "                val = int(val)",
+        "            except ValueError:",
+        "                val = 0",
+        "        risultato[chiave] = val",
+        "    return risultato"
+      ],
+      "output": [
+        "{'pag': 2, 'tag': 'py'}",
+        "{'token': 'ab=cd', 'pag': 10}",
+        "{'pag': 0, 'tag': 'web'}"
+      ],
+      "esche": [
+        "!ValueError",
+        "{'pag': 'abc', 'tag': 'web'}",
+        "{'tag': 'web'}",
+        "{'token': 'ab=cd', 'pag': '10'}"
+      ],
+      "difetti": [
+        {
+          "riga": 20,
+          "tipo": "EccezioneInghiottita",
+          "indizio": "Guarda come viene gestito un valore non numerico nel blocco try/except.",
+          "spiegazione": "Il ramo except ValueError inghiotte l'errore di conversione assegnando val = 0 invece di propagare ValueError come richiesto quando un parametro intero non è valido.",
+          "correzione": "                raise",
+          "trappole": [
+            "                val = None",
+            "                continue"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(estrai_parametri(\"pag=x2&limite=5\", {\"pag\", \"limite\"}))",
+          "atteso": "!ValueError",
+          "effettivo": "{'pag': 0, 'limite': 5}"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"?ordine=asc&pag=3\", {\"pag\"}))",
+          "atteso": "{'ordine': 'asc', 'pag': 3}",
+          "effettivo": "{'ordine': 'asc', 'pag': 3}"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"chiave=a=b&senza_uguale& =vuota\", set()))",
+          "atteso": "{'chiave': 'a=b'}",
+          "effettivo": "{'chiave': 'a=b'}"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"   \", {\"pag\"}))",
+          "atteso": "{}",
+          "effettivo": "{}"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def estrai_parametri(query, chiavi_intere):",
+        "    if not query.strip():",
+        "        return {}",
+        "    testo = query.strip()",
+        "    if \"?\" in testo:",
+        "        testo = testo.split(\"?\", 1)[1]",
+        "    risultato = {}",
+        "    for blocco in testo.split(\"&\"):",
+        "        if \"=\" not in blocco:",
+        "            continue",
+        "        chiave, val = blocco.split(\"=\", 1)",
+        "        chiave = chiave.strip()",
+        "        if not chiave:",
+        "            continue",
+        "        val = val.strip()",
+        "        if chiavi_intere and chiave in chiavi_intere:",
+        "            val = int(val)",
+        "        risultato[chiave] = val",
+        "    return risultato"
+      ],
+      "output": [
+        "{'pag': 2, 'tag': 'py'}",
+        "{'token': 'ab=cd', 'pag': 10}",
+        "!ValueError"
+      ],
+      "esche": [
+        "{'pag': 0, 'tag': 'web'}",
+        "{'pag': 'abc', 'tag': 'web'}",
+        "{'token': 'ab', 'pag': 10}",
+        "!AttributeError"
+      ],
+      "difetti": [
+        {
+          "riga": 2,
+          "tipo": "NullVuoto",
+          "indizio": "Guarda la guardia iniziale sul parametro query.",
+          "spiegazione": "Chiamare query.strip() senza verificare prima che query sia None solleva AttributeError appena viene passato None.",
+          "correzione": "    if query is None or not query.strip():",
+          "trappole": [
+            "    if not query.strip() or query is None:",
+            "    if len(query) == 0:"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(estrai_parametri(None, {\"pag\"}))",
+          "atteso": "{}",
+          "effettivo": "!AttributeError"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"  \", {\"pag\"}))",
+          "atteso": "{}",
+          "effettivo": "{}"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"https://app.it?pag=4&v=ok\", {\"pag\"}))",
+          "atteso": "{'pag': 4, 'v': 'ok'}",
+          "effettivo": "{'pag': 4, 'v': 'ok'}"
+        },
+        {
+          "chiamata": "print(estrai_parametri(\"filtro=a=b&pag=1\", {\"pag\"}))",
+          "atteso": "{'filtro': 'a=b', 'pag': 1}",
+          "effettivo": "{'filtro': 'a=b', 'pag': 1}"
+        }
+      ]
+    }
+  ]
+}

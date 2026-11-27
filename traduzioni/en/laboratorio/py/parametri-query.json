@@ -1,0 +1,22 @@
+{
+  "titolo": "Query string parsing",
+  "requisito": "Extracts a dictionary of key=value pairs from a query string (if '?' is present, uses the part after the first '?'), ignoring segments without '=' or with an empty key after trimming. For keys in chiavi_intere, converts the value with int (letting ValueError propagate if invalid); returns {} if query is None or empty.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how an invalid integer value is handled inside the try/except block.",
+          "spiegazione": "The except ValueError branch swallows the conversion error by assigning val = 0 instead of propagating ValueError as required when an integer parameter is invalid."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the initial guard check on the query parameter.",
+          "spiegazione": "Calling query.strip() without checking for None first raises AttributeError whenever None is passed."
+        }
+      ]
+    }
+  }
+}

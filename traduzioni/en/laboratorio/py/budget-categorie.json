@@ -1,0 +1,22 @@
+{
+  "titolo": "Category budget check",
+  "requisito": "Given a list of expenses (categoria, importo), a limiti dictionary (lowercase keys -> budget), and soglia_min, sums positive amounts per category (trimming whitespace and ignoring case or entries with None/empty category), discards categories with total < soglia_min, and returns \"cat=N; oltre=M; tot=S\" (remaining categories, how many exceed their budget, and total spent); returns \"nessun dato\" if spese is empty/None, limiti is None, or soglia_min < 0.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the loop that removes categories below the minimum threshold.",
+          "spiegazione": "Iterating directly over totali while running del totali[cat] mutates the dictionary during iteration and raises RuntimeError as soon as a category is removed."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at how the category key is normalized before accumulating.",
+          "spiegazione": "Without .lower(), cat.strip() preserves uppercase letters: entries like \"Vitto\" and \"vitto\" stay separate and fail to match the lowercase keys in limiti."
+        }
+      ]
+    }
+  }
+}

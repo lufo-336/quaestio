@@ -1,0 +1,170 @@
+{
+  "id": "budget-categorie",
+  "titolo": "Controllo budget per categoria",
+  "livello": "media",
+  "requisito": "Dati un elenco di spese (categoria, importo), un dizionario limiti (chiavi in minuscolo -> budget) e soglia_min, somma gli importi positivi per categoria (rimuovendo spazi ai bordi e ignorando maiuscole/minuscole o voci con categoria None/vuota), scarta le categorie con totale < soglia_min e restituisce \"cat=N; oltre=M; tot=S\" (categorie rimaste, quante superano il rispettivo limite e totale speso); se spese è vuoto/None, limiti è None o soglia_min < 0 restituisce \"nessun dato\".",
+  "chiamata": "print(riepilogo_budget([(\"Vitto\", 80), (\"vitto \", 40), (\"Viaggi\", 150)], {\"vitto\": 100, \"viaggi\": 200}, 50))\nprint(riepilogo_budget([(\"Vitto\", 50), (None, 30), (\"Tech\", 0), (\"Tech\", 80)], {\"vitto\": 50}, 20))\nprint(riepilogo_budget([(\"Vitto\", 100), (\"Cancelleria\", 15)], {\"vitto\": 90}, 30))",
+  "codiceSano": [
+    "def riepilogo_budget(spese, limiti, soglia_min):",
+    "    if not spese or limiti is None or soglia_min < 0:",
+    "        return \"nessun dato\"",
+    "    totali = {}",
+    "    for cat, importo in spese:",
+    "        if cat is None or not cat.strip() or importo <= 0:",
+    "            continue",
+    "        chiave = cat.strip().lower()",
+    "        totali[chiave] = totali.get(chiave, 0) + importo",
+    "    for cat in list(totali):",
+    "        if totali[cat] < soglia_min:",
+    "            del totali[cat]",
+    "    oltre = 0",
+    "    somma = 0",
+    "    for cat, tot in totali.items():",
+    "        somma += tot",
+    "        if cat in limiti and tot > limiti[cat]:",
+    "            oltre += 1",
+    "    return f\"cat={len(totali)}; oltre={oltre}; tot={somma}\""
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def riepilogo_budget(spese, limiti, soglia_min):",
+        "    if not spese or limiti is None or soglia_min < 0:",
+        "        return \"nessun dato\"",
+        "    totali = {}",
+        "    for cat, importo in spese:",
+        "        if cat is None or not cat.strip() or importo <= 0:",
+        "            continue",
+        "        chiave = cat.strip().lower()",
+        "        totali[chiave] = totali.get(chiave, 0) + importo",
+        "    for cat in totali:",
+        "        if totali[cat] < soglia_min:",
+        "            del totali[cat]",
+        "    oltre = 0",
+        "    somma = 0",
+        "    for cat, tot in totali.items():",
+        "        somma += tot",
+        "        if cat in limiti and tot > limiti[cat]:",
+        "            oltre += 1",
+        "    return f\"cat={len(totali)}; oltre={oltre}; tot={somma}\""
+      ],
+      "output": [
+        "cat=2; oltre=1; tot=270",
+        "cat=2; oltre=0; tot=130",
+        "!RuntimeError"
+      ],
+      "esche": [
+        "cat=1; oltre=1; tot=100",
+        "cat=2; oltre=1; tot=115",
+        "cat=2; oltre=1; tot=130",
+        "cat=2; oltre=2; tot=270"
+      ],
+      "difetti": [
+        {
+          "riga": 10,
+          "tipo": "MutazioneIterazione",
+          "indizio": "Guarda il ciclo che elimina le categorie sotto la soglia minima.",
+          "spiegazione": "Scorrere direttamente totali mentre si esegue del totali[cat] modifica il dizionario durante l'iterazione e solleva RuntimeError appena una categoria viene rimossa.",
+          "correzione": "    for cat in list(totali):",
+          "trappole": [
+            "    for cat in totali.keys():",
+            "    for cat in iter(totali):"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(riepilogo_budget([(\"Vitto\", 60), (\"Svago\", 10)], {\"vitto\": 50}, 20))",
+          "atteso": "cat=1; oltre=1; tot=60",
+          "effettivo": "!RuntimeError"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([(\"Vitto\", 40), (\"Vitto\", 30)], {\"vitto\": 80}, 50))",
+          "atteso": "cat=1; oltre=0; tot=70",
+          "effettivo": "cat=1; oltre=0; tot=70"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([(\"  \", 50), (\"Viaggi\", 90)], {\"viaggi\": 90}, 30))",
+          "atteso": "cat=1; oltre=0; tot=90",
+          "effettivo": "cat=1; oltre=0; tot=90"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([], {\"vitto\": 50}, 10))",
+          "atteso": "nessun dato",
+          "effettivo": "nessun dato"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def riepilogo_budget(spese, limiti, soglia_min):",
+        "    if not spese or limiti is None or soglia_min < 0:",
+        "        return \"nessun dato\"",
+        "    totali = {}",
+        "    for cat, importo in spese:",
+        "        if cat is None or not cat.strip() or importo <= 0:",
+        "            continue",
+        "        chiave = cat.strip()",
+        "        totali[chiave] = totali.get(chiave, 0) + importo",
+        "    for cat in list(totali):",
+        "        if totali[cat] < soglia_min:",
+        "            del totali[cat]",
+        "    oltre = 0",
+        "    somma = 0",
+        "    for cat, tot in totali.items():",
+        "        somma += tot",
+        "        if cat in limiti and tot > limiti[cat]:",
+        "            oltre += 1",
+        "    return f\"cat={len(totali)}; oltre={oltre}; tot={somma}\""
+      ],
+      "output": [
+        "cat=2; oltre=0; tot=230",
+        "cat=2; oltre=0; tot=130",
+        "cat=1; oltre=0; tot=100"
+      ],
+      "esche": [
+        "cat=2; oltre=1; tot=270",
+        "cat=1; oltre=1; tot=100",
+        "cat=3; oltre=0; tot=270",
+        "cat=2; oltre=0; tot=270"
+      ],
+      "difetti": [
+        {
+          "riga": 8,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Guarda come viene normalizzata la chiave della categoria prima dell'accumulo.",
+          "spiegazione": "Senza .lower(), cat.strip() mantiene le maiuscole: voci come \"Vitto\" e \"vitto\" restano distinte e non corrispondono alle chiavi in minuscolo di limiti.",
+          "correzione": "        chiave = cat.strip().lower()",
+          "trappole": [
+            "        chiave = cat.lower()",
+            "        chiave = cat.strip().upper()"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(riepilogo_budget([(\"Vitto\", 70), (\" vitto \", 50)], {\"vitto\": 100}, 40))",
+          "atteso": "cat=1; oltre=1; tot=120",
+          "effettivo": "cat=2; oltre=0; tot=120"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([(\"vitto\", 120), (\"viaggi\", 80)], {\"vitto\": 100, \"viaggi\": 100}, 30))",
+          "atteso": "cat=2; oltre=1; tot=200",
+          "effettivo": "cat=2; oltre=1; tot=200"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([(\"vitto\", 40), (\"tech\", 10)], {\"vitto\": 50}, 20))",
+          "atteso": "cat=1; oltre=0; tot=40",
+          "effettivo": "cat=1; oltre=0; tot=40"
+        },
+        {
+          "chiamata": "print(riepilogo_budget([(\"vitto\", -5), (\"\", 30)], {\"vitto\": 50}, 10))",
+          "atteso": "cat=0; oltre=0; tot=0",
+          "effettivo": "cat=0; oltre=0; tot=0"
+        }
+      ]
+    }
+  ]
+}

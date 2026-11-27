@@ -1,0 +1,179 @@
+{
+  "id": "merge-intervalli",
+  "titolo": "Unione di intervalli temporali",
+  "livello": "media",
+  "requisito": "Data una lista di intervalli (inizio, fine) in minuti, ignora le voci nulle, di lunghezza diversa da 2, con valori negativi o con inizio > fine, ordina i restanti e unisce gli intervalli che si sovrappongono o si toccano (inizio <= fine_precedente). Restituisce [] se la lista è None, vuota o priva di intervalli validi.",
+  "chiamata": "print(merge_intervalli([(10, 20), (20, 30), (35, 40)]))\nprint(merge_intervalli([(10, 50), (20, 30)]))\nprint(merge_intervalli([(25, 10), (15, 25), (5, 18)]))",
+  "codiceSano": [
+    "def merge_intervalli(intervalli):",
+    "    if not intervalli:",
+    "        return []",
+    "    validi = []",
+    "    for voce in intervalli:",
+    "        if voce is None or len(voce) != 2:",
+    "            continue",
+    "        inizio, fine = voce",
+    "        if inizio < 0 or fine < 0 or inizio > fine:",
+    "            continue",
+    "        validi.append((inizio, fine))",
+    "    if not validi:",
+    "        return []",
+    "    validi.sort()",
+    "    uniti = [validi[0]]",
+    "    for inizio, fine in validi[1:]:",
+    "        inizio_c, fine_c = uniti[-1]",
+    "        if inizio <= fine_c:",
+    "            uniti[-1] = (inizio_c, max(fine_c, fine))",
+    "        else:",
+    "            uniti.append((inizio, fine))",
+    "    return uniti"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def merge_intervalli(intervalli):",
+        "    if not intervalli:",
+        "        return []",
+        "    validi = []",
+        "    for voce in intervalli:",
+        "        if voce is None or len(voce) != 2:",
+        "            continue",
+        "        inizio, fine = voce",
+        "        if inizio < 0 or fine < 0 or inizio > fine:",
+        "            continue",
+        "        validi.append((inizio, fine))",
+        "    if not validi:",
+        "        return []",
+        "    validi.sort()",
+        "    uniti = [validi[0]]",
+        "    for inizio, fine in validi[1:]:",
+        "        inizio_c, fine_c = uniti[-1]",
+        "        if inizio < fine_c:",
+        "            uniti[-1] = (inizio_c, max(fine_c, fine))",
+        "        else:",
+        "            uniti.append((inizio, fine))",
+        "    return uniti"
+      ],
+      "output": [
+        "[(10, 20), (20, 30), (35, 40)]",
+        "[(10, 50)]",
+        "[(5, 25)]"
+      ],
+      "esche": [
+        "[(10, 30), (35, 40)]",
+        "[(10, 30)]",
+        "[(5, 25), (25, 10)]",
+        "[(10, 20), (35, 40)]"
+      ],
+      "difetti": [
+        {
+          "riga": 18,
+          "tipo": "Confine",
+          "indizio": "Guarda la condizione che decide se l'intervallo corrente va unito al precedente.",
+          "spiegazione": "Usare inizio < fine_c al posto di <= esclude gli intervalli adiacenti che si toccano a un estremo (es. (10, 20) e (20, 30)), lasciandoli separati.",
+          "correzione": "        if inizio <= fine_c:",
+          "trappole": [
+            "        if inizio < fine_c - 1:",
+            "        if inizio == fine_c:"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(merge_intervalli([(10, 20), (20, 30)]))",
+          "atteso": "[(10, 30)]",
+          "effettivo": "[(10, 20), (20, 30)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(10, 20), (15, 25)]))",
+          "atteso": "[(10, 25)]",
+          "effettivo": "[(10, 25)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(1, 4), (8, 12)]))",
+          "atteso": "[(1, 4), (8, 12)]",
+          "effettivo": "[(1, 4), (8, 12)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(25, 30), (5, 2), (10, 15)]))",
+          "atteso": "[(10, 15), (25, 30)]",
+          "effettivo": "[(10, 15), (25, 30)]"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def merge_intervalli(intervalli):",
+        "    if not intervalli:",
+        "        return []",
+        "    validi = []",
+        "    for voce in intervalli:",
+        "        if voce is None or len(voce) != 2:",
+        "            continue",
+        "        inizio, fine = voce",
+        "        if inizio < 0 or fine < 0 or inizio > fine:",
+        "            continue",
+        "        validi.append((inizio, fine))",
+        "    if not validi:",
+        "        return []",
+        "    validi.sort()",
+        "    uniti = [validi[0]]",
+        "    for inizio, fine in validi[1:]:",
+        "        inizio_c, fine_c = uniti[-1]",
+        "        if inizio <= fine_c:",
+        "            uniti[-1] = (inizio_c, fine)",
+        "        else:",
+        "            uniti.append((inizio, fine))",
+        "    return uniti"
+      ],
+      "output": [
+        "[(10, 30), (35, 40)]",
+        "[(10, 30)]",
+        "[(5, 25)]"
+      ],
+      "esche": [
+        "[(10, 50)]",
+        "[(10, 20), (20, 30), (35, 40)]",
+        "[(20, 50)]",
+        "[(5, 18)]"
+      ],
+      "difetti": [
+        {
+          "riga": 19,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda come viene calcolato l'estremo finale dell'intervallo unito.",
+          "spiegazione": "Assegnare direttamente fine al posto di max(fine_c, fine) accorcia l'intervallo quando il secondo è contenuto interamente nel primo (es. (10, 40) e (15, 25) diventano (10, 25)).",
+          "correzione": "            uniti[-1] = (inizio_c, max(fine_c, fine))",
+          "trappole": [
+            "            uniti[-1] = (inizio_c, min(fine_c, fine))",
+            "            uniti[-1] = (inizio, max(fine_c, fine))"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(merge_intervalli([(10, 40), (15, 25)]))",
+          "atteso": "[(10, 40)]",
+          "effettivo": "[(10, 25)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(5, 15), (10, 20)]))",
+          "atteso": "[(5, 20)]",
+          "effettivo": "[(5, 20)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(0, 10), (10, 25)]))",
+          "atteso": "[(0, 25)]",
+          "effettivo": "[(0, 25)]"
+        },
+        {
+          "chiamata": "print(merge_intervalli([(-3, 5), (20, 10), (30, 40)]))",
+          "atteso": "[(30, 40)]",
+          "effettivo": "[(30, 40)]"
+        }
+      ]
+    }
+  ]
+}
