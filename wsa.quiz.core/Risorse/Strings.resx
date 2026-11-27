@@ -376,4 +376,7 @@
   <data name="Lab_RimuoviSegno" xml:space="preserve"><value>Rimuovi segno</value></data>
   <data name="Lab_ReviewParziale" xml:space="preserve"><value>Review parziale (½ punto)</value></data>
   <data name="Lab_DifettoMancato" xml:space="preserve"><value>{0} (non segnato)</value></data>
+  <data name="Lab_CronologiaVuotoIniziale" xml:space="preserve"><value>Avvia una sessione del Laboratorio dalla Home per iniziare a costruire la tua cronologia.</value></data>
+  <data name="Lab_StatisticheVuoto" xml:space="preserve"><value>Nessuna scheda completata</value></data>
+  <data name="Lab_StatisticheVuotoDesc" xml:space="preserve"><value>Avvia una sessione del Laboratorio dalla Home per vedere le statistiche.</value></data>
 </root>

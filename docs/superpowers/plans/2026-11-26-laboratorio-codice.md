@@ -472,6 +472,8 @@ almeno un input che espone il più grave. Stessa regola del Task 4 per i test. O
 
 ## Task 13: Interruttore globale in Cronologia, Statistiche e Sospesi
 
+- [x] Fatto 2026-11-27 (agy): file `wsa.quiz.core/Models/FiltroCronologia.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx`, `wsa.quiz.core.tests/FiltroCronologiaTests.cs`, `wsa.quiz.app/Views/HomeView.axaml.cs`, `wsa.quiz.app/Views/CronologiaView.axaml(.cs)`, `wsa.quiz.app/Views/StatisticheView.axaml(.cs)`, `wsa.quiz.app/Views/SospesiView.axaml(.cs)`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell; riletti i file modificati e il nuovo test)
+
 - Lo stesso interruttore **Quiz | Laboratorio** della Home in cima a `CronologiaView`, `StatisticheView` e
   `SospesiView`. È un'unica scelta (`PreferenzeUtente.Laboratorio`): ogni vista espone una proprietà `Laboratorio` e un
   evento `LaboratorioCambiato`; `MainView` lo propaga alle altre quattro viste e salva la preferenza una volta sola.

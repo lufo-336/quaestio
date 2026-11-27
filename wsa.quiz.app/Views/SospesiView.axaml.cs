@@ -26,6 +26,26 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
     /// costruisce la sessione e cambia view.</summary>
     public event EventHandler<SessionePausa>? RiprendiRichiesto;
 
+    /// <summary>Sollevato quando l'utente commuta l'interruttore globale Quiz | Laboratorio.</summary>
+    public event EventHandler<bool>? LaboratorioCambiato;
+
+    private bool _laboratorio;
+    /// <summary>True in modalita' Laboratorio, false in modalita' Quiz.</summary>
+    public bool Laboratorio
+    {
+        get => _laboratorio;
+        set
+        {
+            if (_laboratorio != value)
+            {
+                _laboratorio = value;
+                Raise();
+                Ricarica();
+                LaboratorioCambiato?.Invoke(this, _laboratorio);
+            }
+        }
+    }
+
     public SospesiView()
     {
         InitializeComponent();
@@ -43,8 +63,22 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
         };
     }
 
+    /// <summary>Inizializza la vista con lo storage e lo stato iniziale dell'interruttore globale.</summary>
+    public void Inizializza(StorageService storage, bool laboratorio)
+    {
+        _laboratorio = laboratorio;
+        Raise(nameof(Laboratorio));
+        base.Inizializza(storage);
+    }
+
+    private void OnModoQuizClick(object? sender, RoutedEventArgs e) => Laboratorio = false;
+
+    private void OnModoLabClick(object? sender, RoutedEventArgs e) => Laboratorio = true;
+
     protected override void RicaricaCore()
     {
+        if (_laboratorio) return;
+
         var pause = _storage!.CaricaPause();
         foreach (var p in pause.OrderByDescending(x => x.DataOraPausa))
             Sessioni.Add(new SessioneSospesaItem(p));
@@ -99,6 +133,8 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
         switch (e.Key)
         {
             case Key.Enter:
+                if (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is Button)
+                    return;
                 e.Handled = true;
                 RiprendiRichiesto?.Invoke(this, item.Pausa);
                 return;

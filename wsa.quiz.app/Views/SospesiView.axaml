@@ -16,6 +16,48 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Margin" Value="0"/>
         </Style>
+
+        <Style Selector="Button.segmento">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segmento /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.segmento:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento.attivo:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoPressedBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoPressedBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segmento:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaDebole}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoAttenuato}"/>
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
     </UserControl.Styles>
 
     <DockPanel>
@@ -39,6 +81,22 @@
                     Padding="14,6"
                     FontSize="12"
                     ToolTip.Tip="{x:Static r:Strings.Sospesi_AggiornaTip}"/>
+        </Grid>
+
+        <!-- Interruttore globale Quiz | Laboratorio -->
+        <Grid DockPanel.Dock="Top"
+              ColumnDefinitions="*,6,*"
+              Margin="20,0,20,8">
+            <Button Grid.Column="0"
+                    Classes="segmento"
+                    Classes.attivo="{Binding !Laboratorio}"
+                    Content="{x:Static r:Strings.Lab_ModoQuiz}"
+                    Click="OnModoQuizClick"/>
+            <Button Grid.Column="2"
+                    Classes="segmento"
+                    Classes.attivo="{Binding Laboratorio}"
+                    Content="{x:Static r:Strings.Lab_ModoLaboratorio}"
+                    Click="OnModoLabClick"/>
         </Grid>
 
         <!-- ======================================== STATO VUOTO -->

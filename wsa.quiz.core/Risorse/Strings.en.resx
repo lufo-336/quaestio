@@ -376,4 +376,7 @@
   <data name="Lab_RimuoviSegno" xml:space="preserve"><value>Remove mark</value></data>
   <data name="Lab_ReviewParziale" xml:space="preserve"><value>Partial review (½ point)</value></data>
   <data name="Lab_DifettoMancato" xml:space="preserve"><value>{0} (missed)</value></data>
+  <data name="Lab_CronologiaVuotoIniziale" xml:space="preserve"><value>Start a Lab session from Home to begin building your history.</value></data>
+  <data name="Lab_StatisticheVuoto" xml:space="preserve"><value>No lab exercises completed yet</value></data>
+  <data name="Lab_StatisticheVuotoDesc" xml:space="preserve"><value>Start a Lab session from Home to see your statistics.</value></data>
 </root>

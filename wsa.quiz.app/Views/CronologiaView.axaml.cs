@@ -25,6 +25,31 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
 {
     // ------------------------------------------------------------------ STATO
 
+    /// <summary>Sollevato quando l'utente commuta l'interruttore globale Quiz | Laboratorio.</summary>
+    public event EventHandler<bool>? LaboratorioCambiato;
+
+    private bool _laboratorio;
+    /// <summary>True in modalita' Laboratorio, false in modalita' Quiz.</summary>
+    public bool Laboratorio
+    {
+        get => _laboratorio;
+        set
+        {
+            if (_laboratorio == value) return;
+            _laboratorio = value;
+            _filtro.Laboratorio = value;
+            Raise();
+            if (ModoDettaglio)
+            {
+                DettaglioArea.Content = null;
+                ModoDettaglio = false;
+            }
+            AggiornaMaterieFiltro();
+            ApplicaFiltri();
+            LaboratorioCambiato?.Invoke(this, _laboratorio);
+        }
+    }
+
     private bool _modoDettaglio;
     /// <summary>
     /// True quando si sta visualizzando il dettaglio di una sessione (sub-view
@@ -99,6 +124,19 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
 
         QuizColors.CollegaCambioTema(this, AggiornaColoriTema);
     }
+
+    /// <summary>Inizializza la vista con lo storage e lo stato iniziale dell'interruttore globale.</summary>
+    public void Inizializza(StorageService storage, bool laboratorio)
+    {
+        _laboratorio = laboratorio;
+        _filtro.Laboratorio = laboratorio;
+        Raise(nameof(Laboratorio));
+        base.Inizializza(storage);
+    }
+
+    private void OnModoQuizClick(object? sender, RoutedEventArgs e) => Laboratorio = false;
+
+    private void OnModoLabClick(object? sender, RoutedEventArgs e) => Laboratorio = true;
 
     private void AggiornaColoriTema()
     {
@@ -212,7 +250,7 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
     /// </summary>
     public string TestoVuoto => FiltriAttivi
         ? Strings.Cronologia_VuotoFiltri
-        : Strings.Cronologia_VuotoIniziale;
+        : (Laboratorio ? Strings.Lab_CronologiaVuotoIniziale : Strings.Cronologia_VuotoIniziale);
 
     /// <summary>Riporta ogni criterio al valore neutro e rimostra tutto.</summary>
     public void AzzeraFiltri()
@@ -282,13 +320,16 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         Raise(nameof(TestoVuoto));
     }
 
+    private IEnumerable<RisultatoQuiz> SessioniDelModo =>
+        _tutte.Where(r => LaboratorioService.ERisultatoLab(r) == _laboratorio);
+
     /// <summary>
     /// Aggiorna la tendina materie tenendo la scelta corrente se esiste ancora
     /// (una materia puo' sparire se si elimina l'ultima partita che la conteneva).
     /// </summary>
     private void AggiornaMaterieFiltro()
     {
-        var disponibili = FiltroCronologia.MaterieDisponibili(_tutte);
+        var disponibili = FiltroCronologia.MaterieDisponibili(SessioniDelModo);
 
         // Il binding TwoWay del ComboBox rimanda indietro SelectedItem = null appena
         // la collezione viene svuotata: la scelta va salvata PRIMA della Clear,
@@ -324,10 +365,13 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         ApplicaFiltri();
     }
 
-    protected override string FormatSottotitolo(int count) =>
-        FiltriAttivi ? string.Format(Strings.Cronologia_NDiMSessioni, count, _tutte.Count)
-        : count == 0 ? Strings.Cronologia_NessunaSessioneRegistrata
-        : string.Format(Strings.Cronologia_NSessioniRegistrate, count);
+    protected override string FormatSottotitolo(int count)
+    {
+        int totaleModo = SessioniDelModo.Count();
+        return FiltriAttivi ? string.Format(Strings.Cronologia_NDiMSessioni, count, totaleModo)
+            : count == 0 ? Strings.Cronologia_NessunaSessioneRegistrata
+            : string.Format(Strings.Cronologia_NSessioniRegistrate, count);
+    }
 
     protected override void EliminaDaStorage(RisultatoCronologiaItem item)
         => _storage!.EliminaRisultato(item.Id);
@@ -356,6 +400,8 @@ public partial class CronologiaView : TabellaViewBase<RisultatoCronologiaItem>
         switch (e.Key)
         {
             case Key.Enter:
+                if (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is Button)
+                    return;
                 e.Handled = true;
                 ApriDettaglio(item);
                 return;

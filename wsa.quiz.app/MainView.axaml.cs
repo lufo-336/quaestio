@@ -42,6 +42,7 @@ public partial class MainView : UserControl
     private ImpostazioniView? _impostazioniView;
     private PreferenzeUtente _preferenze = new();
     private int _ultimoIndiceSalvato = -1;
+    private bool _propagandoLaboratorio;
 
     // Aree contenuto dell'host attivo: su desktop puntano ai ContentControl dentro
     // il TabControl, su touch a quelli dentro il Carousel. Impostate in
@@ -660,23 +661,27 @@ public partial class MainView : UserControl
             AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
             _homeView.LaboratorioAvviato += OnLaboratorioAvviato;
+            _homeView.LaboratorioCambiato += OnLaboratorioCambiato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
             _homeArea.Content = _homeView;
 
             // ---------- Tab Cronologia ----------
             _cronologiaView = new CronologiaView();
-            _cronologiaView.Inizializza(_storage);
+            _cronologiaView.Inizializza(_storage, _preferenze.Laboratorio);
+            _cronologiaView.LaboratorioCambiato += OnLaboratorioCambiato;
             _cronologiaArea.Content = _cronologiaView;
 
             // ---------- Tab Sospesi ----------
             _sospesiView = new SospesiView();
-            _sospesiView.Inizializza(_storage);
+            _sospesiView.Inizializza(_storage, _preferenze.Laboratorio);
+            _sospesiView.LaboratorioCambiato += OnLaboratorioCambiato;
             _sospesiView.RiprendiRichiesto += OnRiprendiSospesa;
             _sospesiArea.Content = _sospesiView;
 
             // ---------- Tab Statistiche ----------
             _statisticheView = new StatisticheView();
-            _statisticheView.Inizializza(_storage);
+            _statisticheView.Inizializza(_storage, _preferenze.Laboratorio);
+            _statisticheView.LaboratorioCambiato += OnLaboratorioCambiato;
             _statisticheView.RipassaRichiesto += OnRipassaRichiesto;
             _statisticheArea.Content = _statisticheView;
 
@@ -738,8 +743,41 @@ public partial class MainView : UserControl
         nameof(HomeView.RandomizzaOrdine), nameof(HomeView.Rotazione), nameof(HomeView.SecondaPossibilita), nameof(HomeView.Cronometro),
         nameof(HomeView.LimitaDomande), nameof(HomeView.LimiteN), nameof(HomeView.ModalitaTempo), nameof(HomeView.MinutiTempo),
         nameof(HomeView.TipiEsclusi), nameof(HomeView.LivelliEsclusi),
-        nameof(HomeView.Laboratorio), nameof(HomeView.LabLivello), nameof(HomeView.LabRipassa), nameof(HomeView.LabSchede)
+        nameof(HomeView.LabLivello), nameof(HomeView.LabRipassa), nameof(HomeView.LabSchede)
     };
+
+    private void OnLaboratorioCambiato(object? sender, bool laboratorio)
+    {
+        if (_propagandoLaboratorio) return;
+        _propagandoLaboratorio = true;
+        try
+        {
+            _preferenze.Laboratorio = laboratorio;
+
+            if (_homeView != null && _homeView.Laboratorio != laboratorio)
+                _homeView.Laboratorio = laboratorio;
+            if (_cronologiaView != null && _cronologiaView.Laboratorio != laboratorio)
+                _cronologiaView.Laboratorio = laboratorio;
+            if (_statisticheView != null && _statisticheView.Laboratorio != laboratorio)
+                _statisticheView.Laboratorio = laboratorio;
+            if (_sospesiView != null && _sospesiView.Laboratorio != laboratorio)
+                _sospesiView.Laboratorio = laboratorio;
+
+            if (_storage != null)
+            {
+                var prefs = _storage.CaricaPreferenze();
+                if (prefs.Laboratorio != laboratorio)
+                {
+                    prefs.Laboratorio = laboratorio;
+                    _storage.SalvaPreferenze(prefs);
+                }
+            }
+        }
+        finally
+        {
+            _propagandoLaboratorio = false;
+        }
+    }
 
     /// <summary>Salva su preferenze.json ad ogni cambio di una delle opzioni
     /// quiz in Home (Step 13). Filtra sul nome proprieta' per non salvare
@@ -885,6 +923,7 @@ public partial class MainView : UserControl
             AggiornaStoricoHome();
             _homeView.QuizAvviato += OnQuizAvviato;
             _homeView.LaboratorioAvviato += OnLaboratorioAvviato;
+            _homeView.LaboratorioCambiato += OnLaboratorioCambiato;
             _homeView.PropertyChanged += OnHomeOpzioniCambiate;
         }
         _homeArea.Content = _homeView;

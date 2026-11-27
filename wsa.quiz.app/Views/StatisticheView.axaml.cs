@@ -27,9 +27,31 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
 {
     public new event PropertyChangedEventHandler? PropertyChanged;
     public event EventHandler<RichiestaRipasso>? RipassaRichiesto;
+    public event EventHandler<bool>? LaboratorioCambiato;
 
     private StorageService? _storage;
     private readonly StatisticheService _servizio = new();
+
+    private bool _laboratorio;
+    public bool Laboratorio
+    {
+        get => _laboratorio;
+        set
+        {
+            if (_laboratorio != value)
+            {
+                _laboratorio = value;
+                Raise();
+                Raise(nameof(TitoloVuoto));
+                Raise(nameof(DescrizioneVuoto));
+                Ricarica();
+                LaboratorioCambiato?.Invoke(this, _laboratorio);
+            }
+        }
+    }
+
+    public string TitoloVuoto => _laboratorio ? Strings.Lab_StatisticheVuoto : Strings.Statistiche_NessunQuiz;
+    public string DescrizioneVuoto => _laboratorio ? Strings.Lab_StatisticheVuotoDesc : Strings.Statistiche_NessunQuizDesc;
 
     public ObservableCollection<MateriaStatItem> Materie { get; } = new();
     public ObservableCollection<CategoriaStatItem> CategorieFiltrate { get; } = new();
@@ -178,9 +200,13 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
         Raise(nameof(MateriaColore));
     }
 
-    public void Inizializza(StorageService storage)
+    public void Inizializza(StorageService storage, bool laboratorio = false)
     {
         _storage = storage;
+        _laboratorio = laboratorio;
+        Raise(nameof(Laboratorio));
+        Raise(nameof(TitoloVuoto));
+        Raise(nameof(DescrizioneVuoto));
         Ricarica();
     }
 
@@ -195,9 +221,12 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
 
         try
         {
-            var cronologia = _storage.CaricaCronologia();
+            var cronologiaModo = _storage.CaricaCronologia()
+                .Where(r => LaboratorioService.ERisultatoLab(r) == _laboratorio)
+                .ToList();
             int? limite = ModalitaTutto ? null : LimiteUltimeN;
-            var stat = _servizio.Calcola(cronologia, limite);
+            var stat = _servizio.Calcola(cronologiaModo, limite)
+                .Where(r => r.Materia.EndsWith(LaboratorioService.SuffissoMateria, StringComparison.Ordinal) == _laboratorio);
 
             var items = stat
                 .Select(r => new MateriaStatItem(r))
@@ -208,7 +237,7 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
             foreach (var item in items)
                 Materie.Add(item);
 
-            NessunDato = cronologia.Count == 0;
+            NessunDato = cronologiaModo.Count == 0;
             FiltroTroppoStretto = !NessunDato && Materie.Count == 0;
 
             var daSelezionare = precedente != null
@@ -232,6 +261,10 @@ public partial class StatisticheView : UserControl, INotifyPropertyChanged
     }
 
     // ------------------------------------------------------------------ INTERAZIONI
+
+    private void OnModoQuizClick(object? sender, RoutedEventArgs e) => Laboratorio = false;
+
+    private void OnModoLabClick(object? sender, RoutedEventArgs e) => Laboratorio = true;
 
     private void OnAggiornaClick(object? sender, RoutedEventArgs e) => Ricarica();
 

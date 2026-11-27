@@ -1,3 +1,5 @@
+using Wsa.Quiz.Core.Services;
+
 namespace Wsa.Quiz.Core.Models;
 
 /// <summary>
@@ -23,6 +25,9 @@ public class FiltroCronologia
     public bool IncludiAbbandonati { get; set; } = true;
     public bool IncludiTempoScaduto { get; set; } = true;
 
+    /// <summary>Se true isola le sessioni del Laboratorio; se false solo i quiz. Escluso da <see cref="Attivo"/>.</summary>
+    public bool Laboratorio { get; set; }
+
     /// <summary>True se almeno un criterio e' impostato (usato per il sottotitolo "X di Y").</summary>
     public bool Attivo =>
         !string.IsNullOrWhiteSpace(Materia)
@@ -36,6 +41,9 @@ public class FiltroCronologia
 
     private bool Passa(RisultatoQuiz r)
     {
+        if (LaboratorioService.ERisultatoLab(r) != Laboratorio)
+            return false;
+
         if (!string.IsNullOrWhiteSpace(Materia) && !RiguardaMateria(r, Materia))
             return false;
 

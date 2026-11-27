@@ -33,6 +33,9 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
     /// <summary>Sollevato al click di "Inizia" in modalita' Laboratorio.</summary>
     public event EventHandler<SessioneLaboratorio>? LaboratorioAvviato;
 
+    /// <summary>Sollevato quando l'utente commuta l'interruttore globale Quiz | Laboratorio.</summary>
+    public event EventHandler<bool>? LaboratorioCambiato;
+
     public new event PropertyChangedEventHandler? PropertyChanged;
 
     // ------------------------------------------------------------------ DATI
@@ -146,6 +149,7 @@ public partial class HomeView : UserControl, INotifyPropertyChanged
                 Raise();
                 Raise(nameof(EtichettaAvvia));
                 AggiornaRiepilogo();
+                LaboratorioCambiato?.Invoke(this, _laboratorio);
             }
         }
     }
