@@ -505,6 +505,11 @@ public partial class MainView : UserControl
         if (!AppEnv.TouchMode) return;
 
         AppEnv.SystemBarInsetsChanged += OnSystemBarInsetsChanged;
+        // Avviata a schermo bloccato, l'app riceve le insets quando RenderScaling vale ancora 1:
+        // i padding venivano 3 volte troppo grandi e restavano così (le insets poi non cambiano).
+        // Ricalcolo anche quando cambia la scala.
+        _topLevel = TopLevel.GetTopLevel(this);
+        if (_topLevel != null) _topLevel.ScalingChanged += OnScalingChanged;
         if (OperatingSystem.IsIOS() || OperatingSystem.IsBrowser())
         {
             _insetsIos = TopLevel.GetTopLevel(this)?.InsetsManager;
@@ -520,6 +525,11 @@ public partial class MainView : UserControl
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         AppEnv.SystemBarInsetsChanged -= OnSystemBarInsetsChanged;
+        if (_topLevel != null)
+        {
+            _topLevel.ScalingChanged -= OnScalingChanged;
+            _topLevel = null;
+        }
         if (_insetsIos != null)
         {
             _insetsIos.SafeAreaChanged -= OnSafeAreaIosChanged;
@@ -531,6 +541,10 @@ public partial class MainView : UserControl
     // Le insets Android arrivano su thread UI ma le rimando comunque sul dispatcher
     // per disaccoppiarle dal dispatch di sistema.
     private void OnSystemBarInsetsChanged() => Dispatcher.UIThread.Post(ApplicaSafeArea);
+
+    private TopLevel? _topLevel;
+
+    private void OnScalingChanged(object? sender, EventArgs e) => Dispatcher.UIThread.Post(ApplicaSafeArea);
 
     // iOS: l'InsetsManager del TopLevel dà la safe area in unità logiche; la porto in
     // pixel fisici (come fa la MainActivity) e la passo ad AppEnv, così ApplicaSafeArea
@@ -558,9 +572,10 @@ public partial class MainView : UserControl
         // vive dentro un LayoutTransformControl scalato ScalaTouch su un TopLevel con
         // RenderScaling: 1 unità locale = ScalaTouch × RenderScaling pixel fisici. Per
         // riservare S px servono S/(ScalaTouch×RenderScaling) unità. RenderScaling è letto
-        // a runtime (su questo device vale 1, non la densità).
-        double f = AppEnv.ScalaTouch * (TopLevel.GetTopLevel(this)?.RenderScaling ?? 1.0);
-        HeaderBorder.Padding = new Thickness(20, 12 + s.Top / f, 20, 12);
+        // a runtime e può cambiare dopo l'avvio (vedi OnScalingChanged).
+        var top = TopLevel.GetTopLevel(this);
+        if (top == null) return;
+        double f = AppEnv.ScalaTouch * top.RenderScaling;        HeaderBorder.Padding = new Thickness(20, 12 + s.Top / f, 20, 12);
         BottomNav.Padding = new Thickness(0, 0, 0, s.Bottom / f);
         RootDock.Margin = new Thickness(s.Left / f, 0, s.Right / f, 0);
     }
