@@ -9,7 +9,7 @@
        APK/IPA pubblicato, altrimenti l'aggiornamento non si installa sopra.
        Regola: terzo numero = correzioni, secondo = funzioni nuove. -->
   <PropertyGroup>
-    <Version>2.3.0</Version>
+    <Version>2.3.1</Version>
   </PropertyGroup>
 
 </Project>
