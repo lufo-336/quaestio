@@ -190,6 +190,51 @@ public static class LaboratorioService
     }
 
     /// <summary>
+    /// Calcola il punteggio normalizzato (0..1) della review completa (livello alta):
+    /// +1 per ogni difetto segnato sulla riga giusta con il tipo giusto,
+    /// +0,5 se sulla riga giusta con tipo sbagliato,
+    /// -1 per ogni segno su una riga senza difetti;
+    /// il totale viene diviso per il numero di difetti e limitato a [0, 1].
+    /// </summary>
+    public static double PunteggioReview(VarianteLab? variante, IReadOnlyDictionary<int, string>? segni)
+    {
+        if (variante == null || variante.Difetti.Count == 0 || segni == null || segni.Count == 0)
+            return 0.0;
+
+        var righeDifetti = new Dictionary<int, string>();
+        foreach (var d in variante.Difetti)
+            righeDifetti.TryAdd(d.Riga, d.Tipo);
+
+        double punti = 0.0;
+        foreach (var d in variante.Difetti)
+        {
+            if (segni.TryGetValue(d.Riga, out var tipoSegnato))
+                punti += string.Equals(tipoSegnato, d.Tipo, StringComparison.Ordinal) ? 1.0 : 0.5;
+        }
+
+        foreach (var (riga, _) in segni)
+        {
+            if (!righeDifetti.ContainsKey(riga))
+                punti -= 1.0;
+        }
+
+        return Math.Clamp(punti / variante.Difetti.Count, 0.0, 1.0);
+    }
+
+    /// <summary>
+    /// Converte il punteggio della review (0..1) nei flag per l'archivio:
+    /// 1 → giusto (<c>Corretta = true, SecondoTentativo = false</c>);
+    /// 0,5 ≤ p &lt; 1 → peso ½ (<c>Corretta = true, SecondoTentativo = true</c>);
+    /// &lt; 0,5 → sbagliato (<c>Corretta = false, SecondoTentativo = false</c>).
+    /// </summary>
+    public static (bool Corretta, bool SecondoTentativo) EsitoReview(double punteggio)
+    {
+        if (punteggio >= 1.0) return (true, false);
+        if (punteggio >= 0.5) return (true, true);
+        return (false, false);
+    }
+
+    /// <summary>
     /// Seleziona al massimo <paramref name="quante"/> coppie (scheda, variante) del livello richiesto,
     /// garantendo al più un elemento per scheda:
     /// - se <paramref name="ripassa"/> è false: preferisce varianti mai viste (una a caso per scheda,

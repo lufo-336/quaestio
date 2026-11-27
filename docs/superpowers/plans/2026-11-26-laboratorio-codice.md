@@ -438,6 +438,8 @@ riuscita e fallita, peso ½ visibile in Statistiche.
 
 ## Task 11: Review completa
 
+- [x] Fatto 2026-11-27 (agy): file `wsa.quiz.core/Services/LaboratorioService.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx`, `wsa.quiz.app/State/SessioneLaboratorio.cs`, `wsa.quiz.app/State/LaboratorioItems.cs`, `wsa.quiz.app/Views/LaboratorioView.axaml`, `wsa.quiz.app/Views/LaboratorioView.axaml.cs`, `wsa.quiz.core.tests/LaboratorioServiceTests.cs` — verifica: non eseguita (sessione headless senza shell; riletti i file modificati; `SchedaLab.cs` e `LaboratorioCoerenzaTests.cs` già contenevano commento e regole strutturali)
+
 Riferimento: mockup `trova-bug.html` variante C.
 
 - **Passo 2 alta:** si segnano più righe, a ognuna si dà un tipo (lo stesso elenco del base); un contatore "difetti

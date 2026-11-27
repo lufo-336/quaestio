@@ -29,11 +29,25 @@ public class RigaCodiceItem : ObservableObject
         set => SetField(ref _isSelected, value);
     }
 
+    private bool _isSegnata;
+    public bool IsSegnata
+    {
+        get => _isSegnata;
+        set => SetField(ref _isSegnata, value);
+    }
+
     private bool _isCorretta;
     public bool IsCorretta
     {
         get => _isCorretta;
         set => SetField(ref _isCorretta, value);
+    }
+
+    private bool _isParziale;
+    public bool IsParziale
+    {
+        get => _isParziale;
+        set => SetField(ref _isParziale, value);
     }
 
     private bool _isSbagliata;
@@ -42,6 +56,19 @@ public class RigaCodiceItem : ObservableObject
         get => _isSbagliata;
         set => SetField(ref _isSbagliata, value);
     }
+
+    private string _etichettaSegno = string.Empty;
+    public string EtichettaSegno
+    {
+        get => _etichettaSegno;
+        set
+        {
+            if (SetField(ref _etichettaSegno, value))
+                RaisePropertyChanged(nameof(MostraEtichettaSegno));
+        }
+    }
+
+    public bool MostraEtichettaSegno => !string.IsNullOrEmpty(_etichettaSegno);
 
     public RigaCodiceItem(int numero, string testo)
     {
@@ -401,5 +428,64 @@ public class CorrezioneBugItem : ObservableObject
     {
         Indice = indice;
         Testo = testo;
+    }
+}
+
+/// <summary>
+/// Segno aggiunto su una riga nel passo 2 di livello alta ("Review completa").
+/// </summary>
+public class SegnoBugItem : ObservableObject
+{
+    public int Riga { get; }
+    public string Tipo { get; }
+    public string Etichetta { get; }
+
+    private bool _interattivo = true;
+    public bool Interattivo
+    {
+        get => _interattivo;
+        set => SetField(ref _interattivo, value);
+    }
+
+    private bool _puoRimuovere = true;
+    public bool PuoRimuovere
+    {
+        get => _puoRimuovere;
+        set => SetField(ref _puoRimuovere, value);
+    }
+
+    private bool _isAttiva;
+    public bool IsAttiva
+    {
+        get => _isAttiva;
+        set => SetField(ref _isAttiva, value);
+    }
+
+    private bool _isCorretta;
+    public bool IsCorretta
+    {
+        get => _isCorretta;
+        set => SetField(ref _isCorretta, value);
+    }
+
+    private bool _isParziale;
+    public bool IsParziale
+    {
+        get => _isParziale;
+        set => SetField(ref _isParziale, value);
+    }
+
+    private bool _isSbagliata;
+    public bool IsSbagliata
+    {
+        get => _isSbagliata;
+        set => SetField(ref _isSbagliata, value);
+    }
+
+    public SegnoBugItem(int riga, string tipo, string etichetta)
+    {
+        Riga = riga;
+        Tipo = tipo;
+        Etichetta = etichetta;
     }
 }

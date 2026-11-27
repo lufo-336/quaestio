@@ -17,7 +17,7 @@ using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
-/// Schermata di esecuzione di una sessione del Laboratorio di codice (livello base).
+/// Schermata di esecuzione di una sessione del Laboratorio di codice (livelli base, media e alta).
 /// Riceve nel costruttore una <see cref="SessioneLaboratorio"/> non ancora avviata
 /// e la avvia in <c>OnAttachedToVisualTree</c>.
 /// </summary>
@@ -39,6 +39,8 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     private string? _tipoSelezionato;
     private string? _correzioneSelezionata;
     private int? _indiceInputSelezionato;
+    private readonly Dictionary<int, string> _segniAlta = new();
+    private int? _rigaAttivaAlta;
 
     public ObservableCollection<RigaCodiceItem> RigheCodice { get; } = new();
     public ObservableCollection<MenuOutputItem> RigheMenuOutput { get; } = new();
@@ -46,6 +48,7 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     public ObservableCollection<TesseraCompostaItem> OutputComposto { get; } = new();
     public ObservableCollection<TipoDifettoItem> TipiDifettoVoci { get; } = new();
     public ObservableCollection<CorrezioneBugItem> CorrezioniBug { get; } = new();
+    public ObservableCollection<SegnoBugItem> SegniAggiunti { get; } = new();
     public ObservableCollection<InputCandidatoItem> InputCandidati { get; } = new();
 
     // ------------------------------------------------------------------ PROPRIETA' LEGATE DALLA UI
@@ -74,13 +77,33 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     public bool IsPassoOutputTessere => IsPassoOutput && !Sessione.IsLivelloBase;
     public bool OutputCompostoVuoto => OutputComposto.Count == 0;
     public bool IsPassoBug => Sessione.Passo == PassoLab.TrovaBug;
-    public bool MostraPannelloTipo => IsPassoBug && Sessione.IsLivelloBase && Sessione.RigaTrovata;
+    public bool IsPassoBugAlta => IsPassoBug && Sessione.IsLivelloAlta;
+    public bool MostraPannelloTipo => IsPassoBug &&
+        ((Sessione.IsLivelloBase && Sessione.RigaTrovata) ||
+         (Sessione.IsLivelloAlta && Sessione.InAttesaDiRisposta && _rigaAttivaAlta.HasValue));
     public bool MostraPannelloCorrezione => IsPassoBug && Sessione.IsLivelloMedia && Sessione.RigaTrovata;
+    public bool HaSegniAlta => SegniAggiunti.Count > 0;
+    public bool PuoRimuovereRigaAttiva =>
+        Sessione.IsLivelloAlta && Sessione.InAttesaDiRisposta &&
+        _rigaAttivaAlta.HasValue && _segniAlta.ContainsKey(_rigaAttivaAlta.Value);
+    public string TitoloPannelloTipo => Sessione.IsLivelloAlta && _rigaAttivaAlta.HasValue
+        ? string.Format(Strings.Lab_RigaCheTipo, _rigaAttivaAlta.Value)
+        : Strings.Lab_CheTipoErrore;
+    public string ContatoreSegniAlta
+    {
+        get
+        {
+            int attesi = Sessione.VarianteCorrente?.Difetti.Count ?? 0;
+            return string.Format(Strings.Lab_DifettiSegnatiNDiM, _segniAlta.Count, attesi);
+        }
+    }
     public bool IsPassoInput => Sessione.Passo == PassoLab.RompiFunzione;
 
-    public string SuggerimentoPassoBug => !Sessione.RigaTrovata
-        ? Strings.Lab_SuggerimentoTrovaBugRiga
-        : (Sessione.IsLivelloMedia ? Strings.Lab_SuggerimentoScegliCorrezione : Strings.Lab_SuggerimentoScegliTipo);
+    public string SuggerimentoPassoBug => Sessione.IsLivelloAlta
+        ? Strings.Lab_SuggerimentoReview
+        : (!Sessione.RigaTrovata
+            ? Strings.Lab_SuggerimentoTrovaBugRiga
+            : (Sessione.IsLivelloMedia ? Strings.Lab_SuggerimentoScegliCorrezione : Strings.Lab_SuggerimentoScegliTipo));
 
     public string EtichettaAvanti => Sessione.EUltimoPassoDellaSessione
         ? Strings.Lab_Fine
@@ -91,11 +114,13 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         PassoLab.PrevediOutput => Sessione.IsLivelloBase
             ? RigheMenuOutput.Count > 0 && RigheMenuOutput.All(r => r.VoceSelezionata != null)
             : OutputComposto.Count > 0,
-        PassoLab.TrovaBug => !Sessione.RigaTrovata
-            ? _rigaSelezionata.HasValue
-            : (Sessione.IsLivelloMedia
-                ? !string.IsNullOrEmpty(_correzioneSelezionata)
-                : !string.IsNullOrEmpty(_tipoSelezionato)),
+        PassoLab.TrovaBug => Sessione.IsLivelloAlta
+            ? _segniAlta.Count > 0
+            : (!Sessione.RigaTrovata
+                ? _rigaSelezionata.HasValue
+                : (Sessione.IsLivelloMedia
+                    ? !string.IsNullOrEmpty(_correzioneSelezionata)
+                    : !string.IsNullOrEmpty(_tipoSelezionato))),
         PassoLab.RompiFunzione => _indiceInputSelezionato.HasValue,
         _ => false
     };
@@ -248,6 +273,9 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         _tipoSelezionato = null;
         _correzioneSelezionata = null;
         _indiceInputSelezionato = null;
+        _segniAlta.Clear();
+        _rigaAttivaAlta = null;
+        SegniAggiunti.Clear();
         FeedbackTitolo = string.Empty;
         FeedbackDettaglio = string.Empty;
         OutputAttesoTesto = string.Empty;
@@ -257,8 +285,11 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         {
             r.Interattiva = eBug && Sessione.InAttesaDiRisposta && !Sessione.RigaTrovata && r.Numero != Sessione.PrimaRigaErrata;
             r.IsSelected = false;
+            r.IsSegnata = false;
             r.IsCorretta = false;
+            r.IsParziale = false;
             r.IsSbagliata = false;
+            r.EtichettaSegno = string.Empty;
         }
 
         if (Sessione.Passo == PassoLab.PrevediOutput)
@@ -353,6 +384,14 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     {
         if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta || Sessione.RigaTrovata) return;
         if (sender is not Button { DataContext: RigaCodiceItem riga }) return;
+
+        if (Sessione.IsLivelloAlta)
+        {
+            SelezionaRigaAlta(riga.Numero);
+            Focus();
+            return;
+        }
+
         if (Sessione.PrimaRigaErrata == riga.Numero) return;
 
         _rigaSelezionata = riga.Numero;
@@ -365,8 +404,35 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     private void OnTipoDifettoClick(object? sender, RoutedEventArgs e)
     {
-        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta || !Sessione.RigaTrovata) return;
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.InAttesaDiRisposta) return;
         if (sender is not Button { DataContext: TipoDifettoItem item }) return;
+
+        if (Sessione.IsLivelloAlta)
+        {
+            if (!_rigaAttivaAlta.HasValue) return;
+            int riga = _rigaAttivaAlta.Value;
+            _segniAlta[riga] = item.Id;
+
+            foreach (var t in TipiDifettoVoci)
+                t.IsSelected = t.Id == item.Id;
+
+            foreach (var r in RigheCodice)
+            {
+                if (r.Numero == riga)
+                {
+                    r.IsSegnata = true;
+                    r.EtichettaSegno = item.Etichetta;
+                }
+            }
+
+            RicostruisciSegniAggiunti();
+            NotificaStatoAlta();
+            Raise(nameof(PuoConfermare));
+            Focus();
+            return;
+        }
+
+        if (!Sessione.RigaTrovata) return;
 
         _tipoSelezionato = item.Id;
         foreach (var t in TipiDifettoVoci)
@@ -374,6 +440,96 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
         Raise(nameof(PuoConfermare));
         Focus();
+    }
+
+    private void OnSegnoBugClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.IsLivelloAlta || !Sessione.InAttesaDiRisposta) return;
+        if (sender is not Button { DataContext: SegnoBugItem item }) return;
+
+        SelezionaRigaAlta(item.Riga);
+        Focus();
+    }
+
+    private void OnRimuoviSegnoClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.IsLivelloAlta || !Sessione.InAttesaDiRisposta) return;
+        if (sender is not Button { DataContext: SegnoBugItem item }) return;
+
+        RimuoviSegnoAlta(item.Riga);
+        Focus();
+    }
+
+    private void OnRimuoviSegnoAttivoClick(object? sender, RoutedEventArgs e)
+    {
+        if (Sessione.Passo != PassoLab.TrovaBug || !Sessione.IsLivelloAlta || !Sessione.InAttesaDiRisposta) return;
+        if (!_rigaAttivaAlta.HasValue) return;
+
+        RimuoviSegnoAlta(_rigaAttivaAlta.Value);
+        Focus();
+    }
+
+    private void SelezionaRigaAlta(int numeroRiga)
+    {
+        _rigaAttivaAlta = numeroRiga;
+        _segniAlta.TryGetValue(numeroRiga, out var tipoEsistente);
+
+        foreach (var r in RigheCodice)
+            r.IsSelected = r.Numero == numeroRiga;
+
+        foreach (var t in TipiDifettoVoci)
+            t.IsSelected = string.Equals(t.Id, tipoEsistente, StringComparison.Ordinal);
+
+        foreach (var s in SegniAggiunti)
+            s.IsAttiva = s.Riga == numeroRiga;
+
+        NotificaStatoAlta();
+    }
+
+    private void RimuoviSegnoAlta(int numeroRiga)
+    {
+        if (!_segniAlta.Remove(numeroRiga)) return;
+
+        foreach (var r in RigheCodice)
+        {
+            if (r.Numero == numeroRiga)
+            {
+                r.IsSegnata = false;
+                r.EtichettaSegno = string.Empty;
+            }
+        }
+
+        if (_rigaAttivaAlta == numeroRiga)
+        {
+            foreach (var t in TipiDifettoVoci)
+                t.IsSelected = false;
+        }
+
+        RicostruisciSegniAggiunti();
+        NotificaStatoAlta();
+        Raise(nameof(PuoConfermare));
+    }
+
+    private void RicostruisciSegniAggiunti()
+    {
+        SegniAggiunti.Clear();
+        foreach (var kv in _segniAlta.OrderBy(x => x.Key))
+        {
+            string etichetta = $"{string.Format(Strings.Lab_RigaN, kv.Key)} · {TipiDifetto.Etichetta(kv.Value)}";
+            SegniAggiunti.Add(new SegnoBugItem(kv.Key, kv.Value, etichetta)
+            {
+                IsAttiva = _rigaAttivaAlta == kv.Key
+            });
+        }
+    }
+
+    private void NotificaStatoAlta()
+    {
+        Raise(nameof(MostraPannelloTipo));
+        Raise(nameof(TitoloPannelloTipo));
+        Raise(nameof(PuoRimuovereRigaAttiva));
+        Raise(nameof(ContatoreSegniAlta));
+        Raise(nameof(HaSegniAlta));
     }
 
     private void OnCorrezioneBugClick(object? sender, RoutedEventArgs e)
@@ -453,6 +609,76 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
             case PassoLab.TrovaBug:
             {
+                if (Sessione.IsLivelloAlta)
+                {
+                    Sessione.RispondiBugReview(_segniAlta);
+
+                    var difettiPerRiga = variante.Difetti.ToDictionary(d => d.Riga);
+
+                    foreach (var r in RigheCodice)
+                    {
+                        r.Interattiva = false;
+                        r.IsSelected = false;
+                        r.IsSegnata = false;
+
+                        bool haDifetto = difettiPerRiga.TryGetValue(r.Numero, out var dif);
+                        bool haSegno = _segniAlta.TryGetValue(r.Numero, out var tipoSegnato);
+
+                        if (haDifetto && haSegno)
+                        {
+                            if (string.Equals(tipoSegnato, dif!.Tipo, StringComparison.Ordinal))
+                            {
+                                r.IsCorretta = true;
+                                r.EtichettaSegno = $"✓ {TipiDifetto.Etichetta(dif.Tipo)}";
+                            }
+                            else
+                            {
+                                r.IsParziale = true;
+                                r.EtichettaSegno = $"½ {TipiDifetto.Etichetta(tipoSegnato!)} → {TipiDifetto.Etichetta(dif.Tipo)}";
+                            }
+                        }
+                        else if (haDifetto)
+                        {
+                            r.IsCorretta = true;
+                            r.EtichettaSegno = string.Format(Strings.Lab_DifettoMancato, TipiDifetto.Etichetta(dif!.Tipo));
+                        }
+                        else if (haSegno)
+                        {
+                            r.IsSbagliata = true;
+                            r.EtichettaSegno = $"✗ {TipiDifetto.Etichetta(tipoSegnato!)}";
+                        }
+                    }
+
+                    foreach (var s in SegniAggiunti)
+                    {
+                        s.Interattivo = false;
+                        s.PuoRimuovere = false;
+                        s.IsAttiva = false;
+
+                        if (difettiPerRiga.TryGetValue(s.Riga, out var dif))
+                        {
+                            if (string.Equals(s.Tipo, dif.Tipo, StringComparison.Ordinal))
+                                s.IsCorretta = true;
+                            else
+                                s.IsParziale = true;
+                        }
+                        else
+                        {
+                            s.IsSbagliata = true;
+                        }
+                    }
+
+                    foreach (var t in TipiDifettoVoci)
+                        t.Interattivo = false;
+
+                    NotificaStatoAlta();
+                    FeedbackTitolo = Sessione.UltimoEsitoCorretto
+                        ? (Sessione.UltimoSecondoTentativo ? Strings.Lab_ReviewParziale : Strings.Quiz_Corretto)
+                        : Strings.Quiz_Sbagliato;
+                    FeedbackDettaglio = Sessione.SpiegazioneCorrente;
+                    break;
+                }
+
                 var difetto = variante.Difetti.FirstOrDefault();
 
                 if (!Sessione.RigaTrovata)
@@ -558,9 +784,8 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
                         inp.IsSbagliata = true;
                 }
 
-                var difetto = variante.Difetti.FirstOrDefault();
                 FeedbackTitolo = Sessione.UltimoEsitoCorretto ? Strings.Quiz_Corretto : Strings.Quiz_Sbagliato;
-                FeedbackDettaglio = difetto?.Spiegazione ?? string.Empty;
+                FeedbackDettaglio = Sessione.SpiegazioneCorrente;
                 break;
             }
         }
@@ -646,8 +871,13 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         Raise(nameof(IsPassoOutputTessere));
         Raise(nameof(OutputCompostoVuoto));
         Raise(nameof(IsPassoBug));
+        Raise(nameof(IsPassoBugAlta));
         Raise(nameof(SuggerimentoPassoBug));
         Raise(nameof(MostraPannelloTipo));
+        Raise(nameof(TitoloPannelloTipo));
+        Raise(nameof(PuoRimuovereRigaAttiva));
+        Raise(nameof(ContatoreSegniAlta));
+        Raise(nameof(HaSegniAlta));
         Raise(nameof(MostraPannelloCorrezione));
         Raise(nameof(IsPassoInput));
         Raise(nameof(EtichettaAvanti));

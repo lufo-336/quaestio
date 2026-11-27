@@ -369,4 +369,11 @@
   <data name="Lab_SuggerimentoTrovaBugRiga" xml:space="preserve"><value>Tap the line with the bug and press Confirm.</value></data>
   <data name="Lab_SuggerimentoScegliTipo" xml:space="preserve"><value>Line found! Now choose the error type.</value></data>
   <data name="Lab_SuggerimentoScegliCorrezione" xml:space="preserve"><value>Line found! Now choose the right fix.</value></data>
+  <data name="Lab_DifettiSegnatiNDiM" xml:space="preserve"><value>Defects marked: {0} of {1}</value></data>
+  <data name="Lab_SuggerimentoReview" xml:space="preserve"><value>Tap the lines with a defect and assign a type to each. Marking a clean line deducts points.</value></data>
+  <data name="Lab_SuggerimentoReviewFalsoAllarme" xml:space="preserve"><value>Marking a clean line deducts points.</value></data>
+  <data name="Lab_RigaCheTipo" xml:space="preserve"><value>Line {0} — what type of error?</value></data>
+  <data name="Lab_RimuoviSegno" xml:space="preserve"><value>Remove mark</value></data>
+  <data name="Lab_ReviewParziale" xml:space="preserve"><value>Partial review (½ point)</value></data>
+  <data name="Lab_DifettoMancato" xml:space="preserve"><value>{0} (missed)</value></data>
 </root>

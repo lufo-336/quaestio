@@ -517,4 +517,134 @@ public class LaboratorioServiceTests
         Assert.Equal(1.5, cat.Errori, 3);
         Assert.Equal(0.5, cat.PctErrore, 3);
     }
+
+    private static VarianteLab CreaVarianteReview(params (int Riga, string Tipo)[] difetti) => new()
+    {
+        Difetti = difetti.Select(d => new DifettoLab { Riga = d.Riga, Tipo = d.Tipo }).ToList()
+    };
+
+    [Fact]
+    public void PunteggioReview_TuttiDifettiColTipoGiusto_ValeUno()
+    {
+        var v = CreaVarianteReview(
+            (4, TipiDifetto.Overflow),
+            (9, TipiDifetto.DivisioneIntera),
+            (15, TipiDifetto.NullVuoto));
+
+        var segni = new Dictionary<int, string>
+        {
+            [4] = TipiDifetto.Overflow,
+            [9] = TipiDifetto.DivisioneIntera,
+            [15] = TipiDifetto.NullVuoto
+        };
+
+        Assert.Equal(1.0, LaboratorioService.PunteggioReview(v, segni), 6);
+        Assert.Equal((true, false), LaboratorioService.EsitoReview(1.0));
+    }
+
+    [Fact]
+    public void PunteggioReview_SegnareOgniRiga_ValeZero()
+    {
+        var v = CreaVarianteReview(
+            (3, TipiDifetto.Overflow),
+            (5, TipiDifetto.DivisioneIntera));
+
+        var segni = new Dictionary<int, string>();
+        for (int riga = 1; riga <= 10; riga++)
+            segni[riga] = TipiDifetto.Overflow;
+
+        Assert.Equal(0.0, LaboratorioService.PunteggioReview(v, segni), 6);
+        Assert.Equal((false, false), LaboratorioService.EsitoReview(0.0));
+    }
+
+    [Fact]
+    public void PunteggioReview_TipoSbagliato_ValeMezzoPerDifetto()
+    {
+        var v = CreaVarianteReview(
+            (3, TipiDifetto.Overflow),
+            (7, TipiDifetto.DivisioneIntera));
+
+        // Entrambi sulla riga giusta, uno con tipo giusto (+1) e uno con tipo sbagliato (+0.5) => 1.5 / 2 = 0.75
+        var unoSbagliato = new Dictionary<int, string>
+        {
+            [3] = TipiDifetto.Overflow,
+            [7] = TipiDifetto.Confine
+        };
+        Assert.Equal(0.75, LaboratorioService.PunteggioReview(v, unoSbagliato), 6);
+
+        // Entrambi sulla riga giusta ma tipo sbagliato => (0.5 + 0.5) / 2 = 0.5
+        var entrambiSbagliati = new Dictionary<int, string>
+        {
+            [3] = TipiDifetto.Confine,
+            [7] = TipiDifetto.Confine
+        };
+        Assert.Equal(0.5, LaboratorioService.PunteggioReview(v, entrambiSbagliati), 6);
+    }
+
+    [Fact]
+    public void PunteggioReview_FalsoAllarmeToglie()
+    {
+        var v = CreaVarianteReview(
+            (3, TipiDifetto.Overflow),
+            (7, TipiDifetto.DivisioneIntera));
+
+        // 2 giusti (+2) - 1 falso allarme (-1) = 1 / 2 = 0.5
+        var conUnFalso = new Dictionary<int, string>
+        {
+            [3] = TipiDifetto.Overflow,
+            [7] = TipiDifetto.DivisioneIntera,
+            [12] = TipiDifetto.NullVuoto
+        };
+        Assert.Equal(0.5, LaboratorioService.PunteggioReview(v, conUnFalso), 6);
+
+        // 2 giusti (+2) - 2 falsi allarmi (-2) = 0 / 2 = 0.0
+        var conDueFalsi = new Dictionary<int, string>
+        {
+            [3] = TipiDifetto.Overflow,
+            [7] = TipiDifetto.DivisioneIntera,
+            [12] = TipiDifetto.NullVuoto,
+            [18] = TipiDifetto.Confine
+        };
+        Assert.Equal(0.0, LaboratorioService.PunteggioReview(v, conDueFalsi), 6);
+    }
+
+    [Fact]
+    public void EsitoReview_SogliaMezzoPerSecondoTentativo()
+    {
+        Assert.Equal((true, false), LaboratorioService.EsitoReview(1.0));
+        Assert.Equal((true, true), LaboratorioService.EsitoReview(0.75));
+        Assert.Equal((true, true), LaboratorioService.EsitoReview(0.5));
+        Assert.Equal((false, false), LaboratorioService.EsitoReview(0.4999));
+        Assert.Equal((false, false), LaboratorioService.EsitoReview(0.25));
+        Assert.Equal((false, false), LaboratorioService.EsitoReview(0.0));
+
+        var v = CreaVarianteReview(
+            (3, TipiDifetto.Overflow),
+            (7, TipiDifetto.DivisioneIntera),
+            (11, TipiDifetto.NullVuoto));
+
+        // 1 giusto (+1) + 1 tipo sbagliato (+0.5) + 1 mancato (0) => 1.5 / 3 = 0.5 -> SecondoTentativo (peso 0.5)
+        double pSoglia = LaboratorioService.PunteggioReview(v, new Dictionary<int, string>
+        {
+            [3] = TipiDifetto.Overflow,
+            [7] = TipiDifetto.Confine
+        });
+        Assert.Equal(0.5, pSoglia, 6);
+
+        var (corretta, secondo) = LaboratorioService.EsitoReview(pSoglia);
+        var dettaglio = new DettaglioRisposta { Corretta = corretta, Tentativi = 1, SecondoTentativo = secondo };
+        Assert.True(dettaglio.Corretta);
+        Assert.True(dettaglio.SecondoTentativo);
+        Assert.Equal(0.5, dettaglio.PesoErrore());
+
+        // Sotto soglia: 1 tipo sbagliato (+0.5) su 2 difetti => 0.25 -> sbagliato (peso 1.0)
+        var v2 = CreaVarianteReview((3, TipiDifetto.Overflow), (7, TipiDifetto.DivisioneIntera));
+        double pSotto = LaboratorioService.PunteggioReview(v2, new Dictionary<int, string> { [3] = TipiDifetto.Confine });
+        Assert.Equal(0.25, pSotto, 6);
+        var (correttaSotto, secondoSotto) = LaboratorioService.EsitoReview(pSotto);
+        var dettaglioSotto = new DettaglioRisposta { Corretta = correttaSotto, Tentativi = 1, SecondoTentativo = secondoSotto };
+        Assert.False(dettaglioSotto.Corretta);
+        Assert.False(dettaglioSotto.SecondoTentativo);
+        Assert.Equal(1.0, dettaglioSotto.PesoErrore());
+    }
 }

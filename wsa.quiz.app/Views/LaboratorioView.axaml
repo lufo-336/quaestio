@@ -36,6 +36,12 @@
         <Style Selector="Button.rigaCodice.interattiva:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
         </Style>
+        <Style Selector="Button.rigaCodice.segnata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SfondoRialzato}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.segnata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+        </Style>
         <Style Selector="Button.rigaCodice.selezionata /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
         </Style>
@@ -47,6 +53,12 @@
         </Style>
         <Style Selector="Button.rigaCodice.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.parziale /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AmbraBrush}"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.parziale:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AmbraBrush}"/>
         </Style>
         <Style Selector="Button.rigaCodice.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
@@ -71,6 +83,12 @@
             <Setter Property="Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.rigaCodice.corretta TextBlock.codice">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.parziale TextBlock.numRiga">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.rigaCodice.parziale TextBlock.codice">
             <Setter Property="Foreground" Value="#000000"/>
         </Style>
         <Style Selector="Button.rigaCodice.sbagliata TextBlock.numRiga">
@@ -123,6 +141,82 @@
         <Style Selector="Button.tipoChip.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
             <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+
+        <!-- Segni aggiunti nella review completa (passo 2 alta) -->
+        <Style Selector="Button.segnoChip">
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segnoChip /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.segnoChip.selezionata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segnoChip.selezionata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentoHoverBrush}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentoTestoBrush}"/>
+        </Style>
+        <Style Selector="Button.segnoChip.corretta /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.segnoChip.corretta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource VerdeBrush}"/>
+            <Setter Property="BorderBrush" Value="#33867C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.segnoChip.parziale /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AmbraBrush}"/>
+            <Setter Property="BorderBrush" Value="#B08400"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.segnoChip.parziale:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AmbraBrush}"/>
+            <Setter Property="BorderBrush" Value="#B08400"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.segnoChip.sbagliata /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="Button.segnoChip.sbagliata:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="#AB343C"/>
+            <Setter Property="TextBlock.Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="Button.segnoRimuovi">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="0,1,1,1"/>
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+        </Style>
+        <Style Selector="Button.segnoRimuovi /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Sfondo}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TestoPrincipale}"/>
+        </Style>
+        <Style Selector="Button.segnoRimuovi:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource RossoBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RigaForte}"/>
             <Setter Property="TextBlock.Foreground" Value="#000000"/>
         </Style>
 
@@ -452,13 +546,15 @@
                                     <DataTemplate DataType="state:RigaCodiceItem">
                                         <Button Classes="rigaCodice"
                                                 Classes.interattiva="{Binding Interattiva}"
+                                                Classes.segnata="{Binding IsSegnata}"
                                                 Classes.selezionata="{Binding IsSelected}"
                                                 Classes.corretta="{Binding IsCorretta}"
+                                                Classes.parziale="{Binding IsParziale}"
                                                 Classes.sbagliata="{Binding IsSbagliata}"
                                                 IsHitTestVisible="{Binding Interattiva}"
                                                 IsTabStop="{Binding Interattiva}"
                                                 Click="OnRigaCodiceClick">
-                                            <Grid ColumnDefinitions="32,*">
+                                            <Grid ColumnDefinitions="32,*,Auto">
                                                 <TextBlock Grid.Column="0"
                                                            Classes="numRiga"
                                                            Text="{Binding NumeroFormattato}"
@@ -474,12 +570,75 @@
                                                            FontSize="13"
                                                            TextWrapping="NoWrap"
                                                            VerticalAlignment="Center"/>
+                                                <Border Grid.Column="2"
+                                                        IsVisible="{Binding MostraEtichettaSegno}"
+                                                        Background="{DynamicResource SfondoRialzato}"
+                                                        BorderBrush="{DynamicResource RigaForte}"
+                                                        BorderThickness="1"
+                                                        Padding="6,2"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding EtichettaSegno}"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{DynamicResource TestoPrincipale}"/>
+                                                </Border>
                                             </Grid>
                                         </Button>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </ScrollViewer>
+                    </Border>
+
+                    <!-- PASSO 2 (alta): contatore e segni aggiunti -->
+                    <Border IsVisible="{Binding IsPassoBugAlta}"
+                            Background="{DynamicResource SfondoRialzato}"
+                            BorderBrush="{DynamicResource RigaDebole}"
+                            BorderThickness="1"
+                            Padding="14,10">
+                        <StackPanel Spacing="8">
+                            <WrapPanel Orientation="Horizontal" ItemSpacing="12" LineSpacing="4">
+                                <TextBlock Text="{Binding ContatoreSegniAlta}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TestoPrincipale}"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Static r:Strings.Lab_SuggerimentoReviewFalsoAllarme}"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource TestoAttenuato}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"/>
+                            </WrapPanel>
+                            <ItemsControl ItemsSource="{Binding SegniAggiunti}"
+                                          IsVisible="{Binding HaSegniAlta}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="state:SegnoBugItem">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
+                                            <Button Classes="segnoChip"
+                                                    Classes.selezionata="{Binding IsAttiva}"
+                                                    Classes.corretta="{Binding IsCorretta}"
+                                                    Classes.parziale="{Binding IsParziale}"
+                                                    Classes.sbagliata="{Binding IsSbagliata}"
+                                                    IsHitTestVisible="{Binding Interattivo}"
+                                                    IsTabStop="{Binding Interattivo}"
+                                                    Content="{Binding Etichetta}"
+                                                    Click="OnSegnoBugClick"/>
+                                            <Button Classes="segnoRimuovi"
+                                                    IsVisible="{Binding PuoRimuovere}"
+                                                    Content="✕"
+                                                    ToolTip.Tip="{x:Static r:Strings.Lab_RimuoviSegno}"
+                                                    Click="OnRimuoviSegnoClick"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
                     </Border>
 
                     <!-- PASSO 1 (base): menu a tendina per ogni riga dell'output -->
@@ -603,16 +762,28 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- PASSO 2 (base, dopo riga trovata): vocabolario dei tipi di difetto -->
+                    <!-- PASSO 2 (base dopo riga trovata, o alta per la riga attiva): vocabolario dei tipi di difetto -->
                     <Border IsVisible="{Binding MostraPannelloTipo}"
                             Background="{DynamicResource SfondoRialzato}"
                             BorderBrush="{DynamicResource RigaDebole}"
                             BorderThickness="1"
                             Padding="14,12">
                         <StackPanel Spacing="10">
-                            <TextBlock Text="{x:Static r:Strings.Lab_CheTipoErrore}"
-                                       FontSize="13"
-                                       FontWeight="SemiBold"/>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding TitoloPannelloTipo}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"/>
+                                <Button Grid.Column="1"
+                                        Content="{x:Static r:Strings.Lab_RimuoviSegno}"
+                                        IsVisible="{Binding PuoRimuovereRigaAttiva}"
+                                        Click="OnRimuoviSegnoAttivoClick"
+                                        Padding="10,5"
+                                        FontSize="12"
+                                        Margin="10,0,0,0"/>
+                            </Grid>
                             <ItemsControl ItemsSource="{Binding TipiDifettoVoci}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>

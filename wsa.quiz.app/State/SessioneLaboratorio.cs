@@ -21,7 +21,7 @@ public enum PassoLab
 }
 
 /// <summary>
-/// Macchina a stati di una sessione del Laboratorio di codice (livelli base e media).
+/// Macchina a stati di una sessione del Laboratorio di codice (livelli base, media e alta).
 /// Eredita <see cref="ObservableObject"/> ed espone stato e metodi di risposta per la <c>LaboratorioView</c>.
 /// Al termine o all'abbandono produce un <see cref="RisultatoQuiz"/> compatibile con Cronologia,
 /// Statistiche e Riepilogo.
@@ -197,6 +197,11 @@ public class SessioneLaboratorio : ObservableObject
 
     public bool EUltimoPassoDellaSessione =>
         TotaleSchede > 0 && _indiceScheda + 1 >= TotaleSchede && _passo == PassoLab.RompiFunzione;
+
+    /// <summary>Spiegazione della variante corrente (per livello alta, elenca tutti i difetti).</summary>
+    public string SpiegazioneCorrente => VarianteCorrente == null
+        ? string.Empty
+        : FormattaSpiegazioneVariante(VarianteCorrente);
 
     public double ProgressoPercentuale
     {
@@ -407,6 +412,44 @@ public class SessioneLaboratorio : ObservableObject
         InAttesaDiAvanti = true;
     }
 
+    /// <summary>
+    /// Registra la risposta al passo 2 alta ("Trova il bug" — review completa):
+    /// valuta i segni (riga 1-based → tipo di difetto) con <see cref="LaboratorioService.PunteggioReview"/>
+    /// e applica la soglia per l'archivio (1 → giusto, ½..1 → peso ½, &lt; ½ → sbagliato),
+    /// senza seconda possibilità.
+    /// </summary>
+    public void RispondiBugReview(IReadOnlyDictionary<int, string> segni)
+    {
+        if (InAttesaDiAvanti || Passo != PassoLab.TrovaBug) return;
+        if (SchedaCorrente == null || VarianteCorrente == null || VarianteCorrente.Difetti.Count == 0) return;
+        if (segni == null || segni.Count == 0) return;
+
+        double punteggio = LaboratorioService.PunteggioReview(VarianteCorrente, segni);
+        var (ok, secondoTentativo) = LaboratorioService.EsitoReview(punteggio);
+
+        string rispostaData = string.Join("\n", segni
+            .OrderBy(kv => kv.Key)
+            .Select(kv => FormattazioneRigaTipo(kv.Key, kv.Value)));
+
+        string rispostaCorretta = string.Join("\n", VarianteCorrente.Difetti
+            .OrderBy(d => d.Riga)
+            .Select(d => FormattazioneRigaTipo(d.Riga, d.Tipo)));
+
+        RegistraDettaglio(
+            passoId: "bug",
+            nomePasso: Strings.Lab_PassoBug,
+            rispostaData: rispostaData,
+            rispostaCorretta: rispostaCorretta,
+            corretta: ok,
+            secondoTentativo: secondoTentativo);
+
+        SecondaPossibilitaInCorso = false;
+        IndizioCorrente = string.Empty;
+        UltimoSecondoTentativo = ok && secondoTentativo;
+        UltimoEsitoCorretto = ok;
+        InAttesaDiAvanti = true;
+    }
+
     /// <summary>Registra la risposta al passo 3 ("Rompi la funzione": indice dell'input scelto).</summary>
     public void RispondiInput(int indice)
     {
@@ -495,11 +538,20 @@ public class SessioneLaboratorio : ObservableObject
             RispostaData = rispostaData,
             RispostaCorretta = rispostaCorretta,
             Corretta = corretta,
-            Spiegazione = primoDifetto?.Spiegazione ?? string.Empty,
+            Spiegazione = FormattaSpiegazioneVariante(VarianteCorrente),
             Tentativi = 1,
             SecondoTentativo = secondoTentativo,
             RisposteShufflate = new List<string>()
         });
+    }
+
+    private static string FormattaSpiegazioneVariante(VarianteLab variante)
+    {
+        if (variante.Difetti.Count == 0) return string.Empty;
+        if (variante.Difetti.Count == 1) return variante.Difetti[0].Spiegazione;
+
+        return string.Join("\n", variante.Difetti
+            .Select(d => $"{FormattazioneRigaTipo(d.Riga, d.Tipo)}: {d.Spiegazione}"));
     }
 
     private static string FormattazioneRigaTipo(int riga, string tipo)
