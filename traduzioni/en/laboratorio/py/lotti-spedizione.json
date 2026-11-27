@@ -1,0 +1,22 @@
+{
+  "titolo": "Shipping batches",
+  "requisito": "Given a list of order quantities and a box capacity, computes the integer total of boxes needed when packing each order separately. Ignores non-positive quantities and returns 0 if capacity is not positive.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at the operator used to divide by capienza.",
+          "spiegazione": "In Python 3 the / operator always performs floating-point division, returning a float with a fractional part (4.25) instead of integer floor division //."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the numerator of the floor division.",
+          "spiegazione": "Without subtracting 1 from the numerator (q + capienza - 1), whenever q is an exact multiple of capacity (e.g. 4), one extra box is counted."
+        }
+      ]
+    }
+  }
+}

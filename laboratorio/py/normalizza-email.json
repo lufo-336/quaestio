@@ -1,0 +1,116 @@
+{
+  "id": "normalizza-email",
+  "titolo": "Normalizzazione elenco email",
+  "livello": "base",
+  "requisito": "Ripulisce una lista di indirizzi email togliendo gli spazi esterni, convertendo in minuscolo e scartando valori nulli, vuoti o duplicati, mantenendo l'ordine di arrivo.",
+  "chiamata": "print(normalizza_email([\" Ana@X.it \", \"ana@x.it\", \"  \", \"BoB@y.it\"]))",
+  "codiceSano": [
+    "def normalizza_email(indirizzi):",
+    "    risultato = []",
+    "    visti = set()",
+    "    for raw in indirizzi:",
+    "        if raw is None:",
+    "            continue",
+    "        email = raw.strip().lower()",
+    "        if email and email not in visti:",
+    "            visti.add(email)",
+    "            risultato.append(email)",
+    "    return risultato"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def normalizza_email(indirizzi):",
+        "    risultato = []",
+        "    visti = set()",
+        "    for raw in indirizzi:",
+        "        if raw is None:",
+        "            continue",
+        "        email = raw.strip()",
+        "        if email and email not in visti:",
+        "            visti.add(email)",
+        "            risultato.append(email)",
+        "    return risultato"
+      ],
+      "output": [ "['Ana@X.it', 'ana@x.it', 'BoB@y.it']" ],
+      "esche": [
+        "['ana@x.it', 'bob@y.it']",
+        "['Ana@X.it', 'BoB@y.it']",
+        "['Ana@X.it', 'ana@x.it', '', 'BoB@y.it']"
+      ],
+      "difetti": [
+        {
+          "riga": 7,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Guarda come viene normalizzata la variabile email.",
+          "spiegazione": "raw.strip() rimuove gli spazi esterni ma non converte i caratteri con .lower(): in questo modo 'Ana@X.it' e 'ana@x.it' risultano diverse per il set visti e restano entrambe nella lista."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(normalizza_email([\"luca@x.it\", \" sara@x.it \", \"luca@x.it\"]))",
+          "atteso": "['luca@x.it', 'sara@x.it']",
+          "effettivo": "['luca@x.it', 'sara@x.it']"
+        },
+        {
+          "chiamata": "print(normalizza_email([\"Info@X.it\", \"info@x.it\"]))",
+          "atteso": "['info@x.it']",
+          "effettivo": "['Info@X.it', 'info@x.it']"
+        },
+        {
+          "chiamata": "print(normalizza_email([\"  \", None, \"Dev@X.it\"]))",
+          "atteso": "['dev@x.it']",
+          "effettivo": "['Dev@X.it']"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def normalizza_email(indirizzi):",
+        "    risultato = []",
+        "    visti = set()",
+        "    for raw in indirizzi:",
+        "        if raw == \"\":",
+        "            continue",
+        "        email = raw.strip().lower()",
+        "        if email and email not in visti:",
+        "            visti.add(email)",
+        "            risultato.append(email)",
+        "    return risultato"
+      ],
+      "output": [ "['ana@x.it', 'bob@y.it']" ],
+      "esche": [
+        "['Ana@X.it', 'ana@x.it', 'BoB@y.it']",
+        "['ana@x.it', '', 'bob@y.it']",
+        "!AttributeError"
+      ],
+      "difetti": [
+        {
+          "riga": 5,
+          "tipo": "NullVuoto",
+          "indizio": "Guarda il controllo iniziale su raw dentro il ciclo.",
+          "spiegazione": "Il controllo raw == \"\" lascia passare None (perché None == \"\" è False): alla riga successiva None.strip() solleva AttributeError."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(normalizza_email([\"  a@x.it \", \"A@X.IT\", \"\"]))",
+          "atteso": "['a@x.it']",
+          "effettivo": "['a@x.it']"
+        },
+        {
+          "chiamata": "print(normalizza_email([\"a@x.it\", None, \"b@x.it\"]))",
+          "atteso": "['a@x.it', 'b@x.it']",
+          "effettivo": "!AttributeError"
+        },
+        {
+          "chiamata": "print(normalizza_email([None]))",
+          "atteso": "[]",
+          "effettivo": "!AttributeError"
+        }
+      ]
+    }
+  ]
+}

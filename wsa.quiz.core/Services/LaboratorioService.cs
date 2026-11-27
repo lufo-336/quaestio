@@ -16,10 +16,11 @@ public static class LaboratorioService
     /// <summary>Suffisso aggiunto al nome del linguaggio in <see cref="RisultatoQuiz.MateriaNome"/>.</summary>
     public const string SuffissoMateria = " · Laboratorio";
 
-    /// <summary>Linguaggi supportati dal Laboratorio (v1: solo C#).</summary>
+    /// <summary>Linguaggi supportati dal Laboratorio.</summary>
     public static readonly IReadOnlyList<(string Id, string Nome)> Linguaggi =
     [
         ("cs", "C#"),
+        ("py", "Python"),
     ];
 
     /// <summary>

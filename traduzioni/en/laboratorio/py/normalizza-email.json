@@ -1,0 +1,22 @@
+{
+  "titolo": "Email list normalization",
+  "requisito": "Cleans a list of email addresses by trimming outer whitespace, converting to lowercase, and discarding null, empty, or duplicate entries while keeping arrival order.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how the email variable is normalized.",
+          "spiegazione": "raw.strip() removes outer whitespace but does not convert characters with .lower(): as a result, 'Ana@X.it' and 'ana@x.it' look different to the visti set and both remain in the list."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the initial check on raw inside the loop.",
+          "spiegazione": "Checking raw == \"\" lets None through (because None == \"\" is False): on the next line, None.strip() raises an AttributeError."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "titolo": "Time window filter",
+  "requisito": "Given a list of elapsed minutes and an upper limit, returns a new list with only the valid values (from 0 up to the limit inclusive), discarding negative values and those beyond the limit.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at which sequence the for loop iterates over.",
+          "spiegazione": "The loop iterates directly over validi while calling validi.remove(m): when an item is removed (45), later elements shift left and the immediately following item (50) is skipped."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at the comparison in the elif inside the loop.",
+          "spiegazione": "The condition m >= limite also discards values equal to limite (such as 30), whereas the requirement treats the upper bound as inclusive."
+        }
+      ]
+    }
+  }
+}

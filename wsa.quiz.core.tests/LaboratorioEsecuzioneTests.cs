@@ -21,10 +21,57 @@ public class LaboratorioEsecuzioneTests
             typeof(StringBuilder).Assembly)
         .AddImports("System", "System.Linq", "System.Collections.Generic", "System.Text");
 
-    private static (bool Compilato, List<string> Righe, string? ErroreCompilazione) Esegui(
+    // Esegue il sorgente letto da stdin: SyntaxError (anche di indentazione) = "non compila" (exit 3),
+    // un'eccezione a runtime = riga "!NomeEccezione" dopo l'output già stampato, come per C#.
+    private const string HarnessPython = """
+        import sys
+        src = sys.stdin.read()
+        try:
+            c = compile(src, '<scheda>', 'exec')
+        except SyntaxError as e:
+            sys.stderr.write('SyntaxError: ' + str(e))
+            sys.exit(3)
+        try:
+            exec(c, {'__name__': '__main__'})
+        except Exception as e:
+            sys.stdout.flush()
+            print('!' + type(e).__name__)
+        """;
+
+    private static (bool Compilato, List<string> Righe, string? ErroreCompilazione) EseguiPython(
         IEnumerable<string> righe,
         string chiamata)
     {
+        var psi = new System.Diagnostics.ProcessStartInfo(OperatingSystem.IsWindows() ? "py" : "python3")
+        {
+            RedirectStandardInput = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            StandardInputEncoding = new UTF8Encoding(false),
+            StandardOutputEncoding = Encoding.UTF8,
+        };
+        if (OperatingSystem.IsWindows()) psi.ArgumentList.Add("-3");
+        foreach (var a in new[] { "-X", "utf8", "-c", HarnessPython }) psi.ArgumentList.Add(a);
+
+        using var p = System.Diagnostics.Process.Start(psi)
+            ?? throw new InvalidOperationException("Python non trovato (serve per le schede laboratorio/py)");
+        p.StandardInput.Write(string.Join("\n", righe) + "\n" + chiamata + "\n");
+        p.StandardInput.Close();
+        var stderr = p.StandardError.ReadToEndAsync();
+        string stdout = p.StandardOutput.ReadToEnd();
+        p.WaitForExit();
+        if (p.ExitCode == 3) return (false, new List<string>(), stderr.Result);
+        if (p.ExitCode != 0) throw new InvalidOperationException($"Python exit {p.ExitCode}: {stderr.Result}");
+        return (true, EstraiRighe(stdout), null);
+    }
+
+    private static (bool Compilato, List<string> Righe, string? ErroreCompilazione) Esegui(
+        IEnumerable<string> righe,
+        string chiamata,
+        string linguaggio)
+    {
+        if (linguaggio == "py") return EseguiPython(righe, chiamata);
         string codice = string.Join("\n", righe) + "\n" + chiamata;
         var script = CSharpScript.Create(codice, OpzioniScript);
         var errori = script.Compile()
@@ -72,10 +119,11 @@ public class LaboratorioEsecuzioneTests
     public void Scheda_OutputEInputCoerentiConEsecuzione(string percorsoRelativo)
     {
         var scheda = LaboratorioCoerenzaTests.CaricaScheda(percorsoRelativo);
+        string ling = percorsoRelativo.Split('/')[1];
 
         foreach (var v in scheda.Varianti)
         {
-            var resOutput = Esegui(v.Righe, scheda.Chiamata);
+            var resOutput = Esegui(v.Righe, scheda.Chiamata, ling);
             Assert.True(
                 resOutput.Compilato,
                 $"scheda {scheda.Id} {v.Id}, output: errore di compilazione: {resOutput.ErroreCompilazione}");
@@ -88,7 +136,7 @@ public class LaboratorioEsecuzioneTests
             for (int i = 0; i < v.Input.Count; i++)
             {
                 var inp = v.Input[i];
-                var resSano = Esegui(scheda.CodiceSano, inp.Chiamata);
+                var resSano = Esegui(scheda.CodiceSano, inp.Chiamata, ling);
                 Assert.True(
                     resSano.Compilato,
                     $"scheda {scheda.Id} {v.Id}, input {i + 1} (codiceSano): errore di compilazione: {resSano.ErroreCompilazione}");
@@ -99,7 +147,7 @@ public class LaboratorioEsecuzioneTests
                         $"scheda {scheda.Id} {v.Id}, input {i + 1} (atteso): la scheda dice `{inp.Atteso}`, il codice stampa `{attesoReale}`");
                 }
 
-                var resEff = Esegui(v.Righe, inp.Chiamata);
+                var resEff = Esegui(v.Righe, inp.Chiamata, ling);
                 Assert.True(
                     resEff.Compilato,
                     $"scheda {scheda.Id} {v.Id}, input {i + 1} (effettivo): errore di compilazione: {resEff.ErroreCompilazione}");
@@ -120,7 +168,7 @@ public class LaboratorioEsecuzioneTests
                 for (int i = 0; i < v.Input.Count; i++)
                 {
                     var inp = v.Input[i];
-                    var resCorr = Esegui(righeCorrette, inp.Chiamata);
+                    var resCorr = Esegui(righeCorrette, inp.Chiamata, ling);
                     Assert.True(
                         resCorr.Compilato,
                         $"scheda {scheda.Id} {v.Id}, correzione input {i + 1}: errore di compilazione: {resCorr.ErroreCompilazione}");
@@ -140,7 +188,7 @@ public class LaboratorioEsecuzioneTests
                     bool almenoUnFallimento = false;
                     foreach (var inp in v.Input)
                     {
-                        var resTrap = Esegui(righeTrappola, inp.Chiamata);
+                        var resTrap = Esegui(righeTrappola, inp.Chiamata, ling);
                         if (!resTrap.Compilato || string.Join("\n", resTrap.Righe) != inp.Atteso)
                         {
                             almenoUnFallimento = true;

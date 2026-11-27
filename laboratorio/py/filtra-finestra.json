@@ -1,0 +1,115 @@
+{
+  "id": "filtra-finestra",
+  "titolo": "Filtro finestra temporale",
+  "livello": "base",
+  "requisito": "Data una lista di minuti trascorsi e un limite massimo, restituisce una nuova lista con i soli valori validi (da 0 fino al limite incluso), scartando negativi e valori oltre il limite.",
+  "chiamata": "print(filtra_finestra([10, 30, 45, 50], 30))",
+  "codiceSano": [
+    "def filtra_finestra(minuti, limite):",
+    "    if minuti is None:",
+    "        return []",
+    "    validi = list(minuti)",
+    "    for m in list(validi):",
+    "        if m < 0:",
+    "            validi.remove(m)",
+    "        elif m > limite:",
+    "            validi.remove(m)",
+    "    return validi"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def filtra_finestra(minuti, limite):",
+        "    if minuti is None:",
+        "        return []",
+        "    validi = list(minuti)",
+        "    for m in validi:",
+        "        if m < 0:",
+        "            validi.remove(m)",
+        "        elif m > limite:",
+        "            validi.remove(m)",
+        "    return validi"
+      ],
+      "output": [ "[10, 30, 50]" ],
+      "esche": [ "[10, 30]", "[10, 30, 45]", "[10]" ],
+      "difetti": [
+        {
+          "riga": 5,
+          "tipo": "MutazioneIterazione",
+          "indizio": "Guarda su quale sequenza itera il ciclo for.",
+          "spiegazione": "Il ciclo itera direttamente su validi mentre chiama validi.remove(m): quando un elemento viene rimosso (45), gli elementi successivi scorrono indietro e l'elemento subito dopo (50) viene saltato."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(filtra_finestra([5, 40, 15], 30))",
+          "atteso": "[5, 15]",
+          "effettivo": "[5, 15]"
+        },
+        {
+          "chiamata": "print(filtra_finestra([5, -1, -2, 12], 20))",
+          "atteso": "[5, 12]",
+          "effettivo": "[5, -2, 12]"
+        },
+        {
+          "chiamata": "print(filtra_finestra([40, 50], 30))",
+          "atteso": "[]",
+          "effettivo": "[50]"
+        },
+        {
+          "chiamata": "print(filtra_finestra([], 30))",
+          "atteso": "[]",
+          "effettivo": "[]"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def filtra_finestra(minuti, limite):",
+        "    if minuti is None:",
+        "        return []",
+        "    validi = list(minuti)",
+        "    for m in list(validi):",
+        "        if m < 0:",
+        "            validi.remove(m)",
+        "        elif m >= limite:",
+        "            validi.remove(m)",
+        "    return validi"
+      ],
+      "output": [ "[10]" ],
+      "esche": [ "[10, 30]", "[10, 30, 50]", "[]" ],
+      "difetti": [
+        {
+          "riga": 8,
+          "tipo": "Confine",
+          "indizio": "Guarda il confronto nell'elif dentro il ciclo.",
+          "spiegazione": "La condizione m >= limite scarta anche i valori uguali a limite (come 30), mentre il requisito considera valido l'estremo superiore incluso."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(filtra_finestra([5, -3, 35, 12], 30))",
+          "atteso": "[5, 12]",
+          "effettivo": "[5, 12]"
+        },
+        {
+          "chiamata": "print(filtra_finestra([0, 30, 31], 30))",
+          "atteso": "[0, 30]",
+          "effettivo": "[0]"
+        },
+        {
+          "chiamata": "print(filtra_finestra([15, 15], 15))",
+          "atteso": "[15, 15]",
+          "effettivo": "[]"
+        },
+        {
+          "chiamata": "print(filtra_finestra(None, 30))",
+          "atteso": "[]",
+          "effettivo": "[]"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "lotti-spedizione",
+  "titolo": "Lotti di spedizione",
+  "livello": "base",
+  "requisito": "Data una lista di quantità ordinate e la capienza di una scatola, calcola il totale intero di scatole necessarie imballando ogni ordine separatamente. Ignora quantità non positive e restituisce 0 se la capienza non è positiva.",
+  "chiamata": "print(lotti_spedizione([4, 0, 7], 4))",
+  "codiceSano": [
+    "def lotti_spedizione(ordini, capienza):",
+    "    if capienza <= 0:",
+    "        return 0",
+    "    scatole = 0",
+    "    for q in ordini:",
+    "        if q <= 0:",
+    "            continue",
+    "        scatole += (q + capienza - 1) // capienza",
+    "    return scatole"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "def lotti_spedizione(ordini, capienza):",
+        "    if capienza <= 0:",
+        "        return 0",
+        "    scatole = 0",
+        "    for q in ordini:",
+        "        if q <= 0:",
+        "            continue",
+        "        scatole += (q + capienza - 1) / capienza",
+        "    return scatole"
+      ],
+      "output": [ "4.25" ],
+      "esche": [ "3", "4", "4.0" ],
+      "difetti": [
+        {
+          "riga": 8,
+          "tipo": "DivisioneIntera",
+          "indizio": "Guarda l'operatore usato per dividere per capienza.",
+          "spiegazione": "In Python 3 l'operatore / esegue sempre una divisione in virgola mobile, restituendo un float con parte frazionaria (4.25) invece della divisione intera //."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(lotti_spedizione([0, -2], 4))",
+          "atteso": "0",
+          "effettivo": "0"
+        },
+        {
+          "chiamata": "print(lotti_spedizione([5, 3], 4))",
+          "atteso": "3",
+          "effettivo": "3.5"
+        },
+        {
+          "chiamata": "print(lotti_spedizione([1], 4))",
+          "atteso": "1",
+          "effettivo": "1.0"
+        },
+        {
+          "chiamata": "print(lotti_spedizione([6], 0))",
+          "atteso": "0",
+          "effettivo": "0"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "def lotti_spedizione(ordini, capienza):",
+        "    if capienza <= 0:",
+        "        return 0",
+        "    scatole = 0",
+        "    for q in ordini:",
+        "        if q <= 0:",
+        "            continue",
+        "        scatole += (q + capienza) // capienza",
+        "    return scatole"
+      ],
+      "output": [ "4" ],
+      "esche": [ "3", "5", "4.25" ],
+      "difetti": [
+        {
+          "riga": 8,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Guarda il numeratore della divisione intera.",
+          "spiegazione": "Senza sottrarre 1 al numeratore (q + capienza - 1), quando q è un multiplo esatto della capienza (es. 4) viene contata una scatola in più."
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "print(lotti_spedizione([5, 0, 7], 4))",
+          "atteso": "4",
+          "effettivo": "4"
+        },
+        {
+          "chiamata": "print(lotti_spedizione([4, 3], 4))",
+          "atteso": "2",
+          "effettivo": "3"
+        },
+        {
+          "chiamata": "print(lotti_spedizione([8], 4))",
+          "atteso": "2",
+          "effettivo": "3"
+        }
+      ]
+    }
+  ]
+}
