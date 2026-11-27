@@ -65,12 +65,25 @@ public static class EsecutoreLab
         return (true, EstraiRighe(stdout), null);
     }
 
+    /// <summary>
+    /// Esegue <paramref name="righe"/> + <paramref name="chiamata"/> nel linguaggio indicato.
+    /// Per un linguaggio nuovo: aggiungere qui il suo esecutore, con le stesse convenzioni
+    /// (output riga per riga, "!NomeEccezione" per un'eccezione, Compilato=false per un errore di sintassi).
+    /// </summary>
     public static (bool Compilato, List<string> Righe, string? ErroreCompilazione) Esegui(
         IEnumerable<string> righe,
         string chiamata,
-        string linguaggio)
+        string linguaggio) => linguaggio switch
     {
-        if (linguaggio == "py") return EseguiPython(righe, chiamata);
+        "cs" => EseguiCSharp(righe, chiamata),
+        "py" => EseguiPython(righe, chiamata),
+        _ => throw new NotSupportedException($"Nessun esecutore per il linguaggio '{linguaggio}' (vedi EsecutoreLab.Esegui)"),
+    };
+
+    private static (bool Compilato, List<string> Righe, string? ErroreCompilazione) EseguiCSharp(
+        IEnumerable<string> righe,
+        string chiamata)
+    {
         string codice = string.Join("\n", righe) + "\n" + chiamata;
         var script = CSharpScript.Create(codice, OpzioniScript);
         var errori = script.Compile()

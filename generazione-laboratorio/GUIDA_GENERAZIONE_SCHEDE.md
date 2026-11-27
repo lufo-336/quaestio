@@ -37,7 +37,9 @@
    ```
    I test controllano tutta la struttura (id, conteggi, righe dei difetti, traduzioni) e rieseguono il codice.
 
-Per Python serve l'interprete (`py -3` su Windows, `python3` altrove), per C# niente di esterno (Roslyn).
+Il motore esegue il codice con l'esecutore del linguaggio (`motore/EsecutoreLab.cs`): oggi C# con Roslyn
+(niente di esterno) e Python con l'interprete di sistema (`py -3` su Windows, `python3` altrove). Per un
+linguaggio che non ha ancora un esecutore vedi la sezione 6.3.
 
 ---
 
@@ -45,7 +47,7 @@ Per Python serve l'interprete (`py -3` su Windows, `python3` altrove), per C# ni
 
 | Parametro | Valore | Note |
 |---|---|---|
-| **Linguaggio** | `cs` (C#) o `py` (Python) | un linguaggio nuovo richiede codice: `contenuti-e-dati.md`, "Aggiungere un linguaggio" |
+| **Linguaggio** | id del linguaggio (oggi `cs` o `py`) | un linguaggio nuovo va prima aggiunto all'app e al motore: sezione 6.3 |
 | **Livello** | `base`, `media` o `alta` | sezione 4 |
 | **Numero di schede** | _(es. 3)_ | ogni scheda ha 2 varianti (fino a 4) |
 | **Temi** | _(facoltativo)_ | credibili per il lavoro, diversi da quelli già presenti |
@@ -124,23 +126,40 @@ Le 2 varianti di una scheda devono avere difetti di **tipo diverso**.
 
 ## 6. Regole per linguaggio
 
-**Python (`py`)**
-- Modulo Python 3 con funzioni a livello superiore (`def`), indentazione a 4 spazi, solo libreria
-  standard; niente file, rete, input da tastiera, casualità o orari.
-- La `chiamata` stampa con `print(...)`. L'output è quello vero di `print`: `True`, `None`, `90.0`
-  (un float intero ha `.0`), `[1, 2]`, stringhe senza virgolette (dentro le liste con gli apici).
-- Eccezione non gestita: righe stampate fino a lì, poi `!NomeEccezione` (es. `!ZeroDivisionError`).
-- `SyntaxError`/`IndentationError` = "non compila": ammesso solo nelle trappole.
+### 6.1 Valide per ogni linguaggio
 
-**C# (`cs`)**
-- Script C# top-level (funzioni senza `class Program`/`Main`), using impliciti `System`,
-  `System.Linq`, `System.Collections.Generic`, `System.Text`.
-- La `chiamata` stampa con `Console.WriteLine`. Cultura invariante (decimali col punto).
-- Eccezione non gestita: righe stampate fino a lì, poi `!NomeEccezione` (es. `!DivideByZeroException`).
-- Errori di compilazione ammessi solo nelle trappole.
+- Il codice è un programma autonomo e deterministico: solo libreria standard, niente file, rete,
+  input da tastiera, casualità o orari.
+- La funzione sta a livello superiore (niente classi o `main` di contorno, se il linguaggio lo permette);
+  la `chiamata` la invoca e **stampa** il risultato, una riga di output per ogni riga stampata.
+- Eccezione (o errore a runtime) non gestita: righe stampate fino a lì, poi `!NomeEccezione`.
+- Un errore di compilazione o di sintassi è ammesso solo nelle trappole.
+- Output indipendente dalla macchina: numeri decimali col punto, nessuna dipendenza da lingua o fuso orario.
+- Righe ≤ ~60 caratteri (leggibili sul telefono), nomi e commenti in italiano, nessun riferimento a
+  corsi, lezioni o docenti.
 
-**Per tutti**: righe ≤ ~60 caratteri (leggibili sul telefono), nomi e commenti in italiano, nessun
-riferimento a corsi, lezioni o docenti.
+### 6.2 Come si applicano ai linguaggi di oggi
+
+| | C# (`cs`) | Python (`py`) |
+|---|---|---|
+| Forma del codice | script top-level, using impliciti `System`, `System.Linq`, `System.Collections.Generic`, `System.Text` | modulo con `def` a livello superiore, indentazione a 4 spazi |
+| Stampa | `Console.WriteLine(...)`, cultura invariante | `print(...)`: `True`, `None`, `90.0` (un float intero ha `.0`), `[1, 2]`, stringhe senza virgolette |
+| Eccezione | `!DivideByZeroException` | `!ZeroDivisionError` |
+| "Non compila" | errore di compilazione Roslyn | `SyntaxError` / `IndentationError` |
+
+### 6.3 Aggiungere un linguaggio
+
+Prima di scrivere schede in un linguaggio nuovo (es. JavaScript, C++, SQL…) servono, una volta sola:
+1. la coppia `(id, nome)` in `LaboratorioService.Linguaggi` (`wsa.quiz.core/Services/LaboratorioService.cs`):
+   da lì l'app lo mostra in Home e il motore lo accetta;
+2. un esecutore in `generazione-laboratorio/motore/EsecutoreLab.cs` (un caso nuovo in `Esegui`) che rispetti
+   le convenzioni della 6.1: stdout riga per riga, `!NomeEccezione`, `Compilato = false` per un errore di sintassi.
+   Lo usano sia il motore sia i test, quindi basta scriverlo lì;
+3. una colonna nella tabella 6.2 con le regole del linguaggio (forma del codice, stampa, eccezioni);
+4. i tipi di difetto che hanno senso in quel linguaggio (sezione 7): il vocabolario dei 10 tipi è unico per tutti.
+
+Per un linguaggio senza un modo semplice di eseguire codice (es. un dialetto SQL) l'esecutore può lanciare
+uno strumento esterno, come fa Python: va solo documentato qui cosa installare.
 
 ---
 
@@ -150,10 +169,12 @@ riferimento a corsi, lezioni o docenti.
 - Usa uno dei 10 tipi di `TipiDifetto`: `Confine`, `DivisioneIntera`, `NullVuoto`,
   `CondizioneInvertita`, `Overflow`, `OperandoSbagliato`, `ConfrontoStringhe`,
   `MutazioneIterazione`, `EccezioneInghiottita`, `RisorsaNonChiusa`.
-- Sfrutta gli errori tipici del linguaggio, non tradurre una scheda da un altro. In Python per
-  esempio: rimuovere da una lista mentre la si scorre, argomento di default mutabile, `is` al
-  posto di `==`, `//` al posto di `/`, `except` che inghiotte l'errore. `Overflow` in Python non
-  esiste (gli int sono illimitati); `RisorsaNonChiusa` solo se dimostrabile senza file veri.
+- Sfrutta gli errori tipici del linguaggio, non tradurre una scheda da un altro. Esempi:
+  - C#: divisione fra `int`, `==` su stringhe con maiuscole diverse, overflow di `int`, `catch` vuoto;
+  - Python: rimuovere da una lista mentre la si scorre, argomento di default mutabile, `is` al
+    posto di `==`, `//` al posto di `/`, `except` che inghiotte l'errore.
+- Non tutti i tipi valgono ovunque: `Overflow` non esiste in Python (gli int sono illimitati);
+  `RisorsaNonChiusa` solo se dimostrabile senza file veri.
 - La riga del difetto non può essere vuota, una sola parentesi `{`/`}`, né identica (dopo trim) a
   una riga di `codiceSano`.
 - **Ogni riga che cambia rispetto a `codiceSano` deve far parte di un difetto dichiarato.** Al

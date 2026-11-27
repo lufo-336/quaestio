@@ -26,11 +26,10 @@ didattico, quindi le scelte privilegiano chiarezza e separazione dei concetti.
 
 Roadmap Step 1–14 chiusa; app desktop + Android (M1–M3) su `main`; interfaccia
 e domande it/en; **12 materie / 2483 domande**. Versione corrente su `main`:
-**`2.2.0`** (Android `versionCode 5`, iOS `ApplicationVersion 3`; punti deboli
-con filtri spenti di default + conteggi incrociati, Statistiche Master-Detail
-adattive con *Ripassa* per materia e categoria). Ultima GitHub Release
-pubblicata: `v2.2.0` (26/11: punti deboli, Statistiche, revisione grafica, fix swipe; APK + desktop
-Windows/macOS/Linux). Exe desktop portabile in
+**`2.3.0`** (Android `versionCode 6`, iOS `ApplicationVersion 4`; Laboratorio di
+codice C# e Python). Ultima GitHub Release pubblicata: `v2.3.0` (27/11:
+Laboratorio di codice; APK + desktop Windows/macOS/Linux; prima `v2.2.0` del 26/11:
+punti deboli, Statistiche, revisione grafica, fix swipe). Exe desktop portabile in
 `%LOCALAPPDATA%\Programs\Quaestio` + collegamento sul desktop. **iOS** su `main`
 (head `wsa.quiz.ios`): gira nel simulatore sul Mac, iPhone 17 e iPad 9ª gen.,
 provato il 2026-11-09; **iPad fisico** (Apple ID gratuito, Debug e Release

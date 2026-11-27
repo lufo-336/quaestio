@@ -169,7 +169,7 @@ Dal 2026-11-27 anche **Python (`py`)**, stessa struttura (9 schede / 18 varianti
 
 Guida (riusabile come prompt per un'IA) e motore in `generazione-laboratorio/`: si scrive una bozza in
 `generazione-laboratorio/bozze/<ling>/` (ignorata da git), il motore
-(`dotnet run --project generazione-laboratorio/motore -- <bozza> <cs|py> [--write]`) esegue il codice, calcola
+(`dotnet run --project generazione-laboratorio/motore -- <bozza> <id linguaggio> [--write]`) esegue il codice, calcola
 `output`/`atteso`/`effettivo`, controlla esche, input, correzione e trappole e scrive `laboratorio/<ling>/<id>.json`.
 L'esecutore (`generazione-laboratorio/motore/EsecutoreLab.cs`) è lo stesso dei test, collegato nel csproj di
 `wsa.quiz.core.tests`. Il progetto del motore è fuori da `Wsa.Quiz.sln`.
@@ -201,4 +201,4 @@ Ogni scheda ha un file di sovrapposizione in `traduzioni/<lingua>/laboratorio/<l
 1. Aggiungere la coppia `(Id, Nome)` a `LaboratorioService.Linguaggi` in `wsa.quiz.core/Services/LaboratorioService.cs` (es. `("py", "Python")`).
 2. Creare i file delle schede in `laboratorio/<id>/*.json` e le traduzioni in `traduzioni/en/laboratorio/<id>/*.json` (i glob `..\laboratorio\**\*.json` e `..\traduzioni\**\*.json` nei csproj li includono già).
 3. La UI in `HomeView` elenca automaticamente i linguaggi di `LaboratorioService.Linguaggi` che hanno almeno una scheda valida e registra i risultati in cronologia/statistiche come `"<Nome> · Laboratorio"`.
-4. Estendere `LaboratorioEsecuzioneTests.Esegui`, che smista l'esecuzione in base alla sottocartella del linguaggio (Roslyn per `cs`, `EseguiPython` per `py`), con il runner del nuovo linguaggio.
+4. Aggiungere l'esecutore del nuovo linguaggio in `generazione-laboratorio/motore/EsecutoreLab.cs` (`Esegui` smista per id: Roslyn per `cs`, `EseguiPython` per `py`): lo usano sia il motore sia `LaboratorioEsecuzioneTests`. Dettagli e convenzioni: `generazione-laboratorio/GUIDA_GENERAZIONE_SCHEDE.md`, sezione 6.3.

@@ -1,5 +1,5 @@
 // Motore delle schede del Laboratorio.
-// dotnet run --project generazione-laboratorio/motore -- <bozza.json> <cs|py> [--write]
+// dotnet run --project generazione-laboratorio/motore -- <bozza.json> <id linguaggio> [--write]
 // Esegue il codice della bozza, ricalcola output / atteso / effettivo, controlla i vincoli
 // che si sbagliano a mano e con --write scrive laboratorio/<ling>/<id>.json.
 using System.Collections;
@@ -7,11 +7,13 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using Wsa.Quiz.Core.Models.Laboratorio;
+using Wsa.Quiz.Core.Services;
 using Wsa.Quiz.LabMotore;
 
-if (args.Length < 2 || args[1] is not ("cs" or "py"))
+var idLinguaggi = LaboratorioService.Linguaggi.Select(l => l.Id).ToList();
+if (args.Length < 2 || !idLinguaggi.Contains(args[1]))
 {
-    Console.Error.WriteLine("Uso: motore <bozza.json> <cs|py> [--write]");
+    Console.Error.WriteLine($"Uso: motore <bozza.json> <{string.Join("|", idLinguaggi)}> [--write]");
     return 2;
 }
 string ling = args[1];

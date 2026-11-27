@@ -1,6 +1,8 @@
+<p align="center"><img src="docs/images/logo-animato.svg" alt="quaestio" width="420"></p>
+
 # Quaestio
 
-A multi-subject quiz application built with C# / .NET 10 and Avalonia UI for studying and self-assessment, running on desktop (Windows, macOS, Linux), mobile (Android, iOS/iPadOS), and the web (WebAssembly).
+A multi-subject quiz and code-reading application built with C# / .NET 10 and Avalonia UI for studying and self-assessment, running on desktop (Windows, macOS, Linux), mobile (Android, iOS/iPadOS), and the web (WebAssembly).
 
 - **Try the Web version:** [lufo-336.github.io/quaestio](https://lufo-336.github.io/quaestio/)
 - **Download for Windows, macOS (Apple Silicon), Linux and Android:** [Latest Release on GitHub](https://github.com/lufo-336/quaestio/releases/latest)
@@ -12,10 +14,47 @@ The desktop downloads are a single self-contained executable (no .NET installati
 <table>
   <tr>
     <td width="72%" valign="top">
-      <img src="docs/images/home-desktop.png" alt="Quaestio Desktop Home" />
+      <img src="docs/images/home-desktop.png" alt="Quaestio desktop home view in English" />
     </td>
     <td width="28%" valign="top">
-      <img src="docs/images/home-mobile.png" alt="Quaestio Mobile Home" />
+      <img src="docs/images/home-mobile.png" alt="Quaestio mobile home view in Italian" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="72%" valign="top">
+      <img src="docs/images/lab-desktop.png" alt="Code Lab on desktop showing an Advanced Python code review exercise" />
+    </td>
+    <td width="28%" valign="top">
+      <img src="docs/images/lab-mobile.png" alt="Code Lab on mobile showing step 1 of a Basic Python exercise" />
+    </td>
+  </tr>
+</table>
+
+<p>
+  <img src="docs/images/quiz-desktop.png" alt="Desktop quiz question with inline code and answer feedback" />
+</p>
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/stats-lab-desktop.png" alt="Desktop master-detail statistics view for Code Lab" />
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/stats-quiz-desktop.png" alt="Desktop master-detail statistics view for Quiz subjects and categories" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <img src="docs/images/quiz-mobile.png" alt="Mobile quiz question view in Italian" width="280" />
+    </td>
+    <td width="50%" valign="top" align="center">
+      <img src="docs/images/lab-home-mobile.png" alt="Mobile Code Lab home view with language and level selection" width="280" />
     </td>
   </tr>
 </table>
@@ -24,67 +63,78 @@ The desktop downloads are a single self-contained executable (no .NET installati
 
 Quaestio started as a simple terminal-based quiz tool to help me review coursework for my Web Solution Architect (WsA) program while I was first learning C#. Over time, the project grew: a graphical interface built with Avalonia was added next to the console version (which still exists and shares the same logic and data), and mobile support followed for Android and iOS/iPadOS, alongside an in-browser WebAssembly build.
 
-Today, the repository includes **11 subjects and 2,383 questions**, with both the application interface and the question banks available in Italian and English.
+Today, the repository includes **12 subjects and 2,483 questions**, plus **Code Lab** exercises for C# and Python, with the application interface, question banks, and lab exercises available in both Italian and English.
 
 The project was largely **vibe-coded** in collaboration with AI assistants (Claude Code and Google Antigravity). The git commit history genuinely documents the progression, refactorings, mistakes, and lessons learned of an amateur programmer building a cross-platform application from scratch. Note: parts of the history may have been revised, only to remove personal data (local paths, device and signing identifiers) and large build artifacts; the code and the sequence of changes are unchanged.
 
 ## Current Goal
 
-Quaestio has evolved beyond its original coursework focus into a general-purpose study and self-assessment tool. Anyone can take quizzes on existing technical subjects or import custom question sets for their own study routines.
+Quaestio has evolved beyond its original coursework focus into a general-purpose study and self-assessment tool. Anyone can take quizzes on existing technical subjects, practice code reading and bug finding in the Code Lab, or import custom question sets for their own study routines.
 
 ## Features
 
-- **Classic and Rotation Modes:** Take a quiz where each question appears once, or play in rotation mode where incorrectly answered questions cycle back into the queue until answered correctly.
+- **Code Lab ("Lab" / "Laboratorio"):** Interactive exercises on real C# and Python functions to train code reading, code review, and testing across three steps (*Predict the output*, *Find the bug*, *Break the function*) and three difficulty levels (Basic, Medium, Advanced). A **Quiz | Lab** switch is available in Home, History, Statistics, and Paused.
+- **Classic, Rotation, and Weak Points Modes:** Take a quiz where each question appears once, play in rotation mode where wrong answers cycle back into the queue until answered correctly, or choose **Weak points** mode to review previously missed questions (with filters off by default and cross-counted totals). An optional second chance lets you retry right away after a mistake.
 - **Flexible Filters:** Filter questions by subject, category, or cross-cutting question type (`codice` for code snippets, `teoria` for theoretical concepts, and `architettura` for architectural patterns).
-- **Pause & Resume:** Suspend an ongoing quiz at any point and resume later from where you left off.
-- **Detailed History:** Review past sessions with scores, completion times, and a full drill-down showing user answers versus correct answers.
-- **Visual Statistics Heatmap:** Color-coded performance breakdown across subjects and categories, highlighting areas that need review.
+- **Pause & Resume:** Suspend an ongoing quiz or Code Lab exercise at any point and resume later from where you left off.
+- **Detailed History:** Review past quiz and lab sessions with scores, completion times, and a full drill-down showing user answers versus correct answers.
+- **Master-Detail Statistics with Review:** Adaptive master-detail statistics view with color-coded performance breakdown (red, amber, green) by subject, category, and defect type, plus a *Review* action to immediately practice missed questions or failed lab exercises.
 - **Content Management:** Create custom subjects or add questions to existing ones directly in the app by importing JSON files.
 - **Formatted Code Rendering:** Syntax-formatted code blocks with line numbering and monospace typography (`JetBrains Mono NL`), optimized for both large screens and touch displays.
-- **Multilingual Support:** Switch between English and Italian for both UI labels and question contents.
-- **Customization:** Choose between multiple accent color themes.
+- **Multilingual Support:** Switch between English and Italian for UI labels, question banks, and Code Lab exercises.
+- **Visual Design & User Color:** Sharp-corner interface using the `Archivo` typeface and a 16-ink palette, with section-colored desktop tabs, a colored bottom navigation bar and horizontal swipe navigation on phones, and a user-chosen ink color (from the 16 inks) for headers and titles.
 
-![Quiz Question with Code](docs/images/quiz.png)
+## Code Lab
 
-![Session History Drill-down](docs/images/history.png)
+Code Lab (*Lab* in the English UI, *Laboratorio* in the Italian UI) is a mode focused on reading, reviewing, and testing real code. Each exercise (*scheda*) presents a function with a short requirement and a defective implementation, and walks through three steps on the same function:
 
-![Statistics Heatmap](docs/images/statistics.png)
+1. **Predict the output:** Read the defective function and a sample call, then select what it prints.
+2. **Find the bug:** Select the defective line and the defect category. At the **Medium** level, you also choose the correct fix among three options. At the **Advanced** level, you perform a full review of a longer function containing 2–3 defects with partial scoring, where false alarms cost points. At **Basic** and **Medium** levels, a wrong attempt offers a second chance with a hint.
+3. **Break the function:** Choose the input call where the actual output diverges from the expected output of the specification.
+
+Code Lab currently includes **C#** and **Python**, organized into three levels (**Basic**, **Medium**, **Advanced**) with 9 exercises per language (3 per level) and 2 defect variants per exercise (18 variants per language), all available in Italian and English. Exercises can be paused and resumed individually, and failed exercises can be replayed from the Statistics view via *Review*.
+
+The app itself never compiles or executes code on the user's device: at runtime it only compares user selections against precomputed JSON data. Instead, every output, expected value, and actual value is verified in the xUnit test suite by executing the code for real—using Roslyn (`Microsoft.CodeAnalysis.CSharp.Scripting`) for C# and the system Python interpreter for Python.
+
+New exercises are authored using the guide and runner engine in [`generazione-laboratorio/`](generazione-laboratorio/) ([`GUIDA_GENERAZIONE_SCHEDE.md`](generazione-laboratorio/GUIDA_GENERAZIONE_SCHEDE.md) and `generazione-laboratorio/motore`). Given a draft with the healthy reference code, the defective variants, and the test calls, the engine runs the code, computes all outputs, validates distractors, fixes, and traps, and writes the final JSON file to `laboratorio/<lang>/`.
 
 ## Architecture
 
 Quaestio is organized around a shared core library and platform-specific heads:
 
-- **`Wsa.Quiz.Core`**: Domain models (`Domanda`, `Materia`, `RisultatoQuiz`), state machines, and business services (`QuizService`, `StorageService`, `StatisticheService`).
-- **`Wsa.Quiz.App`**: Shared Avalonia UI containing views, user controls (including `TestoConCodice`), and view state. Built using code-behind and `INotifyPropertyChanged`.
+- **`Wsa.Quiz.Core`**: Domain models (`Domanda`, `Materia`, `RisultatoQuiz`, `SchedaLab`), state machines, and business services (`QuizService`, `StorageService`, `StatisticheService`, `LaboratorioService`).
+- **`Wsa.Quiz.App`**: Shared Avalonia UI containing views, user controls (including `TestoConCodice`), and view state (`SessioneQuiz`, `SessioneLaboratorio`). Built using code-behind and `INotifyPropertyChanged`.
 - **Platform Heads**:
   - `wsa.quiz.cli`: Terminal / console head.
   - `wsa.quiz.desktop`: Desktop head for Windows, macOS, and Linux.
   - `wsa.quiz.android`: Android head (APK, single-view with touch navigation).
   - `wsa.quiz.ios`: iOS / iPadOS head.
   - `wsa.quiz.browser`: WebAssembly head deployed as a static bundle.
-- **Storage Layer**: Persistent data (history, paused sessions, user preferences, custom subjects) is written to the platform user data directory (`%APPDATA%\WsaQuiz`, `~/.config/WsaQuiz`, `~/Library/Application Support/WsaQuiz`, or app sandbox) or browser `localStorage` under WebAssembly.
-- **`wsa.quiz.core.tests`**: xUnit tests covering question parsing, integrity, and scoring.
+- **Storage Layer**: Persistent data (history, paused quiz and lab sessions, user preferences, custom subjects) is written to the platform user data directory (`%APPDATA%\WsaQuiz`, `~/.config/WsaQuiz`, `~/Library/Application Support/WsaQuiz`, or app sandbox) or browser `localStorage` under WebAssembly.
+- **`wsa.quiz.core.tests`**: xUnit tests covering question parsing, JSON and translation integrity, scoring, and real execution of all Code Lab exercises and variants (Roslyn for C#, Python interpreter for Python).
+- **Content Generation Tools**: `generazione-domande/` (guide and Node.js engine for balanced multiple-choice question banks) and `generazione-laboratorio/` (guide and .NET engine that executes drafts and generates Code Lab JSON files).
 
 ```mermaid
 flowchart TD
     subgraph Data["Data"]
         M["materie.json"]
-        D["domande/ (11 subjects)"]
+        D["domande/ (12 subjects, 2,483 questions)"]
+        L["laboratorio/ (C#, Python)"]
         T["traduzioni/en/"]
     end
 
     subgraph CoreLib["Wsa.Quiz.Core"]
-        Models["Models (Domanda, Materia, RisultatoQuiz, ...)"]
-        Services["Services (QuizService, StorageService, StatisticheService)"]
+        Models["Models (Domanda, Materia, RisultatoQuiz, SchedaLab, ...)"]
+        Services["Services (QuizService, StorageService, StatisticheService, LaboratorioService)"]
     end
 
     subgraph Tests["wsa.quiz.core.tests"]
-        UnitTest["xUnit Tests"]
+        UnitTest["xUnit Tests (Parser, Integrity, Lab Code Execution)"]
     end
 
     subgraph UILib["Wsa.Quiz.App (Avalonia UI)"]
-        Views["Views (Home, Quiz, History, Statistics, Manage Content)"]
-        State["State (SessioneQuiz State Machine)"]
+        Views["Views (Home, Quiz, Lab, History, Statistics, Manage Content)"]
+        State["State (SessioneQuiz, SessioneLaboratorio)"]
     end
 
     subgraph Heads["Platform Heads"]
@@ -237,7 +287,7 @@ dotnet publish wsa.quiz.browser -c Release
 
 The application is branded as **Quaestio** (from the Latin for inquiry or examination). Internal namespaces (`Wsa.Quiz.*`), project names (`wsa.quiz.*`), package identifiers (`it.eduits.wsaquiz`), and the user data folder (`WsaQuiz`) retain the original naming scheme. Renaming internal identifiers would risk breaking saved user history, application preferences, and build configurations; they remain as part of the project's history.
 
-Italian was the project's starting language, and many things still reflect that: code identifiers (classes such as `Domanda`, `Materia`, `SessioneQuiz`), JSON field names, folder and file names (`domande/`, `traduzioni/`, `materie.json`), the question-generation guide, commit messages, and the working documents in `docs/`. The app interface and the questions are available in both Italian and English.
+Italian was the project's starting language, and many things still reflect that: code identifiers (classes such as `Domanda`, `Materia`, `SchedaLab`, `SessioneQuiz`), JSON field names, folder and file names (`domande/`, `laboratorio/`, `traduzioni/`, `materie.json`), the generation guides, commit messages, and the working documents in `docs/`. The app interface, the questions, and the Code Lab exercises are available in both Italian and English.
 
 ## About the Questions
 
@@ -245,13 +295,12 @@ The built-in questions were generated with AI from course study material. I have
 
 ## Translations
 
-All 11 built-in subjects and 2,383 questions are available in both Italian and English. English translations were produced with AI assistance and are structured as lightweight overlay files located under `traduzioni/en/`.
+All 12 built-in subjects (2,483 questions) and all Code Lab exercises are available in both Italian and English. English translations were produced with AI assistance and are structured as lightweight overlay files located under `traduzioni/en/`.
 
 ## Future Goals
 
 - **Question Type Metadata**: Update `GUIDA_GENERAZIONE_DOMANDE.md` and `quiz-engine.js` so newly generated questions automatically include the `tipo` attribute.
 - **Language Learning**: Expand question formats to support vocabulary acquisition and foreign language grammar drills.
-- **Retry Mode**: Add a training option that allows players to retry a question immediately after a mistake.
 - **Study Guides**: Provide introductory theory summaries or companion reference notes alongside pre-installed question banks.
 
 ## Acknowledgments
