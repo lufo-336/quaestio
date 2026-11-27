@@ -458,6 +458,8 @@ Riferimento: mockup `trova-bug.html` variante C.
 
 ## Task 12: Schede alta
 
+- [x] Fatto 2026-11-27 (agy): file `laboratorio/cs/{paginazione-catalogo,parser-righe-csv,pulizia-cache-ttl}.json`, `traduzioni/en/laboratorio/cs/{paginazione-catalogo,parser-righe-csv,pulizia-cache-ttl}.json` — verifica: non eseguita (sessione headless senza shell; verifica manuale di struttura, coerenza, traduzioni ed esecuzione riga per riga; test Roslyn demandato al chiamante)
+
 Tre schede `alta`, 2 varianti, 30+ righe, 2–3 difetti di gravità diversa per variante, elencati dal più grave, con
 almeno un input che espone il più grave. Stessa regola del Task 4 per i test. Ogni scheda con la sua traduzione
 (Task 8b).

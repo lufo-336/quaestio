@@ -1,0 +1,253 @@
+{
+  "id": "paginazione-catalogo",
+  "titolo": "Paginazione e filtro del catalogo",
+  "livello": "alta",
+  "requisito": "Filtra le voci valide di un catalogo (ignorando elementi nulli o vuoti) per sottostringa case-insensitive se filtro non è vuoto, poi restituisce la pagina 1-based con la quota percentuale mostrata rispetto al totale filtrato. Restituisce \"non valido\" se voci è nullo o pagina/perPagina non sono positivi; se non ci sono voci o la pagina è oltre la fine, restituisce una lista vuota.",
+  "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"Cavo USB\", \"Mouse\", \"Hub USB\", \"Microfono usb\", \"Webcam USB\" }, \"usb\", 1, 2));\nConsole.WriteLine(PaginaCatalogo(new[] { \"A1\", \"A2\", \"A3\", \"A4\", \"A5\", \"A6\", \"A7\", \"A8\" }, null, 1, 3));\nConsole.WriteLine(PaginaCatalogo(new[] { \"Monitor\", \"Cuffie\", \"Tastiera\", \"Mouse\" }, \"\", 2, 2));",
+  "codiceSano": [
+    "string PaginaCatalogo(string?[]? voci, string? filtro, int pagina, int perPagina)",
+    "{",
+    "    if (voci == null || pagina <= 0 || perPagina <= 0)",
+    "        return \"non valido\";",
+    "",
+    "    var filtrate = new List<string>();",
+    "    string chiave = (filtro ?? string.Empty).Trim();",
+    "    bool haFiltro = chiave.Length > 0;",
+    "",
+    "    foreach (string? raw in voci)",
+    "    {",
+    "        if (string.IsNullOrWhiteSpace(raw))",
+    "            continue;",
+    "        string pulita = raw.Trim();",
+    "        if (haFiltro && !pulita.Contains(chiave, StringComparison.OrdinalIgnoreCase))",
+    "            continue;",
+    "        filtrate.Add(pulita);",
+    "    }",
+    "",
+    "    int totale = filtrate.Count;",
+    "    if (totale == 0)",
+    "        return \"pag 0/0 (0%): []\";",
+    "",
+    "    int totalePagine = (int)(((long)totale + perPagina - 1) / perPagina);",
+    "    long inizio = (long)(pagina - 1) * perPagina;",
+    "    if (pagina > totalePagine || inizio >= totale)",
+    "        return $\"pag {pagina}/{totalePagine} (0%): []\";",
+    "",
+    "    int indiceInizio = (int)inizio;",
+    "    int indiceFine = (int)Math.Min(inizio + perPagina, totale);",
+    "    var paginaCorrente = new List<string>();",
+    "    for (int i = indiceInizio; i < indiceFine; i++)",
+    "        paginaCorrente.Add(filtrate[i]);",
+    "",
+    "    int mostrati = paginaCorrente.Count;",
+    "    double quota = Math.Round(mostrati * 100.0 / totale, 1);",
+    "    return $\"pag {pagina}/{totalePagine} ({quota}%): [{string.Join(\", \", paginaCorrente)}]\";",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "string PaginaCatalogo(string?[]? voci, string? filtro, int pagina, int perPagina)",
+        "{",
+        "    if (voci == null || pagina <= 0 || perPagina <= 0)",
+        "        return \"non valido\";",
+        "",
+        "    var filtrate = new List<string>();",
+        "    string chiave = (filtro ?? string.Empty).Trim();",
+        "    bool haFiltro = chiave.Length > 0;",
+        "",
+        "    foreach (string? raw in voci)",
+        "    {",
+        "        string pulita = raw!.Trim();",
+        "        if (pulita.Length == 0)",
+        "            continue;",
+        "        if (haFiltro && !pulita.Contains(chiave, StringComparison.Ordinal))",
+        "            continue;",
+        "        filtrate.Add(pulita);",
+        "    }",
+        "",
+        "    int totale = filtrate.Count;",
+        "    if (totale == 0)",
+        "        return \"pag 0/0 (0%): []\";",
+        "",
+        "    int totalePagine = (int)(((long)totale + perPagina - 1) / perPagina);",
+        "    long inizio = (long)(pagina - 1) * perPagina;",
+        "    if (pagina >= totalePagine || inizio >= totale)",
+        "        return $\"pag {pagina}/{totalePagine} (0%): []\";",
+        "",
+        "    int indiceInizio = (int)inizio;",
+        "    int indiceFine = (int)Math.Min(inizio + perPagina, totale);",
+        "    var paginaCorrente = new List<string>();",
+        "    for (int i = indiceInizio; i < indiceFine; i++)",
+        "        paginaCorrente.Add(filtrate[i]);",
+        "",
+        "    int mostrati = paginaCorrente.Count;",
+        "    double quota = Math.Round(mostrati * 100.0 / totale, 1);",
+        "    return $\"pag {pagina}/{totalePagine} ({quota}%): [{string.Join(\", \", paginaCorrente)}]\";",
+        "}"
+      ],
+      "output": [
+        "pag 1/1 (0%): []",
+        "pag 1/3 (37.5%): [A1, A2, A3]",
+        "pag 2/2 (0%): []"
+      ],
+      "esche": [
+        "pag 1/2 (50%): [Cavo USB, Hub USB]",
+        "pag 1/1 (100%): [Microfono usb]",
+        "pag 2/2 (50%): [Tastiera, Mouse]",
+        "pag 1/3 (37%): [A1, A2, A3]"
+      ],
+      "difetti": [
+        {
+          "riga": 12,
+          "tipo": "NullVuoto",
+          "indizio": "Controlla come vengono trattati gli elementi dell'array prima di ripulire gli spazi.",
+          "spiegazione": "Chiamare raw!.Trim() prima di verificare se raw è nullo provoca NullReferenceException non appena l'array contiene un elemento null.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 26,
+          "tipo": "Confine",
+          "indizio": "Guarda la condizione che decide se la pagina richiesta supera il numero totale di pagine.",
+          "spiegazione": "Usare pagina >= totalePagine al posto di > scarta proprio l'ultima pagina valida, restituendo sempre una lista vuota quando pagina coincide con totalePagine.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 15,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Osserva il criterio usato per verificare se una voce contiene la sottostringa filtro.",
+          "spiegazione": "StringComparison.Ordinal rende la ricerca sensibile alle maiuscole, violando il requisito di filtro case-insensitive.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new string?[] { \"Mouse\", null, \"Tastiera\" }, null, 1, 2));",
+          "atteso": "pag 1/1 (100%): [Mouse, Tastiera]",
+          "effettivo": "!NullReferenceException"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \" Penna \", \"Matita\", \"Gomma\", \"Riga\" }, null, 2, 2));",
+          "atteso": "pag 2/2 (50%): [Gomma, Riga]",
+          "effettivo": "pag 2/2 (0%): []"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"Router\", \"Switch\", \"Cavo\", \"Rack\" }, \"rou\", 1, 1));",
+          "atteso": "pag 1/1 (100%): [Router]",
+          "effettivo": "pag 0/0 (0%): []"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"cavo\", \"  \", \"hub\", \"mouse\", \"tastiera\" }, \"\", 1, 2));",
+          "atteso": "pag 1/2 (50%): [cavo, hub]",
+          "effettivo": "pag 1/2 (50%): [cavo, hub]"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "string PaginaCatalogo(string?[]? voci, string? filtro, int pagina, int perPagina)",
+        "{",
+        "    if (voci == null || pagina <= 0 || perPagina <= 0)",
+        "        return \"non valido\";",
+        "",
+        "    var filtrate = new List<string>();",
+        "    string chiave = (filtro ?? string.Empty).Trim();",
+        "    bool haFiltro = chiave.Length > 0;",
+        "",
+        "    foreach (string? raw in voci)",
+        "    {",
+        "        if (string.IsNullOrWhiteSpace(raw))",
+        "            continue;",
+        "        string pulita = raw.Trim();",
+        "        if (haFiltro && pulita.Contains(chiave, StringComparison.OrdinalIgnoreCase))",
+        "            continue;",
+        "        filtrate.Add(pulita);",
+        "    }",
+        "",
+        "    int totale = filtrate.Count;",
+        "    if (totale == 0)",
+        "        return \"pag 0/0 (0%): []\";",
+        "",
+        "    int totalePagine = (int)(((long)totale + perPagina - 1) / perPagina);",
+        "    int inizio = (pagina - 1) * perPagina;",
+        "    if (inizio >= totale)",
+        "        return $\"pag {pagina}/{totalePagine} (0%): []\";",
+        "",
+        "    int indiceInizio = inizio;",
+        "    int indiceFine = Math.Min(inizio + perPagina, totale);",
+        "    var paginaCorrente = new List<string>();",
+        "    for (int i = indiceInizio; i < indiceFine; i++)",
+        "        paginaCorrente.Add(filtrate[i]);",
+        "",
+        "    int mostrati = paginaCorrente.Count;",
+        "    double quota = mostrati * 100 / totale;",
+        "    return $\"pag {pagina}/{totalePagine} ({quota}%): [{string.Join(\", \", paginaCorrente)}]\";",
+        "}"
+      ],
+      "output": [
+        "pag 1/1 (100%): [Mouse]",
+        "pag 1/3 (37%): [A1, A2, A3]",
+        "pag 2/2 (50%): [Tastiera, Mouse]"
+      ],
+      "esche": [
+        "pag 1/2 (50%): [Cavo USB, Hub USB]",
+        "pag 1/3 (37.5%): [A1, A2, A3]",
+        "pag 2/2 (0%): []",
+        "pag 1/2 (50%): [Monitor, Cuffie]"
+      ],
+      "difetti": [
+        {
+          "riga": 25,
+          "tipo": "Overflow",
+          "indizio": "Controlla i tipi usati nel calcolo dell'offset iniziale della pagina.",
+          "spiegazione": "Il prodotto (pagina - 1) * perPagina viene eseguito in int: con un numero di pagina grande trabocca in negativo, supera il controllo inizio >= totale e lancia ArgumentOutOfRangeException nell'accesso alla lista.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 15,
+          "tipo": "CondizioneInvertita",
+          "indizio": "Guarda la condizione che applica il filtro testuale alle voci del catalogo.",
+          "spiegazione": "Manca la negazione ! davanti a pulita.Contains(...): il ciclo scarta le voci che corrispondono al filtro e conserva quelle estranee.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 36,
+          "tipo": "DivisioneIntera",
+          "indizio": "Osserva il calcolo della quota percentuale verso la fine del metodo.",
+          "spiegazione": "mostrati, 100 e totale sono tutti int: la divisione intera tronca i decimali (es. 37.5 diventa 37) prima della conversione a double.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"Mouse\", \"Tastiera\" }, null, 3000000, 1000));",
+          "atteso": "pag 3000000/1 (0%): []",
+          "effettivo": "!ArgumentOutOfRangeException"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"Cavo HDMI\", \"Cavo USB\", \"Mouse\" }, \"cavo\", 1, 2));",
+          "atteso": "pag 1/1 (100%): [Cavo HDMI, Cavo USB]",
+          "effettivo": "pag 1/1 (100%): [Mouse]"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new[] { \"V1\", \"V2\", \"V3\", \"V4\", \"V5\", \"V6\", \"V7\", \"V8\" }, null, 2, 5));",
+          "atteso": "pag 2/2 (37.5%): [V6, V7, V8]",
+          "effettivo": "pag 2/2 (37%): [V6, V7, V8]"
+        },
+        {
+          "chiamata": "Console.WriteLine(PaginaCatalogo(new string?[] { \"Penna\", null, \"Quaderno\", \" \", \"Zaino\", \"Riga\" }, null, 2, 2));",
+          "atteso": "pag 2/2 (50%): [Zaino, Riga]",
+          "effettivo": "pag 2/2 (50%): [Zaino, Riga]"
+        }
+      ]
+    }
+  ]
+}

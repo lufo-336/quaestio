@@ -1,0 +1,273 @@
+{
+  "id": "parser-righe-csv",
+  "titolo": "Analisi e somma di righe CSV",
+  "livello": "alta",
+  "requisito": "Analizza un array di righe CSV nel formato \"prodotto;categoria;quantita;prezzo\" (saltando eventualmente la prima riga di intestazione, le righe vuote e i commenti che iniziano con '#'). Ogni riga dati deve avere 4 campi, testi non vuoti e numeri interi non negativi, altrimenti lancia FormatException. Calcola il numero di righe valide, il totale complessivo e il totale della categoria filtrata (case-insensitive, oppure uguale al totale complessivo se il filtro è vuoto); se righe è nullo o vuoto restituisce \"nessun dato\".",
+  "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Prod;Cat;Qta;Prezzo\", \"Mouse;Tech;2;25\", \"Cavo;Tech;1;10\" }, \"Tech\", true));\nConsole.WriteLine(AnalizzaOrdiniCsv(new[] { \"Penna;Ufficio;4;3\", \"Carta;Ufficio;2;5\" }, \"ufficio\", false));\nConsole.WriteLine(AnalizzaOrdiniCsv(new[] { \"Sedia;Arredo;2;40\", \"Lampada;Arredo;1;20\" }, \"\", false));",
+  "codiceSano": [
+    "string AnalizzaOrdiniCsv(string?[]? righe, string? categoriaFiltro, bool saltaIntestazione)",
+    "{",
+    "    if (righe == null || righe.Length == 0)",
+    "        return \"nessun dato\";",
+    "",
+    "    string filtro = (categoriaFiltro ?? string.Empty).Trim();",
+    "    bool haFiltro = filtro.Length > 0;",
+    "    int inizio = saltaIntestazione ? 1 : 0;",
+    "    int conteggio = 0;",
+    "    long totaleGenerale = 0;",
+    "    long totaleFiltro = 0;",
+    "",
+    "    for (int i = inizio; i < righe.Length; i++)",
+    "    {",
+    "        string? grezza = righe[i];",
+    "        if (string.IsNullOrWhiteSpace(grezza))",
+    "            continue;",
+    "",
+    "        string riga = grezza.Trim();",
+    "        if (riga.StartsWith(\"#\", StringComparison.Ordinal))",
+    "            continue;",
+    "",
+    "        string[] campi = riga.Split(';');",
+    "        if (campi.Length != 4)",
+    "            throw new FormatException(\"Numero di colonne non valido\");",
+    "",
+    "        string prodotto = campi[0].Trim();",
+    "        string categoria = campi[1].Trim();",
+    "        if (prodotto.Length == 0 || categoria.Length == 0)",
+    "            throw new FormatException(\"Campi testuali vuoti\");",
+    "",
+    "        int qta = int.Parse(campi[2].Trim());",
+    "        int prezzo = int.Parse(campi[3].Trim());",
+    "        if (qta < 0 || prezzo < 0)",
+    "            throw new FormatException(\"Valori negativi\");",
+    "",
+    "        long subtotale = (long)qta * prezzo;",
+    "        totaleGenerale += subtotale;",
+    "        if (!haFiltro || string.Equals(categoria, filtro, StringComparison.OrdinalIgnoreCase))",
+    "            totaleFiltro += subtotale;",
+    "        conteggio++;",
+    "    }",
+    "",
+    "    return $\"righe={conteggio}; totale={totaleGenerale}; filtro={totaleFiltro}\";",
+    "}"
+  ],
+  "varianti": [
+    {
+      "id": "v1",
+      "righe": [
+        "string AnalizzaOrdiniCsv(string?[]? righe, string? categoriaFiltro, bool saltaIntestazione)",
+        "{",
+        "    if (righe == null || righe.Length == 0)",
+        "        return \"nessun dato\";",
+        "",
+        "    string filtro = (categoriaFiltro ?? string.Empty).Trim();",
+        "    bool haFiltro = filtro.Length > 0;",
+        "    int inizio = saltaIntestazione ? 1 : 0;",
+        "    int conteggio = 0;",
+        "    long totaleGenerale = 0;",
+        "    long totaleFiltro = 0;",
+        "",
+        "    for (int i = inizio; i < righe.Length - 1; i++)",
+        "    {",
+        "        string? grezza = righe[i];",
+        "        if (string.IsNullOrWhiteSpace(grezza))",
+        "            continue;",
+        "",
+        "        string riga = grezza.Trim();",
+        "        if (riga.StartsWith(\"#\", StringComparison.Ordinal))",
+        "            continue;",
+        "",
+        "        try",
+        "        {",
+        "            string[] campi = riga.Split(';');",
+        "            if (campi.Length != 4)",
+        "                throw new FormatException(\"Numero di colonne non valido\");",
+        "",
+        "            string prodotto = campi[0].Trim();",
+        "            string categoria = campi[1].Trim();",
+        "            if (prodotto.Length == 0 || categoria.Length == 0)",
+        "                throw new FormatException(\"Campi testuali vuoti\");",
+        "",
+        "            int qta = int.Parse(campi[2].Trim());",
+        "            int prezzo = int.Parse(campi[3].Trim());",
+        "            if (qta < 0 || prezzo < 0)",
+        "                throw new FormatException(\"Valori negativi\");",
+        "",
+        "            long subtotale = (long)qta * prezzo;",
+        "            totaleGenerale += subtotale;",
+        "            if (!haFiltro || string.Equals(categoria, filtro, StringComparison.OrdinalIgnoreCase))",
+        "                totaleFiltro += prezzo;",
+        "            conteggio++;",
+        "        }",
+        "        catch (Exception)",
+        "        {",
+        "            continue;",
+        "        }",
+        "    }",
+        "",
+        "    return $\"righe={conteggio}; totale={totaleGenerale}; filtro={totaleFiltro}\";",
+        "}"
+      ],
+      "output": [
+        "righe=1; totale=50; filtro=25",
+        "righe=1; totale=12; filtro=3",
+        "righe=1; totale=80; filtro=40"
+      ],
+      "esche": [
+        "righe=2; totale=60; filtro=60",
+        "righe=2; totale=22; filtro=22",
+        "righe=2; totale=100; filtro=100",
+        "righe=1; totale=50; filtro=50"
+      ],
+      "difetti": [
+        {
+          "riga": 45,
+          "tipo": "EccezioneInghiottita",
+          "indizio": "Guarda come viene gestito un errore di formato durante l'analisi di una riga.",
+          "spiegazione": "Il blocco catch (Exception) inghiotte qualsiasi FormatException e salta silenziosamente la riga malformata invece di far fallire il parsing come richiesto.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 13,
+          "tipo": "Confine",
+          "indizio": "Controlla l'estremo superiore del ciclo for sulle righe.",
+          "spiegazione": "La condizione i < righe.Length - 1 si ferma un passo prima della fine, scartando sistematicamente l'ultima riga dell'array.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 42,
+          "tipo": "OperandoSbagliato",
+          "indizio": "Osserva cosa viene sommato all'accumulatore della categoria filtrata.",
+          "spiegazione": "totaleFiltro somma prezzo (prezzo unitario) al posto di subtotale (quantità per prezzo), sottostimando tutte le righe con quantità diversa da 1.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Cavo;Tech;2;10\", \"Rotta;Tech;abc;5\", \"# fine\" }, \"Tech\", false));",
+          "atteso": "!FormatException",
+          "effettivo": "righe=1; totale=20; filtro=10"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Penna;Ufficio;1;2\", \"Quaderno;Ufficio;1;5\" }, \"Ufficio\", false));",
+          "atteso": "righe=2; totale=7; filtro=7",
+          "effettivo": "righe=1; totale=2; filtro=2"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Mouse;Tech;3;20\", \"\" }, \"Tech\", false));",
+          "atteso": "righe=1; totale=60; filtro=60",
+          "effettivo": "righe=1; totale=60; filtro=20"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Articolo;Categoria;Qta;Prezzo\", \"Mouse;Tech;1;20\", \"Tastiera;Tech;1;30\", \"# fine\" }, \"Tech\", true));",
+          "atteso": "righe=2; totale=50; filtro=50",
+          "effettivo": "righe=2; totale=50; filtro=50"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "righe": [
+        "string AnalizzaOrdiniCsv(string?[]? righe, string? categoriaFiltro, bool saltaIntestazione)",
+        "{",
+        "    if (righe == null || righe.Length == 0)",
+        "        return \"nessun dato\";",
+        "",
+        "    string filtro = (categoriaFiltro ?? string.Empty).Trim();",
+        "    bool haFiltro = filtro.Length > 0;",
+        "    int inizio = saltaIntestazione ? 1 : 0;",
+        "    int conteggio = 0;",
+        "    long totaleGenerale = 0;",
+        "    long totaleFiltro = 0;",
+        "",
+        "    for (int i = inizio; i < righe.Length; i++)",
+        "    {",
+        "        string? grezza = righe[i];",
+        "        if (string.IsNullOrWhiteSpace(grezza))",
+        "            continue;",
+        "",
+        "        string riga = grezza.Trim();",
+        "        if (riga.StartsWith(\"#\", StringComparison.Ordinal))",
+        "            continue;",
+        "",
+        "        string[] campi = riga.Split(';');",
+        "        if (campi.Length != 4)",
+        "            throw new FormatException(\"Numero di colonne non valido\");",
+        "",
+        "        string prodotto = campi[0].Trim();",
+        "        string categoria = campi[1].Trim();",
+        "        if (prodotto.Length == 0 || categoria.Length == 0)",
+        "            throw new FormatException(\"Campi testuali vuoti\");",
+        "",
+        "        int qta = int.Parse(campi[2].Trim());",
+        "        int prezzo = int.Parse(campi[3].Trim());",
+        "        if (qta < 0 || prezzo < 0)",
+        "            throw new FormatException(\"Valori negativi\");",
+        "",
+        "        long subtotale = qta * prezzo;",
+        "        totaleGenerale += subtotale;",
+        "        if (!haFiltro || string.Equals(categoria, filtro, StringComparison.Ordinal))",
+        "            totaleFiltro += subtotale;",
+        "        conteggio++;",
+        "    }",
+        "",
+        "    return $\"righe={conteggio}; totale={totaleGenerale}; filtro={totaleFiltro}\";",
+        "}"
+      ],
+      "output": [
+        "righe=2; totale=60; filtro=60",
+        "righe=2; totale=22; filtro=0",
+        "righe=2; totale=100; filtro=100"
+      ],
+      "esche": [
+        "righe=2; totale=22; filtro=22",
+        "righe=1; totale=50; filtro=25",
+        "righe=2; totale=60; filtro=0",
+        "righe=1; totale=80; filtro=80"
+      ],
+      "difetti": [
+        {
+          "riga": 37,
+          "tipo": "Overflow",
+          "indizio": "Controlla i tipi coinvolti nel calcolo del subtotale di ogni riga.",
+          "spiegazione": "qta e prezzo sono entrambi int: il prodotto qta * prezzo trabocca silenziosamente in negativo prima di essere promosso a long quando supera int.MaxValue.",
+          "correzione": "",
+          "trappole": []
+        },
+        {
+          "riga": 39,
+          "tipo": "ConfrontoStringhe",
+          "indizio": "Osserva il confronto tra la categoria letta dalla riga e il filtro richiesto.",
+          "spiegazione": "StringComparison.Ordinal rende il filtro di categoria sensibile alle maiuscole, ignorando righe valide quando differisce solo il maiuscolo/minuscolo.",
+          "correzione": "",
+          "trappole": []
+        }
+      ],
+      "input": [
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Server;Infra;100000;30000\" }, \"Infra\", false));",
+          "atteso": "righe=1; totale=3000000000; filtro=3000000000",
+          "effettivo": "righe=1; totale=-1294967296; filtro=-1294967296"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Cavo;Tech;3;10\", \"Sedia;Arredo;1;50\" }, \"tech\", false));",
+          "atteso": "righe=2; totale=80; filtro=30",
+          "effettivo": "righe=2; totale=80; filtro=0"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Licenza;Cloud;50000;50000\" }, \"Cloud\", false));",
+          "atteso": "righe=1; totale=2500000000; filtro=2500000000",
+          "effettivo": "righe=1; totale=-1794967296; filtro=-1794967296"
+        },
+        {
+          "chiamata": "Console.WriteLine(AnalizzaOrdiniCsv(new[] { \"Header;Cat;Q;P\", \"Penna;Ufficio;5;2\", \"# ignora\" }, \"Ufficio\", true));",
+          "atteso": "righe=1; totale=10; filtro=10",
+          "effettivo": "righe=1; totale=10; filtro=10"
+        }
+      ]
+    }
+  ]
+}

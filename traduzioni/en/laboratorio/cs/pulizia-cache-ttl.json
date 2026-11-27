@@ -1,0 +1,38 @@
+{
+  "titolo": "In-memory cache with TTL expiration",
+  "requisito": "Simulates a sequence of \"PUT:istante:chiave\" and \"GET:istante:chiave\" commands on a cache with lifetime ttl (an entry created or refreshed at t0 expires as soon as istante - t0 >= ttl; each command purges expired entries first). Returns \"non valido\" if operazioni is null or empty or ttl <= 0; otherwise returns the active entry count, hits over GET requests, and the hit percentage rounded to one decimal place.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how expired entries are removed from the cache list.",
+          "spiegazione": "Calling cache.Remove(voce) while iterating cache with foreach modifies the collection during enumeration and throws InvalidOperationException as soon as an entry expires."
+        },
+        {
+          "indizio": "Check the condition testing whether the key to update is already present in cache.",
+          "spiegazione": "Using indice > 0 instead of indice >= 0 excludes the first element (index 0): instead of refreshing it, PUT inserts a duplicate entry into the list."
+        },
+        {
+          "indizio": "Look at the expression computing the final hit percentage.",
+          "spiegazione": "hits, 100, and richieste are all int, so integer division truncates the decimal part (for example, 37.5 becomes 37) before assigning to double."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Look at how each string in operazioni is read at the start of the loop.",
+          "spiegazione": "Calling raw!.Trim() without checking whether raw is null or empty first throws NullReferenceException as soon as a null entry is present."
+        },
+        {
+          "indizio": "Check the condition deciding when an entry has reached its expiration time.",
+          "spiegazione": "The strict inequality istante - CreatoA > ttl leaves an entry active at the exact expiration moment (difference equal to ttl), when by specification it should already be removed."
+        },
+        {
+          "indizio": "Look at the denominator used to compute the hit percentage.",
+          "spiegazione": "The percentage divides by operazioni.Length (which includes PUT commands too) instead of richieste (GET requests only)."
+        }
+      ]
+    }
+  }
+}

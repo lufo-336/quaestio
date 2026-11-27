@@ -1,0 +1,34 @@
+{
+  "titolo": "CSV row parsing and totaling",
+  "requisito": "Parses an array of CSV rows in the format \"prodotto;categoria;quantita;prezzo\" (optionally skipping the first header row, blank rows, and comments starting with '#'). Every data row must have 4 fields, non-empty text fields, and non-negative integer numbers, otherwise it throws FormatException. Computes valid row count, grand total, and category-filtered total (case-insensitive, or equal to grand total when filter is empty); if righe is null or empty returns \"nessun dato\".",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Look at how format errors are handled while parsing a row.",
+          "spiegazione": "The catch (Exception) block swallows any FormatException and silently skips malformed rows instead of letting parsing fail as specified."
+        },
+        {
+          "indizio": "Check the upper bound of the for loop iterating over the rows.",
+          "spiegazione": "The condition i < righe.Length - 1 stops one element before the end, systematically dropping the last row in the array."
+        },
+        {
+          "indizio": "Look at what value is added to the filtered category accumulator.",
+          "spiegazione": "totaleFiltro adds prezzo (unit price) instead of subtotale (quantity times price), undercounting every row whose quantity is not 1."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Check the types involved in computing each row's subtotal.",
+          "spiegazione": "qta and prezzo are both int, so qta * prezzo silently overflows to negative when exceeding int.MaxValue before widening to long."
+        },
+        {
+          "indizio": "Look at how each row's category is compared against the requested filter.",
+          "spiegazione": "StringComparison.Ordinal makes category matching case-sensitive, skipping valid rows that only differ in letter case."
+        }
+      ]
+    }
+  }
+}

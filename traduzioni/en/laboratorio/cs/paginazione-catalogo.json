@@ -1,0 +1,38 @@
+{
+  "titolo": "Catalog pagination and filtering",
+  "requisito": "Filters valid catalog entries (ignoring null or empty elements) by case-insensitive substring when filtro is non-empty, then returns the 1-based page along with the percentage of filtered items shown. Returns \"non valido\" if voci is null or pagina/perPagina are not positive; if there are no entries or the page is past the end, returns an empty list.",
+  "varianti": {
+    "v1": {
+      "difetti": [
+        {
+          "indizio": "Check how each array element is handled before trimming whitespace.",
+          "spiegazione": "Calling raw!.Trim() before checking whether raw is null throws a NullReferenceException as soon as the array contains a null entry."
+        },
+        {
+          "indizio": "Look at the condition deciding whether the requested page exceeds the total page count.",
+          "spiegazione": "Using pagina >= totalePagine instead of > discards the very last valid page, returning an empty list whenever pagina equals totalePagine."
+        },
+        {
+          "indizio": "Look at how each entry is matched against the filter substring.",
+          "spiegazione": "StringComparison.Ordinal makes the search case-sensitive, violating the case-insensitive filtering requirement."
+        }
+      ]
+    },
+    "v2": {
+      "difetti": [
+        {
+          "indizio": "Check the types used when calculating the starting page offset.",
+          "spiegazione": "The product (pagina - 1) * perPagina is evaluated as int: with a large page number it overflows to negative, slips past inizio >= totale, and throws ArgumentOutOfRangeException when indexing the list."
+        },
+        {
+          "indizio": "Look at the condition applying the text filter to catalog entries.",
+          "spiegazione": "The negation ! is missing in front of pulita.Contains(...): the loop skips matching entries instead of non-matching ones."
+        },
+        {
+          "indizio": "Look at how the coverage percentage is calculated near the end of the function.",
+          "spiegazione": "mostrati, 100, and totale are all int, so integer division truncates decimals (for example, 37.5 becomes 37) before assigning to double."
+        }
+      ]
+    }
+  }
+}
