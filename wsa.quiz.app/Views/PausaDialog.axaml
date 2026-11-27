@@ -27,12 +27,14 @@
           MinWidth="280"
           MaxWidth="480">
     <StackPanel Spacing="12">
-      <TextBlock Text="{x:Static r:Strings.Pausa_Titolo}"
+      <TextBlock x:Name="TitoloText"
+                 Text="{x:Static r:Strings.Pausa_Titolo}"
                  FontSize="14"
                  FontWeight="SemiBold"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource TestoPrincipale}"/>
-      <TextBlock Text="{x:Static r:Strings.Pausa_Spiegazione}"
+      <TextBlock x:Name="SpiegazioneText"
+                 Text="{x:Static r:Strings.Pausa_Spiegazione}"
                  FontSize="12"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource TestoAttenuato}"/>

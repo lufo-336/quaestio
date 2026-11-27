@@ -676,6 +676,7 @@ public partial class MainView : UserControl
             _sospesiView.Inizializza(_storage, _preferenze.Laboratorio);
             _sospesiView.LaboratorioCambiato += OnLaboratorioCambiato;
             _sospesiView.RiprendiRichiesto += OnRiprendiSospesa;
+            _sospesiView.RiprendiLabRichiesto += OnRiprendiSospesaLab;
             _sospesiArea.Content = _sospesiView;
 
             // ---------- Tab Statistiche ----------
@@ -858,8 +859,10 @@ public partial class MainView : UserControl
 
     private void AvviaLaboratorioView(SessioneLaboratorio sessione)
     {
-        var labView = new LaboratorioView(sessione);
+        if (_storage == null) return;
+        var labView = new LaboratorioView(sessione, _storage);
         labView.LaboratorioConcluso += OnLaboratorioConcluso;
+        labView.LaboratorioMessoInPausa += OnLaboratorioMessoInPausa;
         _homeArea.Content = labView;
         IndiceSezione = 0;
     }
@@ -882,6 +885,21 @@ public partial class MainView : UserControl
             }
         }
 
+        // Se la sessione era stata ripresa da una pausa, rimuovo la pausa originale.
+        if (_storage != null && sessione.IdSessionePausa is { } idPausa)
+        {
+            try
+            {
+                _storage.EliminaPausaLab(idPausa);
+                _sospesiView?.Ricarica();
+            }
+            catch (Exception ex)
+            {
+                ErrorePanel.IsVisible = true;
+                ErroreText.Text = string.Format(Strings.Shell_ErroreEliminaPausa, ex.Message);
+            }
+        }
+
         var riep = new RiepilogoView(sessione.Risultato);
         riep.TornaAllaHome += (_, _) => RitornaAllaHome();
         _homeArea.Content = riep;
@@ -890,6 +908,12 @@ public partial class MainView : UserControl
     private void OnQuizMessoInPausa(object? sender, EventArgs e)
     {
         // La pausa e' gia' stata salvata dal QuizView. Torno alla Home e ricarico i sospesi.
+        RitornaAllaHome();
+        _sospesiView?.Ricarica();
+    }
+
+    private void OnLaboratorioMessoInPausa(object? sender, EventArgs e)
+    {
         RitornaAllaHome();
         _sospesiView?.Ricarica();
     }
@@ -908,6 +932,25 @@ public partial class MainView : UserControl
             ErrorePanel.IsVisible = true;
             ErroreText.Text = string.Format(Strings.Shell_PausaRimossa, ex.Message);
             try { _storage.EliminaPausa(pausa.SessioneId); }
+            catch { /* best effort: la card rimane finche' non si preme Aggiorna */ }
+            _sospesiView?.Ricarica();
+        }
+    }
+
+    private void OnRiprendiSospesaLab(object? sender, PausaLaboratorio pausa)
+    {
+        if (_storage == null) return;
+        try
+        {
+            var sessione = SessioneLaboratorio.RiprendiDa(pausa, _schedeLab);
+            ErrorePanel.IsVisible = false;
+            AvviaLaboratorioView(sessione);
+        }
+        catch (InvalidOperationException ex)
+        {
+            ErrorePanel.IsVisible = true;
+            ErroreText.Text = string.Format(Strings.Shell_PausaRimossa, ex.Message);
+            try { _storage.EliminaPausaLab(pausa.SessioneId); }
             catch { /* best effort: la card rimane finche' non si preme Aggiorna */ }
             _sospesiView?.Ricarica();
         }

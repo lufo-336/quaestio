@@ -7,24 +7,29 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Laboratorio;
 using Wsa.Quiz.Core.Services;
 
 using Wsa.Quiz.Core.Risorse;
 namespace Wsa.Quiz.App.Views;
 
 /// <summary>
-/// Tab "Sospesi": elenco delle sessioni messe in pausa.
-/// Lo storage e' condiviso fra console e GUI, quindi vediamo qui anche le
-/// pause create dal console.
-/// Riprendi (step 4) solleva <see cref="RiprendiRichiesto"/> con la pausa
-/// originale; la <c>MainWindow</c> costruisce la <c>SessioneQuiz</c> e naviga
-/// al <c>QuizView</c>. Elimina ha conferma inline.
+/// Tab "Sospesi": elenco delle sessioni messe in pausa (Quiz o Laboratorio).
+/// Lo storage dei quiz e' condiviso fra console e GUI; le pause del Laboratorio
+/// vivono nel file dedicato <c>laboratorio_in_pausa.json</c>.
+/// Riprendi solleva <see cref="RiprendiRichiesto"/> o <see cref="RiprendiLabRichiesto"/>
+/// con la pausa originale; la <c>MainView</c> ricostruisce la sessione e apre la vista.
+/// Elimina ha conferma inline.
 /// </summary>
 public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
 {
-    /// <summary>L'utente ha cliccato "Riprendi" su una pausa: la <c>MainWindow</c>
+    /// <summary>L'utente ha cliccato "Riprendi" su una pausa quiz: la <c>MainView</c>
     /// costruisce la sessione e cambia view.</summary>
     public event EventHandler<SessionePausa>? RiprendiRichiesto;
+
+    /// <summary>L'utente ha cliccato "Riprendi" su una pausa del Laboratorio: la <c>MainView</c>
+    /// ricostruisce la <see cref="SessioneLaboratorio"/> e cambia view.</summary>
+    public event EventHandler<PausaLaboratorio>? RiprendiLabRichiesto;
 
     /// <summary>Sollevato quando l'utente commuta l'interruttore globale Quiz | Laboratorio.</summary>
     public event EventHandler<bool>? LaboratorioCambiato;
@@ -40,11 +45,17 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
             {
                 _laboratorio = value;
                 Raise();
+                Raise(nameof(TestoVuotoDettaglio));
                 Ricarica();
                 LaboratorioCambiato?.Invoke(this, _laboratorio);
             }
         }
     }
+
+    /// <summary>Messaggio di dettaglio dello stato vuoto, distinto per Quiz e Laboratorio.</summary>
+    public string TestoVuotoDettaglio => _laboratorio
+        ? Strings.Lab_SospesiNessunaDettaglio
+        : Strings.Sospesi_NessunaDettaglio;
 
     public SospesiView()
     {
@@ -68,6 +79,7 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
     {
         _laboratorio = laboratorio;
         Raise(nameof(Laboratorio));
+        Raise(nameof(TestoVuotoDettaglio));
         base.Inizializza(storage);
     }
 
@@ -77,7 +89,13 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
 
     protected override void RicaricaCore()
     {
-        if (_laboratorio) return;
+        if (_laboratorio)
+        {
+            var pauseLab = _storage!.CaricaPauseLab();
+            foreach (var p in pauseLab.OrderByDescending(x => x.DataOraPausa))
+                Sessioni.Add(new SessioneSospesaItem(p));
+            return;
+        }
 
         var pause = _storage!.CaricaPause();
         foreach (var p in pause.OrderByDescending(x => x.DataOraPausa))
@@ -108,16 +126,29 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
     }
 
     protected override void EliminaDaStorage(SessioneSospesaItem item)
-        => _storage!.EliminaPausa(item.SessioneId);
+    {
+        if (item.ELaboratorio)
+            _storage!.EliminaPausaLab(item.SessioneId);
+        else
+            _storage!.EliminaPausa(item.SessioneId);
+    }
 
     // ------------------------------------------------------------------ HANDLER
 
-    /// <summary>Chiede alla <c>MainWindow</c> di riprendere questa sessione.</summary>
+    private void SollevaRiprendi(SessioneSospesaItem item)
+    {
+        if (item.PausaLab != null)
+            RiprendiLabRichiesto?.Invoke(this, item.PausaLab);
+        else if (item.Pausa != null)
+            RiprendiRichiesto?.Invoke(this, item.Pausa);
+    }
+
+    /// <summary>Chiede alla <c>MainView</c> di riprendere questa sessione.</summary>
     private void OnRiprendiClick(object? sender, RoutedEventArgs e)
     {
         if (sender is not Button b) return;
         if (b.DataContext is not SessioneSospesaItem item) return;
-        RiprendiRichiesto?.Invoke(this, item.Pausa);
+        SollevaRiprendi(item);
     }
 
     // ------------------------------------------------------------------ TASTIERA (step 8)
@@ -136,7 +167,7 @@ public partial class SospesiView : TabellaViewBase<SessioneSospesaItem>
                 if (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is Button)
                     return;
                 e.Handled = true;
-                RiprendiRichiesto?.Invoke(this, item.Pausa);
+                SollevaRiprendi(item);
                 return;
 
             case Key.Delete:

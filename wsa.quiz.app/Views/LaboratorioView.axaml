@@ -966,11 +966,17 @@
                 BorderThickness="0,1,0,0"
                 Padding="20,10">
             <Grid MaxWidth="980" HorizontalAlignment="Stretch" ColumnDefinitions="Auto,*,Auto">
-                <Button Grid.Column="0"
-                        Content="{x:Static r:Strings.Lab_Esci}"
-                        Click="OnEsciClick"
-                        Padding="16,10"
-                        FontSize="13"/>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                    <Button Content="{x:Static r:Strings.Lab_Esci}"
+                            Click="OnEsciClick"
+                            Padding="16,10"
+                            FontSize="13"/>
+                    <Button Content="{x:Static r:Strings.Quiz_Pausa}"
+                            Click="OnPausaClick"
+                            IsVisible="{Binding PuoMettereInPausa}"
+                            Padding="16,10"
+                            FontSize="13"/>
+                </StackPanel>
 
                 <Button Grid.Column="2"
                         Content="{x:Static r:Strings.Lab_Conferma}"

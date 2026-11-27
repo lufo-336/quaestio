@@ -647,4 +647,138 @@ public class LaboratorioServiceTests
         Assert.False(dettaglioSotto.SecondoTentativo);
         Assert.Equal(1.0, dettaglioSotto.PesoErrore());
     }
+
+    [Fact]
+    public void PauseLab_AndataERitornoSuCartellaTemporanea()
+    {
+        string dir = Path.Combine(Path.GetTempPath(), $"quaestio-pausa-lab-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(dir);
+        try
+        {
+            var storage = new StorageService(dir, dir);
+            Assert.Empty(storage.CaricaPauseLab());
+
+            var pausa = new PausaLaboratorio
+            {
+                SessioneId = "abc123",
+                DataOraPausa = new DateTime(2026, 11, 27, 10, 30, 0),
+                Linguaggio = "cs",
+                Livello = LivelliLab.Media,
+                Coppie = new List<string> { "sconto-ordine/v1", "verifica-accesso/v2", "verifica-buffer/v1" },
+                IndiceScheda = 1,
+                TempoTrascorso = TimeSpan.FromSeconds(95),
+                Dettagli = new List<DettaglioRisposta>
+                {
+                    new()
+                    {
+                        IdDomanda = "lab:cs:sconto-ordine:v1:output",
+                        MateriaNome = "C#" + LaboratorioService.SuffissoMateria,
+                        Categoria = TipiDifetto.EtichettaCanonica(TipiDifetto.Confine),
+                        TestoDomanda = "Sconto ordine — Prevedi l'output",
+                        RispostaData = "100",
+                        RispostaCorretta = "100",
+                        Corretta = true,
+                        Spiegazione = "Spiegazione",
+                        Tentativi = 1
+                    }
+                }
+            };
+
+            storage.SalvaPausaLab(pausa);
+            Assert.True(File.Exists(Path.Combine(dir, "laboratorio_in_pausa.json")));
+            Assert.False(File.Exists(Path.Combine(dir, "quiz_in_pausa.json")));
+
+            var ricaricate = new StorageService(dir, dir).CaricaPauseLab();
+            var caricata = Assert.Single(ricaricate);
+            Assert.Equal(pausa.SessioneId, caricata.SessioneId);
+            Assert.Equal(pausa.DataOraPausa, caricata.DataOraPausa);
+            Assert.Equal(pausa.Linguaggio, caricata.Linguaggio);
+            Assert.Equal(pausa.Livello, caricata.Livello);
+            Assert.Equal(pausa.Coppie, caricata.Coppie);
+            Assert.Equal(pausa.IndiceScheda, caricata.IndiceScheda);
+            Assert.Equal(pausa.TempoTrascorso, caricata.TempoTrascorso);
+            var dett = Assert.Single(caricata.Dettagli);
+            Assert.Equal("lab:cs:sconto-ordine:v1:output", dett.IdDomanda);
+            Assert.True(dett.Corretta);
+
+            // Aggiornamento sullo stesso SessioneId sostituisce senza duplicare
+            pausa.IndiceScheda = 2;
+            storage.SalvaPausaLab(pausa);
+            var aggiornate = storage.CaricaPauseLab();
+            Assert.Equal(2, Assert.Single(aggiornate).IndiceScheda);
+
+            // Eliminazione rimuove la pausa e il file se vuoto
+            storage.EliminaPausaLab(pausa.SessioneId);
+            Assert.Empty(storage.CaricaPauseLab());
+            Assert.False(File.Exists(Path.Combine(dir, "laboratorio_in_pausa.json")));
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void PauseLab_NonModificaQuizInPausaEsistente()
+    {
+        string dir = Path.Combine(Path.GetTempPath(), $"quaestio-pausa-mix-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(dir);
+        try
+        {
+            var storage = new StorageService(dir, dir);
+            var pausaQuiz = new SessionePausa
+            {
+                SessioneId = "quiz-1",
+                DataOraPausa = new DateTime(2026, 11, 27, 9, 0, 0),
+                Opzioni = new OpzioniQuiz { NomeModalita = "C# — Completo", MateriaNomeLabel = "C#" },
+                CodaDomandeIds = new List<string> { "d1", "d2" },
+                TempoTrascorso = TimeSpan.FromSeconds(42)
+            };
+            storage.SalvaPausa(pausaQuiz);
+
+            string fileQuiz = Path.Combine(dir, "quiz_in_pausa.json");
+            string contenutoPrima = File.ReadAllText(fileQuiz);
+
+            var pausaLab = new PausaLaboratorio
+            {
+                SessioneId = "lab-1",
+                Linguaggio = "cs",
+                Livello = LivelliLab.Base,
+                Coppie = new List<string> { "media-voti/v1" },
+                IndiceScheda = 0
+            };
+
+            storage.SalvaPausaLab(pausaLab);
+            Assert.Equal(contenutoPrima, File.ReadAllText(fileQuiz));
+
+            storage.EliminaPausaLab("lab-1");
+            Assert.Equal(contenutoPrima, File.ReadAllText(fileQuiz));
+
+            var quizRicaricate = storage.CaricaPause();
+            Assert.Equal("quiz-1", Assert.Single(quizRicaricate).SessioneId);
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void CaricaPauseLab_FileCorrotto_RestituisceListaVuota()
+    {
+        string dir = Path.Combine(Path.GetTempPath(), $"quaestio-pausa-corrotta-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(dir);
+        try
+        {
+            File.WriteAllText(Path.Combine(dir, "laboratorio_in_pausa.json"), "{ json non valido [");
+            var storage = new StorageService(dir, dir);
+
+            var pause = storage.CaricaPauseLab();
+            Assert.Empty(pause);
+        }
+        finally
+        {
+            if (Directory.Exists(dir)) Directory.Delete(dir, recursive: true);
+        }
+    }
 }

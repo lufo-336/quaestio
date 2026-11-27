@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using Wsa.Quiz.Core.Models;
+using Wsa.Quiz.Core.Models.Laboratorio;
 using Wsa.Quiz.Core.Risorse;
 
 namespace Wsa.Quiz.Core.Services;
@@ -9,8 +10,8 @@ namespace Wsa.Quiz.Core.Services;
 /// <summary>
 /// Gestisce la persistenza: lettura materie + domande, scrittura cronologia, gestione sospesi.
 /// Separa la cartella dei dati read-only (materie.json, domande/) da quella dei dati utente
-/// (cronologia.json, quiz_in_pausa.json) cosi' console e app GUI possono condividere lo stesso
-/// storico anche se hanno bin/output diversi.
+/// (cronologia.json, quiz_in_pausa.json, laboratorio_in_pausa.json) cosi' console e app GUI
+/// possono condividere lo stesso storico anche se hanno bin/output diversi.
 /// </summary>
 public class StorageService
 {
@@ -18,6 +19,7 @@ public class StorageService
     private readonly string _cartellaUtente;
     private readonly string _fileCronologia;
     private readonly string _filePausa;
+    private readonly string _filePausaLab;
     private readonly string _filePreferenze;
 
     /// <summary>
@@ -82,6 +84,7 @@ public class StorageService
         _cartellaUtente = Path.GetFullPath(cartellaUtente);
         _fileCronologia = Path.GetFullPath(Path.Combine(_cartellaUtente, "cronologia.json"));
         _filePausa      = Path.GetFullPath(Path.Combine(_cartellaUtente, "quiz_in_pausa.json"));
+        _filePausaLab   = Path.GetFullPath(Path.Combine(_cartellaUtente, "laboratorio_in_pausa.json"));
         _filePreferenze = Path.GetFullPath(Path.Combine(_cartellaUtente, "preferenze.json"));
 
         // Validazione anti-directory-traversal sui file utente.
@@ -90,6 +93,8 @@ public class StorageService
             throw new ArgumentException("Percorso cronologia.json fuori dalla cartella utente.", nameof(cartellaUtente));
         if (!_filePausa.StartsWith(ConSep(_cartellaUtente), StringComparison.Ordinal))
             throw new ArgumentException("Percorso quiz_in_pausa.json fuori dalla cartella utente.", nameof(cartellaUtente));
+        if (!_filePausaLab.StartsWith(ConSep(_cartellaUtente), StringComparison.Ordinal))
+            throw new ArgumentException("Percorso laboratorio_in_pausa.json fuori dalla cartella utente.", nameof(cartellaUtente));
         if (!_filePreferenze.StartsWith(ConSep(_cartellaUtente), StringComparison.Ordinal))
             throw new ArgumentException("Percorso preferenze.json fuori dalla cartella utente.", nameof(cartellaUtente));
 
@@ -465,6 +470,72 @@ public class StorageService
         }
         string json = JsonSerializer.Serialize(pause, OpzioniScrittura);
         ScriviAtomico(_filePausa, json);
+    }
+
+    // ---------------------------------------------------------------- PAUSA LABORATORIO
+
+    /// <summary>
+    /// Carica le sessioni del Laboratorio messe in pausa da <c>laboratorio_in_pausa.json</c>.
+    /// Se il file non esiste o è corrotto, restituisce una lista vuota senza bloccare l'app.
+    /// </summary>
+    public List<PausaLaboratorio> CaricaPauseLab()
+    {
+        if (!File.Exists(_filePausaLab)) return new List<PausaLaboratorio>();
+        try
+        {
+            string json = LeggiFileCondiviso(_filePausaLab);
+            var lista = JsonSerializer.Deserialize<List<PausaLaboratorio>>(json, OpzioniLettura);
+            if (lista == null) return new List<PausaLaboratorio>();
+
+            foreach (var p in lista)
+            {
+                if (string.IsNullOrWhiteSpace(p.SessioneId))
+                    p.SessioneId = Guid.NewGuid().ToString("N");
+                p.Coppie ??= new();
+                p.Dettagli ??= new();
+            }
+            return lista;
+        }
+        catch
+        {
+            return new List<PausaLaboratorio>();
+        }
+    }
+
+    /// <summary>
+    /// Salva o aggiorna una pausa del Laboratorio in <c>laboratorio_in_pausa.json</c>
+    /// mediante scrittura atomica, lasciando intatto <c>quiz_in_pausa.json</c>.
+    /// </summary>
+    public void SalvaPausaLab(PausaLaboratorio stato)
+    {
+        if (string.IsNullOrWhiteSpace(stato.SessioneId))
+            stato.SessioneId = Guid.NewGuid().ToString("N");
+
+        var pause = CaricaPauseLab();
+        int idx = pause.FindIndex(p => p.SessioneId == stato.SessioneId);
+        if (idx >= 0) pause[idx] = stato;
+        else pause.Add(stato);
+
+        string json = JsonSerializer.Serialize(pause, OpzioniScrittura);
+        ScriviAtomico(_filePausaLab, json);
+    }
+
+    /// <summary>
+    /// Elimina la pausa del Laboratorio con l'id indicato da <c>laboratorio_in_pausa.json</c>.
+    /// Se non restano altre pause, rimuove il file.
+    /// </summary>
+    public void EliminaPausaLab(string sessioneId)
+    {
+        if (string.IsNullOrEmpty(sessioneId) || !File.Exists(_filePausaLab)) return;
+        var pause = CaricaPauseLab();
+        pause.RemoveAll(p => p.SessioneId == sessioneId);
+        if (pause.Count == 0)
+        {
+            EliminaFile(_filePausaLab);
+            return;
+        }
+        string json = JsonSerializer.Serialize(pause, OpzioniScrittura);
+        ScriviAtomico(_filePausaLab, json);
     }
 
     // ---------------------------------------------------------------- PREFERENZE UTENTE

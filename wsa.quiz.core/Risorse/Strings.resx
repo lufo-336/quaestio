@@ -379,4 +379,8 @@
   <data name="Lab_CronologiaVuotoIniziale" xml:space="preserve"><value>Avvia una sessione del Laboratorio dalla Home per iniziare a costruire la tua cronologia.</value></data>
   <data name="Lab_StatisticheVuoto" xml:space="preserve"><value>Nessuna scheda completata</value></data>
   <data name="Lab_StatisticheVuotoDesc" xml:space="preserve"><value>Avvia una sessione del Laboratorio dalla Home per vedere le statistiche.</value></data>
+  <data name="Lab_PausaTitolo" xml:space="preserve"><value>Sessione in pausa. Cosa vuoi fare?</value></data>
+  <data name="Lab_PausaSpiegazione" xml:space="preserve"><value>Annulla riprende la sessione. Abbandona la chiude e salva i passi completati in cronologia. Salva e esci la mette nei Sospesi: riprenderai dall'inizio della scheda in corso.</value></data>
+  <data name="Lab_PausaOrfana" xml:space="preserve"><value>Le schede di questa pausa non sono più disponibili.</value></data>
+  <data name="Lab_SospesiNessunaDettaglio" xml:space="preserve"><value>Le sessioni del Laboratorio messe in pausa compaiono qui. Premi Pausa o ESC durante una sessione per metterla in pausa.</value></data>
 </root>

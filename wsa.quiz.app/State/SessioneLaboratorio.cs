@@ -30,8 +30,22 @@ public class SessioneLaboratorio : ObservableObject
 {
     private readonly List<(SchedaLab Scheda, VarianteLab Variante)> _coppie;
     private readonly Stopwatch _cron = new();
+    private readonly string _linguaggioId;
     private bool _avviata;
     private bool _rigaAlSecondoTentativo;
+
+    private string _sessioneId = Guid.NewGuid().ToString("N");
+    private bool _avviataDaRipresa;
+    private TimeSpan _offsetCronometro = TimeSpan.Zero;
+    private int _indiceIniziale;
+    private int _dettagliSchedeConcluse;
+
+    /// <summary>
+    /// Id della pausa da cui questa sessione è stata ripresa, oppure <c>null</c>
+    /// se avviata da zero. Usato da <c>MainView</c> per eliminare la pausa originale
+    /// al termine o all'abbandono della sessione.
+    /// </summary>
+    public string? IdSessionePausa => _avviataDaRipresa ? _sessioneId : null;
 
     public string NomeLinguaggio { get; }
     public string Livello { get; }
@@ -226,6 +240,7 @@ public class SessioneLaboratorio : ObservableObject
         NomeLinguaggio = nomeLinguaggio;
         Livello = livello;
         MateriaNome = nomeLinguaggio + LaboratorioService.SuffissoMateria;
+        _linguaggioId = RisolviLinguaggioId(_coppie, nomeLinguaggio);
 
         if (_coppie.Count > 0)
         {
@@ -234,7 +249,24 @@ public class SessioneLaboratorio : ObservableObject
         }
     }
 
-    /// <summary>Avvia il cronometro e porta a video la prima scheda.</summary>
+    private static string RisolviLinguaggioId(
+        IReadOnlyList<(SchedaLab Scheda, VarianteLab Variante)> coppie,
+        string nomeLinguaggio)
+    {
+        if (coppie.Count > 0 && !string.IsNullOrWhiteSpace(coppie[0].Scheda.Linguaggio))
+            return coppie[0].Scheda.Linguaggio;
+
+        foreach (var (id, nome) in LaboratorioService.Linguaggi)
+        {
+            if (string.Equals(nome, nomeLinguaggio, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(id, nomeLinguaggio, StringComparison.OrdinalIgnoreCase))
+                return id;
+        }
+
+        return nomeLinguaggio;
+    }
+
+    /// <summary>Avvia il cronometro e porta a video la scheda iniziale (o quella di ripresa).</summary>
     public void Avvia()
     {
         if (_avviata) return;
@@ -252,7 +284,7 @@ public class SessioneLaboratorio : ObservableObject
         }
 
         _cron.Start();
-        CaricaScheda(0);
+        CaricaScheda(_indiceIniziale);
     }
 
     private void CaricaScheda(int indice)
@@ -498,9 +530,14 @@ public class SessioneLaboratorio : ObservableObject
 
             case PassoLab.RompiFunzione:
                 if (_indiceScheda + 1 < TotaleSchede)
+                {
+                    _dettagliSchedeConcluse = Risultato.Dettagli.Count;
                     CaricaScheda(_indiceScheda + 1);
+                }
                 else
+                {
                     Concludi(abbandonato: false);
+                }
                 break;
         }
     }
@@ -510,6 +547,121 @@ public class SessioneLaboratorio : ObservableObject
     {
         if (Passo == PassoLab.Concluso) return;
         Concludi(abbandonato: true);
+    }
+
+    /// <summary>Ferma temporaneamente il cronometro mentre è aperto il dialogo di pausa o uscita.</summary>
+    public void SospendiCronometro() => _cron.Stop();
+
+    /// <summary>Riprende il cronometro dopo aver annullato il dialogo di pausa o uscita.</summary>
+    public void RiprendiCronometro()
+    {
+        if (_avviata && Passo != PassoLab.Concluso)
+            _cron.Start();
+    }
+
+    /// <summary>
+    /// Produce uno snapshot serializzabile della sessione corrente per la ripresa futura.
+    /// Salva le coppie (<c>schedaId/varianteId</c>) in ordine, l'indice della scheda in corso e
+    /// i dettagli delle sole schede già concluse (scartando eventuali passi già svolti sulla
+    /// scheda corrente, che alla ripresa ripartirà dal passo 1).
+    /// </summary>
+    public PausaLaboratorio CreaPausa()
+    {
+        _cron.Stop();
+
+        int daTenere = Math.Clamp(_dettagliSchedeConcluse, 0, Risultato.Dettagli.Count);
+        return new PausaLaboratorio
+        {
+            SessioneId = _sessioneId,
+            DataOraPausa = DateTime.Now,
+            Linguaggio = _linguaggioId,
+            Livello = Livello,
+            Coppie = _coppie.Select(c => $"{c.Scheda.Id}/{c.Variante.Id}").ToList(),
+            IndiceScheda = _indiceScheda,
+            Dettagli = Risultato.Dettagli.Take(daTenere).ToList(),
+            TempoTrascorso = _cron.Elapsed + _offsetCronometro
+        };
+    }
+
+    /// <summary>
+    /// Ricostruisce una <see cref="SessioneLaboratorio"/> da una <see cref="PausaLaboratorio"/>
+    /// salvata, posizionandola all'inizio (passo 1) della scheda <see cref="PausaLaboratorio.IndiceScheda"/>.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">
+    /// Se una scheda o variante della pausa non è più presente fra le schede caricate
+    /// (o se la pausa non è valida).
+    /// </exception>
+    public static SessioneLaboratorio RiprendiDa(PausaLaboratorio pausa, IReadOnlyList<SchedaLab> schede)
+    {
+        if (pausa == null || pausa.Coppie == null || pausa.Coppie.Count == 0)
+            throw new InvalidOperationException(Strings.Lab_PausaOrfana);
+
+        if (pausa.IndiceScheda < 0 || pausa.IndiceScheda >= pausa.Coppie.Count)
+            throw new InvalidOperationException(Strings.Lab_PausaOrfana);
+
+        string langId = pausa.Linguaggio;
+        string nomeLinguaggio = pausa.Linguaggio;
+        foreach (var (id, nome) in LaboratorioService.Linguaggi)
+        {
+            if (string.Equals(id, pausa.Linguaggio, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(nome, pausa.Linguaggio, StringComparison.OrdinalIgnoreCase))
+            {
+                langId = id;
+                nomeLinguaggio = nome;
+                break;
+            }
+        }
+
+        var perChiave = new Dictionary<(string SchedaId, string VarianteId), (SchedaLab Scheda, VarianteLab Variante)>();
+        foreach (var s in schede)
+        {
+            if (!string.Equals(s.Linguaggio, langId, StringComparison.OrdinalIgnoreCase))
+                continue;
+            foreach (var v in s.Varianti)
+                perChiave.TryAdd((s.Id, v.Id), (s, v));
+        }
+
+        var coppie = new List<(SchedaLab Scheda, VarianteLab Variante)>(pausa.Coppie.Count);
+        foreach (var voce in pausa.Coppie)
+        {
+            if (string.IsNullOrEmpty(voce))
+                throw new InvalidOperationException(Strings.Lab_PausaOrfana);
+
+            int sep = voce.IndexOf('/');
+            if (sep <= 0 || sep >= voce.Length - 1)
+                throw new InvalidOperationException(Strings.Lab_PausaOrfana);
+
+            string schedaId = voce[..sep];
+            string varianteId = voce[(sep + 1)..];
+            if (!perChiave.TryGetValue((schedaId, varianteId), out var coppia))
+                throw new InvalidOperationException(Strings.Lab_PausaOrfana);
+
+            coppie.Add(coppia);
+        }
+
+        var sessione = new SessioneLaboratorio(coppie, nomeLinguaggio, pausa.Livello)
+        {
+            _sessioneId = string.IsNullOrWhiteSpace(pausa.SessioneId)
+                ? Guid.NewGuid().ToString("N")
+                : pausa.SessioneId,
+            _avviataDaRipresa = true,
+            _offsetCronometro = pausa.TempoTrascorso,
+            _indiceIniziale = pausa.IndiceScheda
+        };
+
+        // Stato iniziale pronto sui campi privati prima che la vista legga le proprietà o si sottoscriva.
+        sessione._indiceScheda = pausa.IndiceScheda;
+        sessione._schedaCorrente = coppie[pausa.IndiceScheda].Scheda;
+        sessione._varianteCorrente = coppie[pausa.IndiceScheda].Variante;
+
+        if (pausa.Dettagli != null)
+        {
+            foreach (var dett in pausa.Dettagli)
+                sessione.Risultato.Dettagli.Add(dett);
+            sessione._dettagliSchedeConcluse = sessione.Risultato.Dettagli.Count;
+        }
+
+        return sessione;
     }
 
     // ------------------------------------------------------------------ SUPPORTO E CHIUSURA
@@ -572,19 +724,20 @@ public class SessioneLaboratorio : ObservableObject
     {
         _cron.Stop();
         Abbandonato = abbandonato;
-        Passo = PassoLab.Concluso;
-        InAttesaDiAvanti = false;
-
+        // Assegnamenti di stato letti dalla vista prima delle notifiche su Passo e InAttesaDiAvanti.
         int effettuate = Risultato.Dettagli.Count;
         int corrette = Risultato.Dettagli.Count(d => d.Corretta);
 
         Risultato.Abbandonato = abbandonato;
-        Risultato.DurataQuiz = _cron.Elapsed;
+        Risultato.DurataQuiz = _cron.Elapsed + _offsetCronometro;
         Risultato.TotaleDomande = effettuate;
         Risultato.RisposteCorrette = corrette;
         Risultato.RisposteErrate = effettuate - corrette;
         Risultato.PercentualeCorrette = effettuate == 0 ? 0 : 100.0 * corrette / effettuate;
         Risultato.Punteggio = QuizService.CalcolaPunteggio(Risultato);
+
+        InAttesaDiAvanti = false;
+        Passo = PassoLab.Concluso;
 
         Concluso?.Invoke(this, EventArgs.Empty);
     }

@@ -57,6 +57,13 @@ public partial class PausaDialog : OverlayDialogBase
         };
     }
 
+    /// <summary>Costruttore con titolo e spiegazione personalizzati (es. per il Laboratorio).</summary>
+    public PausaDialog(string titolo, string spiegazione) : this()
+    {
+        TitoloText.Text = titolo;
+        SpiegazioneText.Text = spiegazione;
+    }
+
     protected override void OnShown() => AnnullaBtn.Focus();
 
     private void OnAbbandonaClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

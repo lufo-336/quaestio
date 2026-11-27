@@ -379,4 +379,8 @@
   <data name="Lab_CronologiaVuotoIniziale" xml:space="preserve"><value>Start a Lab session from Home to begin building your history.</value></data>
   <data name="Lab_StatisticheVuoto" xml:space="preserve"><value>No lab exercises completed yet</value></data>
   <data name="Lab_StatisticheVuotoDesc" xml:space="preserve"><value>Start a Lab session from Home to see your statistics.</value></data>
+  <data name="Lab_PausaTitolo" xml:space="preserve"><value>Session paused. What do you want to do?</value></data>
+  <data name="Lab_PausaSpiegazione" xml:space="preserve"><value>Cancel resumes the session. Abandon ends it and saves completed steps to History. Save and exit puts it in Paused: you will resume from the start of the current exercise.</value></data>
+  <data name="Lab_PausaOrfana" xml:space="preserve"><value>The exercises in this paused session are no longer available.</value></data>
+  <data name="Lab_SospesiNessunaDettaglio" xml:space="preserve"><value>Paused Lab sessions appear here. Press Pause or ESC during a session to pause it.</value></data>
 </root>

@@ -13,6 +13,7 @@ using Avalonia.Media;
 using Wsa.Quiz.App.State;
 using Wsa.Quiz.Core.Models.Laboratorio;
 using Wsa.Quiz.Core.Risorse;
+using Wsa.Quiz.Core.Services;
 
 namespace Wsa.Quiz.App.Views;
 
@@ -26,9 +27,14 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
     /// <summary>Sollevato quando la sessione termina (regolarmente o per abbandono).</summary>
     public event EventHandler<SessioneLaboratorio>? LaboratorioConcluso;
 
+    /// <summary>Sollevato quando la sessione è stata salvata nei sospesi tramite il menu Pausa.</summary>
+    public event EventHandler? LaboratorioMessoInPausa;
+
     public new event PropertyChangedEventHandler? PropertyChanged;
 
     public SessioneLaboratorio Sessione { get; }
+    private readonly StorageService? _storage;
+    public bool PuoMettereInPausa => _storage != null;
 
     private bool _avviata;
     private int _schedaPreparataIndice = -1;
@@ -162,7 +168,7 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     // ------------------------------------------------------------------ COSTRUZIONE
 
-    public LaboratorioView(SessioneLaboratorio sessione)
+    public LaboratorioView(SessioneLaboratorio sessione, StorageService? storage = null)
     {
         InitializeComponent();
 
@@ -176,6 +182,7 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
             RequisitoBorder.Tapped += (_, _) => RequisitoText.MaxLines = RequisitoText.MaxLines == 0 ? 2 : 0;
         }
 
+        _storage = storage;
         Sessione = sessione;
         DataContext = this;
 
@@ -203,7 +210,10 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
         if (e.KeyModifiers == KeyModifiers.None && e.Key == Key.Escape)
         {
             e.Handled = true;
-            OnEsciClick(null, new RoutedEventArgs());
+            if (_storage != null)
+                OnPausaClick(null, new RoutedEventArgs());
+            else
+                OnEsciClick(null, new RoutedEventArgs());
             return;
         }
         base.OnKeyDown(e);
@@ -811,6 +821,7 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
     private async Task ChiediUscitaAsync()
     {
+        Sessione.SospendiCronometro();
         var dialog = new ConfermaDialog(
             Strings.Lab_Esci,
             Strings.Lab_EsciTitolo,
@@ -822,6 +833,51 @@ public partial class LaboratorioView : UserControl, INotifyPropertyChanged
 
         if (dialog.Confermato)
             Sessione.Abbandona();
+        else
+            Sessione.RiprendiCronometro();
+    }
+
+    private async void OnPausaClick(object? sender, RoutedEventArgs e)
+    {
+        try { await ApriMenuPausaAsync(); }
+        catch (Exception) { /* best effort */ }
+    }
+
+    private async Task ApriMenuPausaAsync()
+    {
+        if (_storage == null) return;
+
+        Sessione.SospendiCronometro();
+
+        var dialog = new PausaDialog(Strings.Lab_PausaTitolo, Strings.Lab_PausaSpiegazione);
+        await dialog.ShowOverlayAsync(this);
+        Focus();
+
+        switch (dialog.Risultato)
+        {
+            case PausaDialogResult.Abbandona:
+                Sessione.Abbandona();
+                return;
+
+            case PausaDialogResult.Salva:
+                try
+                {
+                    var pausa = Sessione.CreaPausa();
+                    _storage.SalvaPausaLab(pausa);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"SalvaPausaLab failed: {ex}");
+                    Sessione.RiprendiCronometro();
+                    return;
+                }
+                LaboratorioMessoInPausa?.Invoke(this, EventArgs.Empty);
+                return;
+
+            default:
+                Sessione.RiprendiCronometro();
+                return;
+        }
     }
 
     private void OnSessioneConclusa(object? sender, EventArgs e)

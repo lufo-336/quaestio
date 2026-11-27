@@ -111,7 +111,7 @@
                 <TextBlock Text="{x:Static r:Strings.Sospesi_Nessuna}"
                            FontWeight="SemiBold"
                            HorizontalAlignment="Center"/>
-                <TextBlock Text="{x:Static r:Strings.Sospesi_NessunaDettaglio}"
+                <TextBlock Text="{Binding TestoVuotoDettaglio}"
                            FontSize="12"
                            Foreground="{DynamicResource TestoAttenuato}"
                            TextWrapping="Wrap"

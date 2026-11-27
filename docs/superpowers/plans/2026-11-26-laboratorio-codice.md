@@ -487,6 +487,8 @@ almeno un input che espone il più grave. Stessa regola del Task 4 per i test. O
 
 ## Task 14: Pausa e ripresa per scheda
 
+- [x] Fatto 2026-11-27 (agy): file `wsa.quiz.core/Models/Laboratorio/PausaLaboratorio.cs`, `wsa.quiz.core/Services/StorageService.cs`, `wsa.quiz.core/Risorse/Strings.resx`, `wsa.quiz.core/Risorse/Strings.en.resx`, `wsa.quiz.core.tests/LaboratorioServiceTests.cs`, `wsa.quiz.app/State/SessioneLaboratorio.cs`, `wsa.quiz.app/Views/PausaDialog.axaml(.cs)`, `wsa.quiz.app/Views/LaboratorioView.axaml(.cs)`, `wsa.quiz.app/State/SessioneSospesaItem.cs`, `wsa.quiz.app/Views/SospesiView.axaml(.cs)`, `wsa.quiz.app/MainView.axaml.cs` — verifica: non eseguita (sessione headless senza shell; riletti i file creati e modificati)
+
 - `PausaLaboratorio` (core, Models/Laboratorio): `SessioneId` (Guid "N"), `DataOraPausa`, `Linguaggio`, `Livello`,
   `Coppie` (List\<string\>, `schedaId/varianteId` in ordine), `IndiceScheda` (la scheda da cui ripartire),
   `Dettagli` (solo quelli delle schede concluse), `TempoTrascorso`.
